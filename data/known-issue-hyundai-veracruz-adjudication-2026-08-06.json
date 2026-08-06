@@ -1,0 +1,979 @@
+{
+  "schemaVersion": 1,
+  "status": "proposal-only",
+  "auditStage": "model-primary-source-adjudication",
+  "requiresIndependentApproval": true,
+  "generatedOn": "2026-08-06",
+  "make": "Hyundai",
+  "model": "Veracruz",
+  "completionStatement": "This packet reconciles all five frozen Hyundai Veracruz rows. No same-identity primary-source rewrite cleared the gate; all five remain byte-for-byte unchanged.",
+  "safetyContract": [
+    "No production database write, cache purge, deployment, archive action, redirect, slug change or public-page change is authorized by this packet.",
+    "All five rows remain published and byte-for-byte unchanged.",
+    "A different cause, generic repair policy or mismatched bulletin may never replace the issue named by an existing indexed page.",
+    "Existing commerce remains frozen rather than being silently rewritten without exact identity and fitment evidence.",
+    "Independent row-by-row approval is required before any separate correction path may be created."
+  ],
+  "source": {
+    "snapshotFile": "data/_hyundai-deeplink-snapshot-2026-08-06.json",
+    "snapshotSha256": "f3e74267205477804060c49c988221cdc4dfcfc4586df369601c8c64736cce60",
+    "snapshotGeneratedAt": "2026-08-06T02:37:36.989Z",
+    "snapshotHash": "444457abb31ca6a5ead423878b37ca790d44a87c74ffa43259362cb4218ba632",
+    "veracruzRecordCount": 5
+  },
+  "observations": [
+    {
+      "code": "oil-leak-recall-not-voltage-regulator-defect",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "hyundai-veracruz-alternator-2007"
+      ],
+      "detail": "Recall 14V-415 proves an oil-leak path that can damage the alternator, not the indexed voltage-regulator and accessory-load narrative."
+    },
+    {
+      "code": "atm-policy-does-not-prove-two-defects",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "hyundai-veracruz-transfer-case-leak-2007",
+        "hyundai-veracruz-transmission-2007"
+      ],
+      "detail": "TSB 20-AT-016H is repair policy for the Veracruz Aisin transmission; it does not prove either indexed failure narrative."
+    },
+    {
+      "code": "claimed-transmission-tsb-is-genesis-material",
+      "severity": "high",
+      "recordIds": [
+        "hyundai-veracruz-transmission-2007"
+      ],
+      "detail": "Hyundai material identifies TSB 09-AT-001 as Genesis Coupe V6 and Genesis V8 fluid-level information, not a Veracruz warranty extension."
+    },
+    {
+      "code": "decoupler-and-sunroof-remain-unsupported",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "hyundai-veracruz-alternator-decoupler-2007",
+        "hyundai-veracruz-sunroof-drain-2007"
+      ],
+      "detail": "Generic vehicle, forum and video references do not establish the indexed decoupler or sunroof-drain narratives."
+    }
+  ],
+  "mismatchSources": {
+    "alternatorOilLeak": "https://static.nhtsa.gov/odi/rcl/2014/RCDNN-14V415-5243P.pdf",
+    "atmPolicy": "https://static.nhtsa.gov/odi/tsbs/2020/MC-10174807-0001.pdf",
+    "tsbIndex": "https://static.nhtsa.gov/odi/tsbs/2014/MC-10061031-2273.pdf"
+  },
+  "summary": {
+    "rewrite_same_identity": 0,
+    "keep_published_pending_source": 5,
+    "total": 5
+  },
+  "rows": [
+    {
+      "id": "hyundai-veracruz-alternator-2007",
+      "model": "Veracruz",
+      "action": "keep_published_pending_source",
+      "reason": "Recall 14V-415 establishes engine oil leaking from the front cylinder-bank valve-cover gasket onto and damaging the alternator. It does not establish the indexed voltage-regulator failure, electrical-load cause, belt-tensioner mechanism, mileage range, DTCs, 150-amp specification or commerce claims, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; a different cause, generic repair policy, mismatched bulletin or unsupported narrative cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-record-different-cause",
+          "url": "https://static.nhtsa.gov/odi/rcl/2014/RCDNN-14V415-5243P.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "Recall 14V-415 covers oil leaking from the front cylinder-bank valve cover gasket onto the alternator, which can make the charging system inoperative and stall the engine; it does not establish an internal voltage-regulator defect."
+        }
+      ],
+      "beforeSha256": "daeb4a89d9ba482e846664b7bf6c6cd1edb7671bc5727dbe0b636300796ee55d",
+      "proposalSha256": "daeb4a89d9ba482e846664b7bf6c6cd1edb7671bc5727dbe0b636300796ee55d",
+      "before": {
+        "make": "Hyundai",
+        "model": "Veracruz",
+        "years": [
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012
+        ],
+        "trims": [],
+        "engines": [
+          "3.8L Lambda V6"
+        ],
+        "category": "electrical",
+        "title": "Alternator Premature Failure and Voltage Regulator Issues",
+        "description": "The Veracruz 3.8L Lambda V6 has a high alternator failure rate, typically between 60,000-90,000 miles. The internal voltage regulator fails first, causing overcharging or undercharging. Overcharging damages the battery and can blow bulbs, while undercharging causes intermittent electrical problems and eventual no-start. The high electrical demand from the Veracruz's power-everything luxury features (heated seats, navigation, power liftgate) stresses the alternator. The serpentine belt tensioner also wears, causing belt slip that accelerates alternator bearing wear.",
+        "solution": "Replace the alternator with a quality remanufactured unit from Denso or Valeo (OEM suppliers). Replace the serpentine belt and tensioner at the same time — the tensioner pulley bearing commonly fails at the same mileage. Have the battery tested after alternator replacement, as overcharging may have damaged it. A 150-amp unit is the OEM specification.",
+        "severity": "medium",
+        "confidence": "low",
+        "symptoms": [
+          "Battery warning light flickering or steady on dash",
+          "Dimming headlights at idle",
+          "Electrical accessories operating erratically",
+          "Battery dying overnight or after short trips",
+          "Whining noise from alternator area that changes with RPM"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0562",
+          "P0620"
+        ],
+        "estimatedCostLow": 300,
+        "estimatedCostHigh": 700,
+        "typicalMileageLow": 60000,
+        "typicalMileageHigh": 90000,
+        "citations": [
+          {
+            "source": "hyundai-forums.com",
+            "description": "Veracruz alternator failure reports"
+          },
+          {
+            "source": "NHTSA complaints",
+            "description": "Hyundai Veracruz electrical system complaints"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Denso 210-0760 remanufactured alternator — OEM supplier for Hyundai, 150-amp output matches factory spec",
+            "upvotes": 0,
+            "partName": "Remanufactured Alternator",
+            "partBrand": "Denso",
+            "partNumber": "210-0760",
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Denso+Hyundai+Veracruz+alternator&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Replace the serpentine belt tensioner when doing the alternator — a worn tensioner causes belt slip that kills the new alternator bearing prematurely",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "warning",
+            "content": "Test the battery immediately after alternator replacement — overcharging from the failed voltage regulator often damages the battery internally",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 120,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-03-13",
+        "reviewedOn": "2026-03-13",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "hyundai-entourage-alternator-2007"
+        ]
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Veracruz",
+        "years": [
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012
+        ],
+        "trims": [],
+        "engines": [
+          "3.8L Lambda V6"
+        ],
+        "category": "electrical",
+        "title": "Alternator Premature Failure and Voltage Regulator Issues",
+        "description": "The Veracruz 3.8L Lambda V6 has a high alternator failure rate, typically between 60,000-90,000 miles. The internal voltage regulator fails first, causing overcharging or undercharging. Overcharging damages the battery and can blow bulbs, while undercharging causes intermittent electrical problems and eventual no-start. The high electrical demand from the Veracruz's power-everything luxury features (heated seats, navigation, power liftgate) stresses the alternator. The serpentine belt tensioner also wears, causing belt slip that accelerates alternator bearing wear.",
+        "solution": "Replace the alternator with a quality remanufactured unit from Denso or Valeo (OEM suppliers). Replace the serpentine belt and tensioner at the same time — the tensioner pulley bearing commonly fails at the same mileage. Have the battery tested after alternator replacement, as overcharging may have damaged it. A 150-amp unit is the OEM specification.",
+        "severity": "medium",
+        "confidence": "low",
+        "symptoms": [
+          "Battery warning light flickering or steady on dash",
+          "Dimming headlights at idle",
+          "Electrical accessories operating erratically",
+          "Battery dying overnight or after short trips",
+          "Whining noise from alternator area that changes with RPM"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0562",
+          "P0620"
+        ],
+        "estimatedCostLow": 300,
+        "estimatedCostHigh": 700,
+        "typicalMileageLow": 60000,
+        "typicalMileageHigh": 90000,
+        "citations": [
+          {
+            "source": "hyundai-forums.com",
+            "description": "Veracruz alternator failure reports"
+          },
+          {
+            "source": "NHTSA complaints",
+            "description": "Hyundai Veracruz electrical system complaints"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Denso 210-0760 remanufactured alternator — OEM supplier for Hyundai, 150-amp output matches factory spec",
+            "upvotes": 0,
+            "partName": "Remanufactured Alternator",
+            "partBrand": "Denso",
+            "partNumber": "210-0760",
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Denso+Hyundai+Veracruz+alternator&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Replace the serpentine belt tensioner when doing the alternator — a worn tensioner causes belt slip that kills the new alternator bearing prematurely",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "warning",
+            "content": "Test the battery immediately after alternator replacement — overcharging from the failed voltage regulator often damages the battery internally",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 120,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-03-13",
+        "reviewedOn": "2026-03-13",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "hyundai-entourage-alternator-2007"
+        ]
+      }
+    },
+    {
+      "id": "hyundai-veracruz-alternator-decoupler-2007",
+      "model": "Veracruz",
+      "action": "keep_published_pending_source",
+      "reason": "A generic NHTSA vehicle page and a video do not establish one 2007-2012 Veracruz alternator-decoupler clutch defect, failure mechanism or repair scope. The row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; a different cause, generic repair policy, mismatched bulletin or unsupported narrative cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "b295be6776f6249646505108189b22c6e4a07ed36da39c3073949938c3e645a9",
+      "proposalSha256": "b295be6776f6249646505108189b22c6e4a07ed36da39c3073949938c3e645a9",
+      "before": {
+        "make": "Hyundai",
+        "model": "Veracruz",
+        "years": [
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Alternator Decoupler Pulley Failure",
+        "description": "The alternator overrunning decoupler pulley fails, causing serpentine belt chirp, premature belt wear, and alternator bearing noise. The one-way clutch inside the pulley seizes or freewheel mechanism breaks.",
+        "solution": "Replace alternator decoupler pulley (requires special removal tool). Inspect and replace serpentine belt. Check belt tensioner for proper operation.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Chirping noise from engine",
+          "Serpentine belt squeal at startup",
+          "Premature belt wear",
+          "Rattling from alternator area"
+        ],
+        "affectedSystems": [
+          "Alternator",
+          "Accessory drive belt"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 200,
+        "estimatedCostHigh": 400,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2007/HYUNDAI/VERACRUZ",
+            "type": "nhtsa",
+            "title": "NHTSA Vehicle Page for 2007 Hyundai Veracruz - Complaints and Investigations"
+          },
+          {
+            "url": "https://www.youtube.com/watch?v=J6qJfLkzF7k",
+            "type": "video",
+            "title": "EricTheCarGuy - Hyundai Veracruz Alternator Decoupler Pulley Replacement"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "OEM-quality remanufactured alternator with high output for reliable charging",
+            "partName": "Remanufactured Alternator",
+            "partBrand": "Denso",
+            "affiliateUrl": "https://www.amazon.com/s?k=Denso%20Remanufactured%20Alternator%20Hyundai%20Veracruz&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Premium rebuilt alternator backed by extensive warranty coverage",
+            "partName": "Premium Remanufactured Alternator",
+            "partBrand": "Remy",
+            "affiliateUrl": "https://www.amazon.com/s?k=Remy%20Premium%20Remanufactured%20Alternator%20Hyundai%20Veracruz&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Veracruz",
+        "years": [
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Alternator Decoupler Pulley Failure",
+        "description": "The alternator overrunning decoupler pulley fails, causing serpentine belt chirp, premature belt wear, and alternator bearing noise. The one-way clutch inside the pulley seizes or freewheel mechanism breaks.",
+        "solution": "Replace alternator decoupler pulley (requires special removal tool). Inspect and replace serpentine belt. Check belt tensioner for proper operation.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Chirping noise from engine",
+          "Serpentine belt squeal at startup",
+          "Premature belt wear",
+          "Rattling from alternator area"
+        ],
+        "affectedSystems": [
+          "Alternator",
+          "Accessory drive belt"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 200,
+        "estimatedCostHigh": 400,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2007/HYUNDAI/VERACRUZ",
+            "type": "nhtsa",
+            "title": "NHTSA Vehicle Page for 2007 Hyundai Veracruz - Complaints and Investigations"
+          },
+          {
+            "url": "https://www.youtube.com/watch?v=J6qJfLkzF7k",
+            "type": "video",
+            "title": "EricTheCarGuy - Hyundai Veracruz Alternator Decoupler Pulley Replacement"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "OEM-quality remanufactured alternator with high output for reliable charging",
+            "partName": "Remanufactured Alternator",
+            "partBrand": "Denso",
+            "affiliateUrl": "https://www.amazon.com/s?k=Denso%20Remanufactured%20Alternator%20Hyundai%20Veracruz&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Premium rebuilt alternator backed by extensive warranty coverage",
+            "partName": "Premium Remanufactured Alternator",
+            "partBrand": "Remy",
+            "affiliateUrl": "https://www.amazon.com/s?k=Remy%20Premium%20Remanufactured%20Alternator%20Hyundai%20Veracruz&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-veracruz-sunroof-drain-2007",
+      "model": "Veracruz",
+      "action": "keep_published_pending_source",
+      "reason": "Generic forum and complaint references do not establish one 2007-2012 Veracruz four-drain clog defect, algae mechanism, electrical-damage path, six-month service interval or silicone treatment. The row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; a different cause, generic repair policy, mismatched bulletin or unsupported narrative cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "c5dc4c71de07adfce8770ddadf16e85d98915c27d6b669add8a26b217a0fc09f",
+      "proposalSha256": "c5dc4c71de07adfce8770ddadf16e85d98915c27d6b669add8a26b217a0fc09f",
+      "before": {
+        "make": "Hyundai",
+        "model": "Veracruz",
+        "years": [
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "body",
+        "title": "Panoramic Sunroof Drain Clog and Interior Water Leak",
+        "description": "The Veracruz with the panoramic sunroof experiences water leaks into the headliner and A/B-pillar areas due to clogged sunroof drain tubes. The four drain tubes that route water from the sunroof tray to the ground become clogged with debris, pollen, and algae growth. When blocked, water overflows the sunroof tray and runs down the A-pillars inside the headliner. This can short out the overhead console, map lights, and sunroof motor. In severe cases, water reaches the floorboards and damages the wiring harness under the carpet.",
+        "solution": "Clear all four sunroof drain tubes using compressed air or a flexible drain cleaning cable. The front drains exit near the front wheel wells and the rear drains exit near the rear bumper. Blow air from the sunroof tray end downward. Clean the sunroof tray of debris with a damp cloth. Apply a small amount of silicone lubricant to the drain tube ends to prevent algae growth. Repeat every 6 months as preventive maintenance.",
+        "severity": "medium",
+        "confidence": "low",
+        "symptoms": [
+          "Water dripping from headliner near sunroof",
+          "Water stains on A-pillar or B-pillar trim",
+          "Musty or mildew smell inside vehicle",
+          "Overhead console lights flickering or not working",
+          "Wet carpet on driver or passenger floorboard"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 300,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "source": "hyundai-forums.com",
+            "description": "Veracruz sunroof drain cleaning procedure"
+          },
+          {
+            "source": "NHTSA complaints",
+            "description": "Hyundai Veracruz water leak complaints"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Blow compressed air through all 4 sunroof drain tubes every spring and fall — this 5-minute job prevents $500+ water damage repairs",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "The front drain tubes exit at the bottom of the A-pillar near the front wheel well — pour a cup of water in the sunroof tray and watch for it to drain out there to confirm they're clear",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "warning",
+            "content": "Do not use a wire or stiff probe to clear drain tubes — you'll puncture the rubber tube and create a leak inside the pillar that's impossible to fix without major disassembly",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "Trim removal tool set for body panel work without damage",
+            "partName": "Trim Removal Tool Set",
+            "partBrand": "MICTUNING",
+            "affiliateUrl": "https://www.amazon.com/s?k=trim%20removal%20tool%20set%20automotive&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Bondo body filler for dent and panel repair",
+            "partName": "Body Filler Kit",
+            "partBrand": "Bondo",
+            "affiliateUrl": "https://www.amazon.com/s?k=Bondo%20body%20filler%20kit&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 130,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-03-13",
+        "reviewedOn": "2026-03-13",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Veracruz",
+        "years": [
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "body",
+        "title": "Panoramic Sunroof Drain Clog and Interior Water Leak",
+        "description": "The Veracruz with the panoramic sunroof experiences water leaks into the headliner and A/B-pillar areas due to clogged sunroof drain tubes. The four drain tubes that route water from the sunroof tray to the ground become clogged with debris, pollen, and algae growth. When blocked, water overflows the sunroof tray and runs down the A-pillars inside the headliner. This can short out the overhead console, map lights, and sunroof motor. In severe cases, water reaches the floorboards and damages the wiring harness under the carpet.",
+        "solution": "Clear all four sunroof drain tubes using compressed air or a flexible drain cleaning cable. The front drains exit near the front wheel wells and the rear drains exit near the rear bumper. Blow air from the sunroof tray end downward. Clean the sunroof tray of debris with a damp cloth. Apply a small amount of silicone lubricant to the drain tube ends to prevent algae growth. Repeat every 6 months as preventive maintenance.",
+        "severity": "medium",
+        "confidence": "low",
+        "symptoms": [
+          "Water dripping from headliner near sunroof",
+          "Water stains on A-pillar or B-pillar trim",
+          "Musty or mildew smell inside vehicle",
+          "Overhead console lights flickering or not working",
+          "Wet carpet on driver or passenger floorboard"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 300,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "source": "hyundai-forums.com",
+            "description": "Veracruz sunroof drain cleaning procedure"
+          },
+          {
+            "source": "NHTSA complaints",
+            "description": "Hyundai Veracruz water leak complaints"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Blow compressed air through all 4 sunroof drain tubes every spring and fall — this 5-minute job prevents $500+ water damage repairs",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "The front drain tubes exit at the bottom of the A-pillar near the front wheel well — pour a cup of water in the sunroof tray and watch for it to drain out there to confirm they're clear",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "warning",
+            "content": "Do not use a wire or stiff probe to clear drain tubes — you'll puncture the rubber tube and create a leak inside the pillar that's impossible to fix without major disassembly",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "Trim removal tool set for body panel work without damage",
+            "partName": "Trim Removal Tool Set",
+            "partBrand": "MICTUNING",
+            "affiliateUrl": "https://www.amazon.com/s?k=trim%20removal%20tool%20set%20automotive&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Bondo body filler for dent and panel repair",
+            "partName": "Body Filler Kit",
+            "partBrand": "Bondo",
+            "affiliateUrl": "https://www.amazon.com/s?k=Bondo%20body%20filler%20kit&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 130,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-03-13",
+        "reviewedOn": "2026-03-13",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-veracruz-transfer-case-leak-2007",
+      "model": "Veracruz",
+      "action": "keep_published_pending_source",
+      "reason": "Hyundai TSB 20-AT-016H lists transfer-case oil seals among authorized in-dealership repairs for the 2007-2012 Veracruz Aisin transmission program. It does not establish the indexed output-shaft-seal defect, frequency, clutch-pack damage, mileage range, fluid specification or commerce claims, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; a different cause, generic repair policy, mismatched bulletin or unsupported narrative cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-record-repair-policy-only",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2020/MC-10174807-0001.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "TSB 20-AT-016H lists transfer-case oil-seal replacement as an authorized repair for the 2007-2012 Veracruz Aisin transmission program but does not establish an output-shaft-seal defect or the row's failure and mileage claims."
+        }
+      ],
+      "beforeSha256": "c5a10bc1d22f8584447364dc182beb805fbec5ef3806b806e852142f8cc793db",
+      "proposalSha256": "c5a10bc1d22f8584447364dc182beb805fbec5ef3806b806e852142f8cc793db",
+      "before": {
+        "make": "Hyundai",
+        "model": "Veracruz",
+        "years": [
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "drivetrain",
+        "title": "Transfer Case Output Shaft Seal Leak",
+        "description": "AWD models develop a leak from the transfer case output shaft seal. Fluid loss can damage the transfer case clutch pack if not addressed. Most common after 80,000 miles.",
+        "solution": "Replace transfer case output shaft seal. Drain and refill transfer case with correct Hyundai-spec fluid. Inspect clutch pack for damage if fluid was low.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Fluid drip under center of vehicle",
+          "Transfer case whining noise",
+          "AWD engagement hesitation",
+          "Fluid spots on driveway"
+        ],
+        "affectedSystems": [
+          "Transfer case",
+          "AWD system"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 250,
+        "estimatedCostHigh": 500,
+        "typicalMileageLow": 80000,
+        "typicalMileageHigh": 120000,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2007/HYUNDAI/VERACRUZ",
+            "type": "nhtsa",
+            "title": "NHTSA Vehicle Page for 2007 Hyundai Veracruz - includes complaints and investigations"
+          },
+          {
+            "url": "https://www.reddit.com/r/MechanicAdvice/comments/xyz123/hyundai_veracruz_awd_transfer_case_leak/",
+            "type": "forum",
+            "title": "Reddit r/MechanicAdvice thread discussing transfer case output shaft seal leak on Hyundai Veracruz AWD"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Mobil 1 75W-90 synthetic gear oil for differential and transfer case",
+            "partName": "Synthetic Gear Oil 75W-90",
+            "partBrand": "Mobil 1",
+            "affiliateUrl": "https://www.amazon.com/s?k=Mobil%201%2075W-90%20synthetic%20gear%20oil&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Fel-Pro gasket kit for drivetrain service",
+            "partName": "Gasket Kit",
+            "partBrand": "Fel-Pro",
+            "affiliateUrl": "https://www.amazon.com/s?k=Fel-Pro%20drivetrain%20gasket%20kit&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Veracruz",
+        "years": [
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "drivetrain",
+        "title": "Transfer Case Output Shaft Seal Leak",
+        "description": "AWD models develop a leak from the transfer case output shaft seal. Fluid loss can damage the transfer case clutch pack if not addressed. Most common after 80,000 miles.",
+        "solution": "Replace transfer case output shaft seal. Drain and refill transfer case with correct Hyundai-spec fluid. Inspect clutch pack for damage if fluid was low.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Fluid drip under center of vehicle",
+          "Transfer case whining noise",
+          "AWD engagement hesitation",
+          "Fluid spots on driveway"
+        ],
+        "affectedSystems": [
+          "Transfer case",
+          "AWD system"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 250,
+        "estimatedCostHigh": 500,
+        "typicalMileageLow": 80000,
+        "typicalMileageHigh": 120000,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2007/HYUNDAI/VERACRUZ",
+            "type": "nhtsa",
+            "title": "NHTSA Vehicle Page for 2007 Hyundai Veracruz - includes complaints and investigations"
+          },
+          {
+            "url": "https://www.reddit.com/r/MechanicAdvice/comments/xyz123/hyundai_veracruz_awd_transfer_case_leak/",
+            "type": "forum",
+            "title": "Reddit r/MechanicAdvice thread discussing transfer case output shaft seal leak on Hyundai Veracruz AWD"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Mobil 1 75W-90 synthetic gear oil for differential and transfer case",
+            "partName": "Synthetic Gear Oil 75W-90",
+            "partBrand": "Mobil 1",
+            "affiliateUrl": "https://www.amazon.com/s?k=Mobil%201%2075W-90%20synthetic%20gear%20oil&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Fel-Pro gasket kit for drivetrain service",
+            "partName": "Gasket Kit",
+            "partBrand": "Fel-Pro",
+            "affiliateUrl": "https://www.amazon.com/s?k=Fel-Pro%20drivetrain%20gasket%20kit&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-veracruz-transmission-2007",
+      "model": "Veracruz",
+      "action": "keep_published_pending_source",
+      "reason": "Hyundai TSB 20-AT-016H is a general automatic-transmission repair policy and does not establish the indexed harsh-shift and torque-converter-shudder defect or its causes, speed range, DTCs and repair outcomes. The row also falsely treats TSB 09-AT-001 as a Veracruz warranty extension; Hyundai service material identifies 09-AT-001 as Genesis Coupe V6 and Genesis V8 automatic-transmission fluid-level information. The row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; a different cause, generic repair policy, mismatched bulletin or unsupported narrative cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-record-repair-policy-only",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2020/MC-10174807-0001.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "TSB 20-AT-016H identifies the 2007-2012 Veracruz as using a six-speed Aisin ATM and provides repair-versus-replacement policy; it does not establish a systemic harsh-shift or torque-converter-shudder defect."
+        },
+        {
+          "kind": "official-record-citation-mismatch",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2014/MC-10061031-2273.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "Hyundai TechNet material identifies TSB 09-AT-001 as Genesis Coupe V6 and Genesis V8 automatic-transmission fluid-level information, not a Veracruz warranty extension."
+        }
+      ],
+      "beforeSha256": "fb3601a2b8f16a777fcdb50daeaecb6a38dda07717160674e1e2bb38878c972b",
+      "proposalSha256": "fb3601a2b8f16a777fcdb50daeaecb6a38dda07717160674e1e2bb38878c972b",
+      "before": {
+        "make": "Hyundai",
+        "model": "Veracruz",
+        "years": [
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "transmission",
+        "title": "6-Speed Automatic Transmission Harsh Shifting and Shudder",
+        "description": "The Veracruz uses an Aisin-Warner A6LF1 6-speed automatic transmission that develops harsh shifting and torque converter shudder. The most common complaint is a shudder during light-throttle acceleration at 35-50 mph caused by torque converter clutch material breakdown. The valve body solenoids also develop wear, causing delayed 2-3 and 4-5 upshifts. Hyundai extended the transmission warranty to 10 years/100,000 miles on some affected vehicles through TSB 09-AT-001.",
+        "solution": "A transmission fluid flush with Hyundai SP-IV ATF and a transmission control module (TCM) reflash can resolve early-stage shudder. For persistent shudder, the torque converter must be replaced. Valve body rebuild or replacement is needed for harsh shifting. Check with the dealer for extended warranty coverage under TSB 09-AT-001.",
+        "severity": "high",
+        "confidence": "low",
+        "symptoms": [
+          "Shudder or vibration at 35-50 mph during light acceleration",
+          "Harsh or jerky 2-3 upshift",
+          "Delayed engagement from Park to Drive",
+          "Transmission slipping under heavy acceleration",
+          "Check engine light with transmission-related codes"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0741",
+          "P0734",
+          "P0700"
+        ],
+        "estimatedCostLow": 200,
+        "estimatedCostHigh": 3500,
+        "typicalMileageLow": 80000,
+        "typicalMileageHigh": 120000,
+        "citations": [
+          {
+            "url": "http://www.carcomplaints.com/Hyundai/Veracruz/2007/transmission/power_train-automatic_transmission.shtml",
+            "type": "media",
+            "title": "2007 Hyundai Veracruz Automatic Transmission Problems - CarComplaints"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Try a fluid flush with genuine Hyundai SP-IV ATF and a TCM reflash first — this resolves about 60% of shudder cases for under $300",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Ask dealer about extended transmission warranty under TSB 09-AT-001 — coverage may be 10 years/100,000 miles for affected VINs",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "warning",
+            "content": "Do not use generic ATF — the A6LF1 requires Hyundai SP-IV specifically. Wrong fluid accelerates clutch material breakdown.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "Transmission flush kit for complete fluid exchange to address shudder",
+            "partName": "Transmission Flush Kit",
+            "partBrand": "Liqui Moly",
+            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20Veracruz%20transmission%20flush%20kit&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Full synthetic ATF designed to reduce shudder in automatic transmissions",
+            "partName": "MaxLife ATF Full Synthetic",
+            "partBrand": "Valvoline",
+            "affiliateUrl": "https://www.amazon.com/s?k=Valvoline%20MaxLife%20ATF%20full%20synthetic%20transmission%20fluid&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 165,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-03-13",
+        "reviewedOn": "2026-03-13",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "hyundai-azera-transmission-hesitation-2006",
+          "kia-sedona-transmission-shudder",
+          "hyundai-ioniq-dct-harsh-shifting-2017",
+          "hyundai-tucson-dct-transmission-shudder"
+        ]
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Veracruz",
+        "years": [
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "transmission",
+        "title": "6-Speed Automatic Transmission Harsh Shifting and Shudder",
+        "description": "The Veracruz uses an Aisin-Warner A6LF1 6-speed automatic transmission that develops harsh shifting and torque converter shudder. The most common complaint is a shudder during light-throttle acceleration at 35-50 mph caused by torque converter clutch material breakdown. The valve body solenoids also develop wear, causing delayed 2-3 and 4-5 upshifts. Hyundai extended the transmission warranty to 10 years/100,000 miles on some affected vehicles through TSB 09-AT-001.",
+        "solution": "A transmission fluid flush with Hyundai SP-IV ATF and a transmission control module (TCM) reflash can resolve early-stage shudder. For persistent shudder, the torque converter must be replaced. Valve body rebuild or replacement is needed for harsh shifting. Check with the dealer for extended warranty coverage under TSB 09-AT-001.",
+        "severity": "high",
+        "confidence": "low",
+        "symptoms": [
+          "Shudder or vibration at 35-50 mph during light acceleration",
+          "Harsh or jerky 2-3 upshift",
+          "Delayed engagement from Park to Drive",
+          "Transmission slipping under heavy acceleration",
+          "Check engine light with transmission-related codes"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0741",
+          "P0734",
+          "P0700"
+        ],
+        "estimatedCostLow": 200,
+        "estimatedCostHigh": 3500,
+        "typicalMileageLow": 80000,
+        "typicalMileageHigh": 120000,
+        "citations": [
+          {
+            "url": "http://www.carcomplaints.com/Hyundai/Veracruz/2007/transmission/power_train-automatic_transmission.shtml",
+            "type": "media",
+            "title": "2007 Hyundai Veracruz Automatic Transmission Problems - CarComplaints"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Try a fluid flush with genuine Hyundai SP-IV ATF and a TCM reflash first — this resolves about 60% of shudder cases for under $300",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Ask dealer about extended transmission warranty under TSB 09-AT-001 — coverage may be 10 years/100,000 miles for affected VINs",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "warning",
+            "content": "Do not use generic ATF — the A6LF1 requires Hyundai SP-IV specifically. Wrong fluid accelerates clutch material breakdown.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "Transmission flush kit for complete fluid exchange to address shudder",
+            "partName": "Transmission Flush Kit",
+            "partBrand": "Liqui Moly",
+            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20Veracruz%20transmission%20flush%20kit&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Full synthetic ATF designed to reduce shudder in automatic transmissions",
+            "partName": "MaxLife ATF Full Synthetic",
+            "partBrand": "Valvoline",
+            "affiliateUrl": "https://www.amazon.com/s?k=Valvoline%20MaxLife%20ATF%20full%20synthetic%20transmission%20fluid&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 165,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-03-13",
+        "reviewedOn": "2026-03-13",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "hyundai-azera-transmission-hesitation-2006",
+          "kia-sedona-transmission-shudder",
+          "hyundai-ioniq-dct-harsh-shifting-2017",
+          "hyundai-tucson-dct-transmission-shudder"
+        ]
+      }
+    }
+  ]
+}
