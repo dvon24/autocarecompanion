@@ -1,0 +1,3851 @@
+{
+  "schemaVersion": 1,
+  "status": "proposal-only",
+  "auditStage": "model-primary-source-adjudication",
+  "requiresIndependentApproval": true,
+  "generatedOn": "2026-08-06",
+  "make": "Honda",
+  "model": "Passport",
+  "completionStatement": "This packet reconciles all 21 frozen Honda Passport rows. Six same-identity Honda/NHTSA corrections are proposed; fifteen rows remain byte-for-byte unchanged pending exact evidence or independent disposition.",
+  "safetyContract": [
+    "No production database write, cache purge, deployment, archive action, redirect, slug change or public-page change is authorized by this packet.",
+    "All 21 rows remain published. Fifteen are byte-for-byte unchanged.",
+    "An unrelated campaign, bulletin, component, generation or model may never replace the issue named by an existing indexed page.",
+    "Each rewrite contains zero commerce, zero cost or mileage claims, and empty trim and engine arrays.",
+    "Open investigations are identified as allegations under review, not final defect findings.",
+    "Independent row-by-row approval is required before a separate guarded apply path may be created."
+  ],
+  "source": {
+    "snapshotFile": "data/_honda-deeplink-snapshot-2026-08-05.json",
+    "snapshotSha256": "671de2660f31c07e01610e26c13382b6d59b293fb74ecc3e3abc02d248d6dd5e",
+    "snapshotGeneratedAt": "2026-08-05T21:54:08.563Z",
+    "snapshotHash": "fcd155f1e269b1d8c691655699cc2e18f6029c3ee54c650b88df00004025729a",
+    "passportRecordCount": 21
+  },
+  "observations": [
+    {
+      "code": "pilot-only-transmission-bulletin-corrected",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "honda-passport-9speed-transmission-problems-2019"
+      ],
+      "detail": "The frozen 17-014 citation is a 2016-2017 Pilot 6-speed torque-converter bulletin, not a Passport 9-speed bulletin. Honda Bulletin 20-029 is the exact 2019 Passport source."
+    },
+    {
+      "code": "false-takata-label-corrected",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "honda-passport-takata-front-airbag-inflator-2000"
+      ],
+      "detail": "The official 2001 Passport recall set does not identify a Takata campaign. Recall 01V055 is the exact passenger-inflator rupture campaign; separate 02V213 concerns a missing check-valve pin and insufficient inflation, not rupture."
+    },
+    {
+      "code": "brake-booster-recall-not-substituted",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "honda-passport-brake-booster-recall-2019"
+      ],
+      "detail": "Recall 23V458 covers a tie-rod fastener between the booster and master cylinder, not the frozen electric vacuum-pump identity. The row stays byte-for-byte unchanged."
+    },
+    {
+      "code": "open-idle-stop-investigation-labeled",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "honda-passport-idle-stop-stalling-2019"
+      ],
+      "detail": "NHTSA EA25004 remains open. The proposal states that status explicitly and relies on Honda Bulletins 23-008 and 23-009 for the staged service path."
+    },
+    {
+      "code": "modern-rear-subframe-recall-not-merged",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "honda-passport-frame-rust-and-rear-2000"
+      ],
+      "detail": "Recall 26V365 covers a distinct 2019-2023 Passport rear-subframe corrosion population. It is not merged into the indexed first-generation 10V436 page and should be considered as a separate new-issue candidate."
+    },
+    {
+      "code": "broad-multi-mechanism-pages-frozen",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "honda-passport-automatic-transmission-torque-converter-2000",
+        "honda-passport-battery-drain-2019",
+        "honda-passport-rear-differential-binding-and-2000",
+        "honda-passport-vibration-highway-2019"
+      ],
+      "detail": "These rows combine several possible systems or generations without one exact primary source. None is rewritten, archived or redirected."
+    }
+  ],
+  "mismatchSources": {
+    "frozenNineSpeedBulletin": "https://static.nhtsa.gov/odi/tsbs/2017/MC-10108688-9999.pdf",
+    "unrelatedBrakeBoosterRecall": "https://static.nhtsa.gov/odi/rcl/2023/RCAK-23V458-8185.pdf",
+    "separateAirbagCheckValveRecall": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=02V213001",
+    "distinctModernRearSubframeRecall": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=26V365000"
+  },
+  "summary": {
+    "rewrite_same_identity": 6,
+    "keep_published_pending_source": 15,
+    "total": 21
+  },
+  "rows": [
+    {
+      "id": "honda-passport-9speed-transmission-problems-2019",
+      "model": "Passport",
+      "action": "rewrite_same_identity",
+      "reason": "Narrowed the unsupported 2019-2023 multi-failure narrative to Honda Bulletin 20-029's exact 2019 Passport hard-upshift condition, TCM cause and software remedy; removed the Pilot-only 17-014 citation, litigation, costs, DTCs and commerce.",
+      "identityRule": "The indexed issue identity stays on the same ID; only exact Honda/NHTSA scope, mechanism, symptoms and remedy replace unsupported claims.",
+      "commerceDecision": "no-commerce",
+      "changedFields": [
+        "years",
+        "title",
+        "description",
+        "solution",
+        "severity",
+        "confidence",
+        "symptoms",
+        "affectedSystems",
+        "dtcCodes",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "communityRecommendations",
+        "source",
+        "lastReportedByOwners",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary",
+        "relatedIssueIds"
+      ],
+      "evidence": [
+        {
+          "kind": "manufacturer-record",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2020/MC-10181389-0001.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "Honda Service Bulletin 20-029 - 2019 Passport 9-Speed Hard Upshift supports the proposed same-identity scope, mechanism and remedy."
+        }
+      ],
+      "beforeSha256": "fcfa5e2a07d9e51a91c79e4945998044cd569dadf2c45c44d98a7b77ac913ced",
+      "proposalSha256": "021e1154c21d9de22a0c902a83d3d51c3c87f3de9490d508cdf06e23d76419f8",
+      "before": {
+        "make": "Honda",
+        "model": "Passport",
+        "years": [
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "transmission",
+        "title": "9-Speed Transmission Rough Shifting and Hesitation",
+        "description": "The Honda Passport (2019-2023) with the ZF 9-speed automatic transmission experiences rough shifting, delayed shifting, harsh acceleration/deceleration, sudden loss of power, and transmission slipping into neutral unexpectedly. A class action lawsuit alleges the transmission control module (TCM) and powertrain control module (PCM) are miscalibrated, causing dangerous failures. Owners report the transmission downshifting harshly at highway speeds, hesitating when accelerating from a stop, and in severe cases, dropping into neutral while driving. Honda has issued multiple software updates (TSBs) but many owners report issues persist.",
+        "solution": "Early stage: Visit Honda dealer for latest TCM/PCM software updates (multiple TSBs released). Many owners report temporary improvement. Severe cases (slipping into neutral, complete failure): Transmission replacement or rebuild ($4,000-7,000). Check if your vehicle is covered under Honda's extended powertrain warranty (5yr/60k standard). Document all issues and visits - may qualify for lemon law buyback if multiple repair attempts fail. Consider extended warranty if purchasing used.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "Harsh or jerky shifting between gears (especially 7th to 8th)",
+          "Delayed acceleration when pressing gas pedal",
+          "Sudden harsh acceleration or deceleration",
+          "Transmission slipping into neutral while driving",
+          "Grinding or clunking noise during shifts",
+          "Loss of power at highway speeds",
+          "Transmission hesitation when merging"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0700",
+          "P0741",
+          "P0742"
+        ],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 7000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "",
+            "type": "tsb",
+            "title": "TSB 17-014: 9-Speed A/T Has a Judder or Hesitation While Accelerating From a Stop"
+          },
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2021/HONDA/PASSPORT/SUV/AWD#complaints",
+            "type": "nhtsa",
+            "title": "NHTSA Complaint #11416585"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "warning",
+            "content": "CRITICAL: If transmission slips into neutral while driving, pull over immediately and contact Honda roadside assistance. Document incident for lemon law claims.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "PassportForums owners report smoother shifts by manually holding lower gears on steep hills - reduces harsh downshifts and \"hunting\" behavior.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Use Sport mode for highway driving - many owners report it reduces harsh downshifting and keeps transmission in appropriate gears longer.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "Change transmission fluid every 30k miles with genuine Honda ATF DW-1 - several owners with 80k+ miles report smoother operation with frequent fluid changes.",
+            "upvotes": 0,
+            "partName": "ATF DW-1 Transmission Fluid",
+            "partBrand": "Honda",
+            "partNumber": "08200-9008",
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%2008200-9008&tag=au7o-20"
+          },
+          {
+            "type": "warning",
+            "content": "Do NOT ignore transmission issues - multiple owners have experienced complete failure requiring $6k+ replacement. Address problems early.",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-02-22",
+        "reviewedOn": "2026-02-22",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "honda-pilot-9speed-transmission-2016",
+          "honda-odyssey-9speed-transmission-2018",
+          "chrysler-voyager-transmission-shudder-2020",
+          "honda-accord-9speed-zf-transmission-2018"
+        ]
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "Passport",
+        "years": [
+          2019
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "transmission",
+        "title": "9-Speed Automatic Intermittent Hard Upshift - Bulletin 20-029",
+        "description": "Honda Service Bulletin 20-029 applies to all 2019 Passport vehicles. Abnormal transmission-control-module adaptation values can cause intermittent harsh or jerky upshifts during steady acceleration.",
+        "solution": "Have a Honda dealer confirm the symptom and update the TCM software under Bulletin 20-029. Honda says the vehicle should have at least 500 miles before this condition is diagnosed and that TCM adaptation can take about 500 miles after the update.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Intermittent harsh or jerky upshift during steady acceleration"
+        ],
+        "affectedSystems": [
+          "9-speed automatic transmission control module"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "Honda Service Bulletin 20-029 - 2019 Passport 9-Speed Hard Upshift",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2020/MC-10181389-0001.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Narrowed the unsupported 2019-2023 multi-failure narrative to Honda Bulletin 20-029's exact 2019 Passport hard-upshift condition, TCM cause and software remedy; removed the Pilot-only 17-014 citation, litigation, costs, DTCs and commerce.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-passport-abs-hydraulic-unit--2000",
+      "model": "Passport",
+      "action": "keep_published_pending_source",
+      "reason": "Complaint and aggregator pages do not establish one ABS hydraulic-unit or wheel-speed-sensor defect, exact 2000-2002 scope, DTC list, corrosion mechanism or repair cost. The row remains unchanged.",
+      "identityRule": "No content or publication-state changes; partial, generic, secondary or overlapping evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "c2e9ac9b16f08191ec51b324ef13be86f521b1d36d89c50c81308f0edfefad1e",
+      "proposalSha256": "c2e9ac9b16f08191ec51b324ef13be86f521b1d36d89c50c81308f0edfefad1e",
+      "before": {
+        "make": "Honda",
+        "model": "Passport",
+        "years": [
+          2000,
+          2001,
+          2002
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "brakes",
+        "title": "ABS Hydraulic Unit / Wheel Speed Sensor Faults Causing ABS Warning Lights and Loss of Anti-Lock Function",
+        "description": "Multiple Passport owners report persistent ABS warning lights, often traced to failed wheel speed sensors, damaged sensor wiring, or faults in the ABS hydraulic control unit. On older rust-belt vehicles, corrosion at connectors and tone ring damage are common contributors. When this occurs, normal braking usually remains, but anti-lock braking is disabled and the warning lamp stays on.",
+        "solution": "Scan the ABS module for stored codes, then inspect each wheel speed sensor, tone ring, and harness for rust damage or broken wiring. Measure sensor resistance and signal output while spinning the wheel, and inspect the hydraulic unit and grounds if no sensor fault is obvious. Repairing the correct corner sensor or wiring usually resolves the issue; hydraulic unit replacement is more expensive but sometimes necessary.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "ABS light on",
+          "intermittent ABS activation",
+          "loss of anti-lock braking function",
+          "brake warning indicators with no obvious hydraulic leak"
+        ],
+        "affectedSystems": [
+          "ABS module",
+          "wheel speed sensors",
+          "brake hydraulic control unit",
+          "sensor wiring"
+        ],
+        "dtcCodes": [
+          "C0035",
+          "C0040",
+          "C0045",
+          "C0050"
+        ],
+        "estimatedCostLow": 150,
+        "estimatedCostHigh": 1200,
+        "typicalMileageLow": 80000,
+        "typicalMileageHigh": 220000,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2001/HONDA/PASSPORT/SUV/4WD",
+            "type": "nhtsa",
+            "title": "NHTSA Vehicle Complaints - 2001 Honda Passport (service brakes / ABS)"
+          },
+          {
+            "url": "https://www.carcomplaints.com/Honda/Passport/",
+            "type": "forum",
+            "title": "CarComplaints - Honda Passport brake / ABS complaint listings"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "content": "Owners recommend checking sensor wiring near the knuckle first, because age and suspension movement often crack insulation before the sensor itself fails.",
+            "searchQuery": "Honda Passport ABS wheel speed sensor"
+          },
+          {
+            "content": "In rust-prone areas, clean grounds and inspect tone rings carefully before replacing the ABS module.",
+            "searchQuery": "wire brush dielectric grease automotive grounds"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "Passport",
+        "years": [
+          2000,
+          2001,
+          2002
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "brakes",
+        "title": "ABS Hydraulic Unit / Wheel Speed Sensor Faults Causing ABS Warning Lights and Loss of Anti-Lock Function",
+        "description": "Multiple Passport owners report persistent ABS warning lights, often traced to failed wheel speed sensors, damaged sensor wiring, or faults in the ABS hydraulic control unit. On older rust-belt vehicles, corrosion at connectors and tone ring damage are common contributors. When this occurs, normal braking usually remains, but anti-lock braking is disabled and the warning lamp stays on.",
+        "solution": "Scan the ABS module for stored codes, then inspect each wheel speed sensor, tone ring, and harness for rust damage or broken wiring. Measure sensor resistance and signal output while spinning the wheel, and inspect the hydraulic unit and grounds if no sensor fault is obvious. Repairing the correct corner sensor or wiring usually resolves the issue; hydraulic unit replacement is more expensive but sometimes necessary.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "ABS light on",
+          "intermittent ABS activation",
+          "loss of anti-lock braking function",
+          "brake warning indicators with no obvious hydraulic leak"
+        ],
+        "affectedSystems": [
+          "ABS module",
+          "wheel speed sensors",
+          "brake hydraulic control unit",
+          "sensor wiring"
+        ],
+        "dtcCodes": [
+          "C0035",
+          "C0040",
+          "C0045",
+          "C0050"
+        ],
+        "estimatedCostLow": 150,
+        "estimatedCostHigh": 1200,
+        "typicalMileageLow": 80000,
+        "typicalMileageHigh": 220000,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2001/HONDA/PASSPORT/SUV/4WD",
+            "type": "nhtsa",
+            "title": "NHTSA Vehicle Complaints - 2001 Honda Passport (service brakes / ABS)"
+          },
+          {
+            "url": "https://www.carcomplaints.com/Honda/Passport/",
+            "type": "forum",
+            "title": "CarComplaints - Honda Passport brake / ABS complaint listings"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "content": "Owners recommend checking sensor wiring near the knuckle first, because age and suspension movement often crack insulation before the sensor itself fails.",
+            "searchQuery": "Honda Passport ABS wheel speed sensor"
+          },
+          {
+            "content": "In rust-prone areas, clean grounds and inspect tone rings carefully before replacing the ABS module.",
+            "searchQuery": "wire brush dielectric grease automotive grounds"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-passport-ac-compressor-failure-2019",
+      "model": "Passport",
+      "action": "keep_published_pending_source",
+      "reason": "A generic vehicle page plus inaccessible or fabricated-looking forum/video paths do not establish premature compressor failure, the stated mileage band, refrigerant-oil specification or brand recommendations. The row remains unchanged.",
+      "identityRule": "No content or publication-state changes; partial, generic, secondary or overlapping evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "19a238d83fcb96a94c96cbccefd7e9e80f31aae1c8b43ef4fcf09c1b82be11c9",
+      "proposalSha256": "19a238d83fcb96a94c96cbccefd7e9e80f31aae1c8b43ef4fcf09c1b82be11c9",
+      "before": {
+        "make": "Honda",
+        "model": "Passport",
+        "years": [
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "cooling",
+        "title": "AC Compressor Premature Failure",
+        "description": "Honda Passport AC compressors fail prematurely, often between 40,000-80,000 miles. Symptoms include no cold air, loud grinding/squealing noises from the compressor, intermittent cooling, and clicking sounds. The compressor clutch bearing fails first, then the entire compressor seizes. If the compressor grenades, metal debris contaminates the entire AC system requiring full flush and component replacement ($1,800-2,800). This is a common issue across Honda's lineup. OEM (Denso/Sanden) or high-quality aftermarket (Four Seasons, UAC) compressors recommended.",
+        "solution": "If just the clutch/bearing is bad, replace AC compressor clutch assembly ($500-700). If compressor seized or failed, replace entire AC compressor, receiver-drier, expansion valve, and flush all lines to remove metal debris ($1,800-2,800). Use OEM (Denso/Sanden) or high-quality aftermarket (Four Seasons, UAC) compressors - cheap compressors fail within 10k miles. Catch it early - if you hear grinding, replace before it grenades and sends metal through the system.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "No cold air from AC vents",
+          "AC blows warm air only",
+          "Loud grinding or squealing noise when AC is on",
+          "Intermittent cooling (works then stops)",
+          "Clicking sound from engine bay when AC button pressed",
+          "AC clutch not engaging",
+          "AC works for a few minutes then stops"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 500,
+        "estimatedCostHigh": 2800,
+        "typicalMileageLow": 40000,
+        "typicalMileageHigh": 80000,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2019/HONDA/PASSPORT",
+            "type": "nhtsa",
+            "title": "NHTSA Vehicle Complaints for 2019 Honda Passport"
+          },
+          {
+            "url": "https://www.reddit.com/r/MechanicAdvice/comments/ix4x1k/2019_honda_passport_ac_compressor_failure/",
+            "type": "forum",
+            "title": "Reddit r/MechanicAdvice discussion on 2019 Honda Passport AC Compressor Failure"
+          },
+          {
+            "url": "https://www.youtube.com/watch?v=Z9bqv7q8GxM",
+            "type": "video",
+            "title": "YouTube - Honda Passport AC Compressor Replacement by EricTheCarGuy"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "PassportForums consensus: OEM Denso compressors last longest. Four Seasons and UAC are acceptable aftermarket at ~50% of OEM cost.",
+            "upvotes": 0,
+            "partName": "OEM AC Compressor",
+            "partBrand": "Denso",
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Denso%20OEM%20AC%20Compressor&tag=au7o-20"
+          },
+          {
+            "type": "warning",
+            "content": "CRITICAL: If compressor seized, you MUST replace receiver-drier and flush AC lines - metal debris will destroy new compressor in weeks if you skip this.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Catch it early - clicking/grinding from AC compressor means bearing is failing. Replace now before it grenades and requires full AC system overhaul.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "Use only PAG46 refrigerant oil (not PAG100) - wrong oil accelerates compressor wear in Honda systems.",
+            "upvotes": 0,
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Passport%20Use%20only%20PAG46%20refrigerant%20oil%20(not%20PAG100)%20-%20wrong%20oil%20acce&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-02-22",
+        "reviewedOn": "2026-02-22",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "Passport",
+        "years": [
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "cooling",
+        "title": "AC Compressor Premature Failure",
+        "description": "Honda Passport AC compressors fail prematurely, often between 40,000-80,000 miles. Symptoms include no cold air, loud grinding/squealing noises from the compressor, intermittent cooling, and clicking sounds. The compressor clutch bearing fails first, then the entire compressor seizes. If the compressor grenades, metal debris contaminates the entire AC system requiring full flush and component replacement ($1,800-2,800). This is a common issue across Honda's lineup. OEM (Denso/Sanden) or high-quality aftermarket (Four Seasons, UAC) compressors recommended.",
+        "solution": "If just the clutch/bearing is bad, replace AC compressor clutch assembly ($500-700). If compressor seized or failed, replace entire AC compressor, receiver-drier, expansion valve, and flush all lines to remove metal debris ($1,800-2,800). Use OEM (Denso/Sanden) or high-quality aftermarket (Four Seasons, UAC) compressors - cheap compressors fail within 10k miles. Catch it early - if you hear grinding, replace before it grenades and sends metal through the system.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "No cold air from AC vents",
+          "AC blows warm air only",
+          "Loud grinding or squealing noise when AC is on",
+          "Intermittent cooling (works then stops)",
+          "Clicking sound from engine bay when AC button pressed",
+          "AC clutch not engaging",
+          "AC works for a few minutes then stops"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 500,
+        "estimatedCostHigh": 2800,
+        "typicalMileageLow": 40000,
+        "typicalMileageHigh": 80000,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2019/HONDA/PASSPORT",
+            "type": "nhtsa",
+            "title": "NHTSA Vehicle Complaints for 2019 Honda Passport"
+          },
+          {
+            "url": "https://www.reddit.com/r/MechanicAdvice/comments/ix4x1k/2019_honda_passport_ac_compressor_failure/",
+            "type": "forum",
+            "title": "Reddit r/MechanicAdvice discussion on 2019 Honda Passport AC Compressor Failure"
+          },
+          {
+            "url": "https://www.youtube.com/watch?v=Z9bqv7q8GxM",
+            "type": "video",
+            "title": "YouTube - Honda Passport AC Compressor Replacement by EricTheCarGuy"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "PassportForums consensus: OEM Denso compressors last longest. Four Seasons and UAC are acceptable aftermarket at ~50% of OEM cost.",
+            "upvotes": 0,
+            "partName": "OEM AC Compressor",
+            "partBrand": "Denso",
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Denso%20OEM%20AC%20Compressor&tag=au7o-20"
+          },
+          {
+            "type": "warning",
+            "content": "CRITICAL: If compressor seized, you MUST replace receiver-drier and flush AC lines - metal debris will destroy new compressor in weeks if you skip this.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Catch it early - clicking/grinding from AC compressor means bearing is failing. Replace now before it grenades and requires full AC system overhaul.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "Use only PAG46 refrigerant oil (not PAG100) - wrong oil accelerates compressor wear in Honda systems.",
+            "upvotes": 0,
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Passport%20Use%20only%20PAG46%20refrigerant%20oil%20(not%20PAG100)%20-%20wrong%20oil%20acce&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-02-22",
+        "reviewedOn": "2026-02-22",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-passport-automatic-transmission-torque-converter-2000",
+      "model": "Passport",
+      "action": "keep_published_pending_source",
+      "reason": "Complaint aggregations do not establish one torque-converter, second-gear and hard-part failure mechanism or the proposed rebuild/maintenance path across 2000-2002 vehicles. No exact primary source was found, so the row remains unchanged.",
+      "identityRule": "No content or publication-state changes; partial, generic, secondary or overlapping evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "56b03194f99b2cba03e20d7a63bfceca164b5bbfbcd98318a64848cbebdde829",
+      "proposalSha256": "56b03194f99b2cba03e20d7a63bfceca164b5bbfbcd98318a64848cbebdde829",
+      "before": {
+        "make": "Honda",
+        "model": "Passport",
+        "years": [
+          2000,
+          2001,
+          2002
+        ],
+        "trims": [],
+        "engines": [
+          "3.2L V6"
+        ],
+        "category": "transmission",
+        "title": "Automatic Transmission Torque Converter Clutch Shudder and 2nd-Gear Failure",
+        "description": "The first-generation Passport's 4-speed automatic is widely documented for torque-converter clutch shudder, slipping, harsh shifts, and eventual hard-part failure, especially loss of 2nd gear. Honda issued service information tied to Isuzu-sourced driveline components, and owner complaints frequently describe the vehicle revving without acceleration or dropping into limp behavior after warm-up. Once clutch material contaminates the fluid, the problem often progresses quickly from intermittent shudder to a full rebuild or replacement.",
+        "solution": "Diagnosis usually starts with checking fluid condition, verifying shift timing, and scanning for transmission-related DTCs. Mild shudder may improve briefly with a complete fluid exchange and updated friction-modifier-compatible ATF, but units that have already lost 2nd gear or are slipping under load typically need a rebuild or replacement torque converter. Owners and transmission shops also inspect the cooler and lines for debris so the replacement unit is not contaminated.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Shudder or vibration during light throttle",
+          "Delayed engagement into Drive or Reverse",
+          "Slipping on acceleration",
+          "Loss of 2nd gear",
+          "Harsh upshifts or downshifts",
+          "Burnt or dark transmission fluid"
+        ],
+        "affectedSystems": [
+          "automatic transmission",
+          "torque converter",
+          "valve body",
+          "driveline"
+        ],
+        "dtcCodes": [
+          "P0732",
+          "P0740",
+          "P0753",
+          "P0758"
+        ],
+        "estimatedCostLow": 1800,
+        "estimatedCostHigh": 3800,
+        "typicalMileageLow": 70000,
+        "typicalMileageHigh": 150000,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2001/HONDA/PASSPORT/SUV/4WD",
+            "type": "nhtsa",
+            "title": "NHTSA ODI complaints search - 2001 Honda Passport transmission complaints"
+          },
+          {
+            "url": "https://www.carcomplaints.com/Honda/Passport/2001/transmission/",
+            "type": "forum",
+            "title": "CarComplaints - 2001 Honda Passport transmission problems"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "If the transmission is still moving the vehicle, inspect fluid color and smell immediately; continuing to drive with slipping or shuddering often turns a converter problem into a full rebuild.",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "After any rebuild or replacement, flush or replace the transmission cooler and lines to prevent old clutch debris from contaminating the new unit.",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "Owners and independent shops commonly use a quality external transmission filter during cooler-line service to catch debris after repair.",
+            "upvotes": 0,
+            "partName": "Inline Transmission Filter",
+            "partBrand": "Magnefine",
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Passport%20Magnefine%20inline%20transmission%20filter%203%2F8&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "A complete fluid exchange with a reputable synthetic ATF is often tried first on mild shudder before hard failure occurs.",
+            "upvotes": 0,
+            "partName": "MaxLife Multi-Vehicle ATF",
+            "partBrand": "Valvoline",
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Passport%20Valvoline%20MaxLife%20Multi-Vehicle%20ATF&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "honda-pilot-automatic-transmission-2nd-gear-overheating-2003",
+          "honda-odyssey-torque-converter-shudder-2011",
+          "honda-crv-cvt-shudder-2015",
+          "honda-accord-9speed-zf-transmission-2018"
+        ]
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "Passport",
+        "years": [
+          2000,
+          2001,
+          2002
+        ],
+        "trims": [],
+        "engines": [
+          "3.2L V6"
+        ],
+        "category": "transmission",
+        "title": "Automatic Transmission Torque Converter Clutch Shudder and 2nd-Gear Failure",
+        "description": "The first-generation Passport's 4-speed automatic is widely documented for torque-converter clutch shudder, slipping, harsh shifts, and eventual hard-part failure, especially loss of 2nd gear. Honda issued service information tied to Isuzu-sourced driveline components, and owner complaints frequently describe the vehicle revving without acceleration or dropping into limp behavior after warm-up. Once clutch material contaminates the fluid, the problem often progresses quickly from intermittent shudder to a full rebuild or replacement.",
+        "solution": "Diagnosis usually starts with checking fluid condition, verifying shift timing, and scanning for transmission-related DTCs. Mild shudder may improve briefly with a complete fluid exchange and updated friction-modifier-compatible ATF, but units that have already lost 2nd gear or are slipping under load typically need a rebuild or replacement torque converter. Owners and transmission shops also inspect the cooler and lines for debris so the replacement unit is not contaminated.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Shudder or vibration during light throttle",
+          "Delayed engagement into Drive or Reverse",
+          "Slipping on acceleration",
+          "Loss of 2nd gear",
+          "Harsh upshifts or downshifts",
+          "Burnt or dark transmission fluid"
+        ],
+        "affectedSystems": [
+          "automatic transmission",
+          "torque converter",
+          "valve body",
+          "driveline"
+        ],
+        "dtcCodes": [
+          "P0732",
+          "P0740",
+          "P0753",
+          "P0758"
+        ],
+        "estimatedCostLow": 1800,
+        "estimatedCostHigh": 3800,
+        "typicalMileageLow": 70000,
+        "typicalMileageHigh": 150000,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2001/HONDA/PASSPORT/SUV/4WD",
+            "type": "nhtsa",
+            "title": "NHTSA ODI complaints search - 2001 Honda Passport transmission complaints"
+          },
+          {
+            "url": "https://www.carcomplaints.com/Honda/Passport/2001/transmission/",
+            "type": "forum",
+            "title": "CarComplaints - 2001 Honda Passport transmission problems"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "If the transmission is still moving the vehicle, inspect fluid color and smell immediately; continuing to drive with slipping or shuddering often turns a converter problem into a full rebuild.",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "After any rebuild or replacement, flush or replace the transmission cooler and lines to prevent old clutch debris from contaminating the new unit.",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "Owners and independent shops commonly use a quality external transmission filter during cooler-line service to catch debris after repair.",
+            "upvotes": 0,
+            "partName": "Inline Transmission Filter",
+            "partBrand": "Magnefine",
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Passport%20Magnefine%20inline%20transmission%20filter%203%2F8&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "A complete fluid exchange with a reputable synthetic ATF is often tried first on mild shudder before hard failure occurs.",
+            "upvotes": 0,
+            "partName": "MaxLife Multi-Vehicle ATF",
+            "partBrand": "Valvoline",
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Passport%20Valvoline%20MaxLife%20Multi-Vehicle%20ATF&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "honda-pilot-automatic-transmission-2nd-gear-overheating-2003",
+          "honda-odyssey-torque-converter-shudder-2011",
+          "honda-crv-cvt-shudder-2015",
+          "honda-accord-9speed-zf-transmission-2018"
+        ]
+      }
+    },
+    {
+      "id": "honda-passport-battery-drain-2019",
+      "model": "Passport",
+      "action": "keep_published_pending_source",
+      "reason": "The row merges infotainment, door-lock, sensing, battery-age and idle-stop theories without an exact Honda source that establishes one parasitic-draw defect or the stated electrical thresholds. It remains unchanged.",
+      "identityRule": "No content or publication-state changes; partial, generic, secondary or overlapping evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "cd0d9964b6ed7d993ded0236eae57893f38bddcc57fa06f63825b0a338a7326d",
+      "proposalSha256": "cd0d9964b6ed7d993ded0236eae57893f38bddcc57fa06f63825b0a338a7326d",
+      "before": {
+        "make": "Honda",
+        "model": "Passport",
+        "years": [
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Parasitic Battery Drain and Premature Battery Failure",
+        "description": "Honda Passport owners report batteries dying after 24-48 hours of sitting, premature battery failure (under 3 years), and electrical issues caused by weak batteries. Common causes include: infotainment system staying awake (FAKRA connector issue), door lock actuators causing constant drain, and Honda Sensing modules not sleeping properly. The aggressive Idle Stop system also kills weak batteries faster. Normal parasitic draw should be under 50mA - anything higher indicates a problem. OEM Honda batteries are known to fail early on Passports.",
+        "solution": "Perform parasitic draw test to identify circuit causing drain (normal is <50mA). Common culprits: (1) Infotainment system (FAKRA connector issue - see separate issue), (2) Door lock actuators, (3) Honda Sensing modules. If battery is weak, replace first before chasing gremlins (load test should be >12.4V). Aftermarket AGM batteries (Interstate, DieHard) last longer than OEM Honda batteries on Passports. Cost: $150-300 for battery, $100-500 for drain diagnosis/repair.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Battery dies after 1-2 days of sitting",
+          "Battery won't hold charge",
+          "Slow cranking when starting",
+          "Electrical gremlins (lights flickering, radio glitches)",
+          "Idle Stop system not engaging (low battery)",
+          "Battery warning light",
+          "Dead battery after short trip or overnight"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 150,
+        "estimatedCostHigh": 500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2019/HONDA/PASSPORT",
+            "type": "nhtsa",
+            "title": "NHTSA Vehicle Page for 2019 Honda Passport - includes complaints and investigations"
+          },
+          {
+            "url": "https://www.reddit.com/r/MechanicAdvice/comments/jk8z0p/2019_honda_passport_battery_draining_overnight/",
+            "type": "forum",
+            "title": "Reddit r/MechanicAdvice thread discussing 2019 Honda Passport battery drain overnight"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "PassportForums members report Interstate or DieHard AGM batteries lasting 6+ years vs OEM Honda batteries dying in 2-3 years.",
+            "upvotes": 0,
+            "partBrand": "Interstate",
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Passport%20PassportForums%20members%20report%20Interstate%20or%20DieHard%20AGM%20batt&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "DIY drain test: Fully charge battery, disconnect negative cable, connect multimeter between cable and terminal. Normal draw is <50mA. Higher = parasitic drain.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "warning",
+            "content": "Don't just keep replacing battery - find and fix the parasitic drain or you'll kill battery after battery.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "If drain started after infotainment issues, it's likely FAKRA connector related - fixing that will fix drain (see infotainment issue entry).",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-02-22",
+        "reviewedOn": "2026-02-22",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "Passport",
+        "years": [
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Parasitic Battery Drain and Premature Battery Failure",
+        "description": "Honda Passport owners report batteries dying after 24-48 hours of sitting, premature battery failure (under 3 years), and electrical issues caused by weak batteries. Common causes include: infotainment system staying awake (FAKRA connector issue), door lock actuators causing constant drain, and Honda Sensing modules not sleeping properly. The aggressive Idle Stop system also kills weak batteries faster. Normal parasitic draw should be under 50mA - anything higher indicates a problem. OEM Honda batteries are known to fail early on Passports.",
+        "solution": "Perform parasitic draw test to identify circuit causing drain (normal is <50mA). Common culprits: (1) Infotainment system (FAKRA connector issue - see separate issue), (2) Door lock actuators, (3) Honda Sensing modules. If battery is weak, replace first before chasing gremlins (load test should be >12.4V). Aftermarket AGM batteries (Interstate, DieHard) last longer than OEM Honda batteries on Passports. Cost: $150-300 for battery, $100-500 for drain diagnosis/repair.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Battery dies after 1-2 days of sitting",
+          "Battery won't hold charge",
+          "Slow cranking when starting",
+          "Electrical gremlins (lights flickering, radio glitches)",
+          "Idle Stop system not engaging (low battery)",
+          "Battery warning light",
+          "Dead battery after short trip or overnight"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 150,
+        "estimatedCostHigh": 500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2019/HONDA/PASSPORT",
+            "type": "nhtsa",
+            "title": "NHTSA Vehicle Page for 2019 Honda Passport - includes complaints and investigations"
+          },
+          {
+            "url": "https://www.reddit.com/r/MechanicAdvice/comments/jk8z0p/2019_honda_passport_battery_draining_overnight/",
+            "type": "forum",
+            "title": "Reddit r/MechanicAdvice thread discussing 2019 Honda Passport battery drain overnight"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "PassportForums members report Interstate or DieHard AGM batteries lasting 6+ years vs OEM Honda batteries dying in 2-3 years.",
+            "upvotes": 0,
+            "partBrand": "Interstate",
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Passport%20PassportForums%20members%20report%20Interstate%20or%20DieHard%20AGM%20batt&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "DIY drain test: Fully charge battery, disconnect negative cable, connect multimeter between cable and terminal. Normal draw is <50mA. Higher = parasitic drain.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "warning",
+            "content": "Don't just keep replacing battery - find and fix the parasitic drain or you'll kill battery after battery.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "If drain started after infotainment issues, it's likely FAKRA connector related - fixing that will fix drain (see infotainment issue entry).",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-02-22",
+        "reviewedOn": "2026-02-22",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-passport-brake-booster-recall-2019",
+      "model": "Passport",
+      "action": "keep_published_pending_source",
+      "reason": "Recall 23V458 concerns a brake-booster/master-cylinder tie-rod fastener on certain 2021-2023 Passports, not the indexed electric vacuum-pump failure. An unrelated recall cannot replace this identity, so the row remains unchanged.",
+      "identityRule": "No content or publication-state changes; partial, generic, secondary or overlapping evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "9529d39ec3330de07ff8ccc4085fc3fa3b393e8632227518771a3c3af507c357",
+      "proposalSha256": "9529d39ec3330de07ff8ccc4085fc3fa3b393e8632227518771a3c3af507c357",
+      "before": {
+        "make": "Honda",
+        "model": "Passport",
+        "years": [
+          2019,
+          2020,
+          2021,
+          2022
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "brakes",
+        "title": "Brake Booster Vacuum Pump Failure",
+        "description": "Some 2019-2022 Honda Passports experience brake booster vacuum pump failures, resulting in hard brake pedal, increased braking effort, and potentially longer stopping distances. The electric vacuum pump that assists braking fails prematurely, especially in stop-and-go traffic where the pump cycles frequently. Symptoms include hard brake pedal, brake warning lights, and grinding noise from the pump. Honda issued technical service bulletins (TSBs) for related issues on Pilot/Ridgeline, but Passport owners report similar problems. Replacement: $400-800.",
+        "solution": "If under warranty, take to dealer immediately - safety issue. Dealer will test vacuum pump output and replace if faulty (free under warranty, $400-800 out of warranty). Do NOT ignore hard brake pedal - this is a safety issue affecting stopping distance. If pump fails completely, you'll still have brakes but will require significantly more pedal effort. Check for TSBs or recalls affecting your VIN at honda.com/recall.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "Hard or stiff brake pedal (requires more effort)",
+          "Brake warning light or brake system indicator",
+          "Grinding or whining noise from engine bay",
+          "Increased stopping distance",
+          "Brake pedal feels normal when engine off, hard when running",
+          "Brake Collision Mitigation warnings"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 400,
+        "estimatedCostHigh": 800,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2019/HONDA/PASSPORT",
+            "type": "nhtsa",
+            "title": "NHTSA Vehicle Page for 2019 Honda Passport - includes complaints and investigations"
+          },
+          {
+            "url": "https://www.reddit.com/r/MechanicAdvice/comments/jv0z7k/honda_passport_brake_pedal_hard_due_to_vacuum_pump/",
+            "type": "forum",
+            "title": "Reddit r/MechanicAdvice thread discussing Honda Passport brake booster vacuum pump failure"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "warning",
+            "content": "CRITICAL: Hard brake pedal is a safety issue - schedule dealer visit immediately. Brake assist failure increases stopping distance significantly.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Check for recalls/TSBs at honda.com/recall - Honda has issued TSBs for related issues on Pilot/Ridgeline that may cover Passport too.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "If pump is grinding but brakes still work, you have time to schedule repair - but don't delay more than a few days.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "warning",
+            "content": "If Collision Mitigation warnings appear with hard brake pedal, the system may not function properly in emergency - drive extra cautiously until repaired.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "Premium ceramic brake pads for quiet, low-dust braking performance",
+            "partName": "ThermoQuiet Ceramic Brake Pads",
+            "partBrand": "Wagner",
+            "affiliateUrl": "https://www.amazon.com/s?k=Wagner%20ThermoQuiet%20ceramic%20brake%20pads%20Honda%20Passport&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Drilled and slotted brake rotors for improved heat dissipation and stopping power",
+            "partName": "Sport Drilled/Slotted Brake Rotor",
+            "partBrand": "StopTech",
+            "affiliateUrl": "https://www.amazon.com/s?k=StopTech%20drilled%20slotted%20brake%20rotor%20Honda%20Passport&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-02-22",
+        "reviewedOn": "2026-02-22",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "Passport",
+        "years": [
+          2019,
+          2020,
+          2021,
+          2022
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "brakes",
+        "title": "Brake Booster Vacuum Pump Failure",
+        "description": "Some 2019-2022 Honda Passports experience brake booster vacuum pump failures, resulting in hard brake pedal, increased braking effort, and potentially longer stopping distances. The electric vacuum pump that assists braking fails prematurely, especially in stop-and-go traffic where the pump cycles frequently. Symptoms include hard brake pedal, brake warning lights, and grinding noise from the pump. Honda issued technical service bulletins (TSBs) for related issues on Pilot/Ridgeline, but Passport owners report similar problems. Replacement: $400-800.",
+        "solution": "If under warranty, take to dealer immediately - safety issue. Dealer will test vacuum pump output and replace if faulty (free under warranty, $400-800 out of warranty). Do NOT ignore hard brake pedal - this is a safety issue affecting stopping distance. If pump fails completely, you'll still have brakes but will require significantly more pedal effort. Check for TSBs or recalls affecting your VIN at honda.com/recall.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "Hard or stiff brake pedal (requires more effort)",
+          "Brake warning light or brake system indicator",
+          "Grinding or whining noise from engine bay",
+          "Increased stopping distance",
+          "Brake pedal feels normal when engine off, hard when running",
+          "Brake Collision Mitigation warnings"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 400,
+        "estimatedCostHigh": 800,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2019/HONDA/PASSPORT",
+            "type": "nhtsa",
+            "title": "NHTSA Vehicle Page for 2019 Honda Passport - includes complaints and investigations"
+          },
+          {
+            "url": "https://www.reddit.com/r/MechanicAdvice/comments/jv0z7k/honda_passport_brake_pedal_hard_due_to_vacuum_pump/",
+            "type": "forum",
+            "title": "Reddit r/MechanicAdvice thread discussing Honda Passport brake booster vacuum pump failure"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "warning",
+            "content": "CRITICAL: Hard brake pedal is a safety issue - schedule dealer visit immediately. Brake assist failure increases stopping distance significantly.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Check for recalls/TSBs at honda.com/recall - Honda has issued TSBs for related issues on Pilot/Ridgeline that may cover Passport too.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "If pump is grinding but brakes still work, you have time to schedule repair - but don't delay more than a few days.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "warning",
+            "content": "If Collision Mitigation warnings appear with hard brake pedal, the system may not function properly in emergency - drive extra cautiously until repaired.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "Premium ceramic brake pads for quiet, low-dust braking performance",
+            "partName": "ThermoQuiet Ceramic Brake Pads",
+            "partBrand": "Wagner",
+            "affiliateUrl": "https://www.amazon.com/s?k=Wagner%20ThermoQuiet%20ceramic%20brake%20pads%20Honda%20Passport&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Drilled and slotted brake rotors for improved heat dissipation and stopping power",
+            "partName": "Sport Drilled/Slotted Brake Rotor",
+            "partBrand": "StopTech",
+            "affiliateUrl": "https://www.amazon.com/s?k=StopTech%20drilled%20slotted%20brake%20rotor%20Honda%20Passport&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-02-22",
+        "reviewedOn": "2026-02-22",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-passport-exhaust-manifold-stud-breakage-2000",
+      "model": "Passport",
+      "action": "keep_published_pending_source",
+      "reason": "A generic complaint page does not establish exhaust-manifold stud breakage, an exact 2000-2002 population, the claimed 3.2L mechanism or repair procedure. The row remains unchanged.",
+      "identityRule": "No content or publication-state changes; partial, generic, secondary or overlapping evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "a700ef57a058e56a39b46abf9950985b21d1a5b1ed3087e84e49e62ec7da7348",
+      "proposalSha256": "a700ef57a058e56a39b46abf9950985b21d1a5b1ed3087e84e49e62ec7da7348",
+      "before": {
+        "make": "Honda",
+        "model": "Passport",
+        "years": [
+          2000,
+          2001,
+          2002
+        ],
+        "trims": [],
+        "engines": [
+          "3.2L V6"
+        ],
+        "category": "engine",
+        "title": "Exhaust Manifold Stud Breakage and Exhaust Leak Tick on 3.2L V6",
+        "description": "The 3.2L V6 used in the first-generation Passport is known to develop exhaust leaks from broken manifold studs or warped manifold sealing surfaces as the vehicle ages. Owners commonly describe a ticking noise on cold start, exhaust smell, and occasional failed emissions testing. Heat cycling and corrosion are the usual causes, and the repair can become labor-intensive if studs snap flush in the cylinder head.",
+        "solution": "Confirm the leak with a cold-start inspection, smoke test, or by checking for soot around the manifold flange and studs. Replace broken studs, resurface or replace the manifold if warped, and install new gaskets and hardware. Penetrating oil, heat, and careful extraction are often required to avoid cylinder-head damage.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "ticking noise on cold start",
+          "exhaust smell in engine bay",
+          "soot around exhaust manifold",
+          "louder exhaust under acceleration",
+          "failed emissions inspection"
+        ],
+        "affectedSystems": [
+          "exhaust manifold",
+          "manifold studs",
+          "exhaust gaskets",
+          "emissions system"
+        ],
+        "dtcCodes": [
+          "P0420",
+          "P0430"
+        ],
+        "estimatedCostLow": 300,
+        "estimatedCostHigh": 1400,
+        "typicalMileageLow": 100000,
+        "typicalMileageHigh": 220000,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2002/HONDA/PASSPORT/SUV/4WD",
+            "type": "nhtsa",
+            "title": "NHTSA Vehicle Complaints - 2002 Honda Passport (engine / exhaust-related complaints)"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "content": "Owners frequently recommend replacing all accessible manifold hardware and gaskets together instead of only the visibly broken stud.",
+            "searchQuery": "exhaust manifold stud kit Isuzu Rodeo 3.2"
+          },
+          {
+            "content": "Use penetrating oil for several days before disassembly and consider a right-angle drill/extractor set if studs are seized in the head.",
+            "searchQuery": "broken stud extractor kit automotive"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "Passport",
+        "years": [
+          2000,
+          2001,
+          2002
+        ],
+        "trims": [],
+        "engines": [
+          "3.2L V6"
+        ],
+        "category": "engine",
+        "title": "Exhaust Manifold Stud Breakage and Exhaust Leak Tick on 3.2L V6",
+        "description": "The 3.2L V6 used in the first-generation Passport is known to develop exhaust leaks from broken manifold studs or warped manifold sealing surfaces as the vehicle ages. Owners commonly describe a ticking noise on cold start, exhaust smell, and occasional failed emissions testing. Heat cycling and corrosion are the usual causes, and the repair can become labor-intensive if studs snap flush in the cylinder head.",
+        "solution": "Confirm the leak with a cold-start inspection, smoke test, or by checking for soot around the manifold flange and studs. Replace broken studs, resurface or replace the manifold if warped, and install new gaskets and hardware. Penetrating oil, heat, and careful extraction are often required to avoid cylinder-head damage.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "ticking noise on cold start",
+          "exhaust smell in engine bay",
+          "soot around exhaust manifold",
+          "louder exhaust under acceleration",
+          "failed emissions inspection"
+        ],
+        "affectedSystems": [
+          "exhaust manifold",
+          "manifold studs",
+          "exhaust gaskets",
+          "emissions system"
+        ],
+        "dtcCodes": [
+          "P0420",
+          "P0430"
+        ],
+        "estimatedCostLow": 300,
+        "estimatedCostHigh": 1400,
+        "typicalMileageLow": 100000,
+        "typicalMileageHigh": 220000,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2002/HONDA/PASSPORT/SUV/4WD",
+            "type": "nhtsa",
+            "title": "NHTSA Vehicle Complaints - 2002 Honda Passport (engine / exhaust-related complaints)"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "content": "Owners frequently recommend replacing all accessible manifold hardware and gaskets together instead of only the visibly broken stud.",
+            "searchQuery": "exhaust manifold stud kit Isuzu Rodeo 3.2"
+          },
+          {
+            "content": "Use penetrating oil for several days before disassembly and consider a right-angle drill/extractor set if studs are seized in the head.",
+            "searchQuery": "broken stud extractor kit automotive"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-passport-frame-rust-and-rear-2000",
+      "model": "Passport",
+      "action": "rewrite_same_identity",
+      "reason": "Replaced broad complaint-based rust claims with recall 10V436's exact 1998-2002 salt-jurisdiction scope, lower-link bracket mechanism, handling risk and inspection-based remedy; removed unsupported welding advice, commerce and costs.",
+      "identityRule": "The indexed issue identity stays on the same ID; only exact Honda/NHTSA scope, mechanism, symptoms and remedy replace unsupported claims.",
+      "commerceDecision": "no-commerce",
+      "changedFields": [
+        "years",
+        "category",
+        "title",
+        "description",
+        "solution",
+        "severity",
+        "symptoms",
+        "affectedSystems",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "typicalMileageLow",
+        "typicalMileageHigh",
+        "citations",
+        "communityRecommendations",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
+      "evidence": [
+        {
+          "kind": "manufacturer-record",
+          "url": "https://static.nhtsa.gov/odi/rcl/2010/RCAK-10V436-9651.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "NHTSA Recall 10V436 - 1998-2002 Passport Rear Suspension Lower-Link Brackets supports the proposed same-identity scope, mechanism and remedy."
+        }
+      ],
+      "beforeSha256": "4070bed8c41194bb1779570715b3753274862134bc726fed09fd3601c9e9b97a",
+      "proposalSha256": "f055593f567db7ce020bfa516ed1fb0a7abbce01ccfea558dd1eab4ff095a3f4",
+      "before": {
+        "make": "Honda",
+        "model": "Passport",
+        "years": [
+          2000,
+          2001,
+          2002
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "body",
+        "title": "Frame Rust and Rear Suspension Mount Corrosion",
+        "description": "In rust-belt states, first-generation Passports are known for severe frame corrosion, especially around rear suspension attachment points, body mounts, and underbody crossmembers. Owners report failed inspections, unstable rear-end behavior, and cases where rust perforation makes the vehicle unsafe to lift or align. Because the Passport shares much of its structure with the Isuzu Rodeo, corrosion patterns and owner reports are consistent across both vehicles.",
+        "solution": "A thorough underbody inspection with the vehicle on a lift is required, focusing on trailing-arm mounts, spring perches, brake/fuel line routing, and body mount areas. Surface rust can be cleaned and coated, but perforation or compromised suspension mounts usually require welding by a qualified frame shop or retirement of the vehicle. Buyers should avoid trucks with heavy scaling near structural attachment points even if the body panels look acceptable.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Visible rust holes in frame rails",
+          "Failed state safety inspection",
+          "Rear-end instability or clunking",
+          "Unsafe lifting points",
+          "Corroded suspension mounts",
+          "Excessive underbody scaling"
+        ],
+        "affectedSystems": [
+          "frame",
+          "rear suspension mounts",
+          "body mounts",
+          "underbody structure"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 500,
+        "estimatedCostHigh": 4000,
+        "typicalMileageLow": 80000,
+        "typicalMileageHigh": 200000,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2000/HONDA/PASSPORT/SUV/4WD",
+            "type": "nhtsa",
+            "title": "NHTSA ODI complaints search - 2000 Honda Passport structure/body complaints"
+          },
+          {
+            "url": "https://www.carcomplaints.com/Honda/Passport/",
+            "type": "forum",
+            "title": "CarComplaints - Honda Passport body/paint and structure complaint listings"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Inspect the entire frame with a hammer and pick tool before purchase; flaky scale around rear control-arm or spring mounts is a major red flag.",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "If the frame is still solid, annual rust treatment and frequent underbody washing in winter can slow deterioration significantly.",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "Owners in salt states often use a lanolin-based rust inhibitor to protect surviving first-gen frames and suspension mounts.",
+            "upvotes": 0,
+            "partName": "Rust and Corrosion Inhibitor",
+            "partBrand": "Fluid Film",
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Passport%20Fluid%20Film%20undercoating&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "A rust-converting coating is commonly used after wire-brushing solid surface corrosion on frames and brackets.",
+            "upvotes": 0,
+            "partName": "Rust Preventive Coating",
+            "partBrand": "POR-15",
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Passport%20POR-15%20frame%20rust&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "Passport",
+        "years": [
+          1998,
+          1999,
+          2000,
+          2001,
+          2002
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "suspension",
+        "title": "Rear Suspension Lower-Link Bracket Corrosion Recall 10V436",
+        "description": "Recall 10V436 covers certain 1998-2002 Honda Passport vehicles originally sold or currently registered in specified salt-belt jurisdictions. Sustained exposure to road-deicing material can cause excessive corrosion near the forward mounting-point bracket for a left or right rear-suspension lower link. The bracket can detach from the frame and affect vehicle handling.",
+        "solution": "Have a Honda dealer verify VIN and campaign eligibility and inspect the rear lower-link bracket area. The recall remedy varies with the inspection result and may include anti-corrosion treatment, installation of a reinforcement bracket or another appropriate remedy when corrosion is severe.",
+        "severity": "critical",
+        "confidence": "high",
+        "symptoms": [
+          "Excessive corrosion near a rear lower-link forward mounting bracket",
+          "Rear lower-link bracket may detach from the frame",
+          "Vehicle handling may be affected"
+        ],
+        "affectedSystems": [
+          "Rear suspension lower-link brackets",
+          "Frame mounting points"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "NHTSA Recall 10V436 - 1998-2002 Passport Rear Suspension Lower-Link Brackets",
+            "url": "https://static.nhtsa.gov/odi/rcl/2010/RCAK-10V436-9651.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Replaced broad complaint-based rust claims with recall 10V436's exact 1998-2002 salt-jurisdiction scope, lower-link bracket mechanism, handling risk and inspection-based remedy; removed unsupported welding advice, commerce and costs.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-passport-fuel-pump-recall-2019",
+      "model": "Passport",
+      "action": "rewrite_same_identity",
+      "reason": "Preserved the multiple-recall fuel-pump identity while replacing generic recall-search links with exact Honda/NHTSA records for 21V215 and 23V858, correcting scope to VIN-eligible 2019-2021 vehicles and removing unsupported DTCs, emergency instructions, phone claims and commerce.",
+      "identityRule": "The indexed issue identity stays on the same ID; only exact Honda/NHTSA scope, mechanism, symptoms and remedy replace unsupported claims.",
+      "commerceDecision": "no-commerce",
+      "changedFields": [
+        "years",
+        "title",
+        "description",
+        "solution",
+        "confidence",
+        "symptoms",
+        "affectedSystems",
+        "dtcCodes",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "communityRecommendations",
+        "source",
+        "lastReportedByOwners",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary",
+        "relatedIssueIds"
+      ],
+      "evidence": [
+        {
+          "kind": "manufacturer-record",
+          "url": "https://static.nhtsa.gov/odi/rcl/2021/RCLRPT-21V215-7994.PDF",
+          "verifiedOn": "2026-08-06",
+          "observation": "Honda Recall 21V215 - Certain 2019 Passport Fuel Pump Assemblies supports the proposed same-identity scope, mechanism and remedy."
+        },
+        {
+          "kind": "manufacturer-record",
+          "url": "https://static.nhtsa.gov/odi/rcl/2023/RCRIT-23V858-4916.PDF",
+          "verifiedOn": "2026-08-06",
+          "observation": "Honda Service Bulletin 24-028 - 2019-2021 Passport Fuel Pump Motor Recall 23V858 supports the proposed same-identity scope, mechanism and remedy."
+        }
+      ],
+      "beforeSha256": "e8893aa1497de323de5723fdf6b7a7c376a59cfec5317b07217680f274a5b983",
+      "proposalSha256": "190229ed5d790fbe60e63b2de4415ec66f5017266bdddcf3a8c6183e4131846b",
+      "before": {
+        "make": "Honda",
+        "model": "Passport",
+        "years": [
+          2019,
+          2020
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "fuel",
+        "title": "Fuel Pump Failure (Multiple Recalls - NHTSA 21V-215, 23V-858)",
+        "description": "The 2019-2020 Honda Passport has been recalled multiple times for fuel pump failures. The fuel pump impeller was improperly molded (low density), causing it to deform over time and interfere with the fuel pump body, rendering it inoperative. Symptoms include engine stalling while driving (especially highway speeds), rough idle, difficulty starting, and complete loss of power. Honda issued recall 21V-215 in March 2021 (production dates Nov 2018-Jul 2019) and expanded it again with recall 23V-858 in December 2023 (through Oct 2019). Free repair at Honda dealers.",
+        "solution": "This is a SAFETY RECALL - contact your Honda dealer immediately to schedule free fuel pump module replacement. Check if your VIN is affected at https://www.honda.com/recall or call Honda customer service: 1-888-234-2138. Recall 21V-215 (Mar 2021) and 23V-858 (Dec 2023) cover most affected vehicles. If your Passport stalls while driving, pull over safely and contact Honda roadside assistance. Repair is FREE regardless of mileage/warranty status.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "Engine stalls while driving (especially at highway speeds)",
+          "Difficulty starting engine",
+          "Engine cranks but won't start",
+          "Rough idle or engine hesitation",
+          "Check engine light with fuel system codes (P0087, P0230)",
+          "Loss of power during acceleration",
+          "Engine dies and won't restart"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0087",
+          "P0230",
+          "P0231",
+          "P0232"
+        ],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 0,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/recalls?nhtsaId=21V215",
+            "type": "nhtsa",
+            "title": "NHTSA Recall 21V-215: Fuel Pump May Fail"
+          },
+          {
+            "url": "https://www.nhtsa.gov/recalls?nhtsaId=23V858",
+            "type": "nhtsa",
+            "title": "NHTSA Recall 23V-858: Fuel Pump May Fail"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "warning",
+            "content": "CRITICAL: This recall affects safety - engine stalling at highway speeds is extremely dangerous. Schedule repair IMMEDIATELY.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Check your VIN at honda.com/recall - the recall was expanded multiple times, so even if you weren't affected initially, you might be now.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "PassportForums owners report repair takes 1-2 hours. Dealer provides loaner or shuttle in most cases since it's a safety recall.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "warning",
+            "content": "If you experience stalling before getting recall repair, document everything - may be eligible for reimbursement if you paid for fuel pump replacement.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "Delphi fuel pump module — OE-quality direct replacement",
+            "partName": "Fuel Pump Module",
+            "partBrand": "Delphi",
+            "affiliateUrl": "https://www.amazon.com/s?k=Delphi%20fuel%20pump%20module&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Bosch fuel pump — reliable OEM alternative",
+            "partName": "Fuel Pump",
+            "partBrand": "Bosch",
+            "affiliateUrl": "https://www.amazon.com/s?k=Bosch%20fuel%20pump&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-02-22",
+        "reviewedOn": "2026-02-22",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "honda-insight-fuel-pump-recall-2019",
+          "honda-crv-5th-gen-fuel-pump-nhtsa-recall-2018",
+          "honda-pilot-fuel-pump-recall-2017",
+          "honda-accord-10th-gen-fuel-pump-recall-2018",
+          "honda-ridgeline-fuel-pump-recall-2017"
+        ]
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "Passport",
+        "years": [
+          2019,
+          2020,
+          2021
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "fuel",
+        "title": "In-Tank Fuel Pump Motor Recalls 21V215 and 23V858",
+        "description": "Two Honda fuel-pump campaigns apply to VIN-eligible Passport vehicles. Recall 21V215 includes certain 2019 vehicles with lower-density impellers, and Bulletin 24-028 for recall 23V858 covers certain 2019-2021 vehicles with defective impellers. An impeller can swell and interfere with the pump body, making the fuel pump inoperative and causing a stall or loss of motive power.",
+        "solution": "Have a Honda dealer check the VIN for open campaigns. The prescribed recall repair replaces the affected in-tank fuel pump assembly or fuel pump motor, depending on the campaign.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Engine may stall while driving",
+          "Loss of motive power",
+          "Engine may not start if the fuel pump becomes inoperative"
+        ],
+        "affectedSystems": [
+          "In-tank fuel pump motor",
+          "Fuel pump impeller"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "Honda Recall 21V215 - Certain 2019 Passport Fuel Pump Assemblies",
+            "url": "https://static.nhtsa.gov/odi/rcl/2021/RCLRPT-21V215-7994.PDF"
+          },
+          {
+            "type": "recall",
+            "title": "Honda Service Bulletin 24-028 - 2019-2021 Passport Fuel Pump Motor Recall 23V858",
+            "url": "https://static.nhtsa.gov/odi/rcl/2023/RCRIT-23V858-4916.PDF"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Preserved the multiple-recall fuel-pump identity while replacing generic recall-search links with exact Honda/NHTSA records for 21V215 and 23V858, correcting scope to VIN-eligible 2019-2021 vehicles and removing unsupported DTCs, emergency instructions, phone claims and commerce.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-passport-idle-stop-stalling-2019",
+      "model": "Passport",
+      "action": "rewrite_same_identity",
+      "reason": "Replaced the uncited 2019-2023 narrative, aftermarket bypass and unsupported rollaway/DTC claims with Honda Bulletins 23-008 and 23-009's exact 2019-2022 scope and staged remedy; labels NHTSA EA25004 as an open investigation rather than a final defect finding.",
+      "identityRule": "The indexed issue identity stays on the same ID; only exact Honda/NHTSA scope, mechanism, symptoms and remedy replace unsupported claims.",
+      "commerceDecision": "no-commerce",
+      "changedFields": [
+        "years",
+        "category",
+        "title",
+        "description",
+        "solution",
+        "confidence",
+        "symptoms",
+        "affectedSystems",
+        "dtcCodes",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "communityRecommendations",
+        "source",
+        "lastReportedByOwners",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
+      "evidence": [
+        {
+          "kind": "manufacturer-record",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2023/MC-10245550-0001.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "Honda Service Bulletin 23-008 - 2019-2022 Passport PGM-FI Idle Stop Software Update supports the proposed same-identity scope, mechanism and remedy."
+        },
+        {
+          "kind": "manufacturer-record",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2023/MC-10229676-0001.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "Honda Service Bulletin 23-009 - 2019-2021 Passport No-Restart Warranty Extension supports the proposed same-identity scope, mechanism and remedy."
+        },
+        {
+          "kind": "open-investigation",
+          "url": "https://static.nhtsa.gov/odi/inv/2025/INOA-EA25004-10033.pdf?pubDate=20250404",
+          "verifiedOn": "2026-08-06",
+          "observation": "NHTSA Engineering Analysis EA25004 - No Restart After Auto Start/Stop Engages supports the proposed same-identity scope, mechanism and remedy."
+        }
+      ],
+      "beforeSha256": "a316e427f0713105e82ed15decb1792f15dc6d3c55c59d9dcb585c4c0f2fb5d3",
+      "proposalSha256": "b03a4db4af0f58aabb4a0bab82fa45fef5cfd60ca0b0382ebe15639722fdb901",
+      "before": {
+        "make": "Honda",
+        "model": "Passport",
+        "years": [
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "engine",
+        "title": "Idle Stop (Auto Start-Stop) Stalling and Failure to Restart",
+        "description": "Honda Passport owners report the Idle Stop (automatic engine start-stop) feature causing dangerous stalling issues. When the engine auto-stops at red lights or in traffic, it fails to restart when the brake is released, leaving the vehicle stranded in traffic. The \"Collision Mitigation System\" warning light often appears during these incidents. The Idle Stop system is overly aggressive and doesn't account for battery health, A/C load, or hot weather conditions. Unlike some competitors, Honda doesn't have a shift interlock, so the vehicle can roll if stalled on a hill. Many owners permanently disable Idle Stop to avoid this issue.",
+        "solution": "Temporary: Press Idle Stop button to disable every time you start the vehicle (annoyingly resets each ignition cycle). Permanent disable (DIY): Install Idle Stop Eliminator plug-in module ($40-80) that automatically disables the feature every startup - very popular on PassportForums. If stalling occurs: Shift to Park, turn off ignition, wait 10 seconds, restart engine. Battery related: If Idle Stop frequently won't engage or causes stalling, have battery tested (weak battery confuses system). Honda has released software updates but they don't fully address the issue.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "Engine fails to restart after auto-stop at red light",
+          "Vehicle stalls in traffic when Idle Stop engages",
+          "Collision Mitigation System warning light during stall",
+          "Multiple restart attempts needed after auto-stop",
+          "Engine cranks but won't start after Idle Stop",
+          "Vehicle rolls backward when stalled on hill",
+          "Battery warning light after failed restart"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0335",
+          "P0340",
+          "P0345"
+        ],
+        "estimatedCostLow": 40,
+        "estimatedCostHigh": 300,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "PassportForums #1 mod: Idle Stop Eliminator by Autostop Eliminator ($50-80) - plugs into OBD2 port, auto-disables Idle Stop every startup. 1,000+ owners use it.",
+            "upvotes": 0,
+            "partName": "Idle Stop Eliminator (Honda)",
+            "partBrand": "Autostop Eliminator",
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Autostop%20Eliminator%20Idle%20Stop%20Eliminator%20(Honda)&tag=au7o-20"
+          },
+          {
+            "type": "warning",
+            "content": "CRITICAL: If Idle Stop fails on a hill, vehicle will roll backward (no shift interlock) - keep foot firmly on brake and shift to Park immediately.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "If you prefer manual disable, lightly tap brake pedal when stopped - Idle Stop won't engage. Less annoying than pressing button every startup.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Weak battery makes Idle Stop unreliable - if system is acting weird, get battery load tested before chasing gremlins.",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-02-22",
+        "reviewedOn": "2026-02-22",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "Passport",
+        "years": [
+          2019,
+          2020,
+          2021,
+          2022
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Auto Idle Stop May Not Restart - Bulletins 23-008 and 23-009",
+        "description": "Honda Bulletin 23-008 covers VIN-eligible 2019-2022 Passport vehicles whose engine may not automatically restart after Auto Idle Stop engages. Honda says the vehicle can typically be restarted by selecting Park and pressing the ENGINE START/STOP button. Bulletin 23-009 provides a second-stage repair for eligible 2019-2021 vehicles when the software update does not resolve the condition. NHTSA Engineering Analysis EA25004 remains open and is not a final defect determination.",
+        "solution": "Have a Honda dealer verify VIN eligibility and complete the PGM-FI software update under Bulletin 23-008. If the condition persists on a vehicle eligible for Bulletin 23-009, Honda directs replacement of the starter assembly and starter relays plus a valve adjustment.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Engine may not automatically restart after Auto Idle Stop",
+          "Vehicle may require selecting Park and pressing the start/stop button to restart"
+        ],
+        "affectedSystems": [
+          "Auto Idle Stop",
+          "PGM-FI software",
+          "Starter assembly and relays"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "Honda Service Bulletin 23-008 - 2019-2022 Passport PGM-FI Idle Stop Software Update",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2023/MC-10245550-0001.pdf"
+          },
+          {
+            "type": "tsb",
+            "title": "Honda Service Bulletin 23-009 - 2019-2021 Passport No-Restart Warranty Extension",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2023/MC-10229676-0001.pdf"
+          },
+          {
+            "type": "investigation",
+            "title": "NHTSA Engineering Analysis EA25004 - No Restart After Auto Start/Stop Engages",
+            "url": "https://static.nhtsa.gov/odi/inv/2025/INOA-EA25004-10033.pdf?pubDate=20250404"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Replaced the uncited 2019-2023 narrative, aftermarket bypass and unsupported rollaway/DTC claims with Honda Bulletins 23-008 and 23-009's exact 2019-2022 scope and staged remedy; labels NHTSA EA25004 as an open investigation rather than a final defect finding.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-passport-ignition-switch-failure-causing-2000",
+      "model": "Passport",
+      "action": "keep_published_pending_source",
+      "reason": "The generic recall-search citation does not identify a Passport ignition-switch campaign, and the official 2000-2002 Passport recall set contains no matching campaign. A complaint page cannot establish this aggregation, so the row remains unchanged.",
+      "identityRule": "No content or publication-state changes; partial, generic, secondary or overlapping evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "c7451c2e5bf1039b0294499ece74c21e1165df09467ea302a9bb9146614e2182",
+      "proposalSha256": "c7451c2e5bf1039b0294499ece74c21e1165df09467ea302a9bb9146614e2182",
+      "before": {
+        "make": "Honda",
+        "model": "Passport",
+        "years": [
+          2000,
+          2001,
+          2002
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Ignition Switch Failure Causing Intermittent No-Start and Electrical Accessory Loss",
+        "description": "Early-2000s Honda and Honda-badged trucks had recurring ignition-switch electrical contact failures, and Passport owners report intermittent no-starts, stalling, or dash/accessory power dropping out when the key is moved. The problem is often heat-related and may begin as occasional flickering cluster lights or a starter that works only after cycling the key several times. Because the switch feeds multiple circuits, symptoms can appear random and mimic battery or starter problems.",
+        "solution": "Diagnosis includes checking for voltage at ignition-fed circuits while wiggling the key, confirming battery and starter health, and inspecting the switch connector for heat damage. Replacing the electrical portion of the ignition switch is the usual repair, and damaged pigtails should be repaired at the same time. Owners also verify that the lock cylinder is not excessively worn, since a sloppy key action can accelerate switch wear.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Intermittent no-start",
+          "Dash lights flicker with key movement",
+          "Radio or blower cuts out",
+          "Engine stalls unexpectedly",
+          "Starter works only after repeated key cycles"
+        ],
+        "affectedSystems": [
+          "ignition switch",
+          "starting system",
+          "dash power distribution",
+          "accessory circuits"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 150,
+        "estimatedCostHigh": 450,
+        "typicalMileageLow": 80000,
+        "typicalMileageHigh": 180000,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/recalls",
+            "type": "recall",
+            "title": "NHTSA recall query - Honda ignition switch campaigns affecting early 2000s models"
+          },
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2002/HONDA/PASSPORT/SUV/4WD",
+            "type": "nhtsa",
+            "title": "NHTSA ODI complaints search - 2002 Honda Passport electrical system complaints"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Before replacing the starter, check whether accessory power drops out or returns when the key is slightly moved; that pattern strongly suggests the ignition switch.",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "Inspect the switch connector for melted plastic or darkened terminals, because high resistance can damage the harness as well as the switch.",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "Owners typically replace the electrical switch assembly rather than chasing intermittent contact issues.",
+            "upvotes": 0,
+            "partName": "Ignition Starter Switch",
+            "partBrand": "Standard Motor Products",
+            "affiliateUrl": "https://www.amazon.com/s?k=2001%20Honda%20Passport%20Standard%20Motor%20Products%20ignition%20switch&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "If the connector is heat-damaged, a replacement pigtail helps restore reliable contact and prevents repeat failures.",
+            "upvotes": 0,
+            "partName": "Ignition Switch Connector/Pigtail",
+            "partBrand": "Dorman",
+            "affiliateUrl": "https://www.amazon.com/s?k=2001%20Honda%20Passport%20Dorman%20ignition%20switch%20connector&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "honda-pilot-ignition-switch-internal-wear-2003",
+          "honda-civic-ignition-switch-failure-causing-stalling-or-no-start",
+          "honda-accord-ignition-switch-and-immobilizer-shut-off-no-start",
+          "honda-prelude-ignition-switch-1997"
+        ]
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "Passport",
+        "years": [
+          2000,
+          2001,
+          2002
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Ignition Switch Failure Causing Intermittent No-Start and Electrical Accessory Loss",
+        "description": "Early-2000s Honda and Honda-badged trucks had recurring ignition-switch electrical contact failures, and Passport owners report intermittent no-starts, stalling, or dash/accessory power dropping out when the key is moved. The problem is often heat-related and may begin as occasional flickering cluster lights or a starter that works only after cycling the key several times. Because the switch feeds multiple circuits, symptoms can appear random and mimic battery or starter problems.",
+        "solution": "Diagnosis includes checking for voltage at ignition-fed circuits while wiggling the key, confirming battery and starter health, and inspecting the switch connector for heat damage. Replacing the electrical portion of the ignition switch is the usual repair, and damaged pigtails should be repaired at the same time. Owners also verify that the lock cylinder is not excessively worn, since a sloppy key action can accelerate switch wear.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Intermittent no-start",
+          "Dash lights flicker with key movement",
+          "Radio or blower cuts out",
+          "Engine stalls unexpectedly",
+          "Starter works only after repeated key cycles"
+        ],
+        "affectedSystems": [
+          "ignition switch",
+          "starting system",
+          "dash power distribution",
+          "accessory circuits"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 150,
+        "estimatedCostHigh": 450,
+        "typicalMileageLow": 80000,
+        "typicalMileageHigh": 180000,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/recalls",
+            "type": "recall",
+            "title": "NHTSA recall query - Honda ignition switch campaigns affecting early 2000s models"
+          },
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2002/HONDA/PASSPORT/SUV/4WD",
+            "type": "nhtsa",
+            "title": "NHTSA ODI complaints search - 2002 Honda Passport electrical system complaints"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Before replacing the starter, check whether accessory power drops out or returns when the key is slightly moved; that pattern strongly suggests the ignition switch.",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "Inspect the switch connector for melted plastic or darkened terminals, because high resistance can damage the harness as well as the switch.",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "Owners typically replace the electrical switch assembly rather than chasing intermittent contact issues.",
+            "upvotes": 0,
+            "partName": "Ignition Starter Switch",
+            "partBrand": "Standard Motor Products",
+            "affiliateUrl": "https://www.amazon.com/s?k=2001%20Honda%20Passport%20Standard%20Motor%20Products%20ignition%20switch&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "If the connector is heat-damaged, a replacement pigtail helps restore reliable contact and prevents repeat failures.",
+            "upvotes": 0,
+            "partName": "Ignition Switch Connector/Pigtail",
+            "partBrand": "Dorman",
+            "affiliateUrl": "https://www.amazon.com/s?k=2001%20Honda%20Passport%20Dorman%20ignition%20switch%20connector&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "honda-pilot-ignition-switch-internal-wear-2003",
+          "honda-civic-ignition-switch-failure-causing-stalling-or-no-start",
+          "honda-accord-ignition-switch-and-immobilizer-shut-off-no-start",
+          "honda-prelude-ignition-switch-1997"
+        ]
+      }
+    },
+    {
+      "id": "honda-passport-infotainment-fakra-connector-2019",
+      "model": "Passport",
+      "action": "rewrite_same_identity",
+      "reason": "Preserved the FAKRA/MOST identity while replacing a single complaint with exact recall 23V431 scope, symptoms and cable remedy; removed unsupported corrosion, head-unit replacement, connectivity, pricing and DIY claims.",
+      "identityRule": "The indexed issue identity stays on the same ID; only exact Honda/NHTSA scope, mechanism, symptoms and remedy replace unsupported claims.",
+      "commerceDecision": "no-commerce",
+      "changedFields": [
+        "years",
+        "title",
+        "description",
+        "solution",
+        "severity",
+        "confidence",
+        "symptoms",
+        "affectedSystems",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "communityRecommendations",
+        "source",
+        "lastReportedByOwners",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
+      "evidence": [
+        {
+          "kind": "manufacturer-record",
+          "url": "https://static.nhtsa.gov/odi/rcl/2023/RCRIT-23V431-2199.PDF",
+          "verifiedOn": "2026-08-06",
+          "observation": "Honda Service Bulletin 23-047 - 2019-2023 Passport MOST/FAKRA Recall 23V431 supports the proposed same-identity scope, mechanism and remedy."
+        }
+      ],
+      "beforeSha256": "901fb176ee5794016fc7edf6a27b31e33b7b9e7bd3aa7b8aa3d024d19e34e51a",
+      "proposalSha256": "0b7be43973d0c69b50b4d7045470727e692b627ace4ef0f92b6ab7a70e3b3fc6",
+      "before": {
+        "make": "Honda",
+        "model": "Passport",
+        "years": [
+          2019,
+          2020,
+          2021
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Infotainment System Failures (FAKRA Connector Defect)",
+        "description": "The 2019-2021 Honda Passport experiences widespread infotainment system failures caused by defective FAKRA connectors (antenna connectors behind the head unit). Symptoms include blank/black screen on startup, backup camera not working, audio system crackling/static, complete system freezes, and USB/Bluetooth connectivity issues. The FAKRA connectors corrode or lose connection, disrupting communication between the head unit and vehicle systems. Honda quietly fixed this in 2022+ production but never issued a recall. Replacement head unit: $1,200-2,000. Some owners successfully repair by cleaning/reseating FAKRA connectors ($free-200).",
+        "solution": "DIY fix (if mechanically inclined): Remove head unit and clean/reseat the FAKRA connectors behind it - many PassportForums members report this fixes the issue ($0-50 in supplies). Dealer solution: Software update first (free under warranty, $150-200 out of warranty), then head unit replacement if update fails ($1,200-2,000). FAKRA connector is largely a 2019-2021 problem - 2022+ models were built with the fix. If under warranty, push for head unit replacement rather than temporary software updates.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Infotainment screen blank or black on startup",
+          "Backup camera shows \"no signal\" or doesn't display",
+          "Audio system crackling, static, or no sound",
+          "System freezes or reboots randomly",
+          "Apple CarPlay/Android Auto disconnecting",
+          "USB ports not working",
+          "Bluetooth won't connect or constantly disconnects",
+          "Navigation system freezing"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 2000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2021/HONDA/PASSPORT/SUV/AWD#complaints",
+            "type": "nhtsa",
+            "title": "NHTSA Complaint #11465064"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "PassportForums DIY fix (worked for 70%+ of owners): Remove head unit, unplug/replug all FAKRA connectors, apply dielectric grease. Takes 1-2 hours, saves $1,500.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "Use CRC 05109 Dielectric Grease on FAKRA connectors when reseating - prevents future corrosion. PassportForums members swear by it.",
+            "upvotes": 0,
+            "partName": "Dielectric Grease",
+            "partBrand": "CRC",
+            "partNumber": "05109",
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=CRC%2005109&tag=au7o-20"
+          },
+          {
+            "type": "warning",
+            "content": "Don't let dealer charge $200 for \"software update\" if issue returns - it's a hardware problem (FAKRA connectors), not software. Push for head unit replacement.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "If buying used 2019-2021 Passport, test infotainment THOROUGHLY - start/stop car 10+ times, test backup camera, Bluetooth, USB. FAKRA issues often intermittent.",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-02-22",
+        "reviewedOn": "2026-02-22",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "Passport",
+        "years": [
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "MOST/FAKRA Connector Rearview Camera Recall 23V431",
+        "description": "Honda Bulletin 23-047 for recall 23V431 covers VIN-eligible 2019-2023 Passport vehicles. A coaxial-cable terminal in the Media Oriented Systems Transport network may have been manufactured out of specification, causing poor communication that can affect audio quality and make the rearview camera work intermittently or go blank in Reverse. The current bulletin covers 2019-2020 vehicles except Sport and all 2021-2023 trims.",
+        "solution": "Have a Honda dealer verify VIN eligibility. The recall repair installs FAKRA splice repair service cables and splice boxes in the MOST network.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Rearview camera may work intermittently",
+          "Rearview camera may go blank in Reverse",
+          "Audio quality may be affected"
+        ],
+        "affectedSystems": [
+          "MOST bus network",
+          "FAKRA coaxial connectors",
+          "Rearview camera display",
+          "Audio network"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "Honda Service Bulletin 23-047 - 2019-2023 Passport MOST/FAKRA Recall 23V431",
+            "url": "https://static.nhtsa.gov/odi/rcl/2023/RCRIT-23V431-2199.PDF"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Preserved the FAKRA/MOST identity while replacing a single complaint with exact recall 23V431 scope, symptoms and cable remedy; removed unsupported corrosion, head-unit replacement, connectivity, pricing and DIY claims.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-passport-paint-clearcoat-peeling-2019",
+      "model": "Passport",
+      "action": "keep_published_pending_source",
+      "reason": "One complaint and a forum thread do not establish a manufacturing paint defect, exact hood/roof mechanism or complete 2019-2022 population. The row remains unchanged.",
+      "identityRule": "No content or publication-state changes; partial, generic, secondary or overlapping evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "62fc16574962078cfe2123485315e5dc580ffac896542729e7e309b3b4cdf175",
+      "proposalSha256": "62fc16574962078cfe2123485315e5dc580ffac896542729e7e309b3b4cdf175",
+      "before": {
+        "make": "Honda",
+        "model": "Passport",
+        "years": [
+          2019,
+          2020,
+          2021,
+          2022
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "body",
+        "title": "Paint and Clearcoat Peeling (Hood and Roof)",
+        "description": "Some 2019-2022 Honda Passport owners report paint peeling, bubbling, or clearcoat failures, especially on the hood and roof. While not as widespread as the 2016-2018 HR-V/Pilot paint issues, it still affects a notable number of Passports. Most common on white colors (Platinum White Pearl), but other colors also affected. Honda has not issued a warranty extension for Passports like they did for other models. Full panel repaint: $1,500-3,000. Honda may cover under goodwill if caught early and you escalate to Honda Customer Service.",
+        "solution": "If under 3yr/36k warranty, take to dealer immediately and document. If out of warranty: (1) Document issue with photos, (2) Contact Honda Customer Service (1-888-234-2138) and request goodwill assistance - some owners have gotten partial/full coverage. (3) If denied, full panel repaint costs $1,500-3,000. Use premium paint systems (PPG, Axalta) if paying out of pocket. Catch it early before rust forms - Honda more likely to cover if no rust.",
+        "severity": "low",
+        "confidence": "medium",
+        "symptoms": [
+          "Paint peeling or bubbling (especially hood/roof)",
+          "Clearcoat flaking off in sheets",
+          "Small spots that look like sand under clearcoat",
+          "Rust forming where paint is gone",
+          "Most common on Platinum White Pearl",
+          "Also affects other colors (Modern Steel, Obsidian Blue)"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 1500,
+        "estimatedCostHigh": 3000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2021/HONDA/PASSPORT/SUV/AWD#complaints",
+            "type": "nhtsa",
+            "title": "NHTSA Complaint #11431547: 2021 Honda Passport paint bubbling/peeling on hood"
+          },
+          {
+            "url": "https://www.passportforums.com/threads/paint-peeling-on-hood-roof.10062/",
+            "type": "forum",
+            "title": "Passport Forums - Paint peeling on hood/roof discussion"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Even if out of warranty, document issue and contact Honda Customer Service - several PassportForums owners got goodwill coverage by escalating.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "warning",
+            "content": "Don't delay - once paint peels to bare metal, rust forms quickly and Honda is less likely to cover it.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "If paying out of pocket, insist on premium paint/clearcoat like PPG or Axalta - don't let shop use cheap materials that will fail again.",
+            "upvotes": 0,
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Passport%20If%20paying%20out%20of%20pocket%2C%20insist%20on%20premium%20paint%2Fclearcoat%20l&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Ceramic coating ($500-1,500) can prevent further damage if you catch peeling early - many PassportForums owners did this to protect vulnerable areas.",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-02-22",
+        "reviewedOn": "2026-02-22",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "Passport",
+        "years": [
+          2019,
+          2020,
+          2021,
+          2022
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "body",
+        "title": "Paint and Clearcoat Peeling (Hood and Roof)",
+        "description": "Some 2019-2022 Honda Passport owners report paint peeling, bubbling, or clearcoat failures, especially on the hood and roof. While not as widespread as the 2016-2018 HR-V/Pilot paint issues, it still affects a notable number of Passports. Most common on white colors (Platinum White Pearl), but other colors also affected. Honda has not issued a warranty extension for Passports like they did for other models. Full panel repaint: $1,500-3,000. Honda may cover under goodwill if caught early and you escalate to Honda Customer Service.",
+        "solution": "If under 3yr/36k warranty, take to dealer immediately and document. If out of warranty: (1) Document issue with photos, (2) Contact Honda Customer Service (1-888-234-2138) and request goodwill assistance - some owners have gotten partial/full coverage. (3) If denied, full panel repaint costs $1,500-3,000. Use premium paint systems (PPG, Axalta) if paying out of pocket. Catch it early before rust forms - Honda more likely to cover if no rust.",
+        "severity": "low",
+        "confidence": "medium",
+        "symptoms": [
+          "Paint peeling or bubbling (especially hood/roof)",
+          "Clearcoat flaking off in sheets",
+          "Small spots that look like sand under clearcoat",
+          "Rust forming where paint is gone",
+          "Most common on Platinum White Pearl",
+          "Also affects other colors (Modern Steel, Obsidian Blue)"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 1500,
+        "estimatedCostHigh": 3000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2021/HONDA/PASSPORT/SUV/AWD#complaints",
+            "type": "nhtsa",
+            "title": "NHTSA Complaint #11431547: 2021 Honda Passport paint bubbling/peeling on hood"
+          },
+          {
+            "url": "https://www.passportforums.com/threads/paint-peeling-on-hood-roof.10062/",
+            "type": "forum",
+            "title": "Passport Forums - Paint peeling on hood/roof discussion"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Even if out of warranty, document issue and contact Honda Customer Service - several PassportForums owners got goodwill coverage by escalating.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "warning",
+            "content": "Don't delay - once paint peels to bare metal, rust forms quickly and Honda is less likely to cover it.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "If paying out of pocket, insist on premium paint/clearcoat like PPG or Axalta - don't let shop use cheap materials that will fail again.",
+            "upvotes": 0,
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Passport%20If%20paying%20out%20of%20pocket%2C%20insist%20on%20premium%20paint%2Fclearcoat%20l&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Ceramic coating ($500-1,500) can prevent further damage if you catch peeling early - many PassportForums owners did this to protect vulnerable areas.",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-02-22",
+        "reviewedOn": "2026-02-22",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-passport-power-window-regulator-and-2000",
+      "model": "Passport",
+      "action": "keep_published_pending_source",
+      "reason": "An aggregator landing page does not establish one regulator-and-lock-actuator defect, year scope, failure mechanism or repair path. The row remains unchanged.",
+      "identityRule": "No content or publication-state changes; partial, generic, secondary or overlapping evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "a6e0b80114bde100705547a1e487b7cb4acf85f342792e511b99c323a696ceb8",
+      "proposalSha256": "a6e0b80114bde100705547a1e487b7cb4acf85f342792e511b99c323a696ceb8",
+      "before": {
+        "make": "Honda",
+        "model": "Passport",
+        "years": [
+          2000,
+          2001,
+          2002
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Power Window Regulator and Door Lock Actuator Failures",
+        "description": "Owners of first-generation Passports frequently report slow or failed power windows and intermittent power door locks, especially on high-mileage vehicles. Regulators wear out, plastic guides break, and lock actuators weaken with age, sometimes leaving the window stuck down or a door unable to lock/unlock electrically. These are nuisance failures rather than major mechanical defects, but they are common enough in owner communities to be considered a known aging issue.",
+        "solution": "Remove the door panel and test for power and ground at the window motor or lock actuator before replacing parts. If voltage is present but the mechanism binds or does not move, replace the regulator/motor assembly or actuator and inspect the window tracks for drag. Lubricating channels and checking the master switch can prevent repeat failures.",
+        "severity": "low",
+        "confidence": "medium",
+        "symptoms": [
+          "window moves slowly",
+          "window stuck down or up",
+          "clicking inside door",
+          "power locks work intermittently",
+          "one door will not lock or unlock"
+        ],
+        "affectedSystems": [
+          "power window regulator",
+          "window motor",
+          "door lock actuator",
+          "master window switch"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 100,
+        "estimatedCostHigh": 450,
+        "typicalMileageLow": 100000,
+        "typicalMileageHigh": 230000,
+        "citations": [
+          {
+            "url": "https://www.carcomplaints.com/Honda/Passport/",
+            "type": "forum",
+            "title": "Honda Passport owner complaint listings and forum reports on window/lock failures"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "content": "Owners often replace the full regulator assembly instead of only the motor because worn cables and guides commonly fail together.",
+            "searchQuery": "Honda Passport window regulator 2001"
+          },
+          {
+            "content": "Before replacing a lock actuator, clean and lubricate latch mechanisms since sticky latches can overload the actuator.",
+            "searchQuery": "white lithium grease door latch automotive"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "Passport",
+        "years": [
+          2000,
+          2001,
+          2002
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Power Window Regulator and Door Lock Actuator Failures",
+        "description": "Owners of first-generation Passports frequently report slow or failed power windows and intermittent power door locks, especially on high-mileage vehicles. Regulators wear out, plastic guides break, and lock actuators weaken with age, sometimes leaving the window stuck down or a door unable to lock/unlock electrically. These are nuisance failures rather than major mechanical defects, but they are common enough in owner communities to be considered a known aging issue.",
+        "solution": "Remove the door panel and test for power and ground at the window motor or lock actuator before replacing parts. If voltage is present but the mechanism binds or does not move, replace the regulator/motor assembly or actuator and inspect the window tracks for drag. Lubricating channels and checking the master switch can prevent repeat failures.",
+        "severity": "low",
+        "confidence": "medium",
+        "symptoms": [
+          "window moves slowly",
+          "window stuck down or up",
+          "clicking inside door",
+          "power locks work intermittently",
+          "one door will not lock or unlock"
+        ],
+        "affectedSystems": [
+          "power window regulator",
+          "window motor",
+          "door lock actuator",
+          "master window switch"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 100,
+        "estimatedCostHigh": 450,
+        "typicalMileageLow": 100000,
+        "typicalMileageHigh": 230000,
+        "citations": [
+          {
+            "url": "https://www.carcomplaints.com/Honda/Passport/",
+            "type": "forum",
+            "title": "Honda Passport owner complaint listings and forum reports on window/lock failures"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "content": "Owners often replace the full regulator assembly instead of only the motor because worn cables and guides commonly fail together.",
+            "searchQuery": "Honda Passport window regulator 2001"
+          },
+          {
+            "content": "Before replacing a lock actuator, clean and lubricate latch mechanisms since sticky latches can overload the actuator.",
+            "searchQuery": "white lithium grease door latch automotive"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-passport-rear-differential-binding-and-2000",
+      "model": "Passport",
+      "action": "keep_published_pending_source",
+      "reason": "This card merges first-generation and current-generation drivetrains and has no citations. No single Honda source establishes a common dual-pump-fluid mechanism across 2000-2002 and 2019-2022 Passports, so it remains unchanged.",
+      "identityRule": "No content or publication-state changes; partial, generic, secondary or overlapping evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "b737dedb166fa2b7b92048e6d26791d7a3263f4e385a3f1afee6ff9067c982cb",
+      "proposalSha256": "b737dedb166fa2b7b92048e6d26791d7a3263f4e385a3f1afee6ff9067c982cb",
+      "before": {
+        "make": "Honda",
+        "model": "Passport",
+        "years": [
+          2000,
+          2001,
+          2002,
+          2019,
+          2020,
+          2021,
+          2022
+        ],
+        "trims": [
+          "4WD",
+          "AWD"
+        ],
+        "engines": [],
+        "category": "drivetrain",
+        "title": "Rear Differential Binding and Dual Pump Fluid Chatter on 4WD Models",
+        "description": "Honda/Acura AWD systems are well known for rear differential chatter or binding during low-speed turns when the fluid degrades, and Passport-related owner complaints and service guidance describe groaning, hopping, or a dragging sensation from the rear axle. On first-generation 4WD trucks this can also be confused with transfer-case or axle issues, while later Honda i-VTM4 vehicles may show similar low-speed shudder if fluid service is overdue. The issue is usually maintenance-related rather than a complete differential failure if caught early.",
+        "solution": "Technicians road-test the vehicle in tight turns, inspect for metal contamination, and replace the rear differential fluid with the correct Honda-specified fluid, sometimes performing multiple drain-and-fill cycles. If noise remains, they inspect mounts, axle shafts, and differential bearings for wear. Using the wrong gear oil or delaying service often makes the chatter return quickly.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Groaning from rear during tight turns",
+          "Binding or hopping in parking lots",
+          "Shudder from rear axle at low speed",
+          "Dragging sensation on full-lock turns"
+        ],
+        "affectedSystems": [
+          "rear differential",
+          "AWD coupling",
+          "axle shafts",
+          "drivetrain mounts"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 120,
+        "estimatedCostHigh": 1200,
+        "typicalMileageLow": 30000,
+        "typicalMileageHigh": 120000,
+        "citations": [],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "If the rear end chatters only on tight turns, change the differential fluid before replacing hard parts; many owners report immediate improvement.",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "Do not substitute generic gear oil if the axle requires Honda-specific fluid, because incorrect friction characteristics can cause repeat binding.",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "Using the correct OEM differential fluid is the most common fix for low-speed rear-end chatter on Honda AWD systems.",
+            "upvotes": 0,
+            "partName": "Dual Pump Fluid II / Genuine Differential Fluid",
+            "partBrand": "Honda",
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Passport%20genuine%20rear%20differential%20fluid%20dual%20pump&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "A quality hand pump makes repeated drain-and-fill service easier for owners maintaining the rear differential at home.",
+            "upvotes": 0,
+            "partName": "Gear Oil Hand Pump",
+            "partBrand": "Lumax",
+            "affiliateUrl": "https://www.amazon.com/s?k=Lumax%20gear%20oil%20hand%20pump%20Honda%20differential%20fluid&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "acura-tl-sh-awd-rear-differential-whine-2009",
+          "acura-rl-shawd-system-noise-2005"
+        ]
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "Passport",
+        "years": [
+          2000,
+          2001,
+          2002,
+          2019,
+          2020,
+          2021,
+          2022
+        ],
+        "trims": [
+          "4WD",
+          "AWD"
+        ],
+        "engines": [],
+        "category": "drivetrain",
+        "title": "Rear Differential Binding and Dual Pump Fluid Chatter on 4WD Models",
+        "description": "Honda/Acura AWD systems are well known for rear differential chatter or binding during low-speed turns when the fluid degrades, and Passport-related owner complaints and service guidance describe groaning, hopping, or a dragging sensation from the rear axle. On first-generation 4WD trucks this can also be confused with transfer-case or axle issues, while later Honda i-VTM4 vehicles may show similar low-speed shudder if fluid service is overdue. The issue is usually maintenance-related rather than a complete differential failure if caught early.",
+        "solution": "Technicians road-test the vehicle in tight turns, inspect for metal contamination, and replace the rear differential fluid with the correct Honda-specified fluid, sometimes performing multiple drain-and-fill cycles. If noise remains, they inspect mounts, axle shafts, and differential bearings for wear. Using the wrong gear oil or delaying service often makes the chatter return quickly.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Groaning from rear during tight turns",
+          "Binding or hopping in parking lots",
+          "Shudder from rear axle at low speed",
+          "Dragging sensation on full-lock turns"
+        ],
+        "affectedSystems": [
+          "rear differential",
+          "AWD coupling",
+          "axle shafts",
+          "drivetrain mounts"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 120,
+        "estimatedCostHigh": 1200,
+        "typicalMileageLow": 30000,
+        "typicalMileageHigh": 120000,
+        "citations": [],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "If the rear end chatters only on tight turns, change the differential fluid before replacing hard parts; many owners report immediate improvement.",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "Do not substitute generic gear oil if the axle requires Honda-specific fluid, because incorrect friction characteristics can cause repeat binding.",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "Using the correct OEM differential fluid is the most common fix for low-speed rear-end chatter on Honda AWD systems.",
+            "upvotes": 0,
+            "partName": "Dual Pump Fluid II / Genuine Differential Fluid",
+            "partBrand": "Honda",
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Passport%20genuine%20rear%20differential%20fluid%20dual%20pump&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "A quality hand pump makes repeated drain-and-fill service easier for owners maintaining the rear differential at home.",
+            "upvotes": 0,
+            "partName": "Gear Oil Hand Pump",
+            "partBrand": "Lumax",
+            "affiliateUrl": "https://www.amazon.com/s?k=Lumax%20gear%20oil%20hand%20pump%20Honda%20differential%20fluid&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "acura-tl-sh-awd-rear-differential-whine-2009",
+          "acura-rl-shawd-system-noise-2005"
+        ]
+      }
+    },
+    {
+      "id": "honda-passport-suspension-noise-clunk-2019",
+      "model": "Passport",
+      "action": "keep_published_pending_source",
+      "reason": "A generic vehicle page and an unverified forum path do not establish one strut, sway-bar-link or bushing defect across 2019-2023 vehicles. The row remains unchanged.",
+      "identityRule": "No content or publication-state changes; partial, generic, secondary or overlapping evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "43e5e6541ab2b94e38911884db5f56a7a82f7e194297e6f1d87a1f53d1dff555",
+      "proposalSha256": "43e5e6541ab2b94e38911884db5f56a7a82f7e194297e6f1d87a1f53d1dff555",
+      "before": {
+        "make": "Honda",
+        "model": "Passport",
+        "years": [
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "suspension",
+        "title": "Front Suspension Clunking and Noise Over Bumps",
+        "description": "Honda Passport owners report clunking, knocking, or rattling noises from the front suspension when going over bumps, potholes, or rough roads. Common causes include: worn front lower control arm bushings, worn sway bar end links, loose/worn strut mounts, and worn ball joints. The Passport shares suspension components with the Pilot, which has similar issues. The clunking is often most noticeable at low speeds over small bumps (parking lots, speed bumps). Worn bushings: $200-500. Full control arm replacement: $400-800 per side.",
+        "solution": "Diagnose the source: (1) Jack up front end and check for play in control arm bushings, sway bar links, ball joints, and tie rods. (2) Bounce front end and listen for noise source. Common fixes: Replace front sway bar end links ($150-300 parts+labor), replace lower control arm bushings ($200-500), replace strut mounts ($300-600). Use OEM Honda or quality aftermarket (Moog, Mevotech) parts. Independent shops are often cheaper than dealers for this work.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Clunking or knocking noise from front end over bumps",
+          "Rattling sound when going over rough roads",
+          "Noise most noticeable at low speeds",
+          "Clunk when turning and going over bumps",
+          "Noise from one side or both",
+          "Loose feeling in front end"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 150,
+        "estimatedCostHigh": 800,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2019/HONDA/PASSPORT",
+            "type": "nhtsa",
+            "title": "NHTSA Vehicle Page for 2019 Honda Passport - Owner Complaints and Investigations"
+          },
+          {
+            "url": "https://www.reddit.com/r/MechanicAdvice/comments/jxqv3h/2019_honda_passport_front_suspension_clunking_noise/",
+            "type": "forum",
+            "title": "Reddit r/MechanicAdvice Thread Discussing 2019 Honda Passport Front Suspension Clunking Noise"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "PassportForums DIY: Sway bar end links are easy to replace (30 mins, basic tools). Start here if noise is clunking when turning over bumps.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "Use Moog or Mevotech parts - PassportForums members report longer life than ultra-cheap parts, close to OEM performance at 50% cost.",
+            "upvotes": 0,
+            "partBrand": "Moog",
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Passport%20Use%20Moog%20or%20Mevotech%20parts%20-%20PassportForums%20members%20report%20l&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "If buying used Passport, test drive over rough roads and parking lot speed bumps - suspension noise is common on higher mileage units.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "warning",
+            "content": "Don't ignore clunking - worn ball joints or control arms can separate while driving (catastrophic failure). Get it diagnosed.",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-02-22",
+        "reviewedOn": "2026-02-22",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "Passport",
+        "years": [
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "suspension",
+        "title": "Front Suspension Clunking and Noise Over Bumps",
+        "description": "Honda Passport owners report clunking, knocking, or rattling noises from the front suspension when going over bumps, potholes, or rough roads. Common causes include: worn front lower control arm bushings, worn sway bar end links, loose/worn strut mounts, and worn ball joints. The Passport shares suspension components with the Pilot, which has similar issues. The clunking is often most noticeable at low speeds over small bumps (parking lots, speed bumps). Worn bushings: $200-500. Full control arm replacement: $400-800 per side.",
+        "solution": "Diagnose the source: (1) Jack up front end and check for play in control arm bushings, sway bar links, ball joints, and tie rods. (2) Bounce front end and listen for noise source. Common fixes: Replace front sway bar end links ($150-300 parts+labor), replace lower control arm bushings ($200-500), replace strut mounts ($300-600). Use OEM Honda or quality aftermarket (Moog, Mevotech) parts. Independent shops are often cheaper than dealers for this work.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Clunking or knocking noise from front end over bumps",
+          "Rattling sound when going over rough roads",
+          "Noise most noticeable at low speeds",
+          "Clunk when turning and going over bumps",
+          "Noise from one side or both",
+          "Loose feeling in front end"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 150,
+        "estimatedCostHigh": 800,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2019/HONDA/PASSPORT",
+            "type": "nhtsa",
+            "title": "NHTSA Vehicle Page for 2019 Honda Passport - Owner Complaints and Investigations"
+          },
+          {
+            "url": "https://www.reddit.com/r/MechanicAdvice/comments/jxqv3h/2019_honda_passport_front_suspension_clunking_noise/",
+            "type": "forum",
+            "title": "Reddit r/MechanicAdvice Thread Discussing 2019 Honda Passport Front Suspension Clunking Noise"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "PassportForums DIY: Sway bar end links are easy to replace (30 mins, basic tools). Start here if noise is clunking when turning over bumps.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "Use Moog or Mevotech parts - PassportForums members report longer life than ultra-cheap parts, close to OEM performance at 50% cost.",
+            "upvotes": 0,
+            "partBrand": "Moog",
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Passport%20Use%20Moog%20or%20Mevotech%20parts%20-%20PassportForums%20members%20report%20l&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "If buying used Passport, test drive over rough roads and parking lot speed bumps - suspension noise is common on higher mileage units.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "warning",
+            "content": "Don't ignore clunking - worn ball joints or control arms can separate while driving (catastrophic failure). Get it diagnosed.",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-02-22",
+        "reviewedOn": "2026-02-22",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-passport-takata-front-airbag-inflator-2000",
+      "model": "Passport",
+      "action": "rewrite_same_identity",
+      "reason": "Retained the indexed airbag-inflator rupture identity but corrected the false Takata and 2000-2002 claims to exact recall 01V055 for certain 2001 Passport passenger airbags; removed driver-airbag, SRS-light and unrelated diagnostic claims.",
+      "identityRule": "The indexed issue identity stays on the same ID; only exact Honda/NHTSA scope, mechanism, symptoms and remedy replace unsupported claims.",
+      "commerceDecision": "no-commerce",
+      "changedFields": [
+        "years",
+        "title",
+        "description",
+        "solution",
+        "severity",
+        "symptoms",
+        "affectedSystems",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "typicalMileageLow",
+        "typicalMileageHigh",
+        "citations",
+        "communityRecommendations",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
+      "evidence": [
+        {
+          "kind": "manufacturer-record",
+          "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=01V055000",
+          "verifiedOn": "2026-08-06",
+          "observation": "NHTSA Recall 01V055 - 2001 Passport Passenger Airbag Inflator Generant supports the proposed same-identity scope, mechanism and remedy."
+        }
+      ],
+      "beforeSha256": "172e3c02bb7943af4a250cb19ab69714917f5a9b3b6760cd4b65035b1a61a2e4",
+      "proposalSha256": "7ec8698720f94cb02b6b8357ca4868fa6d09c2a8a52cc9addfe2d11e30765c37",
+      "before": {
+        "make": "Honda",
+        "model": "Passport",
+        "years": [
+          2000,
+          2001,
+          2002
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "safety",
+        "title": "Takata Front Airbag Inflator Rupture and Unsafe Deployment",
+        "description": "Early Honda Passport models were included in the large Takata airbag inflator safety campaign affecting many Honda/Isuzu-built vehicles. The defect can cause the front airbag inflator to rupture during deployment, sending metal fragments into the cabin and creating a serious injury or death risk. Owner complaints and recall records document concern over delayed repairs, warning lights, and unsafe operation until the inflators are replaced.",
+        "solution": "Verify recall completion by VIN first, because many vehicles changed hands and some remain unrepaired. If open, replace the affected driver and/or passenger inflator modules per recall procedure; if the SRS light remains on afterward, scan the airbag system for stored faults and inspect clockspring, impact sensors, and harness connections. Do not ignore an illuminated SRS lamp on these vehicles.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "SRS warning light illuminated",
+          "open airbag recall by VIN",
+          "concern about unsafe airbag deployment",
+          "airbag system fault stored in SRS module"
+        ],
+        "affectedSystems": [
+          "SRS airbag system",
+          "driver airbag inflator",
+          "passenger airbag inflator"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 300,
+        "typicalMileageLow": 0,
+        "typicalMileageHigh": 250000,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2001/HONDA/PASSPORT/SUV/4WD#recalls",
+            "type": "recall",
+            "title": "NHTSA Recall Query - 2001 Honda Passport Takata airbag recalls"
+          },
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2002/HONDA/PASSPORT/SUV/4WD#recalls",
+            "type": "recall",
+            "title": "NHTSA Recall Query - 2002 Honda Passport Takata airbag recalls"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "content": "Run the VIN through Honda and NHTSA recall lookup before purchase; many owners recommend confirming both driver and passenger inflator campaigns were completed.",
+            "searchQuery": "Honda VIN recall lookup"
+          },
+          {
+            "content": "If the SRS light stays on after recall work, owners recommend a proper SRS-capable scan tool rather than guessing at parts.",
+            "searchQuery": "SRS scan tool Honda airbag"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "Passport",
+        "years": [
+          2001
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "safety",
+        "title": "Passenger Airbag Inflator Rupture Recall 01V055",
+        "description": "Recall 01V055 covers certain 2001 Honda Passport vehicles whose passenger-side airbag inflator contained the wrong amount of generant. In a crash that triggers passenger-airbag deployment, too much generant can make the inflator module explode and send metal or plastic debris toward occupants.",
+        "solution": "Confirm campaign completion for the VIN. The recall remedy replaces the passenger-side airbag unit.",
+        "severity": "critical",
+        "confidence": "high",
+        "symptoms": [
+          "Open recall 01V055 for the VIN",
+          "Passenger airbag inflator may explode during a deployment event"
+        ],
+        "affectedSystems": [
+          "Passenger frontal airbag inflator"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "NHTSA Recall 01V055 - 2001 Passport Passenger Airbag Inflator Generant",
+            "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=01V055000"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Retained the indexed airbag-inflator rupture identity but corrected the false Takata and 2000-2002 claims to exact recall 01V055 for certain 2001 Passport passenger airbags; removed driver-airbag, SRS-light and unrelated diagnostic claims.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-passport-timing-belt-and-water-2000",
+      "model": "Passport",
+      "action": "keep_published_pending_source",
+      "reason": "A manufacturer home page does not establish the indexed neglect/failure claim, service interval, interference-damage outcome or bundled repair scope for 2000-2002 Passports. The row remains unchanged.",
+      "identityRule": "No content or publication-state changes; partial, generic, secondary or overlapping evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "fb07ed5e591a3b9a4092ae50e0c515a239543c7dcf98fd25a12cffd93f027ea9",
+      "proposalSha256": "fb07ed5e591a3b9a4092ae50e0c515a239543c7dcf98fd25a12cffd93f027ea9",
+      "before": {
+        "make": "Honda",
+        "model": "Passport",
+        "years": [
+          2000,
+          2001,
+          2002
+        ],
+        "trims": [],
+        "engines": [
+          "3.2L V6"
+        ],
+        "category": "engine",
+        "title": "Timing Belt and Water Pump Neglect Leading to 3.2L V6 Engine Damage",
+        "description": "The 3.2L V6 used in the first-generation Passport relies on a timing belt service interval that many used examples miss. When the belt, tensioner, or water pump fails, owners report sudden no-starts, stalling, or catastrophic internal engine damage because the engine is interference-design. Forum history and repair databases repeatedly flag overdue timing-belt service as one of the most important reliability risks on these trucks.",
+        "solution": "Service records should be checked first; if the belt age is unknown, replacement of the timing belt, tensioner, idlers, water pump, and front seals is the standard preventive fix. If the engine suddenly died and now cranks unusually fast, a compression test and borescope inspection are needed to check for bent valves before installing new timing components. Replacing accessory belts and coolant during the same job is common because labor overlap is significant.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Ticking or chirping from timing cover area",
+          "Coolant seepage from water pump",
+          "Sudden engine stall",
+          "Cranks but will not start",
+          "Misfire after belt jump",
+          "Overheating if water pump fails"
+        ],
+        "affectedSystems": [
+          "timing system",
+          "valvetrain",
+          "cooling system",
+          "engine front cover components"
+        ],
+        "dtcCodes": [
+          "P0300",
+          "P0301",
+          "P0302",
+          "P0303",
+          "P0304",
+          "P0305",
+          "P0306"
+        ],
+        "estimatedCostLow": 700,
+        "estimatedCostHigh": 3000,
+        "typicalMileageLow": 60000,
+        "typicalMileageHigh": 120000,
+        "citations": [
+          {
+            "url": "https://www.gates.com/us/en.html",
+            "type": "tsb",
+            "title": "Gates application listing for 2001 Honda Passport 3.2L timing belt component service"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "If there is no proof of timing-belt service on a newly purchased first-gen Passport, owners generally treat it as overdue and replace it immediately.",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "Do the water pump, tensioner, idlers, thermostat, and coolant at the same time to avoid paying duplicate labor later.",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "A complete timing kit with water pump is the most common preventive repair package owners buy for the 3.2L V6.",
+            "upvotes": 0,
+            "partName": "Timing Belt Kit with Water Pump",
+            "partBrand": "Aisin",
+            "affiliateUrl": "https://www.amazon.com/s?k=2001%20Honda%20Passport%203.2%20Aisin%20timing%20belt%20kit%20water%20pump&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Fresh coolant is typically installed during timing-belt/water-pump service to protect the new pump and cooling passages.",
+            "upvotes": 0,
+            "partName": "Asian Vehicles Blue Antifreeze/Coolant",
+            "partBrand": "Peak",
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Passport%20Peak%20Asian%20Blue%20coolant&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "Passport",
+        "years": [
+          2000,
+          2001,
+          2002
+        ],
+        "trims": [],
+        "engines": [
+          "3.2L V6"
+        ],
+        "category": "engine",
+        "title": "Timing Belt and Water Pump Neglect Leading to 3.2L V6 Engine Damage",
+        "description": "The 3.2L V6 used in the first-generation Passport relies on a timing belt service interval that many used examples miss. When the belt, tensioner, or water pump fails, owners report sudden no-starts, stalling, or catastrophic internal engine damage because the engine is interference-design. Forum history and repair databases repeatedly flag overdue timing-belt service as one of the most important reliability risks on these trucks.",
+        "solution": "Service records should be checked first; if the belt age is unknown, replacement of the timing belt, tensioner, idlers, water pump, and front seals is the standard preventive fix. If the engine suddenly died and now cranks unusually fast, a compression test and borescope inspection are needed to check for bent valves before installing new timing components. Replacing accessory belts and coolant during the same job is common because labor overlap is significant.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Ticking or chirping from timing cover area",
+          "Coolant seepage from water pump",
+          "Sudden engine stall",
+          "Cranks but will not start",
+          "Misfire after belt jump",
+          "Overheating if water pump fails"
+        ],
+        "affectedSystems": [
+          "timing system",
+          "valvetrain",
+          "cooling system",
+          "engine front cover components"
+        ],
+        "dtcCodes": [
+          "P0300",
+          "P0301",
+          "P0302",
+          "P0303",
+          "P0304",
+          "P0305",
+          "P0306"
+        ],
+        "estimatedCostLow": 700,
+        "estimatedCostHigh": 3000,
+        "typicalMileageLow": 60000,
+        "typicalMileageHigh": 120000,
+        "citations": [
+          {
+            "url": "https://www.gates.com/us/en.html",
+            "type": "tsb",
+            "title": "Gates application listing for 2001 Honda Passport 3.2L timing belt component service"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "If there is no proof of timing-belt service on a newly purchased first-gen Passport, owners generally treat it as overdue and replace it immediately.",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "Do the water pump, tensioner, idlers, thermostat, and coolant at the same time to avoid paying duplicate labor later.",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "A complete timing kit with water pump is the most common preventive repair package owners buy for the 3.2L V6.",
+            "upvotes": 0,
+            "partName": "Timing Belt Kit with Water Pump",
+            "partBrand": "Aisin",
+            "affiliateUrl": "https://www.amazon.com/s?k=2001%20Honda%20Passport%203.2%20Aisin%20timing%20belt%20kit%20water%20pump&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Fresh coolant is typically installed during timing-belt/water-pump service to protect the new pump and cooling passages.",
+            "upvotes": 0,
+            "partName": "Asian Vehicles Blue Antifreeze/Coolant",
+            "partBrand": "Peak",
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Passport%20Peak%20Asian%20Blue%20coolant&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-passport-valve-cover-gasket-and-2000",
+      "model": "Passport",
+      "action": "keep_published_pending_source",
+      "reason": "A generic complaint page does not establish one valve-cover/tube-seal defect, misfire codes, mileage range or repair procedure. The row remains unchanged.",
+      "identityRule": "No content or publication-state changes; partial, generic, secondary or overlapping evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "4a61334ebe2d3a959fabde14e56286c232bcb3ee826cd931c5578627bb4ce442",
+      "proposalSha256": "4a61334ebe2d3a959fabde14e56286c232bcb3ee826cd931c5578627bb4ce442",
+      "before": {
+        "make": "Honda",
+        "model": "Passport",
+        "years": [
+          2000,
+          2001,
+          2002
+        ],
+        "trims": [],
+        "engines": [
+          "3.2L V6"
+        ],
+        "category": "engine",
+        "title": "Valve Cover Gasket and Spark Plug Tube Seal Oil Leaks Causing Misfires",
+        "description": "Aging 3.2L V6 Passports commonly develop oil leaks from the valve cover gaskets and spark plug tube seals. Owners report burnt-oil smell, oil on the cylinder head, and in some cases oil filling the plug wells and causing ignition misfires. This is a typical age-related failure on the Isuzu-sourced V6 and becomes more common as rubber seals harden with heat.",
+        "solution": "Inspect the valve cover perimeter and plug wells for fresh oil, then replace the valve cover gaskets, tube seals, and grommets as a set. Clean oil from the plug wells, inspect ignition wires/coils and spark plugs for contamination, and replace any damaged ignition components. Verify crankcase ventilation is functioning so excess pressure does not worsen the leak.",
+        "severity": "low",
+        "confidence": "medium",
+        "symptoms": [
+          "burning oil smell",
+          "oil on valve covers",
+          "oil in spark plug wells",
+          "engine misfire",
+          "rough idle"
+        ],
+        "affectedSystems": [
+          "valve covers",
+          "spark plug tube seals",
+          "ignition system",
+          "PCV system"
+        ],
+        "dtcCodes": [
+          "P0300",
+          "P0301",
+          "P0302",
+          "P0303",
+          "P0304",
+          "P0305",
+          "P0306"
+        ],
+        "estimatedCostLow": 120,
+        "estimatedCostHigh": 600,
+        "typicalMileageLow": 90000,
+        "typicalMileageHigh": 220000,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2001/HONDA/PASSPORT/SUV/4WD",
+            "type": "nhtsa",
+            "title": "NHTSA Vehicle Complaints - 2001 Honda Passport (engine complaints)"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "content": "Owners recommend using a full gasket set with tube seals and bolt grommets rather than reusing old hardware.",
+            "searchQuery": "valve cover gasket set Isuzu Rodeo 3.2"
+          },
+          {
+            "content": "If oil has soaked the plug wells, replace the spark plugs and inspect wires/boots at the same time to prevent repeat misfires.",
+            "searchQuery": "NGK spark plugs 3.2 Isuzu Rodeo"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "Passport",
+        "years": [
+          2000,
+          2001,
+          2002
+        ],
+        "trims": [],
+        "engines": [
+          "3.2L V6"
+        ],
+        "category": "engine",
+        "title": "Valve Cover Gasket and Spark Plug Tube Seal Oil Leaks Causing Misfires",
+        "description": "Aging 3.2L V6 Passports commonly develop oil leaks from the valve cover gaskets and spark plug tube seals. Owners report burnt-oil smell, oil on the cylinder head, and in some cases oil filling the plug wells and causing ignition misfires. This is a typical age-related failure on the Isuzu-sourced V6 and becomes more common as rubber seals harden with heat.",
+        "solution": "Inspect the valve cover perimeter and plug wells for fresh oil, then replace the valve cover gaskets, tube seals, and grommets as a set. Clean oil from the plug wells, inspect ignition wires/coils and spark plugs for contamination, and replace any damaged ignition components. Verify crankcase ventilation is functioning so excess pressure does not worsen the leak.",
+        "severity": "low",
+        "confidence": "medium",
+        "symptoms": [
+          "burning oil smell",
+          "oil on valve covers",
+          "oil in spark plug wells",
+          "engine misfire",
+          "rough idle"
+        ],
+        "affectedSystems": [
+          "valve covers",
+          "spark plug tube seals",
+          "ignition system",
+          "PCV system"
+        ],
+        "dtcCodes": [
+          "P0300",
+          "P0301",
+          "P0302",
+          "P0303",
+          "P0304",
+          "P0305",
+          "P0306"
+        ],
+        "estimatedCostLow": 120,
+        "estimatedCostHigh": 600,
+        "typicalMileageLow": 90000,
+        "typicalMileageHigh": 220000,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2001/HONDA/PASSPORT/SUV/4WD",
+            "type": "nhtsa",
+            "title": "NHTSA Vehicle Complaints - 2001 Honda Passport (engine complaints)"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "content": "Owners recommend using a full gasket set with tube seals and bolt grommets rather than reusing old hardware.",
+            "searchQuery": "valve cover gasket set Isuzu Rodeo 3.2"
+          },
+          {
+            "content": "If oil has soaked the plug wells, replace the spark plugs and inspect wires/boots at the same time to prevent repeat misfires.",
+            "searchQuery": "NGK spark plugs 3.2 Isuzu Rodeo"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-passport-vibration-highway-2019",
+      "model": "Passport",
+      "action": "keep_published_pending_source",
+      "reason": "The page combines tire balance, driveline, torque-converter and suspension causes, while two citations appear fabricated and the generic NHTSA page cannot establish the stated frequency or fixes. It remains unchanged.",
+      "identityRule": "No content or publication-state changes; partial, generic, secondary or overlapping evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "ff6c4be1521396d3cb48b210be114fc3f0a9b3be484fd36dc4f38eda5f7cf68f",
+      "proposalSha256": "ff6c4be1521396d3cb48b210be114fc3f0a9b3be484fd36dc4f38eda5f7cf68f",
+      "before": {
+        "make": "Honda",
+        "model": "Passport",
+        "years": [
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "suspension",
+        "title": "Highway Vibration and Wobble (45-65 MPH)",
+        "description": "Honda Passport owners report annoying vibration and wobble at highway speeds (45-65 mph). The vibration is cyclical, often felt through the steering wheel, floor, and seats. Common causes include: wheel balance issues (OEM wheels are finicky), tire cupping/uneven wear, driveshaft imbalance, transmission torque converter shudder, and worn suspension bushings. Some owners report Honda dealers dismissing it as \"normal characteristic\" despite it being clearly abnormal. Road force balancing (not regular balancing) often fixes tire-related vibration.",
+        "solution": "Start with cheapest fixes first: (1) Road force balance all 4 tires ($80-150) - regular balance often doesn't fix it on Passports. (2) Rotate tires to see if vibration moves ($30-50). (3) Check tire pressure and inspect for uneven wear/cupping. If tires aren't the issue: (4) Transmission fluid flush may fix torque converter shudder ($150-250). (5) Inspect/replace worn suspension bushings ($200-600). (6) Driveshaft balancing ($150-300). PassportForums owners report road force balance fixes 60% of cases.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Vibration or wobble at 45-65 mph (highway speeds)",
+          "Steering wheel shaking or vibrating",
+          "Floor/seat vibration felt throughout vehicle",
+          "Vibration disappears below 40 mph or above 70 mph",
+          "Worse when accelerating, better when coasting",
+          "Cyclical vibration (comes and goes rhythmically)"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0740",
+          "P0741",
+          "P0742"
+        ],
+        "estimatedCostLow": 80,
+        "estimatedCostHigh": 600,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2019/HONDA/PASSPORT",
+            "type": "nhtsa",
+            "title": "NHTSA Vehicle Page for 2019 Honda Passport - Owner Complaints and Safety Issues"
+          },
+          {
+            "url": "https://www.hondatown.com/threads/2019-passport-highway-vibration.123456/",
+            "type": "forum",
+            "title": "Honda Passport Forum Thread: Highway Vibration and Wobble at 45-65 MPH"
+          },
+          {
+            "url": "https://www.youtube.com/watch?v=abcd1234efg",
+            "type": "video",
+            "title": "YouTube - Diagnosing and Fixing 2019 Honda Passport Highway Vibration - EricTheCarGuy"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "PassportForums proven fix: Road force balance (not regular balance) at a reputable shop. Regular balance won't fix Honda wheel/tire combo issues.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Discount Tire/America's Tire does free road force balance for life if you bought tires there - PassportForums members love this perk.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "warning",
+            "content": "Don't accept \"normal characteristic\" from dealer - vibration at highway speeds is NOT normal. Seek second opinion or try independent shop.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "If vibration gets worse after tire rotation, it's definitely tire-related. Road force balance will fix it.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "Polyurethane bushing kit for longer life and tighter handling than OEM rubber",
+            "partName": "Bushing Kit",
+            "partBrand": "Energy Suspension",
+            "affiliateUrl": "https://www.amazon.com/s?k=Energy%20Suspension%20bushing%20kit%20Honda%20Passport&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Sway bar end links to eliminate clunking over bumps",
+            "partName": "Sway Bar Link Kit",
+            "partBrand": "Moog",
+            "affiliateUrl": "https://www.amazon.com/s?k=Moog%20sway%20bar%20link%20Honda%20Passport&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-02-22",
+        "reviewedOn": "2026-02-22",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "Passport",
+        "years": [
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "suspension",
+        "title": "Highway Vibration and Wobble (45-65 MPH)",
+        "description": "Honda Passport owners report annoying vibration and wobble at highway speeds (45-65 mph). The vibration is cyclical, often felt through the steering wheel, floor, and seats. Common causes include: wheel balance issues (OEM wheels are finicky), tire cupping/uneven wear, driveshaft imbalance, transmission torque converter shudder, and worn suspension bushings. Some owners report Honda dealers dismissing it as \"normal characteristic\" despite it being clearly abnormal. Road force balancing (not regular balancing) often fixes tire-related vibration.",
+        "solution": "Start with cheapest fixes first: (1) Road force balance all 4 tires ($80-150) - regular balance often doesn't fix it on Passports. (2) Rotate tires to see if vibration moves ($30-50). (3) Check tire pressure and inspect for uneven wear/cupping. If tires aren't the issue: (4) Transmission fluid flush may fix torque converter shudder ($150-250). (5) Inspect/replace worn suspension bushings ($200-600). (6) Driveshaft balancing ($150-300). PassportForums owners report road force balance fixes 60% of cases.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Vibration or wobble at 45-65 mph (highway speeds)",
+          "Steering wheel shaking or vibrating",
+          "Floor/seat vibration felt throughout vehicle",
+          "Vibration disappears below 40 mph or above 70 mph",
+          "Worse when accelerating, better when coasting",
+          "Cyclical vibration (comes and goes rhythmically)"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0740",
+          "P0741",
+          "P0742"
+        ],
+        "estimatedCostLow": 80,
+        "estimatedCostHigh": 600,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2019/HONDA/PASSPORT",
+            "type": "nhtsa",
+            "title": "NHTSA Vehicle Page for 2019 Honda Passport - Owner Complaints and Safety Issues"
+          },
+          {
+            "url": "https://www.hondatown.com/threads/2019-passport-highway-vibration.123456/",
+            "type": "forum",
+            "title": "Honda Passport Forum Thread: Highway Vibration and Wobble at 45-65 MPH"
+          },
+          {
+            "url": "https://www.youtube.com/watch?v=abcd1234efg",
+            "type": "video",
+            "title": "YouTube - Diagnosing and Fixing 2019 Honda Passport Highway Vibration - EricTheCarGuy"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "PassportForums proven fix: Road force balance (not regular balance) at a reputable shop. Regular balance won't fix Honda wheel/tire combo issues.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Discount Tire/America's Tire does free road force balance for life if you bought tires there - PassportForums members love this perk.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "warning",
+            "content": "Don't accept \"normal characteristic\" from dealer - vibration at highway speeds is NOT normal. Seek second opinion or try independent shop.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "If vibration gets worse after tire rotation, it's definitely tire-related. Road force balance will fix it.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "Polyurethane bushing kit for longer life and tighter handling than OEM rubber",
+            "partName": "Bushing Kit",
+            "partBrand": "Energy Suspension",
+            "affiliateUrl": "https://www.amazon.com/s?k=Energy%20Suspension%20bushing%20kit%20Honda%20Passport&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Sway bar end links to eliminate clunking over bumps",
+            "partName": "Sway Bar Link Kit",
+            "partBrand": "Moog",
+            "affiliateUrl": "https://www.amazon.com/s?k=Moog%20sway%20bar%20link%20Honda%20Passport&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-02-22",
+        "reviewedOn": "2026-02-22",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-passport-wheel-bearing-noise-2019",
+      "model": "Passport",
+      "action": "keep_published_pending_source",
+      "reason": "A generic NHTSA page and an unverified video do not establish premature bearing failure, the stated mileage band, DTCs, catastrophic outcomes or replacement advice. The row remains unchanged.",
+      "identityRule": "No content or publication-state changes; partial, generic, secondary or overlapping evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "a0375121f132285def65c76566f7917d95dcd5191c6eda0af0a8bdda5b2a93c3",
+      "proposalSha256": "a0375121f132285def65c76566f7917d95dcd5191c6eda0af0a8bdda5b2a93c3",
+      "before": {
+        "make": "Honda",
+        "model": "Passport",
+        "years": [
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "suspension",
+        "title": "Front Wheel Bearing Premature Failure",
+        "description": "Honda Passport front wheel bearings fail prematurely, often between 40,000-80,000 miles. Symptoms include humming/growling noise that increases with speed, steering wheel vibration, and ABS/VSA warning lights. The noise is usually louder when turning (load shifts to one bearing). This is common across Honda's SUV lineup (Pilot, Passport, CR-V). If ignored, a failed wheel bearing can cause the wheel to lock up or separate while driving. Replacement: $300-500 per side (bearing hub assembly).",
+        "solution": "Jack up vehicle and check for wheel play by grabbing tire at 12 and 6 o'clock and rocking it. Excessive play = bad bearing. Spin wheel and listen for grinding. Replace wheel bearing hub assembly on affected side ($300-500). Always replace in pairs if both sides have high mileage to avoid another repair soon. Use OEM (NSK, NTN) or quality aftermarket (Timken, SKF) bearings - avoid ultra-cheap eBay bearings (fail within 10k miles).",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Humming or growling noise from front wheels",
+          "Noise increases with vehicle speed",
+          "Noise louder when turning (left or right)",
+          "Steering wheel vibration",
+          "ABS or VSA warning lights",
+          "Loose or wobbly feeling in steering"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "C0035",
+          "C0036"
+        ],
+        "estimatedCostLow": 300,
+        "estimatedCostHigh": 500,
+        "typicalMileageLow": 40000,
+        "typicalMileageHigh": 80000,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2019/HONDA/PASSPORT",
+            "type": "nhtsa",
+            "title": "NHTSA Vehicle Page for 2019 Honda Passport - Includes Complaints and Investigations"
+          },
+          {
+            "url": "https://www.youtube.com/watch?v=7QXoXQYJ6x0",
+            "type": "video",
+            "title": "YouTube - Repair Video on Replacing Front Wheel Bearings on 2019 Honda Passport by EricTheCarGuy"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "warning",
+            "content": "Don't ignore wheel bearing noise - a seized bearing can lock the wheel or cause it to separate while driving (catastrophic failure).",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "PassportForums consensus: OEM bearings (NSK, NTN) or Timken/SKF aftermarket. Avoid ultra-cheap eBay/Amazon bearings - many fail within 10k miles.",
+            "upvotes": 0,
+            "partBrand": "Timken",
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Passport%20PassportForums%20consensus%3A%20OEM%20bearings%20(NSK%2C%20NTN)%20or%20Timken%2F&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "DIY-friendly if you have a press or can rent one from AutoZone. Otherwise, shop labor is 1.5-2 hours per side.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "The humming noise is usually the first symptom - catch it early before the bearing fully fails and damages the hub/spindle.",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-02-22",
+        "reviewedOn": "2026-02-22",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "Passport",
+        "years": [
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "suspension",
+        "title": "Front Wheel Bearing Premature Failure",
+        "description": "Honda Passport front wheel bearings fail prematurely, often between 40,000-80,000 miles. Symptoms include humming/growling noise that increases with speed, steering wheel vibration, and ABS/VSA warning lights. The noise is usually louder when turning (load shifts to one bearing). This is common across Honda's SUV lineup (Pilot, Passport, CR-V). If ignored, a failed wheel bearing can cause the wheel to lock up or separate while driving. Replacement: $300-500 per side (bearing hub assembly).",
+        "solution": "Jack up vehicle and check for wheel play by grabbing tire at 12 and 6 o'clock and rocking it. Excessive play = bad bearing. Spin wheel and listen for grinding. Replace wheel bearing hub assembly on affected side ($300-500). Always replace in pairs if both sides have high mileage to avoid another repair soon. Use OEM (NSK, NTN) or quality aftermarket (Timken, SKF) bearings - avoid ultra-cheap eBay bearings (fail within 10k miles).",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Humming or growling noise from front wheels",
+          "Noise increases with vehicle speed",
+          "Noise louder when turning (left or right)",
+          "Steering wheel vibration",
+          "ABS or VSA warning lights",
+          "Loose or wobbly feeling in steering"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "C0035",
+          "C0036"
+        ],
+        "estimatedCostLow": 300,
+        "estimatedCostHigh": 500,
+        "typicalMileageLow": 40000,
+        "typicalMileageHigh": 80000,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2019/HONDA/PASSPORT",
+            "type": "nhtsa",
+            "title": "NHTSA Vehicle Page for 2019 Honda Passport - Includes Complaints and Investigations"
+          },
+          {
+            "url": "https://www.youtube.com/watch?v=7QXoXQYJ6x0",
+            "type": "video",
+            "title": "YouTube - Repair Video on Replacing Front Wheel Bearings on 2019 Honda Passport by EricTheCarGuy"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "warning",
+            "content": "Don't ignore wheel bearing noise - a seized bearing can lock the wheel or cause it to separate while driving (catastrophic failure).",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "PassportForums consensus: OEM bearings (NSK, NTN) or Timken/SKF aftermarket. Avoid ultra-cheap eBay/Amazon bearings - many fail within 10k miles.",
+            "upvotes": 0,
+            "partBrand": "Timken",
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Passport%20PassportForums%20consensus%3A%20OEM%20bearings%20(NSK%2C%20NTN)%20or%20Timken%2F&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "DIY-friendly if you have a press or can rent one from AutoZone. Otherwise, shop labor is 1.5-2 hours per side.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "The humming noise is usually the first symptom - catch it early before the bearing fully fails and damages the hub/spindle.",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-02-22",
+        "reviewedOn": "2026-02-22",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    }
+  ]
+}
