@@ -1,0 +1,1874 @@
+{
+  "schemaVersion": 1,
+  "status": "proposal-only",
+  "auditStage": "model-primary-source-adjudication",
+  "requiresIndependentApproval": true,
+  "generatedOn": "2026-08-06",
+  "make": "Honda",
+  "model": "Insight",
+  "completionStatement": "This packet reconciles all 10 frozen Honda Insight rows. Three same-identity Honda/NHTSA recall corrections are proposed; seven rows remain byte-for-byte unchanged pending exact evidence or independent disposition.",
+  "safetyContract": [
+    "No production database write, cache purge, deployment, archive action, redirect, slug change or public-page change is authorized by this packet.",
+    "All 10 rows remain published. Seven are byte-for-byte unchanged.",
+    "An unrelated campaign, bulletin, component or model may never replace the issue named by an existing indexed page.",
+    "Each rewrite contains zero commerce, zero cost or mileage claims, and empty trim and engine arrays.",
+    "Independent row-by-row approval is required before a separate guarded apply path may be created."
+  ],
+  "source": {
+    "snapshotFile": "data/_honda-deeplink-snapshot-2026-08-05.json",
+    "snapshotSha256": "671de2660f31c07e01610e26c13382b6d59b293fb74ecc3e3abc02d248d6dd5e",
+    "snapshotGeneratedAt": "2026-08-05T21:54:08.563Z",
+    "snapshotHash": "fcd155f1e269b1d8c691655699cc2e18f6029c3ee54c650b88df00004025729a",
+    "insightRecordCount": 10
+  },
+  "observations": [
+    {
+      "code": "two-false-bulletin-identities-frozen",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "honda-insight-12v-battery-issues-2010",
+        "honda-insight-cvt-transmission-judder-2010"
+      ],
+      "detail": "Bulletin 21-079 is a 2022 Civic key-fob campaign and Bulletin 15-086 is a 2012-2014 CR-V vibration bulletin. Neither supports its frozen Insight card."
+    },
+    {
+      "code": "fuel-pump-year-gap-corrected",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "honda-insight-fuel-pump-recall-2019"
+      ],
+      "detail": "Honda Bulletin 24-024 covers VIN-eligible 2019-2020 and 2022 Insight vehicles, not every 2019-2022 model year."
+    },
+    {
+      "code": "three-generation-ima-overaggregation",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "honda-insight-ima-battery-failure-2000"
+      ],
+      "detail": "The frozen card merges three different Insight generations, warranty claims and repair paths without an exact primary source; it remains unchanged."
+    },
+    {
+      "code": "uncited-first-generation-cluster",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "honda-insight-catalytic-converter-failure-2000",
+        "honda-insight-egr-system-clogging-2000"
+      ],
+      "detail": "The catalytic-converter and EGR cards contain broad causation, frequency, maintenance and commerce claims with no citations."
+    },
+    {
+      "code": "generic-source-cluster",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "honda-insight-ground-cable-corrosion-2010",
+        "honda-insight-rear-suspension-noise-2010"
+      ],
+      "detail": "Generic vehicle pages and a fabricated-looking video path do not establish the exact model-wide mechanisms or remedies."
+    }
+  ],
+  "summary": {
+    "rewrite_same_identity": 3,
+    "keep_published_pending_source": 7,
+    "total": 10
+  },
+  "rows": [
+    {
+      "id": "honda-insight-12v-battery-issues-2010",
+      "model": "Insight",
+      "action": "keep_published_pending_source",
+      "reason": "The frozen Bulletin 21-079 citation is false for this identity: Honda Bulletin 21-079 is a 2022 Civic key-fob campaign, not an Insight battery-management update. One complaint cannot support the thirteen-year battery narrative, so the row remains unchanged.",
+      "identityRule": "No content or publication-state changes; a generic page, complaint, forum, video or unrelated bulletin cannot replace this issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "citation-model-and-identity-mismatch",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2021/MC-10202028-0001.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "Honda Bulletin 21-079 is a 2022 Civic key-fob campaign; it does not cover Insight 12-volt battery management."
+        }
+      ],
+      "beforeSha256": "6fa602253be81913985445031999f423ac43dcd16d1b643d01b3b9b4f88c9fce",
+      "proposalSha256": "6fa602253be81913985445031999f423ac43dcd16d1b643d01b3b9b4f88c9fce",
+      "before": {
+        "make": "Honda",
+        "model": "Insight",
+        "years": [
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "12V Battery Premature Failure",
+        "description": "Honda Insight models (especially 2010-2014 and 2019-2022) experience premature 12V battery failures. The small 12V battery (not the IMA hybrid battery) dies unexpectedly, often within 2-3 years. Symptoms include no start, electrical gremlins, and hybrid system errors. The Insight uses a smaller 12V battery than other vehicles due to space constraints, and it's more sensitive to parasitic drain. Weak 12V battery can also trigger false IMA battery warnings.",
+        "solution": "Replace 12V battery with AGM battery (better than flooded) rated for hybrid vehicles ($150-250). Test for parasitic drain if battery keeps dying (normal is <50mA). Common causes of drain: trunk light staying on, aftermarket accessories, faulty BCM. Charge battery with low-amp charger (2-amp max) - high amp charging can damage hybrid system electronics.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "No start condition",
+          "Clicking when trying to start",
+          "Electrical system warnings",
+          "Hybrid system errors (false warnings)",
+          "Battery dies after sitting overnight",
+          "Dim interior lights"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 150,
+        "estimatedCostHigh": 250,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2021/HONDA/INSIGHT/4%252520DR/FWD#complaints",
+            "type": "nhtsa",
+            "title": "NHTSA Complaint #11443583 - 2021 Honda Insight 12V battery repeatedly dies / vehicle will not start"
+          },
+          {
+            "url": "",
+            "type": "tsb",
+            "title": "TSB 21-079: 2019-22 Insight Battery Management Sensor Software Update"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Gen3Insight.com top pick: Interstate or DieHard AGM batteries - last 5+ years vs OEM lasting 2-3 years. Worth the extra $50.",
+            "upvotes": 0,
+            "partBrand": "Interstate",
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Insight%20Gen3Insight&tag=au7o-20"
+          },
+          {
+            "type": "warning",
+            "content": "NEVER jump-start a hybrid - use proper jump points in fuse box (see manual). Jumping at battery terminals can damage hybrid electronics.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Weak 12V battery can cause false IMA battery warnings. Replace 12V first before assuming IMA battery is bad - saves $1,000s.",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-02-22",
+        "reviewedOn": "2026-02-22",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "Insight",
+        "years": [
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "12V Battery Premature Failure",
+        "description": "Honda Insight models (especially 2010-2014 and 2019-2022) experience premature 12V battery failures. The small 12V battery (not the IMA hybrid battery) dies unexpectedly, often within 2-3 years. Symptoms include no start, electrical gremlins, and hybrid system errors. The Insight uses a smaller 12V battery than other vehicles due to space constraints, and it's more sensitive to parasitic drain. Weak 12V battery can also trigger false IMA battery warnings.",
+        "solution": "Replace 12V battery with AGM battery (better than flooded) rated for hybrid vehicles ($150-250). Test for parasitic drain if battery keeps dying (normal is <50mA). Common causes of drain: trunk light staying on, aftermarket accessories, faulty BCM. Charge battery with low-amp charger (2-amp max) - high amp charging can damage hybrid system electronics.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "No start condition",
+          "Clicking when trying to start",
+          "Electrical system warnings",
+          "Hybrid system errors (false warnings)",
+          "Battery dies after sitting overnight",
+          "Dim interior lights"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 150,
+        "estimatedCostHigh": 250,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2021/HONDA/INSIGHT/4%252520DR/FWD#complaints",
+            "type": "nhtsa",
+            "title": "NHTSA Complaint #11443583 - 2021 Honda Insight 12V battery repeatedly dies / vehicle will not start"
+          },
+          {
+            "url": "",
+            "type": "tsb",
+            "title": "TSB 21-079: 2019-22 Insight Battery Management Sensor Software Update"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Gen3Insight.com top pick: Interstate or DieHard AGM batteries - last 5+ years vs OEM lasting 2-3 years. Worth the extra $50.",
+            "upvotes": 0,
+            "partBrand": "Interstate",
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Insight%20Gen3Insight&tag=au7o-20"
+          },
+          {
+            "type": "warning",
+            "content": "NEVER jump-start a hybrid - use proper jump points in fuse box (see manual). Jumping at battery terminals can damage hybrid electronics.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Weak 12V battery can cause false IMA battery warnings. Replace 12V first before assuming IMA battery is bad - saves $1,000s.",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-02-22",
+        "reviewedOn": "2026-02-22",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-insight-bcm-communication-errors-2019",
+      "model": "Insight",
+      "action": "rewrite_same_identity",
+      "reason": "Retained the BCM identity and exact 2019-2020 scope while replacing generic pages and fabricated-looking forum material with Honda recall 20V771, its supported effects and software remedy; removed unrelated commerce.",
+      "identityRule": "The indexed issue identity remains on the same ID; exact Honda/NHTSA scope, mechanism and remedy replace unsupported generalizations.",
+      "commerceDecision": "no-commerce",
+      "changedFields": [
+        "title",
+        "description",
+        "solution",
+        "severity",
+        "confidence",
+        "symptoms",
+        "affectedSystems",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "communityRecommendations",
+        "source",
+        "lastReportedByOwners",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
+      "evidence": [
+        {
+          "kind": "manufacturer-record",
+          "url": "https://static.nhtsa.gov/odi/rcl/2020/RCRN-20V771-7293.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "Honda Recall Notice 20V771 - 2019-2020 Insight Body Control Module Software supports the proposed same-identity scope, mechanism and remedy."
+        }
+      ],
+      "beforeSha256": "19a8909f7a107a0dc24c236f697434ce386f1db42fbea827055d25312ff5c16c",
+      "proposalSha256": "21f1790a1747f41e92e1ba218f2f28e5f31138f32c8696955f2929237711d692",
+      "before": {
+        "make": "Honda",
+        "model": "Insight",
+        "years": [
+          2019,
+          2020
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Body Control Module Communication Errors (BCM)",
+        "description": "The 2019-2020 Honda Insight (third generation) experiences body control module (BCM) software errors causing communication disruptions between BCM and other components. This results in malfunctions of windshield wipers, defroster, rearview camera, and exterior lights. Honda issued a recall/software update to fix the BCM software. Free repair at Honda dealers.",
+        "solution": "This is a SAFETY RECALL - contact Honda dealer to schedule free BCM software update. The update fixes communication errors between BCM and other modules. Repair is free regardless of warranty status.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Windshield wipers not working properly",
+          "Defroster not functioning",
+          "Rearview camera display issues",
+          "Exterior lights malfunctioning",
+          "Intermittent electrical gremlins",
+          "Warning lights on dashboard"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 0,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2019/HONDA/INSIGHT",
+            "type": "nhtsa",
+            "title": "NHTSA Vehicle Page for 2019 Honda Insight - Includes complaints and recalls"
+          },
+          {
+            "url": "https://www.carcomplaints.com/Honda/Insight/2019/recalls.shtml",
+            "type": "owner-report",
+            "title": "CarComplaints.com - 2019 Honda Insight Recalls and Complaints"
+          },
+          {
+            "url": "https://www.hondatown.com/threads/2019-insight-bcm-communication-error.12345/",
+            "type": "forum",
+            "title": "HondaTown Forum Thread Discussing 2019 Insight BCM Communication Errors"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Software update takes 30-45 minutes. Gen3Insight.com members report all BCM issues resolved after update.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "warning",
+            "content": "BCM issues affect safety systems (wipers, lights, camera) - schedule repair promptly.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "Automotive relay replacement set for common relay failures",
+            "partName": "Automotive Relay 5-Pin 12V",
+            "partBrand": "Bosch",
+            "affiliateUrl": "https://www.amazon.com/s?k=Bosch%20Automotive%20Relay%205-Pin%2012V%20Honda%20Insight&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Digital multimeter for diagnosing fuse, relay, and module electrical faults",
+            "partName": "Digital Multimeter",
+            "partBrand": "Innova",
+            "affiliateUrl": "https://www.amazon.com/s?k=Innova%20Digital%20Multimeter%20Honda%20Insight&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "OEM-quality replacement sensor for accurate readings and proper system function",
+            "partName": "Replacement Sensor",
+            "partBrand": "Bosch",
+            "affiliateUrl": "https://www.amazon.com/s?k=Bosch%20Replacement%20Sensor%20Honda%20Insight&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-02-22",
+        "reviewedOn": "2026-02-22",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "Insight",
+        "years": [
+          2019,
+          2020
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Body Control Module Software Recall 20V771",
+        "description": "Honda recall 20V771 covers VIN-eligible 2019-2020 Insight vehicles. A software error can disrupt communication between the body control module and other components, illuminate warning indicators, and disable functions including the windshield wipers, defroster, rearview camera or exterior lighting. The vehicle may also fail to engage Park automatically under some conditions.",
+        "solution": "Have a Honda dealer check VIN eligibility and update the body control module software under recall 20V771.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Multiple warning indicators may illuminate",
+          "Windshield wipers or defroster may become inoperative",
+          "Rearview camera or exterior lighting may malfunction",
+          "Vehicle may not automatically engage Park under some conditions"
+        ],
+        "affectedSystems": [
+          "Body control module software",
+          "Vehicle communication network"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "Honda Recall Notice 20V771 - 2019-2020 Insight Body Control Module Software",
+            "url": "https://static.nhtsa.gov/odi/rcl/2020/RCRN-20V771-7293.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Retained the BCM identity and exact 2019-2020 scope while replacing generic pages and fabricated-looking forum material with Honda recall 20V771, its supported effects and software remedy; removed unrelated commerce.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-insight-catalytic-converter-failure-2000",
+      "model": "Insight",
+      "action": "keep_published_pending_source",
+      "reason": "The row has no citations and combines model-wide failure frequency, lean-burn causation, prices, brand durability and EGR causation without an exact primary source. It remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; a generic page, complaint, forum, video or unrelated bulletin cannot replace this issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "b6c346c55443345a615803fe131551448b259d1157258379629d476aae48695d",
+      "proposalSha256": "b6c346c55443345a615803fe131551448b259d1157258379629d476aae48695d",
+      "before": {
+        "make": "Honda",
+        "model": "Insight",
+        "years": [
+          2000,
+          2001,
+          2002,
+          2003,
+          2004,
+          2005,
+          2006
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "fuel",
+        "title": "Catalytic Converter Failure (First Gen)",
+        "description": "The 2000-2006 Honda Insight (first generation) experiences premature catalytic converter failures. The lean-burn engine runs very lean, putting extra stress on the catalytic converter. Symptoms include check engine light with P0420/P0430 codes, rattling noise from exhaust, reduced power, and failed emissions test. OEM Honda catalytic converter: $1,200-2,000. Aftermarket: $400-800.",
+        "solution": "Replace catalytic converter with OEM Honda ($1,200-2,000) or high-quality aftermarket like MagnaFlow or Walker ($400-800). Cheap universal cats won't last on lean-burn engine. Address root cause: clogged EGR system can overheat and kill cat - clean EGR before replacing cat. InsightCentral recommends MagnaFlow Direct-Fit cats - last 100k+ miles.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Check engine light with P0420 or P0430 code",
+          "Rattling noise from exhaust",
+          "Reduced engine power",
+          "Failed emissions test",
+          "Sulfur smell from exhaust",
+          "Poor fuel economy"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0420",
+          "P0430"
+        ],
+        "estimatedCostLow": 400,
+        "estimatedCostHigh": 2000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "InsightCentral consensus: MagnaFlow Direct-Fit catalytic converter - lasts 100k+ miles on lean-burn engine, passes emissions, costs $400-600.",
+            "upvotes": 0,
+            "partBrand": "MagnaFlow",
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Insight%20InsightCentral%20consensus%3A%20MagnaFlow%20Direct-Fit%20catalytic%20con&tag=au7o-20"
+          },
+          {
+            "type": "warning",
+            "content": "Clean EGR system BEFORE replacing cat - clogged EGR overheats and kills new cats within 10k miles. Fix the root cause first.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Avoid ultra-cheap universal cats ($150-250) - they won't pass emissions on lean-burn Insight and fail quickly. Spend $400+ for direct-fit.",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-02-22",
+        "reviewedOn": "2026-02-22",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "Insight",
+        "years": [
+          2000,
+          2001,
+          2002,
+          2003,
+          2004,
+          2005,
+          2006
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "fuel",
+        "title": "Catalytic Converter Failure (First Gen)",
+        "description": "The 2000-2006 Honda Insight (first generation) experiences premature catalytic converter failures. The lean-burn engine runs very lean, putting extra stress on the catalytic converter. Symptoms include check engine light with P0420/P0430 codes, rattling noise from exhaust, reduced power, and failed emissions test. OEM Honda catalytic converter: $1,200-2,000. Aftermarket: $400-800.",
+        "solution": "Replace catalytic converter with OEM Honda ($1,200-2,000) or high-quality aftermarket like MagnaFlow or Walker ($400-800). Cheap universal cats won't last on lean-burn engine. Address root cause: clogged EGR system can overheat and kill cat - clean EGR before replacing cat. InsightCentral recommends MagnaFlow Direct-Fit cats - last 100k+ miles.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Check engine light with P0420 or P0430 code",
+          "Rattling noise from exhaust",
+          "Reduced engine power",
+          "Failed emissions test",
+          "Sulfur smell from exhaust",
+          "Poor fuel economy"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0420",
+          "P0430"
+        ],
+        "estimatedCostLow": 400,
+        "estimatedCostHigh": 2000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "InsightCentral consensus: MagnaFlow Direct-Fit catalytic converter - lasts 100k+ miles on lean-burn engine, passes emissions, costs $400-600.",
+            "upvotes": 0,
+            "partBrand": "MagnaFlow",
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Insight%20InsightCentral%20consensus%3A%20MagnaFlow%20Direct-Fit%20catalytic%20con&tag=au7o-20"
+          },
+          {
+            "type": "warning",
+            "content": "Clean EGR system BEFORE replacing cat - clogged EGR overheats and kills new cats within 10k miles. Fix the root cause first.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Avoid ultra-cheap universal cats ($150-250) - they won't pass emissions on lean-burn Insight and fail quickly. Spend $400+ for direct-fit.",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-02-22",
+        "reviewedOn": "2026-02-22",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-insight-cvt-transmission-judder-2010",
+      "model": "Insight",
+      "action": "keep_published_pending_source",
+      "reason": "The frozen Bulletin 15-086 citation is false for this identity: Honda Bulletin 15-086 covers 2012-2014 CR-V light-acceleration vibration, not Insight CVT belt deterioration. One complaint cannot support the broad warranty and failure narrative.",
+      "identityRule": "No content or publication-state changes; a generic page, complaint, forum, video or unrelated bulletin cannot replace this issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "citation-model-and-identity-mismatch",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2017/MC-10108735-9999.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "Honda Bulletin 15-086 covers 2012-2014 CR-V light-acceleration vibration; it does not cover Insight CVT belt deterioration."
+        }
+      ],
+      "beforeSha256": "1a08989481a1602ce2fd73f2063972f952e8cd7982b1e708d41b740eecc42fa4",
+      "proposalSha256": "1a08989481a1602ce2fd73f2063972f952e8cd7982b1e708d41b740eecc42fa4",
+      "before": {
+        "make": "Honda",
+        "model": "Insight",
+        "years": [
+          2010,
+          2011,
+          2012,
+          2013,
+          2014
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "transmission",
+        "title": "CVT Transmission Judder and Failure (Second Gen)",
+        "description": "The 2010-2014 Honda Insight (second generation) CVT transmission experiences judder, shuddering, knocking noise during acceleration, and complete failure. Early CVT steel belt failures were identified. When CVT fails, the green \"D\" indicator on dash blinks. The transmission shudders at low speeds (15-35 mph) and makes knocking noises when shifting or accelerating. Honda extended CVT warranty to 10yr/150k miles on some models. CVT replacement: $3,000-5,000.",
+        "solution": "Early stage: CVT fluid replacement with genuine Honda CVTF ($150-250) may help. Severe cases: Complete CVT replacement ($3,000-5,000). Check if your Insight qualifies for Honda's extended CVT warranty (10yr/150k miles on some models). If CVT fails under warranty, Honda covers replacement. Keep records of all CVT fluid changes to support warranty claims. InsightCentral forum recommends changing CVT fluid every 25k-30k miles.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "Transmission shuddering or juddering",
+          "Knocking noise from CVT when accelerating",
+          "Green \"D\" indicator blinking on dashboard",
+          "Hesitation during acceleration",
+          "Grinding or whining noise from transmission",
+          "Complete transmission failure (no movement)"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0700",
+          "P0730",
+          "P0740",
+          "P0868",
+          "P17F0",
+          "P17F1"
+        ],
+        "estimatedCostLow": 150,
+        "estimatedCostHigh": 5000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "",
+            "type": "tsb",
+            "title": "Service Bulletin 15-086: Warranty Extension: 2010–15 Civic, 2012–15 CR-Z, and 2011–15 Insight CVT Premature Belt Deterioration"
+          },
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2012/HONDA/INSIGHT/5%252520HB/FWD#complaints",
+            "type": "nhtsa",
+            "title": "NHTSA Complaint #10636568"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Use ONLY genuine Honda CVTF fluid - aftermarket fluids destroy the CVT belt. InsightCentral members who used aftermarket had failures within 10k miles.",
+            "upvotes": 0,
+            "partName": "CVT Fluid (CVTF)",
+            "partBrand": "Honda",
+            "partNumber": "08200-9006",
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%2008200-9006&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Change CVT fluid every 25k-30k miles (not Honda's \"lifetime\" claim). Owners who follow this schedule report CVTs lasting 150k+ miles.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "warning",
+            "content": "Blinking \"D\" indicator means CVT is failing - stop driving immediately and have it towed. Continuing to drive will destroy the CVT completely.",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-02-22",
+        "reviewedOn": "2026-02-22",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "honda-hrv-cvt-transmission-shudder-2016",
+          "honda-crv-cvt-shudder-2015",
+          "honda-accord-cvt-start-clutch-judder",
+          "honda-fit-cvt-transmission-problems-2015"
+        ]
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "Insight",
+        "years": [
+          2010,
+          2011,
+          2012,
+          2013,
+          2014
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "transmission",
+        "title": "CVT Transmission Judder and Failure (Second Gen)",
+        "description": "The 2010-2014 Honda Insight (second generation) CVT transmission experiences judder, shuddering, knocking noise during acceleration, and complete failure. Early CVT steel belt failures were identified. When CVT fails, the green \"D\" indicator on dash blinks. The transmission shudders at low speeds (15-35 mph) and makes knocking noises when shifting or accelerating. Honda extended CVT warranty to 10yr/150k miles on some models. CVT replacement: $3,000-5,000.",
+        "solution": "Early stage: CVT fluid replacement with genuine Honda CVTF ($150-250) may help. Severe cases: Complete CVT replacement ($3,000-5,000). Check if your Insight qualifies for Honda's extended CVT warranty (10yr/150k miles on some models). If CVT fails under warranty, Honda covers replacement. Keep records of all CVT fluid changes to support warranty claims. InsightCentral forum recommends changing CVT fluid every 25k-30k miles.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "Transmission shuddering or juddering",
+          "Knocking noise from CVT when accelerating",
+          "Green \"D\" indicator blinking on dashboard",
+          "Hesitation during acceleration",
+          "Grinding or whining noise from transmission",
+          "Complete transmission failure (no movement)"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0700",
+          "P0730",
+          "P0740",
+          "P0868",
+          "P17F0",
+          "P17F1"
+        ],
+        "estimatedCostLow": 150,
+        "estimatedCostHigh": 5000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "",
+            "type": "tsb",
+            "title": "Service Bulletin 15-086: Warranty Extension: 2010–15 Civic, 2012–15 CR-Z, and 2011–15 Insight CVT Premature Belt Deterioration"
+          },
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2012/HONDA/INSIGHT/5%252520HB/FWD#complaints",
+            "type": "nhtsa",
+            "title": "NHTSA Complaint #10636568"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Use ONLY genuine Honda CVTF fluid - aftermarket fluids destroy the CVT belt. InsightCentral members who used aftermarket had failures within 10k miles.",
+            "upvotes": 0,
+            "partName": "CVT Fluid (CVTF)",
+            "partBrand": "Honda",
+            "partNumber": "08200-9006",
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%2008200-9006&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Change CVT fluid every 25k-30k miles (not Honda's \"lifetime\" claim). Owners who follow this schedule report CVTs lasting 150k+ miles.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "warning",
+            "content": "Blinking \"D\" indicator means CVT is failing - stop driving immediately and have it towed. Continuing to drive will destroy the CVT completely.",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-02-22",
+        "reviewedOn": "2026-02-22",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "honda-hrv-cvt-transmission-shudder-2016",
+          "honda-crv-cvt-shudder-2015",
+          "honda-accord-cvt-start-clutch-judder",
+          "honda-fit-cvt-transmission-problems-2015"
+        ]
+      }
+    },
+    {
+      "id": "honda-insight-dcdc-converter-shutdown-2020",
+      "model": "Insight",
+      "action": "rewrite_same_identity",
+      "reason": "Replaced generic complaints, forum and video claims with the exact 2020-2021 Honda/NHTSA DC-DC shutdown recall and its PCU software remedy, with all unrelated battery commerce removed.",
+      "identityRule": "The indexed issue identity remains on the same ID; exact Honda/NHTSA scope, mechanism and remedy replace unsupported generalizations.",
+      "commerceDecision": "no-commerce",
+      "changedFields": [
+        "title",
+        "description",
+        "solution",
+        "confidence",
+        "symptoms",
+        "affectedSystems",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "communityRecommendations",
+        "source",
+        "lastReportedByOwners",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
+      "evidence": [
+        {
+          "kind": "manufacturer-record",
+          "url": "https://static.nhtsa.gov/odi/rcl/2020/RCAK-20V798-1007.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "NHTSA Recall Acknowledgment 20V798 - 2020-2021 Insight DC-DC Converter supports the proposed same-identity scope, mechanism and remedy."
+        }
+      ],
+      "beforeSha256": "220867b4611ca07cbe54efe7908c8e6335aaacb3fb00a5eeade89ee114fc37de",
+      "proposalSha256": "33ef492a2fa7a1df27bc6a5194031ec16cd0a197b08ed079e72297dcd5ecfe8d",
+      "before": {
+        "make": "Honda",
+        "model": "Insight",
+        "years": [
+          2020,
+          2021
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "DC-DC Converter Shutdown (Loss of Drive Power)",
+        "description": "The 2020-2021 Honda Insight experiences DC-DC converter shutdowns that prevent the 12-volt battery from recharging, resulting in loss of drive power. The power converter unit (PCU) software has a defect that causes the DC-DC converter to shut down unexpectedly. Symptoms include electrical system warnings, loss of hybrid assist, and vehicle coming to a stop. Honda issued a recall/software update to fix the PCU software. Free repair at Honda dealers.",
+        "solution": "This is a SAFETY RECALL/TSB - contact Honda dealer to schedule free power converter unit (PCU) software update. The update fixes the DC-DC converter shutdown issue. Repair is free regardless of warranty status. If you experience loss of power while driving, pull over safely and contact Honda roadside assistance.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "Loss of drive power while driving",
+          "Electrical system warning lights",
+          "12V battery not recharging",
+          "Hybrid system warnings",
+          "Vehicle shuts down or loses power",
+          "Battery discharge warnings"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 0,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2020/HONDA/INSIGHT",
+            "type": "nhtsa",
+            "title": "NHTSA Vehicle Page for 2020 Honda Insight - includes complaints and investigations"
+          },
+          {
+            "url": "https://www.reddit.com/r/Honda/comments/ll3x7v/2020_honda_insight_dc_dc_converter_shutdown_issue/",
+            "type": "forum",
+            "title": "Reddit r/Honda thread discussing 2020 Honda Insight DC-DC converter shutdown problem"
+          },
+          {
+            "url": "https://www.youtube.com/watch?v=3KcQe3F2qz8",
+            "type": "video",
+            "title": "YouTube - Known channel repair video on Honda Insight DC-DC converter replacement"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "warning",
+            "content": "CRITICAL: Loss of drive power is a safety issue. Schedule repair immediately even if no symptoms.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Software update takes 30-60 minutes. Gen3Insight.com members report issue fully resolved after update.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "High-performance AGM battery with excellent cold cranking amps and deep cycle capability",
+            "partName": "RedTop AGM Battery",
+            "partBrand": "Optima",
+            "affiliateUrl": "https://www.amazon.com/s?k=Optima%20RedTop%20AGM%20Battery%20Honda%20Insight&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "OEM-quality replacement battery with reliable performance",
+            "partName": "Professional AGM Battery",
+            "partBrand": "ACDelco",
+            "affiliateUrl": "https://www.amazon.com/s?k=ACDelco%20Professional%20AGM%20Battery%20Honda%20Insight&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Automatic battery maintainer to prevent parasitic drain issues during storage",
+            "partName": "Junior 12V Battery Charger Maintainer",
+            "partBrand": "Battery Tender",
+            "affiliateUrl": "https://www.amazon.com/s?k=Battery%20Tender%20Junior%2012V%20Battery%20Charger%20Maintainer%20Honda%20Insight&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-02-22",
+        "reviewedOn": "2026-02-22",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "Insight",
+        "years": [
+          2020,
+          2021
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "DC-DC Converter Shutdown Recall 20V798",
+        "description": "Honda recall 20V798 covers VIN-eligible 2020-2021 Insight vehicles. The DC-DC converter may shut down and stop recharging the 12-volt battery, which can result in a loss of drive power and increase crash risk.",
+        "solution": "Have a Honda dealer check VIN eligibility and update the power converter unit software under recall 20V798.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "12-volt battery may stop charging",
+          "Drive power may be lost"
+        ],
+        "affectedSystems": [
+          "DC-DC converter",
+          "Power converter unit software",
+          "12-volt charging system"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "NHTSA Recall Acknowledgment 20V798 - 2020-2021 Insight DC-DC Converter",
+            "url": "https://static.nhtsa.gov/odi/rcl/2020/RCAK-20V798-1007.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Replaced generic complaints, forum and video claims with the exact 2020-2021 Honda/NHTSA DC-DC shutdown recall and its PCU software remedy, with all unrelated battery commerce removed.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-insight-egr-system-clogging-2000",
+      "model": "Insight",
+      "action": "keep_published_pending_source",
+      "reason": "The row has no citations and combines an all-year defect, lean-burn causation, maintenance interval, catalyst consequence and repair claims without an exact Honda source. It remains unchanged.",
+      "identityRule": "No content or publication-state changes; a generic page, complaint, forum, video or unrelated bulletin cannot replace this issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "a3c4edb9acb8893bf5184a0f2bf37955ca7d863e621457eea755ecd62b8e2fd4",
+      "proposalSha256": "a3c4edb9acb8893bf5184a0f2bf37955ca7d863e621457eea755ecd62b8e2fd4",
+      "before": {
+        "make": "Honda",
+        "model": "Insight",
+        "years": [
+          2000,
+          2001,
+          2002,
+          2003,
+          2004,
+          2005,
+          2006
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "fuel",
+        "title": "EGR System Clogging (Lean Burn Engine)",
+        "description": "The 2000-2006 Honda Insight first generation with lean-burn engine experiences clogged EGR (exhaust gas recirculation) systems. The EGR valve and passages get clogged with carbon buildup, causing rough idle, hesitation, poor fuel economy, and check engine lights (P0401 code). The lean-burn operation creates excessive carbon. Cleaning EGR system: $150-400. Replacement: $300-600.",
+        "solution": "Clean EGR valve and passages with carburetor cleaner or seafoam ($20-50 DIY, $150-400 shop). For severe cases, replace EGR valve ($300-600). DIY cleaning: Remove EGR valve, soak in carb cleaner overnight, clean passages with wire brush. InsightCentral recommends cleaning every 60k-80k miles preventively. Causes catalytic converter failure if ignored.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Rough idle or stalling",
+          "Hesitation during acceleration",
+          "Poor fuel economy (MPG drops)",
+          "Check engine light with P0401 code",
+          "Engine runs rough in lean burn mode",
+          "Loss of power"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0171",
+          "P0174",
+          "P0300",
+          "P0301",
+          "P0302",
+          "P0303",
+          "P0304",
+          "P0401"
+        ],
+        "estimatedCostLow": 20,
+        "estimatedCostHigh": 600,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "DIY EGR cleaning: Remove valve (2 bolts), soak in carb cleaner overnight, scrub with wire brush. Takes 1 hour, saves $200-300.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "Use Seafoam or Berryman B12 Chemtool to clean EGR passages - InsightCentral members swear by these for carbon removal.",
+            "upvotes": 0,
+            "partBrand": "Seafoam",
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Insight%20Use%20Seafoam%20or%20Berryman%20B12%20Chemtool%20to%20clean%20EGR%20passages%20-&tag=au7o-20"
+          },
+          {
+            "type": "warning",
+            "content": "Clogged EGR overheats catalytic converter and kills it - clean EGR every 60k miles to avoid $1,500 cat replacement.",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-02-22",
+        "reviewedOn": "2026-02-22",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "Insight",
+        "years": [
+          2000,
+          2001,
+          2002,
+          2003,
+          2004,
+          2005,
+          2006
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "fuel",
+        "title": "EGR System Clogging (Lean Burn Engine)",
+        "description": "The 2000-2006 Honda Insight first generation with lean-burn engine experiences clogged EGR (exhaust gas recirculation) systems. The EGR valve and passages get clogged with carbon buildup, causing rough idle, hesitation, poor fuel economy, and check engine lights (P0401 code). The lean-burn operation creates excessive carbon. Cleaning EGR system: $150-400. Replacement: $300-600.",
+        "solution": "Clean EGR valve and passages with carburetor cleaner or seafoam ($20-50 DIY, $150-400 shop). For severe cases, replace EGR valve ($300-600). DIY cleaning: Remove EGR valve, soak in carb cleaner overnight, clean passages with wire brush. InsightCentral recommends cleaning every 60k-80k miles preventively. Causes catalytic converter failure if ignored.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Rough idle or stalling",
+          "Hesitation during acceleration",
+          "Poor fuel economy (MPG drops)",
+          "Check engine light with P0401 code",
+          "Engine runs rough in lean burn mode",
+          "Loss of power"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0171",
+          "P0174",
+          "P0300",
+          "P0301",
+          "P0302",
+          "P0303",
+          "P0304",
+          "P0401"
+        ],
+        "estimatedCostLow": 20,
+        "estimatedCostHigh": 600,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "DIY EGR cleaning: Remove valve (2 bolts), soak in carb cleaner overnight, scrub with wire brush. Takes 1 hour, saves $200-300.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "Use Seafoam or Berryman B12 Chemtool to clean EGR passages - InsightCentral members swear by these for carbon removal.",
+            "upvotes": 0,
+            "partBrand": "Seafoam",
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Insight%20Use%20Seafoam%20or%20Berryman%20B12%20Chemtool%20to%20clean%20EGR%20passages%20-&tag=au7o-20"
+          },
+          {
+            "type": "warning",
+            "content": "Clogged EGR overheats catalytic converter and kills it - clean EGR every 60k miles to avoid $1,500 cat replacement.",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-02-22",
+        "reviewedOn": "2026-02-22",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-insight-fuel-pump-recall-2019",
+      "model": "Insight",
+      "action": "rewrite_same_identity",
+      "reason": "Corrected the continuous 2019-2022 scope to Honda Bulletin 24-024's VIN-eligible 2019-2020 and 2022 vehicles, and removed unsupported 2021 coverage, extra symptoms, timing, loaner and aftermarket commerce claims.",
+      "identityRule": "The indexed issue identity remains on the same ID; exact Honda/NHTSA scope, mechanism and remedy replace unsupported generalizations.",
+      "commerceDecision": "no-commerce",
+      "changedFields": [
+        "years",
+        "title",
+        "description",
+        "solution",
+        "confidence",
+        "symptoms",
+        "affectedSystems",
+        "dtcCodes",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "communityRecommendations",
+        "source",
+        "lastReportedByOwners",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary",
+        "relatedIssueIds"
+      ],
+      "evidence": [
+        {
+          "kind": "manufacturer-record",
+          "url": "https://static.nhtsa.gov/odi/rcl/2023/RCRIT-23V858-4964.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "Honda Bulletin 24-024 - 2019-2020 and 2022 Insight Fuel Pump Motor Recall supports the proposed same-identity scope, mechanism and remedy."
+        }
+      ],
+      "beforeSha256": "f8047583ce343821c3d7cc48fa14f9396e145908d7da55dac0a06efa04fc0b15",
+      "proposalSha256": "52281cb67ffde551d65d91803768ba9da0f47da7f2f4ba3dacc2d73161ecb2dd",
+      "before": {
+        "make": "Honda",
+        "model": "Insight",
+        "years": [
+          2019,
+          2020,
+          2021,
+          2022
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "fuel",
+        "title": "Fuel Pump Failure (NHTSA Recall)",
+        "description": "The 2019-2022 Honda Insight (third generation) has been recalled for fuel pump failures. The fuel pump impeller was improperly molded (low density), causing it to deform over time and interfere with the fuel pump body, rendering it inoperative. Symptoms include engine stalling while driving (especially highway speeds), rough idle, difficulty starting, and complete loss of power. Honda issued recall covering many 2019-2021 models. Free repair at Honda dealers - fuel pump module replacement.",
+        "solution": "This is a SAFETY RECALL - contact Honda dealer immediately to schedule free fuel pump module replacement. Check if your VIN is affected at https://www.honda.com/recall or call 1-888-234-2138. Repair is FREE regardless of mileage/warranty. If vehicle stalls while driving, pull over safely and contact Honda roadside assistance.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "Engine stalls while driving",
+          "Difficulty starting engine",
+          "Engine cranks but won't start",
+          "Rough idle or hesitation",
+          "Check engine light with fuel codes (P0087, P0230)",
+          "Loss of power during acceleration"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0087",
+          "P0230",
+          "P0231",
+          "P0232"
+        ],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 0,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/recalls?nhtsaId=21V215",
+            "type": "nhtsa",
+            "title": "NHTSA Recall 21V-215 / Honda Safety Recall: 2019-2020 Honda Insight Fuel Pump Motor"
+          },
+          {
+            "url": "https://www.nhtsa.gov/recalls?nhtsaId=23V858",
+            "type": "nhtsa",
+            "title": "NHTSA Recall 23V-858 / Honda Safety Recall: 2019-2020 Honda Insight Fuel Pump Module"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "warning",
+            "content": "CRITICAL: Engine stalling at highway speeds is extremely dangerous. Schedule recall repair IMMEDIATELY even if no symptoms yet.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Recall was expanded multiple times - check your VIN even if you weren't affected initially. Gen3Insight.com forum tracks recall updates.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Repair takes 1-2 hours. Most dealers provide loaner since it's a safety recall.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "Delphi fuel pump module — OE-quality direct replacement",
+            "partName": "Fuel Pump Module",
+            "partBrand": "Delphi",
+            "affiliateUrl": "https://www.amazon.com/s?k=Delphi%20fuel%20pump%20module&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Bosch fuel pump — reliable OEM alternative",
+            "partName": "Fuel Pump",
+            "partBrand": "Bosch",
+            "affiliateUrl": "https://www.amazon.com/s?k=Bosch%20fuel%20pump&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-02-22",
+        "reviewedOn": "2026-02-22",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "honda-accord-10th-gen-fuel-pump-recall-2018",
+          "honda-passport-fuel-pump-recall-2019",
+          "honda-pilot-fuel-pump-recall-2017",
+          "honda-ridgeline-fuel-pump-recall-2017",
+          "honda-crv-5th-gen-fuel-pump-nhtsa-recall-2018"
+        ]
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "Insight",
+        "years": [
+          2019,
+          2020,
+          2022
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "fuel",
+        "title": "In-Tank Fuel Pump Motor Recall 23V858",
+        "description": "Honda Bulletin 24-024 covers VIN-eligible 2019-2020 and 2022 Insight vehicles. A defective fuel-pump impeller can swell, interfere with the pump body and make the pump inoperative. The engine may not start or may stall while driving, increasing crash risk.",
+        "solution": "Have a Honda dealer check VIN eligibility. The campaign remedy is replacement of the in-tank fuel pump motor under recall 23V858.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Difficulty starting",
+          "Engine hesitation while driving",
+          "Malfunction indicator lamp may illuminate",
+          "Engine may stall while driving",
+          "DTC P0087 may be stored"
+        ],
+        "affectedSystems": [
+          "In-tank fuel pump motor",
+          "Fuel pump impeller"
+        ],
+        "dtcCodes": [
+          "P0087"
+        ],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "Honda Bulletin 24-024 - 2019-2020 and 2022 Insight Fuel Pump Motor Recall",
+            "url": "https://static.nhtsa.gov/odi/rcl/2023/RCRIT-23V858-4964.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Corrected the continuous 2019-2022 scope to Honda Bulletin 24-024's VIN-eligible 2019-2020 and 2022 vehicles, and removed unsupported 2021 coverage, extra symptoms, timing, loaner and aftermarket commerce claims.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-insight-ground-cable-corrosion-2010",
+      "model": "Insight",
+      "action": "keep_published_pending_source",
+      "reason": "A generic model page and fabricated-looking video path do not establish three specific internally corroding ground cables across 2010-2014 Insight vehicles or the claimed remedy. The row remains unchanged.",
+      "identityRule": "No content or publication-state changes; a generic page, complaint, forum, video or unrelated bulletin cannot replace this issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "4240aca1f15f6ea05509207cf6bef7af807a2be66cf6ab13b7f6b4897525d968",
+      "proposalSha256": "4240aca1f15f6ea05509207cf6bef7af807a2be66cf6ab13b7f6b4897525d968",
+      "before": {
+        "make": "Honda",
+        "model": "Insight",
+        "years": [
+          2010,
+          2011,
+          2012,
+          2013,
+          2014
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "other",
+        "title": "Ground Cable Internal Corrosion (No Start)",
+        "description": "The 2010-2014 Honda Insight (second generation) has ground cables that corrode from the inside, preventing the vehicle from starting. There are three ground cables prone to corrosion: (1) between battery and firewall, (2) between left side and transmission, (3) between left side and air filter support. The cables look fine externally but are corroded internally, causing intermittent no-start conditions, electrical gremlins, and charging issues. Replacement: $50-200 for all three cables.",
+        "solution": "Inspect all three ground cables for internal corrosion (cut open cable end to check). Replace corroded cables with new OEM or upgraded aftermarket cables ($50-200 for all three). DIY-friendly repair - takes 1-2 hours with basic hand tools. InsightCentral forum has detailed guides with photos. Preventive: Apply dielectric grease to cable terminals to prevent future corrosion.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "No start condition (engine won't crank)",
+          "Intermittent starting issues",
+          "Electrical system glitches",
+          "Battery not charging properly",
+          "Dim lights or electrical accessories not working",
+          "Clicking sound when trying to start"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 50,
+        "estimatedCostHigh": 200,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2010/HONDA/INSIGHT",
+            "type": "nhtsa",
+            "title": "NHTSA Vehicle Page for 2010 Honda Insight - includes complaints and investigations"
+          },
+          {
+            "url": "https://www.youtube.com/watch?v=abcd1234efg",
+            "type": "video",
+            "title": "YouTube repair video by EricTheCarGuy on diagnosing and fixing Honda Insight ground cable corrosion"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "DIY fix: Buy pre-made ground cable kit ($50-100 on Amazon) or make your own with marine-grade cable. InsightCentral has step-by-step guide.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "Use marine-grade tinned copper cable (resists corrosion) instead of OEM. InsightCentral members report zero corrosion after 5+ years.",
+            "upvotes": 0,
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Insight%20Use%20marine-grade%20tinned%20copper%20cable%20(resists%20corrosion)%20ins&tag=au7o-20"
+          },
+          {
+            "type": "warning",
+            "content": "Cables can LOOK fine but be corroded inside - if you have intermittent electrical issues, replace all three ground cables preventively.",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-02-22",
+        "reviewedOn": "2026-02-22",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "Insight",
+        "years": [
+          2010,
+          2011,
+          2012,
+          2013,
+          2014
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "other",
+        "title": "Ground Cable Internal Corrosion (No Start)",
+        "description": "The 2010-2014 Honda Insight (second generation) has ground cables that corrode from the inside, preventing the vehicle from starting. There are three ground cables prone to corrosion: (1) between battery and firewall, (2) between left side and transmission, (3) between left side and air filter support. The cables look fine externally but are corroded internally, causing intermittent no-start conditions, electrical gremlins, and charging issues. Replacement: $50-200 for all three cables.",
+        "solution": "Inspect all three ground cables for internal corrosion (cut open cable end to check). Replace corroded cables with new OEM or upgraded aftermarket cables ($50-200 for all three). DIY-friendly repair - takes 1-2 hours with basic hand tools. InsightCentral forum has detailed guides with photos. Preventive: Apply dielectric grease to cable terminals to prevent future corrosion.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "No start condition (engine won't crank)",
+          "Intermittent starting issues",
+          "Electrical system glitches",
+          "Battery not charging properly",
+          "Dim lights or electrical accessories not working",
+          "Clicking sound when trying to start"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 50,
+        "estimatedCostHigh": 200,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2010/HONDA/INSIGHT",
+            "type": "nhtsa",
+            "title": "NHTSA Vehicle Page for 2010 Honda Insight - includes complaints and investigations"
+          },
+          {
+            "url": "https://www.youtube.com/watch?v=abcd1234efg",
+            "type": "video",
+            "title": "YouTube repair video by EricTheCarGuy on diagnosing and fixing Honda Insight ground cable corrosion"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "DIY fix: Buy pre-made ground cable kit ($50-100 on Amazon) or make your own with marine-grade cable. InsightCentral has step-by-step guide.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "Use marine-grade tinned copper cable (resists corrosion) instead of OEM. InsightCentral members report zero corrosion after 5+ years.",
+            "upvotes": 0,
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Insight%20Use%20marine-grade%20tinned%20copper%20cable%20(resists%20corrosion)%20ins&tag=au7o-20"
+          },
+          {
+            "type": "warning",
+            "content": "Cables can LOOK fine but be corroded inside - if you have intermittent electrical issues, replace all three ground cables preventively.",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-02-22",
+        "reviewedOn": "2026-02-22",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-insight-ima-battery-failure-2000",
+      "model": "Insight",
+      "action": "keep_published_pending_source",
+      "reason": "Generic pages, a fabricated-looking forum path and video do not establish one failure mechanism, mileage range, warranty rule or repair hierarchy across three materially different Insight generations. The row remains unchanged.",
+      "identityRule": "No content or publication-state changes; a generic page, complaint, forum, video or unrelated bulletin cannot replace this issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "04f059ac15c036282111b7028b1d0c8011bbbc3fdd677c394912c4be5b0cf6c4",
+      "proposalSha256": "04f059ac15c036282111b7028b1d0c8011bbbc3fdd677c394912c4be5b0cf6c4",
+      "before": {
+        "make": "Honda",
+        "model": "Insight",
+        "years": [
+          2000,
+          2001,
+          2002,
+          2003,
+          2004,
+          2005,
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "IMA Hybrid Battery Failure (All Generations)",
+        "description": "All Honda Insight generations (2000-2006, 2010-2014, 2019-2022) experience IMA (Integrated Motor Assist) hybrid battery failures, typically between 75,000-175,000 miles (8-15 years). Symptoms include IMA warning light, reduced fuel economy, lack of electric assist, poor acceleration, and frequent battery recalibrations. The battery cells degrade over time, especially in hot climates. First and second generation batteries are more prone to failure. Third generation (2019-2022) batteries have better warranty coverage (8yr/100k miles in CARB states, 3yr/36k elsewhere). Replacement cost: $1,500-4,000 depending on generation.",
+        "solution": "Options: (1) OEM Honda replacement battery ($2,500-4,000 installed), (2) Refurbished battery from specialist like Bumblebee Batteries or HybridReVolt ($1,200-2,000), (3) DIY battery rebuild ($400-800 in parts if mechanically skilled). For 3rd gen (2019-2022), check warranty coverage - 8yr/100k in CARB states (CA, NY, etc). InsightCentral.net forum has extensive guides on battery testing, reconditioning, and replacement. Some owners bypass IMA entirely and run as gas-only ($0-300) but lose hybrid benefits.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "IMA warning light on dashboard",
+          "Reduced fuel economy (MPG drops significantly)",
+          "Lack of electric motor assist during acceleration",
+          "Poor acceleration and sluggish performance",
+          "Battery gauge fluctuating or always empty",
+          "Frequent battery recalibrations",
+          "Check engine light with P1xxx hybrid codes"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0401",
+          "P0402",
+          "P0403",
+          "P0404"
+        ],
+        "estimatedCostLow": 400,
+        "estimatedCostHigh": 4000,
+        "typicalMileageLow": 75000,
+        "typicalMileageHigh": 175000,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2000/HONDA/INSIGHT",
+            "type": "nhtsa",
+            "title": "NHTSA Vehicle Page for 2000 Honda Insight - Includes Complaints and Investigations"
+          },
+          {
+            "url": "https://www.insightcentral.net/threads/ima-battery-failure.12345/",
+            "type": "forum",
+            "title": "Insight Central Forum Thread Discussing IMA Battery Failure Issues"
+          },
+          {
+            "url": "https://www.youtube.com/watch?v=QkG7v0xqzXo",
+            "type": "video",
+            "title": "YouTube - DIY Honda Insight IMA Battery Replacement by EricTheCarGuy"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "InsightCentral.net trusted rebuilders: Bumblebee Batteries ($1,500-1,800) and HybridReVolt ($1,200-2,000) - both offer warranties and have rebuilt 1,000+ Insight batteries.",
+            "upvotes": 0,
+            "partBrand": "Bumblebee Batteries",
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Insight%20InsightCentral&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Battery doesn't \"fail\" instantly - slow charging/discharging gives warning weeks ahead. Monitor battery gauge and MPG for early detection.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "warning",
+            "content": "Hot climates kill IMA batteries faster (Arizona, Texas, Florida). Parking in shade and avoiding extreme discharge extends life significantly.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "DIY rebuild: Individual cells cost $5-10 each (20 cells total). InsightCentral has step-by-step guides - saves $2,000+ if mechanically inclined.",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-02-22",
+        "reviewedOn": "2026-02-22",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "honda-civic-hybrid-ima-battery-failure-2012"
+        ]
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "Insight",
+        "years": [
+          2000,
+          2001,
+          2002,
+          2003,
+          2004,
+          2005,
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "IMA Hybrid Battery Failure (All Generations)",
+        "description": "All Honda Insight generations (2000-2006, 2010-2014, 2019-2022) experience IMA (Integrated Motor Assist) hybrid battery failures, typically between 75,000-175,000 miles (8-15 years). Symptoms include IMA warning light, reduced fuel economy, lack of electric assist, poor acceleration, and frequent battery recalibrations. The battery cells degrade over time, especially in hot climates. First and second generation batteries are more prone to failure. Third generation (2019-2022) batteries have better warranty coverage (8yr/100k miles in CARB states, 3yr/36k elsewhere). Replacement cost: $1,500-4,000 depending on generation.",
+        "solution": "Options: (1) OEM Honda replacement battery ($2,500-4,000 installed), (2) Refurbished battery from specialist like Bumblebee Batteries or HybridReVolt ($1,200-2,000), (3) DIY battery rebuild ($400-800 in parts if mechanically skilled). For 3rd gen (2019-2022), check warranty coverage - 8yr/100k in CARB states (CA, NY, etc). InsightCentral.net forum has extensive guides on battery testing, reconditioning, and replacement. Some owners bypass IMA entirely and run as gas-only ($0-300) but lose hybrid benefits.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "IMA warning light on dashboard",
+          "Reduced fuel economy (MPG drops significantly)",
+          "Lack of electric motor assist during acceleration",
+          "Poor acceleration and sluggish performance",
+          "Battery gauge fluctuating or always empty",
+          "Frequent battery recalibrations",
+          "Check engine light with P1xxx hybrid codes"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0401",
+          "P0402",
+          "P0403",
+          "P0404"
+        ],
+        "estimatedCostLow": 400,
+        "estimatedCostHigh": 4000,
+        "typicalMileageLow": 75000,
+        "typicalMileageHigh": 175000,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2000/HONDA/INSIGHT",
+            "type": "nhtsa",
+            "title": "NHTSA Vehicle Page for 2000 Honda Insight - Includes Complaints and Investigations"
+          },
+          {
+            "url": "https://www.insightcentral.net/threads/ima-battery-failure.12345/",
+            "type": "forum",
+            "title": "Insight Central Forum Thread Discussing IMA Battery Failure Issues"
+          },
+          {
+            "url": "https://www.youtube.com/watch?v=QkG7v0xqzXo",
+            "type": "video",
+            "title": "YouTube - DIY Honda Insight IMA Battery Replacement by EricTheCarGuy"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "InsightCentral.net trusted rebuilders: Bumblebee Batteries ($1,500-1,800) and HybridReVolt ($1,200-2,000) - both offer warranties and have rebuilt 1,000+ Insight batteries.",
+            "upvotes": 0,
+            "partBrand": "Bumblebee Batteries",
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Insight%20InsightCentral&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Battery doesn't \"fail\" instantly - slow charging/discharging gives warning weeks ahead. Monitor battery gauge and MPG for early detection.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "warning",
+            "content": "Hot climates kill IMA batteries faster (Arizona, Texas, Florida). Parking in shade and avoiding extreme discharge extends life significantly.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "DIY rebuild: Individual cells cost $5-10 each (20 cells total). InsightCentral has step-by-step guides - saves $2,000+ if mechanically inclined.",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-02-22",
+        "reviewedOn": "2026-02-22",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "honda-civic-hybrid-ima-battery-failure-2012"
+        ]
+      }
+    },
+    {
+      "id": "honda-insight-rear-suspension-noise-2010",
+      "model": "Insight",
+      "action": "keep_published_pending_source",
+      "reason": "One generic complaint page does not establish premature rear-shock failure, hybrid-battery causation, pricing or brand recommendations across 2010-2014 Insight vehicles. The row remains unchanged.",
+      "identityRule": "No content or publication-state changes; a generic page, complaint, forum, video or unrelated bulletin cannot replace this issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "7c5281b0634569a2c72d8a121eb4be1afdc1b349a549ffbee188da7a1b04bfa7",
+      "proposalSha256": "7c5281b0634569a2c72d8a121eb4be1afdc1b349a549ffbee188da7a1b04bfa7",
+      "before": {
+        "make": "Honda",
+        "model": "Insight",
+        "years": [
+          2010,
+          2011,
+          2012,
+          2013,
+          2014
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "suspension",
+        "title": "Rear Suspension Clunking (Shock Absorber Failure)",
+        "description": "The 2010-2014 Honda Insight (second generation) experiences rear suspension clunking and noise over bumps and rough roads. The rear shock absorbers fail prematurely due to the excess weight of the hybrid battery in the rear. The clunking is most noticeable over speed bumps and potholes. Replacement rear shocks: $200-400 per pair.",
+        "solution": "Replace rear shock absorbers with OEM Honda or quality aftermarket (KYB, Monroe, Gabriel) shocks ($200-400 for pair + labor). DIY-friendly if you have basic tools - takes 1-2 hours. InsightCentral recommends KYB or Monroe shocks for better ride quality than OEM.",
+        "severity": "low",
+        "confidence": "medium",
+        "symptoms": [
+          "Clunking noise from rear suspension over bumps",
+          "Rattling sound over rough roads",
+          "Noise over speed bumps",
+          "Bouncy or loose rear end",
+          "Noise from one side or both"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 200,
+        "estimatedCostHigh": 400,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2010/HONDA/INSIGHT/HATCHBACK/FWD",
+            "type": "nhtsa",
+            "title": "NHTSA Vehicle Complaints - 2010 Honda Insight suspension noise / rear shock issues"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "InsightCentral top picks: KYB or Monroe Gas-Magnum shocks - better ride quality than OEM and cost 30% less.",
+            "upvotes": 0,
+            "partBrand": "KYB",
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Insight%20InsightCentral%20top%20picks%3A%20KYB%20or%20Monroe%20Gas-Magnum%20shocks%20-&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "DIY-friendly - rear shocks are easy to replace (2 bolts per shock). Takes 1 hour, saves $150-200 in labor.",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-02-22",
+        "reviewedOn": "2026-02-22",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "Insight",
+        "years": [
+          2010,
+          2011,
+          2012,
+          2013,
+          2014
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "suspension",
+        "title": "Rear Suspension Clunking (Shock Absorber Failure)",
+        "description": "The 2010-2014 Honda Insight (second generation) experiences rear suspension clunking and noise over bumps and rough roads. The rear shock absorbers fail prematurely due to the excess weight of the hybrid battery in the rear. The clunking is most noticeable over speed bumps and potholes. Replacement rear shocks: $200-400 per pair.",
+        "solution": "Replace rear shock absorbers with OEM Honda or quality aftermarket (KYB, Monroe, Gabriel) shocks ($200-400 for pair + labor). DIY-friendly if you have basic tools - takes 1-2 hours. InsightCentral recommends KYB or Monroe shocks for better ride quality than OEM.",
+        "severity": "low",
+        "confidence": "medium",
+        "symptoms": [
+          "Clunking noise from rear suspension over bumps",
+          "Rattling sound over rough roads",
+          "Noise over speed bumps",
+          "Bouncy or loose rear end",
+          "Noise from one side or both"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 200,
+        "estimatedCostHigh": 400,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2010/HONDA/INSIGHT/HATCHBACK/FWD",
+            "type": "nhtsa",
+            "title": "NHTSA Vehicle Complaints - 2010 Honda Insight suspension noise / rear shock issues"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "InsightCentral top picks: KYB or Monroe Gas-Magnum shocks - better ride quality than OEM and cost 30% less.",
+            "upvotes": 0,
+            "partBrand": "KYB",
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20Insight%20InsightCentral%20top%20picks%3A%20KYB%20or%20Monroe%20Gas-Magnum%20shocks%20-&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "DIY-friendly - rear shocks are easy to replace (2 bolts per shock). Takes 1 hour, saves $150-200 in labor.",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-02-22",
+        "reviewedOn": "2026-02-22",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    }
+  ]
+}
