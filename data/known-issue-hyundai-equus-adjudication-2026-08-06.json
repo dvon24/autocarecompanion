@@ -1,0 +1,853 @@
+{
+  "schemaVersion": 1,
+  "status": "proposal-only",
+  "auditStage": "model-primary-source-adjudication",
+  "requiresIndependentApproval": true,
+  "generatedOn": "2026-08-06",
+  "make": "Hyundai",
+  "model": "Equus",
+  "completionStatement": "This packet reconciles all four frozen Hyundai Equus rows. No same-identity primary-source rewrite cleared the gate; all four remain byte-for-byte unchanged.",
+  "safetyContract": [
+    "No production database write, cache purge, deployment, archive action, redirect, slug change or public-page change is authorized by this packet.",
+    "All four rows remain published and byte-for-byte unchanged.",
+    "An unrelated bulletin, part instruction, component, generation or symptom group may never replace the issue named by an existing indexed page.",
+    "Existing commerce remains frozen rather than being silently rewritten without exact repair-role evidence.",
+    "Independent row-by-row approval is required before any separate correction path may be created."
+  ],
+  "source": {
+    "snapshotFile": "data/_hyundai-deeplink-snapshot-2026-08-06.json",
+    "snapshotSha256": "f3e74267205477804060c49c988221cdc4dfcfc4586df369601c8c64736cce60",
+    "snapshotGeneratedAt": "2026-08-06T02:37:36.989Z",
+    "snapshotHash": "444457abb31ca6a5ead423878b37ca790d44a87c74ffa43259362cb4218ba632",
+    "equusRecordCount": 4
+  },
+  "observations": [
+    {
+      "code": "air-spring-parts-not-failure-proof",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "hyundai-equus-air-suspension-2011"
+      ],
+      "detail": "The exact Hyundai air-spring bulletin describes part supersession and replacement handling, not the frozen leak rate, compressor failure or aftermarket conversion narrative."
+    },
+    {
+      "code": "epb-narrative-unverified",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "hyundai-equus-electronic-parking-brake-2011"
+      ],
+      "detail": "No exact Hyundai source establishes the combined actuator, caliper, corrosion, gear-wear and scan-tool claims."
+    },
+    {
+      "code": "seat-narrative-unverified",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "hyundai-equus-seat-motor-2011"
+      ],
+      "detail": "A generic complaint index cannot support a model-wide seat motor and memory calibration defect."
+    },
+    {
+      "code": "tau-timing-narrative-unverified",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "hyundai-equus-timing-chain-2011"
+      ],
+      "detail": "No exact Hyundai source establishes the Tau timing-chain bleed-down narrative or proposed maintenance and repair advice."
+    }
+  ],
+  "mismatchSources": {
+    "rearAirSpringParts": "https://static.nhtsa.gov/odi/tsbs/2017/MC-10115699-9999.pdf"
+  },
+  "summary": {
+    "rewrite_same_identity": 0,
+    "keep_published_pending_source": 4,
+    "total": 4
+  },
+  "rows": [
+    {
+      "id": "hyundai-equus-air-suspension-2011",
+      "model": "Equus",
+      "action": "keep_published_pending_source",
+      "reason": "Hyundai TSB 17-SS-002 provides superseded rear-air-spring part numbers and service handling for 2011-2012 Equus, but it does not establish the frozen six-year leak rate, crimp-seal mechanism, 5-7-year timing, compressor failure, DTCs or aftermarket conversion advice. It therefore remains mismatch evidence only and the row stays byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; part information, complaints or shared symptoms cannot establish or replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "scope-and-claim-mismatch",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2017/MC-10115699-9999.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "TSB 17-SS-002 supports only 2011-2012 rear-air-spring part supersession and service handling, not the frozen leak/compressor-failure narrative."
+        }
+      ],
+      "beforeSha256": "14ec7ecfb2a8c8fb82d8cda46349aa80d41d0779bb3b64566186faace089eadd",
+      "proposalSha256": "14ec7ecfb2a8c8fb82d8cda46349aa80d41d0779bb3b64566186faace089eadd",
+      "before": {
+        "make": "Hyundai",
+        "model": "Equus",
+        "years": [
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "suspension",
+        "title": "Rear Air Suspension Strut Leak and Compressor Failure",
+        "description": "The Hyundai Equus flagship sedan uses rear air suspension for luxury ride quality. The air struts develop leaks at the rubber air bladder, particularly at the crimp ring seals, typically after 5-7 years regardless of mileage. The air compressor runs excessively to compensate for leaking struts, leading to compressor overheating and premature failure. The vehicle sags at the rear when parked overnight as air slowly escapes.",
+        "solution": "Replace both rear air struts together — Arnott A-2951 or Suncore 150G-75-R are quality aftermarket options at 50% less than OEM. Replace the compressor if it is running constantly or making excessive noise. A conversion to passive coil spring struts is possible using Strutmasters or Arnott coil-over conversion kits, though this changes the ride character. The compressor relay should be checked first as a $20 relay failure can mimic compressor failure.",
+        "severity": "high",
+        "confidence": "low",
+        "symptoms": [
+          "Vehicle rear end sags after sitting overnight",
+          "Air compressor running constantly (humming from trunk)",
+          "Suspension warning light on dashboard",
+          "Bouncy or floaty rear end ride quality",
+          "Rear of vehicle lower than front when parked"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "C1611",
+          "C1614"
+        ],
+        "estimatedCostLow": 800,
+        "estimatedCostHigh": 3000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.hyundai-forums.com/threads/equus-air-suspension-problems.627242/",
+            "type": "forum",
+            "title": "Equus air suspension problems - Hyundai Forums"
+          },
+          {
+            "url": "https://www.hyundai-forums.com/threads/equus-air-suspension-problems.627242/page-6",
+            "type": "forum",
+            "title": "Equus air suspension problems Page 6 - Hyundai Forums"
+          },
+          {
+            "url": "https://www.strutmasters.com/a/blog/hyundai-equus-air-suspension-problems-solution",
+            "type": "media",
+            "title": "Hyundai Equus Air Suspension Problems & Solutions - Strutmasters"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Arnott A-2951 rear air strut — OEM-quality replacement at 50% less than Hyundai dealer price",
+            "upvotes": 0,
+            "partName": "Rear Air Suspension Strut",
+            "partBrand": "Arnott",
+            "partNumber": "A-2951",
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Arnott+Hyundai+Equus+rear+air+strut&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Check the compressor relay first ($20 part) before replacing the $500+ compressor — a stuck relay is the cause in about 25% of cases",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "warning",
+            "content": "Replace BOTH rear air struts together even if only one is leaking — the other is the same age and will fail within months",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 95,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-03-13",
+        "reviewedOn": "2026-03-13",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "kia-k900-air-suspension-2015"
+        ]
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Equus",
+        "years": [
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "suspension",
+        "title": "Rear Air Suspension Strut Leak and Compressor Failure",
+        "description": "The Hyundai Equus flagship sedan uses rear air suspension for luxury ride quality. The air struts develop leaks at the rubber air bladder, particularly at the crimp ring seals, typically after 5-7 years regardless of mileage. The air compressor runs excessively to compensate for leaking struts, leading to compressor overheating and premature failure. The vehicle sags at the rear when parked overnight as air slowly escapes.",
+        "solution": "Replace both rear air struts together — Arnott A-2951 or Suncore 150G-75-R are quality aftermarket options at 50% less than OEM. Replace the compressor if it is running constantly or making excessive noise. A conversion to passive coil spring struts is possible using Strutmasters or Arnott coil-over conversion kits, though this changes the ride character. The compressor relay should be checked first as a $20 relay failure can mimic compressor failure.",
+        "severity": "high",
+        "confidence": "low",
+        "symptoms": [
+          "Vehicle rear end sags after sitting overnight",
+          "Air compressor running constantly (humming from trunk)",
+          "Suspension warning light on dashboard",
+          "Bouncy or floaty rear end ride quality",
+          "Rear of vehicle lower than front when parked"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "C1611",
+          "C1614"
+        ],
+        "estimatedCostLow": 800,
+        "estimatedCostHigh": 3000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.hyundai-forums.com/threads/equus-air-suspension-problems.627242/",
+            "type": "forum",
+            "title": "Equus air suspension problems - Hyundai Forums"
+          },
+          {
+            "url": "https://www.hyundai-forums.com/threads/equus-air-suspension-problems.627242/page-6",
+            "type": "forum",
+            "title": "Equus air suspension problems Page 6 - Hyundai Forums"
+          },
+          {
+            "url": "https://www.strutmasters.com/a/blog/hyundai-equus-air-suspension-problems-solution",
+            "type": "media",
+            "title": "Hyundai Equus Air Suspension Problems & Solutions - Strutmasters"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Arnott A-2951 rear air strut — OEM-quality replacement at 50% less than Hyundai dealer price",
+            "upvotes": 0,
+            "partName": "Rear Air Suspension Strut",
+            "partBrand": "Arnott",
+            "partNumber": "A-2951",
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Arnott+Hyundai+Equus+rear+air+strut&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Check the compressor relay first ($20 part) before replacing the $500+ compressor — a stuck relay is the cause in about 25% of cases",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "warning",
+            "content": "Replace BOTH rear air struts together even if only one is leaking — the other is the same age and will fail within months",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 95,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-03-13",
+        "reviewedOn": "2026-03-13",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "kia-k900-air-suspension-2015"
+        ]
+      }
+    },
+    {
+      "id": "hyundai-equus-electronic-parking-brake-2011",
+      "model": "Equus",
+      "action": "keep_published_pending_source",
+      "reason": "Forums and a complaint page do not establish one 2011-2016 Equus electronic-parking-brake actuator defect, corrosion or gear-wear mechanism, listed DTCs or scan-tool remedy. No exact Hyundai campaign or bulletin was found for the complete identity, so the row remains unchanged.",
+      "identityRule": "No content or publication-state changes; part information, complaints or shared symptoms cannot establish or replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "86e1db443e7ad8e6ac3c2846a2f7164ea5647a90727c08901b47e50c824f930f",
+      "proposalSha256": "86e1db443e7ad8e6ac3c2846a2f7164ea5647a90727c08901b47e50c824f930f",
+      "before": {
+        "make": "Hyundai",
+        "model": "Equus",
+        "years": [
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "brakes",
+        "title": "Electronic Parking Brake Actuator Failure",
+        "description": "The Equus uses an electronic parking brake (EPB) system with electric motor actuators on the rear calipers. The actuator motors can fail from corrosion or internal gear wear, leaving the parking brake stuck engaged or unable to apply. When the actuator fails in the applied position, the rear brakes drag, overheating the pads and rotors. The EPB system also requires a special scan tool to retract the calipers during brake pad replacement — standard caliper compression will damage the actuator.",
+        "solution": "Replace the failed EPB actuator motor (integrated into the rear caliper assembly on some years). A Hyundai-specific scan tool or GDS is required to cycle the EPB actuator during brake pad replacement. Some aftermarket scan tools (Autel MaxiSys, Launch X431) support Hyundai EPB functions. Never attempt to manually force the EPB piston back — use the scan tool retract function only.",
+        "severity": "high",
+        "confidence": "low",
+        "symptoms": [
+          "Parking brake warning light stays on",
+          "EPB malfunction warning on dashboard",
+          "Rear brakes dragging (hot wheels, burning smell)",
+          "Parking brake does not hold on hills",
+          "Grinding noise from EPB motor when applying/releasing"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "C1200",
+          "C1201"
+        ],
+        "estimatedCostLow": 400,
+        "estimatedCostHigh": 1200,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://genesisowners.com/genesis-forum/threads/epb-issue.30449/",
+            "type": "forum",
+            "title": "EPB issue - Genesis Forums"
+          },
+          {
+            "url": "https://m.carcomplaints.com/Hyundai/Equus/2011/brakes/service_brakes.shtml",
+            "type": "media",
+            "title": "2011 Hyundai Equus Service Brakes Problems - CarComplaints"
+          },
+          {
+            "url": "https://www.genesisforums.com/threads/electronic-parking-brake-failure.889/",
+            "type": "forum",
+            "title": "Electronic parking brake failure - Hyundai Genesis Forum"
+          },
+          {
+            "url": "https://www.hyundai-forums.com/threads/electronic-parking-brake-issue.671914/",
+            "type": "forum",
+            "title": "Electronic Parking Brake Issue - Hyundai Forums"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "A scan tool with Hyundai EPB function is REQUIRED for routine brake pad replacement — the rear calipers cannot be compressed mechanically without damaging the actuator",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "Autel MaxiSys MS906 scan tool supports Hyundai EPB retract/extend function for brake service",
+            "upvotes": 0,
+            "partName": "MaxiSys MS906 Diagnostic Scanner",
+            "partBrand": "Autel",
+            "partNumber": "MS906",
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Autel+MaxiSys+MS906+scanner&tag=au7o-20"
+          },
+          {
+            "type": "warning",
+            "content": "Never use a C-clamp to compress the rear brake caliper piston — this will strip the EPB actuator gears and require a $600+ caliper replacement",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 75,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-03-13",
+        "reviewedOn": "2026-03-13",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Equus",
+        "years": [
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "brakes",
+        "title": "Electronic Parking Brake Actuator Failure",
+        "description": "The Equus uses an electronic parking brake (EPB) system with electric motor actuators on the rear calipers. The actuator motors can fail from corrosion or internal gear wear, leaving the parking brake stuck engaged or unable to apply. When the actuator fails in the applied position, the rear brakes drag, overheating the pads and rotors. The EPB system also requires a special scan tool to retract the calipers during brake pad replacement — standard caliper compression will damage the actuator.",
+        "solution": "Replace the failed EPB actuator motor (integrated into the rear caliper assembly on some years). A Hyundai-specific scan tool or GDS is required to cycle the EPB actuator during brake pad replacement. Some aftermarket scan tools (Autel MaxiSys, Launch X431) support Hyundai EPB functions. Never attempt to manually force the EPB piston back — use the scan tool retract function only.",
+        "severity": "high",
+        "confidence": "low",
+        "symptoms": [
+          "Parking brake warning light stays on",
+          "EPB malfunction warning on dashboard",
+          "Rear brakes dragging (hot wheels, burning smell)",
+          "Parking brake does not hold on hills",
+          "Grinding noise from EPB motor when applying/releasing"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "C1200",
+          "C1201"
+        ],
+        "estimatedCostLow": 400,
+        "estimatedCostHigh": 1200,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://genesisowners.com/genesis-forum/threads/epb-issue.30449/",
+            "type": "forum",
+            "title": "EPB issue - Genesis Forums"
+          },
+          {
+            "url": "https://m.carcomplaints.com/Hyundai/Equus/2011/brakes/service_brakes.shtml",
+            "type": "media",
+            "title": "2011 Hyundai Equus Service Brakes Problems - CarComplaints"
+          },
+          {
+            "url": "https://www.genesisforums.com/threads/electronic-parking-brake-failure.889/",
+            "type": "forum",
+            "title": "Electronic parking brake failure - Hyundai Genesis Forum"
+          },
+          {
+            "url": "https://www.hyundai-forums.com/threads/electronic-parking-brake-issue.671914/",
+            "type": "forum",
+            "title": "Electronic Parking Brake Issue - Hyundai Forums"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "A scan tool with Hyundai EPB function is REQUIRED for routine brake pad replacement — the rear calipers cannot be compressed mechanically without damaging the actuator",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "Autel MaxiSys MS906 scan tool supports Hyundai EPB retract/extend function for brake service",
+            "upvotes": 0,
+            "partName": "MaxiSys MS906 Diagnostic Scanner",
+            "partBrand": "Autel",
+            "partNumber": "MS906",
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Autel+MaxiSys+MS906+scanner&tag=au7o-20"
+          },
+          {
+            "type": "warning",
+            "content": "Never use a C-clamp to compress the rear brake caliper piston — this will strip the EPB actuator gears and require a $600+ caliper replacement",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 75,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-03-13",
+        "reviewedOn": "2026-03-13",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-equus-seat-motor-2011",
+      "model": "Equus",
+      "action": "keep_published_pending_source",
+      "reason": "A generic NHTSA vehicle page does not establish one 2011-2016 Equus seat-motor or memory-module defect, affected motor, calibration requirement or repair. No exact Hyundai primary document was found, so the row remains unchanged.",
+      "identityRule": "No content or publication-state changes; part information, complaints or shared symptoms cannot establish or replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "add95b3c656e842b5db300ee7b1cc06f9e0822bafebab851481fa17abf02e09d",
+      "proposalSha256": "add95b3c656e842b5db300ee7b1cc06f9e0822bafebab851481fa17abf02e09d",
+      "before": {
+        "make": "Hyundai",
+        "model": "Equus",
+        "years": [
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Power Seat Motor and Memory Position Failure",
+        "description": "Multi-way power seat motors fail, particularly on the driver side. The seat memory positions stop storing correctly or the seat moves to incorrect positions. Individual motors (recline, lumbar, tilt) fail independently.",
+        "solution": "Diagnose which seat motor has failed using seat module scan data. Replace individual seat motor or entire seat track assembly. Recalibrate seat memory module after motor replacement. Check seat wiring harness under seat for chafing.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Seat won't move in one direction",
+          "Memory positions incorrect",
+          "Clicking sound from seat",
+          "Seat moves intermittently",
+          "Seat stuck in position"
+        ],
+        "affectedSystems": [
+          "Power seat system",
+          "Seat memory module"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 250,
+        "estimatedCostHigh": 600,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2011/HYUNDAI/EQUUS",
+            "type": "nhtsa",
+            "title": "NHTSA Vehicle Page for 2011 Hyundai Equus - Complaints and Investigations"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Premium electrical tape for wiring repairs and harness wrapping",
+            "partName": "Super 33+ Vinyl Electrical Tape",
+            "partBrand": "3M",
+            "affiliateUrl": "https://www.amazon.com/s?k=3M%20Super%2033%2B%20Vinyl%20Electrical%20Tape%20Hyundai%20Equus&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Split wire loom tubing to protect repaired or exposed wiring harnesses",
+            "partName": "Split Wire Loom Tubing",
+            "partBrand": "DEI",
+            "affiliateUrl": "https://www.amazon.com/s?k=DEI%20Split%20Wire%20Loom%20Tubing%20Hyundai%20Equus&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Weatherproof terminal connector kit for reliable wiring repairs",
+            "partName": "Automotive Terminal Connector Kit",
+            "partBrand": "Molex",
+            "affiliateUrl": "https://www.amazon.com/s?k=Molex%20Automotive%20Terminal%20Connector%20Kit%20Hyundai%20Equus&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Automotive relay replacement set for common relay failures",
+            "partName": "Automotive Relay 5-Pin 12V",
+            "partBrand": "Bosch",
+            "affiliateUrl": "https://www.amazon.com/s?k=Bosch%20Automotive%20Relay%205-Pin%2012V%20Hyundai%20Equus&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Digital multimeter for diagnosing fuse, relay, and module electrical faults",
+            "partName": "Digital Multimeter",
+            "partBrand": "Innova",
+            "affiliateUrl": "https://www.amazon.com/s?k=Innova%20Digital%20Multimeter%20Hyundai%20Equus&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Equus",
+        "years": [
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Power Seat Motor and Memory Position Failure",
+        "description": "Multi-way power seat motors fail, particularly on the driver side. The seat memory positions stop storing correctly or the seat moves to incorrect positions. Individual motors (recline, lumbar, tilt) fail independently.",
+        "solution": "Diagnose which seat motor has failed using seat module scan data. Replace individual seat motor or entire seat track assembly. Recalibrate seat memory module after motor replacement. Check seat wiring harness under seat for chafing.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Seat won't move in one direction",
+          "Memory positions incorrect",
+          "Clicking sound from seat",
+          "Seat moves intermittently",
+          "Seat stuck in position"
+        ],
+        "affectedSystems": [
+          "Power seat system",
+          "Seat memory module"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 250,
+        "estimatedCostHigh": 600,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2011/HYUNDAI/EQUUS",
+            "type": "nhtsa",
+            "title": "NHTSA Vehicle Page for 2011 Hyundai Equus - Complaints and Investigations"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Premium electrical tape for wiring repairs and harness wrapping",
+            "partName": "Super 33+ Vinyl Electrical Tape",
+            "partBrand": "3M",
+            "affiliateUrl": "https://www.amazon.com/s?k=3M%20Super%2033%2B%20Vinyl%20Electrical%20Tape%20Hyundai%20Equus&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Split wire loom tubing to protect repaired or exposed wiring harnesses",
+            "partName": "Split Wire Loom Tubing",
+            "partBrand": "DEI",
+            "affiliateUrl": "https://www.amazon.com/s?k=DEI%20Split%20Wire%20Loom%20Tubing%20Hyundai%20Equus&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Weatherproof terminal connector kit for reliable wiring repairs",
+            "partName": "Automotive Terminal Connector Kit",
+            "partBrand": "Molex",
+            "affiliateUrl": "https://www.amazon.com/s?k=Molex%20Automotive%20Terminal%20Connector%20Kit%20Hyundai%20Equus&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Automotive relay replacement set for common relay failures",
+            "partName": "Automotive Relay 5-Pin 12V",
+            "partBrand": "Bosch",
+            "affiliateUrl": "https://www.amazon.com/s?k=Bosch%20Automotive%20Relay%205-Pin%2012V%20Hyundai%20Equus&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Digital multimeter for diagnosing fuse, relay, and module electrical faults",
+            "partName": "Digital Multimeter",
+            "partBrand": "Innova",
+            "affiliateUrl": "https://www.amazon.com/s?k=Innova%20Digital%20Multimeter%20Hyundai%20Equus&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-equus-timing-chain-2011",
+      "model": "Equus",
+      "action": "keep_published_pending_source",
+      "reason": "Forum and complaint references do not establish one 2011-2016 Equus 5.0L Tau timing-chain-tensioner defect, oil bleed-down mechanism, failure progression, oil interval or check-valve remedy. No exact Hyundai primary document was found, so the row remains unchanged.",
+      "identityRule": "No content or publication-state changes; part information, complaints or shared symptoms cannot establish or replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "9dcd80b0184bf2199bf7d4353c8982372e794b9f0c008711a6eb496637f2bddf",
+      "proposalSha256": "9dcd80b0184bf2199bf7d4353c8982372e794b9f0c008711a6eb496637f2bddf",
+      "before": {
+        "make": "Hyundai",
+        "model": "Equus",
+        "years": [
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016
+        ],
+        "trims": [],
+        "engines": [
+          "5.0L Tau V8"
+        ],
+        "category": "engine",
+        "title": "5.0L Tau V8 Timing Chain Tensioner Rattle on Cold Start",
+        "description": "The 5.0L Tau GDI V8 in the Equus develops a timing chain rattle on cold start that lasts 1-5 seconds before oil pressure builds and the hydraulic tensioners take up chain slack. The issue is caused by the hydraulic chain tensioners bleeding down oil overnight, allowing chain slack at startup. While the rattle typically goes away quickly, prolonged operation with rattling chains can cause chain guide wear and eventual timing chain stretch. Extended oil change intervals (beyond 5,000 miles) exacerbate the issue.",
+        "solution": "Change oil every 5,000 miles (not 7,500 as recommended in some manuals) with 5W-30 synthetic that maintains viscosity at cold temperatures. If the rattle persists beyond 3-5 seconds, replace the primary timing chain tensioners with updated Hyundai parts. The Tau V8 uses four timing chains (two primary, two secondary) — inspect all tensioners and guides during replacement. Some owners install one-way check valve oil drain back fittings to prevent tensioner bleed-down.",
+        "severity": "medium",
+        "confidence": "low",
+        "symptoms": [
+          "Rattling or clattering noise for 1-5 seconds on cold start",
+          "Noise comes from front of engine (timing cover area)",
+          "Noise disappears after engine warms up",
+          "Rattle worsens in cold weather",
+          "Check engine light with cam/crank correlation codes (advanced wear)"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0016",
+          "P0017"
+        ],
+        "estimatedCostLow": 100,
+        "estimatedCostHigh": 2500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "source": "hyundai-forums.com",
+            "description": "Equus 5.0 Tau V8 timing chain rattle diagnosis"
+          },
+          {
+            "source": "NHTSA complaints",
+            "description": "Hyundai Equus engine noise complaints"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Use a quality 5W-30 full synthetic oil (Mobil 1, Pennzoil Ultra Platinum) and change every 5,000 miles — good oil prevents tensioner bleed-down and chain wear",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "If cold start rattle lasts more than 5 seconds, have the tensioners inspected immediately — prolonged rattle causes chain guide wear that turns a $1,000 repair into a $3,000 one",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "warning",
+            "content": "Do not extend oil change intervals beyond 5,000 miles on the Tau V8 — the GDI system dilutes oil with fuel, reducing its ability to maintain hydraulic tensioner pressure",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "Complete timing chain kit includes chains, guides, and tensioners",
+            "partName": "Timing Chain Kit",
+            "partBrand": "Cloyes",
+            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20Equus%20Cloyes%20Timing%20Chain%20Kit&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "High-quality engine oil is critical after timing service",
+            "partName": "Edge Full Synthetic Motor Oil",
+            "partBrand": "Castrol",
+            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20Equus%20Castrol%20Edge%20Full%20Synthetic%20Motor%20Oil&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 80,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-03-13",
+        "reviewedOn": "2026-03-13",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "kia-k900-engine-bearing-2015"
+        ]
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Equus",
+        "years": [
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016
+        ],
+        "trims": [],
+        "engines": [
+          "5.0L Tau V8"
+        ],
+        "category": "engine",
+        "title": "5.0L Tau V8 Timing Chain Tensioner Rattle on Cold Start",
+        "description": "The 5.0L Tau GDI V8 in the Equus develops a timing chain rattle on cold start that lasts 1-5 seconds before oil pressure builds and the hydraulic tensioners take up chain slack. The issue is caused by the hydraulic chain tensioners bleeding down oil overnight, allowing chain slack at startup. While the rattle typically goes away quickly, prolonged operation with rattling chains can cause chain guide wear and eventual timing chain stretch. Extended oil change intervals (beyond 5,000 miles) exacerbate the issue.",
+        "solution": "Change oil every 5,000 miles (not 7,500 as recommended in some manuals) with 5W-30 synthetic that maintains viscosity at cold temperatures. If the rattle persists beyond 3-5 seconds, replace the primary timing chain tensioners with updated Hyundai parts. The Tau V8 uses four timing chains (two primary, two secondary) — inspect all tensioners and guides during replacement. Some owners install one-way check valve oil drain back fittings to prevent tensioner bleed-down.",
+        "severity": "medium",
+        "confidence": "low",
+        "symptoms": [
+          "Rattling or clattering noise for 1-5 seconds on cold start",
+          "Noise comes from front of engine (timing cover area)",
+          "Noise disappears after engine warms up",
+          "Rattle worsens in cold weather",
+          "Check engine light with cam/crank correlation codes (advanced wear)"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0016",
+          "P0017"
+        ],
+        "estimatedCostLow": 100,
+        "estimatedCostHigh": 2500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "source": "hyundai-forums.com",
+            "description": "Equus 5.0 Tau V8 timing chain rattle diagnosis"
+          },
+          {
+            "source": "NHTSA complaints",
+            "description": "Hyundai Equus engine noise complaints"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Use a quality 5W-30 full synthetic oil (Mobil 1, Pennzoil Ultra Platinum) and change every 5,000 miles — good oil prevents tensioner bleed-down and chain wear",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "If cold start rattle lasts more than 5 seconds, have the tensioners inspected immediately — prolonged rattle causes chain guide wear that turns a $1,000 repair into a $3,000 one",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "warning",
+            "content": "Do not extend oil change intervals beyond 5,000 miles on the Tau V8 — the GDI system dilutes oil with fuel, reducing its ability to maintain hydraulic tensioner pressure",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "Complete timing chain kit includes chains, guides, and tensioners",
+            "partName": "Timing Chain Kit",
+            "partBrand": "Cloyes",
+            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20Equus%20Cloyes%20Timing%20Chain%20Kit&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "High-quality engine oil is critical after timing service",
+            "partName": "Edge Full Synthetic Motor Oil",
+            "partBrand": "Castrol",
+            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20Equus%20Castrol%20Edge%20Full%20Synthetic%20Motor%20Oil&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 80,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-03-13",
+        "reviewedOn": "2026-03-13",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "kia-k900-engine-bearing-2015"
+        ]
+      }
+    }
+  ]
+}
