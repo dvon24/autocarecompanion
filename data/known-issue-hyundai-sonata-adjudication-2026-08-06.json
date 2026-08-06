@@ -1,0 +1,3696 @@
+{
+  "schemaVersion": 1,
+  "status": "proposal-only",
+  "auditStage": "model-primary-source-adjudication",
+  "requiresIndependentApproval": true,
+  "generatedOn": "2026-08-06",
+  "make": "Hyundai",
+  "model": "Sonata",
+  "completionStatement": "This packet reconciles all twenty-one frozen Hyundai Sonata rows. Three same-identity official-source rewrites are proposed; eighteen rows remain byte-for-byte unchanged.",
+  "safetyContract": [
+    "No production database write, cache purge, deployment, archive action, redirect, slug change or public-page change is authorized by this packet.",
+    "All twenty-one rows remain published. Eighteen are byte-for-byte unchanged.",
+    "Each rewrite preserves the indexed ID, title and category and uses one exact Hyundai or NHTSA primary record.",
+    "Rewrites contain zero commerce, zero cost or mileage claims, empty trim and engine arrays, and no diagnostic codes.",
+    "Independent row-by-row approval is required before a separate guarded apply path may be created."
+  ],
+  "source": {
+    "snapshotFile": "data/_hyundai-deeplink-snapshot-2026-08-06.json",
+    "snapshotSha256": "f3e74267205477804060c49c988221cdc4dfcfc4586df369601c8c64736cce60",
+    "snapshotGeneratedAt": "2026-08-06T02:37:36.989Z",
+    "snapshotHash": "444457abb31ca6a5ead423878b37ca790d44a87c74ffa43259362cb4218ba632",
+    "sonataRecordCount": 21
+  },
+  "observations": [
+    {
+      "code": "three-exact-official-rewrites",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "hyundai-sonata-fuel-injector-failure-causing-2022",
+        "hyundai-sonata-steering-2011",
+        "hyundai-sonata-theta-ii-gdi-excessive-oil-consumption"
+      ],
+      "detail": "Exact Hyundai or NHTSA records support the 2.5-liter non-turbo injector, 2011 EPS-control-unit and oil-consumption-inspection identities without changing indexed titles or categories.",
+      "sourceUrls": [
+        "https://static.nhtsa.gov/odi/tsbs/2025/MC-11012819-0001.pdf",
+        "https://static.nhtsa.gov/odi/rcl/2016/RCLRPT-16V190-0509.PDF",
+        "https://static.nhtsa.gov/odi/tsbs/2023/MC-10247597-0001.pdf"
+      ]
+    },
+    {
+      "code": "two-cited-bulletin-numbers-mismatch",
+      "severity": "high",
+      "recordIds": [
+        "hyundai-sonata-battery-drain-2015",
+        "hyundai-sonata-dct-shudder-2015"
+      ],
+      "detail": "The bulletin numbers cited in the battery-drain and DCT rows resolve to a tail-lamp harness bulletin and an automatic-transaxle temperature-sensor bulletin, respectively; both rows remain unchanged.",
+      "sourceUrls": [
+        "https://static.nhtsa.gov/odi/tsbs/2020/MC-10170885-0001.pdf",
+        "https://static.nhtsa.gov/odi/tsbs/2020/MC-10174800-0001.pdf"
+      ]
+    },
+    {
+      "code": "combined-identities-not-partially-rewritten",
+      "severity": "high",
+      "recordIds": [
+        "hyundai-sonata-p0442-small-evap-leak-from-gas-cap-seal-nvld-sensor",
+        "hyundai-sonata-p0455-gross-evap-leak-from-loose-failed-gas-cap-stuck-purge",
+        "hyundai-sonata-panoramic-sunroof-wind-deflector-detachment-glass-shattering",
+        "hyundai-sonata-theta-ii-2-0t-2-4l-gdi-connecting-rod-bearing-failure"
+      ],
+      "detail": "Official records support only part of each combined title or a narrower population. The packet rejects partial rewrites so indexed titles never overstate their replacement evidence.",
+      "sourceUrls": [
+        "https://static.nhtsa.gov/odi/tsbs/2021/MC-10199095-0001.pdf",
+        "https://static.nhtsa.gov/odi/rcl/2016/RCRIT-16V726-9804.pdf",
+        "https://static.nhtsa.gov/odi/rcl/2015/RCLRPT-15V568-9490.PDF",
+        "https://static.nhtsa.gov/odi/rcl/2017/RCLRPT-17V226-6577.PDF"
+      ]
+    },
+    {
+      "code": "eighteen-partial-or-unsupported-rows-frozen",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "hyundai-sonata-ac-compressor-2011",
+        "hyundai-sonata-battery-drain-2015",
+        "hyundai-sonata-dct-shudder-2015",
+        "hyundai-sonata-front-radar-forward-2022",
+        "hyundai-sonata-infotainment-2015",
+        "hyundai-sonata-mdps-electronic-power-steering-sudden-assist-loss-steering-l",
+        "hyundai-sonata-p0011-intake-cam-over-advanced-from-failed-oil-control-valve",
+        "hyundai-sonata-p0016-crank-cam-correlation-fault-from-stretched-timing-chai",
+        "hyundai-sonata-p0128-engine-not-reaching-operating-temp-from-stuck-open-the",
+        "hyundai-sonata-p0171-bank-1-lean-from-intake-manifold-gasket-vacuum-leak-st",
+        "hyundai-sonata-p0174-bank-2-lean-from-upper-intake-plenum-gasket-leak",
+        "hyundai-sonata-p0420-bank-1-catalytic-converter-failure-from-theta-ii-2-4l",
+        "hyundai-sonata-p0430-bank-2-catalytic-converter-efficiency-failure",
+        "hyundai-sonata-p0442-small-evap-leak-from-gas-cap-seal-nvld-sensor",
+        "hyundai-sonata-p0455-gross-evap-leak-from-loose-failed-gas-cap-stuck-purge",
+        "hyundai-sonata-panoramic-sunroof-wind-deflector-detachment-glass-shattering",
+        "hyundai-sonata-theta-ii-2-0t-2-4l-gdi-connecting-rod-bearing-failure",
+        "hyundai-theta2-engine"
+      ],
+      "detail": "All combined, generic, secondary, mismatched or insufficiently sourced narratives remain byte-for-byte unchanged."
+    }
+  ],
+  "publicSources": {
+    "injector": "https://static.nhtsa.gov/odi/tsbs/2025/MC-11012819-0001.pdf",
+    "eps": "https://static.nhtsa.gov/odi/rcl/2016/RCLRPT-16V190-0509.PDF",
+    "oilConsumption": "https://static.nhtsa.gov/odi/tsbs/2023/MC-10247597-0001.pdf"
+  },
+  "reviewSources": {
+    "batteryCitationMismatch": "https://static.nhtsa.gov/odi/tsbs/2020/MC-10170885-0001.pdf",
+    "dctCitationMismatch": "https://static.nhtsa.gov/odi/tsbs/2020/MC-10174800-0001.pdf",
+    "evapPartialMatch": "https://static.nhtsa.gov/odi/tsbs/2021/MC-10199095-0001.pdf",
+    "sunroofPartialMatch": "https://static.nhtsa.gov/odi/rcl/2016/RCRIT-16V726-9804.pdf",
+    "bearing2011To2012": "https://static.nhtsa.gov/odi/rcl/2015/RCLRPT-15V568-9490.PDF",
+    "bearing2013To2014": "https://static.nhtsa.gov/odi/rcl/2017/RCLRPT-17V226-6577.PDF"
+  },
+  "summary": {
+    "rewrite_same_identity": 3,
+    "keep_published_pending_source": 18,
+    "total": 21
+  },
+  "rows": [
+    {
+      "id": "hyundai-sonata-ac-compressor-2011",
+      "model": "Sonata",
+      "action": "keep_published_pending_source",
+      "reason": "A generic complaint page and an unlinked refrigerant-service bulletin do not establish one broad 2011-2020 Sonata compressor defect, contamination mechanism, collateral-parts replacement path or cost. The row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; secondary, partial, false-citation or different-identity evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "66a734b16ffa728a517069358766a4bf10dfabefa843be11bee1dee920d4299d",
+      "proposalSha256": "66a734b16ffa728a517069358766a4bf10dfabefa843be11bee1dee920d4299d",
+      "before": {
+        "make": "Hyundai",
+        "model": "Sonata",
+        "years": [
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "A/C Compressor Failure",
+        "description": "The A/C compressor can fail, particularly on vehicles in hot climates with heavy A/C use. Internal compressor failure can contaminate the A/C system. Clutch and bearing failures are also common.",
+        "solution": "Replace A/C compressor assembly. If internal failure, flush entire system, replace condenser, receiver/drier, and expansion valve. Use quality replacement parts. Aftermarket compressors available at lower cost.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "A/C blows warm air",
+          "Loud noise when A/C engages",
+          "A/C clutch not engaging",
+          "Refrigerant leak",
+          "A/C works intermittently"
+        ],
+        "affectedSystems": [
+          "Electrical"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 500,
+        "estimatedCostHigh": 1400,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2015/HYUNDAI/SONATA",
+            "type": "nhtsa",
+            "title": "NHTSA Complaint #11321310 - 2015 Hyundai Sonata A/C stopped blowing cold air / compressor concern"
+          },
+          {
+            "url": "",
+            "type": "tsb",
+            "title": "Hyundai TSB 19-HA-006H: Air Conditioning System Diagnosis and Refrigerant Service"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Use quality replacement part",
+            "upvotes": 0,
+            "partBrand": "Use",
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20Sonata%20Use%20quality%20replacement%20part&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Consider OEM parts for critical components like sensors and electrical parts - aftermarket can be unreliable",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Get a proper diagnosis before replacing parts - similar symptoms can have different causes",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 720,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2024-02-19",
+        "reviewedOn": "2026-02-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Sonata",
+        "years": [
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "A/C Compressor Failure",
+        "description": "The A/C compressor can fail, particularly on vehicles in hot climates with heavy A/C use. Internal compressor failure can contaminate the A/C system. Clutch and bearing failures are also common.",
+        "solution": "Replace A/C compressor assembly. If internal failure, flush entire system, replace condenser, receiver/drier, and expansion valve. Use quality replacement parts. Aftermarket compressors available at lower cost.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "A/C blows warm air",
+          "Loud noise when A/C engages",
+          "A/C clutch not engaging",
+          "Refrigerant leak",
+          "A/C works intermittently"
+        ],
+        "affectedSystems": [
+          "Electrical"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 500,
+        "estimatedCostHigh": 1400,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2015/HYUNDAI/SONATA",
+            "type": "nhtsa",
+            "title": "NHTSA Complaint #11321310 - 2015 Hyundai Sonata A/C stopped blowing cold air / compressor concern"
+          },
+          {
+            "url": "",
+            "type": "tsb",
+            "title": "Hyundai TSB 19-HA-006H: Air Conditioning System Diagnosis and Refrigerant Service"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Use quality replacement part",
+            "upvotes": 0,
+            "partBrand": "Use",
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20Sonata%20Use%20quality%20replacement%20part&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Consider OEM parts for critical components like sensors and electrical parts - aftermarket can be unreliable",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Get a proper diagnosis before replacing parts - similar symptoms can have different causes",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 720,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2024-02-19",
+        "reviewedOn": "2026-02-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-sonata-battery-drain-2015",
+      "model": "Sonata",
+      "action": "keep_published_pending_source",
+      "reason": "The claimed 20-BE-003H citation is a tail-lamp harness ordering bulletin, not a Blue Link battery-discharge record, and one generic complaint does not establish the combined module/smart-key narrative. The row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; secondary, partial, false-citation or different-identity evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-record-citation-mismatch",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2020/MC-10170885-0001.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "The cited 20-BE-003H number is a 2012-2014 Sonata rear-combination-lamp harness ordering bulletin, not a Blue Link or parasitic-battery-drain bulletin."
+        }
+      ],
+      "beforeSha256": "1b6f73cbee8fbb8f7fa265d1e918c9eee8aeef33d3f116f7d0ac6c091fdaeec9",
+      "proposalSha256": "1b6f73cbee8fbb8f7fa265d1e918c9eee8aeef33d3f116f7d0ac6c091fdaeec9",
+      "before": {
+        "make": "Hyundai",
+        "model": "Sonata",
+        "years": [
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Parasitic Battery Drain",
+        "description": "Some Sonata owners experience unexplained battery drain, resulting in a dead battery after sitting for several days. Various electronic modules may not go to sleep properly. The smart key system can also contribute to drain.",
+        "solution": "Have dealer perform parasitic draw test to identify culprit. Common causes include smart key module, BCM, or telematics. Ensure latest software updates installed. Use battery maintainer for vehicles that sit.",
+        "severity": "low",
+        "confidence": "medium",
+        "symptoms": [
+          "Dead battery after sitting",
+          "Battery won't hold charge",
+          "Need frequent jump starts",
+          "Key fob battery dies quickly",
+          "Electronics act erratically"
+        ],
+        "affectedSystems": [
+          "Electrical"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 100,
+        "estimatedCostHigh": 500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "",
+            "type": "tsb",
+            "title": "TSB 20-BE-003H: Battery Discharge Due to Blue Link / Telematics Unit Logic Improvement (Certain Hyundai Models)"
+          },
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2020/HYUNDAI/SONATA/4%252520DR/FWD#complaints",
+            "type": "nhtsa",
+            "title": "NHTSA Complaint #11373048"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Get a proper diagnosis before replacing parts - similar symptoms can have different causes",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Search Hyundai Sonata forums and owner groups for real-world experiences and DIY guides",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Get multiple quotes from independent mechanics - dealer prices can be 2-3x higher for the same repair",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "High-performance AGM battery with excellent cold cranking amps and deep cycle capability",
+            "partName": "RedTop AGM Battery",
+            "partBrand": "Optima",
+            "affiliateUrl": "https://www.amazon.com/s?k=Optima%20RedTop%20AGM%20Battery%20Hyundai%20Sonata&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "OEM-quality replacement battery with reliable performance",
+            "partName": "Professional AGM Battery",
+            "partBrand": "ACDelco",
+            "affiliateUrl": "https://www.amazon.com/s?k=ACDelco%20Professional%20AGM%20Battery%20Hyundai%20Sonata&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Automatic battery maintainer to prevent parasitic drain issues during storage",
+            "partName": "Junior 12V Battery Charger Maintainer",
+            "partBrand": "Battery Tender",
+            "affiliateUrl": "https://www.amazon.com/s?k=Battery%20Tender%20Junior%2012V%20Battery%20Charger%20Maintainer%20Hyundai%20Sonata&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Automotive relay replacement set for common relay failures",
+            "partName": "Automotive Relay 5-Pin 12V",
+            "partBrand": "Bosch",
+            "affiliateUrl": "https://www.amazon.com/s?k=Bosch%20Automotive%20Relay%205-Pin%2012V%20Hyundai%20Sonata&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Digital multimeter for diagnosing fuse, relay, and module electrical faults",
+            "partName": "Digital Multimeter",
+            "partBrand": "Innova",
+            "affiliateUrl": "https://www.amazon.com/s?k=Innova%20Digital%20Multimeter%20Hyundai%20Sonata&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 420,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2024-02-19",
+        "reviewedOn": "2026-02-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Sonata",
+        "years": [
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Parasitic Battery Drain",
+        "description": "Some Sonata owners experience unexplained battery drain, resulting in a dead battery after sitting for several days. Various electronic modules may not go to sleep properly. The smart key system can also contribute to drain.",
+        "solution": "Have dealer perform parasitic draw test to identify culprit. Common causes include smart key module, BCM, or telematics. Ensure latest software updates installed. Use battery maintainer for vehicles that sit.",
+        "severity": "low",
+        "confidence": "medium",
+        "symptoms": [
+          "Dead battery after sitting",
+          "Battery won't hold charge",
+          "Need frequent jump starts",
+          "Key fob battery dies quickly",
+          "Electronics act erratically"
+        ],
+        "affectedSystems": [
+          "Electrical"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 100,
+        "estimatedCostHigh": 500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "",
+            "type": "tsb",
+            "title": "TSB 20-BE-003H: Battery Discharge Due to Blue Link / Telematics Unit Logic Improvement (Certain Hyundai Models)"
+          },
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2020/HYUNDAI/SONATA/4%252520DR/FWD#complaints",
+            "type": "nhtsa",
+            "title": "NHTSA Complaint #11373048"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Get a proper diagnosis before replacing parts - similar symptoms can have different causes",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Search Hyundai Sonata forums and owner groups for real-world experiences and DIY guides",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Get multiple quotes from independent mechanics - dealer prices can be 2-3x higher for the same repair",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "High-performance AGM battery with excellent cold cranking amps and deep cycle capability",
+            "partName": "RedTop AGM Battery",
+            "partBrand": "Optima",
+            "affiliateUrl": "https://www.amazon.com/s?k=Optima%20RedTop%20AGM%20Battery%20Hyundai%20Sonata&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "OEM-quality replacement battery with reliable performance",
+            "partName": "Professional AGM Battery",
+            "partBrand": "ACDelco",
+            "affiliateUrl": "https://www.amazon.com/s?k=ACDelco%20Professional%20AGM%20Battery%20Hyundai%20Sonata&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Automatic battery maintainer to prevent parasitic drain issues during storage",
+            "partName": "Junior 12V Battery Charger Maintainer",
+            "partBrand": "Battery Tender",
+            "affiliateUrl": "https://www.amazon.com/s?k=Battery%20Tender%20Junior%2012V%20Battery%20Charger%20Maintainer%20Hyundai%20Sonata&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Automotive relay replacement set for common relay failures",
+            "partName": "Automotive Relay 5-Pin 12V",
+            "partBrand": "Bosch",
+            "affiliateUrl": "https://www.amazon.com/s?k=Bosch%20Automotive%20Relay%205-Pin%2012V%20Hyundai%20Sonata&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Digital multimeter for diagnosing fuse, relay, and module electrical faults",
+            "partName": "Digital Multimeter",
+            "partBrand": "Innova",
+            "affiliateUrl": "https://www.amazon.com/s?k=Innova%20Digital%20Multimeter%20Hyundai%20Sonata&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 420,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2024-02-19",
+        "reviewedOn": "2026-02-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-sonata-dct-shudder-2015",
+      "model": "Sonata",
+      "action": "keep_published_pending_source",
+      "reason": "The claimed 20-AT-015H citation concerns automatic-transaxle oil-temperature-sensor DTCs on other listed models, not Sonata DCT judder. A generic complaint cannot establish the combined design-characteristic, software, actuator and clutch-pack narrative, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; secondary, partial, false-citation or different-identity evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-record-citation-mismatch",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2020/MC-10174800-0001.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "The cited 20-AT-015H number covers automatic-transaxle oil-temperature-sensor DTCs on other listed models; it does not list Sonata or establish DCT judder."
+        }
+      ],
+      "beforeSha256": "8dc9bc1a0c4e78365365a3b158d7ed8310166941d7d9a6d081853560e315e9f3",
+      "proposalSha256": "8dc9bc1a0c4e78365365a3b158d7ed8310166941d7d9a6d081853560e315e9f3",
+      "before": {
+        "make": "Hyundai",
+        "model": "Sonata",
+        "years": [
+          2015,
+          2016,
+          2017,
+          2018,
+          2019
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "transmission",
+        "title": "Dual-Clutch Transmission (DCT) Shudder/Hesitation",
+        "description": "Sonatas equipped with the dual-clutch transmission can experience shuddering, hesitation, and jerky engagement at low speeds. The DCT can feel rough in stop-and-go traffic. This is a characteristic of the dry-clutch DCT design.",
+        "solution": "Have transmission software updated to latest calibration. DCT clutch actuator replacement may help in severe cases. Keep transmission cool - avoid heavy traffic in hot weather. Some owners have had clutch packs replaced.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Shudder at low speeds",
+          "Hesitation from stop",
+          "Jerky engagement",
+          "Rough shifting in traffic",
+          "Clunking when shifting"
+        ],
+        "affectedSystems": [
+          "Transmission"
+        ],
+        "dtcCodes": [
+          "P0700",
+          "P0730",
+          "P0741",
+          "P0920"
+        ],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 2500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "",
+            "type": "tsb",
+            "title": "TSB 20-AT-015H: D7UF1/D7GF1 Double Clutch Transmission Judder/Shudder Inspection Procedure"
+          },
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2016/HYUNDAI/SONATA",
+            "type": "nhtsa",
+            "title": "NHTSA Complaint #11371217"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Get a proper diagnosis before replacing parts - similar symptoms can have different causes",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Search Hyundai Sonata forums and owner groups for real-world experiences and DIY guides",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Get multiple quotes from independent mechanics - dealer prices can be 2-3x higher for the same repair",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "Transmission flush kit for complete fluid exchange to address shudder",
+            "partName": "Transmission Flush Kit",
+            "partBrand": "Liqui Moly",
+            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20Sonata%20transmission%20flush%20kit&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Full synthetic ATF designed to reduce shudder in automatic transmissions",
+            "partName": "MaxLife ATF Full Synthetic",
+            "partBrand": "Valvoline",
+            "affiliateUrl": "https://www.amazon.com/s?k=Valvoline%20MaxLife%20ATF%20full%20synthetic%20transmission%20fluid&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 1100,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2024-02-19",
+        "reviewedOn": "2026-02-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "hyundai-tucson-dct-shudder-2019"
+        ]
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Sonata",
+        "years": [
+          2015,
+          2016,
+          2017,
+          2018,
+          2019
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "transmission",
+        "title": "Dual-Clutch Transmission (DCT) Shudder/Hesitation",
+        "description": "Sonatas equipped with the dual-clutch transmission can experience shuddering, hesitation, and jerky engagement at low speeds. The DCT can feel rough in stop-and-go traffic. This is a characteristic of the dry-clutch DCT design.",
+        "solution": "Have transmission software updated to latest calibration. DCT clutch actuator replacement may help in severe cases. Keep transmission cool - avoid heavy traffic in hot weather. Some owners have had clutch packs replaced.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Shudder at low speeds",
+          "Hesitation from stop",
+          "Jerky engagement",
+          "Rough shifting in traffic",
+          "Clunking when shifting"
+        ],
+        "affectedSystems": [
+          "Transmission"
+        ],
+        "dtcCodes": [
+          "P0700",
+          "P0730",
+          "P0741",
+          "P0920"
+        ],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 2500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "",
+            "type": "tsb",
+            "title": "TSB 20-AT-015H: D7UF1/D7GF1 Double Clutch Transmission Judder/Shudder Inspection Procedure"
+          },
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2016/HYUNDAI/SONATA",
+            "type": "nhtsa",
+            "title": "NHTSA Complaint #11371217"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Get a proper diagnosis before replacing parts - similar symptoms can have different causes",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Search Hyundai Sonata forums and owner groups for real-world experiences and DIY guides",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Get multiple quotes from independent mechanics - dealer prices can be 2-3x higher for the same repair",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "Transmission flush kit for complete fluid exchange to address shudder",
+            "partName": "Transmission Flush Kit",
+            "partBrand": "Liqui Moly",
+            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20Sonata%20transmission%20flush%20kit&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Full synthetic ATF designed to reduce shudder in automatic transmissions",
+            "partName": "MaxLife ATF Full Synthetic",
+            "partBrand": "Valvoline",
+            "affiliateUrl": "https://www.amazon.com/s?k=Valvoline%20MaxLife%20ATF%20full%20synthetic%20transmission%20fluid&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 1100,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2024-02-19",
+        "reviewedOn": "2026-02-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "hyundai-tucson-dct-shudder-2019"
+        ]
+      }
+    },
+    {
+      "id": "hyundai-sonata-front-radar-forward-2022",
+      "model": "Sonata",
+      "action": "keep_published_pending_source",
+      "reason": "A generic NHTSA vehicle page does not establish one Hyundai-defined radar sensor, bracket, water-intrusion, non-OEM-part or calibration defect across 2022-2025 vehicles. The row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; secondary, partial, false-citation or different-identity evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "386f25c45349a9ea2eb73300b1beb5e6c2ec7737c81b82948b1c6b99e99632fb",
+      "proposalSha256": "386f25c45349a9ea2eb73300b1beb5e6c2ec7737c81b82948b1c6b99e99632fb",
+      "before": {
+        "make": "Hyundai",
+        "model": "Sonata",
+        "years": [
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "safety",
+        "title": "Front Radar / Forward Collision-Avoidance Warning Disabled by Sensor or Calibration Faults",
+        "description": "Owners have reported the Forward Safety system, Smart Cruise Control, and related ADAS features becoming unavailable with warning messages such as front radar blocked or forward safety system disabled. In some cases the problem appears after minor front-end work, bumper cover replacement, windshield service, or without obvious damage, pointing to radar alignment, sensor contamination, bracket movement, or module faults. This is well documented through owner complaints and Hyundai service information covering ADAS inspection and calibration procedures.",
+        "solution": "Inspect the front radar area for impact damage, loose mounting, water intrusion, debris, or non-OEM bumper/grille parts affecting radar transmission. Perform a full scan for ADAS faults and complete static/dynamic calibration per Hyundai procedure; replace the radar sensor or bracket if alignment cannot be achieved or internal faults are stored. After repairs, verify operation of FCA, SCC, and lane/driver-assist functions on a road test.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Forward Safety system warning",
+          "front radar blocked message",
+          "smart cruise control unavailable",
+          "collision warning system disabled",
+          "intermittent ADAS warnings",
+          "warning chimes on startup"
+        ],
+        "affectedSystems": [
+          "forward collision avoidance assist",
+          "smart cruise control",
+          "front radar sensor",
+          "ADAS control modules"
+        ],
+        "dtcCodes": [
+          "manufacturer-specific FCA/SCC radar alignment or communication codes"
+        ],
+        "estimatedCostLow": 250,
+        "estimatedCostHigh": 2200,
+        "typicalMileageLow": 0,
+        "typicalMileageHigh": 50000,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2023/HYUNDAI/SONATA",
+            "type": "nhtsa",
+            "title": "NHTSA complaints for 2022-2025 Hyundai Sonata involving Forward Safety / radar warnings and disabled driver-assist features"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "After any bumper, grille, or front-end repair, insist on documented ADAS calibration rather than assuming the radar will self-correct.",
+            "upvotes": 0,
+            "affiliateUrl": "https://www.amazon.com/s?k=ADAS%20radar%20calibration%20target%20service&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Keep the radar cover and grille area clean and free of heavy wax, ice, or plate brackets that can interfere with the sensor.",
+            "upvotes": 0,
+            "affiliateUrl": "https://www.amazon.com/s?k=automotive%20plastic-safe%20sensor%20cleaner&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "hyundai-veloster-forward-collision-avoidance-driver-2019"
+        ]
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Sonata",
+        "years": [
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "safety",
+        "title": "Front Radar / Forward Collision-Avoidance Warning Disabled by Sensor or Calibration Faults",
+        "description": "Owners have reported the Forward Safety system, Smart Cruise Control, and related ADAS features becoming unavailable with warning messages such as front radar blocked or forward safety system disabled. In some cases the problem appears after minor front-end work, bumper cover replacement, windshield service, or without obvious damage, pointing to radar alignment, sensor contamination, bracket movement, or module faults. This is well documented through owner complaints and Hyundai service information covering ADAS inspection and calibration procedures.",
+        "solution": "Inspect the front radar area for impact damage, loose mounting, water intrusion, debris, or non-OEM bumper/grille parts affecting radar transmission. Perform a full scan for ADAS faults and complete static/dynamic calibration per Hyundai procedure; replace the radar sensor or bracket if alignment cannot be achieved or internal faults are stored. After repairs, verify operation of FCA, SCC, and lane/driver-assist functions on a road test.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Forward Safety system warning",
+          "front radar blocked message",
+          "smart cruise control unavailable",
+          "collision warning system disabled",
+          "intermittent ADAS warnings",
+          "warning chimes on startup"
+        ],
+        "affectedSystems": [
+          "forward collision avoidance assist",
+          "smart cruise control",
+          "front radar sensor",
+          "ADAS control modules"
+        ],
+        "dtcCodes": [
+          "manufacturer-specific FCA/SCC radar alignment or communication codes"
+        ],
+        "estimatedCostLow": 250,
+        "estimatedCostHigh": 2200,
+        "typicalMileageLow": 0,
+        "typicalMileageHigh": 50000,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2023/HYUNDAI/SONATA",
+            "type": "nhtsa",
+            "title": "NHTSA complaints for 2022-2025 Hyundai Sonata involving Forward Safety / radar warnings and disabled driver-assist features"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "After any bumper, grille, or front-end repair, insist on documented ADAS calibration rather than assuming the radar will self-correct.",
+            "upvotes": 0,
+            "affiliateUrl": "https://www.amazon.com/s?k=ADAS%20radar%20calibration%20target%20service&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Keep the radar cover and grille area clean and free of heavy wax, ice, or plate brackets that can interfere with the sensor.",
+            "upvotes": 0,
+            "affiliateUrl": "https://www.amazon.com/s?k=automotive%20plastic-safe%20sensor%20cleaner&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "hyundai-veloster-forward-collision-avoidance-driver-2019"
+        ]
+      }
+    },
+    {
+      "id": "hyundai-sonata-fuel-injector-failure-causing-2022",
+      "model": "Sonata",
+      "action": "rewrite_same_identity",
+      "reason": "Kept the indexed fuel-injector/misfire identity, replaced generic complaints with exact Hyundai TSB 25-FL-001H, narrowed the scope to its 2021-2023 2.5-liter non-turbo Sonata populations, and removed speculative testing and commerce claims.",
+      "identityRule": "The same indexed component and failure outcome stay on the existing ID, title and category; only facts within the exact official record remain.",
+      "commerceDecision": "no-commerce",
+      "changedFields": [
+        "years",
+        "engines",
+        "description",
+        "solution",
+        "confidence",
+        "symptoms",
+        "affectedSystems",
+        "dtcCodes",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "typicalMileageLow",
+        "typicalMileageHigh",
+        "citations",
+        "communityRecommendations",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
+      "evidence": [
+        {
+          "kind": "official-record-specific-tsb",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2025/MC-11012819-0001.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "Hyundai TSB 25-FL-001H - GDI Injector Replacement Due to Misfire DTC(s) supports the proposed same-identity statements."
+        }
+      ],
+      "beforeSha256": "d8662990d1ca13936c395456dbd8c1b90e8743b7d500665455186a7bf035f302",
+      "proposalSha256": "541bc7276344baa6d7612f2a588613765eb48dca0b29ff97391d3e958fb30ada",
+      "before": {
+        "make": "Hyundai",
+        "model": "Sonata",
+        "years": [
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [
+          "2.5L Smartstream I4",
+          "2.5L Turbo Smartstream I4"
+        ],
+        "category": "fuel",
+        "title": "Fuel Injector Failure Causing Misfire, Rough Running, and Check Engine Light",
+        "description": "Multiple owners of DN8-generation Sonata models report individual direct-injection fuel injectors failing, leading to cylinder-specific misfires, rough idle, hesitation, and flashing or steady MIL illumination. Reports are concentrated on the 2.5L Smartstream engine family and often involve one injector failing first, with some owners later replacing additional injectors. The issue is documented in owner complaints and forum discussions describing injector replacement as the corrective action.",
+        "solution": "Diagnose with a scan tool for cylinder-specific misfire and injector circuit/performance faults, then confirm by swap-testing, balance testing, or oscilloscope/current-ramp analysis. Hyundai dealers typically replace the failed injector and clear adaptations; if contamination is suspected, inspect fuel quality and rail/injector seals. If multiple injectors show abnormal flow or repeated failures occur, replacing the full set may reduce repeat visits.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "check engine light",
+          "flashing MIL under load",
+          "rough idle",
+          "engine shaking",
+          "hesitation on acceleration",
+          "reduced power",
+          "poor fuel economy"
+        ],
+        "affectedSystems": [
+          "fuel injection system",
+          "engine management",
+          "ignition/misfire monitoring",
+          "emissions system"
+        ],
+        "dtcCodes": [
+          "P0300",
+          "P0301",
+          "P0302",
+          "P0303",
+          "P0304",
+          "P02xx injector-related codes"
+        ],
+        "estimatedCostLow": 350,
+        "estimatedCostHigh": 1400,
+        "typicalMileageLow": 5000,
+        "typicalMileageHigh": 60000,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2022/HYUNDAI/SONATA",
+            "type": "nhtsa",
+            "title": "NHTSA Vehicle Owner Questionnaires and complaints for 2022-2024 Hyundai Sonata describing misfire/injector replacement"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Scan for pending misfire counts before the MIL becomes constant; many owners caught a weak injector early with a basic OBD-II scanner.",
+            "upvotes": 0,
+            "affiliateUrl": "https://www.amazon.com/s?k=OBD2%20scanner%20live%20data%20misfire%20monitor&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "If one injector fails on a higher-mileage car, ask the shop to compare fuel trims and injector balance on the remaining cylinders before replacing only one.",
+            "upvotes": 0,
+            "affiliateUrl": "https://www.amazon.com/s?k=fuel%20injector%20balance%20test%20kit%20GDI&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Sonata",
+        "years": [
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "fuel",
+        "title": "Fuel Injector Failure Causing Misfire, Rough Running, and Check Engine Light",
+        "description": "Hyundai TSB 25-FL-001H covers specified production ranges of model-year 2021-2023 Sonata vehicles equipped with the 2.5-liter GDI Theta III non-turbo engine. Some affected vehicles may store one or more misfire DTCs due to GDI injectors leaking internally; the bulletin says internal filter breakage in an injector may cause the leak.",
+        "solution": "Confirm that the vehicle falls within the bulletin's production range and has one of the listed misfire DTCs. For an applicable vehicle, Hyundai directs technicians to replace all four GDI injectors using the specified kit. If the listed DTCs are absent or the vehicle is outside the range, the bulletin says to continue normal diagnosis instead.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Misfire diagnostic trouble code stored",
+          "Check Engine warning-light illumination"
+        ],
+        "affectedSystems": [
+          "2.5-liter non-turbo GDI fuel injectors"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "Hyundai TSB 25-FL-001H - GDI Injector Replacement Due to Misfire DTC(s)",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2025/MC-11012819-0001.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Kept the indexed fuel-injector/misfire identity, replaced generic complaints with exact Hyundai TSB 25-FL-001H, narrowed the scope to its 2021-2023 2.5-liter non-turbo Sonata populations, and removed speculative testing and commerce claims.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-sonata-infotainment-2015",
+      "model": "Sonata",
+      "action": "keep_published_pending_source",
+      "reason": "A generic complaint page and one owner discussion do not establish one infotainment-freeze defect, broad 2015-2021 scope, update path or replacement requirement. The row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; secondary, partial, false-citation or different-identity evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "6e4841ed5028f61b53b28f02aa837c46927bf03cc64c3b8e2b91fcfe1fc09e88",
+      "proposalSha256": "6e4841ed5028f61b53b28f02aa837c46927bf03cc64c3b8e2b91fcfe1fc09e88",
+      "before": {
+        "make": "Hyundai",
+        "model": "Sonata",
+        "years": [
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Infotainment System Freezing/Issues",
+        "description": "The infotainment system can freeze, become unresponsive, or experience connectivity issues. Bluetooth pairing problems, navigation crashes, and touchscreen lag are common complaints.",
+        "solution": "Update infotainment software. Perform system reset. Delete paired Bluetooth devices and re-pair. If persistent, head unit may need replacement. Check for Hyundai service campaigns.",
+        "severity": "low",
+        "confidence": "high",
+        "symptoms": [
+          "Touchscreen freezes",
+          "Bluetooth won't connect",
+          "Navigation crashes",
+          "Slow response to inputs",
+          "Random reboots"
+        ],
+        "affectedSystems": [
+          "Electrical"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 800,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2015/HYUNDAI/SONATA#complaints",
+            "type": "nhtsa",
+            "title": "NHTSA Complaints for 2015 Hyundai Sonata - Infotainment System Issues"
+          },
+          {
+            "url": "https://www.reddit.com/r/Hyundai/comments/8z7f5k/2015_sonata_infotainment_freezing_anyone_else/",
+            "type": "forum",
+            "title": "Reddit r/Hyundai Thread: 2015 Sonata Infotainment Freezing Issues"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Get a proper diagnosis before replacing parts - similar symptoms can have different causes",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Search Hyundai Sonata forums and owner groups for real-world experiences and DIY guides",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Get multiple quotes from independent mechanics - dealer prices can be 2-3x higher for the same repair",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "Professional OBD-II diagnostic scanner for reading infotainment and body module codes",
+            "partName": "Bluetooth Pro OBD2 Scan Tool",
+            "partBrand": "BlueDriver",
+            "affiliateUrl": "https://www.amazon.com/s?k=BlueDriver%20Bluetooth%20Pro%20OBD2%20Scan%20Tool%20Hyundai%20Sonata&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 520,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2024-02-19",
+        "reviewedOn": "2026-02-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Sonata",
+        "years": [
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Infotainment System Freezing/Issues",
+        "description": "The infotainment system can freeze, become unresponsive, or experience connectivity issues. Bluetooth pairing problems, navigation crashes, and touchscreen lag are common complaints.",
+        "solution": "Update infotainment software. Perform system reset. Delete paired Bluetooth devices and re-pair. If persistent, head unit may need replacement. Check for Hyundai service campaigns.",
+        "severity": "low",
+        "confidence": "high",
+        "symptoms": [
+          "Touchscreen freezes",
+          "Bluetooth won't connect",
+          "Navigation crashes",
+          "Slow response to inputs",
+          "Random reboots"
+        ],
+        "affectedSystems": [
+          "Electrical"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 800,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2015/HYUNDAI/SONATA#complaints",
+            "type": "nhtsa",
+            "title": "NHTSA Complaints for 2015 Hyundai Sonata - Infotainment System Issues"
+          },
+          {
+            "url": "https://www.reddit.com/r/Hyundai/comments/8z7f5k/2015_sonata_infotainment_freezing_anyone_else/",
+            "type": "forum",
+            "title": "Reddit r/Hyundai Thread: 2015 Sonata Infotainment Freezing Issues"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Get a proper diagnosis before replacing parts - similar symptoms can have different causes",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Search Hyundai Sonata forums and owner groups for real-world experiences and DIY guides",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Get multiple quotes from independent mechanics - dealer prices can be 2-3x higher for the same repair",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "Professional OBD-II diagnostic scanner for reading infotainment and body module codes",
+            "partName": "Bluetooth Pro OBD2 Scan Tool",
+            "partBrand": "BlueDriver",
+            "affiliateUrl": "https://www.amazon.com/s?k=BlueDriver%20Bluetooth%20Pro%20OBD2%20Scan%20Tool%20Hyundai%20Sonata&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 520,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2024-02-19",
+        "reviewedOn": "2026-02-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-sonata-mdps-electronic-power-steering-sudden-assist-loss-steering-l",
+      "model": "Sonata",
+      "action": "keep_published_pending_source",
+      "reason": "Owner discussions do not establish the asserted 2015-2017 component causes or warranty terms. Recall 16V-190 applies to certain 2011 vehicles and explicitly says steering remains controllable in manual mode, so it cannot replace this separate lockup title. The row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; secondary, partial, false-citation or different-identity evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "3c2f0519670179aa5d05f9e04b743c35e35f1c03fd0cda729794ef793ed70e56",
+      "proposalSha256": "3c2f0519670179aa5d05f9e04b743c35e35f1c03fd0cda729794ef793ed70e56",
+      "before": {
+        "make": "Hyundai",
+        "model": "Sonata",
+        "years": [
+          2015,
+          2016,
+          2017
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "steering",
+        "title": "MDPS / Electronic Power Steering (EPS) sudden assist loss and steering lockup",
+        "description": "The Motor-Driven Power Steering (MDPS) unit can fail, illuminating the EPS warning light and causing sudden loss of power assist or a steering wheel that becomes very tight/hard to turn - sometimes during low-speed maneuvers (parking, tight turns) and sometimes at highway speed (~35 mph). Owners report having to stop, shift to park, and restart the engine to clear the light, and that the wheel can briefly 'lock' or require very high effort. Root causes traced to the MDPS module/motor, wiring-harness connections, or the steering-angle sensor. Hyundai issued a warranty extension covering the MDPS/EPS unit for EPS-warning-light illumination on 2016-2017 model-year vehicles from 5yr/60,000 mi to 15yr/150,000 mi.",
+        "solution": "Scan for MDPS-related codes and inspect the wiring harness/connectors and steering-angle sensor before condemning the unit; repairing a connection sometimes resolves it. A failed MDPS module is replaced. For 2016-2017 vehicles the MDPS/EPS unit is covered under the extended warranty (15yr/150,000 mi) when the EPS light illuminates - have it documented and repaired under that coverage.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "EPS / MDPS warning light on",
+          "Sudden loss of power steering assist",
+          "Steering wheel very hard to turn or briefly locked",
+          "Loss of assist during tight low-speed turns or at ~35 mph",
+          "Light clears only after restarting the engine"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "C1260",
+          "C1101"
+        ],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 1500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.hyundai-forums.com/threads/electronic-power-steering-failure.110400/",
+            "type": "forum",
+            "title": "Electronic Power Steering Failure - Hyundai Forums"
+          },
+          {
+            "url": "https://www.carcomplaints.com/Hyundai/Sonata/2015/steering/steering.shtml",
+            "type": "forum",
+            "title": "71 Complaints: 2015 Hyundai Sonata Steering Problems - CarComplaints"
+          },
+          {
+            "url": "https://www.hyundai-forums.com/threads/2017-sonata-power-steering-problem.687032/",
+            "type": "forum",
+            "title": "2017 Sonata Power Steering Problem - Hyundai Forums"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-09",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Sonata",
+        "years": [
+          2015,
+          2016,
+          2017
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "steering",
+        "title": "MDPS / Electronic Power Steering (EPS) sudden assist loss and steering lockup",
+        "description": "The Motor-Driven Power Steering (MDPS) unit can fail, illuminating the EPS warning light and causing sudden loss of power assist or a steering wheel that becomes very tight/hard to turn - sometimes during low-speed maneuvers (parking, tight turns) and sometimes at highway speed (~35 mph). Owners report having to stop, shift to park, and restart the engine to clear the light, and that the wheel can briefly 'lock' or require very high effort. Root causes traced to the MDPS module/motor, wiring-harness connections, or the steering-angle sensor. Hyundai issued a warranty extension covering the MDPS/EPS unit for EPS-warning-light illumination on 2016-2017 model-year vehicles from 5yr/60,000 mi to 15yr/150,000 mi.",
+        "solution": "Scan for MDPS-related codes and inspect the wiring harness/connectors and steering-angle sensor before condemning the unit; repairing a connection sometimes resolves it. A failed MDPS module is replaced. For 2016-2017 vehicles the MDPS/EPS unit is covered under the extended warranty (15yr/150,000 mi) when the EPS light illuminates - have it documented and repaired under that coverage.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "EPS / MDPS warning light on",
+          "Sudden loss of power steering assist",
+          "Steering wheel very hard to turn or briefly locked",
+          "Loss of assist during tight low-speed turns or at ~35 mph",
+          "Light clears only after restarting the engine"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "C1260",
+          "C1101"
+        ],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 1500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.hyundai-forums.com/threads/electronic-power-steering-failure.110400/",
+            "type": "forum",
+            "title": "Electronic Power Steering Failure - Hyundai Forums"
+          },
+          {
+            "url": "https://www.carcomplaints.com/Hyundai/Sonata/2015/steering/steering.shtml",
+            "type": "forum",
+            "title": "71 Complaints: 2015 Hyundai Sonata Steering Problems - CarComplaints"
+          },
+          {
+            "url": "https://www.hyundai-forums.com/threads/2017-sonata-power-steering-problem.687032/",
+            "type": "forum",
+            "title": "2017 Sonata Power Steering Problem - Hyundai Forums"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-09",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-sonata-p0011-intake-cam-over-advanced-from-failed-oil-control-valve",
+      "model": "Sonata",
+      "action": "keep_published_pending_source",
+      "reason": "Generic code articles and owner discussions do not establish one Sonata oil-control-valve defect, exact 2007-2019 scope, resistance specification or component-swap diagnostic. The row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; secondary, partial, false-citation or different-identity evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "c65640c85fa8735bea736d32bb1140fcd71baa31c1db1635a27d1618fa4b9c10",
+      "proposalSha256": "c65640c85fa8735bea736d32bb1140fcd71baa31c1db1635a27d1618fa4b9c10",
+      "before": {
+        "make": "Hyundai",
+        "model": "Sonata",
+        "years": [
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019
+        ],
+        "trims": [
+          "GLS",
+          "SE",
+          "Sport",
+          "Limited",
+          "SEL",
+          "Eco"
+        ],
+        "engines": [
+          "2.4L Theta II GDI I4",
+          "2.0L Nu I4",
+          "2.0T Theta II GDI I4"
+        ],
+        "category": "engine",
+        "title": "P0011 — Intake Cam Over-Advanced from Failed Oil Control Valve (CVVT)",
+        "description": "On the Sonata, P0011 (Intake Camshaft Timing Over-Advanced, Bank 1) is set when the CVVT phasing runs further advanced than commanded. The most common Sonata cause is a failed/clogged intake Oil Control Valve (OCV/VVT solenoid) — the CVVT system uses oil pressure metered by the OCV to phase the cam, so a sticking solenoid or contaminated oil passages drive the cam over-advanced. Low oil level, wrong viscosity, or dirty oil commonly cause or worsen it; a displaced timing chain is a more severe possibility. A useful field test is swapping the intake and exhaust OCVs (identical, one bolt each): if the code migrates to P0014, the moved OCV is the faulty part.",
+        "solution": "Verify oil level, condition, and correct viscosity first — top up/change oil if degraded. Test the intake OCV (coil resistance ~6.8-8.0 ohms at 68°F) and swap intake/exhaust OCVs to confirm; replace the failed OCV. Clean the OCV oil-feed screen/passages. If timing components are displaced, inspect and correct the timing chain.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Check engine light",
+          "Rough idle",
+          "Loss of acceleration/power",
+          "Hesitation or stalling at idle",
+          "Reduced fuel economy"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0011"
+        ],
+        "estimatedCostLow": 120,
+        "estimatedCostHigh": 450,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.autocodes.com/p0011_hyundai.html",
+            "type": "article",
+            "title": "Code P0011 Hyundai — 'A' Camshaft Position Timing Over-Advanced Bank 1"
+          },
+          {
+            "url": "https://www.justanswer.com/hyundai/m14pi-2017-hyndai-sonata-sport-mistake-p0011.html",
+            "type": "forum",
+            "title": "2017 Hyundai Sonata P0011 Code and VVT Solenoid Guide"
+          },
+          {
+            "url": "https://www.go-parts.com/garage/obd-p0011-hyundai-sonata-hybrid-2016-2019-2-0l-nu",
+            "type": "article",
+            "title": "P0011 on 2016-2019 Hyundai Sonata Hybrid: Camshaft Over-Advanced Timing"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-08",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Sonata",
+        "years": [
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019
+        ],
+        "trims": [
+          "GLS",
+          "SE",
+          "Sport",
+          "Limited",
+          "SEL",
+          "Eco"
+        ],
+        "engines": [
+          "2.4L Theta II GDI I4",
+          "2.0L Nu I4",
+          "2.0T Theta II GDI I4"
+        ],
+        "category": "engine",
+        "title": "P0011 — Intake Cam Over-Advanced from Failed Oil Control Valve (CVVT)",
+        "description": "On the Sonata, P0011 (Intake Camshaft Timing Over-Advanced, Bank 1) is set when the CVVT phasing runs further advanced than commanded. The most common Sonata cause is a failed/clogged intake Oil Control Valve (OCV/VVT solenoid) — the CVVT system uses oil pressure metered by the OCV to phase the cam, so a sticking solenoid or contaminated oil passages drive the cam over-advanced. Low oil level, wrong viscosity, or dirty oil commonly cause or worsen it; a displaced timing chain is a more severe possibility. A useful field test is swapping the intake and exhaust OCVs (identical, one bolt each): if the code migrates to P0014, the moved OCV is the faulty part.",
+        "solution": "Verify oil level, condition, and correct viscosity first — top up/change oil if degraded. Test the intake OCV (coil resistance ~6.8-8.0 ohms at 68°F) and swap intake/exhaust OCVs to confirm; replace the failed OCV. Clean the OCV oil-feed screen/passages. If timing components are displaced, inspect and correct the timing chain.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Check engine light",
+          "Rough idle",
+          "Loss of acceleration/power",
+          "Hesitation or stalling at idle",
+          "Reduced fuel economy"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0011"
+        ],
+        "estimatedCostLow": 120,
+        "estimatedCostHigh": 450,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.autocodes.com/p0011_hyundai.html",
+            "type": "article",
+            "title": "Code P0011 Hyundai — 'A' Camshaft Position Timing Over-Advanced Bank 1"
+          },
+          {
+            "url": "https://www.justanswer.com/hyundai/m14pi-2017-hyndai-sonata-sport-mistake-p0011.html",
+            "type": "forum",
+            "title": "2017 Hyundai Sonata P0011 Code and VVT Solenoid Guide"
+          },
+          {
+            "url": "https://www.go-parts.com/garage/obd-p0011-hyundai-sonata-hybrid-2016-2019-2-0l-nu",
+            "type": "article",
+            "title": "P0011 on 2016-2019 Hyundai Sonata Hybrid: Camshaft Over-Advanced Timing"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-08",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-sonata-p0016-crank-cam-correlation-fault-from-stretched-timing-chai",
+      "model": "Sonata",
+      "action": "keep_published_pending_source",
+      "reason": "Secondary code articles do not establish that a stretched timing chain is the primary cause of P0016 across the asserted 2010-2015 Theta II population or support the claimed oil-starvation and interference-damage narrative. The row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; secondary, partial, false-citation or different-identity evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "5136c8f24075b2746165aeed606d6765ffe5a6b250dcb438ae7a5a4d73d2ede6",
+      "proposalSha256": "5136c8f24075b2746165aeed606d6765ffe5a6b250dcb438ae7a5a4d73d2ede6",
+      "before": {
+        "make": "Hyundai",
+        "model": "Sonata",
+        "years": [
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015
+        ],
+        "trims": [
+          "GLS",
+          "SE",
+          "Limited"
+        ],
+        "engines": [
+          "2.4L Theta II GDI I4"
+        ],
+        "category": "engine",
+        "title": "P0016 — Crank/Cam Correlation Fault from Stretched Timing Chain (Theta II 2.4L GDI)",
+        "description": "On the 2010-2015 Sonata with the 2.4L Theta II GDI engine, P0016 (Crankshaft/Camshaft Position Correlation, Bank 1 Sensor A) most often signals a stretched timing chain or a worn/failing chain tensioner, letting the intake cam fall out of sync with the crank. Poor oil flow and soot/metal debris in these GDI engines accelerate chain stretch and guide wear — the same oil-starvation environment behind the engine's bearing-failure lawsuit. A faulty intake Oil Control Valve (OCV) can also set it. Left unaddressed, the chain can jump time and cause valve-to-piston contact and severe engine damage.",
+        "solution": "Inspect the timing chain, guides, and tensioner; replace the chain kit (chain, tensioner, guides) if stretched. Verify oil level/quality and correct any oil-consumption problem feeding the wear. Test the intake OCV and replace if faulty. Check for open Theta II recalls/warranty extensions, as related engine repairs may be covered.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "Check engine light",
+          "Rattle/whine from front of engine at startup",
+          "Rough running or misfire",
+          "Loss of power",
+          "Hard starting",
+          "Potential engine damage if ignored"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0016"
+        ],
+        "estimatedCostLow": 500,
+        "estimatedCostHigh": 2000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.go-parts.com/garage/obd-p0016-hyundai-sonata-2010-2015-2-4l-gdi",
+            "type": "article",
+            "title": "P0016 on 2010-2015 Hyundai Sonata 2.4L GDI: Crank-Cam Correlation Causes and Fixes"
+          },
+          {
+            "url": "https://ca.aft-parts.com/blogs/hot/why-do-hyundai-theta-ii-engines-face-timing-chain-issues",
+            "type": "article",
+            "title": "Why Do Hyundai Theta II Engines Face Timing Chain Issues?"
+          },
+          {
+            "url": "https://www.700r4transmissionhq.com/p0016-hyundai-sonata/",
+            "type": "article",
+            "title": "Hyundai Sonata P0016: Crank/Cam Position Correlation – Bank 1 Sensor A"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-08",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Sonata",
+        "years": [
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015
+        ],
+        "trims": [
+          "GLS",
+          "SE",
+          "Limited"
+        ],
+        "engines": [
+          "2.4L Theta II GDI I4"
+        ],
+        "category": "engine",
+        "title": "P0016 — Crank/Cam Correlation Fault from Stretched Timing Chain (Theta II 2.4L GDI)",
+        "description": "On the 2010-2015 Sonata with the 2.4L Theta II GDI engine, P0016 (Crankshaft/Camshaft Position Correlation, Bank 1 Sensor A) most often signals a stretched timing chain or a worn/failing chain tensioner, letting the intake cam fall out of sync with the crank. Poor oil flow and soot/metal debris in these GDI engines accelerate chain stretch and guide wear — the same oil-starvation environment behind the engine's bearing-failure lawsuit. A faulty intake Oil Control Valve (OCV) can also set it. Left unaddressed, the chain can jump time and cause valve-to-piston contact and severe engine damage.",
+        "solution": "Inspect the timing chain, guides, and tensioner; replace the chain kit (chain, tensioner, guides) if stretched. Verify oil level/quality and correct any oil-consumption problem feeding the wear. Test the intake OCV and replace if faulty. Check for open Theta II recalls/warranty extensions, as related engine repairs may be covered.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "Check engine light",
+          "Rattle/whine from front of engine at startup",
+          "Rough running or misfire",
+          "Loss of power",
+          "Hard starting",
+          "Potential engine damage if ignored"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0016"
+        ],
+        "estimatedCostLow": 500,
+        "estimatedCostHigh": 2000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.go-parts.com/garage/obd-p0016-hyundai-sonata-2010-2015-2-4l-gdi",
+            "type": "article",
+            "title": "P0016 on 2010-2015 Hyundai Sonata 2.4L GDI: Crank-Cam Correlation Causes and Fixes"
+          },
+          {
+            "url": "https://ca.aft-parts.com/blogs/hot/why-do-hyundai-theta-ii-engines-face-timing-chain-issues",
+            "type": "article",
+            "title": "Why Do Hyundai Theta II Engines Face Timing Chain Issues?"
+          },
+          {
+            "url": "https://www.700r4transmissionhq.com/p0016-hyundai-sonata/",
+            "type": "article",
+            "title": "Hyundai Sonata P0016: Crank/Cam Position Correlation – Bank 1 Sensor A"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-08",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-sonata-p0128-engine-not-reaching-operating-temp-from-stuck-open-the",
+      "model": "Sonata",
+      "action": "keep_published_pending_source",
+      "reason": "Secondary code articles do not establish one stuck-open thermostat-housing defect, exact 2011-2019 scope, weak-heat symptom or installation procedure. The row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; secondary, partial, false-citation or different-identity evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "e61b94884934137248afb073e2fd174f843898a346dcfe9d82624ea633f66f64",
+      "proposalSha256": "e61b94884934137248afb073e2fd174f843898a346dcfe9d82624ea633f66f64",
+      "before": {
+        "make": "Hyundai",
+        "model": "Sonata",
+        "years": [
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019
+        ],
+        "trims": [
+          "SE",
+          "Sport",
+          "Limited",
+          "SEL",
+          "Eco"
+        ],
+        "engines": [
+          "2.4L Theta II GDI I4",
+          "2.0L Nu I4"
+        ],
+        "category": "cooling",
+        "title": "P0128 — Engine Not Reaching Operating Temp from Stuck-Open Thermostat",
+        "description": "On the Sonata (notably the 2015-2019 2.4L), P0128 sets when the ECM sees the engine failing to reach thermostat regulating temperature within the expected time. The overwhelmingly common cause is a thermostat stuck open — often within the plastic thermostat housing assembly, which becomes brittle and is sold as a unit with the thermostat and seal. The second most likely cause is a faulty engine coolant temperature (ECT) sensor. A tell-tale sign is weak cabin heat, since coolant never fully warms.",
+        "solution": "Confirm the engine is actually running cool (scan-tool ECT vs. gauge). Replace the thermostat / thermostat housing assembly; note the jiggle valve must be oriented at the top so trapped air bleeds out. Removing the battery and air intake box is typically needed for access. If the thermostat is fine, test/replace the ECT sensor. Refill and bleed the cooling system.",
+        "severity": "low",
+        "confidence": "medium",
+        "symptoms": [
+          "Check engine light",
+          "Weak or cold cabin heat",
+          "Temp gauge reads low / slow to warm",
+          "Reduced fuel economy",
+          "Poor cold-engine performance"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0128"
+        ],
+        "estimatedCostLow": 180,
+        "estimatedCostHigh": 450,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.go-parts.com/garage/obd-p0128-hyundai-sonata-2015-2019-2-4l-theta",
+            "type": "article",
+            "title": "P0128 on 2015-2019 Hyundai Sonata 2.4L: Causes and Fixes"
+          },
+          {
+            "url": "https://www.hyundai-forums.com/threads/code-p0128-coolant-temperature-below-thermostat-regulating-temperature.660574/",
+            "type": "forum",
+            "title": "Code P0128 — Coolant Temperature Below Thermostat Regulating Temperature"
+          },
+          {
+            "url": "https://www.700r4transmissionhq.com/p0128-hyundai-sonata/",
+            "type": "article",
+            "title": "P0128 Hyundai Sonata: Meaning, Causes, How to Fix"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-08",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Sonata",
+        "years": [
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019
+        ],
+        "trims": [
+          "SE",
+          "Sport",
+          "Limited",
+          "SEL",
+          "Eco"
+        ],
+        "engines": [
+          "2.4L Theta II GDI I4",
+          "2.0L Nu I4"
+        ],
+        "category": "cooling",
+        "title": "P0128 — Engine Not Reaching Operating Temp from Stuck-Open Thermostat",
+        "description": "On the Sonata (notably the 2015-2019 2.4L), P0128 sets when the ECM sees the engine failing to reach thermostat regulating temperature within the expected time. The overwhelmingly common cause is a thermostat stuck open — often within the plastic thermostat housing assembly, which becomes brittle and is sold as a unit with the thermostat and seal. The second most likely cause is a faulty engine coolant temperature (ECT) sensor. A tell-tale sign is weak cabin heat, since coolant never fully warms.",
+        "solution": "Confirm the engine is actually running cool (scan-tool ECT vs. gauge). Replace the thermostat / thermostat housing assembly; note the jiggle valve must be oriented at the top so trapped air bleeds out. Removing the battery and air intake box is typically needed for access. If the thermostat is fine, test/replace the ECT sensor. Refill and bleed the cooling system.",
+        "severity": "low",
+        "confidence": "medium",
+        "symptoms": [
+          "Check engine light",
+          "Weak or cold cabin heat",
+          "Temp gauge reads low / slow to warm",
+          "Reduced fuel economy",
+          "Poor cold-engine performance"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0128"
+        ],
+        "estimatedCostLow": 180,
+        "estimatedCostHigh": 450,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.go-parts.com/garage/obd-p0128-hyundai-sonata-2015-2019-2-4l-theta",
+            "type": "article",
+            "title": "P0128 on 2015-2019 Hyundai Sonata 2.4L: Causes and Fixes"
+          },
+          {
+            "url": "https://www.hyundai-forums.com/threads/code-p0128-coolant-temperature-below-thermostat-regulating-temperature.660574/",
+            "type": "forum",
+            "title": "Code P0128 — Coolant Temperature Below Thermostat Regulating Temperature"
+          },
+          {
+            "url": "https://www.700r4transmissionhq.com/p0128-hyundai-sonata/",
+            "type": "article",
+            "title": "P0128 Hyundai Sonata: Meaning, Causes, How to Fix"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-08",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-sonata-p0171-bank-1-lean-from-intake-manifold-gasket-vacuum-leak-st",
+      "model": "Sonata",
+      "action": "keep_published_pending_source",
+      "reason": "Secondary articles and an owner discussion do not establish one combined manifold-gasket, purge-valve, MAF and PCV defect across four-cylinder and V6 Sonata vehicles. The row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; secondary, partial, false-citation or different-identity evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "ca1c03d6f4d06a2a37fef24631b0c6e4f5b89f19f3171c617132cf1dbc6b7e2a",
+      "proposalSha256": "ca1c03d6f4d06a2a37fef24631b0c6e4f5b89f19f3171c617132cf1dbc6b7e2a",
+      "before": {
+        "make": "Hyundai",
+        "model": "Sonata",
+        "years": [
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015
+        ],
+        "trims": [
+          "GLS",
+          "SE",
+          "Limited",
+          "GL"
+        ],
+        "engines": [
+          "2.4L Theta/Theta II I4",
+          "3.3L Lambda V6"
+        ],
+        "category": "fuel",
+        "title": "P0171 — Bank 1 Lean from Intake Manifold Gasket Vacuum Leak / Stuck Purge Valve",
+        "description": "On the Hyundai Sonata, P0171 (System Too Lean, Bank 1) is most commonly triggered by unmetered air entering downstream of the MAF sensor. The two dominant Sonata-specific sources are a leaking intake manifold gasket and a canister purge valve that sticks open. Because the MAF never counts this extra air, the ECM under-fuels and long-term fuel trims climb past the lean threshold. A dirty MAF hot-wire element is the third common contributor. On V6 Sonatas the upper intake plenum gasket is a known leak point; on the 2.4L four-cylinder a cracked PCV hose or brittle intake gasket is typical.",
+        "solution": "Perform a smoke test of the intake to pinpoint the leak. Replace the intake manifold/plenum gasket if leaking; replace a stuck-open canister purge (solenoid) valve; clean or replace the MAF sensor; inspect and replace cracked PCV hoses. Clear codes and confirm fuel trims return to near zero after the repair.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Check engine light",
+          "Rough or unstable idle",
+          "Hesitation on acceleration",
+          "Slight loss of power",
+          "Reduced fuel economy",
+          "Occasional lean-related surge"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0171"
+        ],
+        "estimatedCostLow": 90,
+        "estimatedCostHigh": 550,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.700r4transmissionhq.com/p0171-hyundai-sonata/",
+            "type": "article",
+            "title": "Hyundai Sonata P0171: Causes, Diagnosis, + How to Fix"
+          },
+          {
+            "url": "https://www.hyundai-forums.com/threads/2004-sonata-v6-2-7-p0171-p0174.154487/",
+            "type": "forum",
+            "title": "2004 Sonata V6 2.7 P0171/P0174 — Hyundai Forums"
+          },
+          {
+            "url": "https://ricksfreeautorepairadvice.com/top-causes-of-the-p0171-code-and-p0174-code/",
+            "type": "article",
+            "title": "Top Causes of the P0171 and P0174 Codes — Rick's Free Auto Repair Advice"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-08",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Sonata",
+        "years": [
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015
+        ],
+        "trims": [
+          "GLS",
+          "SE",
+          "Limited",
+          "GL"
+        ],
+        "engines": [
+          "2.4L Theta/Theta II I4",
+          "3.3L Lambda V6"
+        ],
+        "category": "fuel",
+        "title": "P0171 — Bank 1 Lean from Intake Manifold Gasket Vacuum Leak / Stuck Purge Valve",
+        "description": "On the Hyundai Sonata, P0171 (System Too Lean, Bank 1) is most commonly triggered by unmetered air entering downstream of the MAF sensor. The two dominant Sonata-specific sources are a leaking intake manifold gasket and a canister purge valve that sticks open. Because the MAF never counts this extra air, the ECM under-fuels and long-term fuel trims climb past the lean threshold. A dirty MAF hot-wire element is the third common contributor. On V6 Sonatas the upper intake plenum gasket is a known leak point; on the 2.4L four-cylinder a cracked PCV hose or brittle intake gasket is typical.",
+        "solution": "Perform a smoke test of the intake to pinpoint the leak. Replace the intake manifold/plenum gasket if leaking; replace a stuck-open canister purge (solenoid) valve; clean or replace the MAF sensor; inspect and replace cracked PCV hoses. Clear codes and confirm fuel trims return to near zero after the repair.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Check engine light",
+          "Rough or unstable idle",
+          "Hesitation on acceleration",
+          "Slight loss of power",
+          "Reduced fuel economy",
+          "Occasional lean-related surge"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0171"
+        ],
+        "estimatedCostLow": 90,
+        "estimatedCostHigh": 550,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.700r4transmissionhq.com/p0171-hyundai-sonata/",
+            "type": "article",
+            "title": "Hyundai Sonata P0171: Causes, Diagnosis, + How to Fix"
+          },
+          {
+            "url": "https://www.hyundai-forums.com/threads/2004-sonata-v6-2-7-p0171-p0174.154487/",
+            "type": "forum",
+            "title": "2004 Sonata V6 2.7 P0171/P0174 — Hyundai Forums"
+          },
+          {
+            "url": "https://ricksfreeautorepairadvice.com/top-causes-of-the-p0171-code-and-p0174-code/",
+            "type": "article",
+            "title": "Top Causes of the P0171 and P0174 Codes — Rick's Free Auto Repair Advice"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-08",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-sonata-p0174-bank-2-lean-from-upper-intake-plenum-gasket-leak",
+      "model": "Sonata",
+      "action": "keep_published_pending_source",
+      "reason": "Generic code articles and an owner discussion do not establish one Sonata V6 upper-plenum-gasket defect, exact 2005-2010 scope or ranked cause set. The row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; secondary, partial, false-citation or different-identity evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "f1035f419d0b1058cd4ca982345b1ad0842cfbef3b8f11220637941748e7021c",
+      "proposalSha256": "f1035f419d0b1058cd4ca982345b1ad0842cfbef3b8f11220637941748e7021c",
+      "before": {
+        "make": "Hyundai",
+        "model": "Sonata",
+        "years": [
+          2005,
+          2006,
+          2007,
+          2008,
+          2009,
+          2010
+        ],
+        "trims": [
+          "GLS",
+          "SE",
+          "Limited"
+        ],
+        "engines": [
+          "2.7L Delta V6",
+          "3.3L Lambda V6"
+        ],
+        "category": "fuel",
+        "title": "P0174 — Bank 2 Lean from Upper Intake Plenum Gasket Leak (V6)",
+        "description": "P0174 (System Too Lean, Bank 2) only applies to the V6 Sonata, since the four-cylinder has a single bank. On the 2.7L Delta (2005) and 3.3L Lambda (2006-2010) V6, this code most often appears alongside P0171 and points to a shared, centrally located vacuum leak — most commonly a failed upper intake manifold (plenum) gasket. When both banks read lean together, the fault is something that affects the whole engine equally: the plenum gasket, a dirty/failing MAF, a cracked PCV hose, or low fuel pressure. A leak isolated to one bank is rarer than the whole-engine plenum leak.",
+        "solution": "Smoke-test the intake to confirm the plenum gasket leak and replace the upper intake manifold gasket. Simultaneously address any common contributors: clean/replace the MAF, replace cracked PCV hoses, and verify fuel pressure. Reset trims and road-test to confirm both bank trims normalize.",
+        "severity": "medium",
+        "confidence": "low",
+        "symptoms": [
+          "Check engine light",
+          "Rough idle",
+          "Hesitation and reduced power",
+          "Poor fuel economy",
+          "Both P0171 and P0174 set together"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0174"
+        ],
+        "estimatedCostLow": 250,
+        "estimatedCostHigh": 650,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.700r4transmissionhq.com/p0174-hyundai-sonata/",
+            "type": "article",
+            "title": "Hyundai Sonata P0174: Meaning, Causes, How to Fix"
+          },
+          {
+            "url": "https://www.700r4transmissionhq.com/hyundai-sonata-p0171-p0174/",
+            "type": "article",
+            "title": "Hyundai Sonata: P0171 and P0174 Diagnosis"
+          },
+          {
+            "url": "https://www.hyundai-forums.com/threads/2004-sonata-v6-2-7-p0171-p0174.154487/",
+            "type": "forum",
+            "title": "2004 Sonata V6 2.7 P0171/P0174 — Hyundai Forums"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-08",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Sonata",
+        "years": [
+          2005,
+          2006,
+          2007,
+          2008,
+          2009,
+          2010
+        ],
+        "trims": [
+          "GLS",
+          "SE",
+          "Limited"
+        ],
+        "engines": [
+          "2.7L Delta V6",
+          "3.3L Lambda V6"
+        ],
+        "category": "fuel",
+        "title": "P0174 — Bank 2 Lean from Upper Intake Plenum Gasket Leak (V6)",
+        "description": "P0174 (System Too Lean, Bank 2) only applies to the V6 Sonata, since the four-cylinder has a single bank. On the 2.7L Delta (2005) and 3.3L Lambda (2006-2010) V6, this code most often appears alongside P0171 and points to a shared, centrally located vacuum leak — most commonly a failed upper intake manifold (plenum) gasket. When both banks read lean together, the fault is something that affects the whole engine equally: the plenum gasket, a dirty/failing MAF, a cracked PCV hose, or low fuel pressure. A leak isolated to one bank is rarer than the whole-engine plenum leak.",
+        "solution": "Smoke-test the intake to confirm the plenum gasket leak and replace the upper intake manifold gasket. Simultaneously address any common contributors: clean/replace the MAF, replace cracked PCV hoses, and verify fuel pressure. Reset trims and road-test to confirm both bank trims normalize.",
+        "severity": "medium",
+        "confidence": "low",
+        "symptoms": [
+          "Check engine light",
+          "Rough idle",
+          "Hesitation and reduced power",
+          "Poor fuel economy",
+          "Both P0171 and P0174 set together"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0174"
+        ],
+        "estimatedCostLow": 250,
+        "estimatedCostHigh": 650,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.700r4transmissionhq.com/p0174-hyundai-sonata/",
+            "type": "article",
+            "title": "Hyundai Sonata P0174: Meaning, Causes, How to Fix"
+          },
+          {
+            "url": "https://www.700r4transmissionhq.com/hyundai-sonata-p0171-p0174/",
+            "type": "article",
+            "title": "Hyundai Sonata: P0171 and P0174 Diagnosis"
+          },
+          {
+            "url": "https://www.hyundai-forums.com/threads/2004-sonata-v6-2-7-p0171-p0174.154487/",
+            "type": "forum",
+            "title": "2004 Sonata V6 2.7 P0171/P0174 — Hyundai Forums"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-08",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-sonata-p0420-bank-1-catalytic-converter-failure-from-theta-ii-2-4l",
+      "model": "Sonata",
+      "action": "keep_published_pending_source",
+      "reason": "Recall 15V-568 establishes connecting-rod-bearing wear and stall, not a P0420 catalytic-converter failure caused by oil consumption. Secondary articles cannot bridge that different component and outcome, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; secondary, partial, false-citation or different-identity evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "a87cb20a05df99262a6a87f3e92321a0a1a09d63a6c5759b5d108b1c7d37c26c",
+      "proposalSha256": "a87cb20a05df99262a6a87f3e92321a0a1a09d63a6c5759b5d108b1c7d37c26c",
+      "before": {
+        "make": "Hyundai",
+        "model": "Sonata",
+        "years": [
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019
+        ],
+        "trims": [
+          "GLS",
+          "SE",
+          "Limited",
+          "Sport",
+          "SEL"
+        ],
+        "engines": [
+          "2.4L Theta II GDI I4"
+        ],
+        "category": "emissions",
+        "title": "P0420 — Bank 1 Catalytic Converter Failure from Theta II 2.4L GDI Oil Consumption",
+        "description": "On the 2011-2019 Sonata with the 2.4L Theta II GDI engine, P0420 (Catalyst Efficiency Below Threshold, Bank 1) is frequently a downstream symptom of the engine's well-documented excessive oil consumption. As worn rod bearings/rings let the engine burn oil, phosphorus and other contaminants coat and eventually melt the catalyst's honeycomb, killing its efficiency and setting P0420. Replacing only the converter without fixing the oil-burning root cause leads to rapid re-failure. This ties directly into Recall 132 (NHTSA 15V-568) for connecting-rod bearing wear and the KSDS software / extended 15yr-150k-mile short-block warranty.",
+        "solution": "First diagnose and correct the underlying oil consumption — check eligibility under Recall 132/KSDS and the extended engine warranty; the short block may be replaced under warranty. Per Hyundai TSB (ECM update for related P0171/P0420 concerns), apply the ECM software update, then replace the failed catalytic converter only after the oil issue is resolved so the new cat does not fail again.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Check engine light",
+          "Reduced fuel economy",
+          "Sluggish acceleration",
+          "Failed emissions test",
+          "Rattle from converter",
+          "Elevated oil consumption / low oil warnings"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0420"
+        ],
+        "estimatedCostLow": 900,
+        "estimatedCostHigh": 2500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.go-parts.com/garage/obd-p0420-hyundai-sonata-2011-2014",
+            "type": "article",
+            "title": "P0420 on 2011-2014 Hyundai Sonata: Catalyst Efficiency Causes & Fixes"
+          },
+          {
+            "url": "https://www.nhtsa.gov/recalls",
+            "type": "recall",
+            "title": "NHTSA 15V568000 — Hyundai Theta II GDI connecting rod bearing (Recall Campaign 132)"
+          },
+          {
+            "url": "https://www.go-parts.com/garage/catalytic-converter-hyundai-sonata-kia-k5-kia-optima-2010-2026",
+            "type": "article",
+            "title": "Hyundai & Kia P0420 Catalytic Converter Guide (Sonata, Optima, Tucson)"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-08",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Sonata",
+        "years": [
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019
+        ],
+        "trims": [
+          "GLS",
+          "SE",
+          "Limited",
+          "Sport",
+          "SEL"
+        ],
+        "engines": [
+          "2.4L Theta II GDI I4"
+        ],
+        "category": "emissions",
+        "title": "P0420 — Bank 1 Catalytic Converter Failure from Theta II 2.4L GDI Oil Consumption",
+        "description": "On the 2011-2019 Sonata with the 2.4L Theta II GDI engine, P0420 (Catalyst Efficiency Below Threshold, Bank 1) is frequently a downstream symptom of the engine's well-documented excessive oil consumption. As worn rod bearings/rings let the engine burn oil, phosphorus and other contaminants coat and eventually melt the catalyst's honeycomb, killing its efficiency and setting P0420. Replacing only the converter without fixing the oil-burning root cause leads to rapid re-failure. This ties directly into Recall 132 (NHTSA 15V-568) for connecting-rod bearing wear and the KSDS software / extended 15yr-150k-mile short-block warranty.",
+        "solution": "First diagnose and correct the underlying oil consumption — check eligibility under Recall 132/KSDS and the extended engine warranty; the short block may be replaced under warranty. Per Hyundai TSB (ECM update for related P0171/P0420 concerns), apply the ECM software update, then replace the failed catalytic converter only after the oil issue is resolved so the new cat does not fail again.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Check engine light",
+          "Reduced fuel economy",
+          "Sluggish acceleration",
+          "Failed emissions test",
+          "Rattle from converter",
+          "Elevated oil consumption / low oil warnings"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0420"
+        ],
+        "estimatedCostLow": 900,
+        "estimatedCostHigh": 2500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.go-parts.com/garage/obd-p0420-hyundai-sonata-2011-2014",
+            "type": "article",
+            "title": "P0420 on 2011-2014 Hyundai Sonata: Catalyst Efficiency Causes & Fixes"
+          },
+          {
+            "url": "https://www.nhtsa.gov/recalls",
+            "type": "recall",
+            "title": "NHTSA 15V568000 — Hyundai Theta II GDI connecting rod bearing (Recall Campaign 132)"
+          },
+          {
+            "url": "https://www.go-parts.com/garage/catalytic-converter-hyundai-sonata-kia-k5-kia-optima-2010-2026",
+            "type": "article",
+            "title": "Hyundai & Kia P0420 Catalytic Converter Guide (Sonata, Optima, Tucson)"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-08",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-sonata-p0430-bank-2-catalytic-converter-efficiency-failure",
+      "model": "Sonata",
+      "action": "keep_published_pending_source",
+      "reason": "Generic diagnostic articles do not establish one Bank 2 converter defect, 2006-2010 Sonata V6 scope, sensor-trace behavior or replacement path. The row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; secondary, partial, false-citation or different-identity evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "028dbb732d82b3dcd6d281a8e08232318b6a0ebfa3e890e0799e30895541be85",
+      "proposalSha256": "028dbb732d82b3dcd6d281a8e08232318b6a0ebfa3e890e0799e30895541be85",
+      "before": {
+        "make": "Hyundai",
+        "model": "Sonata",
+        "years": [
+          2006,
+          2007,
+          2008,
+          2009,
+          2010
+        ],
+        "trims": [
+          "GLS",
+          "SE",
+          "Limited"
+        ],
+        "engines": [
+          "3.3L Lambda V6"
+        ],
+        "category": "emissions",
+        "title": "P0430 — Bank 2 Catalytic Converter Efficiency Failure (V6)",
+        "description": "P0430 (Catalyst Efficiency Below Threshold, Bank 2) applies only to the V6 Sonata, which has two catalyst banks. On the 2006-2010 Sonata 3.3L Lambda V6 the bank 2 warm-up catalytic converter degrades so the downstream O2 sensor tracks the upstream sensor too closely, indicating the cat can no longer store/convert oxygen efficiently. Age, high mileage, or upstream causes (an exhaust leak or a lazy/failing O2 sensor) accelerate it.",
+        "solution": "Verify there is no exhaust leak and that both bank 2 O2 sensors are healthy (a failing rear sensor can mimic P0430). If the converter is confirmed inefficient, replace the bank 2 catalytic converter — replacing the O2 sensor alone sometimes clears it but usually the cat must be replaced.",
+        "severity": "medium",
+        "confidence": "low",
+        "symptoms": [
+          "Check engine light",
+          "Failed emissions/smog test",
+          "Slight loss of fuel economy",
+          "Rotten-egg exhaust smell",
+          "Usually no drivability change"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0430"
+        ],
+        "estimatedCostLow": 500,
+        "estimatedCostHigh": 2500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.autocodes.com/p0430_hyundai.html",
+            "type": "article",
+            "title": "Code P0430 Hyundai — Warm Up Catalyst Efficiency Below Threshold Bank 2"
+          },
+          {
+            "url": "https://www.engine-codes.com/p0430_hyundai.html",
+            "type": "article",
+            "title": "P0430 Hyundai: Code Meaning, Causes, Symptoms, & Tech Notes"
+          },
+          {
+            "url": "https://www.carparts.com/blog/p0430-code-catalyst-system-efficiency-below-threshold-bank-2/",
+            "type": "article",
+            "title": "P0430 Code: Catalyst System Efficiency Below Threshold (Bank 2)"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-08",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Sonata",
+        "years": [
+          2006,
+          2007,
+          2008,
+          2009,
+          2010
+        ],
+        "trims": [
+          "GLS",
+          "SE",
+          "Limited"
+        ],
+        "engines": [
+          "3.3L Lambda V6"
+        ],
+        "category": "emissions",
+        "title": "P0430 — Bank 2 Catalytic Converter Efficiency Failure (V6)",
+        "description": "P0430 (Catalyst Efficiency Below Threshold, Bank 2) applies only to the V6 Sonata, which has two catalyst banks. On the 2006-2010 Sonata 3.3L Lambda V6 the bank 2 warm-up catalytic converter degrades so the downstream O2 sensor tracks the upstream sensor too closely, indicating the cat can no longer store/convert oxygen efficiently. Age, high mileage, or upstream causes (an exhaust leak or a lazy/failing O2 sensor) accelerate it.",
+        "solution": "Verify there is no exhaust leak and that both bank 2 O2 sensors are healthy (a failing rear sensor can mimic P0430). If the converter is confirmed inefficient, replace the bank 2 catalytic converter — replacing the O2 sensor alone sometimes clears it but usually the cat must be replaced.",
+        "severity": "medium",
+        "confidence": "low",
+        "symptoms": [
+          "Check engine light",
+          "Failed emissions/smog test",
+          "Slight loss of fuel economy",
+          "Rotten-egg exhaust smell",
+          "Usually no drivability change"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0430"
+        ],
+        "estimatedCostLow": 500,
+        "estimatedCostHigh": 2500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.autocodes.com/p0430_hyundai.html",
+            "type": "article",
+            "title": "Code P0430 Hyundai — Warm Up Catalyst Efficiency Below Threshold Bank 2"
+          },
+          {
+            "url": "https://www.engine-codes.com/p0430_hyundai.html",
+            "type": "article",
+            "title": "P0430 Hyundai: Code Meaning, Causes, Symptoms, & Tech Notes"
+          },
+          {
+            "url": "https://www.carparts.com/blog/p0430-code-catalyst-system-efficiency-below-threshold-bank-2/",
+            "type": "article",
+            "title": "P0430 Code: Catalyst System Efficiency Below Threshold (Bank 2)"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-08",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-sonata-p0442-small-evap-leak-from-gas-cap-seal-nvld-sensor",
+      "model": "Sonata",
+      "action": "keep_published_pending_source",
+      "reason": "Campaign T6H supports one NVLD salt-contamination mechanism for certain 2011-2015 Sonata Hybrid vehicles, but the indexed title also claims a gas-cap seal mechanism and the row spans 2011-2019. Because the official record only partially matches the identity, the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; secondary, partial, false-citation or different-identity evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-record-partial-identity",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2021/MC-10199095-0001.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "Campaign T6H supports salt-particulate NVLD intermittency and P0442/P0455/P0456 only for certain 2011-2015 Sonata Hybrid vehicles, not the combined gas-cap/NVLD identity or 2011-2019 scope."
+        }
+      ],
+      "beforeSha256": "51ed82261fc6f310e94c80d7c68243aeb66f7be275a68ec34d346711f7f4e74a",
+      "proposalSha256": "51ed82261fc6f310e94c80d7c68243aeb66f7be275a68ec34d346711f7f4e74a",
+      "before": {
+        "make": "Hyundai",
+        "model": "Sonata",
+        "years": [
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019
+        ],
+        "trims": [
+          "Hybrid",
+          "SE",
+          "Limited",
+          "SEL",
+          "Sport"
+        ],
+        "engines": [
+          "2.4L Theta II GDI I4",
+          "2.0L Nu Hybrid I4"
+        ],
+        "category": "emissions",
+        "title": "P0442 — Small EVAP Leak from Gas Cap Seal or NVLD Sensor",
+        "description": "On the Sonata, P0442 (small EVAP leak, ~0.020-0.060 in) most often comes from a simple sealing failure or the Natural Vacuum Leak Detection (NVLD) assembly. The gas cap O-ring hardens/cracks with age, and rust on the filler-neck sealing surface prevents a good seal. Hyundai has acknowledged (TSB 21-01-035H) that salt/marine environments contaminate the NVLD sensor, and Sonata Hybrid (2011-2015) is specifically prone to NVLD-driven small-leak codes in coastal areas. A canister purge valve that seals poorly can also produce a small leak.",
+        "solution": "Start with the cheap items: inspect/replace the gas cap and clean the filler-neck sealing surface with a Scotch-Brite pad. Smoke-test the EVAP system to locate the leak. Replace the NVLD assembly if contaminated/faulty (Hyundai has issued an updated EVAP air-filter kit and NVLD replacement guidance for salt-contaminated units), and replace a leaking purge valve.",
+        "severity": "low",
+        "confidence": "medium",
+        "symptoms": [
+          "Check engine light (no drivability change)",
+          "Occasional faint fuel odor",
+          "Failed emissions readiness monitor"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0442"
+        ],
+        "estimatedCostLow": 20,
+        "estimatedCostHigh": 400,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.go-parts.com/garage/obd-p0442-hyundai-sonata-hybrid-2011-2015",
+            "type": "article",
+            "title": "P0442 on 2011-2015 Hyundai Sonata Hybrid: EVAP Small Leak Causes and Fixes"
+          },
+          {
+            "url": "https://www.carcomplaints.com/Hyundai/Sonata_Hybrid/2013/tsbs/tsb-21-01-035h.shtml",
+            "type": "tsb",
+            "title": "Hyundai TSB 21-01-035H — EVAP DTCs P0442/P0455/P0456 (NVLD salt contamination), Sonata Hybrid"
+          },
+          {
+            "url": "https://obdadvisor.com/codes/p0442/",
+            "type": "article",
+            "title": "P0442: Evaporative Emission System Leak Detected (small leak)"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-08",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Sonata",
+        "years": [
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019
+        ],
+        "trims": [
+          "Hybrid",
+          "SE",
+          "Limited",
+          "SEL",
+          "Sport"
+        ],
+        "engines": [
+          "2.4L Theta II GDI I4",
+          "2.0L Nu Hybrid I4"
+        ],
+        "category": "emissions",
+        "title": "P0442 — Small EVAP Leak from Gas Cap Seal or NVLD Sensor",
+        "description": "On the Sonata, P0442 (small EVAP leak, ~0.020-0.060 in) most often comes from a simple sealing failure or the Natural Vacuum Leak Detection (NVLD) assembly. The gas cap O-ring hardens/cracks with age, and rust on the filler-neck sealing surface prevents a good seal. Hyundai has acknowledged (TSB 21-01-035H) that salt/marine environments contaminate the NVLD sensor, and Sonata Hybrid (2011-2015) is specifically prone to NVLD-driven small-leak codes in coastal areas. A canister purge valve that seals poorly can also produce a small leak.",
+        "solution": "Start with the cheap items: inspect/replace the gas cap and clean the filler-neck sealing surface with a Scotch-Brite pad. Smoke-test the EVAP system to locate the leak. Replace the NVLD assembly if contaminated/faulty (Hyundai has issued an updated EVAP air-filter kit and NVLD replacement guidance for salt-contaminated units), and replace a leaking purge valve.",
+        "severity": "low",
+        "confidence": "medium",
+        "symptoms": [
+          "Check engine light (no drivability change)",
+          "Occasional faint fuel odor",
+          "Failed emissions readiness monitor"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0442"
+        ],
+        "estimatedCostLow": 20,
+        "estimatedCostHigh": 400,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.go-parts.com/garage/obd-p0442-hyundai-sonata-hybrid-2011-2015",
+            "type": "article",
+            "title": "P0442 on 2011-2015 Hyundai Sonata Hybrid: EVAP Small Leak Causes and Fixes"
+          },
+          {
+            "url": "https://www.carcomplaints.com/Hyundai/Sonata_Hybrid/2013/tsbs/tsb-21-01-035h.shtml",
+            "type": "tsb",
+            "title": "Hyundai TSB 21-01-035H — EVAP DTCs P0442/P0455/P0456 (NVLD salt contamination), Sonata Hybrid"
+          },
+          {
+            "url": "https://obdadvisor.com/codes/p0442/",
+            "type": "article",
+            "title": "P0442: Evaporative Emission System Leak Detected (small leak)"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-08",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-sonata-p0455-gross-evap-leak-from-loose-failed-gas-cap-stuck-purge",
+      "model": "Sonata",
+      "action": "keep_published_pending_source",
+      "reason": "Campaign T6H supports one NVLD salt-contamination mechanism for certain 2011-2015 Sonata Hybrid vehicles, not the title's loose gas-cap or stuck-purge-valve causes across 2011-2019. The row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; secondary, partial, false-citation or different-identity evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-record-partial-identity",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2021/MC-10199095-0001.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "Campaign T6H supports one NVLD salt-contamination mechanism only for certain 2011-2015 Sonata Hybrid vehicles; it does not establish the title's gas-cap or purge-valve mechanisms across 2011-2019."
+        }
+      ],
+      "beforeSha256": "75262319a13dbf320129a2ee43a79f7eb52ae7349c20ab2678faa991a5e6eb08",
+      "proposalSha256": "75262319a13dbf320129a2ee43a79f7eb52ae7349c20ab2678faa991a5e6eb08",
+      "before": {
+        "make": "Hyundai",
+        "model": "Sonata",
+        "years": [
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019
+        ],
+        "trims": [
+          "Hybrid",
+          "SE",
+          "Limited",
+          "SEL",
+          "Sport"
+        ],
+        "engines": [
+          "2.4L Theta II GDI I4",
+          "2.0L Nu Hybrid I4"
+        ],
+        "category": "emissions",
+        "title": "P0455 — Gross EVAP Leak from Loose/Failed Gas Cap or Stuck Purge Valve",
+        "description": "P0455 (large/gross EVAP leak, ~0.040 in or larger) on the Sonata is most commonly a loose, missing, or failed gas cap, a canister purge valve stuck open (constant EVAP vacuum leak), or a faulty NVLD sensor — the same coastal salt-contamination pattern Hyundai has documented (TSB 21-01-035H) affecting the Sonata/Sonata Hybrid EVAP system. Larger leaks can also come from a cracked EVAP/vent hose or a damaged charcoal canister.",
+        "solution": "Verify the gas cap is tight and its O-ring is intact; replace if degraded. Smoke-test to find the gross leak. Replace a stuck-open canister purge valve or a cracked EVAP line; replace the NVLD assembly if contaminated. Re-run the EVAP monitor to confirm the leak is sealed.",
+        "severity": "low",
+        "confidence": "medium",
+        "symptoms": [
+          "Check engine light",
+          "Strong fuel/gasoline odor near vehicle",
+          "Failed emissions readiness",
+          "Sometimes rough idle if purge valve stuck open"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0455"
+        ],
+        "estimatedCostLow": 20,
+        "estimatedCostHigh": 400,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.go-parts.com/garage/obd-p0455-hyundai-sonata-hybrid-2011-2015",
+            "type": "article",
+            "title": "P0455 on 2011-2015 Hyundai Sonata Hybrid: EVAP Large Leak Causes and Fixes"
+          },
+          {
+            "url": "https://www.autocodes.com/p0455_hyundai.html",
+            "type": "article",
+            "title": "Code P0455 Hyundai — EVAP Emission System Leak Detected Large Leak"
+          },
+          {
+            "url": "https://www.hyundai-forums.com/threads/what-else-can-be-causing-p0455.667940/",
+            "type": "forum",
+            "title": "What else can be causing P0455 — Hyundai Forums"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-08",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Sonata",
+        "years": [
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019
+        ],
+        "trims": [
+          "Hybrid",
+          "SE",
+          "Limited",
+          "SEL",
+          "Sport"
+        ],
+        "engines": [
+          "2.4L Theta II GDI I4",
+          "2.0L Nu Hybrid I4"
+        ],
+        "category": "emissions",
+        "title": "P0455 — Gross EVAP Leak from Loose/Failed Gas Cap or Stuck Purge Valve",
+        "description": "P0455 (large/gross EVAP leak, ~0.040 in or larger) on the Sonata is most commonly a loose, missing, or failed gas cap, a canister purge valve stuck open (constant EVAP vacuum leak), or a faulty NVLD sensor — the same coastal salt-contamination pattern Hyundai has documented (TSB 21-01-035H) affecting the Sonata/Sonata Hybrid EVAP system. Larger leaks can also come from a cracked EVAP/vent hose or a damaged charcoal canister.",
+        "solution": "Verify the gas cap is tight and its O-ring is intact; replace if degraded. Smoke-test to find the gross leak. Replace a stuck-open canister purge valve or a cracked EVAP line; replace the NVLD assembly if contaminated. Re-run the EVAP monitor to confirm the leak is sealed.",
+        "severity": "low",
+        "confidence": "medium",
+        "symptoms": [
+          "Check engine light",
+          "Strong fuel/gasoline odor near vehicle",
+          "Failed emissions readiness",
+          "Sometimes rough idle if purge valve stuck open"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0455"
+        ],
+        "estimatedCostLow": 20,
+        "estimatedCostHigh": 400,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.go-parts.com/garage/obd-p0455-hyundai-sonata-hybrid-2011-2015",
+            "type": "article",
+            "title": "P0455 on 2011-2015 Hyundai Sonata Hybrid: EVAP Large Leak Causes and Fixes"
+          },
+          {
+            "url": "https://www.autocodes.com/p0455_hyundai.html",
+            "type": "article",
+            "title": "Code P0455 Hyundai — EVAP Emission System Leak Detected Large Leak"
+          },
+          {
+            "url": "https://www.hyundai-forums.com/threads/what-else-can-be-causing-p0455.667940/",
+            "type": "forum",
+            "title": "What else can be causing P0455 — Hyundai Forums"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-08",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-sonata-panoramic-sunroof-wind-deflector-detachment-glass-shattering",
+      "model": "Sonata",
+      "action": "keep_published_pending_source",
+      "reason": "Recall 152 supports wind-deflector partial detachment and possible sunroof-panel detachment for certain 2015-2016 vehicles, but it does not establish the separate spontaneous-glass-shattering claim, class settlement or repair-cost narrative combined in this title. The row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; secondary, partial, false-citation or different-identity evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-record-partial-identity",
+          "url": "https://static.nhtsa.gov/odi/rcl/2016/RCRIT-16V726-9804.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "Recall 152 supports wind-deflector partial detachment and resulting movable-panel detachment, but not the title's separate spontaneous-glass-shattering claim or settlement terms."
+        }
+      ],
+      "beforeSha256": "6face3f28a480db9c18ecf5fa4ae6d993f472e6855be9e204871ffefddc5d553",
+      "proposalSha256": "6face3f28a480db9c18ecf5fa4ae6d993f472e6855be9e204871ffefddc5d553",
+      "before": {
+        "make": "Hyundai",
+        "model": "Sonata",
+        "years": [
+          2015,
+          2016
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "body",
+        "title": "Panoramic sunroof wind-deflector detachment / glass shattering",
+        "description": "On Sonatas equipped with the panoramic sunroof, the wind-deflector anchor plate can be insufficiently bonded; if the deflector partially detaches while the roof is open it can interfere with the closing panel and cause the glass sunroof panel to detach from its mounting tabs and fly off the vehicle. Hyundai recalled 62,811 2015-2016 Sonata (incl. Sonata Hybrid) under NHTSA recall 16V-726 (Campaign 152). Separately, Hyundai panoramic sunroofs across 2010-2016 models have a documented tendency to spontaneously shatter (owners describe a gunshot-like sound with glass falling into the cabin); a class-action settlement provided an extended 10-year/120,000-mile warranty for shattered-sunroof repairs.",
+        "solution": "For the detachment defect, dealers apply a revised/stronger bonding to the wind deflector under recall 16V-726 (Campaign 152), free of charge - verify the recall is closed by VIN. For spontaneous glass shattering, repairs may be covered under the 10yr/120,000-mi class-action warranty extension; replacement of the laminated panoramic glass otherwise runs roughly $500-$1,500+ depending on parts and headliner damage.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Sunroof wind deflector rattles or detaches when roof is open",
+          "Sunroof glass panel detaches/flies off the vehicle",
+          "Spontaneous shattering of the panoramic glass with a loud bang",
+          "Broken glass falling into the cabin"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 1500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://repairpal.com/recall/16V726000",
+            "type": "recall",
+            "title": "Sunroof Panel Detaches From Vehicle - Recall 16V726000 - RepairPal"
+          },
+          {
+            "url": "https://www.torquenews.com/3769/hyundai-recalls-62811-sonatas-fix-flying-panoramic-sunroofs",
+            "type": "article",
+            "title": "Hyundai Recalls 62,811 Sonatas To Fix Flying Panoramic Sunroofs - Torque News"
+          },
+          {
+            "url": "https://www.classlawgroup.com/hyundai-exploded-sunroof-lawsuit",
+            "type": "article",
+            "title": "Hyundai Shattered Sunroof Class Action Settlement - ClassLawGroup"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-09",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Sonata",
+        "years": [
+          2015,
+          2016
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "body",
+        "title": "Panoramic sunroof wind-deflector detachment / glass shattering",
+        "description": "On Sonatas equipped with the panoramic sunroof, the wind-deflector anchor plate can be insufficiently bonded; if the deflector partially detaches while the roof is open it can interfere with the closing panel and cause the glass sunroof panel to detach from its mounting tabs and fly off the vehicle. Hyundai recalled 62,811 2015-2016 Sonata (incl. Sonata Hybrid) under NHTSA recall 16V-726 (Campaign 152). Separately, Hyundai panoramic sunroofs across 2010-2016 models have a documented tendency to spontaneously shatter (owners describe a gunshot-like sound with glass falling into the cabin); a class-action settlement provided an extended 10-year/120,000-mile warranty for shattered-sunroof repairs.",
+        "solution": "For the detachment defect, dealers apply a revised/stronger bonding to the wind deflector under recall 16V-726 (Campaign 152), free of charge - verify the recall is closed by VIN. For spontaneous glass shattering, repairs may be covered under the 10yr/120,000-mi class-action warranty extension; replacement of the laminated panoramic glass otherwise runs roughly $500-$1,500+ depending on parts and headliner damage.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Sunroof wind deflector rattles or detaches when roof is open",
+          "Sunroof glass panel detaches/flies off the vehicle",
+          "Spontaneous shattering of the panoramic glass with a loud bang",
+          "Broken glass falling into the cabin"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 1500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://repairpal.com/recall/16V726000",
+            "type": "recall",
+            "title": "Sunroof Panel Detaches From Vehicle - Recall 16V726000 - RepairPal"
+          },
+          {
+            "url": "https://www.torquenews.com/3769/hyundai-recalls-62811-sonatas-fix-flying-panoramic-sunroofs",
+            "type": "article",
+            "title": "Hyundai Recalls 62,811 Sonatas To Fix Flying Panoramic Sunroofs - Torque News"
+          },
+          {
+            "url": "https://www.classlawgroup.com/hyundai-exploded-sunroof-lawsuit",
+            "type": "article",
+            "title": "Hyundai Shattered Sunroof Class Action Settlement - ClassLawGroup"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-09",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-sonata-steering-2011",
+      "model": "Sonata",
+      "action": "rewrite_same_identity",
+      "reason": "Kept the indexed EPS-failure identity, replaced a noise bulletin and generic complaint with exact recall 16V-190, limited the scope to 2011, and clarified that steering remains controllable with greater manual effort.",
+      "identityRule": "The same indexed component and failure outcome stay on the existing ID, title and category; only facts within the exact official record remain.",
+      "commerceDecision": "no-commerce",
+      "changedFields": [
+        "years",
+        "description",
+        "solution",
+        "symptoms",
+        "affectedSystems",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "communityRecommendations",
+        "reportCount",
+        "source",
+        "lastReportedByOwners",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
+      "evidence": [
+        {
+          "kind": "official-record-specific-recall",
+          "url": "https://static.nhtsa.gov/odi/rcl/2016/RCLRPT-16V190-0509.PDF",
+          "verifiedOn": "2026-08-06",
+          "observation": "NHTSA Part 573 Report 16V-190 - 2011 Sonata EPS Control Unit supports the proposed same-identity statements."
+        }
+      ],
+      "beforeSha256": "7261b721461067f040f65be9838c751ac4b34b47cf6e6eb76943694a7ecca11e",
+      "proposalSha256": "40c222dda648dcf09a17d4dc00ce4c300ec669f9056e9729d1710b4e8b57a50c",
+      "before": {
+        "make": "Hyundai",
+        "model": "Sonata",
+        "years": [
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "suspension",
+        "title": "Electric Power Steering (EPS) Failure",
+        "description": "The electric power steering system can fail, causing sudden loss of power assist while driving. This can make the car very difficult to steer, especially at low speeds. A steering warning light usually accompanies the failure.",
+        "solution": "Replace EPS motor or steering column assembly. Have dealer diagnose specific failed component. Check for Hyundai recalls or service campaigns. This is a safety-critical repair.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Sudden heavy steering",
+          "Steering warning light",
+          "Complete loss of power assist",
+          "Steering column noise",
+          "Intermittent assist"
+        ],
+        "affectedSystems": [
+          "Electrical",
+          "Suspension"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 400,
+        "estimatedCostHigh": 1500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "",
+            "type": "tsb",
+            "title": "TSB 15-ST-002: MDPS Coupling Replacement and Steering Noise Diagnosis"
+          },
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2011/HYUNDAI/SONATA",
+            "type": "nhtsa",
+            "title": "NHTSA Complaint #10837441 - 2011 Hyundai Sonata sudden loss of steering assist"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "warning",
+            "content": "This is a high-severity issue - ignoring it can lead to costly repairs or safety concerns. Address it promptly.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Get a proper diagnosis before replacing parts - similar symptoms can have different causes",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Search Hyundai Sonata forums and owner groups for real-world experiences and DIY guides",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Get multiple quotes from independent mechanics - dealer prices can be 2-3x higher for the same repair",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "Complete strut and shock absorber set for full suspension refresh",
+            "partName": "Excel-G Strut/Shock Set",
+            "partBrand": "KYB",
+            "affiliateUrl": "https://www.amazon.com/s?k=KYB%20Excel-G%20struts%20shocks%20Hyundai%20Sonata&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Four-wheel alignment kit with cam bolts for proper tire wear correction",
+            "partName": "Alignment Cam Bolt Kit",
+            "partBrand": "Moog",
+            "affiliateUrl": "https://www.amazon.com/s?k=Moog%20alignment%20cam%20bolt%20kit%20Hyundai%20Sonata&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 880,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2024-02-19",
+        "reviewedOn": "2026-02-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Sonata",
+        "years": [
+          2011
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "suspension",
+        "title": "Electric Power Steering (EPS) Failure",
+        "description": "NHTSA recall 16V-190 (Hyundai recall 143) covers certain model-year 2011 Sonata sedans. Damage to the electronic-power-steering control-unit circuit board can illuminate the EPS warning lamp and cause loss of steering assist. The filing states that the vehicle reverts to a manual steering mode in which steering control remains available, but greater driver effort is required, particularly at low speeds.",
+        "solution": "Check the VIN for NHTSA recall 16V-190. Hyundai dealers replace the EPS control unit under the recall remedy. If the EPS warning lamp appears or steering assist is lost, reduce speed, allow for the greater steering effort and arrange service.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Red EPS warning-light illumination",
+          "Loss of electric steering assist",
+          "Greater steering effort, especially at low speed"
+        ],
+        "affectedSystems": [
+          "Electronic power steering control unit",
+          "EPS circuit board"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "NHTSA Part 573 Report 16V-190 - 2011 Sonata EPS Control Unit",
+            "url": "https://static.nhtsa.gov/odi/rcl/2016/RCLRPT-16V190-0509.PDF"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Kept the indexed EPS-failure identity, replaced a noise bulletin and generic complaint with exact recall 16V-190, limited the scope to 2011, and clarified that steering remains controllable with greater manual effort.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-sonata-theta-ii-2-0t-2-4l-gdi-connecting-rod-bearing-failure",
+      "model": "Sonata",
+      "action": "keep_published_pending_source",
+      "reason": "Recalls 15V-568 and 17V-226 support 2011-2014 Sonata GDI connecting-rod-bearing wear, knock and stall, but those filings do not establish the title's fire outcome or the asserted 2015-2019 scope. A partial rewrite would leave the indexed title broader than its evidence, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; secondary, partial, false-citation or different-identity evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-record-partial-identity",
+          "url": "https://static.nhtsa.gov/odi/rcl/2015/RCLRPT-15V568-9490.PDF",
+          "verifiedOn": "2026-08-06",
+          "observation": "Recall 15V-568 supports 2011-2012 Sonata GDI connecting-rod-bearing wear, knock and stall, but its filing does not establish the title's fire outcome or 2015-2019 scope."
+        },
+        {
+          "kind": "official-record-partial-identity",
+          "url": "https://static.nhtsa.gov/odi/rcl/2017/RCLRPT-17V226-6577.PDF",
+          "verifiedOn": "2026-08-06",
+          "observation": "Recall 17V-226 supports 2013-2014 Sonata GDI connecting-rod-bearing wear, knock and loss of motive power, but its filing does not establish the title's fire outcome or 2015-2019 scope."
+        }
+      ],
+      "beforeSha256": "dac3816a8123c1b1bddd62a08953bec4a83b308e71ed78b575d668c3d121c1fe",
+      "proposalSha256": "dac3816a8123c1b1bddd62a08953bec4a83b308e71ed78b575d668c3d121c1fe",
+      "before": {
+        "make": "Hyundai",
+        "model": "Sonata",
+        "years": [
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019
+        ],
+        "trims": [],
+        "engines": [
+          "Theta II 2.4L GDI (G4KJ)",
+          "Theta II 2.0T (G4KH)",
+          "Theta II 2.4L MPI"
+        ],
+        "category": "engine",
+        "title": "Theta II 2.0T/2.4L GDI connecting-rod bearing failure (knock, stall, fire)",
+        "description": "The Theta II GDI engine (2.4L MPI/GDI and 2.0T) suffers premature connecting-rod bearing wear. NHTSA determined that metal debris left from crankshaft machining, plus uneven crankpin surface roughness, restricts oil flow to the rod bearings, raising bearing temperatures and causing premature wear. A worn bearing produces a metallic, cyclic knocking noise that increases with RPM; if driven further the bearing fails, the engine can seize and stall while in motion, and a fractured rod can puncture the block, letting oil reach hot surfaces and start an engine-compartment fire. This is the defect behind multiple recalls (Campaign 132 / NHTSA 15V-218 for 2011-2012 2.0T/2.4 GDI built at HMMA; Campaign 198 / NHTSA 20V-746 covering Sonata Hybrid and others), a $210M NHTSA civil penalty consent order, and a ~$1.3B class-action settlement covering roughly 3.9M Hyundai/Kia owners.",
+        "solution": "Have the dealer perform the recall engine-inspection test (rod-bearing/Knock Sensor Detection System diagnostic). If bearing damage is found, the engine is replaced free under the campaign. All affected vehicles receive the KSDS software update that detects pre-failure knock and limits power. Settlement extends powertrain warranty to 15 years / 150,000 miles for rod-bearing failure (transferable to subsequent owners), with reimbursement for prior repairs. If you hear a metallic knock that rises with RPM or see the oil-pressure/check-engine light, stop driving and get it inspected immediately.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Metallic cyclic knocking noise that increases with engine RPM",
+          "Check-engine light and/or oil-pressure warning lamp",
+          "Engine stall while driving / engine seizure",
+          "Knock at cold start or under light acceleration",
+          "Engine-compartment fire in severe cases"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P1326"
+        ],
+        "estimatedCostLow": 4000,
+        "estimatedCostHigh": 8000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://static.nhtsa.gov/odi/rcl/2020/RCLRPT-20V746-3838.PDF",
+            "type": "recall",
+            "title": "NHTSA Part 573 Safety Recall Report 20V-746 (Theta II connecting-rod bearing)"
+          },
+          {
+            "url": "https://safetyresearch.net/hyundai-kias-billion-dollar-engine-problem-that-broke-the-nhtsa-civil-penalty-barrier/",
+            "type": "nhtsa",
+            "title": "Hyundai-Kia's Billion Dollar Engine Problem that Broke the NHTSA Civil Penalty Barrier - Safety Research & Strategies"
+          },
+          {
+            "url": "https://www.sonataforums.com/threads/2011-2018-2-4l-gdi-sonata-recall-for-excessive-connecting-rod-bearing-damage.2256321/",
+            "type": "forum",
+            "title": "2011-2018 2.4L GDI Sonata Recall for Excessive Connecting Rod Bearing Damage - Sonata Forums"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-09",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Sonata",
+        "years": [
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019
+        ],
+        "trims": [],
+        "engines": [
+          "Theta II 2.4L GDI (G4KJ)",
+          "Theta II 2.0T (G4KH)",
+          "Theta II 2.4L MPI"
+        ],
+        "category": "engine",
+        "title": "Theta II 2.0T/2.4L GDI connecting-rod bearing failure (knock, stall, fire)",
+        "description": "The Theta II GDI engine (2.4L MPI/GDI and 2.0T) suffers premature connecting-rod bearing wear. NHTSA determined that metal debris left from crankshaft machining, plus uneven crankpin surface roughness, restricts oil flow to the rod bearings, raising bearing temperatures and causing premature wear. A worn bearing produces a metallic, cyclic knocking noise that increases with RPM; if driven further the bearing fails, the engine can seize and stall while in motion, and a fractured rod can puncture the block, letting oil reach hot surfaces and start an engine-compartment fire. This is the defect behind multiple recalls (Campaign 132 / NHTSA 15V-218 for 2011-2012 2.0T/2.4 GDI built at HMMA; Campaign 198 / NHTSA 20V-746 covering Sonata Hybrid and others), a $210M NHTSA civil penalty consent order, and a ~$1.3B class-action settlement covering roughly 3.9M Hyundai/Kia owners.",
+        "solution": "Have the dealer perform the recall engine-inspection test (rod-bearing/Knock Sensor Detection System diagnostic). If bearing damage is found, the engine is replaced free under the campaign. All affected vehicles receive the KSDS software update that detects pre-failure knock and limits power. Settlement extends powertrain warranty to 15 years / 150,000 miles for rod-bearing failure (transferable to subsequent owners), with reimbursement for prior repairs. If you hear a metallic knock that rises with RPM or see the oil-pressure/check-engine light, stop driving and get it inspected immediately.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Metallic cyclic knocking noise that increases with engine RPM",
+          "Check-engine light and/or oil-pressure warning lamp",
+          "Engine stall while driving / engine seizure",
+          "Knock at cold start or under light acceleration",
+          "Engine-compartment fire in severe cases"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P1326"
+        ],
+        "estimatedCostLow": 4000,
+        "estimatedCostHigh": 8000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://static.nhtsa.gov/odi/rcl/2020/RCLRPT-20V746-3838.PDF",
+            "type": "recall",
+            "title": "NHTSA Part 573 Safety Recall Report 20V-746 (Theta II connecting-rod bearing)"
+          },
+          {
+            "url": "https://safetyresearch.net/hyundai-kias-billion-dollar-engine-problem-that-broke-the-nhtsa-civil-penalty-barrier/",
+            "type": "nhtsa",
+            "title": "Hyundai-Kia's Billion Dollar Engine Problem that Broke the NHTSA Civil Penalty Barrier - Safety Research & Strategies"
+          },
+          {
+            "url": "https://www.sonataforums.com/threads/2011-2018-2-4l-gdi-sonata-recall-for-excessive-connecting-rod-bearing-damage.2256321/",
+            "type": "forum",
+            "title": "2011-2018 2.4L GDI Sonata Recall for Excessive Connecting Rod Bearing Damage - Sonata Forums"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-09",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-sonata-theta-ii-gdi-excessive-oil-consumption",
+      "model": "Sonata",
+      "action": "rewrite_same_identity",
+      "reason": "Kept the indexed Theta II GDI oil-consumption identity, replaced articles and owner reports with Hyundai TSB 23-EM-008H, limited the scope to the Sonata applications listed in its tables, and removed universal-cause, class-action and automatic-replacement claims.",
+      "identityRule": "The same indexed component and failure outcome stay on the existing ID, title and category; only facts within the exact official record remain.",
+      "commerceDecision": "no-commerce",
+      "changedFields": [
+        "years",
+        "engines",
+        "description",
+        "solution",
+        "severity",
+        "symptoms",
+        "affectedSystems",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "humanApproved",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
+      "evidence": [
+        {
+          "kind": "official-record-specific-tsb",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2023/MC-10247597-0001.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "Hyundai TSB 23-EM-008H - Engine Oil Consumption Inspection and Repair Guidelines supports the proposed same-identity statements."
+        }
+      ],
+      "beforeSha256": "9221d67a3415c8270918bfb8e3c763516ffad3baa88ae1c730b5694407ca1891",
+      "proposalSha256": "950d57efda7009014addb130f37dcb5cc2811f9d5b8eb0accd37d0a275695f79",
+      "before": {
+        "make": "Hyundai",
+        "model": "Sonata",
+        "years": [
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021
+        ],
+        "trims": [],
+        "engines": [
+          "Theta II 2.4L GDI (G4KJ)",
+          "Theta II 2.0T (G4KH)"
+        ],
+        "category": "engine",
+        "title": "Theta II GDI excessive oil consumption",
+        "description": "Owners of Theta II GDI Sonatas report excessive engine oil consumption, with rates reported as high as one quart every 700-1,000 miles - far beyond what the owner's manual considers normal. The condition is tied to the same Theta II design weaknesses (ring/bearing wear and oil-control issues) and frequently precedes low-oil-pressure warnings and rod-bearing knock. Drivers are forced to constantly check and top off oil; if missed, low oil level accelerates bearing damage and engine failure. A nationwide class action (covering 2009-2010 and 2015-2021 Sonata among other Hyundai/Kia models with Theta, Nu, Gamma, Lambda and Kappa engines) alleged the engines burn oil and eventually fail. CarComplaints catalogs dozens of oil-consumption complaints starting with the 2011 model year.",
+        "solution": "Document consumption with dealer oil-consumption tests (typically measured over ~1,000 miles). If the vehicle qualifies, repairs (often piston/ring or short-block replacement) may be covered under the Theta extended warranty or class-action terms; keep oil-change and top-off records. Check oil level frequently between changes as an interim safeguard and address any oil-pressure or knock warning immediately, since low oil accelerates rod-bearing failure.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Burning ~1 quart of oil per 700-1,000 miles",
+          "Low oil level / low oil-pressure warning between changes",
+          "Need to add oil far more often than manual specifies",
+          "Blue exhaust smoke in some cases",
+          "Eventual engine knock or failure if oil runs low"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 2500,
+        "estimatedCostHigh": 7000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.jalopnik.com/hyundai-owners-file-class-action-over-excessive-engine-1848797045/",
+            "type": "article",
+            "title": "Hyundai Owners File Class Action Over Excessive Engine Oil Consumption - Jalopnik"
+          },
+          {
+            "url": "https://www.carcomplaints.com/Hyundai/Sonata/2011/engine/excessive_oil_consumption.shtml",
+            "type": "forum",
+            "title": "2011 Hyundai Sonata Excessive Oil Consumption: 31 Complaints - CarComplaints"
+          },
+          {
+            "url": "https://mycarvoice.com/news/lawsuit-hyundai-oil-consumption-nu-gamma-theta-lambda-kappa-engines/",
+            "type": "article",
+            "title": "Class Action Lawsuit Over Hyundai-Kia Oil Consumption (Nu, Gamma, Theta, Lambda, Kappa) - MyCarVoice"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-09",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Sonata",
+        "years": [
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "engine",
+        "title": "Theta II GDI excessive oil consumption",
+        "description": "Hyundai TSB 23-EM-008H provides inspection and repair guidance for gasoline-engine vehicles with oil-consumption concerns. Its engine and labor tables specifically include model-year 2011-2014 Sonata 2.4-liter GDI and 2.0-liter turbo-GDI applications and model-year 2015-2020 Sonata 2.4-liter GDI and 2.0-liter turbo-GDI applications. The bulletin states that all internal-combustion engines consume some oil in normal operation and does not assign one universal defect cause.",
+        "solution": "Ask a Hyundai dealer to follow TSB 23-EM-008H and confirm coverage. After preliminary checks and repair of any leaks or other open issues, the procedure seals the serviced engine and measures oil use over a mileage-accumulation period. A result above 1,000 miles per quart passes; a result under 1,000 miles per quart proceeds to prior-approval review for combustion-chamber cleaning. Engine replacement is considered only after the cleaning and final retest remain outside specification and prior approval is obtained.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Engine-oil level decreases between checks",
+          "Measured consumption under 1,000 miles per quart"
+        ],
+        "affectedSystems": [
+          "Engine lubrication system",
+          "Combustion chambers"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "Hyundai TSB 23-EM-008H - Engine Oil Consumption Inspection and Repair Guidelines",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2023/MC-10247597-0001.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Kept the indexed Theta II GDI oil-consumption identity, replaced articles and owner reports with Hyundai TSB 23-EM-008H, limited the scope to the Sonata applications listed in its tables, and removed universal-cause, class-action and automatic-replacement claims.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-theta2-engine",
+      "model": "Sonata",
+      "action": "keep_published_pending_source",
+      "reason": "The generic NHTSA vehicle-page citation and claimed 17V-224 number do not establish this broad 2011-2019 duplicate engine-seizure identity, KSDS remedy, maintenance interval, warranty promise or cost. It remains separate from the more specific indexed bearing row and byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; secondary, partial, false-citation or different-identity evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "02c9054938f425901cb205caf85f9b5cca1308aeff649cbfe3c50da2558bc85c",
+      "proposalSha256": "02c9054938f425901cb205caf85f9b5cca1308aeff649cbfe3c50da2558bc85c",
+      "before": {
+        "make": "Hyundai",
+        "model": "Sonata",
+        "years": [
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019
+        ],
+        "trims": [
+          "Base",
+          "GL",
+          "GLS",
+          "LX",
+          "Limited",
+          "SE",
+          "SEL",
+          "SEL Plus",
+          "Sport"
+        ],
+        "engines": [
+          "2.0L Turbo",
+          "2.4L"
+        ],
+        "category": "engine",
+        "title": "Theta II Engine Seizure/Failure",
+        "description": "The Theta II engine can seize due to metal debris blocking oil flow to connecting rod bearings. Hyundai issued recalls and extended warranties. Affected engines may need replacement.",
+        "solution": "Check VIN for active recalls - Hyundai provides free engine replacement for affected vehicles. Install the knock sensor detection system (KSDS) software update that monitors for bearing wear. Change oil every 5,000 miles. If engine fails and under warranty, replacement is free. Out of warranty replacement: $4,000-8,000.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Knocking noise from engine",
+          "Engine stalling",
+          "Check engine light",
+          "Loss of power",
+          "Engine seizure"
+        ],
+        "affectedSystems": [
+          "Engine"
+        ],
+        "dtcCodes": [
+          "P0300",
+          "P0301",
+          "P0302",
+          "P0303",
+          "P0304",
+          "P0305",
+          "P0306"
+        ],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 8000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2015/HYUNDAI/SONATA",
+            "type": "recall",
+            "title": "NHTSA Recall 17V-224"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Install the knock sensor detection system (KSDS) software update that monitors for bearing",
+            "upvotes": 0,
+            "partBrand": "Install",
+            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20Sonata%20Install%20the%20knock%20sensor%20detection%20system%20(KSDS)%20software%20up&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "DIY repairs can save significantly - dealer charges $4,000-8,000 but DIY costs are typically 50-70% less",
+            "upvotes": 0
+          },
+          {
+            "type": "warning",
+            "content": "This is a high-severity issue - ignoring it can lead to costly repairs or safety concerns. Address it promptly.",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "Get a proper diagnosis before replacing parts - similar symptoms can have different causes",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 5632,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2024-02-12",
+        "reviewedOn": "2026-02-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "hyundai-tucson-theta2-engine-seizure",
+          "hyundai-santafe-theta2-engine-failure",
+          "kia-optima-theta-ii-engine-failure",
+          "hyundai-santa-fe-theta-ii-seizure-2010",
+          "kia-sorento-theta-ii-engine-seizure"
+        ]
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Sonata",
+        "years": [
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019
+        ],
+        "trims": [
+          "Base",
+          "GL",
+          "GLS",
+          "LX",
+          "Limited",
+          "SE",
+          "SEL",
+          "SEL Plus",
+          "Sport"
+        ],
+        "engines": [
+          "2.0L Turbo",
+          "2.4L"
+        ],
+        "category": "engine",
+        "title": "Theta II Engine Seizure/Failure",
+        "description": "The Theta II engine can seize due to metal debris blocking oil flow to connecting rod bearings. Hyundai issued recalls and extended warranties. Affected engines may need replacement.",
+        "solution": "Check VIN for active recalls - Hyundai provides free engine replacement for affected vehicles. Install the knock sensor detection system (KSDS) software update that monitors for bearing wear. Change oil every 5,000 miles. If engine fails and under warranty, replacement is free. Out of warranty replacement: $4,000-8,000.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Knocking noise from engine",
+          "Engine stalling",
+          "Check engine light",
+          "Loss of power",
+          "Engine seizure"
+        ],
+        "affectedSystems": [
+          "Engine"
+        ],
+        "dtcCodes": [
+          "P0300",
+          "P0301",
+          "P0302",
+          "P0303",
+          "P0304",
+          "P0305",
+          "P0306"
+        ],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 8000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2015/HYUNDAI/SONATA",
+            "type": "recall",
+            "title": "NHTSA Recall 17V-224"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Install the knock sensor detection system (KSDS) software update that monitors for bearing",
+            "upvotes": 0,
+            "partBrand": "Install",
+            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20Sonata%20Install%20the%20knock%20sensor%20detection%20system%20(KSDS)%20software%20up&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "DIY repairs can save significantly - dealer charges $4,000-8,000 but DIY costs are typically 50-70% less",
+            "upvotes": 0
+          },
+          {
+            "type": "warning",
+            "content": "This is a high-severity issue - ignoring it can lead to costly repairs or safety concerns. Address it promptly.",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "Get a proper diagnosis before replacing parts - similar symptoms can have different causes",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 5632,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2024-02-12",
+        "reviewedOn": "2026-02-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "hyundai-tucson-theta2-engine-seizure",
+          "hyundai-santafe-theta2-engine-failure",
+          "kia-optima-theta-ii-engine-failure",
+          "hyundai-santa-fe-theta-ii-seizure-2010",
+          "kia-sorento-theta-ii-engine-seizure"
+        ]
+      }
+    }
+  ]
+}
