@@ -1,0 +1,789 @@
+{
+  "schemaVersion": 1,
+  "status": "proposal-only",
+  "auditStage": "model-primary-source-adjudication",
+  "requiresIndependentApproval": true,
+  "generatedOn": "2026-08-06",
+  "make": "Hyundai",
+  "model": "Nexo",
+  "completionStatement": "This packet reconciles all four frozen Hyundai Nexo rows. One same-identity infrastructure rewrite is proposed; three rows remain byte-for-byte unchanged.",
+  "safetyContract": [
+    "No production database write, cache purge, deployment, archive action, redirect, slug change or public-page change is authorized by this packet.",
+    "All four rows remain published. Three are byte-for-byte unchanged.",
+    "The one rewrite preserves the indexed title and category and uses two exact Hyundai documents.",
+    "The rewrite contains zero commerce, zero cost or mileage claims, empty trim and engine arrays, and no diagnostic codes.",
+    "Independent row-by-row approval is required before a separate guarded apply path may be created."
+  ],
+  "source": {
+    "snapshotFile": "data/_hyundai-deeplink-snapshot-2026-08-06.json",
+    "snapshotSha256": "f3e74267205477804060c49c988221cdc4dfcfc4586df369601c8c64736cce60",
+    "snapshotGeneratedAt": "2026-08-06T02:37:36.989Z",
+    "snapshotHash": "444457abb31ca6a5ead423878b37ca790d44a87c74ffa43259362cb4218ba632",
+    "nexoRecordCount": 4
+  },
+  "observations": [
+    {
+      "code": "one-exact-infrastructure-rewrite",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "hyundai-nexo-limited-service-infrastructure-2019"
+      ],
+      "detail": "Two exact Hyundai documents support the specialized-service and limited-station identity without the frozen numeric and purchasing claims."
+    },
+    {
+      "code": "stack-campaigns-are-mismatches",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "hyundai-nexo-fuel-cell-stack-degradation-2019"
+      ],
+      "detail": "Hyundai campaign T9C addresses deformed hydrogen stack pressure sensors and MIL illumination; it does not establish fuel-cell-stack degradation, fleet replacement rates or power-loss progression.",
+      "sourceUrls": [
+        "https://static.nhtsa.gov/odi/tsbs/2022/MC-10227324-0001.pdf"
+      ]
+    },
+    {
+      "code": "three-secondary-rows-frozen",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "hyundai-nexo-fuel-cell-stack-degradation-2019",
+        "hyundai-nexo-hydrogen-tank-fill-2019",
+        "hyundai-nexo-parking-sensor-failure-2019"
+      ],
+      "detail": "The stack-degradation, tank-fill and parking-sensor narratives remain byte-for-byte unchanged without exact same-identity Hyundai evidence."
+    }
+  ],
+  "publicSources": {
+    "infrastructure": "https://static.nhtsa.gov/odi/tsbs/2022/MC-10225467-0001.pdf",
+    "authorizedService": "https://static.nhtsa.gov/odi/tsbs/2022/MC-10227324-0001.pdf"
+  },
+  "summary": {
+    "rewrite_same_identity": 1,
+    "keep_published_pending_source": 3,
+    "total": 4
+  },
+  "rows": [
+    {
+      "id": "hyundai-nexo-fuel-cell-stack-degradation-2019",
+      "model": "Nexo",
+      "action": "keep_published_pending_source",
+      "reason": "A law-firm article and owner discussion do not establish one Hyundai-defined 2019-2024 fuel-cell-stack degradation defect, fleet replacement rate, acceleration mechanism, warning behavior, conditioning remedy, warranty outcome or cost. Hyundai campaign T9C concerns stack pressure sensors, not degradation of the fuel-cell stack, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; secondary or different-component evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "7df548b620417c270bb0e0c0a0f0e2898c3cc87a925c9209d00e1402dc943765",
+      "proposalSha256": "7df548b620417c270bb0e0c0a0f0e2898c3cc87a925c9209d00e1402dc943765",
+      "before": {
+        "make": "Hyundai",
+        "model": "Nexo",
+        "years": [
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "engine",
+        "title": "Fuel Cell Stack Degradation and Power Loss",
+        "description": "The Hyundai Nexo's hydrogen fuel cell stack can experience premature degradation, resulting in reduced power output and range over time. In severe cases, the stack fails entirely, triggering a 'Power Limited due to fuel cell system error' warning and reducing range to as little as 2 miles. Data from hydrogen taxi fleets in Seoul shows stack replacement rates exceeding 50%, and private Nexo vehicles are following with replacement rates above 20%, with increasing cases of stacks needing replacement twice within four years. The degradation is accelerated by frequent cold starts, high-humidity environments, and operation at sustained high power output. A class action lawsuit has been filed alleging the Nexo's fuel cell system is fundamentally defective.",
+        "solution": "Have the fuel cell system inspected at one of the few Hyundai dealers certified for hydrogen vehicle service (only 3 dealerships in California). The fuel cell stack is covered under Hyundai's 10-year/100,000-mile fuel cell warranty. If power output drops significantly, the dealer can perform a stack conditioning procedure that may temporarily restore performance. For severe degradation, full stack replacement is required ($5,000-$10,000 at dealer, covered under warranty). Monitor the fuel cell system efficiency readings in the vehicle's diagnostic menu to track degradation trends.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "Gradual reduction in maximum power output over time",
+          "Power Limited due to fuel cell system error warning",
+          "Driving range decreasing beyond normal degradation rates",
+          "Vehicle enters limp mode with severely limited speed",
+          "Fuel cell system warning lights on dashboard"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 10000,
+        "typicalMileageLow": 80000,
+        "typicalMileageHigh": 120000,
+        "citations": [
+          {
+            "url": "https://www.thelemonfirm.com/2025/04/04/hyundai-class-action-alleges-nexo-hydrogen-vehicles-are-misleading-and-defective/",
+            "type": "nhtsa",
+            "title": "Hyundai NEXO Class Action — Fuel Cell Defects"
+          },
+          {
+            "url": "https://www.hyundai-forums.com/threads/im-talking-about-the-nexo-stack-failure.686870/",
+            "type": "owner-report",
+            "title": "Nexo Stack Failure Discussion — Hyundai Forums"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Track your range per fill-up over time. If you notice a consistent decline beyond 10-15% from new, schedule a fuel cell system inspection sooner rather than later. Early warranty claims are easier to process than waiting until the stack fails completely.",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "Bluetooth OBD-II scanner for reading engine codes and monitoring live data",
+            "partName": "Bluetooth OBD2 Diagnostic Scan Tool",
+            "partBrand": "BlueDriver",
+            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20Nexo%20BlueDriver%20Bluetooth%20OBD2%20Diagnostic%20Scan%20Tool&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Quality synthetic oil and filter combo for engine maintenance",
+            "partName": "Full Synthetic Oil and Filter Bundle",
+            "partBrand": "Mobil 1",
+            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20Nexo%20Mobil%201%20Full%20Synthetic%20Oil%20and%20Filter%20Bundle&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 55,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-03-06",
+        "reviewedOn": "2026-03-06",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Nexo",
+        "years": [
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "engine",
+        "title": "Fuel Cell Stack Degradation and Power Loss",
+        "description": "The Hyundai Nexo's hydrogen fuel cell stack can experience premature degradation, resulting in reduced power output and range over time. In severe cases, the stack fails entirely, triggering a 'Power Limited due to fuel cell system error' warning and reducing range to as little as 2 miles. Data from hydrogen taxi fleets in Seoul shows stack replacement rates exceeding 50%, and private Nexo vehicles are following with replacement rates above 20%, with increasing cases of stacks needing replacement twice within four years. The degradation is accelerated by frequent cold starts, high-humidity environments, and operation at sustained high power output. A class action lawsuit has been filed alleging the Nexo's fuel cell system is fundamentally defective.",
+        "solution": "Have the fuel cell system inspected at one of the few Hyundai dealers certified for hydrogen vehicle service (only 3 dealerships in California). The fuel cell stack is covered under Hyundai's 10-year/100,000-mile fuel cell warranty. If power output drops significantly, the dealer can perform a stack conditioning procedure that may temporarily restore performance. For severe degradation, full stack replacement is required ($5,000-$10,000 at dealer, covered under warranty). Monitor the fuel cell system efficiency readings in the vehicle's diagnostic menu to track degradation trends.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "Gradual reduction in maximum power output over time",
+          "Power Limited due to fuel cell system error warning",
+          "Driving range decreasing beyond normal degradation rates",
+          "Vehicle enters limp mode with severely limited speed",
+          "Fuel cell system warning lights on dashboard"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 10000,
+        "typicalMileageLow": 80000,
+        "typicalMileageHigh": 120000,
+        "citations": [
+          {
+            "url": "https://www.thelemonfirm.com/2025/04/04/hyundai-class-action-alleges-nexo-hydrogen-vehicles-are-misleading-and-defective/",
+            "type": "nhtsa",
+            "title": "Hyundai NEXO Class Action — Fuel Cell Defects"
+          },
+          {
+            "url": "https://www.hyundai-forums.com/threads/im-talking-about-the-nexo-stack-failure.686870/",
+            "type": "owner-report",
+            "title": "Nexo Stack Failure Discussion — Hyundai Forums"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Track your range per fill-up over time. If you notice a consistent decline beyond 10-15% from new, schedule a fuel cell system inspection sooner rather than later. Early warranty claims are easier to process than waiting until the stack fails completely.",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "Bluetooth OBD-II scanner for reading engine codes and monitoring live data",
+            "partName": "Bluetooth OBD2 Diagnostic Scan Tool",
+            "partBrand": "BlueDriver",
+            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20Nexo%20BlueDriver%20Bluetooth%20OBD2%20Diagnostic%20Scan%20Tool&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Quality synthetic oil and filter combo for engine maintenance",
+            "partName": "Full Synthetic Oil and Filter Bundle",
+            "partBrand": "Mobil 1",
+            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20Nexo%20Mobil%201%20Full%20Synthetic%20Oil%20and%20Filter%20Bundle&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 55,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-03-06",
+        "reviewedOn": "2026-03-06",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-nexo-hydrogen-tank-fill-2019",
+      "model": "Nexo",
+      "action": "keep_published_pending_source",
+      "reason": "Two owner discussions do not establish a vehicle defect that prevents an 85-percent-plus hydrogen fill, attribute fill percentage between the station and vehicle, or validate the frozen refueling timing and range advice. Hyundai infrastructure guidance does not support the tank-capacity identity, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; secondary or different-component evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "9a9edaf6da79267c99ef18056b4c8bc790f13b5c8b53f2f3fcd8f204e748cac2",
+      "proposalSha256": "9a9edaf6da79267c99ef18056b4c8bc790f13b5c8b53f2f3fcd8f204e748cac2",
+      "before": {
+        "make": "Hyundai",
+        "model": "Nexo",
+        "years": [
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "fuel",
+        "title": "Hydrogen Tank Fails to Fill Beyond 85% Capacity",
+        "description": "Nexo owners consistently report that the hydrogen tanks only fill to approximately 85% of maximum capacity, significantly reducing the advertised 380-mile range. While partially caused by hydrogen station dispenser limitations (pressure drops during busy periods), the vehicle's own tank pressure management and temperature compensation algorithms also contribute. The emptier the tank, the more it can fill — drivers typically achieve 95% fill only when the tank is below one-third. The issue is compounded by the extremely limited hydrogen fueling infrastructure, with stations frequently inoperable, sometimes leaving owners unable to fuel for days.",
+        "solution": "For the best fill level, drive the tank down to below one-third before refueling — this allows the highest fill percentage due to lower internal pressure. Avoid refueling immediately after another vehicle has used the station, as the dispenser pressure needs time to recover. Fill during off-peak hours (early morning) when station compressors have had time to build maximum pressure. Monitor hydrogen station status on the California Fuel Cell Partnership website (cafcp.org) or the H2 Station mobile app before driving to a station. Expect 85-90% fills as normal operating behavior.",
+        "severity": "low",
+        "confidence": "high",
+        "symptoms": [
+          "Hydrogen tank gauge never reaches full",
+          "Fill stops at approximately 85% capacity",
+          "Achieved range is 50-60 miles less than the advertised 380 miles",
+          "Fueling takes longer than expected at some stations",
+          "Fill percentage varies significantly between stations"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 0,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.hyundai-forums.com/threads/filling-up-full-tank-never-seems-to-happen.698580/",
+            "type": "owner-report",
+            "title": "Filling Up Full Tank — Never Seems to Happen — Hyundai Forums"
+          },
+          {
+            "url": "https://www.hyundai-forums.com/threads/hyundai-nexo-hydrogen-fuel-cell-hfcv.662552/",
+            "type": "owner-report",
+            "title": "Hyundai Nexo Hydrogen Fuel Cell Discussion — Hyundai Forums"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Check station status on the H2 Station app or cafcp.org before driving to fill up. Hydrogen stations go offline frequently, and you do not want to discover that on empty. Keep at least 25% range in reserve at all times.",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "Hyundai provides a complimentary hydrogen fuel card worth approximately $15,000 over 3 years. Make sure you activate it at your dealer and understand its expiration terms — unused value does not roll over.",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "Chevron Techron fuel system cleaner — cleans injectors, intake valves, combustion chambers",
+            "partName": "Techron Fuel System Cleaner",
+            "partBrand": "Chevron",
+            "affiliateUrl": "https://www.amazon.com/s?k=Chevron%20Techron%20fuel%20system%20cleaner&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Wix fuel filter — routine replacement for fuel system health",
+            "partName": "Fuel Filter",
+            "partBrand": "Wix",
+            "affiliateUrl": "https://www.amazon.com/s?k=Wix%20fuel%20filter&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 120,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-03-06",
+        "reviewedOn": "2026-03-06",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Nexo",
+        "years": [
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "fuel",
+        "title": "Hydrogen Tank Fails to Fill Beyond 85% Capacity",
+        "description": "Nexo owners consistently report that the hydrogen tanks only fill to approximately 85% of maximum capacity, significantly reducing the advertised 380-mile range. While partially caused by hydrogen station dispenser limitations (pressure drops during busy periods), the vehicle's own tank pressure management and temperature compensation algorithms also contribute. The emptier the tank, the more it can fill — drivers typically achieve 95% fill only when the tank is below one-third. The issue is compounded by the extremely limited hydrogen fueling infrastructure, with stations frequently inoperable, sometimes leaving owners unable to fuel for days.",
+        "solution": "For the best fill level, drive the tank down to below one-third before refueling — this allows the highest fill percentage due to lower internal pressure. Avoid refueling immediately after another vehicle has used the station, as the dispenser pressure needs time to recover. Fill during off-peak hours (early morning) when station compressors have had time to build maximum pressure. Monitor hydrogen station status on the California Fuel Cell Partnership website (cafcp.org) or the H2 Station mobile app before driving to a station. Expect 85-90% fills as normal operating behavior.",
+        "severity": "low",
+        "confidence": "high",
+        "symptoms": [
+          "Hydrogen tank gauge never reaches full",
+          "Fill stops at approximately 85% capacity",
+          "Achieved range is 50-60 miles less than the advertised 380 miles",
+          "Fueling takes longer than expected at some stations",
+          "Fill percentage varies significantly between stations"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 0,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.hyundai-forums.com/threads/filling-up-full-tank-never-seems-to-happen.698580/",
+            "type": "owner-report",
+            "title": "Filling Up Full Tank — Never Seems to Happen — Hyundai Forums"
+          },
+          {
+            "url": "https://www.hyundai-forums.com/threads/hyundai-nexo-hydrogen-fuel-cell-hfcv.662552/",
+            "type": "owner-report",
+            "title": "Hyundai Nexo Hydrogen Fuel Cell Discussion — Hyundai Forums"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Check station status on the H2 Station app or cafcp.org before driving to fill up. Hydrogen stations go offline frequently, and you do not want to discover that on empty. Keep at least 25% range in reserve at all times.",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "Hyundai provides a complimentary hydrogen fuel card worth approximately $15,000 over 3 years. Make sure you activate it at your dealer and understand its expiration terms — unused value does not roll over.",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "Chevron Techron fuel system cleaner — cleans injectors, intake valves, combustion chambers",
+            "partName": "Techron Fuel System Cleaner",
+            "partBrand": "Chevron",
+            "affiliateUrl": "https://www.amazon.com/s?k=Chevron%20Techron%20fuel%20system%20cleaner&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Wix fuel filter — routine replacement for fuel system health",
+            "partName": "Fuel Filter",
+            "partBrand": "Wix",
+            "affiliateUrl": "https://www.amazon.com/s?k=Wix%20fuel%20filter&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 120,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-03-06",
+        "reviewedOn": "2026-03-06",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-nexo-limited-service-infrastructure-2019",
+      "model": "Nexo",
+      "action": "rewrite_same_identity",
+      "reason": "Kept the indexed service-and-hydrogen-infrastructure identity, replaced law-firm and forum citations with two exact Hyundai documents, and removed unsupported dealer counts, wait times, distance, parts-delay, lawsuit, resale and purchase advice.",
+      "identityRule": "The same indexed service-network and hydrogen-infrastructure identity stays on the existing ID, title and category; only facts from exact Hyundai documents remain.",
+      "commerceDecision": "no-commerce",
+      "changedFields": [
+        "description",
+        "solution",
+        "symptoms",
+        "affectedSystems",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "communityRecommendations",
+        "reportCount",
+        "source",
+        "lastReportedByOwners",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
+      "evidence": [
+        {
+          "kind": "official-record-specific-tsb",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2022/MC-10225467-0001.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "Hyundai Nexo Hydrogen Defuel/Refuel During Repair Completion supports the proposed infrastructure and service-access statements."
+        },
+        {
+          "kind": "official-record-specific-tsb",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2022/MC-10227324-0001.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "Hyundai Campaign T9C - Authorized Nexo Fuel-Cell Service Requirement supports the proposed infrastructure and service-access statements."
+        }
+      ],
+      "beforeSha256": "fea1e18ba439570ac2677d962c6a6ac7720353879872cc0136c72a41bf89d66d",
+      "proposalSha256": "2a7ca66fae21f9ed6294d5ae803b24a0f92deae75106e4c9d0c8a75a9a74a732",
+      "before": {
+        "make": "Hyundai",
+        "model": "Nexo",
+        "years": [
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "other",
+        "title": "Extremely Limited Service Network and Hydrogen Infrastructure",
+        "description": "The Nexo faces severe practical limitations due to hydrogen infrastructure and service availability. Only three Hyundai dealerships in California are certified to service the hydrogen fuel cell system, requiring long drives for any powertrain-related service. Hydrogen fueling stations are frequently inoperable or closed for maintenance, with owners reporting wait times exceeding six hours at the only operational station. Some owners have been unable to fuel for days when all nearby stations were simultaneously offline. The class action lawsuit filed against Hyundai alleges the Nexo is 'misleading and defective' partly due to these infrastructure realities not being adequately disclosed at the time of sale.",
+        "solution": "Before purchasing or leasing a Nexo, verify that hydrogen stations near your home and workplace are operational using cafcp.org. Plan for alternative transportation during station outages. For service appointments, confirm the dealership has hydrogen-certified technicians before making the trip. Hyundai offers roadside assistance including towing for fuel cell-related issues. Consider the Toyota Mirai as a comparison — it shares the same infrastructure challenges but has a different fuel cell platform. Keep the Nexo lease rather than purchase, as residual values have been severely impacted by infrastructure concerns.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Nearest hydrogen station is frequently out of service",
+          "Only 1-3 dealers in the state can perform fuel cell service",
+          "Wait times of 2-6 hours at hydrogen fueling stations",
+          "Service appointments require driving 50+ miles to qualified dealer",
+          "Parts availability for fuel cell components requires weeks of waiting"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 0,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.thelemonfirm.com/2025/04/05/hyundai-nexo-class-action-alleges-fuel-cell-suv-is-a-disaster-for-california-drivers/",
+            "type": "nhtsa",
+            "title": "Hyundai NEXO Class Action — Misleading and Defective"
+          },
+          {
+            "url": "https://www.hyundai-forums.com/threads/hyundai-nexo-hydrogen-fuel-cell-hfcv.662552/",
+            "type": "owner-report",
+            "title": "Hyundai Nexo Hydrogen Fuel Cell Discussion — Hyundai Forums"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Bookmark cafcp.org/stationmap and check it every time before you drive to a hydrogen station. Stations go down without notice and checking saves you from a wasted trip on low fuel. Consider keeping a second vehicle or having a backup transportation plan for when all nearby stations are offline.",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "BlueDriver Bluetooth OBD-II scanner — professional diagnostics from your phone",
+            "partName": "Bluetooth OBD-II Scanner",
+            "partBrand": "BlueDriver",
+            "affiliateUrl": "https://www.amazon.com/s?k=BlueDriver%20OBD2%20scanner&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Haynes repair manual — step-by-step procedures for your vehicle",
+            "partName": "Repair Manual",
+            "partBrand": "Haynes",
+            "affiliateUrl": "https://www.amazon.com/s?k=Haynes%20repair%20manual&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 200,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-03-06",
+        "reviewedOn": "2026-03-06",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Nexo",
+        "years": [
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "other",
+        "title": "Extremely Limited Service Network and Hydrogen Infrastructure",
+        "description": "Hyundai Nexo repair guidance states that some repairs require the vehicle to be defueled, transported to a local hydrogen station, refueled and returned to the shop. The same guidance says hydrogen fueling stations are very limited and may be empty or down for repairs. A separate Hyundai campaign requires covered fuel-cell work to be performed at an authorized Hyundai Nexo fuel-cell vehicle dealer by a specially trained Hyundai technician.",
+        "solution": "Before driving or towing a Nexo for hydrogen, use the station-status map identified in Hyundai's guidance to confirm local availability. For fuel-cell-system service, contact an authorized Hyundai Nexo dealer and confirm that a trained technician can perform the repair. If a covered repair requires defueling and refueling, ask the dealer which campaign or warranty claim instructions apply to transportation and fuel.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Local hydrogen station is empty or offline for repairs",
+          "Fuel-cell repair requires an authorized Hyundai Nexo dealer",
+          "Some repairs require defueling, transport to a hydrogen station and refueling"
+        ],
+        "affectedSystems": [
+          "Hydrogen fueling access",
+          "Fuel-cell service access"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "Hyundai Nexo Hydrogen Defuel/Refuel During Repair Completion",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2022/MC-10225467-0001.pdf"
+          },
+          {
+            "type": "tsb",
+            "title": "Hyundai Campaign T9C - Authorized Nexo Fuel-Cell Service Requirement",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2022/MC-10227324-0001.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Kept the indexed service-and-hydrogen-infrastructure identity, replaced law-firm and forum citations with two exact Hyundai documents, and removed unsupported dealer counts, wait times, distance, parts-delay, lawsuit, resale and purchase advice.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-nexo-parking-sensor-failure-2019",
+      "model": "Nexo",
+      "action": "keep_published_pending_source",
+      "reason": "This row has no citations, and no exact Hyundai Nexo bulletin was found establishing silent parking-sensor shutdown, false alarms, moisture or connector causes, recalibration outcomes, module replacement or the stated costs across 2019-2024 vehicles. The row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; secondary or different-component evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "76c4249bcfa0cc0a5e0d0565b3f732d8fd2048fd9c9d494b6143c9679bc251e5",
+      "proposalSha256": "76c4249bcfa0cc0a5e0d0565b3f732d8fd2048fd9c9d494b6143c9679bc251e5",
+      "before": {
+        "make": "Hyundai",
+        "model": "Nexo",
+        "years": [
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Parking Sensor System Shuts Down Without Warning",
+        "description": "The Nexo's ultrasonic parking sensor system can fail silently, providing no alerts when approaching obstacles in reverse or while parking. The sensors may stop functioning due to software glitches, moisture intrusion, or electrical connector issues, but the system does not always display a warning when the sensors are inoperative. This is particularly dangerous in a vehicle with limited rear visibility. Some owners also report false alarms from the parking sensors in normal driving conditions, and the sensor system recalibration at the dealer does not always resolve the issue permanently.",
+        "solution": "Visit a Hyundai dealer for parking sensor system diagnosis and software update. The dealer can test each sensor individually and replace any that have failed ($100-$300 per sensor including labor). If sensors are intermittently failing, check for moisture or debris buildup on the sensor faces — clean with a soft cloth. A full system recalibration may be needed after sensor replacement ($100-$150). If the issue persists after sensor replacement and recalibration, the parking sensor control module may need replacement ($300-$500).",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "No parking sensor alerts when approaching obstacles",
+          "Parking sensor warning chime sounds randomly with no obstacle",
+          "Rear camera works but parking sensor overlay shows no data",
+          "Parking sensor system error message on dashboard",
+          "Intermittent sensor operation — works sometimes, not others"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 100,
+        "estimatedCostHigh": 500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Test your parking sensors regularly by slowly backing toward a known object. If the system fails to alert you, do not rely on it and schedule a dealer visit. Given the Nexo's limited rear visibility, functioning parking sensors are critical for safe reversing.",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "Professional OBD-II diagnostic scanner for reading infotainment and body module codes",
+            "partName": "Bluetooth Pro OBD2 Scan Tool",
+            "partBrand": "BlueDriver",
+            "affiliateUrl": "https://www.amazon.com/s?k=BlueDriver%20Bluetooth%20Pro%20OBD2%20Scan%20Tool%20Hyundai%20Nexo&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Premium electrical tape for wiring repairs and harness wrapping",
+            "partName": "Super 33+ Vinyl Electrical Tape",
+            "partBrand": "3M",
+            "affiliateUrl": "https://www.amazon.com/s?k=3M%20Super%2033%2B%20Vinyl%20Electrical%20Tape%20Hyundai%20Nexo&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Split wire loom tubing to protect repaired or exposed wiring harnesses",
+            "partName": "Split Wire Loom Tubing",
+            "partBrand": "DEI",
+            "affiliateUrl": "https://www.amazon.com/s?k=DEI%20Split%20Wire%20Loom%20Tubing%20Hyundai%20Nexo&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Weatherproof terminal connector kit for reliable wiring repairs",
+            "partName": "Automotive Terminal Connector Kit",
+            "partBrand": "Molex",
+            "affiliateUrl": "https://www.amazon.com/s?k=Molex%20Automotive%20Terminal%20Connector%20Kit%20Hyundai%20Nexo&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Automotive relay replacement set for common relay failures",
+            "partName": "Automotive Relay 5-Pin 12V",
+            "partBrand": "Bosch",
+            "affiliateUrl": "https://www.amazon.com/s?k=Bosch%20Automotive%20Relay%205-Pin%2012V%20Hyundai%20Nexo&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Digital multimeter for diagnosing fuse, relay, and module electrical faults",
+            "partName": "Digital Multimeter",
+            "partBrand": "Innova",
+            "affiliateUrl": "https://www.amazon.com/s?k=Innova%20Digital%20Multimeter%20Hyundai%20Nexo&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "OEM-quality replacement sensor for accurate readings and proper system function",
+            "partName": "Replacement Sensor",
+            "partBrand": "Bosch",
+            "affiliateUrl": "https://www.amazon.com/s?k=Bosch%20Replacement%20Sensor%20Hyundai%20Nexo&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 40,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-03-06",
+        "reviewedOn": "2026-03-06",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Nexo",
+        "years": [
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Parking Sensor System Shuts Down Without Warning",
+        "description": "The Nexo's ultrasonic parking sensor system can fail silently, providing no alerts when approaching obstacles in reverse or while parking. The sensors may stop functioning due to software glitches, moisture intrusion, or electrical connector issues, but the system does not always display a warning when the sensors are inoperative. This is particularly dangerous in a vehicle with limited rear visibility. Some owners also report false alarms from the parking sensors in normal driving conditions, and the sensor system recalibration at the dealer does not always resolve the issue permanently.",
+        "solution": "Visit a Hyundai dealer for parking sensor system diagnosis and software update. The dealer can test each sensor individually and replace any that have failed ($100-$300 per sensor including labor). If sensors are intermittently failing, check for moisture or debris buildup on the sensor faces — clean with a soft cloth. A full system recalibration may be needed after sensor replacement ($100-$150). If the issue persists after sensor replacement and recalibration, the parking sensor control module may need replacement ($300-$500).",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "No parking sensor alerts when approaching obstacles",
+          "Parking sensor warning chime sounds randomly with no obstacle",
+          "Rear camera works but parking sensor overlay shows no data",
+          "Parking sensor system error message on dashboard",
+          "Intermittent sensor operation — works sometimes, not others"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 100,
+        "estimatedCostHigh": 500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Test your parking sensors regularly by slowly backing toward a known object. If the system fails to alert you, do not rely on it and schedule a dealer visit. Given the Nexo's limited rear visibility, functioning parking sensors are critical for safe reversing.",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "Professional OBD-II diagnostic scanner for reading infotainment and body module codes",
+            "partName": "Bluetooth Pro OBD2 Scan Tool",
+            "partBrand": "BlueDriver",
+            "affiliateUrl": "https://www.amazon.com/s?k=BlueDriver%20Bluetooth%20Pro%20OBD2%20Scan%20Tool%20Hyundai%20Nexo&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Premium electrical tape for wiring repairs and harness wrapping",
+            "partName": "Super 33+ Vinyl Electrical Tape",
+            "partBrand": "3M",
+            "affiliateUrl": "https://www.amazon.com/s?k=3M%20Super%2033%2B%20Vinyl%20Electrical%20Tape%20Hyundai%20Nexo&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Split wire loom tubing to protect repaired or exposed wiring harnesses",
+            "partName": "Split Wire Loom Tubing",
+            "partBrand": "DEI",
+            "affiliateUrl": "https://www.amazon.com/s?k=DEI%20Split%20Wire%20Loom%20Tubing%20Hyundai%20Nexo&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Weatherproof terminal connector kit for reliable wiring repairs",
+            "partName": "Automotive Terminal Connector Kit",
+            "partBrand": "Molex",
+            "affiliateUrl": "https://www.amazon.com/s?k=Molex%20Automotive%20Terminal%20Connector%20Kit%20Hyundai%20Nexo&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Automotive relay replacement set for common relay failures",
+            "partName": "Automotive Relay 5-Pin 12V",
+            "partBrand": "Bosch",
+            "affiliateUrl": "https://www.amazon.com/s?k=Bosch%20Automotive%20Relay%205-Pin%2012V%20Hyundai%20Nexo&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Digital multimeter for diagnosing fuse, relay, and module electrical faults",
+            "partName": "Digital Multimeter",
+            "partBrand": "Innova",
+            "affiliateUrl": "https://www.amazon.com/s?k=Innova%20Digital%20Multimeter%20Hyundai%20Nexo&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "OEM-quality replacement sensor for accurate readings and proper system function",
+            "partName": "Replacement Sensor",
+            "partBrand": "Bosch",
+            "affiliateUrl": "https://www.amazon.com/s?k=Bosch%20Replacement%20Sensor%20Hyundai%20Nexo&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 40,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-03-06",
+        "reviewedOn": "2026-03-06",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    }
+  ]
+}
