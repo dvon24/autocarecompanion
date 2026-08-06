@@ -1,0 +1,478 @@
+{
+  "schemaVersion": 1,
+  "status": "proposal-only",
+  "auditStage": "model-primary-source-adjudication",
+  "requiresIndependentApproval": true,
+  "generatedOn": "2026-08-06",
+  "make": "Infiniti",
+  "model": "G37",
+  "completionStatement": "This packet reconciles all three frozen Infiniti G37 rows. No exact primary-source rewrite cleared the gate; all three remain byte-for-byte unchanged.",
+  "safetyContract": [
+    "No production database write, cache purge, deployment, archive action, redirect, slug change, new issue or public-page change is authorized by this packet.",
+    "All three G37 rows remain published and byte-for-byte unchanged.",
+    "A no-leak clutch-pedal bulletin cannot substantiate a leaking CSC identity.",
+    "The separately discovered power-window-switch campaign is deferred until the post-audit new-known-issues phase.",
+    "Independent row-by-row approval is required before any separate correction or addition path may be created."
+  ],
+  "source": {
+    "snapshotFile": "data/_infiniti-deeplink-snapshot-2026-08-06.json",
+    "snapshotSha256": "d39bdd77a0557365946b551a26b951cb1a5ba81773b7b66497201347b5034f64",
+    "snapshotGeneratedAt": "2026-08-06T23:15:05.490Z",
+    "snapshotHash": "45dde736354a9dcd17a72399b0101f30373ca9c267e6cd49a2528a63a023eebd",
+    "g37RecordCount": 3
+  },
+  "observations": [
+    {
+      "code": "clutch-bulletin-does-not-prove-csc-failure",
+      "severity": "high",
+      "recordIds": [
+        "infiniti-g37-concentric-slave-cylinder"
+      ],
+      "detail": "The visually inspected ITB13-005A requires no hydraulic leak and specifies fluid service, so the CSC-leak/replacement page is held unchanged."
+    },
+    {
+      "code": "three-g37-identities-frozen",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "infiniti-g37-concentric-slave-cylinder",
+        "infiniti-g37-galley-gasket-oil-leak",
+        "infiniti-g37-steering-lock-malfunction"
+      ],
+      "detail": "None of the three existing indexed identities has an exact full-identity primary source; all remain byte-for-byte unchanged."
+    },
+    {
+      "code": "deferred-new-power-window-switch-candidate",
+      "severity": "post-audit-proposal-only",
+      "recordIds": [],
+      "detail": "NHTSA recall 11V-538 covers certain 2011-2012 G37 Coupe power-window switch controllers manufactured out of specification. It is a distinct missing issue candidate and is not added, substituted or applied during this audit.",
+      "sourceUrl": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=G37&modelYear=2011",
+      "campaignNumber": "11V538000"
+    },
+    {
+      "code": "three-g37-pages-preserved",
+      "severity": "seo-safety",
+      "recordIds": [
+        "infiniti-g37-concentric-slave-cylinder",
+        "infiniti-g37-galley-gasket-oil-leak",
+        "infiniti-g37-steering-lock-malfunction"
+      ],
+      "detail": "All three indexed G37 records remain published with identical IDs, titles, categories, content, citations and commerce."
+    }
+  ],
+  "reviewSources": {
+    "clutchPedalPartial": "https://static.nhtsa.gov/odi/tsbs/2013/SB-10051925-8330.pdf"
+  },
+  "mismatchSources": {
+    "recallQueries": {
+      "2008": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=G37&modelYear=2008",
+      "2009": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=G37&modelYear=2009",
+      "2010": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=G37&modelYear=2010",
+      "2011": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=G37&modelYear=2011",
+      "2012": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=G37&modelYear=2012",
+      "2013": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=G37&modelYear=2013"
+    }
+  },
+  "summary": {
+    "rewrite_same_identity": 0,
+    "keep_published_pending_source": 3,
+    "deferred_new_issue_candidates": 1,
+    "total": 3
+  },
+  "rows": [
+    {
+      "id": "infiniti-g37-concentric-slave-cylinder",
+      "model": "G37",
+      "action": "keep_published_pending_source",
+      "reason": "Infiniti ITB13-005A covers a clutch pedal that does not return on 2008-2013 six-speed-manual G37 vehicles only when there are no hydraulic leaks, and directs a fluid change and bleed. It does not establish the indexed leaking concentric-slave-cylinder identity, internal-seal mechanism, transmission-removal replacement or aftermarket upgrade, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; a partial/contradictory bulletin, absent citation or unrelated campaign cannot replace the indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-record-partial-and-contradictory",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2013/SB-10051925-8330.pdf",
+          "verifiedOn": "2026-08-06",
+          "documentSha256": "e6aacece362bdb12b545d08ce07d82fdaf9edd86bc98fc9fe699a16d050e0644",
+          "visuallyInspectedPages": [
+            1
+          ],
+          "observation": "ITB13-005A applies to 2008-2013 G37 six-speed manual vehicles with a clutch pedal that does not return and explicitly requires no leaks in the clutch hydraulic system. It directs a fluid change/bleed and does not establish a leaking concentric slave cylinder or transmission-removal replacement."
+        }
+      ],
+      "beforeSha256": "1b28d4b85db26df49a99cfeaba882731c3b420dda4a8ae7ef2d1b42ee8cefb84",
+      "proposalSha256": "1b28d4b85db26df49a99cfeaba882731c3b420dda4a8ae7ef2d1b42ee8cefb84",
+      "before": {
+        "make": "Infiniti",
+        "model": "G37",
+        "years": [
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013
+        ],
+        "trims": [],
+        "engines": [
+          "3.7L VQ37VHR V6"
+        ],
+        "category": "transmission",
+        "title": "Concentric Slave Cylinder Failure (Manual)",
+        "description": "Manual transmission G37s suffer from premature concentric slave cylinder (CSC) failure. The internal seal degrades, causing clutch fluid to leak into the bell housing and resulting in a soft or sinking clutch pedal.",
+        "solution": "Replace the concentric slave cylinder, which unfortunately requires transmission removal. Many owners upgrade to an aftermarket CSC with improved seals. Flush the clutch hydraulic system after replacement.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Soft or spongy clutch pedal",
+          "Clutch pedal sinks to floor",
+          "Difficulty shifting gears",
+          "Clutch fluid level dropping"
+        ],
+        "affectedSystems": [
+          "transmission"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 800,
+        "estimatedCostHigh": 2000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "nissan-370z-csc-failure-2009"
+        ]
+      },
+      "proposal": {
+        "make": "Infiniti",
+        "model": "G37",
+        "years": [
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013
+        ],
+        "trims": [],
+        "engines": [
+          "3.7L VQ37VHR V6"
+        ],
+        "category": "transmission",
+        "title": "Concentric Slave Cylinder Failure (Manual)",
+        "description": "Manual transmission G37s suffer from premature concentric slave cylinder (CSC) failure. The internal seal degrades, causing clutch fluid to leak into the bell housing and resulting in a soft or sinking clutch pedal.",
+        "solution": "Replace the concentric slave cylinder, which unfortunately requires transmission removal. Many owners upgrade to an aftermarket CSC with improved seals. Flush the clutch hydraulic system after replacement.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Soft or spongy clutch pedal",
+          "Clutch pedal sinks to floor",
+          "Difficulty shifting gears",
+          "Clutch fluid level dropping"
+        ],
+        "affectedSystems": [
+          "transmission"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 800,
+        "estimatedCostHigh": 2000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "nissan-370z-csc-failure-2009"
+        ]
+      }
+    },
+    {
+      "id": "infiniti-g37-galley-gasket-oil-leak",
+      "model": "G37",
+      "action": "keep_published_pending_source",
+      "reason": "The row has no citation, and no exact Infiniti/NHTSA bulletin or campaign was found for the indexed VQ37VHR oil-gallery-gasket leak, its stated location between oil pans, exhaust/fire outcome or short repair procedure. The location narrative conflicts with known front-cover service architecture, but without an exact approved replacement identity the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; a partial/contradictory bulletin, absent citation or unrelated campaign cannot replace the indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-recall-set-unrelated",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=G37&modelYear=2008",
+          "verifiedOn": "2026-08-06",
+          "observation": "The official 2008-2013 G37 recall inventory contains no oil-gallery-gasket, front-cover oil-pressure or oil-leak campaign.",
+          "supportingUrls": [
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=G37&modelYear=2008",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=G37&modelYear=2009",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=G37&modelYear=2010",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=G37&modelYear=2011",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=G37&modelYear=2012",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=G37&modelYear=2013"
+          ]
+        }
+      ],
+      "beforeSha256": "6269916af94e6af8c5b7d4330782fff57b749d29b9dffd7b669dd44d64a50fcc",
+      "proposalSha256": "6269916af94e6af8c5b7d4330782fff57b749d29b9dffd7b669dd44d64a50fcc",
+      "before": {
+        "make": "Infiniti",
+        "model": "G37",
+        "years": [
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013
+        ],
+        "trims": [],
+        "engines": [
+          "3.7L VQ37VHR V6",
+          "VQ37VHR"
+        ],
+        "category": "engine",
+        "title": "Oil Gallery Gasket Leak",
+        "description": "The VQ37VHR engine develops oil leaks from the oil gallery gaskets located between the upper and lower oil pans. Oil seeps onto the exhaust, creating a burning smell and potential fire hazard if left unaddressed.",
+        "solution": "Replace the oil gallery gaskets, which requires removing the lower oil pan. Use updated Nissan/Infiniti gaskets that have improved sealing material. Clean all mating surfaces thoroughly before reinstalling.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Burning oil smell from engine bay",
+          "Oil dripping on exhaust manifold",
+          "Visible oil seepage on lower engine block"
+        ],
+        "affectedSystems": [
+          "engine"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 400,
+        "estimatedCostHigh": 1200,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "nissan-370z-oil-gallery-gasket-2009",
+          "infiniti-qx50-timing-chain-vvel-2014",
+          "infiniti-ex35-oil-consumption",
+          "infiniti-g35-oil-consumption-vq35de"
+        ]
+      },
+      "proposal": {
+        "make": "Infiniti",
+        "model": "G37",
+        "years": [
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013
+        ],
+        "trims": [],
+        "engines": [
+          "3.7L VQ37VHR V6",
+          "VQ37VHR"
+        ],
+        "category": "engine",
+        "title": "Oil Gallery Gasket Leak",
+        "description": "The VQ37VHR engine develops oil leaks from the oil gallery gaskets located between the upper and lower oil pans. Oil seeps onto the exhaust, creating a burning smell and potential fire hazard if left unaddressed.",
+        "solution": "Replace the oil gallery gaskets, which requires removing the lower oil pan. Use updated Nissan/Infiniti gaskets that have improved sealing material. Clean all mating surfaces thoroughly before reinstalling.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Burning oil smell from engine bay",
+          "Oil dripping on exhaust manifold",
+          "Visible oil seepage on lower engine block"
+        ],
+        "affectedSystems": [
+          "engine"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 400,
+        "estimatedCostHigh": 1200,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "nissan-370z-oil-gallery-gasket-2009",
+          "infiniti-qx50-timing-chain-vvel-2014",
+          "infiniti-ex35-oil-consumption",
+          "infiniti-g35-oil-consumption-vq35de"
+        ]
+      }
+    },
+    {
+      "id": "infiniti-g37-steering-lock-malfunction",
+      "model": "G37",
+      "action": "keep_published_pending_source",
+      "reason": "An Infiniti homepage does not establish one 2008-2013 G37 steering-lock-actuator defect, internal motor/BCM communication cause, campaign eligibility or repair. No exact G37 steering-lock bulletin or campaign was found, and Nissan programs for other models cannot be transferred, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; a partial/contradictory bulletin, absent citation or unrelated campaign cannot replace the indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-recall-set-unrelated",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=G37&modelYear=2008",
+          "verifiedOn": "2026-08-06",
+          "observation": "The official 2008-2013 G37 recall inventory contains no electronic steering-lock-actuator or BCM no-start campaign.",
+          "supportingUrls": [
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=G37&modelYear=2008",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=G37&modelYear=2009",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=G37&modelYear=2010",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=G37&modelYear=2011",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=G37&modelYear=2012",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=G37&modelYear=2013"
+          ]
+        }
+      ],
+      "beforeSha256": "625d262d523801eaaefc98e4b658434ebe16767060079fc7a18479ac63a88d55",
+      "proposalSha256": "625d262d523801eaaefc98e4b658434ebe16767060079fc7a18479ac63a88d55",
+      "before": {
+        "make": "Infiniti",
+        "model": "G37",
+        "years": [
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "steering",
+        "title": "Electronic Steering Lock Failure",
+        "description": "Like the G35, the G37 suffers from electronic steering wheel lock actuator failures that prevent the vehicle from starting. The internal motor in the lock mechanism burns out or the control module loses communication with the BCM.",
+        "solution": "Replace the steering lock actuator assembly. Nissan issued a voluntary service campaign for some VINs covering this repair. Check with the dealer for coverage before paying out of pocket.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "No-start condition with push button",
+          "Steering wheel locked and will not release",
+          "NATS warning light illuminated"
+        ],
+        "affectedSystems": [
+          "steering",
+          "electrical"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 300,
+        "estimatedCostHigh": 1000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.infinitiusa.com",
+            "title": "Steering Lock Service Campaign",
+            "source": "Infiniti Consumer Affairs"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "infiniti-g35-steering-wheel-lock",
+          "nissan-370z-steering-lock-2009",
+          "nissan-altima-steering-2013"
+        ]
+      },
+      "proposal": {
+        "make": "Infiniti",
+        "model": "G37",
+        "years": [
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "steering",
+        "title": "Electronic Steering Lock Failure",
+        "description": "Like the G35, the G37 suffers from electronic steering wheel lock actuator failures that prevent the vehicle from starting. The internal motor in the lock mechanism burns out or the control module loses communication with the BCM.",
+        "solution": "Replace the steering lock actuator assembly. Nissan issued a voluntary service campaign for some VINs covering this repair. Check with the dealer for coverage before paying out of pocket.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "No-start condition with push button",
+          "Steering wheel locked and will not release",
+          "NATS warning light illuminated"
+        ],
+        "affectedSystems": [
+          "steering",
+          "electrical"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 300,
+        "estimatedCostHigh": 1000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.infinitiusa.com",
+            "title": "Steering Lock Service Campaign",
+            "source": "Infiniti Consumer Affairs"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "infiniti-g35-steering-wheel-lock",
+          "nissan-370z-steering-lock-2009",
+          "nissan-altima-steering-2013"
+        ]
+      }
+    }
+  ]
+}
