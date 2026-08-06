@@ -1,0 +1,752 @@
+{
+  "schemaVersion": 1,
+  "status": "proposal-only",
+  "auditStage": "model-primary-source-adjudication",
+  "requiresIndependentApproval": true,
+  "generatedOn": "2026-08-06",
+  "make": "Hyundai",
+  "model": "Ioniq 5 N",
+  "completionStatement": "This packet reconciles all four frozen Hyundai Ioniq 5 N rows. No exact same-identity primary-source rewrite cleared the gate; all four remain byte-for-byte unchanged.",
+  "safetyContract": [
+    "No production database write, cache purge, deployment, archive action, redirect, slug change or public-page change is authorized by this packet.",
+    "All four rows remain published and byte-for-byte unchanged.",
+    "A standard-Ioniq-5 recall, a different N failure mode or a different model year may never replace an existing indexed Ioniq 5 N page.",
+    "Existing commerce remains frozen rather than being silently rewritten without exact repair-role evidence.",
+    "Independent row-by-row approval is required before any separate correction path may be created."
+  ],
+  "source": {
+    "snapshotFile": "data/_hyundai-deeplink-snapshot-2026-08-06.json",
+    "snapshotSha256": "f3e74267205477804060c49c988221cdc4dfcfc4586df369601c8c64736cce60",
+    "snapshotGeneratedAt": "2026-08-06T02:37:36.989Z",
+    "snapshotHash": "444457abb31ca6a5ead423878b37ca790d44a87c74ffa43259362cb4218ba632",
+    "ioniq5nRecordCount": 4
+  },
+  "observations": [
+    {
+      "code": "iccu-variant-year-mismatch",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "hyundai-ioniq-5-n-iccu-failure-2024"
+      ],
+      "detail": "Recall 24V-868 does not establish the frozen 2024 Ioniq 5 N identity or its full charging/repeat-failure narrative."
+    },
+    {
+      "code": "braking-recall-different-identity",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "hyundai-ioniq-5-n-brake-transition-noise-2024"
+      ],
+      "detail": "Recall 25V-235 is a 2025 LFB/N e-Shift software issue, not the frozen brake-transition-noise page."
+    },
+    {
+      "code": "two-owner-narratives-frozen",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "hyundai-ioniq-5-n-12v-battery-drain-2024",
+        "hyundai-ioniq-5-n-motor-whine-highway-2024"
+      ],
+      "detail": "The 12-volt drain and motor-whine narratives lack exact Ioniq 5 N primary evidence and remain unchanged."
+    }
+  ],
+  "mismatchSources": {
+    "iccu": "https://static.nhtsa.gov/odi/rcl/2024/RCAK-24V868-3172.pdf",
+    "braking": "https://static.nhtsa.gov/odi/rcl/2025/RCAK-25V235-5140.pdf"
+  },
+  "summary": {
+    "rewrite_same_identity": 0,
+    "keep_published_pending_source": 4,
+    "total": 4
+  },
+  "rows": [
+    {
+      "id": "hyundai-ioniq-5-n-iccu-failure-2024",
+      "model": "Ioniq 5 N",
+      "action": "keep_published_pending_source",
+      "reason": "Recall 24V-868 covers 2022-2024 Ioniq 5 vehicles but does not identify the U.S.-market Ioniq 5 N, which NHTSA identifies as model year 2025 in N-specific recall 25V-235. It also does not establish the frozen DC-fast-charging, repeat-failure, backorder or post-repair claims, so the 2024 Ioniq 5 N row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; a different model year, variant, component or failure mode cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "model-year-and-variant-mismatch",
+          "url": "https://static.nhtsa.gov/odi/rcl/2024/RCAK-24V868-3172.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "Recall 24V-868 identifies 2022-2024 Ioniq 5 vehicles but does not establish the frozen 2024 Ioniq 5 N record or its full title/outcome scope."
+        }
+      ],
+      "beforeSha256": "b9a6095aaadf26852208b50354cb4e24e2fe3d93da3b27756ae404e6d68c2415",
+      "proposalSha256": "b9a6095aaadf26852208b50354cb4e24e2fe3d93da3b27756ae404e6d68c2415",
+      "before": {
+        "make": "Hyundai",
+        "model": "Ioniq 5 N",
+        "years": [
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Integrated Charging Control Unit (ICCU) Failure",
+        "description": "The Ioniq 5 N shares the E-GMP platform's well-documented ICCU failure, which affects approximately 145,000 Hyundai and Kia EVs in the US (recall covering 2022-2024 Ioniq 5, including the N variant). The ICCU handles DC fast charging, AC charging, and 12V battery maintenance. It fails due to overvoltage spikes at the start and end of 12V charging cycles and thermal stress during charging and driving. When the ICCU fails, the vehicle displays a 'Check Power System' or 'Check Electrical System' warning, the 12V battery drains rapidly, and the vehicle may enter limp mode or become completely inoperable. Hyundai's initial recall fix did not fully resolve the issue, with new ICCU failures reported on previously-remedied vehicles.",
+        "solution": "Check your VIN against NHTSA recall 24V-868 at nhtsa.gov/recalls. If affected, schedule a dealer appointment for the ICCU replacement at no cost. Be aware that replacement ICCU parts have been backordered 2+ months at many dealers. If the 12V battery drains, the vehicle can sometimes be jump-started to reach the dealer, but drive directly there without stopping. After the ICCU replacement, Hyundai recommends not leaving the vehicle unplugged for extended periods. If your vehicle has already had the recall repair and the ICCU fails again, inform the dealer that Hyundai has acknowledged repeat failures and a second replacement may be needed.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Check Power System or Check Electrical System warning",
+          "12V battery drains to critical level within hours",
+          "Vehicle enters limp mode with limited speed",
+          "DC fast charging fails or stops prematurely",
+          "Vehicle will not start after sitting for 2-3 days"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 0,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://static.nhtsa.gov/odi/rcl/2024/RCONL-24V868-8658.pdf",
+            "type": "recall",
+            "title": "NHTSA Recall 24V-868 — Hyundai ICCU Failure"
+          },
+          {
+            "url": "https://insideevs.com/features/752768/hyundai-kia-genesis-iccu-failure/",
+            "type": "nhtsa",
+            "title": "Hyundai ICCU Problem Explained — InsideEVs"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Install a 12V battery monitor (like the Battery Minder or FIXD sensor) to get early warning of ICCU failure. When the ICCU starts failing, it stops maintaining the 12V battery, and a monitor will alert you to abnormal voltage drops before the vehicle becomes undrivable.",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "If the dealer says ICCU parts are backordered, request a loaner vehicle. Hyundai's recall policy requires providing alternate transportation when safety recall parts are unavailable.",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "High-performance AGM battery with excellent cold cranking amps and deep cycle capability",
+            "partName": "RedTop AGM Battery",
+            "partBrand": "Optima",
+            "affiliateUrl": "https://www.amazon.com/s?k=Optima%20RedTop%20AGM%20Battery%20Hyundai%20Ioniq%205%20N&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "OEM-quality replacement battery with reliable performance",
+            "partName": "Professional AGM Battery",
+            "partBrand": "ACDelco",
+            "affiliateUrl": "https://www.amazon.com/s?k=ACDelco%20Professional%20AGM%20Battery%20Hyundai%20Ioniq%205%20N&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Automatic battery maintainer to prevent parasitic drain issues during storage",
+            "partName": "Junior 12V Battery Charger Maintainer",
+            "partBrand": "Battery Tender",
+            "affiliateUrl": "https://www.amazon.com/s?k=Battery%20Tender%20Junior%2012V%20Battery%20Charger%20Maintainer%20Hyundai%20Ioniq%205%20N&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Level 2 portable EV charger for reliable home or on-the-go charging",
+            "partName": "Portable Level 2 EV Charger",
+            "partBrand": "Lectron",
+            "affiliateUrl": "https://www.amazon.com/s?k=Lectron%20Portable%20Level%202%20EV%20Charger%20Hyundai%20Ioniq%205%20N&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 320,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-03-06",
+        "reviewedOn": "2026-03-06",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Ioniq 5 N",
+        "years": [
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Integrated Charging Control Unit (ICCU) Failure",
+        "description": "The Ioniq 5 N shares the E-GMP platform's well-documented ICCU failure, which affects approximately 145,000 Hyundai and Kia EVs in the US (recall covering 2022-2024 Ioniq 5, including the N variant). The ICCU handles DC fast charging, AC charging, and 12V battery maintenance. It fails due to overvoltage spikes at the start and end of 12V charging cycles and thermal stress during charging and driving. When the ICCU fails, the vehicle displays a 'Check Power System' or 'Check Electrical System' warning, the 12V battery drains rapidly, and the vehicle may enter limp mode or become completely inoperable. Hyundai's initial recall fix did not fully resolve the issue, with new ICCU failures reported on previously-remedied vehicles.",
+        "solution": "Check your VIN against NHTSA recall 24V-868 at nhtsa.gov/recalls. If affected, schedule a dealer appointment for the ICCU replacement at no cost. Be aware that replacement ICCU parts have been backordered 2+ months at many dealers. If the 12V battery drains, the vehicle can sometimes be jump-started to reach the dealer, but drive directly there without stopping. After the ICCU replacement, Hyundai recommends not leaving the vehicle unplugged for extended periods. If your vehicle has already had the recall repair and the ICCU fails again, inform the dealer that Hyundai has acknowledged repeat failures and a second replacement may be needed.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Check Power System or Check Electrical System warning",
+          "12V battery drains to critical level within hours",
+          "Vehicle enters limp mode with limited speed",
+          "DC fast charging fails or stops prematurely",
+          "Vehicle will not start after sitting for 2-3 days"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 0,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://static.nhtsa.gov/odi/rcl/2024/RCONL-24V868-8658.pdf",
+            "type": "recall",
+            "title": "NHTSA Recall 24V-868 — Hyundai ICCU Failure"
+          },
+          {
+            "url": "https://insideevs.com/features/752768/hyundai-kia-genesis-iccu-failure/",
+            "type": "nhtsa",
+            "title": "Hyundai ICCU Problem Explained — InsideEVs"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Install a 12V battery monitor (like the Battery Minder or FIXD sensor) to get early warning of ICCU failure. When the ICCU starts failing, it stops maintaining the 12V battery, and a monitor will alert you to abnormal voltage drops before the vehicle becomes undrivable.",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "If the dealer says ICCU parts are backordered, request a loaner vehicle. Hyundai's recall policy requires providing alternate transportation when safety recall parts are unavailable.",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "High-performance AGM battery with excellent cold cranking amps and deep cycle capability",
+            "partName": "RedTop AGM Battery",
+            "partBrand": "Optima",
+            "affiliateUrl": "https://www.amazon.com/s?k=Optima%20RedTop%20AGM%20Battery%20Hyundai%20Ioniq%205%20N&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "OEM-quality replacement battery with reliable performance",
+            "partName": "Professional AGM Battery",
+            "partBrand": "ACDelco",
+            "affiliateUrl": "https://www.amazon.com/s?k=ACDelco%20Professional%20AGM%20Battery%20Hyundai%20Ioniq%205%20N&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Automatic battery maintainer to prevent parasitic drain issues during storage",
+            "partName": "Junior 12V Battery Charger Maintainer",
+            "partBrand": "Battery Tender",
+            "affiliateUrl": "https://www.amazon.com/s?k=Battery%20Tender%20Junior%2012V%20Battery%20Charger%20Maintainer%20Hyundai%20Ioniq%205%20N&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Level 2 portable EV charger for reliable home or on-the-go charging",
+            "partName": "Portable Level 2 EV Charger",
+            "partBrand": "Lectron",
+            "affiliateUrl": "https://www.amazon.com/s?k=Lectron%20Portable%20Level%202%20EV%20Charger%20Hyundai%20Ioniq%205%20N&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 320,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-03-06",
+        "reviewedOn": "2026-03-06",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-ioniq-5-n-12v-battery-drain-2024",
+      "model": "Ioniq 5 N",
+      "action": "keep_published_pending_source",
+      "reason": "A consumer article about the E-GMP ICCU recall does not establish a separate 2024 Ioniq 5 N parasitic-draw defect involving Bluelink, security, N controllers, AGM sizing or the claimed parked-duration pattern. The row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; a different model year, variant, component or failure mode cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "f944395e1839f7d866576c621cc9148b4808958c9e80805058ef9637ed1efdb2",
+      "proposalSha256": "f944395e1839f7d866576c621cc9148b4808958c9e80805058ef9637ed1efdb2",
+      "before": {
+        "make": "Hyundai",
+        "model": "Ioniq 5 N",
+        "years": [
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "12V Auxiliary Battery Parasitic Drain",
+        "description": "Like the standard Ioniq 5, the Ioniq 5 N suffers from excessive parasitic draw on the 12V auxiliary battery from always-on systems including Bluelink telematics, the vehicle security system, and multiple electronic control modules. The smaller AGM 12V battery is more sensitive to deep discharge cycles than conventional batteries. The Ioniq 5 N's additional performance electronics (N-specific drive mode controller, electronic limited-slip differential controller) may place additional drain on the 12V system. Owners report dead 12V batteries after 3-7 days of the vehicle sitting unused, preventing the car from starting even with a fully charged main battery.",
+        "solution": "If the vehicle will sit for more than 3-4 days, either keep it plugged into a Level 1 or Level 2 charger (which maintains the 12V battery) or connect a 12V battery tender to the auxiliary battery. The 12V battery is located under the hood (front trunk area). Disable Bluelink remote features in the vehicle settings if not needed, as the telematics module is a significant parasitic draw. Replace the 12V battery proactively every 2-3 years with a high-quality AGM battery ($150-$250). After a dead 12V battery jump-start, drive for at least 30 minutes to allow the DC/DC converter to fully recharge the 12V system.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Vehicle will not power on after sitting 3-7 days",
+          "Dashboard is completely dark when pressing start button",
+          "Key fob unable to unlock doors remotely",
+          "Bluelink app shows vehicle offline",
+          "12V battery voltage drops below 11V after 48 hours unplugged"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 25,
+        "estimatedCostHigh": 250,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.consumerreports.org/cars/car-recalls-defects/hyundai-ioniq-kia-iccu-failure-tesla-a3038878758/",
+            "type": "recall",
+            "title": "Hyundai ICCU and 12V Battery Issues — Consumer Reports"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "The simplest prevention is to leave the car plugged in when not driving. Even a standard 120V Level 1 outlet is enough to keep the 12V battery maintained. If that is not possible, a NOCO Genius1 battery maintainer connected to the 12V battery terminals under the hood prevents dead battery surprises.",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "High-performance AGM battery with excellent cold cranking amps and deep cycle capability",
+            "partName": "RedTop AGM Battery",
+            "partBrand": "Optima",
+            "affiliateUrl": "https://www.amazon.com/s?k=Optima%20RedTop%20AGM%20Battery%20Hyundai%20Ioniq%205%20N&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "OEM-quality replacement battery with reliable performance",
+            "partName": "Professional AGM Battery",
+            "partBrand": "ACDelco",
+            "affiliateUrl": "https://www.amazon.com/s?k=ACDelco%20Professional%20AGM%20Battery%20Hyundai%20Ioniq%205%20N&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Automatic battery maintainer to prevent parasitic drain issues during storage",
+            "partName": "Junior 12V Battery Charger Maintainer",
+            "partBrand": "Battery Tender",
+            "affiliateUrl": "https://www.amazon.com/s?k=Battery%20Tender%20Junior%2012V%20Battery%20Charger%20Maintainer%20Hyundai%20Ioniq%205%20N&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Automotive relay replacement set for common relay failures",
+            "partName": "Automotive Relay 5-Pin 12V",
+            "partBrand": "Bosch",
+            "affiliateUrl": "https://www.amazon.com/s?k=Bosch%20Automotive%20Relay%205-Pin%2012V%20Hyundai%20Ioniq%205%20N&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Digital multimeter for diagnosing fuse, relay, and module electrical faults",
+            "partName": "Digital Multimeter",
+            "partBrand": "Innova",
+            "affiliateUrl": "https://www.amazon.com/s?k=Innova%20Digital%20Multimeter%20Hyundai%20Ioniq%205%20N&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 185,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-03-06",
+        "reviewedOn": "2026-03-06",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Ioniq 5 N",
+        "years": [
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "12V Auxiliary Battery Parasitic Drain",
+        "description": "Like the standard Ioniq 5, the Ioniq 5 N suffers from excessive parasitic draw on the 12V auxiliary battery from always-on systems including Bluelink telematics, the vehicle security system, and multiple electronic control modules. The smaller AGM 12V battery is more sensitive to deep discharge cycles than conventional batteries. The Ioniq 5 N's additional performance electronics (N-specific drive mode controller, electronic limited-slip differential controller) may place additional drain on the 12V system. Owners report dead 12V batteries after 3-7 days of the vehicle sitting unused, preventing the car from starting even with a fully charged main battery.",
+        "solution": "If the vehicle will sit for more than 3-4 days, either keep it plugged into a Level 1 or Level 2 charger (which maintains the 12V battery) or connect a 12V battery tender to the auxiliary battery. The 12V battery is located under the hood (front trunk area). Disable Bluelink remote features in the vehicle settings if not needed, as the telematics module is a significant parasitic draw. Replace the 12V battery proactively every 2-3 years with a high-quality AGM battery ($150-$250). After a dead 12V battery jump-start, drive for at least 30 minutes to allow the DC/DC converter to fully recharge the 12V system.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Vehicle will not power on after sitting 3-7 days",
+          "Dashboard is completely dark when pressing start button",
+          "Key fob unable to unlock doors remotely",
+          "Bluelink app shows vehicle offline",
+          "12V battery voltage drops below 11V after 48 hours unplugged"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 25,
+        "estimatedCostHigh": 250,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.consumerreports.org/cars/car-recalls-defects/hyundai-ioniq-kia-iccu-failure-tesla-a3038878758/",
+            "type": "recall",
+            "title": "Hyundai ICCU and 12V Battery Issues — Consumer Reports"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "The simplest prevention is to leave the car plugged in when not driving. Even a standard 120V Level 1 outlet is enough to keep the 12V battery maintained. If that is not possible, a NOCO Genius1 battery maintainer connected to the 12V battery terminals under the hood prevents dead battery surprises.",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "High-performance AGM battery with excellent cold cranking amps and deep cycle capability",
+            "partName": "RedTop AGM Battery",
+            "partBrand": "Optima",
+            "affiliateUrl": "https://www.amazon.com/s?k=Optima%20RedTop%20AGM%20Battery%20Hyundai%20Ioniq%205%20N&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "OEM-quality replacement battery with reliable performance",
+            "partName": "Professional AGM Battery",
+            "partBrand": "ACDelco",
+            "affiliateUrl": "https://www.amazon.com/s?k=ACDelco%20Professional%20AGM%20Battery%20Hyundai%20Ioniq%205%20N&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Automatic battery maintainer to prevent parasitic drain issues during storage",
+            "partName": "Junior 12V Battery Charger Maintainer",
+            "partBrand": "Battery Tender",
+            "affiliateUrl": "https://www.amazon.com/s?k=Battery%20Tender%20Junior%2012V%20Battery%20Charger%20Maintainer%20Hyundai%20Ioniq%205%20N&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Automotive relay replacement set for common relay failures",
+            "partName": "Automotive Relay 5-Pin 12V",
+            "partBrand": "Bosch",
+            "affiliateUrl": "https://www.amazon.com/s?k=Bosch%20Automotive%20Relay%205-Pin%2012V%20Hyundai%20Ioniq%205%20N&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Digital multimeter for diagnosing fuse, relay, and module electrical faults",
+            "partName": "Digital Multimeter",
+            "partBrand": "Innova",
+            "affiliateUrl": "https://www.amazon.com/s?k=Innova%20Digital%20Multimeter%20Hyundai%20Ioniq%205%20N&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 185,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-03-06",
+        "reviewedOn": "2026-03-06",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-ioniq-5-n-brake-transition-noise-2024",
+      "model": "Ioniq 5 N",
+      "action": "keep_published_pending_source",
+      "reason": "The two cited forum threads concern ordinary Ioniq 5 brake noise and do not establish an Ioniq 5 N-specific regenerative-to-friction transition defect, caliper-hardware remedy, rotor costs or rust progression. Recall 25V-235 concerns LFB/N e-Shift software, a different identity, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; a different model year, variant, component or failure mode cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "different-failure-mode",
+          "url": "https://static.nhtsa.gov/odi/rcl/2025/RCAK-25V235-5140.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "Recall 25V-235 covers 2025 Ioniq 5 N LFB/N e-Shift software, not regenerative-to-friction transition noise."
+        }
+      ],
+      "beforeSha256": "da56d2b57736ba6151aca43c900604a106e815bace63dbc85b5db40d94884a26",
+      "proposalSha256": "da56d2b57736ba6151aca43c900604a106e815bace63dbc85b5db40d94884a26",
+      "before": {
+        "make": "Hyundai",
+        "model": "Ioniq 5 N",
+        "years": [
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "brakes",
+        "title": "Regenerative-to-Friction Brake Transition Clunk and Noise",
+        "description": "The Ioniq 5 N features aggressive regenerative braking (up to 0.6g) with its N-specific brake system, but owners report a clunking or clicking noise from the rear brakes during the transition between regenerative and friction braking. The sound occurs when the brake pedal crosses the threshold where mechanical brake pads engage after regenerative braking reaches its limit. The brake discs can also develop surface rust quickly when regenerative braking is used heavily (reducing friction brake use), leading to additional scraping noise on first brake application after the car has sat. The issue is exacerbated by the Ioniq 5 N's aggressive regen settings in N mode and e-pedal mode.",
+        "solution": "Light surface rust on brake discs is normal for EVs with strong regenerative braking and will clear within a few brake applications. For the regen-to-friction transition clunk, visit the dealer for a brake system inspection — the rear caliper mounting hardware or anti-rattle clips may need adjustment ($0-$200). Periodically use moderate friction braking (pressing the brake pedal firmly at lower speeds) to keep the disc surfaces clean and prevent excessive rust buildup. In N mode, the virtual gear shifting feature engages strong regen which reduces friction brake use — balance this with occasional conventional braking. If disc rust is severe, the dealer can resurface or replace the rotors ($200-$400 per axle).",
+        "severity": "low",
+        "confidence": "medium",
+        "symptoms": [
+          "Clunking noise from rear brakes when transitioning from regen to friction",
+          "Clicking sound when releasing or pressing brake pedal",
+          "Scraping or grinding noise on first brake application after sitting",
+          "Visible rust on brake disc surfaces after 2-3 days parked",
+          "Pulsating sensation through brake pedal at low speeds"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 400,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.ioniqforum.com/threads/brake-noise.45927/",
+            "type": "owner-report",
+            "title": "Ioniq 5 Brake Noise Discussion — Ioniq Forum"
+          },
+          {
+            "url": "https://www.speakev.com/threads/ioniq-5-brake-disc-issue.187544/",
+            "type": "owner-report",
+            "title": "Ioniq 5 Brake Disc Issue — Speak EV Forum"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Once a week, make a few moderate-to-firm brake applications at 30-40 mph to scrub the disc surfaces clean. This prevents the rust buildup that causes scary-sounding scraping on your first stop. It only takes a minute and keeps the brakes in good shape.",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "Premium ceramic brake pads for quiet, low-dust braking performance",
+            "partName": "ThermoQuiet Ceramic Brake Pads",
+            "partBrand": "Wagner",
+            "affiliateUrl": "https://www.amazon.com/s?k=Wagner%20ThermoQuiet%20ceramic%20brake%20pads%20Hyundai%20Ioniq%205%20N&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Drilled and slotted brake rotors for improved heat dissipation and stopping power",
+            "partName": "Sport Drilled/Slotted Brake Rotor",
+            "partBrand": "StopTech",
+            "affiliateUrl": "https://www.amazon.com/s?k=StopTech%20drilled%20slotted%20brake%20rotor%20Hyundai%20Ioniq%205%20N&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 75,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-03-06",
+        "reviewedOn": "2026-03-06",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Ioniq 5 N",
+        "years": [
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "brakes",
+        "title": "Regenerative-to-Friction Brake Transition Clunk and Noise",
+        "description": "The Ioniq 5 N features aggressive regenerative braking (up to 0.6g) with its N-specific brake system, but owners report a clunking or clicking noise from the rear brakes during the transition between regenerative and friction braking. The sound occurs when the brake pedal crosses the threshold where mechanical brake pads engage after regenerative braking reaches its limit. The brake discs can also develop surface rust quickly when regenerative braking is used heavily (reducing friction brake use), leading to additional scraping noise on first brake application after the car has sat. The issue is exacerbated by the Ioniq 5 N's aggressive regen settings in N mode and e-pedal mode.",
+        "solution": "Light surface rust on brake discs is normal for EVs with strong regenerative braking and will clear within a few brake applications. For the regen-to-friction transition clunk, visit the dealer for a brake system inspection — the rear caliper mounting hardware or anti-rattle clips may need adjustment ($0-$200). Periodically use moderate friction braking (pressing the brake pedal firmly at lower speeds) to keep the disc surfaces clean and prevent excessive rust buildup. In N mode, the virtual gear shifting feature engages strong regen which reduces friction brake use — balance this with occasional conventional braking. If disc rust is severe, the dealer can resurface or replace the rotors ($200-$400 per axle).",
+        "severity": "low",
+        "confidence": "medium",
+        "symptoms": [
+          "Clunking noise from rear brakes when transitioning from regen to friction",
+          "Clicking sound when releasing or pressing brake pedal",
+          "Scraping or grinding noise on first brake application after sitting",
+          "Visible rust on brake disc surfaces after 2-3 days parked",
+          "Pulsating sensation through brake pedal at low speeds"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 400,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.ioniqforum.com/threads/brake-noise.45927/",
+            "type": "owner-report",
+            "title": "Ioniq 5 Brake Noise Discussion — Ioniq Forum"
+          },
+          {
+            "url": "https://www.speakev.com/threads/ioniq-5-brake-disc-issue.187544/",
+            "type": "owner-report",
+            "title": "Ioniq 5 Brake Disc Issue — Speak EV Forum"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Once a week, make a few moderate-to-firm brake applications at 30-40 mph to scrub the disc surfaces clean. This prevents the rust buildup that causes scary-sounding scraping on your first stop. It only takes a minute and keeps the brakes in good shape.",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "Premium ceramic brake pads for quiet, low-dust braking performance",
+            "partName": "ThermoQuiet Ceramic Brake Pads",
+            "partBrand": "Wagner",
+            "affiliateUrl": "https://www.amazon.com/s?k=Wagner%20ThermoQuiet%20ceramic%20brake%20pads%20Hyundai%20Ioniq%205%20N&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Drilled and slotted brake rotors for improved heat dissipation and stopping power",
+            "partName": "Sport Drilled/Slotted Brake Rotor",
+            "partBrand": "StopTech",
+            "affiliateUrl": "https://www.amazon.com/s?k=StopTech%20drilled%20slotted%20brake%20rotor%20Hyundai%20Ioniq%205%20N&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 75,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-03-06",
+        "reviewedOn": "2026-03-06",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-ioniq-5-n-motor-whine-highway-2024",
+      "model": "Ioniq 5 N",
+      "action": "keep_published_pending_source",
+      "reason": "A single forum thread does not establish an Ioniq 5 N front-drive-unit defect, comparative noise level, temperature pattern, repeat replacement history or warranty remedy. No exact Hyundai primary document was found, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; a different model year, variant, component or failure mode cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "83fb91a061fbcdc14b8b756bf25a054ff1e8f3e1e2d4a677c7fdcabcd6e9b756",
+      "proposalSha256": "83fb91a061fbcdc14b8b756bf25a054ff1e8f3e1e2d4a677c7fdcabcd6e9b756",
+      "before": {
+        "make": "Hyundai",
+        "model": "Ioniq 5 N",
+        "years": [
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "drivetrain",
+        "title": "High-Pitched Motor Whine at Highway Speeds",
+        "description": "The Ioniq 5 N's dual-motor AWD system can produce an objectionable high-pitched whine or electric motor noise at highway speeds (60+ mph), particularly from the front drive unit. While some motor noise is expected in performance EVs, the Ioniq 5 N's noise level has been reported as excessive compared to the standard Ioniq 5, potentially due to the N-specific motor tuning for higher output (641 hp combined). The noise is more noticeable with the virtual engine sound system (N Active Sound+) turned off, as there is no masking. Some owners have required front drive unit replacement to resolve the issue, but the noise can return on the replacement unit.",
+        "solution": "Visit a Hyundai dealer and have the technician road-test the vehicle at highway speed to verify the motor noise. The dealer should compare the noise level against Hyundai's specifications. If the noise exceeds specifications, the front drive unit may need replacement under warranty. Turning on the N Active Sound+ system at a moderate volume masks the motor whine during spirited driving. Adding sound-deadening material to the wheel wells and firewall ($100-$300 DIY, $500-$800 professionally installed) can also reduce the perceived noise level. Note that some motor whine is inherent to the high-output motors and may not be fully eliminable.",
+        "severity": "low",
+        "confidence": "medium",
+        "symptoms": [
+          "High-pitched whine audible at 60+ mph",
+          "Motor noise increases with speed, not throttle input",
+          "Noise is most noticeable with N Active Sound turned off",
+          "Sound appears to come from the front of the vehicle",
+          "Noise may vary with temperature — louder when cold"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 800,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.ioniqforum.com/threads/high-pitched-motor-noise-at-motorway-speeds.39496/",
+            "type": "owner-report",
+            "title": "High Pitched Motor Noise at Motorway Speeds — Ioniq Forum"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Before spending money on sound deadening, try the N Active Sound+ system on the 'Ignition' setting at volume 3-4. Many owners find this provides enough auditory feedback to make the motor whine unnoticeable, while also giving the car a more engaging driving character.",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "Mobil 1 75W-90 synthetic gear oil for differential and transfer case",
+            "partName": "Synthetic Gear Oil 75W-90",
+            "partBrand": "Mobil 1",
+            "affiliateUrl": "https://www.amazon.com/s?k=Mobil%201%2075W-90%20synthetic%20gear%20oil&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Fel-Pro gasket kit for drivetrain service",
+            "partName": "Gasket Kit",
+            "partBrand": "Fel-Pro",
+            "affiliateUrl": "https://www.amazon.com/s?k=Fel-Pro%20drivetrain%20gasket%20kit&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 60,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-03-06",
+        "reviewedOn": "2026-03-06",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Ioniq 5 N",
+        "years": [
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "drivetrain",
+        "title": "High-Pitched Motor Whine at Highway Speeds",
+        "description": "The Ioniq 5 N's dual-motor AWD system can produce an objectionable high-pitched whine or electric motor noise at highway speeds (60+ mph), particularly from the front drive unit. While some motor noise is expected in performance EVs, the Ioniq 5 N's noise level has been reported as excessive compared to the standard Ioniq 5, potentially due to the N-specific motor tuning for higher output (641 hp combined). The noise is more noticeable with the virtual engine sound system (N Active Sound+) turned off, as there is no masking. Some owners have required front drive unit replacement to resolve the issue, but the noise can return on the replacement unit.",
+        "solution": "Visit a Hyundai dealer and have the technician road-test the vehicle at highway speed to verify the motor noise. The dealer should compare the noise level against Hyundai's specifications. If the noise exceeds specifications, the front drive unit may need replacement under warranty. Turning on the N Active Sound+ system at a moderate volume masks the motor whine during spirited driving. Adding sound-deadening material to the wheel wells and firewall ($100-$300 DIY, $500-$800 professionally installed) can also reduce the perceived noise level. Note that some motor whine is inherent to the high-output motors and may not be fully eliminable.",
+        "severity": "low",
+        "confidence": "medium",
+        "symptoms": [
+          "High-pitched whine audible at 60+ mph",
+          "Motor noise increases with speed, not throttle input",
+          "Noise is most noticeable with N Active Sound turned off",
+          "Sound appears to come from the front of the vehicle",
+          "Noise may vary with temperature — louder when cold"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 800,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.ioniqforum.com/threads/high-pitched-motor-noise-at-motorway-speeds.39496/",
+            "type": "owner-report",
+            "title": "High Pitched Motor Noise at Motorway Speeds — Ioniq Forum"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Before spending money on sound deadening, try the N Active Sound+ system on the 'Ignition' setting at volume 3-4. Many owners find this provides enough auditory feedback to make the motor whine unnoticeable, while also giving the car a more engaging driving character.",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "Mobil 1 75W-90 synthetic gear oil for differential and transfer case",
+            "partName": "Synthetic Gear Oil 75W-90",
+            "partBrand": "Mobil 1",
+            "affiliateUrl": "https://www.amazon.com/s?k=Mobil%201%2075W-90%20synthetic%20gear%20oil&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Fel-Pro gasket kit for drivetrain service",
+            "partName": "Gasket Kit",
+            "partBrand": "Fel-Pro",
+            "affiliateUrl": "https://www.amazon.com/s?k=Fel-Pro%20drivetrain%20gasket%20kit&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 60,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-03-06",
+        "reviewedOn": "2026-03-06",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    }
+  ]
+}
