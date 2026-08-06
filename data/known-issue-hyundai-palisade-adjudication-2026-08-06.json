@@ -1,0 +1,1483 @@
+{
+  "schemaVersion": 1,
+  "status": "proposal-only",
+  "auditStage": "model-primary-source-adjudication",
+  "requiresIndependentApproval": true,
+  "generatedOn": "2026-08-06",
+  "make": "Hyundai",
+  "model": "Palisade",
+  "completionStatement": "This packet reconciles all nine frozen Hyundai Palisade rows. Four same-identity rewrites are proposed; five rows remain byte-for-byte unchanged.",
+  "safetyContract": [
+    "No production database write, cache purge, deployment, archive action, redirect, slug change or public-page change is authorized by this packet.",
+    "All nine rows remain published. Five are byte-for-byte unchanged.",
+    "Each rewrite preserves the indexed ID, title and category and uses one exact Hyundai or NHTSA record.",
+    "Rewrites contain zero commerce, zero cost or mileage claims, empty trim and engine arrays, and no diagnostic codes.",
+    "Independent row-by-row approval is required before a separate guarded apply path may be created."
+  ],
+  "source": {
+    "snapshotFile": "data/_hyundai-deeplink-snapshot-2026-08-06.json",
+    "snapshotSha256": "f3e74267205477804060c49c988221cdc4dfcfc4586df369601c8c64736cce60",
+    "snapshotGeneratedAt": "2026-08-06T02:37:36.989Z",
+    "snapshotHash": "444457abb31ca6a5ead423878b37ca790d44a87c74ffa43259362cb4218ba632",
+    "palisadeRecordCount": 9
+  },
+  "observations": [
+    {
+      "code": "four-exact-same-identity-rewrites",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "hyundai-palisade-cabin-smell",
+        "hyundai-palisade-idle-stop-go-electric-oil-pump-controller-fire-risk-recall-2",
+        "hyundai-palisade-seat-belt-buckle-fails-to-latch-recall-25v607",
+        "hyundai-palisade-third-row-side-curtain-airbag-improper-deployment-recall-26v"
+      ],
+      "detail": "Exact Hyundai or NHTSA records support one headrest-odor service procedure and three recall identities without changing any page title or category."
+    },
+    {
+      "code": "airbag-remedy-claim-corrected",
+      "severity": "high",
+      "recordIds": [
+        "hyundai-palisade-third-row-side-curtain-airbag-improper-deployment-recall-26v"
+      ],
+      "detail": "The frozen page claimed a protective-film and padding-removal remedy, while the exact January 22, 2026 Part 573 filing says Hyundai was still developing the remedy.",
+      "sourceUrls": [
+        "https://static.nhtsa.gov/odi/rcl/2026/RCLRPT-26V034-7650.pdf"
+      ]
+    },
+    {
+      "code": "five-secondary-or-unsupported-rows-frozen",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "hyundai-palisade-headlight-moisture",
+        "hyundai-palisade-abs-traction-control-malfunction-rough-roads",
+        "hyundai-palisade-infotainment-screen-blackout-bluelink-telematics-failures",
+        "hyundai-palisade-oil-dilution",
+        "hyundai-palisade-transmission-shift-quality"
+      ],
+      "detail": "Headlight, rough-road ABS, combined infotainment/BlueLink, oil-dilution and broad shift-quality narratives remain byte-for-byte unchanged without exact same-identity primary evidence."
+    }
+  ],
+  "publicSources": {
+    "headrest": "https://static.nhtsa.gov/odi/tsbs/2021/MC-10203276-0001.pdf",
+    "oilPump": "https://static.nhtsa.gov/odi/rcl/2023/RCLRPT-23V526-7183.PDF",
+    "seatBelt": "https://static.nhtsa.gov/odi/rcl/2025/RCLRPT-25V607-3620.pdf",
+    "airbag": "https://static.nhtsa.gov/odi/rcl/2026/RCLRPT-26V034-7650.pdf"
+  },
+  "summary": {
+    "rewrite_same_identity": 4,
+    "keep_published_pending_source": 5,
+    "total": 9
+  },
+  "rows": [
+    {
+      "id": "hyundai-palisade-headlight-moisture",
+      "model": "Palisade",
+      "action": "keep_published_pending_source",
+      "reason": "A generic NHTSA vehicle page and forum landing page do not establish one Hyundai-defined Palisade headlamp-sealing defect, recurring replacement outcome, revised assembly, drain-hole procedure or the stated costs across 2020-2023 vehicles. No exact Hyundai Palisade bulletin was found, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; secondary, partial or unsupported evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "6fe9efdb834624ba6a2fa5c20cadfda5f2afff576c265e730ea1372fc4ae6f26",
+      "proposalSha256": "6fe9efdb834624ba6a2fa5c20cadfda5f2afff576c265e730ea1372fc4ae6f26",
+      "before": {
+        "make": "Hyundai",
+        "model": "Palisade",
+        "years": [
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Headlight Assembly Moisture Intrusion / Condensation",
+        "description": "Palisade headlight assemblies are prone to moisture intrusion and internal condensation, significantly reducing nighttime visibility. The issue stems from inadequate sealing of the LED headlight housing. Some owners have had multiple headlight replacements under warranty, only for the issue to return.",
+        "solution": "Document the condensation with photos and bring to dealer under warranty. Hyundai has updated headlight assemblies with improved sealing (newer part numbers). If out of warranty, a headlight assembly replacement is $800-1,500 per side. Some owners have had success drilling a tiny drain hole and applying silicone sealant as a temporary fix.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Visible condensation inside headlight",
+          "Reduced headlight brightness",
+          "Water droplets visible inside lens",
+          "Headlight flickers",
+          "One headlight appears dimmer than the other"
+        ],
+        "affectedSystems": [
+          "Electrical",
+          "Exterior"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 1500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.palisadeforum.com",
+            "type": "forum",
+            "title": "PalisadeForum.com - Headlight Condensation Megathread"
+          },
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2021/HYUNDAI/PALISADE",
+            "type": "nhtsa",
+            "title": "NHTSA Complaints - Palisade Headlights"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Take timestamped photos of condensation and file a NHTSA complaint to build the case for a broader fix from Hyundai",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "Request the updated/revised headlight assembly part number from the dealer - early production units had worse sealing",
+            "upvotes": 0
+          },
+          {
+            "type": "warning",
+            "content": "Do not attempt to open the headlight housing yourself - this voids the warranty on the assembly",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "High-performance AGM battery with excellent cold cranking amps and deep cycle capability",
+            "partName": "RedTop AGM Battery",
+            "partBrand": "Optima",
+            "affiliateUrl": "https://www.amazon.com/s?k=Optima%20RedTop%20AGM%20Battery%20Hyundai%20Palisade&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "OEM-quality replacement battery with reliable performance",
+            "partName": "Professional AGM Battery",
+            "partBrand": "ACDelco",
+            "affiliateUrl": "https://www.amazon.com/s?k=ACDelco%20Professional%20AGM%20Battery%20Hyundai%20Palisade&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Automatic battery maintainer to prevent parasitic drain issues during storage",
+            "partName": "Junior 12V Battery Charger Maintainer",
+            "partBrand": "Battery Tender",
+            "affiliateUrl": "https://www.amazon.com/s?k=Battery%20Tender%20Junior%2012V%20Battery%20Charger%20Maintainer%20Hyundai%20Palisade&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "High-performance LED headlight bulbs with improved visibility and longevity",
+            "partName": "LED Headlight Bulbs",
+            "partBrand": "Sylvania",
+            "affiliateUrl": "https://www.amazon.com/s?k=Sylvania%20LED%20Headlight%20Bulbs%20Hyundai%20Palisade&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "OEM-equivalent headlight assembly for complete headlight replacement",
+            "partName": "Headlight Assembly",
+            "partBrand": "TYC",
+            "affiliateUrl": "https://www.amazon.com/s?k=TYC%20Headlight%20Assembly%20Hyundai%20Palisade&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 480,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-01-30",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "alfa-romeo-4c-headlight-condensation",
+          "kia-forte-headlight-condensation"
+        ]
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Palisade",
+        "years": [
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Headlight Assembly Moisture Intrusion / Condensation",
+        "description": "Palisade headlight assemblies are prone to moisture intrusion and internal condensation, significantly reducing nighttime visibility. The issue stems from inadequate sealing of the LED headlight housing. Some owners have had multiple headlight replacements under warranty, only for the issue to return.",
+        "solution": "Document the condensation with photos and bring to dealer under warranty. Hyundai has updated headlight assemblies with improved sealing (newer part numbers). If out of warranty, a headlight assembly replacement is $800-1,500 per side. Some owners have had success drilling a tiny drain hole and applying silicone sealant as a temporary fix.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Visible condensation inside headlight",
+          "Reduced headlight brightness",
+          "Water droplets visible inside lens",
+          "Headlight flickers",
+          "One headlight appears dimmer than the other"
+        ],
+        "affectedSystems": [
+          "Electrical",
+          "Exterior"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 1500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.palisadeforum.com",
+            "type": "forum",
+            "title": "PalisadeForum.com - Headlight Condensation Megathread"
+          },
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2021/HYUNDAI/PALISADE",
+            "type": "nhtsa",
+            "title": "NHTSA Complaints - Palisade Headlights"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Take timestamped photos of condensation and file a NHTSA complaint to build the case for a broader fix from Hyundai",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "Request the updated/revised headlight assembly part number from the dealer - early production units had worse sealing",
+            "upvotes": 0
+          },
+          {
+            "type": "warning",
+            "content": "Do not attempt to open the headlight housing yourself - this voids the warranty on the assembly",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "High-performance AGM battery with excellent cold cranking amps and deep cycle capability",
+            "partName": "RedTop AGM Battery",
+            "partBrand": "Optima",
+            "affiliateUrl": "https://www.amazon.com/s?k=Optima%20RedTop%20AGM%20Battery%20Hyundai%20Palisade&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "OEM-quality replacement battery with reliable performance",
+            "partName": "Professional AGM Battery",
+            "partBrand": "ACDelco",
+            "affiliateUrl": "https://www.amazon.com/s?k=ACDelco%20Professional%20AGM%20Battery%20Hyundai%20Palisade&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Automatic battery maintainer to prevent parasitic drain issues during storage",
+            "partName": "Junior 12V Battery Charger Maintainer",
+            "partBrand": "Battery Tender",
+            "affiliateUrl": "https://www.amazon.com/s?k=Battery%20Tender%20Junior%2012V%20Battery%20Charger%20Maintainer%20Hyundai%20Palisade&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "High-performance LED headlight bulbs with improved visibility and longevity",
+            "partName": "LED Headlight Bulbs",
+            "partBrand": "Sylvania",
+            "affiliateUrl": "https://www.amazon.com/s?k=Sylvania%20LED%20Headlight%20Bulbs%20Hyundai%20Palisade&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "OEM-equivalent headlight assembly for complete headlight replacement",
+            "partName": "Headlight Assembly",
+            "partBrand": "TYC",
+            "affiliateUrl": "https://www.amazon.com/s?k=TYC%20Headlight%20Assembly%20Hyundai%20Palisade&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 480,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-01-30",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "alfa-romeo-4c-headlight-condensation",
+          "kia-forte-headlight-condensation"
+        ]
+      }
+    },
+    {
+      "id": "hyundai-palisade-abs-traction-control-malfunction-rough-roads",
+      "model": "Palisade",
+      "action": "keep_published_pending_source",
+      "reason": "Three secondary articles describing a civil complaint do not establish one Hyundai- or NHTSA-confirmed ABS/traction-control defect, wheel-speed mechanism, steering outcome, affected population or software remedy across 2023-2025 Palisades. The allegations remain byte-for-byte unchanged pending an exact primary record.",
+      "identityRule": "No content or publication-state changes; secondary, partial or unsupported evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "a4cc4a14c00ac1e63f25d6ef472f79c4cfbb0264a2d2d32242cf518ef8ff3ace",
+      "proposalSha256": "a4cc4a14c00ac1e63f25d6ef472f79c4cfbb0264a2d2d32242cf518ef8ff3ace",
+      "before": {
+        "make": "Hyundai",
+        "model": "Palisade",
+        "years": [
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "brakes",
+        "title": "ABS / Traction Control Malfunction on Rough Roads (Class-Action Braking Defect)",
+        "description": "On 2023-2025 Palisades, the ABS and traction control systems can miscalculate wheel speeds when braking on gravel, dirt, or uneven surfaces, triggering rapid release-and-reapply cycling that lengthens stopping distances and, in some reports, spikes steering effort. A class-action complaint (Maldonado v. Hyundai Motor America) was filed May 9, 2025 in the Central District of California alleging the defect across 2023-2025 model years.",
+        "solution": "No recall has been issued and NHTSA had not opened a formal investigation as of mid-2026; the matter is the subject of an active class-action lawsuit. Affected owners should file a complaint at nhtsa.gov, document incidents, and have the dealer check for ABS/ESC software updates. Increase following distance on loose or rough surfaces until a remedy is available.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "ABS pulses or engages on gravel/dirt/rough roads with little braking",
+          "Greatly increased stopping distance over uneven surfaces",
+          "Steering feels locked/heavy during the event",
+          "Traction control activates erratically on bumps"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.classaction.org/news/2023-2025-hyundai-palisade-vehicles-plagued-by-brake-problems-class-action-suit-claims",
+            "type": "article",
+            "title": "2023-2025 Hyundai Palisade Plagued by Brake Problems, Class Action Suit Claims - ClassAction.org"
+          },
+          {
+            "url": "https://lemberglaw.com/class-actions/maldonado-v-hyundai-motor-america/",
+            "type": "article",
+            "title": "2023-2025 Hyundai Palisade ABS Braking Defect Lawsuit (Maldonado v. Hyundai) - Lemberg Law"
+          },
+          {
+            "url": "https://www.carcomplaints.com/news/2025/hyundai-palisade-abs-problems-class-action-lawsuit.shtml",
+            "type": "article",
+            "title": "Hyundai Palisade ABS Problems Cause Class Action Lawsuit - CarComplaints"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-16",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Palisade",
+        "years": [
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "brakes",
+        "title": "ABS / Traction Control Malfunction on Rough Roads (Class-Action Braking Defect)",
+        "description": "On 2023-2025 Palisades, the ABS and traction control systems can miscalculate wheel speeds when braking on gravel, dirt, or uneven surfaces, triggering rapid release-and-reapply cycling that lengthens stopping distances and, in some reports, spikes steering effort. A class-action complaint (Maldonado v. Hyundai Motor America) was filed May 9, 2025 in the Central District of California alleging the defect across 2023-2025 model years.",
+        "solution": "No recall has been issued and NHTSA had not opened a formal investigation as of mid-2026; the matter is the subject of an active class-action lawsuit. Affected owners should file a complaint at nhtsa.gov, document incidents, and have the dealer check for ABS/ESC software updates. Increase following distance on loose or rough surfaces until a remedy is available.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "ABS pulses or engages on gravel/dirt/rough roads with little braking",
+          "Greatly increased stopping distance over uneven surfaces",
+          "Steering feels locked/heavy during the event",
+          "Traction control activates erratically on bumps"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.classaction.org/news/2023-2025-hyundai-palisade-vehicles-plagued-by-brake-problems-class-action-suit-claims",
+            "type": "article",
+            "title": "2023-2025 Hyundai Palisade Plagued by Brake Problems, Class Action Suit Claims - ClassAction.org"
+          },
+          {
+            "url": "https://lemberglaw.com/class-actions/maldonado-v-hyundai-motor-america/",
+            "type": "article",
+            "title": "2023-2025 Hyundai Palisade ABS Braking Defect Lawsuit (Maldonado v. Hyundai) - Lemberg Law"
+          },
+          {
+            "url": "https://www.carcomplaints.com/news/2025/hyundai-palisade-abs-problems-class-action-lawsuit.shtml",
+            "type": "article",
+            "title": "Hyundai Palisade ABS Problems Cause Class Action Lawsuit - CarComplaints"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-16",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-palisade-cabin-smell",
+      "model": "Palisade",
+      "action": "rewrite_same_identity",
+      "reason": "Kept the indexed headrest/interior-odor identity, replaced forum and product claims with Hyundai TSB 21-BD-002H-1, narrowed applicability to the documented 2020-2021 Nappa-leather population, and retained only Hyundai's treatment and conditional replacement procedure.",
+      "identityRule": "The same indexed component, failure outcome and recall or service identity stay on the existing ID, title and category; only facts from the exact official record remain.",
+      "commerceDecision": "no-commerce",
+      "changedFields": [
+        "years",
+        "description",
+        "solution",
+        "symptoms",
+        "affectedSystems",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "communityRecommendations",
+        "humanApproved",
+        "reportCount",
+        "source",
+        "lastReportedByOwners",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
+      "evidence": [
+        {
+          "kind": "official-record-specific-tsb",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2021/MC-10203276-0001.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "Hyundai TSB 21-BD-002H-1 - Palisade Headrest Odor Service Procedure supports the proposed same-identity statements."
+        }
+      ],
+      "beforeSha256": "79475337f8e0527bbe5f60a412dc8c66dca22a7b53f241d65535ae014e1b7b44",
+      "proposalSha256": "f5da0ed6fa32055809b5fe669d696af2ee1fe7644c43611fec2cbf19a5fcd486",
+      "before": {
+        "make": "Hyundai",
+        "model": "Palisade",
+        "years": [
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "interior",
+        "title": "Foul Cabin Odor from Headrests / Interior Materials",
+        "description": "Many Palisade owners report a persistent foul odor inside the cabin, described as a chemical or locker-room smell. The source has been traced to the Nappa leather headrests and interior trim materials off-gassing. The smell is worse in warm weather and returns even after cleaning. This was a widespread complaint in early production models.",
+        "solution": "Hyundai issued a customer satisfaction campaign replacing headrests in affected vehicles. Contact your dealer to check eligibility. For DIY treatment, clean headrests with a leather cleaner and apply Leather Honey conditioner. Using an ozone generator ($30-50 rental) can temporarily eliminate the odor. Dealer headrest replacement is free if covered.",
+        "severity": "low",
+        "confidence": "high",
+        "symptoms": [
+          "Chemical or musty smell in cabin",
+          "Odor worse in warm weather",
+          "Smell returns after cleaning",
+          "Headrests smell when held close",
+          "New car smell that turns unpleasant"
+        ],
+        "affectedSystems": [
+          "Interior"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 200,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.palisadeforum.com",
+            "type": "forum",
+            "title": "PalisadeForum.com - Headrest Smell Megathread (300+ pages)"
+          },
+          {
+            "url": "https://www.reddit.com/r/Hyundai",
+            "type": "forum",
+            "title": "Reddit r/Hyundai - Palisade stink is real"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Leather Honey leather conditioner works well to reduce the off-gassing odor after deep cleaning",
+            "upvotes": 0,
+            "partName": "Leather Conditioner",
+            "partBrand": "Leather Honey",
+            "affiliateUrl": "https://www.amazon.com/s?k=Leather%20Honey%20Leather%20Conditioner&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Leave windows cracked open in a garage during warm months to allow off-gassing to dissipate faster",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 2200,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2024-08-15",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Palisade",
+        "years": [
+          2020,
+          2021
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "interior",
+        "title": "Foul Cabin Odor from Headrests / Interior Materials",
+        "description": "Hyundai TSB 21-BD-002H-1 applies to certain model-year 2020-2021 Palisade (LX2) vehicles equipped with Nappa leather and produced before November 23, 2020. The bulletin documents odor that may emit from one or more headrests.",
+        "solution": "Ask a Hyundai dealer to inspect the headrests under TSB 21-BD-002H-1. Hyundai's procedure removes the affected headrests, applies an approved odor eliminator to the foam, inner cover surfaces and seat mounting holes, dries the treatment in direct sunlight for two to three hours and reinspects. Only a headrest that still has odor after treatment is replaced.",
+        "severity": "low",
+        "confidence": "high",
+        "symptoms": [
+          "Odor emitting from one or more headrests"
+        ],
+        "affectedSystems": [
+          "Nappa-leather headrests"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "Hyundai TSB 21-BD-002H-1 - Palisade Headrest Odor Service Procedure",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2021/MC-10203276-0001.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Kept the indexed headrest/interior-odor identity, replaced forum and product claims with Hyundai TSB 21-BD-002H-1, narrowed applicability to the documented 2020-2021 Nappa-leather population, and retained only Hyundai's treatment and conditional replacement procedure.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-palisade-idle-stop-go-electric-oil-pump-controller-fire-risk-recall-2",
+      "model": "Palisade",
+      "action": "rewrite_same_identity",
+      "reason": "Kept the indexed 23V-526 oil-pump-controller/fire identity, replaced secondary and owner-notice citations with the exact Part 573 report, limited scope to the filing, and removed the separate 25V-291 moisture-seal identity.",
+      "identityRule": "The same indexed component, failure outcome and recall or service identity stay on the existing ID, title and category; only facts from the exact official record remain.",
+      "commerceDecision": "no-commerce",
+      "changedFields": [
+        "years",
+        "description",
+        "solution",
+        "symptoms",
+        "affectedSystems",
+        "citations",
+        "humanApproved",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
+      "evidence": [
+        {
+          "kind": "official-record-specific-recall",
+          "url": "https://static.nhtsa.gov/odi/rcl/2023/RCLRPT-23V526-7183.PDF",
+          "verifiedOn": "2026-08-06",
+          "observation": "NHTSA Part 573 Report 23V-526 - Hyundai ISG Electric Oil Pump supports the proposed same-identity statements."
+        }
+      ],
+      "beforeSha256": "59cb0eee7050401aff8c8e681cbe5918249940ccb97e832d4a2c944b76e60b5e",
+      "proposalSha256": "3b7c24867ebad6447229ef3c140a09524ed0dfe14ebe5225f0ca6be4ecc13089",
+      "before": {
+        "make": "Hyundai",
+        "model": "Palisade",
+        "years": [
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Idle Stop & Go (ISG) Electric Oil Pump Controller Fire Risk — Recall 246 / 23V526",
+        "description": "The electronic controller for the Idle Stop & Go transmission electric oil pump on 2023-2024 Palisades may have a printed circuit board damaged during manufacturing (e.g., a damaged capacitor) that can overheat the pump circuit board, connector, and wiring harness, raising the risk of an engine-compartment fire whether parked or driving. A separate 2025-model-year recall covers an insufficient controller seal that lets moisture reach the PCB. Hyundai advises owners to park outside away from structures until repaired.",
+        "solution": "Recall #246 / NHTSA 23V526 (2023-2024 Palisade plus 2023 Tucson, Sonata, Elantra, Kona): dealers inspect and replace the ISG electric oil pump controller as necessary, free of charge; owner letters mailed from September 7, 2023. The 2025-model seal/moisture issue is addressed under a separate recall (NHTSA 25V291). Park outside until repaired; Hyundai customer service 1-855-371-9460.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Burning smell or smoke from engine compartment",
+          "Warning to park outside / fire-risk recall notice",
+          "Possible ISG / auto stop-start malfunction warning"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://hyundai.oemdtc.com/922/safety-recall-246-transmission-electric-oil-pump-for-idle-stop-go-system-isg-2023-2024-hyundai-palisade-2023-tucson-sonata-elantra-kona",
+            "type": "manufacturer",
+            "title": "Safety Recall 246: ISG Transmission Electric Oil Pump - 2023-2024 Hyundai Palisade"
+          },
+          {
+            "url": "https://static.nhtsa.gov/odi/rcl/2023/RCMN-23V526-2405.pdf",
+            "type": "recall",
+            "title": "NHTSA Recall 23V526 - Hyundai ISG Electric Oil Pump Fire Risk"
+          },
+          {
+            "url": "https://www.palisadeforum.com/threads/recall-246-23-24-palisade-involving-idle-stop-and-go-electric-oil-pump-fire-issue.6997/",
+            "type": "forum",
+            "title": "Recall #246 ISG Electric Oil Pump Fire Issue - Hyundai Palisade Forum"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-16",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Palisade",
+        "years": [
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Idle Stop & Go (ISG) Electric Oil Pump Controller Fire Risk — Recall 246 / 23V526",
+        "description": "NHTSA recall 23V-526 (Hyundai recall 246) covers certain model-year 2023-2024 Palisade vehicles. The transmission electric oil pump for the Idle Stop & Go system may contain a controller printed circuit board damaged during manufacturing. A damaged capacitor can cause heat damage to the pump circuit board, connector and wiring harness, increasing fire risk and potentially disrupting communication among onboard controllers.",
+        "solution": "Check the VIN for NHTSA recall 23V-526. Hyundai recommends parking affected vehicles outside and away from structures until the recall remedy is completed. Hyundai dealers inspect and replace the electric oil pump and front harness as necessary, free of charge.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Smoke from the vehicle underbody",
+          "Burning or melting odor",
+          "Malfunction Indicator Lamp or other dashboard warning lamps"
+        ],
+        "affectedSystems": [
+          "Idle Stop & Go transmission electric oil pump",
+          "Oil-pump controller printed circuit board",
+          "Front wiring harness"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "NHTSA Part 573 Report 23V-526 - Hyundai ISG Electric Oil Pump",
+            "url": "https://static.nhtsa.gov/odi/rcl/2023/RCLRPT-23V526-7183.PDF"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Kept the indexed 23V-526 oil-pump-controller/fire identity, replaced secondary and owner-notice citations with the exact Part 573 report, limited scope to the filing, and removed the separate 25V-291 moisture-seal identity.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-palisade-infotainment-screen-blackout-bluelink-telematics-failures",
+      "model": "Palisade",
+      "action": "keep_published_pending_source",
+      "reason": "Two owner-forum threads do not establish one combined Palisade head-unit blackout, backup-camera, BlueLink, CarPlay and Wi-Fi defect or validate the reset, reactivation and replacement guidance across 2020-2025 vehicles. The row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; secondary, partial or unsupported evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "ee293d5db6cbc0551ecc729171e37f57df28bd4153a7238b6022c4f009c20f10",
+      "proposalSha256": "ee293d5db6cbc0551ecc729171e37f57df28bd4153a7238b6022c4f009c20f10",
+      "before": {
+        "make": "Hyundai",
+        "model": "Palisade",
+        "years": [
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Infotainment Screen Blackout & BlueLink Telematics Failures",
+        "description": "Palisade owners report the central infotainment/navigation screen going black and unresponsive, taking out GPS, Bluetooth audio, and the backup camera at once, sometimes requiring a costly head-unit replacement. Separately, BlueLink remote start and app functions stop working, often after software updates, forcing use of the physical key. These are recurring software/head-unit and telematics faults documented across owner forums rather than a single recall.",
+        "solution": "Reset the head unit by holding the small pinhole reset next to the tuner knob (~15 seconds with a paperclip), or hold Map + Setup ~10 seconds. Install the latest infotainment software (USB or OTA) and update the BlueLink app; reactivate BlueLink in Setup (support 1-844-258-5656). Persistent blackouts may require head-unit reflash or replacement under warranty.",
+        "severity": "medium",
+        "confidence": "low",
+        "symptoms": [
+          "Center screen black/unresponsive (no GPS, Bluetooth, or backup camera)",
+          "BlueLink remote start/app fails after an update",
+          "BlueLink shows signal bars but a red 'no service' indicator",
+          "Wireless CarPlay / Wi-Fi will not connect"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.hyundaipalisade.com/threads/palisade-infotainment-system-not-working-including-gps-bluetooth-music-and-rear-back-up-camera-screen-wont-turn-on-it-stays-black.1703/",
+            "type": "forum",
+            "title": "Palisade Infotainment Screen Won't Turn On, Stays Black - Hyundai Palisade Forum"
+          },
+          {
+            "url": "https://www.palisadeforum.com/threads/bluelink-stopped-working-after-latest-update.8082/",
+            "type": "forum",
+            "title": "BlueLink Stopped Working After Latest Update - Hyundai Palisade Forum"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-16",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Palisade",
+        "years": [
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Infotainment Screen Blackout & BlueLink Telematics Failures",
+        "description": "Palisade owners report the central infotainment/navigation screen going black and unresponsive, taking out GPS, Bluetooth audio, and the backup camera at once, sometimes requiring a costly head-unit replacement. Separately, BlueLink remote start and app functions stop working, often after software updates, forcing use of the physical key. These are recurring software/head-unit and telematics faults documented across owner forums rather than a single recall.",
+        "solution": "Reset the head unit by holding the small pinhole reset next to the tuner knob (~15 seconds with a paperclip), or hold Map + Setup ~10 seconds. Install the latest infotainment software (USB or OTA) and update the BlueLink app; reactivate BlueLink in Setup (support 1-844-258-5656). Persistent blackouts may require head-unit reflash or replacement under warranty.",
+        "severity": "medium",
+        "confidence": "low",
+        "symptoms": [
+          "Center screen black/unresponsive (no GPS, Bluetooth, or backup camera)",
+          "BlueLink remote start/app fails after an update",
+          "BlueLink shows signal bars but a red 'no service' indicator",
+          "Wireless CarPlay / Wi-Fi will not connect"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.hyundaipalisade.com/threads/palisade-infotainment-system-not-working-including-gps-bluetooth-music-and-rear-back-up-camera-screen-wont-turn-on-it-stays-black.1703/",
+            "type": "forum",
+            "title": "Palisade Infotainment Screen Won't Turn On, Stays Black - Hyundai Palisade Forum"
+          },
+          {
+            "url": "https://www.palisadeforum.com/threads/bluelink-stopped-working-after-latest-update.8082/",
+            "type": "forum",
+            "title": "BlueLink Stopped Working After Latest Update - Hyundai Palisade Forum"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-16",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-palisade-oil-dilution",
+      "model": "Palisade",
+      "action": "keep_published_pending_source",
+      "reason": "The citation points only to Hyundai's homepage, and the claimed 20-FL-006 Palisade oil-dilution bulletin could not be located as an exact primary record. Owner discussion does not establish the Lambda II mechanism, ECU update, DTCs, oil specification, service interval or costs, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; secondary, partial or unsupported evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "4a93ca76db80e2cc817f2f618ed5a02e21545daddb14b7a97a6f27fe276a724a",
+      "proposalSha256": "4a93ca76db80e2cc817f2f618ed5a02e21545daddb14b7a97a6f27fe276a724a",
+      "before": {
+        "make": "Hyundai",
+        "model": "Palisade",
+        "years": [
+          2020,
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [
+          "3.8L V6"
+        ],
+        "category": "engine",
+        "title": "Oil Dilution / Gasoline Contamination in Engine Oil",
+        "description": "The 3.8L Lambda II V6 in the Palisade can suffer from fuel diluting the engine oil, particularly in cold climates with short trips. The GDI system can allow unburned fuel past the piston rings during cold starts. Oil level rises above the full mark and smells of gasoline. Hyundai released a software update to address the issue.",
+        "solution": "Have the dealer install the latest ECU calibration to reduce fuel enrichment during cold starts. Change oil more frequently in winter (every 3,000-5,000 miles vs 7,500). Use 0W-20 full synthetic oil. If oil level is significantly above the full mark, drain and replace immediately. Software update is free; extra oil changes cost $50-80 each.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Oil level rising above full mark",
+          "Gasoline smell from dipstick",
+          "Oil looks thin and watery",
+          "Rough idle in cold weather",
+          "Fuel smell inside cabin"
+        ],
+        "affectedSystems": [
+          "Engine",
+          "Fuel System"
+        ],
+        "dtcCodes": [
+          "P0171",
+          "P0174",
+          "P0420"
+        ],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 200,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.hyundaiusa.com",
+            "type": "tsb",
+            "title": "Hyundai TSB 20-FL-006 - Oil Dilution Cold Climate"
+          },
+          {
+            "url": "https://www.palisadeforum.com",
+            "type": "forum",
+            "title": "PalisadeForum.com - Oil Dilution Reports"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Pennzoil Platinum 0W-20 resists fuel dilution better than many conventional oils",
+            "upvotes": 0,
+            "partName": "Platinum Full Synthetic 0W-20",
+            "partBrand": "Pennzoil",
+            "affiliateUrl": "https://www.amazon.com/s?k=Pennzoil%20Platinum%20Full%20Synthetic%200W-20&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "In cold weather, drive at least 15-20 minutes to get the engine fully warmed up - short trips cause the most dilution",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "Check oil level and smell the dipstick monthly in winter months to catch dilution early",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 620,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-02-01",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "kia-telluride-oil-dilution-2020",
+          "hyundai-kona-oil-dilution-2018"
+        ]
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Palisade",
+        "years": [
+          2020,
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [
+          "3.8L V6"
+        ],
+        "category": "engine",
+        "title": "Oil Dilution / Gasoline Contamination in Engine Oil",
+        "description": "The 3.8L Lambda II V6 in the Palisade can suffer from fuel diluting the engine oil, particularly in cold climates with short trips. The GDI system can allow unburned fuel past the piston rings during cold starts. Oil level rises above the full mark and smells of gasoline. Hyundai released a software update to address the issue.",
+        "solution": "Have the dealer install the latest ECU calibration to reduce fuel enrichment during cold starts. Change oil more frequently in winter (every 3,000-5,000 miles vs 7,500). Use 0W-20 full synthetic oil. If oil level is significantly above the full mark, drain and replace immediately. Software update is free; extra oil changes cost $50-80 each.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Oil level rising above full mark",
+          "Gasoline smell from dipstick",
+          "Oil looks thin and watery",
+          "Rough idle in cold weather",
+          "Fuel smell inside cabin"
+        ],
+        "affectedSystems": [
+          "Engine",
+          "Fuel System"
+        ],
+        "dtcCodes": [
+          "P0171",
+          "P0174",
+          "P0420"
+        ],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 200,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.hyundaiusa.com",
+            "type": "tsb",
+            "title": "Hyundai TSB 20-FL-006 - Oil Dilution Cold Climate"
+          },
+          {
+            "url": "https://www.palisadeforum.com",
+            "type": "forum",
+            "title": "PalisadeForum.com - Oil Dilution Reports"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Pennzoil Platinum 0W-20 resists fuel dilution better than many conventional oils",
+            "upvotes": 0,
+            "partName": "Platinum Full Synthetic 0W-20",
+            "partBrand": "Pennzoil",
+            "affiliateUrl": "https://www.amazon.com/s?k=Pennzoil%20Platinum%20Full%20Synthetic%200W-20&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "In cold weather, drive at least 15-20 minutes to get the engine fully warmed up - short trips cause the most dilution",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "Check oil level and smell the dipstick monthly in winter months to catch dilution early",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 620,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-02-01",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "kia-telluride-oil-dilution-2020",
+          "hyundai-kona-oil-dilution-2018"
+        ]
+      }
+    },
+    {
+      "id": "hyundai-palisade-seat-belt-buckle-fails-to-latch-recall-25v607",
+      "model": "Palisade",
+      "action": "rewrite_same_identity",
+      "reason": "Kept the indexed seat-belt-buckle/25V-607 identity, replaced secondary citations with the exact Part 573 report, and corrected the complaint count, failure behavior, warning signs and remedy to the filing.",
+      "identityRule": "The same indexed component, failure outcome and recall or service identity stay on the existing ID, title and category; only facts from the exact official record remain.",
+      "commerceDecision": "no-commerce",
+      "changedFields": [
+        "description",
+        "solution",
+        "symptoms",
+        "affectedSystems",
+        "citations",
+        "humanApproved",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
+      "evidence": [
+        {
+          "kind": "official-record-specific-recall",
+          "url": "https://static.nhtsa.gov/odi/rcl/2025/RCLRPT-25V607-3620.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "NHTSA Part 573 Report 25V-607 - Palisade Seat-Belt Buckles supports the proposed same-identity statements."
+        }
+      ],
+      "beforeSha256": "d96818e45a77f7c3a51e02f070bcfe9ff82771d9e32438898aede4734b510d3a",
+      "proposalSha256": "26c080a0e0bcc25eac284fbda52e85cb2d1a8f2e6f52f81455bdd65edcedbbf1",
+      "before": {
+        "make": "Hyundai",
+        "model": "Palisade",
+        "years": [
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "safety",
+        "title": "Seat Belt Buckle Fails to Latch (Out-of-Spec Buckle Assembly) — Recall 25V607",
+        "description": "On 2020-2025 Palisades, out-of-spec components in the front and second-row outboard seat belt buckles increase friction in the latch channel (worse in cold weather), so the tongue plate may not fully latch. NHTSA opened a probe in August 2024 after 37 unbuckling complaints, leading to recall 25V-607 covering 568,580 vehicles. An unlatched belt will not restrain an occupant in a crash.",
+        "solution": "Recall 25V-607 (Hyundai #283): dealers inspect the front and second-row outboard seat belt buckles and replace any defective assemblies free of charge. Until repaired, insert the belt firmly with a quick, direct motion and tug to confirm it is latched. Verify your VIN at nhtsa.gov/recalls.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Seat belt clicks but pops open / will not stay latched",
+          "Harder to latch in cold temperatures",
+          "Tongue plate inserts but does not catch",
+          "Belt warning chime stays on with belt apparently buckled"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://static.nhtsa.gov/odi/rcl/2025/RCLRPT-25V607-3620.pdf",
+            "type": "recall",
+            "title": "NHTSA Recall 25V607 - Hyundai Palisade Seat Belt Buckle"
+          },
+          {
+            "url": "https://www.edmunds.com/car-news/hyundai-palisade-2025-seatbelt-recall.html",
+            "type": "article",
+            "title": "Hyundai Is Recalling Nearly Every Palisade for a Seat Belt Issue - Edmunds"
+          },
+          {
+            "url": "https://repairpal.com/recall/25V607000",
+            "type": "recall",
+            "title": "Seat Belt Buckles Do Not Properly Latch - RepairPal Recall 25V607000"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-16",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Palisade",
+        "years": [
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "safety",
+        "title": "Seat Belt Buckle Fails to Latch (Out-of-Spec Buckle Assembly) — Recall 25V607",
+        "description": "NHTSA recall 25V-607 (Hyundai recall 283) covers certain model-year 2020-2025 Palisades. Front-row and second-row outer seat-belt buckle assemblies may contain out-of-specification components that interfere within the latch channel and increase friction, especially in cold temperatures. Together with slow insertion of the tongue plate, this may prevent the buckle from fully latching and increase injury risk in a crash.",
+        "solution": "Check the VIN for NHTSA recall 25V-607. Until the repair is completed, Hyundai advises fastening the belt with a quick and direct motion, then pulling on it to confirm it is fully secured. Hyundai dealers replace the applicable front-row and second-row outer buckle assemblies free of charge.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Lighter-than-normal audible click while fastening",
+          "Recessed push button on the buckle housing",
+          "Visual or audible seat-belt warning if the belt is not secured"
+        ],
+        "affectedSystems": [
+          "Front-row seat-belt buckles",
+          "Second-row outer seat-belt buckles"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "NHTSA Part 573 Report 25V-607 - Palisade Seat-Belt Buckles",
+            "url": "https://static.nhtsa.gov/odi/rcl/2025/RCLRPT-25V607-3620.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Kept the indexed seat-belt-buckle/25V-607 identity, replaced secondary citations with the exact Part 573 report, and corrected the complaint count, failure behavior, warning signs and remedy to the filing.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-palisade-third-row-side-curtain-airbag-improper-deployment-recall-26v",
+      "model": "Palisade",
+      "action": "rewrite_same_identity",
+      "reason": "Kept the indexed third-row curtain-airbag/26V-034 identity, replaced secondary citations with the exact Part 573 report, and removed the unsupported protective-film, padding-removal and finalized-remedy claims.",
+      "identityRule": "The same indexed component, failure outcome and recall or service identity stay on the existing ID, title and category; only facts from the exact official record remain.",
+      "commerceDecision": "no-commerce",
+      "changedFields": [
+        "description",
+        "solution",
+        "symptoms",
+        "affectedSystems",
+        "citations",
+        "humanApproved",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
+      "evidence": [
+        {
+          "kind": "official-record-specific-recall",
+          "url": "https://static.nhtsa.gov/odi/rcl/2026/RCLRPT-26V034-7650.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "NHTSA Part 573 Report 26V-034 - Palisade FMVSS 226 Noncompliance supports the proposed same-identity statements."
+        }
+      ],
+      "beforeSha256": "497a369135908a4288a5e79b0072c6ccc8290969f3f0622e6ac8f607b1c5c00b",
+      "proposalSha256": "fa9d701e5ac950ff2db20b4ea9892aae38266daff00cd95f4f25b92c653836af",
+      "before": {
+        "make": "Hyundai",
+        "model": "Palisade",
+        "years": [
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "safety",
+        "title": "Third-Row Side Curtain Airbag Improper Deployment (FMVSS 226 Failure) — Recall 26V034",
+        "description": "Certain 2020-2025 Palisades built April 10, 2019 through June 16, 2025 do not meet Federal Motor Vehicle Safety Standard No. 226 (ejection mitigation). NHTSA compliance testing on a 2025 Palisade measured third-row occupant head movement beyond the 100 mm limit, meaning the third-row side curtain airbags may deploy improperly and fail to protect occupants in a crash or rollover. Recall 26V034 (Hyundai #292) covers 568,576 vehicles.",
+        "solution": "Recall 26V034 (Hyundai #292): dealers install a protective film over the rear window and remove interior padding as necessary, free of charge. Interim notification letters were mailed beginning March 13, 2026; the final remedy was anticipated around May 2026. Verify your VIN with a Hyundai dealer or at nhtsa.gov/recalls.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "No driver-noticeable symptom (latent crash-safety defect)",
+          "Affects third-row occupant protection in side impacts and rollovers"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://static.nhtsa.gov/odi/rcl/2026/RCLRPT-26V034-7650.pdf",
+            "type": "recall",
+            "title": "NHTSA Recall 26V034 - Hyundai Palisade Third-Row Airbag (FMVSS 226)"
+          },
+          {
+            "url": "https://www.topspeed.com/hyundai-palisade-airbag-recall/",
+            "type": "article",
+            "title": "Faulty Airbags Lead To Recall For 568,676 Hyundai Palisades - TopSpeed"
+          },
+          {
+            "url": "https://www.cars.com/research/hyundai-palisade/recalls/",
+            "type": "article",
+            "title": "Hyundai Palisade Recalls - Cars.com"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-16",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Palisade",
+        "years": [
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "safety",
+        "title": "Third-Row Side Curtain Airbag Improper Deployment (FMVSS 226 Failure) — Recall 26V034",
+        "description": "NHTSA recall 26V-034 (Hyundai recall 292) covers certain model-year 2020-2025 Palisades that may not meet the third-row headform-displacement requirements of Federal Motor Vehicle Safety Standard No. 226, Ejection Mitigation. Hyundai and NHTSA testing produced third-row displacement values above the 100-millimeter limit in certain instances. Noncompliance may increase injury risk to third-row occupants in certain crashes, including a rollover.",
+        "solution": "Check the VIN for NHTSA recall 26V-034 and contact a Hyundai dealer for the current remedy status. In the January 22, 2026 Part 573 filing, Hyundai stated that it was developing a remedy; when available, the remedy would be provided at no cost to affected owners.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "No driver-noticeable warning",
+          "Latent third-row ejection-mitigation noncompliance"
+        ],
+        "affectedSystems": [
+          "Third-row ejection mitigation",
+          "Left and right curtain airbag modules"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "NHTSA Part 573 Report 26V-034 - Palisade FMVSS 226 Noncompliance",
+            "url": "https://static.nhtsa.gov/odi/rcl/2026/RCLRPT-26V034-7650.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Kept the indexed third-row curtain-airbag/26V-034 identity, replaced secondary citations with the exact Part 573 report, and removed the unsupported protective-film, padding-removal and finalized-remedy claims.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-palisade-transmission-shift-quality",
+      "model": "Palisade",
+      "action": "keep_published_pending_source",
+      "reason": "The citation points only to Hyundai's homepage, and the claimed 21-AT-002 Palisade shift-quality bulletin could not be located as an exact primary record. Owner discussion does not establish one calibration or valve-body defect, the three frozen DTCs, fluid interval, relearn claim or costs across 2020-2025 vehicles, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; secondary, partial or unsupported evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "2c25959c14ee8d1435c9fe93ff351d0ecf176be591289e8adfab1c1b834b2d67",
+      "proposalSha256": "2c25959c14ee8d1435c9fe93ff351d0ecf176be591289e8adfab1c1b834b2d67",
+      "before": {
+        "make": "Hyundai",
+        "model": "Palisade",
+        "years": [
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [
+          "3.8L V6"
+        ],
+        "category": "transmission",
+        "title": "8-Speed Automatic Harsh Shifting / Delayed Downshift",
+        "description": "The 8-speed automatic transmission in the Palisade can exhibit harsh 1-2 and 2-3 upshifts, delayed downshifts when passing, and occasional harsh engagement from park to drive. The TCM calibration is the primary issue, though some cases involve valve body wear. Hyundai has released multiple software updates to improve shift quality.",
+        "solution": "Request the latest TCM software update from the dealer (free under warranty). Ensure transmission fluid is at the correct level and condition. If harsh shifting persists after software update, the valve body may need replacement ($800-1,500). Full transmission fluid change (not flush) every 30,000 miles with Hyundai SP-IV-RR fluid.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Harsh jolt on 1-2 upshift",
+          "Delay when pressing gas to pass",
+          "Clunk shifting from park to drive",
+          "Hunting between gears on hills",
+          "Transmission hesitation at low speed"
+        ],
+        "affectedSystems": [
+          "Transmission"
+        ],
+        "dtcCodes": [
+          "P0700",
+          "P0741",
+          "P0742"
+        ],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 1500,
+        "typicalMileageLow": 24000,
+        "typicalMileageHigh": 36000,
+        "citations": [
+          {
+            "url": "https://www.hyundaiusa.com",
+            "type": "tsb",
+            "title": "Hyundai TSB 21-AT-002 - Shift Quality Improvement"
+          },
+          {
+            "url": "https://www.palisadeforum.com",
+            "type": "forum",
+            "title": "PalisadeForum.com - Transmission Shift Quality Thread"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Use only Hyundai SP-IV-RR ATF for fluid changes - incompatible fluid causes shift issues",
+            "upvotes": 0,
+            "partName": "SP-IV-RR ATF",
+            "partBrand": "Hyundai",
+            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20SP-IV-RR%20ATF&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "After a TCM update, the transmission needs 500-1,000 miles of driving to fully relearn your driving patterns",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 350,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-02-08",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "kia-stinger-dct-shift-harshness",
+          "hyundai-ioniq-dct-harsh-shifting-2017",
+          "hyundai-veracruz-transmission-2007"
+        ]
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Palisade",
+        "years": [
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [
+          "3.8L V6"
+        ],
+        "category": "transmission",
+        "title": "8-Speed Automatic Harsh Shifting / Delayed Downshift",
+        "description": "The 8-speed automatic transmission in the Palisade can exhibit harsh 1-2 and 2-3 upshifts, delayed downshifts when passing, and occasional harsh engagement from park to drive. The TCM calibration is the primary issue, though some cases involve valve body wear. Hyundai has released multiple software updates to improve shift quality.",
+        "solution": "Request the latest TCM software update from the dealer (free under warranty). Ensure transmission fluid is at the correct level and condition. If harsh shifting persists after software update, the valve body may need replacement ($800-1,500). Full transmission fluid change (not flush) every 30,000 miles with Hyundai SP-IV-RR fluid.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Harsh jolt on 1-2 upshift",
+          "Delay when pressing gas to pass",
+          "Clunk shifting from park to drive",
+          "Hunting between gears on hills",
+          "Transmission hesitation at low speed"
+        ],
+        "affectedSystems": [
+          "Transmission"
+        ],
+        "dtcCodes": [
+          "P0700",
+          "P0741",
+          "P0742"
+        ],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 1500,
+        "typicalMileageLow": 24000,
+        "typicalMileageHigh": 36000,
+        "citations": [
+          {
+            "url": "https://www.hyundaiusa.com",
+            "type": "tsb",
+            "title": "Hyundai TSB 21-AT-002 - Shift Quality Improvement"
+          },
+          {
+            "url": "https://www.palisadeforum.com",
+            "type": "forum",
+            "title": "PalisadeForum.com - Transmission Shift Quality Thread"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Use only Hyundai SP-IV-RR ATF for fluid changes - incompatible fluid causes shift issues",
+            "upvotes": 0,
+            "partName": "SP-IV-RR ATF",
+            "partBrand": "Hyundai",
+            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20SP-IV-RR%20ATF&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "After a TCM update, the transmission needs 500-1,000 miles of driving to fully relearn your driving patterns",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 350,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-02-08",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "kia-stinger-dct-shift-harshness",
+          "hyundai-ioniq-dct-harsh-shifting-2017",
+          "hyundai-veracruz-transmission-2007"
+        ]
+      }
+    }
+  ]
+}
