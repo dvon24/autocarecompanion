@@ -1,0 +1,1005 @@
+{
+  "schemaVersion": 1,
+  "status": "proposal-only",
+  "auditStage": "model-primary-source-adjudication",
+  "requiresIndependentApproval": true,
+  "generatedOn": "2026-08-06",
+  "make": "Hyundai",
+  "model": "Azera",
+  "completionStatement": "This packet reconciles all five frozen Hyundai Azera rows. No same-identity primary-source rewrite cleared the gate; all five remain byte-for-byte unchanged with nearby official mismatches exposed for independent review.",
+  "safetyContract": [
+    "No production database write, cache purge, deployment, archive action, redirect, slug change or public-page change is authorized by this packet.",
+    "All five rows remain published and byte-for-byte unchanged.",
+    "An unrelated campaign, bulletin, component, generation or model may never replace the issue named by an existing indexed page.",
+    "Existing commerce remains frozen rather than being silently rewritten without exact repair-role evidence.",
+    "Independent row-by-row approval is required before any separate correction path may be created."
+  ],
+  "source": {
+    "snapshotFile": "data/_hyundai-deeplink-snapshot-2026-08-06.json",
+    "snapshotSha256": "f3e74267205477804060c49c988221cdc4dfcfc4586df369601c8c64736cce60",
+    "snapshotGeneratedAt": "2026-08-06T02:37:36.989Z",
+    "snapshotHash": "444457abb31ca6a5ead423878b37ca790d44a87c74ffa43259362cb4218ba632",
+    "azeraRecordCount": 5
+  },
+  "observations": [
+    {
+      "code": "hydraulic-versus-mdps-identity-mismatch",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "hyundai-azera-power-steering-leak-2006",
+        "hyundai-azera-strut-bearing-2006"
+      ],
+      "detail": "The exact Hyundai steering bulletin covers column-mounted MDPS repair and bearing noise, not the frozen hydraulic leak or strut-bearing pages."
+    },
+    {
+      "code": "inhibitor-switch-not-starter",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "hyundai-azera-starter-motor-2006"
+      ],
+      "detail": "Campaign T2M is a 2017 inhibitor-switch repair associated with P0705; it cannot support the starter-solenoid page."
+    },
+    {
+      "code": "transmission-bulletin-narrower-identity",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "hyundai-azera-transmission-hesitation-2006"
+      ],
+      "detail": "TSB 18-AT-004 covers 2011+ harsh/delayed-shift GDS analysis and does not establish the frozen torque-converter shudder narrative or 2006-2010 scope."
+    },
+    {
+      "code": "unverified-timing-chain-claims-frozen",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "hyundai-azera-timing-chain-tensioner-2006"
+      ],
+      "detail": "No exact primary document was found for the claimed Lambda tensioner defect and repair, so it remains unchanged."
+    }
+  ],
+  "mismatchSources": {
+    "mdpsRepair": "https://static.nhtsa.gov/odi/tsbs/2020/MC-10180981-0001.pdf",
+    "inhibitorSwitch": "https://static.nhtsa.gov/odi/tsbs/2018/MC-10128599-9999.pdf",
+    "harshDelayedShift": "https://static.nhtsa.gov/odi/tsbs/2018/MC-10138240-9999.pdf"
+  },
+  "summary": {
+    "rewrite_same_identity": 0,
+    "keep_published_pending_source": 5,
+    "total": 5
+  },
+  "rows": [
+    {
+      "id": "hyundai-azera-power-steering-leak-2006",
+      "model": "Azera",
+      "action": "keep_published_pending_source",
+      "reason": "The frozen 2006-2011 hydraulic power-steering leak row relies on a generic complaint page and an incomplete bulletin citation. Hyundai TSB 20-ST-001H-2 concerns column-mounted motor-driven power steering on Azera HG vehicles, not hydraulic hose, pump or rack leaks, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; a different component, symptom, bulletin or generation cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "component-mismatch",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2020/MC-10180981-0001.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "TSB 20-ST-001H-2 concerns column-mounted MDPS components, not the frozen hydraulic steering or strut-bearing identity."
+        }
+      ],
+      "beforeSha256": "d58e0564bdea9f13a2a29638ad0410d7096e6590f96a5f3b6f2ebcb44ac27d54",
+      "proposalSha256": "d58e0564bdea9f13a2a29638ad0410d7096e6590f96a5f3b6f2ebcb44ac27d54",
+      "before": {
+        "make": "Hyundai",
+        "model": "Azera",
+        "years": [
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "suspension",
+        "title": "Power Steering System Leak",
+        "description": "The hydraulic power steering system on the Azera develops leaks from the high-pressure hose, pump seals, and steering rack seals. The power steering hose is the most common leak point, typically failing at the crimp fitting where the hose connects to the metal line. A leaking power steering system causes whining noise, heavy steering, and can lead to pump damage if fluid runs low. The pump itself can also develop seal leaks from age and heat.",
+        "solution": "Confirm the leak source by cleaning the power steering system, filling the reservoir with the correct Hyundai-approved fluid, and inspecting the high-pressure hose crimps, pump body/front seal, and steering rack boots while the engine is running and the wheel is turned lock-to-lock. The most common repair is replacement of the high-pressure power steering hose and sealing washers, followed by a fluid refill and bleeding procedure; if fluid is found inside the rack boots or leaking from the pump shaft/seals, the steering rack or pump should be replaced as an assembly. Typical repair costs are about $250-$500 for a hose replacement, $400-$800 for a pump replacement, and $900-$1,500 for a steering rack replacement depending on labor rates and part quality.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Power steering fluid on ground under vehicle",
+          "Whining noise when turning steering wheel",
+          "Heavy or stiff steering",
+          "Low power steering fluid level",
+          "Groaning noise at full lock"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 200,
+        "estimatedCostHigh": 1000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2007/HYUNDAI/AZERA/4%252520DR/FWD#complaints",
+            "type": "nhtsa",
+            "title": "NHTSA Complaint #10423231 - 2007 Hyundai Azera Power Steering Hose Leak/Failure"
+          },
+          {
+            "url": "",
+            "type": "tsb",
+            "title": "Hyundai Technical Service Bulletin 09-ST-002: Power Steering Fluid Leak Inspection/Repair Information"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Inner and outer tie rod ends for steering precision restoration",
+            "partName": "Tie Rod End",
+            "partBrand": "Moog",
+            "affiliateUrl": "https://www.amazon.com/s?k=Moog%20tie%20rod%20end%20Hyundai%20Azera&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Remanufactured power steering rack for complete steering system repair",
+            "partName": "Remanufactured Steering Rack",
+            "partBrand": "Cardone",
+            "affiliateUrl": "https://www.amazon.com/s?k=Cardone%20steering%20rack%20Hyundai%20Azera&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Azera",
+        "years": [
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "suspension",
+        "title": "Power Steering System Leak",
+        "description": "The hydraulic power steering system on the Azera develops leaks from the high-pressure hose, pump seals, and steering rack seals. The power steering hose is the most common leak point, typically failing at the crimp fitting where the hose connects to the metal line. A leaking power steering system causes whining noise, heavy steering, and can lead to pump damage if fluid runs low. The pump itself can also develop seal leaks from age and heat.",
+        "solution": "Confirm the leak source by cleaning the power steering system, filling the reservoir with the correct Hyundai-approved fluid, and inspecting the high-pressure hose crimps, pump body/front seal, and steering rack boots while the engine is running and the wheel is turned lock-to-lock. The most common repair is replacement of the high-pressure power steering hose and sealing washers, followed by a fluid refill and bleeding procedure; if fluid is found inside the rack boots or leaking from the pump shaft/seals, the steering rack or pump should be replaced as an assembly. Typical repair costs are about $250-$500 for a hose replacement, $400-$800 for a pump replacement, and $900-$1,500 for a steering rack replacement depending on labor rates and part quality.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Power steering fluid on ground under vehicle",
+          "Whining noise when turning steering wheel",
+          "Heavy or stiff steering",
+          "Low power steering fluid level",
+          "Groaning noise at full lock"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 200,
+        "estimatedCostHigh": 1000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2007/HYUNDAI/AZERA/4%252520DR/FWD#complaints",
+            "type": "nhtsa",
+            "title": "NHTSA Complaint #10423231 - 2007 Hyundai Azera Power Steering Hose Leak/Failure"
+          },
+          {
+            "url": "",
+            "type": "tsb",
+            "title": "Hyundai Technical Service Bulletin 09-ST-002: Power Steering Fluid Leak Inspection/Repair Information"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Inner and outer tie rod ends for steering precision restoration",
+            "partName": "Tie Rod End",
+            "partBrand": "Moog",
+            "affiliateUrl": "https://www.amazon.com/s?k=Moog%20tie%20rod%20end%20Hyundai%20Azera&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Remanufactured power steering rack for complete steering system repair",
+            "partName": "Remanufactured Steering Rack",
+            "partBrand": "Cardone",
+            "affiliateUrl": "https://www.amazon.com/s?k=Cardone%20steering%20rack%20Hyundai%20Azera&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-azera-starter-motor-2006",
+      "model": "Azera",
+      "action": "keep_published_pending_source",
+      "reason": "A generic complaint page, secondary TSB index and Reddit thread do not establish one 2006-2017 Azera starter-solenoid defect or hot-weather pattern. Hyundai Campaign T2M concerns a 2017 inhibitor switch and DTC P0705, not a starter motor, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; a different component, symptom, bulletin or generation cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "component-mismatch",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2018/MC-10128599-9999.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "Campaign T2M concerns a 2017 inhibitor switch and possible P0705, not starter-motor no-crank."
+        }
+      ],
+      "beforeSha256": "1cc73a1c0b724c35a7663584298986b454cc841311ca6c1bb074901ba94d6c6a",
+      "proposalSha256": "1cc73a1c0b724c35a7663584298986b454cc841311ca6c1bb074901ba94d6c6a",
+      "before": {
+        "make": "Hyundai",
+        "model": "Azera",
+        "years": [
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Starter Motor Intermittent No-Crank",
+        "description": "Starter motor solenoid contacts wear causing intermittent no-crank conditions. The engine may click once but not turn over, then start normally on a subsequent attempt. More common in hot weather.",
+        "solution": "Replace starter motor assembly. Inspect and clean battery cable terminals and engine ground strap. Check for proper voltage at starter solenoid terminal during crank attempt to confirm diagnosis.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Single click no crank",
+          "Intermittent no-start",
+          "Starts on second or third try",
+          "Worse in hot weather"
+        ],
+        "affectedSystems": [
+          "Starting system",
+          "Electrical"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 250,
+        "estimatedCostHigh": 500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2006/HYUNDAI/AZERA#complaints",
+            "type": "nhtsa",
+            "title": "NHTSA Complaints for 2006 Hyundai Azera - Starter and No Crank Issues"
+          },
+          {
+            "url": "https://www.automd.com/tsb/Hyundai/2006/Azera/Starter-Motor-Intermittent-No-Crank-TSB-06-01-012/",
+            "type": "tsb",
+            "title": "TSB 06-01-012: Starter Motor Intermittent No-Crank - Hyundai Azera 2006"
+          },
+          {
+            "url": "https://www.reddit.com/r/MechanicAdvice/comments/8x1v1p/hyundai_azera_starter_clicks_but_no_crank/",
+            "type": "forum",
+            "title": "Reddit r/MechanicAdvice: Hyundai Azera Starter Clicks But No Crank Intermittently"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "High-performance AGM battery with excellent cold cranking amps and deep cycle capability",
+            "partName": "RedTop AGM Battery",
+            "partBrand": "Optima",
+            "affiliateUrl": "https://www.amazon.com/s?k=Optima%20RedTop%20AGM%20Battery%20Hyundai%20Azera&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "OEM-quality replacement battery with reliable performance",
+            "partName": "Professional AGM Battery",
+            "partBrand": "ACDelco",
+            "affiliateUrl": "https://www.amazon.com/s?k=ACDelco%20Professional%20AGM%20Battery%20Hyundai%20Azera&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Automatic battery maintainer to prevent parasitic drain issues during storage",
+            "partName": "Junior 12V Battery Charger Maintainer",
+            "partBrand": "Battery Tender",
+            "affiliateUrl": "https://www.amazon.com/s?k=Battery%20Tender%20Junior%2012V%20Battery%20Charger%20Maintainer%20Hyundai%20Azera&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "OEM-quality starter motor for reliable engine cranking",
+            "partName": "Starter Motor",
+            "partBrand": "Denso",
+            "affiliateUrl": "https://www.amazon.com/s?k=Denso%20Starter%20Motor%20Hyundai%20Azera&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Remanufactured starter with gear reduction for improved cranking performance",
+            "partName": "Remanufactured Starter Motor",
+            "partBrand": "Remy",
+            "affiliateUrl": "https://www.amazon.com/s?k=Remy%20Remanufactured%20Starter%20Motor%20Hyundai%20Azera&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Azera",
+        "years": [
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Starter Motor Intermittent No-Crank",
+        "description": "Starter motor solenoid contacts wear causing intermittent no-crank conditions. The engine may click once but not turn over, then start normally on a subsequent attempt. More common in hot weather.",
+        "solution": "Replace starter motor assembly. Inspect and clean battery cable terminals and engine ground strap. Check for proper voltage at starter solenoid terminal during crank attempt to confirm diagnosis.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Single click no crank",
+          "Intermittent no-start",
+          "Starts on second or third try",
+          "Worse in hot weather"
+        ],
+        "affectedSystems": [
+          "Starting system",
+          "Electrical"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 250,
+        "estimatedCostHigh": 500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2006/HYUNDAI/AZERA#complaints",
+            "type": "nhtsa",
+            "title": "NHTSA Complaints for 2006 Hyundai Azera - Starter and No Crank Issues"
+          },
+          {
+            "url": "https://www.automd.com/tsb/Hyundai/2006/Azera/Starter-Motor-Intermittent-No-Crank-TSB-06-01-012/",
+            "type": "tsb",
+            "title": "TSB 06-01-012: Starter Motor Intermittent No-Crank - Hyundai Azera 2006"
+          },
+          {
+            "url": "https://www.reddit.com/r/MechanicAdvice/comments/8x1v1p/hyundai_azera_starter_clicks_but_no_crank/",
+            "type": "forum",
+            "title": "Reddit r/MechanicAdvice: Hyundai Azera Starter Clicks But No Crank Intermittently"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "High-performance AGM battery with excellent cold cranking amps and deep cycle capability",
+            "partName": "RedTop AGM Battery",
+            "partBrand": "Optima",
+            "affiliateUrl": "https://www.amazon.com/s?k=Optima%20RedTop%20AGM%20Battery%20Hyundai%20Azera&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "OEM-quality replacement battery with reliable performance",
+            "partName": "Professional AGM Battery",
+            "partBrand": "ACDelco",
+            "affiliateUrl": "https://www.amazon.com/s?k=ACDelco%20Professional%20AGM%20Battery%20Hyundai%20Azera&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Automatic battery maintainer to prevent parasitic drain issues during storage",
+            "partName": "Junior 12V Battery Charger Maintainer",
+            "partBrand": "Battery Tender",
+            "affiliateUrl": "https://www.amazon.com/s?k=Battery%20Tender%20Junior%2012V%20Battery%20Charger%20Maintainer%20Hyundai%20Azera&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "OEM-quality starter motor for reliable engine cranking",
+            "partName": "Starter Motor",
+            "partBrand": "Denso",
+            "affiliateUrl": "https://www.amazon.com/s?k=Denso%20Starter%20Motor%20Hyundai%20Azera&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Remanufactured starter with gear reduction for improved cranking performance",
+            "partName": "Remanufactured Starter Motor",
+            "partBrand": "Remy",
+            "affiliateUrl": "https://www.amazon.com/s?k=Remy%20Remanufactured%20Starter%20Motor%20Hyundai%20Azera&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-azera-strut-bearing-2006",
+      "model": "Azera",
+      "action": "keep_published_pending_source",
+      "reason": "A generic complaint page and unrelated repair video do not establish one 2006-2017 Azera front-strut-bearing defect or mileage threshold. The MDPS bearing-noise bulletin concerns steering-column components, not strut mounts, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; a different component, symptom, bulletin or generation cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "component-mismatch",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2020/MC-10180981-0001.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "TSB 20-ST-001H-2 concerns column-mounted MDPS components, not the frozen hydraulic steering or strut-bearing identity."
+        }
+      ],
+      "beforeSha256": "4a758cac9766339320cd804ce1176596a8bf4d31bd69ffabb545540c9b735254",
+      "proposalSha256": "4a758cac9766339320cd804ce1176596a8bf4d31bd69ffabb545540c9b735254",
+      "before": {
+        "make": "Hyundai",
+        "model": "Azera",
+        "years": [
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "suspension",
+        "title": "Front Strut Bearing Plate Wear and Creaking",
+        "description": "Front strut mount bearing plates wear out, causing a creaking or groaning noise when turning the steering wheel, especially at low speeds or when stationary. Common after 60,000 miles.",
+        "solution": "Replace front strut mount bearing assemblies. Replace struts at the same time if over 80,000 miles. Perform front-end alignment after work is complete.",
+        "severity": "low",
+        "confidence": "medium",
+        "symptoms": [
+          "Creaking noise when turning",
+          "Groaning from front end",
+          "Steering wheel vibration",
+          "Noise at low speed maneuvers"
+        ],
+        "affectedSystems": [
+          "Front suspension",
+          "Strut mounts"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 250,
+        "estimatedCostHigh": 500,
+        "typicalMileageLow": 60000,
+        "typicalMileageHigh": 90000,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2006/HYUNDAI/AZERA",
+            "type": "nhtsa",
+            "title": "NHTSA Vehicle Page for 2006 Hyundai Azera - Complaints and Investigations"
+          },
+          {
+            "url": "https://www.youtube.com/watch?v=3Q9nQjYQ2Xk",
+            "type": "video",
+            "title": "YouTube - ChrisFix Front Strut Mount Replacement and Noise Diagnosis"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Quality replacement struts for ride comfort and handling restoration",
+            "partName": "Quick-Strut Complete Assembly",
+            "partBrand": "Monroe",
+            "affiliateUrl": "https://www.amazon.com/s?k=Monroe%20Quick-Strut%20Hyundai%20Azera&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Strut mount and bearing for noise-free strut operation",
+            "partName": "Strut Mount Assembly",
+            "partBrand": "Moog",
+            "affiliateUrl": "https://www.amazon.com/s?k=Moog%20strut%20mount%20Hyundai%20Azera&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "chevy-prizm-strut-mount-1998",
+          "hyundai-scoupe-rear-strut-mount-1991"
+        ]
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Azera",
+        "years": [
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "suspension",
+        "title": "Front Strut Bearing Plate Wear and Creaking",
+        "description": "Front strut mount bearing plates wear out, causing a creaking or groaning noise when turning the steering wheel, especially at low speeds or when stationary. Common after 60,000 miles.",
+        "solution": "Replace front strut mount bearing assemblies. Replace struts at the same time if over 80,000 miles. Perform front-end alignment after work is complete.",
+        "severity": "low",
+        "confidence": "medium",
+        "symptoms": [
+          "Creaking noise when turning",
+          "Groaning from front end",
+          "Steering wheel vibration",
+          "Noise at low speed maneuvers"
+        ],
+        "affectedSystems": [
+          "Front suspension",
+          "Strut mounts"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 250,
+        "estimatedCostHigh": 500,
+        "typicalMileageLow": 60000,
+        "typicalMileageHigh": 90000,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2006/HYUNDAI/AZERA",
+            "type": "nhtsa",
+            "title": "NHTSA Vehicle Page for 2006 Hyundai Azera - Complaints and Investigations"
+          },
+          {
+            "url": "https://www.youtube.com/watch?v=3Q9nQjYQ2Xk",
+            "type": "video",
+            "title": "YouTube - ChrisFix Front Strut Mount Replacement and Noise Diagnosis"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Quality replacement struts for ride comfort and handling restoration",
+            "partName": "Quick-Strut Complete Assembly",
+            "partBrand": "Monroe",
+            "affiliateUrl": "https://www.amazon.com/s?k=Monroe%20Quick-Strut%20Hyundai%20Azera&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Strut mount and bearing for noise-free strut operation",
+            "partName": "Strut Mount Assembly",
+            "partBrand": "Moog",
+            "affiliateUrl": "https://www.amazon.com/s?k=Moog%20strut%20mount%20Hyundai%20Azera&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "chevy-prizm-strut-mount-1998",
+          "hyundai-scoupe-rear-strut-mount-1991"
+        ]
+      }
+    },
+    {
+      "id": "hyundai-azera-timing-chain-tensioner-2006",
+      "model": "Azera",
+      "action": "keep_published_pending_source",
+      "reason": "The frozen timing-chain row cites an unlinked bulletin number and a generic complaint page. No exact Hyundai/NHTSA primary document was found that establishes one 2006-2011 Lambda V6 tensioner defect, interference-damage claim, DTC set, repair scope or cost, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; a different component, symptom, bulletin or generation cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "cca2f54528060a3042a991a29ed31c09210a864939a3736d9e0e286124f8d996",
+      "proposalSha256": "cca2f54528060a3042a991a29ed31c09210a864939a3736d9e0e286124f8d996",
+      "before": {
+        "make": "Hyundai",
+        "model": "Azera",
+        "years": [
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "engine",
+        "title": "Timing Chain Tensioner Failure (3.3L/3.8L Lambda)",
+        "description": "The 3.3L and 3.8L Lambda V6 engines in the Azera use timing chains with hydraulic tensioners that can fail due to oil pressure loss or internal wear. The tensioner relies on consistent oil pressure to maintain chain tension, and low oil levels or degraded oil can cause the tensioner to lose pressure, resulting in chain slack and noise. In severe cases, the chain can jump timing, causing valve-to-piston contact on these interference engines. Regular oil changes and maintaining proper oil levels are critical.",
+        "solution": "Diagnose the concern by verifying oil level/condition, scanning for cam/crank correlation codes such as P0016-P0019, and listening for front cover timing chain rattle on cold start; if noise or correlation faults are present, remove the front timing cover and inspect the primary/secondary chains, hydraulic tensioners, guides, and cam phasers/CVVT components for wear or slack. Repair typically involves replacing the timing chain tensioners, guides, and chains as a complete timing set, changing the engine oil and filter, and addressing any root cause of low oil pressure such as sludge, a restricted pickup, or a worn oil pump. If the chain has jumped timing, perform a compression or leak-down test to check for bent valves before reassembly because these Lambda engines are interference designs. Typical repair cost is about $1,500-$3,000 depending on parts replaced and labor time, with substantially higher cost if cylinder head or valve damage is found.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "Rattling or chain noise on cold start",
+          "Check engine light with timing codes",
+          "Rough idle",
+          "Reduced engine power",
+          "Engine noise increases with RPM"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0011",
+          "P0012",
+          "P0016"
+        ],
+        "estimatedCostLow": 800,
+        "estimatedCostHigh": 2500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "",
+            "type": "tsb",
+            "title": "TSB 09-EM-006: 3.3L/3.8L Lambda Engine Timing Chain Noise Diagnosis/Service Information"
+          },
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2007/HYUNDAI/AZERA",
+            "type": "nhtsa",
+            "title": "NHTSA Complaint #10482123"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Complete timing chain kit includes chains, guides, and tensioners",
+            "partName": "Timing Chain Kit",
+            "partBrand": "Cloyes",
+            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20Azera%20Cloyes%20Timing%20Chain%20Kit&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "High-quality engine oil is critical after timing service",
+            "partName": "Edge Full Synthetic Motor Oil",
+            "partBrand": "Castrol",
+            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20Azera%20Castrol%20Edge%20Full%20Synthetic%20Motor%20Oil&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "kia-borrego-timing-chain-2009"
+        ]
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Azera",
+        "years": [
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "engine",
+        "title": "Timing Chain Tensioner Failure (3.3L/3.8L Lambda)",
+        "description": "The 3.3L and 3.8L Lambda V6 engines in the Azera use timing chains with hydraulic tensioners that can fail due to oil pressure loss or internal wear. The tensioner relies on consistent oil pressure to maintain chain tension, and low oil levels or degraded oil can cause the tensioner to lose pressure, resulting in chain slack and noise. In severe cases, the chain can jump timing, causing valve-to-piston contact on these interference engines. Regular oil changes and maintaining proper oil levels are critical.",
+        "solution": "Diagnose the concern by verifying oil level/condition, scanning for cam/crank correlation codes such as P0016-P0019, and listening for front cover timing chain rattle on cold start; if noise or correlation faults are present, remove the front timing cover and inspect the primary/secondary chains, hydraulic tensioners, guides, and cam phasers/CVVT components for wear or slack. Repair typically involves replacing the timing chain tensioners, guides, and chains as a complete timing set, changing the engine oil and filter, and addressing any root cause of low oil pressure such as sludge, a restricted pickup, or a worn oil pump. If the chain has jumped timing, perform a compression or leak-down test to check for bent valves before reassembly because these Lambda engines are interference designs. Typical repair cost is about $1,500-$3,000 depending on parts replaced and labor time, with substantially higher cost if cylinder head or valve damage is found.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "Rattling or chain noise on cold start",
+          "Check engine light with timing codes",
+          "Rough idle",
+          "Reduced engine power",
+          "Engine noise increases with RPM"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0011",
+          "P0012",
+          "P0016"
+        ],
+        "estimatedCostLow": 800,
+        "estimatedCostHigh": 2500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "",
+            "type": "tsb",
+            "title": "TSB 09-EM-006: 3.3L/3.8L Lambda Engine Timing Chain Noise Diagnosis/Service Information"
+          },
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2007/HYUNDAI/AZERA",
+            "type": "nhtsa",
+            "title": "NHTSA Complaint #10482123"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Complete timing chain kit includes chains, guides, and tensioners",
+            "partName": "Timing Chain Kit",
+            "partBrand": "Cloyes",
+            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20Azera%20Cloyes%20Timing%20Chain%20Kit&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "High-quality engine oil is critical after timing service",
+            "partName": "Edge Full Synthetic Motor Oil",
+            "partBrand": "Castrol",
+            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20Azera%20Castrol%20Edge%20Full%20Synthetic%20Motor%20Oil&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "kia-borrego-timing-chain-2009"
+        ]
+      }
+    },
+    {
+      "id": "hyundai-azera-transmission-hesitation-2006",
+      "model": "Azera",
+      "action": "keep_published_pending_source",
+      "reason": "Hyundai TSB 18-AT-004 provides GDS diagnosis for harsh or delayed shifts on 2011 Azera TG and 2012+ Azera HG vehicles. It does not establish the frozen 2006-2011 cold 1-2 delay, torque-converter shudder, fluid interval or progressive failure narrative, so it is not substituted and the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; a different component, symptom, bulletin or generation cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "scope-mismatch",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2018/MC-10138240-9999.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "TSB 18-AT-004 is a 2011+ harsh/delayed-shift diagnostic bulletin and does not establish the frozen torque-converter and 2006-2011 failure narrative."
+        }
+      ],
+      "beforeSha256": "f31b21d1130c29722844610c02ba28fa7ecb83abda13b0c4402e85243b0acd5a",
+      "proposalSha256": "f31b21d1130c29722844610c02ba28fa7ecb83abda13b0c4402e85243b0acd5a",
+      "before": {
+        "make": "Hyundai",
+        "model": "Azera",
+        "years": [
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "transmission",
+        "title": "Automatic Transmission Shift Hesitation and Shudder",
+        "description": "The 2006-2011 Hyundai Azera with the 5-speed or 6-speed automatic transmission develops shift hesitation, particularly a noticeable 1-2 shift delay under wide-open throttle when cold. The torque converter lockup clutch also develops shudder during light-throttle cruising at 35-55 mph. Hyundai issued a PCM recalibration procedure to address the cold-start hesitation. If the transmission fluid is not changed regularly, the shudder progressively worsens and can lead to torque converter failure or internal transmission damage. The Azera shares its transmission with the Sonata and Santa Fe of the same era.",
+        "solution": "",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Delayed or hesitant 1-2 upshift, especially when cold",
+          "Shudder or vibration at 35-55 mph during light throttle",
+          "Harsh shift from 2nd to 3rd gear",
+          "Transmission slipping sensation on acceleration",
+          "Check engine light with transmission-related codes",
+          "Hesitation as if transmission cannot decide whether to shift"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0700",
+          "P0741",
+          "P0751",
+          "P0760"
+        ],
+        "estimatedCostLow": 100,
+        "estimatedCostHigh": 3000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2006/HYUNDAI/AZERA",
+            "type": "nhtsa",
+            "title": "NHTSA Vehicle Page for 2006 Hyundai Azera - Includes complaints related to transmission issues"
+          },
+          {
+            "url": "https://www.automd.com/tsb/TSB-10002101-6.html",
+            "type": "tsb",
+            "title": "Hyundai TSB 10002101 - Transmission Shift Hesitation and Torque Converter Shudder"
+          },
+          {
+            "url": "https://www.reddit.com/r/MechanicAdvice/comments/8x0f6y/2007_hyundai_azera_transmission_shift_hesitation/",
+            "type": "forum",
+            "title": "Reddit r/MechanicAdvice thread discussing 2007 Hyundai Azera transmission shift hesitation"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Transmission flush kit for complete fluid exchange to address shudder",
+            "partName": "Transmission Flush Kit",
+            "partBrand": "Liqui Moly",
+            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20Azera%20transmission%20flush%20kit&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Full synthetic ATF designed to reduce shudder in automatic transmissions",
+            "partName": "MaxLife ATF Full Synthetic",
+            "partBrand": "Valvoline",
+            "affiliateUrl": "https://www.amazon.com/s?k=Valvoline%20MaxLife%20ATF%20full%20synthetic%20transmission%20fluid&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "hyundai-veracruz-transmission-2007",
+          "kia-sedona-transmission-shudder",
+          "hyundai-tucson-dct-transmission-shudder",
+          "hyundai-ioniq-dct-harsh-shifting-2017",
+          "kia-cadenza-transmission-hesitation-2014"
+        ]
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Azera",
+        "years": [
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "transmission",
+        "title": "Automatic Transmission Shift Hesitation and Shudder",
+        "description": "The 2006-2011 Hyundai Azera with the 5-speed or 6-speed automatic transmission develops shift hesitation, particularly a noticeable 1-2 shift delay under wide-open throttle when cold. The torque converter lockup clutch also develops shudder during light-throttle cruising at 35-55 mph. Hyundai issued a PCM recalibration procedure to address the cold-start hesitation. If the transmission fluid is not changed regularly, the shudder progressively worsens and can lead to torque converter failure or internal transmission damage. The Azera shares its transmission with the Sonata and Santa Fe of the same era.",
+        "solution": "",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Delayed or hesitant 1-2 upshift, especially when cold",
+          "Shudder or vibration at 35-55 mph during light throttle",
+          "Harsh shift from 2nd to 3rd gear",
+          "Transmission slipping sensation on acceleration",
+          "Check engine light with transmission-related codes",
+          "Hesitation as if transmission cannot decide whether to shift"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0700",
+          "P0741",
+          "P0751",
+          "P0760"
+        ],
+        "estimatedCostLow": 100,
+        "estimatedCostHigh": 3000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2006/HYUNDAI/AZERA",
+            "type": "nhtsa",
+            "title": "NHTSA Vehicle Page for 2006 Hyundai Azera - Includes complaints related to transmission issues"
+          },
+          {
+            "url": "https://www.automd.com/tsb/TSB-10002101-6.html",
+            "type": "tsb",
+            "title": "Hyundai TSB 10002101 - Transmission Shift Hesitation and Torque Converter Shudder"
+          },
+          {
+            "url": "https://www.reddit.com/r/MechanicAdvice/comments/8x0f6y/2007_hyundai_azera_transmission_shift_hesitation/",
+            "type": "forum",
+            "title": "Reddit r/MechanicAdvice thread discussing 2007 Hyundai Azera transmission shift hesitation"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Transmission flush kit for complete fluid exchange to address shudder",
+            "partName": "Transmission Flush Kit",
+            "partBrand": "Liqui Moly",
+            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20Azera%20transmission%20flush%20kit&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Full synthetic ATF designed to reduce shudder in automatic transmissions",
+            "partName": "MaxLife ATF Full Synthetic",
+            "partBrand": "Valvoline",
+            "affiliateUrl": "https://www.amazon.com/s?k=Valvoline%20MaxLife%20ATF%20full%20synthetic%20transmission%20fluid&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "hyundai-veracruz-transmission-2007",
+          "kia-sedona-transmission-shudder",
+          "hyundai-tucson-dct-transmission-shudder",
+          "hyundai-ioniq-dct-harsh-shifting-2017",
+          "kia-cadenza-transmission-hesitation-2014"
+        ]
+      }
+    }
+  ]
+}
