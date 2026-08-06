@@ -1,0 +1,1609 @@
+{
+  "schemaVersion": 1,
+  "status": "proposal-only",
+  "auditStage": "model-primary-source-adjudication",
+  "requiresIndependentApproval": true,
+  "generatedOn": "2026-08-06",
+  "make": "Hyundai",
+  "model": "Veloster",
+  "completionStatement": "This packet reconciles all nine frozen Hyundai Veloster rows. One same-identity official-source rewrite is proposed; eight rows remain byte-for-byte unchanged.",
+  "safetyContract": [
+    "No production database write, cache purge, deployment, archive action, redirect, slug change or public-page change is authorized by this packet.",
+    "All nine rows remain published. Eight are byte-for-byte unchanged.",
+    "The rewrite preserves the indexed ID, title and category and uses exact NHTSA recall records.",
+    "The rewrite contains zero commerce, zero cost or mileage claims, empty trim and engine arrays, and no diagnostic codes.",
+    "Independent row-by-row approval is required before a separate guarded apply path may be created."
+  ],
+  "source": {
+    "snapshotFile": "data/_hyundai-deeplink-snapshot-2026-08-06.json",
+    "snapshotSha256": "f3e74267205477804060c49c988221cdc4dfcfc4586df369601c8c64736cce60",
+    "snapshotGeneratedAt": "2026-08-06T02:37:36.989Z",
+    "snapshotHash": "444457abb31ca6a5ead423878b37ca790d44a87c74ffa43259362cb4218ba632",
+    "velosterRecordCount": 9
+  },
+  "observations": [
+    {
+      "code": "one-exact-sunroof-rewrite",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "hyundai-veloster-sunroof-shatter"
+      ],
+      "detail": "NHTSA recalls 12V-568 and 13V-051 together support the 2012 panoramic-sunroof shattering identity without changing the indexed title or category.",
+      "sourceUrls": [
+        "https://static.nhtsa.gov/odi/rcl/2012/RCAK-12V568-4104.PDF",
+        "https://static.nhtsa.gov/odi/rcl/2013/RCAK-13V051-6060.pdf"
+      ]
+    },
+    {
+      "code": "transmission-identities-not-overwritten",
+      "severity": "high",
+      "recordIds": [
+        "hyundai-veloster-dct-failure",
+        "hyundai-veloster-smartstream-ivtcvt-hesitation-judder-2019"
+      ],
+      "detail": "The DCT title states the wrong speed, while the IVT row cites an unrelated Kia Niro EV bulletin and conflicts with Hyundai's 6-speed automatic service information. Both rows remain frozen.",
+      "sourceUrls": [
+        "https://static.nhtsa.gov/odi/tsbs/2019/MC-10154675-9999.pdf",
+        "https://static.nhtsa.gov/odi/tsbs/2021/MC-10191531-0001.pdf",
+        "https://static.nhtsa.gov/odi/tsbs/2019/MC-10161750-9999.pdf"
+      ]
+    },
+    {
+      "code": "partial-knock-and-repair-only-mdps-held",
+      "severity": "high",
+      "recordIds": [
+        "hyundai-veloster-knock-sensor-engine-2019",
+        "hyundai-veloster-electric-power-steering-assist-2019"
+      ],
+      "detail": "Campaign 974 does not establish every knock-row title outcome, and the MDPS bulletin is repair information rather than proof of a Veloster defect. Both stay unchanged.",
+      "sourceUrls": [
+        "https://static.nhtsa.gov/odi/tsbs/2022/MC-10213718-0001.pdf",
+        "https://static.nhtsa.gov/odi/tsbs/2019/MC-10160106-9999.pdf"
+      ]
+    },
+    {
+      "code": "eight-partial-or-unsupported-rows-frozen",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "hyundai-veloster-battery-drain-and-no-start-2019",
+        "hyundai-veloster-dct-failure",
+        "hyundai-veloster-electric-power-steering-assist-2019",
+        "hyundai-veloster-forward-collision-avoidance-driver-2019",
+        "hyundai-veloster-knock-sensor-engine-2019",
+        "hyundai-veloster-rear-door-hinge",
+        "hyundai-veloster-smartstream-ivtcvt-hesitation-judder-2019",
+        "hyundai-veloster-turbo-wastegate-rattle"
+      ],
+      "detail": "All partial, generic, secondary, mismatched or insufficiently sourced narratives remain byte-for-byte unchanged."
+    }
+  ],
+  "publicSources": {
+    "sunroof12V568": "https://static.nhtsa.gov/odi/rcl/2012/RCAK-12V568-4104.PDF",
+    "sunroof13V051": "https://static.nhtsa.gov/odi/rcl/2013/RCAK-13V051-6060.pdf"
+  },
+  "reviewSources": {
+    "dctSevenSpeed": "https://static.nhtsa.gov/odi/tsbs/2019/MC-10154675-9999.pdf",
+    "ivtFalseCitation": "https://static.nhtsa.gov/odi/tsbs/2021/MC-10191531-0001.pdf",
+    "velosterSixSpeed": "https://static.nhtsa.gov/odi/tsbs/2019/MC-10161750-9999.pdf",
+    "knockPartial": "https://static.nhtsa.gov/odi/tsbs/2022/MC-10213718-0001.pdf",
+    "mdpsRepairOnly": "https://static.nhtsa.gov/odi/tsbs/2019/MC-10160106-9999.pdf"
+  },
+  "summary": {
+    "rewrite_same_identity": 1,
+    "keep_published_pending_source": 8,
+    "total": 9
+  },
+  "rows": [
+    {
+      "id": "hyundai-veloster-battery-drain-and-no-start-2019",
+      "model": "Veloster",
+      "action": "keep_published_pending_source",
+      "reason": "A generic complaint page does not establish one 2019-2021 Veloster infotainment, telematics or body-module sleep defect, nor the asserted test and repair path. The row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; secondary, partial, mismatched or different-identity evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "af80e7936347a67d0b75808a5506c8a175023fa76d6d5e797f047caedfc69978",
+      "proposalSha256": "af80e7936347a67d0b75808a5506c8a175023fa76d6d5e797f047caedfc69978",
+      "before": {
+        "make": "Hyundai",
+        "model": "Veloster",
+        "years": [
+          2019,
+          2020,
+          2021
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Battery Drain and No-Start from Infotainment/Telematics or Electrical Module Sleep Failures",
+        "description": "A recurring owner complaint on late-model Hyundais, including the Veloster, is an intermittent dead battery after the car sits overnight or for a few days despite a relatively new battery. Reports often mention the infotainment system, Blue Link/telematics, door-handle or body control activity, or unexplained parasitic draw that disappears when the vehicle is brought in for service. The result is a no-start condition, repeated jump-starts, and premature battery replacement.",
+        "solution": "Confirm battery condition first, then perform a parasitic draw test after all modules should be asleep, watching for delayed wake-ups from audio, telematics, or body control modules. Software updates and module resets may solve some cases; persistent draw requires isolating the offending circuit by fuse pull or current clamp testing. Replacing the battery alone often does not fix the root cause if a module is failing to sleep.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "dead battery overnight",
+          "no-start after sitting",
+          "repeated need for jump starts",
+          "battery tests good but goes flat",
+          "intermittent electrical glitches"
+        ],
+        "affectedSystems": [
+          "12V battery",
+          "body control module",
+          "infotainment head unit",
+          "telematics/Blue Link",
+          "charging system"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 150,
+        "estimatedCostHigh": 900,
+        "typicalMileageLow": 0,
+        "typicalMileageHigh": 50000,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2020/HYUNDAI/VELOSTER/HATCHBACK/FWD",
+            "type": "nhtsa",
+            "title": "NHTSA complaints search results for 2020 Hyundai Veloster electrical no-start/battery drain issues"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "content": "Use a memory-safe parasitic draw test with a DC clamp meter after 30-60 minutes of sleep time; many intermittent drains are missed by quick checks.",
+            "searchQuery": "DC clamp meter automotive parasitic draw"
+          },
+          {
+            "content": "If the car sits for long periods, a smart maintainer can prevent repeated deep discharges while the root cause is being diagnosed.",
+            "searchQuery": "12v smart battery maintainer"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "kia-rio-12v-battery-drain-and-2021"
+        ]
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Veloster",
+        "years": [
+          2019,
+          2020,
+          2021
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Battery Drain and No-Start from Infotainment/Telematics or Electrical Module Sleep Failures",
+        "description": "A recurring owner complaint on late-model Hyundais, including the Veloster, is an intermittent dead battery after the car sits overnight or for a few days despite a relatively new battery. Reports often mention the infotainment system, Blue Link/telematics, door-handle or body control activity, or unexplained parasitic draw that disappears when the vehicle is brought in for service. The result is a no-start condition, repeated jump-starts, and premature battery replacement.",
+        "solution": "Confirm battery condition first, then perform a parasitic draw test after all modules should be asleep, watching for delayed wake-ups from audio, telematics, or body control modules. Software updates and module resets may solve some cases; persistent draw requires isolating the offending circuit by fuse pull or current clamp testing. Replacing the battery alone often does not fix the root cause if a module is failing to sleep.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "dead battery overnight",
+          "no-start after sitting",
+          "repeated need for jump starts",
+          "battery tests good but goes flat",
+          "intermittent electrical glitches"
+        ],
+        "affectedSystems": [
+          "12V battery",
+          "body control module",
+          "infotainment head unit",
+          "telematics/Blue Link",
+          "charging system"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 150,
+        "estimatedCostHigh": 900,
+        "typicalMileageLow": 0,
+        "typicalMileageHigh": 50000,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2020/HYUNDAI/VELOSTER/HATCHBACK/FWD",
+            "type": "nhtsa",
+            "title": "NHTSA complaints search results for 2020 Hyundai Veloster electrical no-start/battery drain issues"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "content": "Use a memory-safe parasitic draw test with a DC clamp meter after 30-60 minutes of sleep time; many intermittent drains are missed by quick checks.",
+            "searchQuery": "DC clamp meter automotive parasitic draw"
+          },
+          {
+            "content": "If the car sits for long periods, a smart maintainer can prevent repeated deep discharges while the root cause is being diagnosed.",
+            "searchQuery": "12v smart battery maintainer"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "kia-rio-12v-battery-drain-and-2021"
+        ]
+      }
+    },
+    {
+      "id": "hyundai-veloster-dct-failure",
+      "model": "Veloster",
+      "action": "keep_published_pending_source",
+      "reason": "The exact Hyundai bulletin concerns a 7-speed DCT in certain 2016-2017 1.6-liter Turbo vehicles, while the indexed title says 6-speed and the row spans 2012-2017. The combined failure, warranty and cost claims therefore remain byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; secondary, partial, mismatched or different-identity evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-record-title-and-scope-mismatch",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2019/MC-10154675-9999.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "Hyundai TSB 19-AT-002H covers abnormal low-speed vibration in certain 2016-2017 Veloster 1.6-liter Turbo vehicles equipped with a 7-speed DCT. It cannot support an indexed title that says 6-speed DCT or the row's 2012-2015 scope, blanket premature-failure claim, warranty promise or costs."
+        }
+      ],
+      "beforeSha256": "6737e19fde5c80d396b9780ba260dc96ca80ff69b636dbd8c4bf56a74c1ce3be",
+      "proposalSha256": "6737e19fde5c80d396b9780ba260dc96ca80ff69b636dbd8c4bf56a74c1ce3be",
+      "before": {
+        "make": "Hyundai",
+        "model": "Veloster",
+        "years": [
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017
+        ],
+        "trims": [],
+        "engines": [
+          "1.6L Turbo"
+        ],
+        "category": "transmission",
+        "title": "6-Speed DCT Premature Clutch Failure",
+        "description": "The 6-speed dry DCT in the Veloster Turbo is prone to premature clutch wear and failure, often before 60,000 miles. Symptoms include slipping, shuddering, and complete loss of drive. The dry clutch design generates excessive heat in stop-and-go traffic. Hyundai extended DCT warranty coverage after numerous complaints.",
+        "solution": "Check extended warranty eligibility (10yr/100k miles for DCT). Clutch assembly replacement is needed when worn (Hyundai part 41200-2A001). Cost is $1,500-2,500 out of pocket. Many Veloster turbo owners have switched to the manual transmission to avoid repeated DCT failures. TCM software update helps but does not prevent eventual failure.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Slipping in higher gears",
+          "Shuddering from stop",
+          "Loss of drive in traffic",
+          "RPM surging without acceleration",
+          "Burning clutch smell"
+        ],
+        "affectedSystems": [
+          "Transmission"
+        ],
+        "dtcCodes": [
+          "P0700",
+          "P0730",
+          "P0741",
+          "P0920"
+        ],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 2500,
+        "typicalMileageLow": 18000,
+        "typicalMileageHigh": 60000,
+        "citations": [
+          {
+            "url": "https://www.hyundaiusa.com",
+            "type": "recall",
+            "title": "Hyundai DCT Extended Warranty Campaign"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "If buying a used Veloster Turbo, strongly consider the manual transmission version - the DCT is the single biggest reliability concern",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "In stop-and-go traffic, shift to neutral at red lights to reduce heat on the DCT clutch",
+            "upvotes": 0
+          },
+          {
+            "type": "warning",
+            "content": "If you smell burning clutch, stop driving immediately - continued driving can damage the flywheel and increase repair cost by $500+",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "Transmission flush kit for complete fluid exchange to address shudder",
+            "partName": "Transmission Flush Kit",
+            "partBrand": "Liqui Moly",
+            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20Veloster%20transmission%20flush%20kit&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Full synthetic ATF designed to reduce shudder in automatic transmissions",
+            "partName": "MaxLife ATF Full Synthetic",
+            "partBrand": "Valvoline",
+            "affiliateUrl": "https://www.amazon.com/s?k=Valvoline%20MaxLife%20ATF%20full%20synthetic%20transmission%20fluid&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 890,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2024-06-15",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "hyundai-tucson-dct-transmission-shudder",
+          "hyundai-kona-dct-shudder",
+          "hyundai-tucson-dct-shudder-2019",
+          "hyundai-kona-dct-clutch-judder-2018",
+          "hyundai-ioniq-dct-harsh-shifting-2017"
+        ]
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Veloster",
+        "years": [
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017
+        ],
+        "trims": [],
+        "engines": [
+          "1.6L Turbo"
+        ],
+        "category": "transmission",
+        "title": "6-Speed DCT Premature Clutch Failure",
+        "description": "The 6-speed dry DCT in the Veloster Turbo is prone to premature clutch wear and failure, often before 60,000 miles. Symptoms include slipping, shuddering, and complete loss of drive. The dry clutch design generates excessive heat in stop-and-go traffic. Hyundai extended DCT warranty coverage after numerous complaints.",
+        "solution": "Check extended warranty eligibility (10yr/100k miles for DCT). Clutch assembly replacement is needed when worn (Hyundai part 41200-2A001). Cost is $1,500-2,500 out of pocket. Many Veloster turbo owners have switched to the manual transmission to avoid repeated DCT failures. TCM software update helps but does not prevent eventual failure.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Slipping in higher gears",
+          "Shuddering from stop",
+          "Loss of drive in traffic",
+          "RPM surging without acceleration",
+          "Burning clutch smell"
+        ],
+        "affectedSystems": [
+          "Transmission"
+        ],
+        "dtcCodes": [
+          "P0700",
+          "P0730",
+          "P0741",
+          "P0920"
+        ],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 2500,
+        "typicalMileageLow": 18000,
+        "typicalMileageHigh": 60000,
+        "citations": [
+          {
+            "url": "https://www.hyundaiusa.com",
+            "type": "recall",
+            "title": "Hyundai DCT Extended Warranty Campaign"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "If buying a used Veloster Turbo, strongly consider the manual transmission version - the DCT is the single biggest reliability concern",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "In stop-and-go traffic, shift to neutral at red lights to reduce heat on the DCT clutch",
+            "upvotes": 0
+          },
+          {
+            "type": "warning",
+            "content": "If you smell burning clutch, stop driving immediately - continued driving can damage the flywheel and increase repair cost by $500+",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "Transmission flush kit for complete fluid exchange to address shudder",
+            "partName": "Transmission Flush Kit",
+            "partBrand": "Liqui Moly",
+            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20Veloster%20transmission%20flush%20kit&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Full synthetic ATF designed to reduce shudder in automatic transmissions",
+            "partName": "MaxLife ATF Full Synthetic",
+            "partBrand": "Valvoline",
+            "affiliateUrl": "https://www.amazon.com/s?k=Valvoline%20MaxLife%20ATF%20full%20synthetic%20transmission%20fluid&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 890,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2024-06-15",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "hyundai-tucson-dct-transmission-shudder",
+          "hyundai-kona-dct-shudder",
+          "hyundai-tucson-dct-shudder-2019",
+          "hyundai-kona-dct-clutch-judder-2018",
+          "hyundai-ioniq-dct-harsh-shifting-2017"
+        ]
+      }
+    },
+    {
+      "id": "hyundai-veloster-electric-power-steering-assist-2019",
+      "model": "Veloster",
+      "action": "keep_published_pending_source",
+      "reason": "A general MDPS repair-information bulletin does not establish one 2019-2021 Veloster assist-loss defect, abrupt safety outcome or exact component cause. The row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; secondary, partial, mismatched or different-identity evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-record-repair-information-only",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2019/MC-10160106-9999.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "Hyundai TSB 19-ST-001H is general column-mounted MDPS component-replacement information for many models, including Veloster FS/JS. It does not establish a 2019-2021 Veloster assist-loss defect or the row's prevalence and outcome claims."
+        }
+      ],
+      "beforeSha256": "21a503756d154ca0c1ddbf30bb2fe9fb78bec986c2433dcab514ce96882b6d0c",
+      "proposalSha256": "21a503756d154ca0c1ddbf30bb2fe9fb78bec986c2433dcab514ce96882b6d0c",
+      "before": {
+        "make": "Hyundai",
+        "model": "Veloster",
+        "years": [
+          2019,
+          2020,
+          2021
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "safety",
+        "title": "Electric Power Steering Assist Loss or Heavy Steering from MDPS/Steering Column Faults",
+        "description": "Multiple owners reported sudden loss of steering assist or abnormally heavy steering effort, sometimes accompanied by warning lights and fault messages. On modern Hyundai platforms this is commonly tied to the Motor Driven Power Steering (MDPS) system, steering angle/torque sensing, or column-related electrical faults. Even when the vehicle remains steerable, the abrupt increase in effort creates a meaningful safety concern at low speeds and during evasive maneuvers.",
+        "solution": "Perform a full scan of EPS/MDPS modules, inspect battery voltage and charging stability, and check steering column connectors and torque/angle sensor data. Depending on findings, repairs may involve software updates, steering column or MDPS component replacement, and steering angle calibration. Intermittent failures should be documented with freeze-frame data because some vehicles behave normally once restarted.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "sudden heavy steering",
+          "loss of power steering assist",
+          "EPS or steering warning light",
+          "steering effort changes while driving",
+          "warning chime or message on cluster"
+        ],
+        "affectedSystems": [
+          "electric power steering",
+          "steering column",
+          "MDPS control module",
+          "charging system"
+        ],
+        "dtcCodes": [
+          "C1259",
+          "C2402",
+          "C2405"
+        ],
+        "estimatedCostLow": 250,
+        "estimatedCostHigh": 2200,
+        "typicalMileageLow": 10000,
+        "typicalMileageHigh": 70000,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2019/HYUNDAI/VELOSTER/HATCHBACK/FWD",
+            "type": "nhtsa",
+            "title": "NHTSA complaints search results for 2019 Hyundai Veloster steering issues"
+          },
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2021/HYUNDAI/VELOSTER/HATCHBACK/FWD",
+            "type": "nhtsa",
+            "title": "NHTSA complaints search results for 2021 Hyundai Veloster steering issues"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "content": "Check battery health and charging voltage first; low system voltage can trigger EPS faults and misleading steering symptoms.",
+            "searchQuery": "automotive battery tester 12v"
+          },
+          {
+            "content": "Ask for an EPS scan printout with stored and history codes before leaving the dealer, since intermittent assist loss may not be reproducible on demand.",
+            "searchQuery": "OBD2 scanner ABS SRS EPS"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Veloster",
+        "years": [
+          2019,
+          2020,
+          2021
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "safety",
+        "title": "Electric Power Steering Assist Loss or Heavy Steering from MDPS/Steering Column Faults",
+        "description": "Multiple owners reported sudden loss of steering assist or abnormally heavy steering effort, sometimes accompanied by warning lights and fault messages. On modern Hyundai platforms this is commonly tied to the Motor Driven Power Steering (MDPS) system, steering angle/torque sensing, or column-related electrical faults. Even when the vehicle remains steerable, the abrupt increase in effort creates a meaningful safety concern at low speeds and during evasive maneuvers.",
+        "solution": "Perform a full scan of EPS/MDPS modules, inspect battery voltage and charging stability, and check steering column connectors and torque/angle sensor data. Depending on findings, repairs may involve software updates, steering column or MDPS component replacement, and steering angle calibration. Intermittent failures should be documented with freeze-frame data because some vehicles behave normally once restarted.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "sudden heavy steering",
+          "loss of power steering assist",
+          "EPS or steering warning light",
+          "steering effort changes while driving",
+          "warning chime or message on cluster"
+        ],
+        "affectedSystems": [
+          "electric power steering",
+          "steering column",
+          "MDPS control module",
+          "charging system"
+        ],
+        "dtcCodes": [
+          "C1259",
+          "C2402",
+          "C2405"
+        ],
+        "estimatedCostLow": 250,
+        "estimatedCostHigh": 2200,
+        "typicalMileageLow": 10000,
+        "typicalMileageHigh": 70000,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2019/HYUNDAI/VELOSTER/HATCHBACK/FWD",
+            "type": "nhtsa",
+            "title": "NHTSA complaints search results for 2019 Hyundai Veloster steering issues"
+          },
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2021/HYUNDAI/VELOSTER/HATCHBACK/FWD",
+            "type": "nhtsa",
+            "title": "NHTSA complaints search results for 2021 Hyundai Veloster steering issues"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "content": "Check battery health and charging voltage first; low system voltage can trigger EPS faults and misleading steering symptoms.",
+            "searchQuery": "automotive battery tester 12v"
+          },
+          {
+            "content": "Ask for an EPS scan printout with stored and history codes before leaving the dealer, since intermittent assist loss may not be reproducible on demand.",
+            "searchQuery": "OBD2 scanner ABS SRS EPS"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-veloster-forward-collision-avoidance-driver-2019",
+      "model": "Veloster",
+      "action": "keep_published_pending_source",
+      "reason": "A generic complaint page does not establish one 2019-2021 Veloster camera/radar defect spanning false warnings, system unavailability, lane keeping, calibration, wiring and replacement. The row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; secondary, partial, mismatched or different-identity evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "2c7ff9f273ee25c704cb33fa85faf8e3e62c84e6a402df3169013085de9cc398",
+      "proposalSha256": "2c7ff9f273ee25c704cb33fa85faf8e3e62c84e6a402df3169013085de9cc398",
+      "before": {
+        "make": "Hyundai",
+        "model": "Veloster",
+        "years": [
+          2019,
+          2020,
+          2021
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Forward Collision-Avoidance / Driver Assistance False Warnings and Camera-Radar Malfunctions",
+        "description": "Owners have documented intermittent failures of the forward collision warning, lane-keeping, and related ADAS functions, including dashboard messages that the front camera or safety systems are unavailable. Some complaints involve false alerts in clear weather, while others describe the systems disabling themselves after startup or while driving. These issues are often linked to camera alignment, sensor contamination, software logic, or wiring/connectivity problems rather than a mechanical brake fault.",
+        "solution": "Scan ADAS modules for camera/radar communication or calibration faults, inspect the windshield camera mounting area and front sensor surfaces, and verify no aftermarket windshield work altered alignment. Hyundai service procedures generally involve software checks, connector inspection, and camera/radar recalibration or replacement if faults persist. If the windshield has been replaced, proper OEM-spec calibration is critical.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "forward collision warning unavailable",
+          "lane keep assist unavailable",
+          "false collision alerts",
+          "ADAS warning lights on cluster",
+          "system disables itself while driving"
+        ],
+        "affectedSystems": [
+          "forward camera",
+          "front radar/safety sensors",
+          "ADAS control modules",
+          "lane keeping assist",
+          "forward collision avoidance assist"
+        ],
+        "dtcCodes": [
+          "C1604",
+          "C1620",
+          "U3000"
+        ],
+        "estimatedCostLow": 200,
+        "estimatedCostHigh": 1800,
+        "typicalMileageLow": 0,
+        "typicalMileageHigh": 50000,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2021/HYUNDAI/VELOSTER/HATCHBACK/FWD",
+            "type": "nhtsa",
+            "title": "NHTSA complaints search results for 2021 Hyundai Veloster electrical/safety system warnings"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "content": "Keep the windshield area in front of the camera clean and avoid non-OEM tint or stickers near the sensor field of view.",
+            "searchQuery": "automotive glass cleaner microfiber"
+          },
+          {
+            "content": "After windshield replacement, insist on documented ADAS calibration rather than assuming the system will self-learn.",
+            "searchQuery": "ADAS calibration windshield replacement"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "kia-rio-forward-collision-avoidance-assist--2021",
+          "hyundai-sonata-front-radar-forward-2022",
+          "kia-k5-adas-calibration-fault-2021"
+        ]
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Veloster",
+        "years": [
+          2019,
+          2020,
+          2021
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Forward Collision-Avoidance / Driver Assistance False Warnings and Camera-Radar Malfunctions",
+        "description": "Owners have documented intermittent failures of the forward collision warning, lane-keeping, and related ADAS functions, including dashboard messages that the front camera or safety systems are unavailable. Some complaints involve false alerts in clear weather, while others describe the systems disabling themselves after startup or while driving. These issues are often linked to camera alignment, sensor contamination, software logic, or wiring/connectivity problems rather than a mechanical brake fault.",
+        "solution": "Scan ADAS modules for camera/radar communication or calibration faults, inspect the windshield camera mounting area and front sensor surfaces, and verify no aftermarket windshield work altered alignment. Hyundai service procedures generally involve software checks, connector inspection, and camera/radar recalibration or replacement if faults persist. If the windshield has been replaced, proper OEM-spec calibration is critical.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "forward collision warning unavailable",
+          "lane keep assist unavailable",
+          "false collision alerts",
+          "ADAS warning lights on cluster",
+          "system disables itself while driving"
+        ],
+        "affectedSystems": [
+          "forward camera",
+          "front radar/safety sensors",
+          "ADAS control modules",
+          "lane keeping assist",
+          "forward collision avoidance assist"
+        ],
+        "dtcCodes": [
+          "C1604",
+          "C1620",
+          "U3000"
+        ],
+        "estimatedCostLow": 200,
+        "estimatedCostHigh": 1800,
+        "typicalMileageLow": 0,
+        "typicalMileageHigh": 50000,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2021/HYUNDAI/VELOSTER/HATCHBACK/FWD",
+            "type": "nhtsa",
+            "title": "NHTSA complaints search results for 2021 Hyundai Veloster electrical/safety system warnings"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "content": "Keep the windshield area in front of the camera clean and avoid non-OEM tint or stickers near the sensor field of view.",
+            "searchQuery": "automotive glass cleaner microfiber"
+          },
+          {
+            "content": "After windshield replacement, insist on documented ADAS calibration rather than assuming the system will self-learn.",
+            "searchQuery": "ADAS calibration windshield replacement"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "kia-rio-forward-collision-avoidance-assist--2021",
+          "hyundai-sonata-front-radar-forward-2022",
+          "kia-k5-adas-calibration-fault-2021"
+        ]
+      }
+    },
+    {
+      "id": "hyundai-veloster-knock-sensor-engine-2019",
+      "model": "Veloster",
+      "action": "keep_published_pending_source",
+      "reason": "Campaign 974 supports CNDS software, a blinking MIL and P1327 for certain 2019-2021 2.0-liter vehicles, but does not establish the indexed title's reduced-power outcome or knock-sensor hardware-fault identity. A partial rewrite would leave the title broader than the evidence, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; secondary, partial, mismatched or different-identity evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-record-partial-identity",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2022/MC-10213718-0001.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "Campaign 974 covers 2019-2021 Veloster 2.0-liter CNDS knock-sensor-logic software, a blinking MIL and P1327 when abnormal engine noise is detected. It does not establish the title's reduced-power outcome or a knock-sensor hardware fault."
+        }
+      ],
+      "beforeSha256": "c28a8a27327c63c828be5bcb90fdf646d8b44ca9f933e785599c9c2e5e10674c",
+      "proposalSha256": "c28a8a27327c63c828be5bcb90fdf646d8b44ca9f933e785599c9c2e5e10674c",
+      "before": {
+        "make": "Hyundai",
+        "model": "Veloster",
+        "years": [
+          2019,
+          2020,
+          2021
+        ],
+        "trims": [
+          "2.0",
+          "2.0 Premium"
+        ],
+        "engines": [
+          "2.0L Nu MPI I4"
+        ],
+        "category": "engine",
+        "title": "Knock Sensor / Engine Protection Logic Triggering Reduced Power and Check-Engine Light on 2.0L Models",
+        "description": "Some naturally aspirated 2.0L Veloster owners report check-engine lights, rough running, and reduced-power behavior tied to knock sensor activity or engine protection logic. While not as notorious as older Hyundai engine campaigns, the symptom pattern is documented enough to appear in owner complaints and service discussions: the car may suddenly feel flat, limit RPM, or illuminate the MIL even when no obvious mechanical noise is present. In some cases the issue is sensor-related; in others it requires ruling out genuine detonation, wiring faults, or software sensitivity.",
+        "solution": "Scan for knock-sensor and misfire-related codes, inspect harness routing and connector condition, and verify fuel quality and ignition system health. If no mechanical problem is found, dealers may update software or replace the knock sensor/harness as needed. Persistent knock-related faults should not be ignored because the ECU may be actively protecting the engine from perceived abnormal combustion.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "check engine light",
+          "reduced power",
+          "engine feels flat or limited",
+          "intermittent rough running",
+          "RPM limited"
+        ],
+        "affectedSystems": [
+          "knock sensor",
+          "engine control module",
+          "ignition system",
+          "fuel control"
+        ],
+        "dtcCodes": [
+          "P0326",
+          "P0327",
+          "P0330",
+          "P0300"
+        ],
+        "estimatedCostLow": 200,
+        "estimatedCostHigh": 1200,
+        "typicalMileageLow": 10000,
+        "typicalMileageHigh": 80000,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2019/HYUNDAI/VELOSTER/HATCHBACK/FWD",
+            "type": "nhtsa",
+            "title": "NHTSA complaints search results for 2019 Hyundai Veloster engine warning/reduced power complaints"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "content": "Use Top Tier fuel and verify spark plugs are correct and not overdue before replacing sensors; poor fuel or ignition issues can mimic knock events.",
+            "searchQuery": "spark plug gap tool"
+          },
+          {
+            "content": "Capture freeze-frame data when the MIL appears, since intermittent knock-sensor faults are much easier to diagnose with load, RPM, and temperature context.",
+            "searchQuery": "OBD2 scanner freeze frame"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "kia-k5-theta-ii-knock-sensor-2021"
+        ]
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Veloster",
+        "years": [
+          2019,
+          2020,
+          2021
+        ],
+        "trims": [
+          "2.0",
+          "2.0 Premium"
+        ],
+        "engines": [
+          "2.0L Nu MPI I4"
+        ],
+        "category": "engine",
+        "title": "Knock Sensor / Engine Protection Logic Triggering Reduced Power and Check-Engine Light on 2.0L Models",
+        "description": "Some naturally aspirated 2.0L Veloster owners report check-engine lights, rough running, and reduced-power behavior tied to knock sensor activity or engine protection logic. While not as notorious as older Hyundai engine campaigns, the symptom pattern is documented enough to appear in owner complaints and service discussions: the car may suddenly feel flat, limit RPM, or illuminate the MIL even when no obvious mechanical noise is present. In some cases the issue is sensor-related; in others it requires ruling out genuine detonation, wiring faults, or software sensitivity.",
+        "solution": "Scan for knock-sensor and misfire-related codes, inspect harness routing and connector condition, and verify fuel quality and ignition system health. If no mechanical problem is found, dealers may update software or replace the knock sensor/harness as needed. Persistent knock-related faults should not be ignored because the ECU may be actively protecting the engine from perceived abnormal combustion.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "check engine light",
+          "reduced power",
+          "engine feels flat or limited",
+          "intermittent rough running",
+          "RPM limited"
+        ],
+        "affectedSystems": [
+          "knock sensor",
+          "engine control module",
+          "ignition system",
+          "fuel control"
+        ],
+        "dtcCodes": [
+          "P0326",
+          "P0327",
+          "P0330",
+          "P0300"
+        ],
+        "estimatedCostLow": 200,
+        "estimatedCostHigh": 1200,
+        "typicalMileageLow": 10000,
+        "typicalMileageHigh": 80000,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2019/HYUNDAI/VELOSTER/HATCHBACK/FWD",
+            "type": "nhtsa",
+            "title": "NHTSA complaints search results for 2019 Hyundai Veloster engine warning/reduced power complaints"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "content": "Use Top Tier fuel and verify spark plugs are correct and not overdue before replacing sensors; poor fuel or ignition issues can mimic knock events.",
+            "searchQuery": "spark plug gap tool"
+          },
+          {
+            "content": "Capture freeze-frame data when the MIL appears, since intermittent knock-sensor faults are much easier to diagnose with load, RPM, and temperature context.",
+            "searchQuery": "OBD2 scanner freeze frame"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "kia-k5-theta-ii-knock-sensor-2021"
+        ]
+      }
+    },
+    {
+      "id": "hyundai-veloster-rear-door-hinge",
+      "model": "Veloster",
+      "action": "keep_published_pending_source",
+      "reason": "One forum homepage does not establish a Veloster-wide hinge or check-mechanism defect, exact part number, maintenance interval or repair cost. The row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; secondary, partial, mismatched or different-identity evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "24178865398adf2cf838b5c60b564a66f1f6c617f220b4f0e69d1290945fc446",
+      "proposalSha256": "24178865398adf2cf838b5c60b564a66f1f6c617f220b4f0e69d1290945fc446",
+      "before": {
+        "make": "Hyundai",
+        "model": "Veloster",
+        "years": [
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "body",
+        "title": "Asymmetric Third Door Hinge Failure / Alignment Issue",
+        "description": "The Veloster's unique asymmetric door layout features a single door on the driver side and two doors on the passenger side. The hidden third door (rear passenger) hinge and check mechanism wears prematurely, causing the door to sag, not latch properly, or swing open uncontrollably. This is a unique-to-Veloster design issue.",
+        "solution": "Adjust door hinges and replace worn check arm (Hyundai part 79430-2V000). If hinges are bent, the complete hinge assembly needs replacement. Door realignment at a body shop costs $100-300. Hinge and check arm replacement costs $200-500. Apply white lithium grease to hinges every 6 months as preventive maintenance.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Third door doesn't latch on first try",
+          "Door sags visibly when open",
+          "Wind catches door and swings it wide open",
+          "Creaking noise from passenger rear door",
+          "Uneven door gap visible"
+        ],
+        "affectedSystems": [
+          "Body"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 100,
+        "estimatedCostHigh": 500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.reddit.com/r/veloster",
+            "type": "forum",
+            "title": "Reddit r/Veloster - Door hinge fix guide"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "OEM check arm 79430-2V000 is cheap and easy to replace yourself",
+            "upvotes": 0,
+            "partBrand": "Hyundai OEM",
+            "partNumber": "79430-2V000",
+            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20OEM%2079430-2V000&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Apply white lithium grease to all door hinges every 6 months - especially the third door which gets the most stress",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 320,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2023-11-20",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Veloster",
+        "years": [
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "body",
+        "title": "Asymmetric Third Door Hinge Failure / Alignment Issue",
+        "description": "The Veloster's unique asymmetric door layout features a single door on the driver side and two doors on the passenger side. The hidden third door (rear passenger) hinge and check mechanism wears prematurely, causing the door to sag, not latch properly, or swing open uncontrollably. This is a unique-to-Veloster design issue.",
+        "solution": "Adjust door hinges and replace worn check arm (Hyundai part 79430-2V000). If hinges are bent, the complete hinge assembly needs replacement. Door realignment at a body shop costs $100-300. Hinge and check arm replacement costs $200-500. Apply white lithium grease to hinges every 6 months as preventive maintenance.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Third door doesn't latch on first try",
+          "Door sags visibly when open",
+          "Wind catches door and swings it wide open",
+          "Creaking noise from passenger rear door",
+          "Uneven door gap visible"
+        ],
+        "affectedSystems": [
+          "Body"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 100,
+        "estimatedCostHigh": 500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.reddit.com/r/veloster",
+            "type": "forum",
+            "title": "Reddit r/Veloster - Door hinge fix guide"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "OEM check arm 79430-2V000 is cheap and easy to replace yourself",
+            "upvotes": 0,
+            "partBrand": "Hyundai OEM",
+            "partNumber": "79430-2V000",
+            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20OEM%2079430-2V000&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Apply white lithium grease to all door hinges every 6 months - especially the third door which gets the most stress",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 320,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2023-11-20",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-veloster-smartstream-ivtcvt-hesitation-judder-2019",
+      "model": "Veloster",
+      "action": "keep_published_pending_source",
+      "reason": "The cited PDF is a Kia Niro EV motor-noise bulletin, and Hyundai service information identifies the 2019-and-later Veloster 2.0-liter transmission as a 6-speed automatic rather than an IVT. The indexed IVT/CVT identity remains byte-for-byte unchanged pending correction through an approved identity workflow.",
+      "identityRule": "No content or publication-state changes; secondary, partial, mismatched or different-identity evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-record-citation-mismatch",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2021/MC-10191531-0001.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "The row's claimed Hyundai IVT diagnostic citation is actually Kia TSB ELE234 for 2019-and-later Niro EV motor rumble noise; it does not mention Hyundai, Veloster or an IVT."
+        },
+        {
+          "kind": "official-record-powertrain-mismatch",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2019/MC-10161750-9999.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "Hyundai TSB 19-AT-010H explicitly lists the 2019-and-later Veloster JS 2.0-liter application under its 6-speed automatic-transmission procedure, contradicting the indexed IVT/CVT identity."
+        }
+      ],
+      "beforeSha256": "bea43402c9768e50601d68e2c76724e07e4c9a90aa924b116579580d76c7c044",
+      "proposalSha256": "bea43402c9768e50601d68e2c76724e07e4c9a90aa924b116579580d76c7c044",
+      "before": {
+        "make": "Hyundai",
+        "model": "Veloster",
+        "years": [
+          2019,
+          2020,
+          2021
+        ],
+        "trims": [
+          "2.0",
+          "2.0 Premium"
+        ],
+        "engines": [
+          "2.0L Nu MPI I4"
+        ],
+        "category": "transmission",
+        "title": "Smartstream IVT/CVT Hesitation, Judder, and Limp-Mode from Transmission Control Logic or Internal Faults",
+        "description": "Owners of 2.0-liter Velosters equipped with Hyundai's IVT (CVT) report hesitation from a stop, shuddering under light acceleration, delayed engagement, warning messages, and in some cases reduced-power or limp-home behavior. Hyundai issued service information covering DTCs related to transmission pump/pressure and ratio monitoring, indicating this is more than isolated owner perception. Complaints commonly describe the car feeling unsafe when merging or crossing traffic because throttle input does not produce immediate movement.",
+        "solution": "Scan the TCM/PCM for stored transmission codes and verify fluid condition, line pressure behavior, and software level. Hyundai service procedures typically start with TCM/ECU updates and adaptation checks; persistent cases may require IVT replacement or internal transmission repair under warranty. A careful road test from cold and after full warm-up is important because many owners report intermittent symptoms.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "hesitation from a stop",
+          "shudder or judder during acceleration",
+          "delayed drive engagement",
+          "vehicle will not accelerate normally",
+          "check engine light or transmission warning",
+          "limp mode"
+        ],
+        "affectedSystems": [
+          "IVT/CVT transmission",
+          "TCM",
+          "hydraulic pressure control",
+          "powertrain control"
+        ],
+        "dtcCodes": [
+          "P0867",
+          "P0730",
+          "P0746",
+          "P0841"
+        ],
+        "estimatedCostLow": 300,
+        "estimatedCostHigh": 5500,
+        "typicalMileageLow": 5000,
+        "typicalMileageHigh": 60000,
+        "citations": [
+          {
+            "url": "https://static.nhtsa.gov/odi/tsbs/2021/MC-10191531-0001.pdf",
+            "type": "tsb",
+            "title": "Hyundai TSB 21-AT-006H / 21-AT-006H-1 (IVT DTC diagnostic information for P0867/P0730/P0746/P0841 and related conditions)"
+          },
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2020/HYUNDAI/VELOSTER/HATCHBACK/FWD",
+            "type": "nhtsa",
+            "title": "NHTSA complaints search results for 2020 Hyundai Veloster transmission hesitation/loss of power"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "content": "Have the dealer confirm the latest TCM/ECU calibration before authorizing major parts replacement; several owners report software checks were the first required step.",
+            "searchQuery": "OBD2 scanner transmission live data"
+          },
+          {
+            "content": "If symptoms are intermittent, record a cold-start and warm-drive video showing RPM flare, hesitation, and warning messages to support a warranty claim.",
+            "searchQuery": "dash cam interior cabin recording"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "kia-rio-cvtivt-hesitation-jerking-and-2021",
+          "hyundai-venue-cvt-judder-2020",
+          "hyundai-elantra-ivt-cvt-failure",
+          "kia-seltos-cvt-hesitation",
+          "hyundai-ioniq-dct-harsh-shifting-2017"
+        ]
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Veloster",
+        "years": [
+          2019,
+          2020,
+          2021
+        ],
+        "trims": [
+          "2.0",
+          "2.0 Premium"
+        ],
+        "engines": [
+          "2.0L Nu MPI I4"
+        ],
+        "category": "transmission",
+        "title": "Smartstream IVT/CVT Hesitation, Judder, and Limp-Mode from Transmission Control Logic or Internal Faults",
+        "description": "Owners of 2.0-liter Velosters equipped with Hyundai's IVT (CVT) report hesitation from a stop, shuddering under light acceleration, delayed engagement, warning messages, and in some cases reduced-power or limp-home behavior. Hyundai issued service information covering DTCs related to transmission pump/pressure and ratio monitoring, indicating this is more than isolated owner perception. Complaints commonly describe the car feeling unsafe when merging or crossing traffic because throttle input does not produce immediate movement.",
+        "solution": "Scan the TCM/PCM for stored transmission codes and verify fluid condition, line pressure behavior, and software level. Hyundai service procedures typically start with TCM/ECU updates and adaptation checks; persistent cases may require IVT replacement or internal transmission repair under warranty. A careful road test from cold and after full warm-up is important because many owners report intermittent symptoms.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "hesitation from a stop",
+          "shudder or judder during acceleration",
+          "delayed drive engagement",
+          "vehicle will not accelerate normally",
+          "check engine light or transmission warning",
+          "limp mode"
+        ],
+        "affectedSystems": [
+          "IVT/CVT transmission",
+          "TCM",
+          "hydraulic pressure control",
+          "powertrain control"
+        ],
+        "dtcCodes": [
+          "P0867",
+          "P0730",
+          "P0746",
+          "P0841"
+        ],
+        "estimatedCostLow": 300,
+        "estimatedCostHigh": 5500,
+        "typicalMileageLow": 5000,
+        "typicalMileageHigh": 60000,
+        "citations": [
+          {
+            "url": "https://static.nhtsa.gov/odi/tsbs/2021/MC-10191531-0001.pdf",
+            "type": "tsb",
+            "title": "Hyundai TSB 21-AT-006H / 21-AT-006H-1 (IVT DTC diagnostic information for P0867/P0730/P0746/P0841 and related conditions)"
+          },
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2020/HYUNDAI/VELOSTER/HATCHBACK/FWD",
+            "type": "nhtsa",
+            "title": "NHTSA complaints search results for 2020 Hyundai Veloster transmission hesitation/loss of power"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "content": "Have the dealer confirm the latest TCM/ECU calibration before authorizing major parts replacement; several owners report software checks were the first required step.",
+            "searchQuery": "OBD2 scanner transmission live data"
+          },
+          {
+            "content": "If symptoms are intermittent, record a cold-start and warm-drive video showing RPM flare, hesitation, and warning messages to support a warranty claim.",
+            "searchQuery": "dash cam interior cabin recording"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "kia-rio-cvtivt-hesitation-jerking-and-2021",
+          "hyundai-venue-cvt-judder-2020",
+          "hyundai-elantra-ivt-cvt-failure",
+          "kia-seltos-cvt-hesitation",
+          "hyundai-ioniq-dct-harsh-shifting-2017"
+        ]
+      }
+    },
+    {
+      "id": "hyundai-veloster-sunroof-shatter",
+      "model": "Veloster",
+      "action": "rewrite_same_identity",
+      "reason": "Kept the indexed panoramic-sunroof shattering identity, replaced a generic NHTSA homepage with the two recall acknowledgements covering the full recalled production range, narrowed years to 2012, and removed unsupported film, pressure, goodwill and cost claims.",
+      "identityRule": "The same indexed component and failure outcome stay on the existing ID, title and category; only facts within the exact official records remain.",
+      "commerceDecision": "no-commerce",
+      "changedFields": [
+        "years",
+        "description",
+        "solution",
+        "confidence",
+        "symptoms",
+        "affectedSystems",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "communityRecommendations",
+        "humanApproved",
+        "reportCount",
+        "source",
+        "lastReportedByOwners",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary",
+        "relatedIssueIds"
+      ],
+      "evidence": [
+        {
+          "kind": "official-record-specific-recall",
+          "url": "https://static.nhtsa.gov/odi/rcl/2012/RCAK-12V568-4104.PDF",
+          "verifiedOn": "2026-08-06",
+          "observation": "NHTSA Recall Acknowledgement 12V-568 - 2012 Veloster Panoramic Sunroof supports the proposed same-identity statements."
+        },
+        {
+          "kind": "official-record-specific-recall",
+          "url": "https://static.nhtsa.gov/odi/rcl/2013/RCAK-13V051-6060.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "NHTSA Recall Acknowledgement 13V-051 - Expanded 2012 Veloster Population supports the proposed same-identity statements."
+        }
+      ],
+      "beforeSha256": "66561f3da68cbccf289eb046d8e66adb62c5754873fbed7c175d36626dfd434a",
+      "proposalSha256": "7b9d58bfdeb2f8b00dea3bd9d7d9e6995cbae4cdc4fa80ad91cebf136cc8da4c",
+      "before": {
+        "make": "Hyundai",
+        "model": "Veloster",
+        "years": [
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "safety",
+        "title": "Panoramic Sunroof Spontaneous Shattering",
+        "description": "The panoramic sunroof on the Veloster can spontaneously shatter or explode without any impact, typically while driving on the highway. The tempered glass breaks into small pieces that scatter inside the cabin. NHTSA received hundreds of complaints about this issue across multiple Hyundai models with panoramic sunroofs.",
+        "solution": "If the sunroof has not yet shattered, some owners apply a protective film as a precaution. If it has shattered, replacement costs $500-1,200. File a NHTSA complaint and contact Hyundai customer care for potential goodwill assistance. Keep the vehicle's cabin air filter from being clogged as pressure differentials may contribute to the issue.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "Loud bang/pop from roof",
+          "Glass raining into cabin",
+          "Cracking sounds from sunroof area",
+          "Visible stress cracks in glass",
+          "Wind noise increase from sunroof area"
+        ],
+        "affectedSystems": [
+          "Safety",
+          "Body"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 500,
+        "estimatedCostHigh": 1200,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov",
+            "type": "nhtsa",
+            "title": "NHTSA ODI Investigation PE16-007 - Panoramic Sunroof Shattering"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Apply a UV protective sunroof film to reduce thermal stress on the glass - may help prevent spontaneous shattering",
+            "upvotes": 0
+          },
+          {
+            "type": "warning",
+            "content": "If you hear any cracking sounds from the sunroof, do not open it - have it inspected immediately",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "BlueDriver OBD-II scanner — reads ABS, SRS, and engine codes",
+            "partName": "Bluetooth OBD-II Scanner",
+            "partBrand": "BlueDriver",
+            "affiliateUrl": "https://www.amazon.com/s?k=BlueDriver%20OBD2%20scanner&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 380,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2023-08-22",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "hyundai-elantra-panoramic-sunroof-shatter",
+          "hyundai-tucson-sunroof-cracking-2016",
+          "kia-sportage-sunroof-crack-2017"
+        ]
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Veloster",
+        "years": [
+          2012
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "safety",
+        "title": "Panoramic Sunroof Spontaneous Shattering",
+        "description": "NHTSA recalls 12V-568 and 13V-051 together cover certain model-year 2012 Hyundai Veloster vehicles equipped with panoramic sunroofs and produced from July 4, 2011 through April 17, 2012. The panoramic sunroof assembly may have been weakened during installation at the factory. If weakened, the panoramic glass panel may break while the vehicle is in motion, creating a risk of personal injury or a crash.",
+        "solution": "Check the VIN for Hyundai recall campaign 108, represented by NHTSA recalls 12V-568 and 13V-051. Hyundai dealers inspect the sunroof's integrity and replace the sunroof glass assembly as necessary, free of charge.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Panoramic sunroof glass fractures or shatters"
+        ],
+        "affectedSystems": [
+          "Panoramic sunroof glass assembly"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "NHTSA Recall Acknowledgement 12V-568 - 2012 Veloster Panoramic Sunroof",
+            "url": "https://static.nhtsa.gov/odi/rcl/2012/RCAK-12V568-4104.PDF"
+          },
+          {
+            "type": "recall",
+            "title": "NHTSA Recall Acknowledgement 13V-051 - Expanded 2012 Veloster Population",
+            "url": "https://static.nhtsa.gov/odi/rcl/2013/RCAK-13V051-6060.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Kept the indexed panoramic-sunroof shattering identity, replaced a generic NHTSA homepage with the two recall acknowledgements covering the full recalled production range, narrowed years to 2012, and removed unsupported film, pressure, goodwill and cost claims.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-veloster-turbo-wastegate-rattle",
+      "model": "Veloster",
+      "action": "keep_published_pending_source",
+      "reason": "One forum homepage does not establish a 2013-2018 Veloster Turbo wastegate-actuator defect, spring-tension cause, boost-control outcome or the asserted repair and cost claims. The row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; secondary, partial, mismatched or different-identity evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "4eb5b88a2ccd49a3b5e3f47510a9ec08a8664dc6fb5d294def244f1aa4206031",
+      "proposalSha256": "4eb5b88a2ccd49a3b5e3f47510a9ec08a8664dc6fb5d294def244f1aa4206031",
+      "before": {
+        "make": "Hyundai",
+        "model": "Veloster",
+        "years": [
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018
+        ],
+        "trims": [],
+        "engines": [
+          "1.6L Turbo"
+        ],
+        "category": "engine",
+        "title": "Turbo Wastegate Rattle at Idle",
+        "description": "The turbocharger wastegate actuator on the Veloster Turbo develops a distinctive rattle at idle, caused by wear in the wastegate linkage and internal spring tension loss. While mostly cosmetic and not immediately harmful, prolonged wastegate issues can affect boost control and lead to overboosting or underboosting conditions.",
+        "solution": "Tighten the wastegate actuator rod end nut as a temporary fix (use thread locker). For a permanent fix, replace the wastegate actuator or the turbocharger assembly if the internal flapper is worn. Actuator replacement costs $200-400. Full turbo replacement costs $800-1,500. Some owners install a wastegate actuator bracket to reduce play.",
+        "severity": "low",
+        "confidence": "high",
+        "symptoms": [
+          "Rattle at idle that goes away with RPM",
+          "Metallic vibration noise from engine bay",
+          "Occasional boost fluctuation",
+          "Rattle worse when engine is cold",
+          "CEL with boost pressure codes"
+        ],
+        "affectedSystems": [
+          "Engine",
+          "Turbocharger"
+        ],
+        "dtcCodes": [
+          "P0234",
+          "P0299",
+          "P2263"
+        ],
+        "estimatedCostLow": 50,
+        "estimatedCostHigh": 1500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.reddit.com/r/veloster",
+            "type": "forum",
+            "title": "Reddit r/Veloster - Turbo rattle normal?"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Apply blue Loctite to the wastegate rod end nut and tighten - this is a 10-minute fix that eliminates the rattle in most cases",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "Loctite Blue 242 thread locker for the wastegate actuator rod nut",
+            "upvotes": 0,
+            "partName": "Blue 242 Threadlocker",
+            "partBrand": "Loctite",
+            "partNumber": "24200",
+            "affiliateUrl": "https://www.amazon.com/s?k=Loctite%2024200&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 450,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2024-03-10",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "volkswagen-beetle-turbo-wastegate-rattle-2012"
+        ]
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Veloster",
+        "years": [
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018
+        ],
+        "trims": [],
+        "engines": [
+          "1.6L Turbo"
+        ],
+        "category": "engine",
+        "title": "Turbo Wastegate Rattle at Idle",
+        "description": "The turbocharger wastegate actuator on the Veloster Turbo develops a distinctive rattle at idle, caused by wear in the wastegate linkage and internal spring tension loss. While mostly cosmetic and not immediately harmful, prolonged wastegate issues can affect boost control and lead to overboosting or underboosting conditions.",
+        "solution": "Tighten the wastegate actuator rod end nut as a temporary fix (use thread locker). For a permanent fix, replace the wastegate actuator or the turbocharger assembly if the internal flapper is worn. Actuator replacement costs $200-400. Full turbo replacement costs $800-1,500. Some owners install a wastegate actuator bracket to reduce play.",
+        "severity": "low",
+        "confidence": "high",
+        "symptoms": [
+          "Rattle at idle that goes away with RPM",
+          "Metallic vibration noise from engine bay",
+          "Occasional boost fluctuation",
+          "Rattle worse when engine is cold",
+          "CEL with boost pressure codes"
+        ],
+        "affectedSystems": [
+          "Engine",
+          "Turbocharger"
+        ],
+        "dtcCodes": [
+          "P0234",
+          "P0299",
+          "P2263"
+        ],
+        "estimatedCostLow": 50,
+        "estimatedCostHigh": 1500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.reddit.com/r/veloster",
+            "type": "forum",
+            "title": "Reddit r/Veloster - Turbo rattle normal?"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Apply blue Loctite to the wastegate rod end nut and tighten - this is a 10-minute fix that eliminates the rattle in most cases",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "Loctite Blue 242 thread locker for the wastegate actuator rod nut",
+            "upvotes": 0,
+            "partName": "Blue 242 Threadlocker",
+            "partBrand": "Loctite",
+            "partNumber": "24200",
+            "affiliateUrl": "https://www.amazon.com/s?k=Loctite%2024200&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 450,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2024-03-10",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "volkswagen-beetle-turbo-wastegate-rattle-2012"
+        ]
+      }
+    }
+  ]
+}
