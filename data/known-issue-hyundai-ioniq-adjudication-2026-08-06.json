@@ -1,0 +1,819 @@
+{
+  "schemaVersion": 1,
+  "status": "proposal-only",
+  "auditStage": "model-primary-source-adjudication",
+  "requiresIndependentApproval": true,
+  "generatedOn": "2026-08-06",
+  "make": "Hyundai",
+  "model": "Ioniq",
+  "completionStatement": "This packet reconciles all four frozen Hyundai Ioniq rows. One same-identity MDPS rewrite is proposed; three rows remain byte-for-byte unchanged.",
+  "safetyContract": [
+    "No production database write, cache purge, deployment, archive action, redirect, slug change or public-page change is authorized by this packet.",
+    "All four rows remain published. Three are byte-for-byte unchanged.",
+    "The single rewrite preserves the indexed title and category and uses one exact Hyundai/NHTSA bulletin deep link.",
+    "The rewrite contains zero commerce, zero cost or mileage claims, empty trim and engine arrays, and no diagnostic codes.",
+    "Independent row-by-row approval is required before a separate guarded apply path may be created."
+  ],
+  "source": {
+    "snapshotFile": "data/_hyundai-deeplink-snapshot-2026-08-06.json",
+    "snapshotSha256": "f3e74267205477804060c49c988221cdc4dfcfc4586df369601c8c64736cce60",
+    "snapshotGeneratedAt": "2026-08-06T02:37:36.989Z",
+    "snapshotHash": "444457abb31ca6a5ead423878b37ca790d44a87c74ffa43259362cb4218ba632",
+    "ioniqRecordCount": 4
+  },
+  "observations": [
+    {
+      "code": "mdps-exact-tsb-rewrite",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "hyundai-ioniq-mdps-bearing-noise-2017"
+      ],
+      "detail": "TSB 21-ST-003H directly matches the existing MDPS worm-shaft-bearing identity and distinguishes HEV/PHEV applicability through 2022 from EV applicability through 2021."
+    },
+    {
+      "code": "epb-partial-source-held",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "hyundai-ioniq-epb-autohold-malfunction-2017"
+      ],
+      "detail": "Exact EPB bulletins support DTC update/diagnosis procedures but not the indexed Auto Hold identity or claimed caliper-motor defect, so the record is unchanged."
+    },
+    {
+      "code": "u1341-different-module-held",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "hyundai-ioniq-hybrid-control-software-2019"
+      ],
+      "detail": "TSB 24-EV-001H covers an ECU-to-IEB communication delay on 2021-2022 PHEV vehicles, not the frozen HCU/LDC narrative."
+    },
+    {
+      "code": "dct-secondary-only-held",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "hyundai-ioniq-dct-harsh-shifting-2017"
+      ],
+      "detail": "No exact primary source was found for the broad 2017-2022 DCT narrative."
+    }
+  ],
+  "publicSources": {
+    "mdps": "https://static.nhtsa.gov/odi/tsbs/2021/MC-10203272-0001.pdf",
+    "epbUpdate": "https://static.nhtsa.gov/odi/tsbs/2021/MC-10191793-0001.pdf",
+    "epbDiagnosis": "https://static.nhtsa.gov/odi/tsbs/2023/MC-10235346-0001.pdf",
+    "ecuU1341": "https://static.nhtsa.gov/odi/tsbs/2024/MC-10252364-0001.pdf"
+  },
+  "summary": {
+    "rewrite_same_identity": 1,
+    "keep_published_pending_source": 3,
+    "total": 4
+  },
+  "rows": [
+    {
+      "id": "hyundai-ioniq-dct-harsh-shifting-2017",
+      "model": "Ioniq",
+      "action": "keep_published_pending_source",
+      "reason": "The two secondary pages do not establish one Hyundai-defined 2017-2022 Ioniq 6DCT defect, the claimed mechanical failures, diagnostic codes, software history, replacement remedy, costs or warranty coverage. No exact Hyundai campaign or bulletin was found, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; a related bulletin cannot replace or narrow this indexed issue while its title must remain unchanged.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "a7ec0a9d1d58a70c2f0df09da743f137935413f0fa8927666fbddb1b3154d00f",
+      "proposalSha256": "a7ec0a9d1d58a70c2f0df09da743f137935413f0fa8927666fbddb1b3154d00f",
+      "before": {
+        "make": "Hyundai",
+        "model": "Ioniq",
+        "years": [
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "transmission",
+        "title": "6-Speed DCT Harsh Shifting, Shuddering, and Hesitation",
+        "description": "The Hyundai Ioniq Hybrid and PHEV use a 6-speed dual-clutch transmission (DCT) that is prone to harsh shifting, shuddering during low-speed acceleration, and hesitation from a stop. The defect involves the transmission control module (TCM) and the dual-clutch mechanism itself. The clutch can slip, causing the transmission to hesitate or shudder, particularly in hot weather when the clutch overheats. Service records show broken pins and jammed shafts within the DCT components. Hyundai acknowledged the issue by placing warning cards near the gear selector in some vehicles. The defect prevents proper acceleration from a stop, which is dangerous in traffic.",
+        "solution": "Visit a Hyundai dealer for the latest TCM software update, which improves shift logic and clutch engagement timing. If shuddering persists after the software update, the clutch actuator assembly may need replacement ($1,500-$3,000 at dealer, covered under the 10-year/100,000-mile powertrain warranty). Avoid holding the vehicle on hills with the brake released and clutch engaged — use the brake pedal instead. In stop-and-go traffic, the DCT can be managed by being smooth with throttle inputs rather than rapid acceleration. Some owners report improved behavior after a transmission fluid change ($150-$250), though Hyundai considers the fluid lifetime.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Shuddering or jerking during acceleration from a stop",
+          "Hesitation when pressing the accelerator from standstill",
+          "Harsh or delayed shifts between gears",
+          "Transmission slips during gear changes",
+          "Worse performance in hot weather or stop-and-go traffic"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0730",
+          "P0741"
+        ],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 3000,
+        "typicalMileageLow": 80000,
+        "typicalMileageHigh": 120000,
+        "citations": [
+          {
+            "url": "https://thedriveradviser.com/transmission-problems-hyundai-ioniq/",
+            "type": "owner-report",
+            "title": "Hyundai Ioniq DCT Transmission Problems — The Driver Adviser"
+          },
+          {
+            "url": "https://m.carcomplaints.com/Hyundai/Ioniq_Hybrid/2018/drivetrain/power_train.shtml",
+            "type": "nhtsa",
+            "title": "2018 Hyundai Ioniq Hybrid Power Train Complaints — CarComplaints.com"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "The DCT shudder is worst when the clutch is cold and you launch aggressively. Let the car warm up for 2-3 minutes before driving, and be gentle with the throttle from a stop for the first few miles. This dramatically reduces the shuddering.",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "If the dealer says 'that is normal DCT behavior,' push back and ask for the TCM software update. The updated calibration files significantly improve shift quality. Hyundai has released multiple updates and the latest versions are much better than the original software.",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "Transmission flush kit for complete fluid exchange to address shudder",
+            "partName": "Transmission Flush Kit",
+            "partBrand": "Liqui Moly",
+            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20Ioniq%20transmission%20flush%20kit&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Full synthetic ATF designed to reduce shudder in automatic transmissions",
+            "partName": "MaxLife ATF Full Synthetic",
+            "partBrand": "Valvoline",
+            "affiliateUrl": "https://www.amazon.com/s?k=Valvoline%20MaxLife%20ATF%20full%20synthetic%20transmission%20fluid&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 285,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-03-06",
+        "reviewedOn": "2026-03-06",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "hyundai-tucson-dct-transmission-shudder",
+          "hyundai-kona-dct-shudder",
+          "hyundai-tucson-dct-shudder-2019",
+          "hyundai-kona-dct-clutch-judder-2018",
+          "hyundai-veloster-smartstream-ivtcvt-hesitation-judder-2019"
+        ]
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Ioniq",
+        "years": [
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "transmission",
+        "title": "6-Speed DCT Harsh Shifting, Shuddering, and Hesitation",
+        "description": "The Hyundai Ioniq Hybrid and PHEV use a 6-speed dual-clutch transmission (DCT) that is prone to harsh shifting, shuddering during low-speed acceleration, and hesitation from a stop. The defect involves the transmission control module (TCM) and the dual-clutch mechanism itself. The clutch can slip, causing the transmission to hesitate or shudder, particularly in hot weather when the clutch overheats. Service records show broken pins and jammed shafts within the DCT components. Hyundai acknowledged the issue by placing warning cards near the gear selector in some vehicles. The defect prevents proper acceleration from a stop, which is dangerous in traffic.",
+        "solution": "Visit a Hyundai dealer for the latest TCM software update, which improves shift logic and clutch engagement timing. If shuddering persists after the software update, the clutch actuator assembly may need replacement ($1,500-$3,000 at dealer, covered under the 10-year/100,000-mile powertrain warranty). Avoid holding the vehicle on hills with the brake released and clutch engaged — use the brake pedal instead. In stop-and-go traffic, the DCT can be managed by being smooth with throttle inputs rather than rapid acceleration. Some owners report improved behavior after a transmission fluid change ($150-$250), though Hyundai considers the fluid lifetime.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Shuddering or jerking during acceleration from a stop",
+          "Hesitation when pressing the accelerator from standstill",
+          "Harsh or delayed shifts between gears",
+          "Transmission slips during gear changes",
+          "Worse performance in hot weather or stop-and-go traffic"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0730",
+          "P0741"
+        ],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 3000,
+        "typicalMileageLow": 80000,
+        "typicalMileageHigh": 120000,
+        "citations": [
+          {
+            "url": "https://thedriveradviser.com/transmission-problems-hyundai-ioniq/",
+            "type": "owner-report",
+            "title": "Hyundai Ioniq DCT Transmission Problems — The Driver Adviser"
+          },
+          {
+            "url": "https://m.carcomplaints.com/Hyundai/Ioniq_Hybrid/2018/drivetrain/power_train.shtml",
+            "type": "nhtsa",
+            "title": "2018 Hyundai Ioniq Hybrid Power Train Complaints — CarComplaints.com"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "The DCT shudder is worst when the clutch is cold and you launch aggressively. Let the car warm up for 2-3 minutes before driving, and be gentle with the throttle from a stop for the first few miles. This dramatically reduces the shuddering.",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "If the dealer says 'that is normal DCT behavior,' push back and ask for the TCM software update. The updated calibration files significantly improve shift quality. Hyundai has released multiple updates and the latest versions are much better than the original software.",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "Transmission flush kit for complete fluid exchange to address shudder",
+            "partName": "Transmission Flush Kit",
+            "partBrand": "Liqui Moly",
+            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20Ioniq%20transmission%20flush%20kit&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Full synthetic ATF designed to reduce shudder in automatic transmissions",
+            "partName": "MaxLife ATF Full Synthetic",
+            "partBrand": "Valvoline",
+            "affiliateUrl": "https://www.amazon.com/s?k=Valvoline%20MaxLife%20ATF%20full%20synthetic%20transmission%20fluid&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 285,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-03-06",
+        "reviewedOn": "2026-03-06",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "hyundai-tucson-dct-transmission-shudder",
+          "hyundai-kona-dct-shudder",
+          "hyundai-tucson-dct-shudder-2019",
+          "hyundai-kona-dct-clutch-judder-2018",
+          "hyundai-veloster-smartstream-ivtcvt-hesitation-judder-2019"
+        ]
+      }
+    },
+    {
+      "id": "hyundai-ioniq-epb-autohold-malfunction-2017",
+      "model": "Ioniq",
+      "action": "keep_published_pending_source",
+      "reason": "Hyundai bulletins 21-BR-004H and 23-BR-001H establish specific EPB DTC update and diagnosis procedures, but they do not establish the frozen title's combined Electronic Parking Brake and Auto Hold malfunction identity or the claimed caliper-motor failure. Because the title cannot change, the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; a related bulletin cannot replace or narrow this indexed issue while its title must remain unchanged.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-related-but-not-identity-complete",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2021/MC-10191793-0001.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "TSB 21-BR-004H covers an EPB ECU update for C2416/C2417 on certain 2019-2020 Ioniq HEV/PHEV vehicles, but not the combined Auto Hold identity or claimed caliper-motor failure."
+        },
+        {
+          "kind": "official-related-but-not-identity-complete",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2023/MC-10235346-0001.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "TSB 23-BR-001H covers diagnosis for C2416/C2417 on 2019-2022 Ioniq HEV/PHEV vehicles, but not the combined Auto Hold identity."
+        }
+      ],
+      "beforeSha256": "b855eb4ebc5260b36b9fb447c6f7c2ee9e9976821802def03bc75f32bf1b6532",
+      "proposalSha256": "b855eb4ebc5260b36b9fb447c6f7c2ee9e9976821802def03bc75f32bf1b6532",
+      "before": {
+        "make": "Hyundai",
+        "model": "Ioniq",
+        "years": [
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "brakes",
+        "title": "Electronic Parking Brake and Auto Hold Malfunction",
+        "description": "The Hyundai Ioniq's electronic parking brake (EPB) and Auto Hold feature can malfunction randomly, illuminating the EPB warning light and disabling the Auto Hold function. The EPB system uses brushed DC motors in the rear calipers that can fail prematurely, with diagnostic code C2417 indicating a motor short or open circuit. When the EPB faults, the Auto Hold feature (which automatically holds the brake at stops) also becomes unavailable, turning orange on the dashboard. The issue can be intermittent and difficult for dealers to reproduce, as the fault codes may not store permanently.",
+        "solution": "Visit a Hyundai dealer and request a scan for code C2417. If present, the rear caliper EPB motor needs replacement ($400-$700 per caliper including labor). Both rear calipers should ideally be replaced together as the motors wear at similar rates. The dealer can also perform an EPB service mode reset after replacement. If the issue is intermittent and no codes are stored, ask the dealer to note the complaint in the service record for warranty tracking. The EPB calipers and motors are covered under the factory warranty.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Electronic Parking Brake warning light illuminates randomly",
+          "Auto Hold indicator turns orange and feature is disabled",
+          "EPB fails to engage when shifting to Park",
+          "Grinding or clicking noise from rear brakes when EPB activates",
+          "Smart Cruise Control becomes unavailable when EPB faults"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "C2417"
+        ],
+        "estimatedCostLow": 400,
+        "estimatedCostHigh": 1400,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.ioniqforum.com/threads/smart-cruise-control-failure-electronic-parking-brake-failure.36282/",
+            "type": "owner-report",
+            "title": "Electronic Parking Brake and Smart Cruise Failure — Ioniq Forum"
+          },
+          {
+            "url": "https://www.ioniqforum.com/threads/electronic-parking-brake-epb-light.46339/",
+            "type": "owner-report",
+            "title": "EPB Light Discussion — Ioniq Forum"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "If the EPB warning comes on intermittently, take a photo or video of the dashboard every time it happens. The dealer needs evidence that the issue is recurring if they cannot reproduce it during the service visit. Date-stamped photos strengthen your warranty claim.",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "Remanufactured brake caliper for reliable clamping force",
+            "partName": "Remanufactured Brake Caliper",
+            "partBrand": "Cardone",
+            "affiliateUrl": "https://www.amazon.com/s?k=Cardone%20remanufactured%20brake%20caliper%20Hyundai%20Ioniq&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Brake caliper bracket and hardware for smooth caliper slide operation",
+            "partName": "Brake Caliper Bracket",
+            "partBrand": "Dorman",
+            "affiliateUrl": "https://www.amazon.com/s?k=Dorman%20brake%20caliper%20bracket%20Hyundai%20Ioniq&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Synthetic brake caliper grease to prevent future seizing",
+            "partName": "Ultra Disc Brake Caliper Lube",
+            "partBrand": "Permatex",
+            "affiliateUrl": "https://www.amazon.com/s?k=Permatex%20Ultra%20Disc%20Brake%20Caliper%20Lube&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 110,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-03-06",
+        "reviewedOn": "2026-03-06",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Ioniq",
+        "years": [
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "brakes",
+        "title": "Electronic Parking Brake and Auto Hold Malfunction",
+        "description": "The Hyundai Ioniq's electronic parking brake (EPB) and Auto Hold feature can malfunction randomly, illuminating the EPB warning light and disabling the Auto Hold function. The EPB system uses brushed DC motors in the rear calipers that can fail prematurely, with diagnostic code C2417 indicating a motor short or open circuit. When the EPB faults, the Auto Hold feature (which automatically holds the brake at stops) also becomes unavailable, turning orange on the dashboard. The issue can be intermittent and difficult for dealers to reproduce, as the fault codes may not store permanently.",
+        "solution": "Visit a Hyundai dealer and request a scan for code C2417. If present, the rear caliper EPB motor needs replacement ($400-$700 per caliper including labor). Both rear calipers should ideally be replaced together as the motors wear at similar rates. The dealer can also perform an EPB service mode reset after replacement. If the issue is intermittent and no codes are stored, ask the dealer to note the complaint in the service record for warranty tracking. The EPB calipers and motors are covered under the factory warranty.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Electronic Parking Brake warning light illuminates randomly",
+          "Auto Hold indicator turns orange and feature is disabled",
+          "EPB fails to engage when shifting to Park",
+          "Grinding or clicking noise from rear brakes when EPB activates",
+          "Smart Cruise Control becomes unavailable when EPB faults"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "C2417"
+        ],
+        "estimatedCostLow": 400,
+        "estimatedCostHigh": 1400,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.ioniqforum.com/threads/smart-cruise-control-failure-electronic-parking-brake-failure.36282/",
+            "type": "owner-report",
+            "title": "Electronic Parking Brake and Smart Cruise Failure — Ioniq Forum"
+          },
+          {
+            "url": "https://www.ioniqforum.com/threads/electronic-parking-brake-epb-light.46339/",
+            "type": "owner-report",
+            "title": "EPB Light Discussion — Ioniq Forum"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "If the EPB warning comes on intermittently, take a photo or video of the dashboard every time it happens. The dealer needs evidence that the issue is recurring if they cannot reproduce it during the service visit. Date-stamped photos strengthen your warranty claim.",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "Remanufactured brake caliper for reliable clamping force",
+            "partName": "Remanufactured Brake Caliper",
+            "partBrand": "Cardone",
+            "affiliateUrl": "https://www.amazon.com/s?k=Cardone%20remanufactured%20brake%20caliper%20Hyundai%20Ioniq&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Brake caliper bracket and hardware for smooth caliper slide operation",
+            "partName": "Brake Caliper Bracket",
+            "partBrand": "Dorman",
+            "affiliateUrl": "https://www.amazon.com/s?k=Dorman%20brake%20caliper%20bracket%20Hyundai%20Ioniq&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Synthetic brake caliper grease to prevent future seizing",
+            "partName": "Ultra Disc Brake Caliper Lube",
+            "partBrand": "Permatex",
+            "affiliateUrl": "https://www.amazon.com/s?k=Permatex%20Ultra%20Disc%20Brake%20Caliper%20Lube&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 110,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-03-06",
+        "reviewedOn": "2026-03-06",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-ioniq-hybrid-control-software-2019",
+      "model": "Ioniq",
+      "action": "keep_published_pending_source",
+      "reason": "Hyundai bulletin 24-EV-001H covers an ECU communication-delay update for DTC U1341 on 2021-2022 Ioniq PHEV vehicles. It does not establish the frozen Hybrid Control Unit/LDC identity, 2019-2022 HEV scope, state-of-charge or power-distribution claims. Because the title cannot change, the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; a related bulletin cannot replace or narrow this indexed issue while its title must remain unchanged.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-related-but-different-identity",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2024/MC-10252364-0001.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "TSB 24-EV-001H is an ECU update for an IEB communication delay on 2021-2022 Ioniq PHEV vehicles, not the frozen HCU/LDC narrative."
+        }
+      ],
+      "beforeSha256": "a44a3f1cbf709cfc8090d2c6cf60ef99ddf01da793dc2797088d3501f41e4f1e",
+      "proposalSha256": "a44a3f1cbf709cfc8090d2c6cf60ef99ddf01da793dc2797088d3501f41e4f1e",
+      "before": {
+        "make": "Hyundai",
+        "model": "Ioniq",
+        "years": [
+          2019,
+          2020,
+          2021,
+          2022
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Hybrid Control Unit Software Glitches and Warning Lights",
+        "description": "The Hyundai Ioniq Hybrid and Plug-In Hybrid models from 2019-2022 can exhibit warning lights and system faults caused by software bugs in the Hybrid Control Unit (HCU) and Low DC/DC Converter (LDC). The issues include communication errors (DTC U1341) between control modules, incorrect battery state-of-charge calculations, and improper power distribution between the electric motor and gasoline engine. Hyundai has released multiple TSBs addressing software logic updates for the HCU and LDC. The Plug-In Hybrid variant is more frequently affected due to its more complex power management between the larger battery, electric motor, and engine.",
+        "solution": "Visit a Hyundai dealer and request the latest HCU and LDC software updates as outlined in Hyundai's Technical Service Bulletins. The software update is free and typically takes 1-2 hours. After the update, the dealer should clear all stored DTCs and verify normal operation. If warning lights return after the software update, a more thorough diagnosis of the high-voltage system may be needed, including inspection of the DC/DC converter output and 12V system charging. Keep the 12V battery in good condition, as a weak 12V battery can trigger false HCU warning lights.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Check Engine light with hybrid system-related DTC codes",
+          "Hybrid system warning indicator on dashboard",
+          "Unexpected transitions between EV and hybrid modes",
+          "Reduced power output or EV range",
+          "12V battery frequently low despite normal driving"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "U1341",
+          "P0A1F"
+        ],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 200,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.carcomplaints.com/Hyundai/Ioniq_Hybrid/2021/tsbs/",
+            "type": "tsb",
+            "title": "2021 Hyundai Ioniq Hybrid TSBs — CarComplaints.com"
+          },
+          {
+            "url": "https://lemberglaw.com/2021-hyundai-ioniq-problems-complaints-lemon/",
+            "type": "nhtsa",
+            "title": "2021 Hyundai Ioniq Problems — Lemberg Law"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "When you take the Ioniq in for any service, ask the advisor to check for pending software updates. Hyundai releases HCU updates several times per year but does not always notify owners. Getting the latest calibration prevents many phantom warning light issues.",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "High-performance AGM battery with excellent cold cranking amps and deep cycle capability",
+            "partName": "RedTop AGM Battery",
+            "partBrand": "Optima",
+            "affiliateUrl": "https://www.amazon.com/s?k=Optima%20RedTop%20AGM%20Battery%20Hyundai%20Ioniq&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "OEM-quality replacement battery with reliable performance",
+            "partName": "Professional AGM Battery",
+            "partBrand": "ACDelco",
+            "affiliateUrl": "https://www.amazon.com/s?k=ACDelco%20Professional%20AGM%20Battery%20Hyundai%20Ioniq&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Automatic battery maintainer to prevent parasitic drain issues during storage",
+            "partName": "Junior 12V Battery Charger Maintainer",
+            "partBrand": "Battery Tender",
+            "affiliateUrl": "https://www.amazon.com/s?k=Battery%20Tender%20Junior%2012V%20Battery%20Charger%20Maintainer%20Hyundai%20Ioniq&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Level 2 portable EV charger for reliable home or on-the-go charging",
+            "partName": "Portable Level 2 EV Charger",
+            "partBrand": "Lectron",
+            "affiliateUrl": "https://www.amazon.com/s?k=Lectron%20Portable%20Level%202%20EV%20Charger%20Hyundai%20Ioniq&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 165,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-03-06",
+        "reviewedOn": "2026-03-06",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Ioniq",
+        "years": [
+          2019,
+          2020,
+          2021,
+          2022
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Hybrid Control Unit Software Glitches and Warning Lights",
+        "description": "The Hyundai Ioniq Hybrid and Plug-In Hybrid models from 2019-2022 can exhibit warning lights and system faults caused by software bugs in the Hybrid Control Unit (HCU) and Low DC/DC Converter (LDC). The issues include communication errors (DTC U1341) between control modules, incorrect battery state-of-charge calculations, and improper power distribution between the electric motor and gasoline engine. Hyundai has released multiple TSBs addressing software logic updates for the HCU and LDC. The Plug-In Hybrid variant is more frequently affected due to its more complex power management between the larger battery, electric motor, and engine.",
+        "solution": "Visit a Hyundai dealer and request the latest HCU and LDC software updates as outlined in Hyundai's Technical Service Bulletins. The software update is free and typically takes 1-2 hours. After the update, the dealer should clear all stored DTCs and verify normal operation. If warning lights return after the software update, a more thorough diagnosis of the high-voltage system may be needed, including inspection of the DC/DC converter output and 12V system charging. Keep the 12V battery in good condition, as a weak 12V battery can trigger false HCU warning lights.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Check Engine light with hybrid system-related DTC codes",
+          "Hybrid system warning indicator on dashboard",
+          "Unexpected transitions between EV and hybrid modes",
+          "Reduced power output or EV range",
+          "12V battery frequently low despite normal driving"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "U1341",
+          "P0A1F"
+        ],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 200,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.carcomplaints.com/Hyundai/Ioniq_Hybrid/2021/tsbs/",
+            "type": "tsb",
+            "title": "2021 Hyundai Ioniq Hybrid TSBs — CarComplaints.com"
+          },
+          {
+            "url": "https://lemberglaw.com/2021-hyundai-ioniq-problems-complaints-lemon/",
+            "type": "nhtsa",
+            "title": "2021 Hyundai Ioniq Problems — Lemberg Law"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "When you take the Ioniq in for any service, ask the advisor to check for pending software updates. Hyundai releases HCU updates several times per year but does not always notify owners. Getting the latest calibration prevents many phantom warning light issues.",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "High-performance AGM battery with excellent cold cranking amps and deep cycle capability",
+            "partName": "RedTop AGM Battery",
+            "partBrand": "Optima",
+            "affiliateUrl": "https://www.amazon.com/s?k=Optima%20RedTop%20AGM%20Battery%20Hyundai%20Ioniq&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "OEM-quality replacement battery with reliable performance",
+            "partName": "Professional AGM Battery",
+            "partBrand": "ACDelco",
+            "affiliateUrl": "https://www.amazon.com/s?k=ACDelco%20Professional%20AGM%20Battery%20Hyundai%20Ioniq&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Automatic battery maintainer to prevent parasitic drain issues during storage",
+            "partName": "Junior 12V Battery Charger Maintainer",
+            "partBrand": "Battery Tender",
+            "affiliateUrl": "https://www.amazon.com/s?k=Battery%20Tender%20Junior%2012V%20Battery%20Charger%20Maintainer%20Hyundai%20Ioniq&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Level 2 portable EV charger for reliable home or on-the-go charging",
+            "partName": "Portable Level 2 EV Charger",
+            "partBrand": "Lectron",
+            "affiliateUrl": "https://www.amazon.com/s?k=Lectron%20Portable%20Level%202%20EV%20Charger%20Hyundai%20Ioniq&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 165,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-03-06",
+        "reviewedOn": "2026-03-06",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-ioniq-mdps-bearing-noise-2017",
+      "model": "Ioniq",
+      "action": "rewrite_same_identity",
+      "reason": "Kept the same indexed MDPS worm-shaft-bearing identity, replaced secondary/index citations with the exact Hyundai bulletin deep link, retained the source-specific Ioniq model-year distinctions, and removed unsupported battery-weight, weather, steering-effort, repair-time, cost and full-MDPS-replacement claims.",
+      "identityRule": "The same indexed MDPS worm-shaft-bearing issue stays on the existing ID, title and category; only claims supported by exact TSB 21-ST-003H remain.",
+      "commerceDecision": "no-commerce",
+      "changedFields": [
+        "description",
+        "solution",
+        "symptoms",
+        "affectedSystems",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "communityRecommendations",
+        "reportCount",
+        "source",
+        "lastReportedByOwners",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
+      "evidence": [
+        {
+          "kind": "official-record-specific-tsb",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2021/MC-10203272-0001.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "Hyundai TSB 21-ST-003H directly supports the MDPS worm shaft bearing-noise identity, applicability and bearing-only remedy."
+        }
+      ],
+      "beforeSha256": "53ee03a60c7555b4cbb1bfdbc9bfff7dbb86cf860bbd8ea94ecc4dc529a602d6",
+      "proposalSha256": "75c0902002836515fa857282677951aa4bf1ba9003dfd6f8de944d132700dd6e",
+      "before": {
+        "make": "Hyundai",
+        "model": "Ioniq",
+        "years": [
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "suspension",
+        "title": "Motor Driven Power Steering Column Bearing Noise",
+        "description": "The Hyundai Ioniq can develop a bearing noise within the Motor Driven Power Steering (MDPS) column worm shaft assembly. The noise is a whining, groaning, or grinding sound that occurs when turning the steering wheel, particularly at low speeds during parking maneuvers. The MDPS worm shaft bearing wears prematurely, likely due to the heavier weight of the hybrid battery pack placing additional stress on the steering system. Hyundai issued a TSB directing dealers to replace the worm shaft bearing. The noise is more pronounced in cold weather and may worsen over time.",
+        "solution": "Visit a Hyundai dealer and describe the steering noise. Reference the Hyundai TSB for MDPS worm shaft bearing replacement. The dealer will verify the noise by turning the steering wheel at low speed and, if confirmed, replace the worm shaft bearing in the steering column ($300-$600 at dealer, covered under warranty if within coverage). The repair takes approximately 2-3 hours. After replacement, the steering should be silent during turns. If the noise returns after replacement, the entire MDPS unit may need replacement ($800-$1,200).",
+        "severity": "low",
+        "confidence": "high",
+        "symptoms": [
+          "Whining or groaning noise when turning the steering wheel",
+          "Grinding sound during low-speed parking maneuvers",
+          "Noise is louder in cold weather",
+          "Steering effort may feel slightly increased",
+          "Sound comes from the steering column area, not the wheels"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 300,
+        "estimatedCostHigh": 1200,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.carcomplaints.com/Hyundai/Ioniq_Hybrid/2021/tsbs/",
+            "type": "tsb",
+            "title": "Hyundai TSB — MDPS Column Worm Shaft Bearing Noise"
+          },
+          {
+            "url": "https://www.ioniqforum.com/threads/transmission-service-problems.14041/",
+            "type": "owner-report",
+            "title": "Ioniq Forum Transmission and Service Problems Discussion"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Record the steering noise on your phone before the dealer visit. The noise can be difficult to reproduce on demand, and having a clear recording helps the technician understand exactly what you are hearing and where it is coming from.",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "Complete strut and shock absorber set for full suspension refresh",
+            "partName": "Excel-G Strut/Shock Set",
+            "partBrand": "KYB",
+            "affiliateUrl": "https://www.amazon.com/s?k=KYB%20Excel-G%20struts%20shocks%20Hyundai%20Ioniq&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Four-wheel alignment kit with cam bolts for proper tire wear correction",
+            "partName": "Alignment Cam Bolt Kit",
+            "partBrand": "Moog",
+            "affiliateUrl": "https://www.amazon.com/s?k=Moog%20alignment%20cam%20bolt%20kit%20Hyundai%20Ioniq&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 90,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-03-06",
+        "reviewedOn": "2026-03-06",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Ioniq",
+        "years": [
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "suspension",
+        "title": "Motor Driven Power Steering Column Bearing Noise",
+        "description": "Hyundai Technical Service Bulletin 21-ST-003H says certain vehicles may develop bearing noise within the Motor Driven Power Steering (MDPS) column worm shaft assembly. The bulletin applies to 2017-2022 Ioniq Hybrid and Plug-In Hybrid vehicles and 2017-2021 Ioniq Electric vehicles.",
+        "solution": "Ask a Hyundai dealer to verify whether the noise comes from the C-MDPS worm shaft bearing and, if confirmed, follow TSB 21-ST-003H. The bulletin supersedes an earlier procedure and directs technicians to replace the small worm shaft bearing rather than the worm shaft assembly.",
+        "severity": "low",
+        "confidence": "high",
+        "symptoms": [
+          "Bearing noise from the Motor Driven Power Steering column worm shaft assembly"
+        ],
+        "affectedSystems": [
+          "Motor Driven Power Steering column",
+          "Worm shaft bearing"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "Hyundai TSB 21-ST-003H - C-MDPS Worm Shaft Bearing Noise",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2021/MC-10203272-0001.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Kept the same indexed MDPS worm-shaft-bearing identity, replaced secondary/index citations with the exact Hyundai bulletin deep link, retained the source-specific Ioniq model-year distinctions, and removed unsupported battery-weight, weather, steering-effort, repair-time, cost and full-MDPS-replacement claims.",
+        "relatedIssueIds": []
+      }
+    }
+  ]
+}
