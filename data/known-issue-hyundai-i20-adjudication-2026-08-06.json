@@ -1,0 +1,930 @@
+{
+  "schemaVersion": 1,
+  "status": "proposal-only",
+  "auditStage": "model-primary-source-adjudication",
+  "requiresIndependentApproval": true,
+  "generatedOn": "2026-08-06",
+  "make": "Hyundai",
+  "model": "i20",
+  "completionStatement": "This packet reconciles all five frozen Hyundai i20 rows. One same-identity fuel-pump recall rewrite is proposed; four broad rows remain byte-for-byte unchanged.",
+  "safetyContract": [
+    "No production database write, cache purge, deployment, archive action, redirect, slug change or public-page change is authorized by this packet.",
+    "All five rows remain published. Four are byte-for-byte unchanged.",
+    "The single rewrite preserves the indexed title and category and uses only exact record-specific official recall links.",
+    "The rewrite contains zero commerce, zero cost or mileage claims, empty trim and engine arrays, and no unsupported DTC.",
+    "Independent row-by-row approval is required before a separate guarded apply path may be created."
+  ],
+  "source": {
+    "snapshotFile": "data/_hyundai-deeplink-snapshot-2026-08-06.json",
+    "snapshotSha256": "f3e74267205477804060c49c988221cdc4dfcfc4586df369601c8c64736cce60",
+    "snapshotGeneratedAt": "2026-08-06T02:37:36.989Z",
+    "snapshotHash": "444457abb31ca6a5ead423878b37ca790d44a87c74ffa43259362cb4218ba632",
+    "i20RecordCount": 5
+  },
+  "observations": [
+    {
+      "code": "regular-i20-and-i20n-windows-separated",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "hyundai-i20-fuel-pump-impeller-failure-engine-stall-recall"
+      ],
+      "detail": "The proposal distinguishes regular i20/Bayon production through 2022-12-03 from i20 N production through 2023-01-04 instead of presenting one imprecise early-2023 window."
+    },
+    {
+      "code": "fuel-pump-secondary-claims-removed",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "hyundai-i20-fuel-pump-impeller-failure-engine-stall-recall"
+      ],
+      "detail": "The worldwide population, no-start, hesitation, sputtering, check-engine and low-fuel-pressure-code claims are not retained."
+    },
+    {
+      "code": "dct-other-model-tsb-rejected",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "hyundai-i20-7-speed-dual-clutch-judder-hesitation-overheating"
+      ],
+      "detail": "TSB 21-AT-014H applies to Tucson and Sonata and cannot be used to rewrite an i20 page."
+    },
+    {
+      "code": "three-broad-owner-narratives-frozen",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "hyundai-i20-1-2-kappa-timing-chain-stretch-tensioner-rattle",
+        "hyundai-i20-air-conditioning-compressor-evaporator-failures",
+        "hyundai-i20-clutch-judder-premature-clutch-wear"
+      ],
+      "detail": "The timing-chain, air-conditioning and clutch narratives remain unchanged without exact Hyundai primary evidence."
+    }
+  ],
+  "publicSources": {
+    "safetyGate": "https://ec.europa.eu/safety-gate-alerts/screen/webReport/alertDetail/10096118",
+    "hyundaiSlovenia": "https://www.hyundai.si/lastnistvo/vpoklic-vozila/servisni-vpoklic-vozil-hyundai-ioniq-i20-bayon",
+    "traficomFinland": "https://takaisinkutsut.traficom.fi/recall/17844"
+  },
+  "summary": {
+    "rewrite_same_identity": 1,
+    "keep_published_pending_source": 4,
+    "total": 5
+  },
+  "rows": [
+    {
+      "id": "hyundai-i20-1-2-kappa-timing-chain-stretch-tensioner-rattle",
+      "model": "i20",
+      "action": "keep_published_pending_source",
+      "reason": "A repair-shop case study, articles and owner forums do not establish one Hyundai-defined 2009-2018 i20 1.2 Kappa timing-chain defect, the claimed causes, progression, engine-damage risk or preventive interval. No exact Hyundai campaign or bulletin was found, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; secondary material or a bulletin for another model cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "84238fe56bbd26dc56c2ad024936cbc8a65ba39d7ea3f9daaa21601f5b55c48b",
+      "proposalSha256": "84238fe56bbd26dc56c2ad024936cbc8a65ba39d7ea3f9daaa21601f5b55c48b",
+      "before": {
+        "make": "Hyundai",
+        "model": "i20",
+        "years": [
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "engine",
+        "title": "1.2 Kappa Timing Chain Stretch and Tensioner Rattle",
+        "description": "The chain-driven 1.2 Kappa petrol engine in the i20 is prone to timing chain stretch and tensioner wear, particularly on cars with extended oil-change intervals or low oil pressure. Owners report a rattle or whining from the timing cover, worst on cold start, and in documented cases the chain stretched beyond the tensioner's full travel and began jumping teeth on the sprockets. If left unaddressed the chain can skip timing, bending valves and causing major engine damage.",
+        "solution": "Replace the complete timing chain kit (chain, tensioner, guides, and sprockets if worn) and address any underlying oil-pressure or servicing issue. Using quality oil and the correct OEM-spec oil filter, with shorter change intervals, helps the hydraulic tensioner maintain pressure and prevents recurrence.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "Metallic rattle from the engine on cold start",
+          "Whining or chain noise that rises with engine speed",
+          "Noise persisting after tensioner replacement",
+          "Rough running or misfire if the chain skips",
+          "Check engine light with cam/crank correlation faults"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 350,
+        "estimatedCostHigh": 900,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.aaronsautos.co.uk/hyundai-i20-timing-chain-noise/",
+            "type": "article",
+            "title": "Hyundai i20 Timing Chain Noise found and fixed — Aaron's Autos (Derby) case study"
+          },
+          {
+            "url": "https://www.thehyundaiforums.com/threads/hyundai-i-20-engine-rattle.7257/",
+            "type": "forum",
+            "title": "Hyundai i20 engine rattle — chain stretched beyond tensioner capacity at 100k, fixed with OEM chain/guides/tensioner"
+          },
+          {
+            "url": "https://www.hyundai-forums.com/threads/i20-timing-chain-issues.706595/",
+            "type": "forum",
+            "title": "i20 TIMING CHAIN ISSUES — Hyundai Forums (live, behind Tollbit bot-gateway; confirmed via search index)"
+          },
+          {
+            "url": "https://www.hyundai-forums.com/threads/hyundai-i20-1-2-2009-whinning-noise.669181/",
+            "type": "forum",
+            "title": "Hyundai i20 1.2 2009 whining noise — Hyundai Forums (live, behind Tollbit bot-gateway; confirmed via search index)"
+          },
+          {
+            "url": "https://www.700r4transmissionhq.com/hyundai-i20-engine-rattle/",
+            "type": "article",
+            "title": "Hyundai i20 Engine Rattle: Causes + How to Fix — Drivetrain Resource (timing chain stretch/tensioner listed as primary cause)"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-12",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "i20",
+        "years": [
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "engine",
+        "title": "1.2 Kappa Timing Chain Stretch and Tensioner Rattle",
+        "description": "The chain-driven 1.2 Kappa petrol engine in the i20 is prone to timing chain stretch and tensioner wear, particularly on cars with extended oil-change intervals or low oil pressure. Owners report a rattle or whining from the timing cover, worst on cold start, and in documented cases the chain stretched beyond the tensioner's full travel and began jumping teeth on the sprockets. If left unaddressed the chain can skip timing, bending valves and causing major engine damage.",
+        "solution": "Replace the complete timing chain kit (chain, tensioner, guides, and sprockets if worn) and address any underlying oil-pressure or servicing issue. Using quality oil and the correct OEM-spec oil filter, with shorter change intervals, helps the hydraulic tensioner maintain pressure and prevents recurrence.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "Metallic rattle from the engine on cold start",
+          "Whining or chain noise that rises with engine speed",
+          "Noise persisting after tensioner replacement",
+          "Rough running or misfire if the chain skips",
+          "Check engine light with cam/crank correlation faults"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 350,
+        "estimatedCostHigh": 900,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.aaronsautos.co.uk/hyundai-i20-timing-chain-noise/",
+            "type": "article",
+            "title": "Hyundai i20 Timing Chain Noise found and fixed — Aaron's Autos (Derby) case study"
+          },
+          {
+            "url": "https://www.thehyundaiforums.com/threads/hyundai-i-20-engine-rattle.7257/",
+            "type": "forum",
+            "title": "Hyundai i20 engine rattle — chain stretched beyond tensioner capacity at 100k, fixed with OEM chain/guides/tensioner"
+          },
+          {
+            "url": "https://www.hyundai-forums.com/threads/i20-timing-chain-issues.706595/",
+            "type": "forum",
+            "title": "i20 TIMING CHAIN ISSUES — Hyundai Forums (live, behind Tollbit bot-gateway; confirmed via search index)"
+          },
+          {
+            "url": "https://www.hyundai-forums.com/threads/hyundai-i20-1-2-2009-whinning-noise.669181/",
+            "type": "forum",
+            "title": "Hyundai i20 1.2 2009 whining noise — Hyundai Forums (live, behind Tollbit bot-gateway; confirmed via search index)"
+          },
+          {
+            "url": "https://www.700r4transmissionhq.com/hyundai-i20-engine-rattle/",
+            "type": "article",
+            "title": "Hyundai i20 Engine Rattle: Causes + How to Fix — Drivetrain Resource (timing chain stretch/tensioner listed as primary cause)"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-12",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-i20-7-speed-dual-clutch-judder-hesitation-overheating",
+      "model": "i20",
+      "action": "keep_published_pending_source",
+      "reason": "The cited Hyundai TSB applies to Tucson and Sonata, not i20. A generic DCT owner-manual warning explains operating behavior but does not establish the frozen multi-generation i20 defect, calibration history, warranty treatment or clutch-replacement remedy. The row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; secondary material or a bulletin for another model cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "7f1c80ada70b31aadc07cc6965a19b91c6a37e6d945971ef23a0ad4448a1d4d2",
+      "proposalSha256": "7f1c80ada70b31aadc07cc6965a19b91c6a37e6d945971ef23a0ad4448a1d4d2",
+      "before": {
+        "make": "Hyundai",
+        "model": "i20",
+        "years": [
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "transmission",
+        "title": "7-Speed Dual-Clutch (7DCT) Judder, Hesitation and Overheating",
+        "description": "i20s with the 1.0 T-GDi engine and dry-clutch 7-speed DCT (GB facelift and BC3 generations) commonly exhibit judder and hesitation from a standstill and transmission overheating warnings in heavy stop-and-go traffic. Because the dry clutches have no oil bath for cooling, repeated creeping causes the clutch packs to overheat, triggering shudder, limp behavior and accelerated clutch wear; early Indian-market cars saw overheating failures before Hyundai revised the calibration. Hyundai issued TCU software updates with judder-detection logic for this transmission family.",
+        "solution": "Have the dealer apply the latest TCU software update, which adds judder detection and improved clutch control; juddering clutch packs that are worn or glazed are replaced under warranty. Owners can reduce recurrence by avoiding prolonged clutch-creep in queues and letting the gearbox cool when an overheat warning appears.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Shudder or vibration when accelerating from a stop",
+          "Hesitation or delayed engagement at junctions",
+          "Transmission overheating warning in slow traffic",
+          "Jerky low-speed creep in stop-and-go driving",
+          "Reduced power or limp mode until the gearbox cools"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 1200,
+        "estimatedCostHigh": 2500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://static.nhtsa.gov/odi/tsbs/2021/MC-10201469-0001.pdf",
+            "type": "tsb",
+            "title": "Hyundai TSB 21-AT-014H: Dual Clutch Transmission Judder Detection and TCU Software Update (7DCT family; applies to Tucson/Sonata 1.6T, same transmission family as i20)"
+          },
+          {
+            "url": "https://www.drivisual.tv/en/news/hyundai-i20-common-problems",
+            "type": "article",
+            "title": "Hyundai i20 Common Problems: Engine, DCT Transmission & Reliability Guide — Drivisual"
+          },
+          {
+            "url": "https://www.team-bhp.com/news/buying-hyundai-i20-automatic-soon-worried-about-dct-gearbox",
+            "type": "forum",
+            "title": "Buying a Hyundai i20 automatic soon, but worried about the DCT gearbox — Team-BHP"
+          },
+          {
+            "url": "https://www.team-bhp.com/news/dct-improved-3-years-comparing-my-2021-i20-n-line-2024-seltos",
+            "type": "forum",
+            "title": "DCT improved in 3 years? Comparing my 2021 i20 N-Line with 2024 Seltos — Team-BHP"
+          },
+          {
+            "url": "https://ownersmanual.hyundai.com/docview/webhelp/Hyundai/63f60ca1-48cd-4943-adfc-f084815f8405/idcc514d707a6.html",
+            "type": "manufacturer",
+            "title": "Hyundai owner's manual: DCT warning messages (transmission temperature high / stop-and-go guidance)"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-12",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "i20",
+        "years": [
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "transmission",
+        "title": "7-Speed Dual-Clutch (7DCT) Judder, Hesitation and Overheating",
+        "description": "i20s with the 1.0 T-GDi engine and dry-clutch 7-speed DCT (GB facelift and BC3 generations) commonly exhibit judder and hesitation from a standstill and transmission overheating warnings in heavy stop-and-go traffic. Because the dry clutches have no oil bath for cooling, repeated creeping causes the clutch packs to overheat, triggering shudder, limp behavior and accelerated clutch wear; early Indian-market cars saw overheating failures before Hyundai revised the calibration. Hyundai issued TCU software updates with judder-detection logic for this transmission family.",
+        "solution": "Have the dealer apply the latest TCU software update, which adds judder detection and improved clutch control; juddering clutch packs that are worn or glazed are replaced under warranty. Owners can reduce recurrence by avoiding prolonged clutch-creep in queues and letting the gearbox cool when an overheat warning appears.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Shudder or vibration when accelerating from a stop",
+          "Hesitation or delayed engagement at junctions",
+          "Transmission overheating warning in slow traffic",
+          "Jerky low-speed creep in stop-and-go driving",
+          "Reduced power or limp mode until the gearbox cools"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 1200,
+        "estimatedCostHigh": 2500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://static.nhtsa.gov/odi/tsbs/2021/MC-10201469-0001.pdf",
+            "type": "tsb",
+            "title": "Hyundai TSB 21-AT-014H: Dual Clutch Transmission Judder Detection and TCU Software Update (7DCT family; applies to Tucson/Sonata 1.6T, same transmission family as i20)"
+          },
+          {
+            "url": "https://www.drivisual.tv/en/news/hyundai-i20-common-problems",
+            "type": "article",
+            "title": "Hyundai i20 Common Problems: Engine, DCT Transmission & Reliability Guide — Drivisual"
+          },
+          {
+            "url": "https://www.team-bhp.com/news/buying-hyundai-i20-automatic-soon-worried-about-dct-gearbox",
+            "type": "forum",
+            "title": "Buying a Hyundai i20 automatic soon, but worried about the DCT gearbox — Team-BHP"
+          },
+          {
+            "url": "https://www.team-bhp.com/news/dct-improved-3-years-comparing-my-2021-i20-n-line-2024-seltos",
+            "type": "forum",
+            "title": "DCT improved in 3 years? Comparing my 2021 i20 N-Line with 2024 Seltos — Team-BHP"
+          },
+          {
+            "url": "https://ownersmanual.hyundai.com/docview/webhelp/Hyundai/63f60ca1-48cd-4943-adfc-f084815f8405/idcc514d707a6.html",
+            "type": "manufacturer",
+            "title": "Hyundai owner's manual: DCT warning messages (transmission temperature high / stop-and-go guidance)"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-12",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-i20-air-conditioning-compressor-evaporator-failures",
+      "model": "i20",
+      "action": "keep_published_pending_source",
+      "reason": "Owner and forum reports do not establish one 2009-2020 i20 air-conditioning defect combining compressor valves, thermistors, evaporator icing and compressor seizure across markets. No exact Hyundai primary campaign was found, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; secondary material or a bulletin for another model cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "bfc9e570f4c47ce6d5deaf8ba5cb5a89281a16d19c0f3d4aa5c7e77a089fda1f",
+      "proposalSha256": "bfc9e570f4c47ce6d5deaf8ba5cb5a89281a16d19c0f3d4aa5c7e77a089fda1f",
+      "before": {
+        "make": "Hyundai",
+        "model": "i20",
+        "years": [
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "hvac",
+        "title": "Air Conditioning Compressor and Evaporator Failures (Hot-Climate / India Market)",
+        "description": "i20s operated in hot climates, especially Indian-market cars, show a recurring pattern of AC faults: failed compressor control valves causing intermittent or weak cooling, evaporator cores icing over and blocking airflow, and faulty evaporator temperature thermistors. Team-BHP documented cases where the evaporator coil, thermistor and compressor control valve all had to be replaced together on an Elite i20, and complete compressor seizures shortly after the warranty period are commonly reported. The result is AC that cools at first then blows warm, or stops working entirely in peak summer.",
+        "solution": "Diagnose before replacing the whole compressor: a failed compressor control valve or evaporator thermistor is a far cheaper fix and resolves many intermittent-cooling cases. Icing evaporators need the thermistor replaced and the system evacuated, leak-checked and recharged; full compressor or evaporator replacement is the fix for seized or leaking units.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "AC cools initially then blows warm air after 20-30 minutes",
+          "Weak cooling in high ambient temperatures",
+          "Airflow from vents drops as evaporator ices over",
+          "AC works one day and not the next",
+          "Compressor stops engaging entirely"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 150,
+        "estimatedCostHigh": 700,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.team-bhp.com/forum/technical-stuff/79494-weak-hyundai-i20-air-conditioner-edit-test-results-pg-4-a.html",
+            "type": "forum",
+            "title": "Weak Hyundai i20 air-conditioner. EDIT: Test results on pg. 4 (Team-BHP, multi-page owner thread, PB i20)"
+          },
+          {
+            "url": "https://www.team-bhp.com/news/getting-my-2018-hyundai-elite-i20s-ac-fixed-service-centre",
+            "type": "article",
+            "title": "Getting my 2018 Hyundai Elite i20's AC fixed at the service centre (Team-BHP — evaporator, thermistor, compressor control valve replaced)"
+          },
+          {
+            "url": "https://www.hyundai-forums.com/threads/hyundai-i20-ac-compressor-stopped-working.676814/",
+            "type": "forum",
+            "title": "Hyundai i20 AC compressor stopped working (Hyundai Forums — 2016 and 2011 i20 compressor failures)"
+          },
+          {
+            "url": "https://www.hyundai-forums.com/threads/i20-ac-not-cooling-after-sometime.668420/",
+            "type": "forum",
+            "title": "i20 AC not cooling after sometime (Hyundai Forums — evaporator icing, thermistor, ECV valve)"
+          },
+          {
+            "url": "https://www.team-bhp.com/forum/technical-stuff/113517-technical-diagnostic-guide-hyundais-hvac-systems.html",
+            "type": "forum",
+            "title": "Technical and diagnostic Guide: Hyundai's HVAC systems (Team-BHP)"
+          },
+          {
+            "url": "https://www.hyundai-forums.com/threads/i20-air-conditioning-randomly-stopped-working.711144/",
+            "type": "forum",
+            "title": "i20 Air Conditioning Randomly Stopped working (Hyundai Forums — additional independent thread)"
+          },
+          {
+            "url": "https://www.consumercomplaints.in/complaints/hyundai-i20-kolkata-south-24-parganas-west-bengal-c392878.html",
+            "type": "forum",
+            "title": "[Resolved] Hyundai i20 — AC problem (consumercomplaints.in, India-market complaint)"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-12",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "i20",
+        "years": [
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "hvac",
+        "title": "Air Conditioning Compressor and Evaporator Failures (Hot-Climate / India Market)",
+        "description": "i20s operated in hot climates, especially Indian-market cars, show a recurring pattern of AC faults: failed compressor control valves causing intermittent or weak cooling, evaporator cores icing over and blocking airflow, and faulty evaporator temperature thermistors. Team-BHP documented cases where the evaporator coil, thermistor and compressor control valve all had to be replaced together on an Elite i20, and complete compressor seizures shortly after the warranty period are commonly reported. The result is AC that cools at first then blows warm, or stops working entirely in peak summer.",
+        "solution": "Diagnose before replacing the whole compressor: a failed compressor control valve or evaporator thermistor is a far cheaper fix and resolves many intermittent-cooling cases. Icing evaporators need the thermistor replaced and the system evacuated, leak-checked and recharged; full compressor or evaporator replacement is the fix for seized or leaking units.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "AC cools initially then blows warm air after 20-30 minutes",
+          "Weak cooling in high ambient temperatures",
+          "Airflow from vents drops as evaporator ices over",
+          "AC works one day and not the next",
+          "Compressor stops engaging entirely"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 150,
+        "estimatedCostHigh": 700,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.team-bhp.com/forum/technical-stuff/79494-weak-hyundai-i20-air-conditioner-edit-test-results-pg-4-a.html",
+            "type": "forum",
+            "title": "Weak Hyundai i20 air-conditioner. EDIT: Test results on pg. 4 (Team-BHP, multi-page owner thread, PB i20)"
+          },
+          {
+            "url": "https://www.team-bhp.com/news/getting-my-2018-hyundai-elite-i20s-ac-fixed-service-centre",
+            "type": "article",
+            "title": "Getting my 2018 Hyundai Elite i20's AC fixed at the service centre (Team-BHP — evaporator, thermistor, compressor control valve replaced)"
+          },
+          {
+            "url": "https://www.hyundai-forums.com/threads/hyundai-i20-ac-compressor-stopped-working.676814/",
+            "type": "forum",
+            "title": "Hyundai i20 AC compressor stopped working (Hyundai Forums — 2016 and 2011 i20 compressor failures)"
+          },
+          {
+            "url": "https://www.hyundai-forums.com/threads/i20-ac-not-cooling-after-sometime.668420/",
+            "type": "forum",
+            "title": "i20 AC not cooling after sometime (Hyundai Forums — evaporator icing, thermistor, ECV valve)"
+          },
+          {
+            "url": "https://www.team-bhp.com/forum/technical-stuff/113517-technical-diagnostic-guide-hyundais-hvac-systems.html",
+            "type": "forum",
+            "title": "Technical and diagnostic Guide: Hyundai's HVAC systems (Team-BHP)"
+          },
+          {
+            "url": "https://www.hyundai-forums.com/threads/i20-air-conditioning-randomly-stopped-working.711144/",
+            "type": "forum",
+            "title": "i20 Air Conditioning Randomly Stopped working (Hyundai Forums — additional independent thread)"
+          },
+          {
+            "url": "https://www.consumercomplaints.in/complaints/hyundai-i20-kolkata-south-24-parganas-west-bengal-c392878.html",
+            "type": "forum",
+            "title": "[Resolved] Hyundai i20 — AC problem (consumercomplaints.in, India-market complaint)"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-12",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-i20-clutch-judder-premature-clutch-wear",
+      "model": "i20",
+      "action": "keep_published_pending_source",
+      "reason": "Forum cases do not establish one Hyundai-defined 2009-2019 i20 input-shaft-seal/clutch defect, incidence, warranty position, mileage range or preferred aftermarket kit. No exact Hyundai primary document was found, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; secondary material or a bulletin for another model cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "e9c6215e06409d8c561cb4fc1105ba3913a840dab41b131bc5347ecaa4829dbd",
+      "proposalSha256": "e9c6215e06409d8c561cb4fc1105ba3913a840dab41b131bc5347ecaa4829dbd",
+      "before": {
+        "make": "Hyundai",
+        "model": "i20",
+        "years": [
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "drivetrain",
+        "title": "Clutch Judder and Premature Clutch Wear (Gearbox Input Shaft Oil Seal Leak)",
+        "description": "Manual i20s suffer widely reported clutch judder and premature clutch failure, with documented cases at 5,000-15,500 miles and some owners on their third clutch within two years. A leaking gearbox input shaft (first motion shaft) oil seal contaminates the clutch friction plate with oil, causing judder on take-off and slip; the underlying seal defect was acknowledged in several warranty repairs. Dealers frequently blamed driving style and charged diagnosis fees until independent garages identified the oil contamination.",
+        "solution": "Replace the leaking input shaft oil seal together with a new clutch kit, since a contaminated friction plate cannot be salvaged. If the car is within warranty, insist the seal leak is inspected before accepting a wear-and-tear verdict; aftermarket Exedy kits have a better reputation among owners than some pattern parts.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Juddering or shuddering when pulling away from a stop",
+          "Clutch slip under load, especially in higher gears",
+          "Burning smell after hill starts or towing",
+          "Clutch failure at unusually low mileage",
+          "Oil residue inside the bellhousing on inspection"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 600,
+        "estimatedCostHigh": 1300,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.honestjohn.co.uk/forum/post/index.htm?t=110273",
+            "type": "forum",
+            "title": "Hyundai i20 - i20 Clutch Fail! | Honest John Back Room Forum (gearbox oil seal leak onto clutch at 15,500 miles, warranty repair)"
+          },
+          {
+            "url": "https://www.hyundai-forums.com/threads/i20-1-2-engine-clutch-judder.624882/",
+            "type": "forum",
+            "title": "I20 1.2 engine clutch judder | Hyundai Forums (first motion shaft seal oil leak acknowledged as known defect)"
+          },
+          {
+            "url": "https://forums.moneysavingexpert.com/discussion/3747477/hyundai-i20-clutch-problems",
+            "type": "forum",
+            "title": "Hyundai i20 clutch problems | MoneySavingExpert Forum"
+          },
+          {
+            "url": "https://forums.moneysavingexpert.com/discussion/6054892/hyundai-i20-clutch-issues-be-aware",
+            "type": "forum",
+            "title": "Hyundai i20 clutch issues BE AWARE | MoneySavingExpert Forum"
+          },
+          {
+            "url": "https://www.team-bhp.com/forum/technical-stuff/225762-hyundai-elite-i20-clutch-malfunction.html",
+            "type": "forum",
+            "title": "Hyundai Elite i20 : Clutch Malfunction | Team-BHP (India-market GB generation)"
+          },
+          {
+            "url": "https://www.hyundai-forums.com/threads/was-the-juddering-clutch-problem-ever-resolved.474833/",
+            "type": "forum",
+            "title": "Was the juddering clutch problem ever resolved | Hyundai Forums"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-12",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "i20",
+        "years": [
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "drivetrain",
+        "title": "Clutch Judder and Premature Clutch Wear (Gearbox Input Shaft Oil Seal Leak)",
+        "description": "Manual i20s suffer widely reported clutch judder and premature clutch failure, with documented cases at 5,000-15,500 miles and some owners on their third clutch within two years. A leaking gearbox input shaft (first motion shaft) oil seal contaminates the clutch friction plate with oil, causing judder on take-off and slip; the underlying seal defect was acknowledged in several warranty repairs. Dealers frequently blamed driving style and charged diagnosis fees until independent garages identified the oil contamination.",
+        "solution": "Replace the leaking input shaft oil seal together with a new clutch kit, since a contaminated friction plate cannot be salvaged. If the car is within warranty, insist the seal leak is inspected before accepting a wear-and-tear verdict; aftermarket Exedy kits have a better reputation among owners than some pattern parts.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Juddering or shuddering when pulling away from a stop",
+          "Clutch slip under load, especially in higher gears",
+          "Burning smell after hill starts or towing",
+          "Clutch failure at unusually low mileage",
+          "Oil residue inside the bellhousing on inspection"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 600,
+        "estimatedCostHigh": 1300,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.honestjohn.co.uk/forum/post/index.htm?t=110273",
+            "type": "forum",
+            "title": "Hyundai i20 - i20 Clutch Fail! | Honest John Back Room Forum (gearbox oil seal leak onto clutch at 15,500 miles, warranty repair)"
+          },
+          {
+            "url": "https://www.hyundai-forums.com/threads/i20-1-2-engine-clutch-judder.624882/",
+            "type": "forum",
+            "title": "I20 1.2 engine clutch judder | Hyundai Forums (first motion shaft seal oil leak acknowledged as known defect)"
+          },
+          {
+            "url": "https://forums.moneysavingexpert.com/discussion/3747477/hyundai-i20-clutch-problems",
+            "type": "forum",
+            "title": "Hyundai i20 clutch problems | MoneySavingExpert Forum"
+          },
+          {
+            "url": "https://forums.moneysavingexpert.com/discussion/6054892/hyundai-i20-clutch-issues-be-aware",
+            "type": "forum",
+            "title": "Hyundai i20 clutch issues BE AWARE | MoneySavingExpert Forum"
+          },
+          {
+            "url": "https://www.team-bhp.com/forum/technical-stuff/225762-hyundai-elite-i20-clutch-malfunction.html",
+            "type": "forum",
+            "title": "Hyundai Elite i20 : Clutch Malfunction | Team-BHP (India-market GB generation)"
+          },
+          {
+            "url": "https://www.hyundai-forums.com/threads/was-the-juddering-clutch-problem-ever-resolved.474833/",
+            "type": "forum",
+            "title": "Was the juddering clutch problem ever resolved | Hyundai Forums"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-12",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-i20-fuel-pump-impeller-failure-engine-stall-recall",
+      "model": "i20",
+      "action": "rewrite_same_identity",
+      "reason": "Kept the same indexed 51DT07 fuel-pump-impeller identity and 2021-2023 span, replaced aggregator/forum links with exact EU, Hyundai and Finnish-regulator deep links, distinguished regular-i20 and i20-N production windows, and removed the unsupported worldwide count, no-start, hesitation, warning-light, DTC and cost claims.",
+      "identityRule": "The same indexed 51DT07 i20 fuel-pump identity stays on the existing ID, title and category; only facts from exact official sources remain.",
+      "commerceDecision": "no-commerce",
+      "changedFields": [
+        "description",
+        "solution",
+        "symptoms",
+        "affectedSystems",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "humanApproved",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
+      "evidence": [
+        {
+          "kind": "official-record-specific-recall",
+          "url": "https://ec.europa.eu/safety-gate-alerts/screen/webReport/alertDetail/10096118",
+          "verifiedOn": "2026-08-06",
+          "observation": "EU Safety Gate Alert SR/03401/25 - Hyundai i20, i20 N and Bayon Fuel Pump supports the proposed defect, scope or remedy."
+        },
+        {
+          "kind": "official-record-specific-recall",
+          "url": "https://www.hyundai.si/lastnistvo/vpoklic-vozila/servisni-vpoklic-vozil-hyundai-ioniq-i20-bayon",
+          "verifiedOn": "2026-08-06",
+          "observation": "Hyundai Slovenia - Service Recall 51DT07 for i20, Bayon and i20 N supports the proposed defect, scope or remedy."
+        },
+        {
+          "kind": "official-record-specific-recall",
+          "url": "https://takaisinkutsut.traficom.fi/recall/17844",
+          "verifiedOn": "2026-08-06",
+          "observation": "Traficom Finland - Hyundai i20 / i20 N Fuel Pump Recall 51DT07 supports the proposed defect, scope or remedy."
+        }
+      ],
+      "beforeSha256": "a78e0ecbf1180fb3c2bd393f474b29d1594fc85be3d39cfa69c95863f5483b96",
+      "proposalSha256": "3d19ab13a1c9b77a847e7b835c26312aa667e63cfe9e8574c05c8219c16265a0",
+      "before": {
+        "make": "Hyundai",
+        "model": "i20",
+        "years": [
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "fuel",
+        "title": "Fuel Pump Impeller Failure — Engine Stall Recall (51DT07, RAPEX Alert 40/2025)",
+        "description": "Hyundai recalled 181,726 i20, i20 N and Bayon vehicles built between 1 April 2021 and early January 2023 (recall code 51DT07, EU Safety Gate/RAPEX alert 40/2025) because the fuel pump impeller can swell at high operating temperatures and from fuel exposure. The swollen impeller contacts the pump housing, causing reduced fuel delivery, sudden loss of engine power, stalling, or a no-start. An unexpected stall in traffic increases the risk of a collision, which is why the campaign was issued as a safety recall across Europe.",
+        "solution": "The fuel pump is replaced free of charge under Hyundai recall campaign 51DT07. Owners of 2021-2023 i20/i20 N/Bayon vehicles should check their VIN with a Hyundai dealer or the national recall register and have the work done promptly.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Sudden loss of engine power while driving",
+          "Engine stalling without warning",
+          "Engine cranks but will not start",
+          "Hesitation or sputtering under acceleration",
+          "Check engine light with low fuel pressure faults"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 0,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://car-recalls.eu/recall/hyundai-i20-2021-2022-fuel-pump/",
+            "type": "recall",
+            "title": "Recall: Hyundai i20 (2021-2022) fuel pump impeller — code 51DT07, alert 40/2025"
+          },
+          {
+            "url": "https://car-recalls.eu/hyundai-recalls-180000-cars-faulty-fuel-pump-40-25/",
+            "type": "article",
+            "title": "Hyundai recalls over 180,000 cars due to faulty fuel pump (week 40/25)"
+          },
+          {
+            "url": "https://car-recalls.eu/recall/hyundai-bayon-2021-2022-fuel-pump/",
+            "type": "recall",
+            "title": "Recall: Hyundai Bayon (2021-2022) fuel pump — same 51DT07 campaign"
+          },
+          {
+            "url": "https://n-cars.net/forums/threads/recall-for-fuel-pump-replacement.14091/",
+            "type": "forum",
+            "title": "N-cars.net: Recall for fuel pump replacement (i20 N owners, AU/UK)"
+          },
+          {
+            "url": "https://n-cars.net/forums/threads/u-k-recall-on-i20n-for-fuel-pump-replacement.14470/",
+            "type": "forum",
+            "title": "N-cars.net: U.K. recall on i20N for fuel pump replacement"
+          },
+          {
+            "url": "https://www.hyundai-forums.com/threads/fuel-pump-recall-i20-n-line.725606/",
+            "type": "forum",
+            "title": "Hyundai Forums: Fuel Pump recall i20 N Line"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-12",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "i20",
+        "years": [
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "fuel",
+        "title": "Fuel Pump Impeller Failure — Engine Stall Recall (51DT07, RAPEX Alert 40/2025)",
+        "description": "EU Safety Gate alert SR/03401/25 covers Hyundai i20, i20 N and Bayon vehicles under campaign 51DT07. The alert says the fuel-pump impeller can swell from fuel exposure and high operating temperatures until it contacts the pump housing. Fuel delivery can then fall, causing loss of engine power or the vehicle to stop and increasing injury risk.",
+        "solution": "Ask an authorized Hyundai dealer to check the VIN for campaign 51DT07. Hyundai's Slovenia recall notice says the free remedy replaces the fuel pump and tube assembly. It lists regular i20 and Bayon production from April 1, 2021 through December 3, 2022, and i20 N production from June 1, 2021 through January 4, 2023.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Loss of engine power",
+          "Vehicle may stop because fuel-pump performance is reduced"
+        ],
+        "affectedSystems": [
+          "Fuel pump",
+          "Fuel-pump impeller",
+          "Fuel-pump tube assembly"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "EU Safety Gate Alert SR/03401/25 - Hyundai i20, i20 N and Bayon Fuel Pump",
+            "url": "https://ec.europa.eu/safety-gate-alerts/screen/webReport/alertDetail/10096118"
+          },
+          {
+            "type": "recall",
+            "title": "Hyundai Slovenia - Service Recall 51DT07 for i20, Bayon and i20 N",
+            "url": "https://www.hyundai.si/lastnistvo/vpoklic-vozila/servisni-vpoklic-vozil-hyundai-ioniq-i20-bayon"
+          },
+          {
+            "type": "recall",
+            "title": "Traficom Finland - Hyundai i20 / i20 N Fuel Pump Recall 51DT07",
+            "url": "https://takaisinkutsut.traficom.fi/recall/17844"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Kept the same indexed 51DT07 fuel-pump-impeller identity and 2021-2023 span, replaced aggregator/forum links with exact EU, Hyundai and Finnish-regulator deep links, distinguished regular-i20 and i20-N production windows, and removed the unsupported worldwide count, no-start, hesitation, warning-light, DTC and cost claims.",
+        "relatedIssueIds": []
+      }
+    }
+  ]
+}
