@@ -1,0 +1,1395 @@
+{
+  "schemaVersion": 1,
+  "status": "proposal-only",
+  "auditStage": "model-primary-source-adjudication",
+  "requiresIndependentApproval": true,
+  "generatedOn": "2026-08-06",
+  "make": "Hyundai",
+  "model": "Venue",
+  "completionStatement": "This packet reconciles all nine frozen Hyundai Venue rows. Three same-identity official-source rewrites are proposed; six rows remain byte-for-byte unchanged.",
+  "safetyContract": [
+    "No production database write, cache purge, deployment, archive action, redirect, slug change or public-page change is authorized by this packet.",
+    "All nine rows remain published. Six are byte-for-byte unchanged.",
+    "Every rewrite preserves the indexed ID, title and category and uses an exact official record.",
+    "Every rewrite contains zero commerce, zero cost or mileage claims, empty trim and engine arrays, and no diagnostic codes.",
+    "Independent row-by-row approval is required before a separate guarded apply path may be created."
+  ],
+  "source": {
+    "snapshotFile": "data/_hyundai-deeplink-snapshot-2026-08-06.json",
+    "snapshotSha256": "f3e74267205477804060c49c988221cdc4dfcfc4586df369601c8c64736cce60",
+    "snapshotGeneratedAt": "2026-08-06T02:37:36.989Z",
+    "snapshotHash": "444457abb31ca6a5ead423878b37ca790d44a87c74ffa43259362cb4218ba632",
+    "venueRecordCount": 9
+  },
+  "observations": [
+    {
+      "code": "three-exact-official-record-rewrites",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "hyundai-venue-egr-valve-electrical-short-causing-loss-drive-power-recall-2",
+        "hyundai-venue-seat-belt-pretensioner-may-explode-crash-recall-22v458",
+        "hyundai-venue-theft-vulnerability-no-engine-immobilizer"
+      ],
+      "detail": "The EGR, pretensioner and anti-theft rows match exact official records without changing their indexed titles, categories or IDs.",
+      "sourceUrls": [
+        "https://static.nhtsa.gov/odi/rcl/2024/RCLRPT-24V308-1849.PDF",
+        "https://static.nhtsa.gov/odi/rcl/2022/RCLRPT-22V458-9361.PDF",
+        "https://static.nhtsa.gov/odi/tsbs/2023/MC-10233549-0001.pdf"
+      ]
+    },
+    {
+      "code": "partial-horn-title-held",
+      "severity": "high",
+      "recordIds": [
+        "hyundai-venue-horn-becomes-weak-inoperative-due-to-internal-corrosion"
+      ],
+      "detail": "Warranty Extension TXXU supports an inoperable horn and internal oxidation but not the indexed weak-horn outcome, so the row stays unchanged.",
+      "sourceUrls": [
+        "https://static.nhtsa.gov/odi/tsbs/2024/MC-11011836-0001.pdf"
+      ]
+    },
+    {
+      "code": "partial-ivt-identities-held",
+      "severity": "high",
+      "recordIds": [
+        "hyundai-venue-cvt-judder-2020",
+        "hyundai-venue-ivt-complete-failure-sudden-loss-acceleration"
+      ],
+      "detail": "TSB 23-AT-010H supports a specific DTC-driven repair workflow, not either indexed broad IVT narrative. Both rows stay unchanged.",
+      "sourceUrls": [
+        "https://static.nhtsa.gov/odi/tsbs/2023/MC-10241878-0001.pdf"
+      ]
+    },
+    {
+      "code": "six-partial-or-unsupported-rows-frozen",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "hyundai-venue-infotainment-2020",
+        "hyundai-venue-cvt-judder-2020",
+        "hyundai-venue-engine-stalling-shut-off-when-braking-stop",
+        "hyundai-venue-horn-becomes-weak-inoperative-due-to-internal-corrosion",
+        "hyundai-venue-ivt-complete-failure-sudden-loss-acceleration",
+        "hyundai-venue-rear-camera-fog-2020"
+      ],
+      "detail": "Every partial, generic, secondary, invalid-shaped or unsupported narrative remains byte-for-byte unchanged."
+    }
+  ],
+  "publicSources": {
+    "egr": "https://static.nhtsa.gov/odi/rcl/2024/RCLRPT-24V308-1849.PDF",
+    "pretensioner": "https://static.nhtsa.gov/odi/rcl/2022/RCLRPT-22V458-9361.PDF",
+    "antiTheft": "https://static.nhtsa.gov/odi/tsbs/2023/MC-10233549-0001.pdf"
+  },
+  "reviewSources": {
+    "hornPartial": "https://static.nhtsa.gov/odi/tsbs/2024/MC-11011836-0001.pdf",
+    "ivtPartial": "https://static.nhtsa.gov/odi/tsbs/2023/MC-10241878-0001.pdf"
+  },
+  "summary": {
+    "rewrite_same_identity": 3,
+    "keep_published_pending_source": 6,
+    "total": 9
+  },
+  "rows": [
+    {
+      "id": "hyundai-venue-infotainment-2020",
+      "model": "Venue",
+      "action": "keep_published_pending_source",
+      "reason": "A forum homepage does not establish one 2020-2024 Venue infotainment defect, the asserted hard-reset procedure or the phone-specific Bluetooth narrative. The row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; partial, secondary, generic, mismatched or unsupported evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "56e2077de6a3b26a486cb8ae3af78b9581d2ead2ff3605b1d70de783b70857a7",
+      "proposalSha256": "56e2077de6a3b26a486cb8ae3af78b9581d2ead2ff3605b1d70de783b70857a7",
+      "before": {
+        "make": "Hyundai",
+        "model": "Venue",
+        "years": [
+          2020,
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Infotainment Screen Freezing and Bluetooth Drops",
+        "description": "The Venue infotainment system experiences periodic screen freezes, Bluetooth audio dropouts, and slow response to touch inputs. The system occasionally requires a hard reset to recover. Wireless phone connectivity is particularly unstable with certain phone models.",
+        "solution": "Visit the dealer for the latest infotainment software update. For persistent Bluetooth issues, delete and re-pair the phone. A hard reset (hold power button 10 seconds) resolves screen freezes. Switching to a wired USB connection improves stability.",
+        "severity": "low",
+        "confidence": "medium",
+        "symptoms": [
+          "Touchscreen frozen",
+          "Bluetooth disconnects during calls",
+          "Audio cuts out randomly",
+          "Screen goes black",
+          "Slow touchscreen response",
+          "Apple CarPlay or Android Auto disconnects"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 0,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.hyundai-forums.com",
+            "source": "Hyundai Forums",
+            "description": "Venue infotainment freezing and Bluetooth issues"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Delete all paired Bluetooth devices and re-pair only your primary phone — too many saved devices cause connectivity issues"
+          },
+          {
+            "type": "part",
+            "content": "Professional OBD-II diagnostic scanner for reading infotainment and body module codes",
+            "partName": "Bluetooth Pro OBD2 Scan Tool",
+            "partBrand": "BlueDriver",
+            "affiliateUrl": "https://www.amazon.com/s?k=BlueDriver%20Bluetooth%20Pro%20OBD2%20Scan%20Tool%20Hyundai%20Venue&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 140,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-03-13",
+        "reviewedOn": "2026-03-13",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Venue",
+        "years": [
+          2020,
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Infotainment Screen Freezing and Bluetooth Drops",
+        "description": "The Venue infotainment system experiences periodic screen freezes, Bluetooth audio dropouts, and slow response to touch inputs. The system occasionally requires a hard reset to recover. Wireless phone connectivity is particularly unstable with certain phone models.",
+        "solution": "Visit the dealer for the latest infotainment software update. For persistent Bluetooth issues, delete and re-pair the phone. A hard reset (hold power button 10 seconds) resolves screen freezes. Switching to a wired USB connection improves stability.",
+        "severity": "low",
+        "confidence": "medium",
+        "symptoms": [
+          "Touchscreen frozen",
+          "Bluetooth disconnects during calls",
+          "Audio cuts out randomly",
+          "Screen goes black",
+          "Slow touchscreen response",
+          "Apple CarPlay or Android Auto disconnects"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 0,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.hyundai-forums.com",
+            "source": "Hyundai Forums",
+            "description": "Venue infotainment freezing and Bluetooth issues"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Delete all paired Bluetooth devices and re-pair only your primary phone — too many saved devices cause connectivity issues"
+          },
+          {
+            "type": "part",
+            "content": "Professional OBD-II diagnostic scanner for reading infotainment and body module codes",
+            "partName": "Bluetooth Pro OBD2 Scan Tool",
+            "partBrand": "BlueDriver",
+            "affiliateUrl": "https://www.amazon.com/s?k=BlueDriver%20Bluetooth%20Pro%20OBD2%20Scan%20Tool%20Hyundai%20Venue&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 140,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-03-13",
+        "reviewedOn": "2026-03-13",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-venue-cvt-judder-2020",
+      "model": "Venue",
+      "action": "keep_published_pending_source",
+      "reason": "The exact Hyundai bulletin concerns specific pressure-sensor DTCs and a conditional repair workflow, not the indexed generic IVT judder and hesitation narrative or its programming and cost claims. The row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; partial, secondary, generic, mismatched or unsupported evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-record-partial-identity",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2023/MC-10241878-0001.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "Hyundai TSB 23-AT-010H covers 2020-and-later Venue IVTs with P0845, P0846 or P0867 and distinguishes oil-pressure-sensor repair from IVT replacement when drivability concerns exist. It does not establish the indexed generic judder, hesitation, fuel-economy programming, software-update or cost narrative."
+        }
+      ],
+      "beforeSha256": "401137950c5694f8529e7567575511b0a8653ccf5243a7b3b77efba36d44f065",
+      "proposalSha256": "401137950c5694f8529e7567575511b0a8653ccf5243a7b3b77efba36d44f065",
+      "before": {
+        "make": "Hyundai",
+        "model": "Venue",
+        "years": [
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "transmission",
+        "title": "IVT (CVT) Judder and Hesitation",
+        "description": "The Hyundai Venue uses an IVT (Intelligent Variable Transmission), which is Hyundai's version of a CVT. The IVT can exhibit judder during low-speed acceleration, hesitation when merging or passing, and a rubber-band effect during throttle changes. The transmission programming prioritizes fuel economy, causing noticeable delays between throttle input and vehicle response. Hyundai has released TCM software updates to improve responsiveness for some model years.",
+        "solution": "Confirm the concern with a road test at low-speed takeoff and light-to-moderate throttle, then scan the TCM/PCM for stored or pending transmission-related codes and verify the IVT fluid level/condition using Hyundai service procedure. If no hard faults are present, perform the latest TCM software update/reflash and adaptive relearn, which is the primary fix for delayed response, judder, and rubber-band feel on many Venue models; dealers typically charge about $150-$250 if out of warranty, though many updates are covered under powertrain warranty or service campaign work. If symptoms remain, inspect for contaminated or incorrect CVT fluid, input/output speed sensor issues, or internal belt/pulley wear, with fluid service commonly costing $250-$400 and IVT replacement or overhaul often running $3,500-$6,000.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Low-speed judder during acceleration",
+          "Hesitation during passing maneuvers",
+          "Rubber-band effect during throttle changes",
+          "Rough engagement from stop",
+          "CVT whining under load"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0700",
+          "P0730",
+          "P0868"
+        ],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 200,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "",
+            "type": "tsb",
+            "title": "TSB 22-AT-010H: IVT/Smartstream Transmission Control Module Update for Shift Quality and Driveability"
+          },
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2021/HYUNDAI/VENUE/SUV/FWD",
+            "type": "nhtsa",
+            "title": "NHTSA Complaint #11484934"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "CVT fluid specifically formulated for continuous variable transmissions",
+            "partName": "CVT Transmission Fluid",
+            "partBrand": "Valvoline",
+            "affiliateUrl": "https://www.amazon.com/s?k=Valvoline%20CVT%20fluid%20Hyundai%20Venue&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Replacement CVT transmission filter to maintain fluid cleanliness",
+            "partName": "CVT Transmission Filter Kit",
+            "partBrand": "ATP",
+            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20Venue%20CVT%20transmission%20filter%20kit&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "hyundai-veloster-smartstream-ivtcvt-hesitation-judder-2019",
+          "kia-rio-cvtivt-hesitation-jerking-and-2021",
+          "kia-seltos-cvt-hesitation",
+          "kia-forte-cvt-judder"
+        ]
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Venue",
+        "years": [
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "transmission",
+        "title": "IVT (CVT) Judder and Hesitation",
+        "description": "The Hyundai Venue uses an IVT (Intelligent Variable Transmission), which is Hyundai's version of a CVT. The IVT can exhibit judder during low-speed acceleration, hesitation when merging or passing, and a rubber-band effect during throttle changes. The transmission programming prioritizes fuel economy, causing noticeable delays between throttle input and vehicle response. Hyundai has released TCM software updates to improve responsiveness for some model years.",
+        "solution": "Confirm the concern with a road test at low-speed takeoff and light-to-moderate throttle, then scan the TCM/PCM for stored or pending transmission-related codes and verify the IVT fluid level/condition using Hyundai service procedure. If no hard faults are present, perform the latest TCM software update/reflash and adaptive relearn, which is the primary fix for delayed response, judder, and rubber-band feel on many Venue models; dealers typically charge about $150-$250 if out of warranty, though many updates are covered under powertrain warranty or service campaign work. If symptoms remain, inspect for contaminated or incorrect CVT fluid, input/output speed sensor issues, or internal belt/pulley wear, with fluid service commonly costing $250-$400 and IVT replacement or overhaul often running $3,500-$6,000.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Low-speed judder during acceleration",
+          "Hesitation during passing maneuvers",
+          "Rubber-band effect during throttle changes",
+          "Rough engagement from stop",
+          "CVT whining under load"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0700",
+          "P0730",
+          "P0868"
+        ],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 200,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "",
+            "type": "tsb",
+            "title": "TSB 22-AT-010H: IVT/Smartstream Transmission Control Module Update for Shift Quality and Driveability"
+          },
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2021/HYUNDAI/VENUE/SUV/FWD",
+            "type": "nhtsa",
+            "title": "NHTSA Complaint #11484934"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "CVT fluid specifically formulated for continuous variable transmissions",
+            "partName": "CVT Transmission Fluid",
+            "partBrand": "Valvoline",
+            "affiliateUrl": "https://www.amazon.com/s?k=Valvoline%20CVT%20fluid%20Hyundai%20Venue&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Replacement CVT transmission filter to maintain fluid cleanliness",
+            "partName": "CVT Transmission Filter Kit",
+            "partBrand": "ATP",
+            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20Venue%20CVT%20transmission%20filter%20kit&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "hyundai-veloster-smartstream-ivtcvt-hesitation-judder-2019",
+          "kia-rio-cvtivt-hesitation-jerking-and-2021",
+          "kia-seltos-cvt-hesitation",
+          "kia-forte-cvt-judder"
+        ]
+      }
+    },
+    {
+      "id": "hyundai-venue-egr-valve-electrical-short-causing-loss-drive-power-recall-2",
+      "model": "Venue",
+      "action": "rewrite_same_identity",
+      "reason": "Kept the indexed EGR electrical-short and power-loss identity, retained the exact 2024 scope, replaced secondary material with the Part 573 report, and removed unsupported notification, contact and commerce claims.",
+      "identityRule": "The same indexed component and failure outcome stay on the existing ID, title and category; only facts within the exact official record remain.",
+      "commerceDecision": "no-commerce",
+      "changedFields": [
+        "description",
+        "solution",
+        "symptoms",
+        "affectedSystems",
+        "dtcCodes",
+        "citations",
+        "humanApproved",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
+      "evidence": [
+        {
+          "kind": "official-record-exact-identity",
+          "url": "https://static.nhtsa.gov/odi/rcl/2024/RCLRPT-24V308-1849.PDF",
+          "verifiedOn": "2026-08-06",
+          "observation": "NHTSA Part 573 Safety Recall Report 24V-308 - EGR Valve Electrical Short supports the proposed same-identity statements."
+        }
+      ],
+      "beforeSha256": "484816fd2cd2cd8557102a72be851c40f4b40f8ecd1f952e702a853820f348a6",
+      "proposalSha256": "374fd3c8c10c1fb7a574e703b1d39d01ae6f4ddb30505dc607d3d5d5780336bc",
+      "before": {
+        "make": "Hyundai",
+        "model": "Venue",
+        "years": [
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "emissions",
+        "title": "EGR Valve Electrical Short Causing Loss of Drive Power - Recall 24V308 (Campaign 260)",
+        "description": "On 2024 Venue (and related Elantra/Kona) models, an EGR valve sensor contaminated with solder flux during supplier manufacturing can develop an internal electrical short. The short can cause a sudden loss of drive power while driving, increasing crash risk. NHTSA recall 24V308 (13,511 units across the three models) was opened in 2024.",
+        "solution": "Free recall remedy under NHTSA 24V308 / Hyundai Campaign 260: dealers replace the entire EGR valve assembly at no charge. Owner notification letters were mailed June 28, 2024. Confirm recall status by VIN at nhtsa.gov or via Hyundai (1-855-371-9460).",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Sudden loss of drive power / reduced power while driving",
+          "Engine warning lights illuminated",
+          "Rough idle or hesitation preceding power loss",
+          "Active recall flagged on VIN lookup"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0401",
+          "P0403",
+          "P0404"
+        ],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://static.nhtsa.gov/odi/rcl/2024/RCLRPT-24V308-1849.PDF",
+            "type": "recall",
+            "title": "NHTSA Part 573 Safety Recall Report 24V-308 - Hyundai EGR Valve Loss of Drive Power"
+          },
+          {
+            "url": "https://repairpal.com/recall/24V308000",
+            "type": "recall",
+            "title": "Hyundai Recall 24V308000: EGR Valve Short Leads To Loss Of Driving Power - RepairPal"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-17",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Venue",
+        "years": [
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "emissions",
+        "title": "EGR Valve Electrical Short Causing Loss of Drive Power - Recall 24V308 (Campaign 260)",
+        "description": "NHTSA recall 24V-308 covers certain 2024 Hyundai Venue vehicles. Solder flux contamination on the exhaust gas recirculation valve sensor leads can cause an electrical short and a malfunction of the EGR valve and crank position sensor. The malfunction indicator lamp may illuminate and the vehicle may experience a sudden loss of motive power, increasing crash risk.",
+        "solution": "Check the VIN for NHTSA recall 24V-308 / Hyundai Campaign 260. Hyundai dealers replace the EGR valve assembly free of charge.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Malfunction indicator lamp illuminates",
+          "Sudden loss of motive power"
+        ],
+        "affectedSystems": [
+          "Exhaust gas recirculation valve assembly",
+          "Crank position sensing"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "NHTSA Part 573 Safety Recall Report 24V-308 - EGR Valve Electrical Short",
+            "url": "https://static.nhtsa.gov/odi/rcl/2024/RCLRPT-24V308-1849.PDF"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Kept the indexed EGR electrical-short and power-loss identity, retained the exact 2024 scope, replaced secondary material with the Part 573 report, and removed unsupported notification, contact and commerce claims.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-venue-engine-stalling-shut-off-when-braking-stop",
+      "model": "Venue",
+      "action": "keep_published_pending_source",
+      "reason": "Two secondary pages do not establish one 2020-2022 Venue stalling defect, a battery-area wiring-harness cause, a consistent repair path or lemon-law eligibility. The row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; partial, secondary, generic, mismatched or unsupported evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "cdfbb8fe65f9f000c5c6340a2b0f94569b3de7545f0507ff4f68fcc435bb90e3",
+      "proposalSha256": "cdfbb8fe65f9f000c5c6340a2b0f94569b3de7545f0507ff4f68fcc435bb90e3",
+      "before": {
+        "make": "Hyundai",
+        "model": "Venue",
+        "years": [
+          2020,
+          2021,
+          2022
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "engine",
+        "title": "Engine Stalling / Shut-Off When Braking or at a Stop",
+        "description": "Venue owners, concentrated on the 2020 model, report the engine unexpectedly shutting off, particularly while slowing or coming to a complete stop, sometimes with rough idle. Some cases are traced to a faulty or corroded wiring-harness connector near the battery causing intermittent power interruptions. CarComplaints and YourMechanic both document the slow-down/stop shut-off pattern, with stalling reported at low mileage.",
+        "solution": "Have the dealer inspect and repair the battery/wiring-harness connector and check for stored DTCs and applicable TSBs; corroded or loose connectors should be cleaned or replaced. Persistent stalling the dealer cannot resolve over multiple visits may qualify under state lemon laws. On 2024 models, rule out the separate EGR-valve recall (24V308).",
+        "severity": "high",
+        "confidence": "low",
+        "symptoms": [
+          "Engine shuts off when slowing or stopping",
+          "Random stalling while driving / loss of power",
+          "Rough idle",
+          "No-start or hard-start after the engine dies"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0606"
+        ],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.carcomplaints.com/Hyundai/Venue/2020/engine/",
+            "type": "article",
+            "title": "2020 Hyundai Venue Engine Problems - CarComplaints.com"
+          },
+          {
+            "url": "https://www.yourmechanic.com/estimates/hyundai/venue/when-i-slow-down-and-stop-the-car-engine-shuts-off-inspection",
+            "type": "article",
+            "title": "Hyundai Venue: When I slow down and stop the car, engine shuts off - YourMechanic"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-17",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Venue",
+        "years": [
+          2020,
+          2021,
+          2022
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "engine",
+        "title": "Engine Stalling / Shut-Off When Braking or at a Stop",
+        "description": "Venue owners, concentrated on the 2020 model, report the engine unexpectedly shutting off, particularly while slowing or coming to a complete stop, sometimes with rough idle. Some cases are traced to a faulty or corroded wiring-harness connector near the battery causing intermittent power interruptions. CarComplaints and YourMechanic both document the slow-down/stop shut-off pattern, with stalling reported at low mileage.",
+        "solution": "Have the dealer inspect and repair the battery/wiring-harness connector and check for stored DTCs and applicable TSBs; corroded or loose connectors should be cleaned or replaced. Persistent stalling the dealer cannot resolve over multiple visits may qualify under state lemon laws. On 2024 models, rule out the separate EGR-valve recall (24V308).",
+        "severity": "high",
+        "confidence": "low",
+        "symptoms": [
+          "Engine shuts off when slowing or stopping",
+          "Random stalling while driving / loss of power",
+          "Rough idle",
+          "No-start or hard-start after the engine dies"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0606"
+        ],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.carcomplaints.com/Hyundai/Venue/2020/engine/",
+            "type": "article",
+            "title": "2020 Hyundai Venue Engine Problems - CarComplaints.com"
+          },
+          {
+            "url": "https://www.yourmechanic.com/estimates/hyundai/venue/when-i-slow-down-and-stop-the-car-engine-shuts-off-inspection",
+            "type": "article",
+            "title": "Hyundai Venue: When I slow down and stop the car, engine shuts off - YourMechanic"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-17",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-venue-horn-becomes-weak-inoperative-due-to-internal-corrosion",
+      "model": "Venue",
+      "action": "keep_published_pending_source",
+      "reason": "Warranty Extension TXXU supports an inoperable horn and internal oxidation but not the indexed weak-horn outcome or moisture-specific causal claim. A partial rewrite would leave the title broader than the evidence, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; partial, secondary, generic, mismatched or unsupported evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-record-partial-title-outcome",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2024/MC-11011836-0001.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "Warranty Extension TXXU supports an inoperable horn caused by foreign substances and internal oxidation on certain 2020-2022 Venue vehicles. It does not state the indexed weak-horn outcome or a moisture-specific cause, so the title cannot be retained in an exact-source rewrite."
+        }
+      ],
+      "beforeSha256": "700bfdc29370fcbeccd9ad6c0a400773b0552f55a2d9d2ea1fc2b1cedcf52564",
+      "proposalSha256": "700bfdc29370fcbeccd9ad6c0a400773b0552f55a2d9d2ea1fc2b1cedcf52564",
+      "before": {
+        "make": "Hyundai",
+        "model": "Venue",
+        "years": [
+          2020,
+          2021,
+          2022
+        ],
+        "trims": [
+          "SE",
+          "SEL",
+          "Denim",
+          "Limited"
+        ],
+        "engines": [
+          "1.6L Smartstream G1.6 (Gamma II) 4-cyl"
+        ],
+        "category": "electrical",
+        "title": "Horn Becomes Weak or Inoperative Due to Internal Corrosion (Warranty Extension TXXU)",
+        "description": "The Venue's horn can become faint or completely inoperative when foreign substances and moisture intrude into the horn assembly, oxidizing/corroding the internal contacts. The failure was common enough that Hyundai issued Warranty Extension TXXU covering the horn assembly on 2020-2022 Venue (QX) vehicles. Horn/electrical failures are a documented complaint pattern for the model (electrical is a top complaint category for the 2022 Venue on CarComplaints).",
+        "solution": "Dealer confirms the horn is inoperable and replaces the horn assembly. Under Warranty Extension TXXU, coverage is extended to 10 years / 120,000 miles from original in-service date for affected 2020-2022 Venue (QX) built 01/11/2019-04/25/2022, so replacement is free within those terms for original and subsequent owners. Out of warranty, horn plus labor is inexpensive.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Horn does not sound when pressed",
+          "Horn is faint/quiet or intermittent",
+          "Horn works erratically then stops",
+          "No response from horn button"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 350,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://static.nhtsa.gov/odi/tsbs/2024/MC-11011836-0001.pdf",
+            "type": "tsb",
+            "title": "Hyundai Warranty Extension TXXU: Horn Assembly Warranty Extension (NHTSA TSB PDF)"
+          },
+          {
+            "url": "https://carbuzz.com/2022-hyundai-venue-problems-and-common-complaints/",
+            "type": "article",
+            "title": "2022 Hyundai Venue Problems And Common Complaints (CarBuzz)"
+          },
+          {
+            "url": "https://www.venuedrivers.com/threads/venue-horn.734/",
+            "type": "forum",
+            "title": "Venue Horn (Hyundai Venue Forum)"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-08",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Venue",
+        "years": [
+          2020,
+          2021,
+          2022
+        ],
+        "trims": [
+          "SE",
+          "SEL",
+          "Denim",
+          "Limited"
+        ],
+        "engines": [
+          "1.6L Smartstream G1.6 (Gamma II) 4-cyl"
+        ],
+        "category": "electrical",
+        "title": "Horn Becomes Weak or Inoperative Due to Internal Corrosion (Warranty Extension TXXU)",
+        "description": "The Venue's horn can become faint or completely inoperative when foreign substances and moisture intrude into the horn assembly, oxidizing/corroding the internal contacts. The failure was common enough that Hyundai issued Warranty Extension TXXU covering the horn assembly on 2020-2022 Venue (QX) vehicles. Horn/electrical failures are a documented complaint pattern for the model (electrical is a top complaint category for the 2022 Venue on CarComplaints).",
+        "solution": "Dealer confirms the horn is inoperable and replaces the horn assembly. Under Warranty Extension TXXU, coverage is extended to 10 years / 120,000 miles from original in-service date for affected 2020-2022 Venue (QX) built 01/11/2019-04/25/2022, so replacement is free within those terms for original and subsequent owners. Out of warranty, horn plus labor is inexpensive.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Horn does not sound when pressed",
+          "Horn is faint/quiet or intermittent",
+          "Horn works erratically then stops",
+          "No response from horn button"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 350,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://static.nhtsa.gov/odi/tsbs/2024/MC-11011836-0001.pdf",
+            "type": "tsb",
+            "title": "Hyundai Warranty Extension TXXU: Horn Assembly Warranty Extension (NHTSA TSB PDF)"
+          },
+          {
+            "url": "https://carbuzz.com/2022-hyundai-venue-problems-and-common-complaints/",
+            "type": "article",
+            "title": "2022 Hyundai Venue Problems And Common Complaints (CarBuzz)"
+          },
+          {
+            "url": "https://www.venuedrivers.com/threads/venue-horn.734/",
+            "type": "forum",
+            "title": "Venue Horn (Hyundai Venue Forum)"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-08",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-venue-ivt-complete-failure-sudden-loss-acceleration",
+      "model": "Venue",
+      "action": "keep_published_pending_source",
+      "reason": "The official IVT bulletin is only a partial diagnostic match and does not establish a Venue-wide complete-failure or sudden-loss defect, warranty outcome or class-action coverage. The row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; partial, secondary, generic, mismatched or unsupported evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-record-partial-identity",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2023/MC-10241878-0001.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "Hyundai TSB 23-AT-010H provides diagnostic repair direction for specific IVT pressure-sensor codes and notes that slipping, shift shock, poor acceleration or inability to shift calls for IVT assembly replacement. It does not establish the indexed systemic complete-failure, sudden-loss, warranty or class-action narrative."
+        }
+      ],
+      "beforeSha256": "7f5d99f6c3f8f72e58b4bca15ed3b91fca5807d70b7c43fd268897898b59727a",
+      "proposalSha256": "7f5d99f6c3f8f72e58b4bca15ed3b91fca5807d70b7c43fd268897898b59727a",
+      "before": {
+        "make": "Hyundai",
+        "model": "Venue",
+        "years": [
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "transmission",
+        "title": "IVT (CVT) Complete Failure / Sudden Loss of Acceleration",
+        "description": "Beyond low-speed judder, owners report the Intelligent Variable Transmission (a belt/pulley CVT) suffering loss of acceleration or power while driving, sometimes at low mileage. A September 2024 California federal class action (Donadio v. Hyundai Motor America) alleges the IVT in 2020+ gas Hyundais including the Venue can fail to respond to the accelerator, described as a safety hazard, and that the vehicle may not respond even when the accelerator is pressed.",
+        "solution": "Failed IVT units are typically replaced under Hyundai's powertrain warranty (10yr/100k mi); document symptoms and dates for warranty/lemon-law leverage. Some owners report a transmission control software reflash for hesitation, but persistent or complete failures require unit replacement. Affected owners may be covered by the ongoing IVT class-action litigation.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "Sudden loss of acceleration / no response when pressing the accelerator",
+          "Vehicle hesitates or fails to respond under throttle",
+          "Feeling that the transmission has disengaged",
+          "Transmission failure reported at lower-than-expected mileage"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0730",
+          "P0741"
+        ],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.carcomplaints.com/news/2024/hyundai-ivt-intelligent-variable-transmission-reliability.shtml",
+            "type": "article",
+            "title": "Hyundai IVT (Intelligent Variable Transmission) Reliability Questioned - CarComplaints.com"
+          },
+          {
+            "url": "https://www.thelemonfirm.com/2024/10/01/hyundai-faces-class-action-lawsuit-over-ivt-transmission-issues/",
+            "type": "article",
+            "title": "Hyundai Faces Class Action Lawsuit Over IVT Transmission Issues (Donadio v. Hyundai)"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-17",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Venue",
+        "years": [
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "transmission",
+        "title": "IVT (CVT) Complete Failure / Sudden Loss of Acceleration",
+        "description": "Beyond low-speed judder, owners report the Intelligent Variable Transmission (a belt/pulley CVT) suffering loss of acceleration or power while driving, sometimes at low mileage. A September 2024 California federal class action (Donadio v. Hyundai Motor America) alleges the IVT in 2020+ gas Hyundais including the Venue can fail to respond to the accelerator, described as a safety hazard, and that the vehicle may not respond even when the accelerator is pressed.",
+        "solution": "Failed IVT units are typically replaced under Hyundai's powertrain warranty (10yr/100k mi); document symptoms and dates for warranty/lemon-law leverage. Some owners report a transmission control software reflash for hesitation, but persistent or complete failures require unit replacement. Affected owners may be covered by the ongoing IVT class-action litigation.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "Sudden loss of acceleration / no response when pressing the accelerator",
+          "Vehicle hesitates or fails to respond under throttle",
+          "Feeling that the transmission has disengaged",
+          "Transmission failure reported at lower-than-expected mileage"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0730",
+          "P0741"
+        ],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.carcomplaints.com/news/2024/hyundai-ivt-intelligent-variable-transmission-reliability.shtml",
+            "type": "article",
+            "title": "Hyundai IVT (Intelligent Variable Transmission) Reliability Questioned - CarComplaints.com"
+          },
+          {
+            "url": "https://www.thelemonfirm.com/2024/10/01/hyundai-faces-class-action-lawsuit-over-ivt-transmission-issues/",
+            "type": "article",
+            "title": "Hyundai Faces Class Action Lawsuit Over IVT Transmission Issues (Donadio v. Hyundai)"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-17",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-venue-rear-camera-fog-2020",
+      "model": "Venue",
+      "action": "keep_published_pending_source",
+      "reason": "A generic complaint page and fabricated-shaped Reddit and YouTube URLs do not establish a Venue camera-housing seal defect, moisture mechanism, gasket procedure or additional-sealant recommendation. The row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; partial, secondary, generic, mismatched or unsupported evidence cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "ed3051de87cf230f2791845fa83e90fc369cd933172f8d2df0b3a27fbe430bd1",
+      "proposalSha256": "ed3051de87cf230f2791845fa83e90fc369cd933172f8d2df0b3a27fbe430bd1",
+      "before": {
+        "make": "Hyundai",
+        "model": "Venue",
+        "years": [
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Rear Backup Camera Fogging and Image Distortion",
+        "description": "The rear backup camera lens accumulates moisture internally, causing foggy or distorted images. The camera housing seal fails, allowing condensation to form on the lens. Occurs more frequently in humid climates.",
+        "solution": "Replace rear backup camera assembly. Ensure new camera mounting gasket is properly seated. Apply dielectric grease to connector. Some owners add additional sealant around the housing edge as preventive measure.",
+        "severity": "low",
+        "confidence": "medium",
+        "symptoms": [
+          "Blurry backup camera image",
+          "Foggy camera lens",
+          "Intermittent camera blackout",
+          "Distorted reverse image"
+        ],
+        "affectedSystems": [
+          "Backup camera",
+          "Safety systems"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 150,
+        "estimatedCostHigh": 350,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2020/HYUNDAI/VENUE#complaints",
+            "type": "nhtsa",
+            "title": "NHTSA Complaints for 2020 Hyundai Venue - Rear Backup Camera Issues"
+          },
+          {
+            "url": "https://www.reddit.com/r/Hyundai/comments/xyz123/rear_backup_camera_fogging_on_2020_venue_anyone_else/",
+            "type": "forum",
+            "title": "Reddit r/Hyundai Thread Discussing Rear Backup Camera Fogging on 2020 Venue"
+          },
+          {
+            "url": "https://www.youtube.com/watch?v=abcd1234efg",
+            "type": "video",
+            "title": "YouTube Repair Video: Fixing Rear Backup Camera Fogging on Hyundai Venue"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Premium electrical tape for wiring repairs and harness wrapping",
+            "partName": "Super 33+ Vinyl Electrical Tape",
+            "partBrand": "3M",
+            "affiliateUrl": "https://www.amazon.com/s?k=3M%20Super%2033%2B%20Vinyl%20Electrical%20Tape%20Hyundai%20Venue&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Split wire loom tubing to protect repaired or exposed wiring harnesses",
+            "partName": "Split Wire Loom Tubing",
+            "partBrand": "DEI",
+            "affiliateUrl": "https://www.amazon.com/s?k=DEI%20Split%20Wire%20Loom%20Tubing%20Hyundai%20Venue&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Weatherproof terminal connector kit for reliable wiring repairs",
+            "partName": "Automotive Terminal Connector Kit",
+            "partBrand": "Molex",
+            "affiliateUrl": "https://www.amazon.com/s?k=Molex%20Automotive%20Terminal%20Connector%20Kit%20Hyundai%20Venue&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "OEM-quality replacement sensor for accurate readings and proper system function",
+            "partName": "Replacement Sensor",
+            "partBrand": "Bosch",
+            "affiliateUrl": "https://www.amazon.com/s?k=Bosch%20Replacement%20Sensor%20Hyundai%20Venue&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Venue",
+        "years": [
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Rear Backup Camera Fogging and Image Distortion",
+        "description": "The rear backup camera lens accumulates moisture internally, causing foggy or distorted images. The camera housing seal fails, allowing condensation to form on the lens. Occurs more frequently in humid climates.",
+        "solution": "Replace rear backup camera assembly. Ensure new camera mounting gasket is properly seated. Apply dielectric grease to connector. Some owners add additional sealant around the housing edge as preventive measure.",
+        "severity": "low",
+        "confidence": "medium",
+        "symptoms": [
+          "Blurry backup camera image",
+          "Foggy camera lens",
+          "Intermittent camera blackout",
+          "Distorted reverse image"
+        ],
+        "affectedSystems": [
+          "Backup camera",
+          "Safety systems"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 150,
+        "estimatedCostHigh": 350,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2020/HYUNDAI/VENUE#complaints",
+            "type": "nhtsa",
+            "title": "NHTSA Complaints for 2020 Hyundai Venue - Rear Backup Camera Issues"
+          },
+          {
+            "url": "https://www.reddit.com/r/Hyundai/comments/xyz123/rear_backup_camera_fogging_on_2020_venue_anyone_else/",
+            "type": "forum",
+            "title": "Reddit r/Hyundai Thread Discussing Rear Backup Camera Fogging on 2020 Venue"
+          },
+          {
+            "url": "https://www.youtube.com/watch?v=abcd1234efg",
+            "type": "video",
+            "title": "YouTube Repair Video: Fixing Rear Backup Camera Fogging on Hyundai Venue"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Premium electrical tape for wiring repairs and harness wrapping",
+            "partName": "Super 33+ Vinyl Electrical Tape",
+            "partBrand": "3M",
+            "affiliateUrl": "https://www.amazon.com/s?k=3M%20Super%2033%2B%20Vinyl%20Electrical%20Tape%20Hyundai%20Venue&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Split wire loom tubing to protect repaired or exposed wiring harnesses",
+            "partName": "Split Wire Loom Tubing",
+            "partBrand": "DEI",
+            "affiliateUrl": "https://www.amazon.com/s?k=DEI%20Split%20Wire%20Loom%20Tubing%20Hyundai%20Venue&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Weatherproof terminal connector kit for reliable wiring repairs",
+            "partName": "Automotive Terminal Connector Kit",
+            "partBrand": "Molex",
+            "affiliateUrl": "https://www.amazon.com/s?k=Molex%20Automotive%20Terminal%20Connector%20Kit%20Hyundai%20Venue&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "OEM-quality replacement sensor for accurate readings and proper system function",
+            "partName": "Replacement Sensor",
+            "partBrand": "Bosch",
+            "affiliateUrl": "https://www.amazon.com/s?k=Bosch%20Replacement%20Sensor%20Hyundai%20Venue&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-venue-seat-belt-pretensioner-may-explode-crash-recall-22v458",
+      "model": "Venue",
+      "action": "rewrite_same_identity",
+      "reason": "Kept the indexed pretensioner-fragment identity and 2020-2022 scope, used the exact Part 573 report, and removed unsupported prior-recall return instructions, secondary citations and contact details.",
+      "identityRule": "The same indexed component and failure outcome stay on the existing ID, title and category; only facts within the exact official record remain.",
+      "commerceDecision": "no-commerce",
+      "changedFields": [
+        "description",
+        "solution",
+        "symptoms",
+        "affectedSystems",
+        "citations",
+        "humanApproved",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
+      "evidence": [
+        {
+          "kind": "official-record-exact-identity",
+          "url": "https://static.nhtsa.gov/odi/rcl/2022/RCLRPT-22V458-9361.PDF",
+          "verifiedOn": "2026-08-06",
+          "observation": "NHTSA Part 573 Safety Recall Report 22V-458 - Seat Belt Pretensioner supports the proposed same-identity statements."
+        }
+      ],
+      "beforeSha256": "e3a0d23799cd3dfeaeb9face612753df48b29e5ee73d608107c571327f583fce",
+      "proposalSha256": "7f54fd8d8b7ec038f876ef264a323588e81d86b7d7150131e99cec967771bf96",
+      "before": {
+        "make": "Hyundai",
+        "model": "Venue",
+        "years": [
+          2020,
+          2021,
+          2022
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "safety",
+        "title": "Seat Belt Pretensioner May Explode in a Crash - Recall 22V458 (Campaign 231)",
+        "description": "On 2020-2022 Venue models, the front driver and/or passenger seat belt pretensioner can over-pressurize and explode when it deploys in a crash, projecting metal fragments into the cabin that can injure occupants. The root cause is excessive internal pressure in the pretensioner pipe during certain crashes. NHTSA recall 22V458 covers roughly 72,470 Venue units and expands/replaces the earlier 21V796 recall.",
+        "solution": "Free recall remedy under NHTSA 22V458 / Hyundai Campaign 231: dealers install a cap that secures the seat belt pretensioner so fragments cannot escape. Vehicles previously repaired under 21V796 must return for the updated remedy. Verify VIN at nhtsa.gov/recalls or with a Hyundai dealer (1-855-371-9460).",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Active open safety recall on VIN lookup",
+          "Recall notification letter received",
+          "No driving symptom - hazard only manifests during a crash deployment"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://static.nhtsa.gov/odi/rcl/2022/RCLRPT-22V458-9361.PDF",
+            "type": "recall",
+            "title": "NHTSA Part 573 Safety Recall Report 22V-458 - Hyundai Seat Belt Pretensioner"
+          },
+          {
+            "url": "https://repairpal.com/recall/22V458000",
+            "type": "recall",
+            "title": "Hyundai Venue Recall 22V458000: Seat Belt Pretensioners Explode Risk - RepairPal"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-17",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Venue",
+        "years": [
+          2020,
+          2021,
+          2022
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "safety",
+        "title": "Seat Belt Pretensioner May Explode in a Crash - Recall 22V458 (Campaign 231)",
+        "description": "NHTSA recall 22V-458 covers certain 2020-2022 Hyundai Venue vehicles. The driver-side and/or passenger-side pyrotechnic seat belt pretensioner may deploy abnormally in certain crashes because of over-pressurization. Metal fragments could enter the occupant compartment and injure occupants. The recall report states there is no warning before abnormal deployment.",
+        "solution": "Check the VIN for NHTSA recall 22V-458 / Hyundai Campaign 231. Hyundai dealers secure the pretensioner micro gas generator and delivery pipe with a cap to prevent potential abnormal deployment, free of charge.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "No advance warning before abnormal pretensioner deployment"
+        ],
+        "affectedSystems": [
+          "Front seat belt pretensioners"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "NHTSA Part 573 Safety Recall Report 22V-458 - Seat Belt Pretensioner",
+            "url": "https://static.nhtsa.gov/odi/rcl/2022/RCLRPT-22V458-9361.PDF"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Kept the indexed pretensioner-fragment identity and 2020-2022 scope, used the exact Part 573 report, and removed unsupported prior-recall return instructions, secondary citations and contact details.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-venue-theft-vulnerability-no-engine-immobilizer",
+      "model": "Venue",
+      "action": "rewrite_same_identity",
+      "reason": "Kept the indexed no-immobilizer theft-vulnerability identity, limited it to certain VIN-eligible 2020-2021 Venue vehicles without push-button ignition or an immobilizer, and replaced broad social, production-date and timing claims with Campaign 993 instructions.",
+      "identityRule": "The same indexed component and failure outcome stay on the existing ID, title and category; only facts within the exact official record remain.",
+      "commerceDecision": "no-commerce",
+      "changedFields": [
+        "description",
+        "solution",
+        "symptoms",
+        "affectedSystems",
+        "citations",
+        "humanApproved",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
+      "evidence": [
+        {
+          "kind": "official-record-exact-identity",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2023/MC-10233549-0001.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "Hyundai Campaign 993 Dealer Best Practices - Anti-Theft Software Upgrade supports the proposed same-identity statements."
+        }
+      ],
+      "beforeSha256": "0882c9d2bc92bd8150df7f9c264b85eb2fc699e61d62e61b0144d9f5012e9bd1",
+      "proposalSha256": "c63d742f7e6337fe2cff18f38af0b3ae9c5f42b0133907ab5997d5255937f6fb",
+      "before": {
+        "make": "Hyundai",
+        "model": "Venue",
+        "years": [
+          2020,
+          2021
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "safety",
+        "title": "Theft Vulnerability - No Engine Immobilizer (Kia/Hyundai Theft Trend)",
+        "description": "2020-2021 Venue models with turn-key (non-push-button) ignition were built without a standard engine immobilizer, making them easy to steal with a USB cable using a method that went viral on social media. The vulnerability drove a nationwide spike in theft claims. Hyundai responded with a free anti-theft service campaign rather than a formal recall.",
+        "solution": "Get the free anti-theft software upgrade at a Hyundai dealer (rolled out from Feb 2023, takes under one hour); it sets the factory alarm and adds an 'ignition kill' feature so the car cannot start when subjected to the popularized theft method. Vehicles produced after November 2021 already have a standard immobilizer. Check eligibility at hyundaiantitheft.com.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Vehicle has a turn-key ignition without an immobilizer (no push-button start)",
+          "Broken window or damaged steering column from a theft attempt",
+          "Difficulty obtaining or high cost of theft insurance",
+          "Targeted in 'Kia Boys' USB-cable theft method"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.hyundainews.com/releases/3768",
+            "type": "manufacturer",
+            "title": "Hyundai Introduces Free Anti-Theft Software Upgrade, Beginning With More Than 1 Million Elantras, Sonatas and Venues"
+          },
+          {
+            "url": "https://www.iihs.org/news/detail/anti-theft-software-tamps-down-viral-theft-trend-targeting-hyundai-kia-vehicles",
+            "type": "article",
+            "title": "Anti-theft software tamps down viral theft trend targeting Hyundai, Kia vehicles - IIHS"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-17",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Venue",
+        "years": [
+          2020,
+          2021
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "safety",
+        "title": "Theft Vulnerability - No Engine Immobilizer (Kia/Hyundai Theft Trend)",
+        "description": "Hyundai Campaign 993 includes certain 2020-2021 Venue vehicles that are not equipped with an engine immobilizer and are not equipped with a push-button START/STOP ignition. The campaign bulletin explains that many Hyundai vehicles without push-button ignition did not have an immobilizer and could be theft targets; eligibility must be checked by VIN.",
+        "solution": "Check the VIN for Hyundai Service Campaign 993. For eligible vehicles, a Hyundai dealer upgrades the Integrated Body Control Unit or Body Control Module software and installs anti-theft decals. After the update, use the key fob to lock and unlock the vehicle to activate or deactivate the anti-theft system, and disarm it with the key fob before attempting to start the vehicle.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Vehicle is eligible for Campaign 993 by VIN"
+        ],
+        "affectedSystems": [
+          "Integrated Body Control Unit / Body Control Module",
+          "Factory burglar alarm"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "manufacturer",
+            "title": "Hyundai Campaign 993 Dealer Best Practices - Anti-Theft Software Upgrade",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2023/MC-10233549-0001.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Kept the indexed no-immobilizer theft-vulnerability identity, limited it to certain VIN-eligible 2020-2021 Venue vehicles without push-button ignition or an immobilizer, and replaced broad social, production-date and timing claims with Campaign 993 instructions.",
+        "relatedIssueIds": []
+      }
+    }
+  ]
+}
