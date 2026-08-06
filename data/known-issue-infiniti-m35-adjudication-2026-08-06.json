@@ -1,0 +1,1203 @@
+{
+  "schemaVersion": 1,
+  "status": "proposal-only",
+  "auditStage": "model-primary-source-adjudication",
+  "requiresIndependentApproval": true,
+  "generatedOn": "2026-08-06",
+  "make": "Infiniti",
+  "model": "M35",
+  "completionStatement": "This packet reconciles all six frozen Infiniti M35 rows. One exact same-identity brake rewrite clears the primary-source gate; five rows remain byte-for-byte unchanged.",
+  "safetyContract": [
+    "No production database write, cache purge, deployment, archive action, redirect, slug change, new issue or public-page change is authorized by this packet.",
+    "All six indexed records remain published with identical IDs, titles, years and categories.",
+    "Only an exact same-identity primary source may support a rewrite; absent, partial or unrelated evidence produces a byte-for-byte hold.",
+    "The brake rewrite removes unverified commerce and does not add part numbers, fitment, costs or DTCs.",
+    "Distinct recall identities are deferred until the post-audit new-known-issues phase.",
+    "Independent row-by-row approval is required before any separate correction or addition path may be created."
+  ],
+  "source": {
+    "snapshotFile": "data/_infiniti-deeplink-snapshot-2026-08-06.json",
+    "snapshotSha256": "d39bdd77a0557365946b551a26b951cb1a5ba81773b7b66497201347b5034f64",
+    "snapshotGeneratedAt": "2026-08-06T23:15:05.490Z",
+    "snapshotHash": "45dde736354a9dcd17a72399b0101f30373ca9c267e6cd49a2528a63a023eebd",
+    "m35RecordCount": 6
+  },
+  "observations": [
+    {
+      "code": "brake-judder-exact-source-rewrite",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "infiniti-m35-brake-rotor-warping-and-front-brake-vibration"
+      ],
+      "detail": "The visually inspected ITB00-024I supports the existing brake-warping/front-vibration identity without changing indexed identity or scope."
+    },
+    {
+      "code": "five-m35-identities-frozen",
+      "severity": "high",
+      "recordIds": [
+        "infiniti-m35-fuel-gauge-sending-unit-failure",
+        "infiniti-m35-radiator-cracking-and-coolant-leaks",
+        "infiniti-m35-camshaft-and-crankshaft-position-sensor-failure",
+        "infiniti-m35-dashboard-melting-and-cracking",
+        "infiniti-m35-front-lower-control-arm-and-bushing-wear"
+      ],
+      "detail": "Five rows lack an exact same-identity primary source; their content and publication state remain byte-for-byte unchanged."
+    },
+    {
+      "code": "deferred-new-m35-recall-candidates",
+      "severity": "post-audit-proposal-only",
+      "recordIds": [],
+      "campaignNumbers": [
+        "09V393000",
+        "13V430000",
+        "20V008000"
+      ],
+      "detail": "M35 TPMS-sensor nut corrosion, accelerator-pedal sensor deterioration and passenger-airbag-inflator campaigns are distinct missing-issue candidates. They are logged only and are not added or substituted during the current make audit."
+    },
+    {
+      "code": "all-m35-pages-preserved",
+      "severity": "seo-safety",
+      "recordIds": [
+        "infiniti-m35-fuel-gauge-sending-unit-failure",
+        "infiniti-m35-radiator-cracking-and-coolant-leaks",
+        "infiniti-m35-brake-rotor-warping-and-front-brake-vibration",
+        "infiniti-m35-camshaft-and-crankshaft-position-sensor-failure",
+        "infiniti-m35-dashboard-melting-and-cracking",
+        "infiniti-m35-front-lower-control-arm-and-bushing-wear"
+      ],
+      "detail": "All six indexed M35 records remain published with the same IDs, titles, model, years and categories."
+    }
+  ],
+  "primarySources": {
+    "brake": "https://static.nhtsa.gov/odi/tsbs/2021/MC-10195353-0001.pdf"
+  },
+  "mismatchSources": {
+    "recallQueries": {
+      "2006": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=M35&modelYear=2006",
+      "2007": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=M35&modelYear=2007",
+      "2008": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=M35&modelYear=2008",
+      "2009": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=M35&modelYear=2009",
+      "2010": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=M35&modelYear=2010"
+    },
+    "expectedCampaigns": {
+      "2006": [
+        "13V430000",
+        "15V226000",
+        "16V349000",
+        "17V028000",
+        "20V008000",
+        "22E066000"
+      ],
+      "2007": [
+        "13V430000",
+        "16V349000",
+        "17V028000",
+        "20V008000",
+        "22E066000"
+      ],
+      "2008": [
+        "09V393000",
+        "13V430000",
+        "16V349000",
+        "17V028000",
+        "20V008000",
+        "22E066000"
+      ],
+      "2009": [
+        "09V393000",
+        "13V430000",
+        "16V349000",
+        "17V028000",
+        "20V008000",
+        "22E066000"
+      ],
+      "2010": [
+        "09V393000",
+        "13V430000",
+        "16V349000",
+        "17V028000",
+        "20V008000",
+        "22E066000"
+      ]
+    }
+  },
+  "summary": {
+    "rewrite_same_identity": 1,
+    "keep_published_pending_source": 5,
+    "deferred_new_issue_candidates": 3,
+    "total": 6
+  },
+  "rows": [
+    {
+      "id": "infiniti-m35-fuel-gauge-sending-unit-failure",
+      "model": "M35",
+      "action": "keep_published_pending_source",
+      "reason": "The generic NHTSA vehicle page does not establish an M35 sending-unit failure, the four-DTC bundle, internal resistance mechanism or replacement procedure. No exact Infiniti/NHTSA bulletin or campaign was found for this indexed identity, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; a generic vehicle page, absent source, partial reference or unrelated campaign cannot replace the indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-recall-set-unrelated-and-no-exact-bulletin",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=M35&modelYear=2006",
+          "verifiedOn": "2026-08-06",
+          "observation": "The complete 2006-2010 M35 recall inventory covers airbags, accelerator-pedal sensing and TPMS hardware, not the existing catalog identity infiniti-m35-fuel-gauge-sending-unit-failure; no exact same-identity bulletin cleared the gate.",
+          "supportingUrls": [
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=M35&modelYear=2006",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=M35&modelYear=2007",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=M35&modelYear=2008",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=M35&modelYear=2009",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=M35&modelYear=2010"
+          ]
+        }
+      ],
+      "beforeSha256": "6c2bb6635f7d4762cd1821d7f6ccd7d4df547f7753a02484e7879f0ba3241176",
+      "proposalSha256": "6c2bb6635f7d4762cd1821d7f6ccd7d4df547f7753a02484e7879f0ba3241176",
+      "before": {
+        "make": "Infiniti",
+        "model": "M35",
+        "years": [
+          2006,
+          2007,
+          2008,
+          2009,
+          2010
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "fuel",
+        "title": "Fuel Gauge Sending Unit Failure",
+        "description": "Some M35 owners report inaccurate fuel level readings, including gauges that stick, read empty when fuel remains, or fluctuate unexpectedly. The issue is commonly related to wear or contamination in the fuel level sending unit inside the tank, which can affect trip planning and trigger low-fuel warnings incorrectly.",
+        "solution": "Compare gauge behavior to actual fill volume and scan for fuel level sensor data if available. Repair typically requires replacement of the faulty fuel level sending unit or pump module assembly, depending on which side of the saddle tank is affected. Because tank access is labor-intensive, many owners replace related seals and inspect the pump assembly at the same time.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Fuel gauge reads empty with fuel in tank",
+          "Erratic fuel level movement",
+          "Low fuel warning comes on too early",
+          "Inaccurate distance-to-empty estimate"
+        ],
+        "affectedSystems": [
+          "fuel tank",
+          "fuel level sensor",
+          "instrument cluster"
+        ],
+        "dtcCodes": [
+          "P0461",
+          "P0462",
+          "P0463"
+        ],
+        "estimatedCostLow": 350,
+        "estimatedCostHigh": 900,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2007/INFINITI/M35",
+            "type": "nhtsa",
+            "title": "NHTSA complaints involving inaccurate fuel gauge readings on Infiniti M35"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Denso fuel pump-related components are often preferred because owners report better reliability than no-name assemblies.",
+            "upvotes": 0,
+            "partName": "Fuel Pump Module",
+            "partBrand": "Denso",
+            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20M35%20Denso%20fuel%20pump%20module&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Track mileage manually until the repair is completed, since the gauge may not be trustworthy.",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "If the tank is being opened, replace the seal and inspect wiring connectors to prevent future access-related leaks or faults.",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "infiniti-fx35-fuel-gauge-sending-unit-failure",
+          "infiniti-fx45-fuel-level-sending-unit-failure"
+        ]
+      },
+      "proposal": {
+        "make": "Infiniti",
+        "model": "M35",
+        "years": [
+          2006,
+          2007,
+          2008,
+          2009,
+          2010
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "fuel",
+        "title": "Fuel Gauge Sending Unit Failure",
+        "description": "Some M35 owners report inaccurate fuel level readings, including gauges that stick, read empty when fuel remains, or fluctuate unexpectedly. The issue is commonly related to wear or contamination in the fuel level sending unit inside the tank, which can affect trip planning and trigger low-fuel warnings incorrectly.",
+        "solution": "Compare gauge behavior to actual fill volume and scan for fuel level sensor data if available. Repair typically requires replacement of the faulty fuel level sending unit or pump module assembly, depending on which side of the saddle tank is affected. Because tank access is labor-intensive, many owners replace related seals and inspect the pump assembly at the same time.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Fuel gauge reads empty with fuel in tank",
+          "Erratic fuel level movement",
+          "Low fuel warning comes on too early",
+          "Inaccurate distance-to-empty estimate"
+        ],
+        "affectedSystems": [
+          "fuel tank",
+          "fuel level sensor",
+          "instrument cluster"
+        ],
+        "dtcCodes": [
+          "P0461",
+          "P0462",
+          "P0463"
+        ],
+        "estimatedCostLow": 350,
+        "estimatedCostHigh": 900,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2007/INFINITI/M35",
+            "type": "nhtsa",
+            "title": "NHTSA complaints involving inaccurate fuel gauge readings on Infiniti M35"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Denso fuel pump-related components are often preferred because owners report better reliability than no-name assemblies.",
+            "upvotes": 0,
+            "partName": "Fuel Pump Module",
+            "partBrand": "Denso",
+            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20M35%20Denso%20fuel%20pump%20module&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Track mileage manually until the repair is completed, since the gauge may not be trustworthy.",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "If the tank is being opened, replace the seal and inspect wiring connectors to prevent future access-related leaks or faults.",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "infiniti-fx35-fuel-gauge-sending-unit-failure",
+          "infiniti-fx45-fuel-level-sending-unit-failure"
+        ]
+      }
+    },
+    {
+      "id": "infiniti-m35-radiator-cracking-and-coolant-leaks",
+      "model": "M35",
+      "action": "keep_published_pending_source",
+      "reason": "The generic NHTSA vehicle page does not establish one 2006-2010 M35 radiator-cracking/coolant-leak defect, its asserted plastic-tank mechanism or replacement rule. The official recall inventory contains no matching cooling-system campaign, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; a generic vehicle page, absent source, partial reference or unrelated campaign cannot replace the indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-recall-set-unrelated-and-no-exact-bulletin",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=M35&modelYear=2006",
+          "verifiedOn": "2026-08-06",
+          "observation": "The complete 2006-2010 M35 recall inventory covers airbags, accelerator-pedal sensing and TPMS hardware, not the existing catalog identity infiniti-m35-radiator-cracking-and-coolant-leaks; no exact same-identity bulletin cleared the gate.",
+          "supportingUrls": [
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=M35&modelYear=2006",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=M35&modelYear=2007",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=M35&modelYear=2008",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=M35&modelYear=2009",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=M35&modelYear=2010"
+          ]
+        }
+      ],
+      "beforeSha256": "f042c3732cecbc68fda91052e05968960d01679eea566e8578dd0965275fd947",
+      "proposalSha256": "f042c3732cecbc68fda91052e05968960d01679eea566e8578dd0965275fd947",
+      "before": {
+        "make": "Infiniti",
+        "model": "M35",
+        "years": [
+          2006,
+          2007,
+          2008,
+          2009,
+          2010
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "cooling",
+        "title": "Radiator Cracking and Coolant Leaks",
+        "description": "Aging M35 radiators can develop cracks at the plastic end tanks or seams, leading to coolant loss and overheating risk. The issue is usually age-related thermal cycling rather than a single defect, and it becomes more common on higher-mileage cars.",
+        "solution": "Pressure-test the cooling system and inspect the radiator end tanks, hose necks, and seams for seepage or dried coolant residue. Repair generally means replacing the radiator, refreshing upper and lower hoses if brittle, and refilling with the correct coolant while bleeding air from the system. If overheating occurred, the thermostat should also be checked or replaced as preventive maintenance.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "Sweet coolant smell after driving",
+          "Low coolant level in reservoir",
+          "Visible coolant leak near radiator",
+          "Engine temperature running high",
+          "White residue around radiator seams"
+        ],
+        "affectedSystems": [
+          "radiator",
+          "cooling system",
+          "engine temperature control"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 350,
+        "estimatedCostHigh": 900,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2009/INFINITI/M35",
+            "type": "nhtsa",
+            "title": "NHTSA complaints mentioning radiator leaks and overheating on Infiniti M35"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Denso radiators are often recommended as a reliable replacement with fitment close to OEM.",
+            "upvotes": 0,
+            "partName": "Radiator",
+            "partBrand": "Denso",
+            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20M35%20Denso%20radiator&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Replace the radiator cap and inspect hoses during the same job to avoid chasing another cooling leak later.",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "Do not continue driving if the temperature gauge rises, because the VQ engine can suffer expensive overheating damage.",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Infiniti",
+        "model": "M35",
+        "years": [
+          2006,
+          2007,
+          2008,
+          2009,
+          2010
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "cooling",
+        "title": "Radiator Cracking and Coolant Leaks",
+        "description": "Aging M35 radiators can develop cracks at the plastic end tanks or seams, leading to coolant loss and overheating risk. The issue is usually age-related thermal cycling rather than a single defect, and it becomes more common on higher-mileage cars.",
+        "solution": "Pressure-test the cooling system and inspect the radiator end tanks, hose necks, and seams for seepage or dried coolant residue. Repair generally means replacing the radiator, refreshing upper and lower hoses if brittle, and refilling with the correct coolant while bleeding air from the system. If overheating occurred, the thermostat should also be checked or replaced as preventive maintenance.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "Sweet coolant smell after driving",
+          "Low coolant level in reservoir",
+          "Visible coolant leak near radiator",
+          "Engine temperature running high",
+          "White residue around radiator seams"
+        ],
+        "affectedSystems": [
+          "radiator",
+          "cooling system",
+          "engine temperature control"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 350,
+        "estimatedCostHigh": 900,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2009/INFINITI/M35",
+            "type": "nhtsa",
+            "title": "NHTSA complaints mentioning radiator leaks and overheating on Infiniti M35"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Denso radiators are often recommended as a reliable replacement with fitment close to OEM.",
+            "upvotes": 0,
+            "partName": "Radiator",
+            "partBrand": "Denso",
+            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20M35%20Denso%20radiator&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Replace the radiator cap and inspect hoses during the same job to avoid chasing another cooling leak later.",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "Do not continue driving if the temperature gauge rises, because the VQ engine can suffer expensive overheating damage.",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "infiniti-m35-brake-rotor-warping-and-front-brake-vibration",
+      "model": "M35",
+      "action": "rewrite_same_identity",
+      "reason": "Infiniti ITB00-024I is an exact same-identity primary source for the indexed brake-rotor-warping/front-vibration condition, symptoms and repair direction.",
+      "identityRule": "The indexed ID, title, make, model, years, category and publication state remain unchanged; only unsupported body, cost, commerce and citation claims are replaced.",
+      "commerceDecision": "removed-unverified-search-links",
+      "changedFields": [
+        "description",
+        "solution",
+        "symptoms",
+        "affectedSystems",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "communityRecommendations",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
+      "evidence": [
+        {
+          "kind": "official-service-bulletin-exact-identity",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2021/MC-10195353-0001.pdf",
+          "verifiedOn": "2026-08-06",
+          "documentSha256": "a76ed66b06637a80045cc7c570172419ae0c89806dd564f26c967e448dc0b939",
+          "visuallyInspectedPages": [
+            1,
+            4,
+            5,
+            6
+          ],
+          "observation": "ITB00-024I applies to all Infiniti vehicles, defines brake judder and its symptoms, attributes it to rotor thickness variation/runout, and specifies on-car rotor machining or indexed replacement plus proper torque and burnishing."
+        }
+      ],
+      "beforeSha256": "562af2eaf4cca435f12533ec16221bd2580e0669ae4522637d93495242da65c3",
+      "proposalSha256": "9a0c73d8ceef034747f0ec34737c54c223407faa81db7979f77d3f09e95a22f2",
+      "before": {
+        "make": "Infiniti",
+        "model": "M35",
+        "years": [
+          2006,
+          2007,
+          2008,
+          2009,
+          2010
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "brakes",
+        "title": "Brake Rotor Warping and Front Brake Vibration",
+        "description": "Many M35 owners report steering wheel shake or pedal pulsation during braking, especially from highway speeds. The problem is commonly linked to front rotor thickness variation, heat spotting, or uneven pad deposits, sometimes worsened by sticking caliper hardware or worn suspension components.",
+        "solution": "Measure rotor runout and thickness variation, inspect pad wear patterns, and verify caliper slide movement and suspension condition. Repair usually involves replacing front rotors and pads together rather than machining thin rotors, then properly torquing wheels and bedding in the new pads. If vibration persists, inspect tension rod bushings and wheel bearings because they can mimic brake issues.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Steering wheel shakes while braking",
+          "Brake pedal pulsation",
+          "Vibration at highway-speed stops",
+          "Uneven pad wear",
+          "Reduced braking smoothness"
+        ],
+        "affectedSystems": [
+          "front brakes",
+          "rotors",
+          "caliper hardware"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 300,
+        "estimatedCostHigh": 750,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2006/INFINITI/M35",
+            "type": "nhtsa",
+            "title": "NHTSA complaints for Infiniti M35 brake vibration and rotor issues"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Bosch brake pads are commonly recommended for quieter operation and consistent street braking performance.",
+            "upvotes": 0,
+            "partName": "QuietCast Brake Pads",
+            "partBrand": "Bosch",
+            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20M35%20Bosch%20QuietCast%20front%20brake%20pads&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Owners often pair quality replacement rotors with premium pads to reduce repeat pulsation.",
+            "upvotes": 0,
+            "partName": "Professional Brake Rotor",
+            "partBrand": "ACDelco",
+            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20M35%20ACDelco%20front%20brake%20rotor&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Torque lug nuts evenly with a torque wrench, since uneven wheel torque can contribute to rotor distortion.",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "infiniti-m37-brake-rotor-warping-front-brake-vibration",
+          "infiniti-fx35-brake-rotor-warping-front-brake-vibration",
+          "nissan-sentra-front-brake-rotor-warping-2000"
+        ]
+      },
+      "proposal": {
+        "make": "Infiniti",
+        "model": "M35",
+        "years": [
+          2006,
+          2007,
+          2008,
+          2009,
+          2010
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "brakes",
+        "title": "Brake Rotor Warping and Front Brake Vibration",
+        "description": "Infiniti service bulletin ITB00-024I applies to all Infiniti vehicles and defines brake judder as vibration felt through the vehicle, steering wheel or brake pedal while braking. The bulletin identifies rotor thickness variation and/or rotor runout as the cause; brake-pedal pulsation and, in severe cases, steering-wheel oscillation can result.",
+        "solution": "Verify the condition with the driver and a road test. Infiniti directs technicians to correct brake judder by machining the rotors with an approved on-car brake lathe. If a rotor is replaced, index it to the axle hub for minimum runout, tighten lug nuts evenly with a torque wrench, and burnish serviced brakes as specified in ITB00-024I.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Vehicle vibration while braking",
+          "Brake-pedal pulsation",
+          "Steering-wheel oscillation while braking"
+        ],
+        "affectedSystems": [
+          "Brake rotors",
+          "Brake pads and calipers",
+          "Wheel hubs and lug fasteners"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "Infiniti ITB00-024I - Brake Noise/Judder/Pedal Feel Diagnosis and Repair",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2021/MC-10195353-0001.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Kept the indexed brake-rotor-warping/front-vibration identity and 2006-2010 scope, replaced generic and unsupported claims with Infiniti ITB00-024I, and removed unsupported frequency, cost, DTC and commerce claims.",
+        "relatedIssueIds": [
+          "infiniti-m37-brake-rotor-warping-front-brake-vibration",
+          "infiniti-fx35-brake-rotor-warping-front-brake-vibration",
+          "nissan-sentra-front-brake-rotor-warping-2000"
+        ]
+      }
+    },
+    {
+      "id": "infiniti-m35-camshaft-and-crankshaft-position-sensor-failure",
+      "model": "M35",
+      "action": "keep_published_pending_source",
+      "reason": "The generic NHTSA vehicle page does not establish a 2006-2010 M35 camshaft-and-crankshaft-position-sensor failure, the combined DTC set or sensor-replacement procedure. No exact M35 bulletin or campaign cleared the identity gate, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; a generic vehicle page, absent source, partial reference or unrelated campaign cannot replace the indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-recall-set-unrelated-and-no-exact-bulletin",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=M35&modelYear=2006",
+          "verifiedOn": "2026-08-06",
+          "observation": "The complete 2006-2010 M35 recall inventory covers airbags, accelerator-pedal sensing and TPMS hardware, not the existing catalog identity infiniti-m35-camshaft-and-crankshaft-position-sensor-failure; no exact same-identity bulletin cleared the gate.",
+          "supportingUrls": [
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=M35&modelYear=2006",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=M35&modelYear=2007",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=M35&modelYear=2008",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=M35&modelYear=2009",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=M35&modelYear=2010"
+          ]
+        }
+      ],
+      "beforeSha256": "2d64ae7df6d4d31a401a5d92a240442126b450d62b818e8e4a08e4c014397fd8",
+      "proposalSha256": "2d64ae7df6d4d31a401a5d92a240442126b450d62b818e8e4a08e4c014397fd8",
+      "before": {
+        "make": "Infiniti",
+        "model": "M35",
+        "years": [
+          2006,
+          2007,
+          2008,
+          2009,
+          2010
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "engine",
+        "title": "Camshaft and Crankshaft Position Sensor Failure",
+        "description": "The VQ35DE engine used in the M35 is known for intermittent camshaft and crankshaft position sensor failures. Heat and age can cause the sensors to send erratic signals, leading to hard starting, stalling, limp mode, or a check engine light.",
+        "solution": "Scan for stored fault codes and monitor cam/crank synchronization data while checking harness condition near the sensors. Repair typically involves replacing the failed camshaft position sensor(s) and sometimes the crankshaft position sensor with quality parts, then clearing codes and confirming proper restart behavior. Using OEM-supplier sensors is strongly preferred because cheap sensors often cause repeat failures.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Check engine light",
+          "Intermittent stalling",
+          "Extended cranking or no-start",
+          "Reduced power or limp mode",
+          "Rough running after warm-up"
+        ],
+        "affectedSystems": [
+          "engine management",
+          "ignition timing",
+          "starting system"
+        ],
+        "dtcCodes": [
+          "P0335",
+          "P0340",
+          "P0345",
+          "P0725"
+        ],
+        "estimatedCostLow": 180,
+        "estimatedCostHigh": 450,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2008/INFINITI/M35",
+            "type": "nhtsa",
+            "title": "NHTSA complaints for Infiniti M35 involving camshaft/crankshaft sensor stalling"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Denso sensors are commonly recommended because they match OEM performance better than low-cost generic replacements.",
+            "upvotes": 0,
+            "partName": "Camshaft Position Sensor",
+            "partBrand": "Denso",
+            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20M35%20Denso%20camshaft%20position%20sensor&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "If one cam sensor fails, many owners replace both cam sensors and the crank sensor together to avoid repeat breakdowns.",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "Clear codes only after confirming battery voltage is healthy, since weak voltage can complicate diagnosis.",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "infiniti-fx35-camshaft-crankshaft-position-sensor-failure",
+          "infiniti-m37-camshaft-crankshaft-position-sensor-failure",
+          "infiniti-fx45-camshaft-and-crankshaft-position-sensor-failure",
+          "nissan-altima-crankshaft-and-camshaft-position-2002"
+        ]
+      },
+      "proposal": {
+        "make": "Infiniti",
+        "model": "M35",
+        "years": [
+          2006,
+          2007,
+          2008,
+          2009,
+          2010
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "engine",
+        "title": "Camshaft and Crankshaft Position Sensor Failure",
+        "description": "The VQ35DE engine used in the M35 is known for intermittent camshaft and crankshaft position sensor failures. Heat and age can cause the sensors to send erratic signals, leading to hard starting, stalling, limp mode, or a check engine light.",
+        "solution": "Scan for stored fault codes and monitor cam/crank synchronization data while checking harness condition near the sensors. Repair typically involves replacing the failed camshaft position sensor(s) and sometimes the crankshaft position sensor with quality parts, then clearing codes and confirming proper restart behavior. Using OEM-supplier sensors is strongly preferred because cheap sensors often cause repeat failures.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Check engine light",
+          "Intermittent stalling",
+          "Extended cranking or no-start",
+          "Reduced power or limp mode",
+          "Rough running after warm-up"
+        ],
+        "affectedSystems": [
+          "engine management",
+          "ignition timing",
+          "starting system"
+        ],
+        "dtcCodes": [
+          "P0335",
+          "P0340",
+          "P0345",
+          "P0725"
+        ],
+        "estimatedCostLow": 180,
+        "estimatedCostHigh": 450,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2008/INFINITI/M35",
+            "type": "nhtsa",
+            "title": "NHTSA complaints for Infiniti M35 involving camshaft/crankshaft sensor stalling"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Denso sensors are commonly recommended because they match OEM performance better than low-cost generic replacements.",
+            "upvotes": 0,
+            "partName": "Camshaft Position Sensor",
+            "partBrand": "Denso",
+            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20M35%20Denso%20camshaft%20position%20sensor&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "If one cam sensor fails, many owners replace both cam sensors and the crank sensor together to avoid repeat breakdowns.",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "Clear codes only after confirming battery voltage is healthy, since weak voltage can complicate diagnosis.",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "infiniti-fx35-camshaft-crankshaft-position-sensor-failure",
+          "infiniti-m37-camshaft-crankshaft-position-sensor-failure",
+          "infiniti-fx45-camshaft-and-crankshaft-position-sensor-failure",
+          "nissan-altima-crankshaft-and-camshaft-position-2002"
+        ]
+      }
+    },
+    {
+      "id": "infiniti-m35-dashboard-melting-and-cracking",
+      "model": "M35",
+      "action": "keep_published_pending_source",
+      "reason": "The generic NHTSA vehicle page does not establish dashboard melting and cracking across 2006-2010 M35 vehicles. Official M35 instrument-panel references found during review concern damage during Takata airbag repair rather than the indexed defect, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; a generic vehicle page, absent source, partial reference or unrelated campaign cannot replace the indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-recall-set-unrelated-and-no-exact-bulletin",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=M35&modelYear=2006",
+          "verifiedOn": "2026-08-06",
+          "observation": "The complete 2006-2010 M35 recall inventory covers airbags, accelerator-pedal sensing and TPMS hardware, not the existing catalog identity infiniti-m35-dashboard-melting-and-cracking; no exact same-identity bulletin cleared the gate.",
+          "supportingUrls": [
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=M35&modelYear=2006",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=M35&modelYear=2007",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=M35&modelYear=2008",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=M35&modelYear=2009",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=M35&modelYear=2010"
+          ]
+        }
+      ],
+      "beforeSha256": "cfd4c6d63cf0ed571e49e70882dd796d1739758d94f9c0626b54eb4086d3d27f",
+      "proposalSha256": "cfd4c6d63cf0ed571e49e70882dd796d1739758d94f9c0626b54eb4086d3d27f",
+      "before": {
+        "make": "Infiniti",
+        "model": "M35",
+        "years": [
+          2006,
+          2007,
+          2008,
+          2009,
+          2010
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "interior",
+        "title": "Dashboard Melting and Cracking",
+        "description": "Owners of 2006-2010 Infiniti M35 models frequently report the upper dashboard becoming sticky, shiny, cracked, or melting when exposed to heat and sunlight. The problem is tied to deterioration of the dash pad material, which can create glare on the windshield and worsen over time in hot climates.",
+        "solution": "Diagnosis is visual: inspect the dash surface for tackiness, warping, cracks, and reflected glare. Repair usually requires replacement of the dashboard pad or full upper dash assembly, as cleaning products do not permanently fix the material breakdown. Used parts may reduce cost, but many owners prefer a new OEM-style replacement due to fit and appearance concerns; labor is substantial because the dash must be removed.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Sticky or tacky dashboard surface",
+          "Cracks forming near vents or instrument panel",
+          "Shiny melted appearance in hot weather",
+          "Windshield glare from dashboard reflection"
+        ],
+        "affectedSystems": [
+          "dashboard",
+          "interior trim",
+          "visibility"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 900,
+        "estimatedCostHigh": 2200,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2006/INFINITI/M35",
+            "type": "nhtsa",
+            "title": "NHTSA complaints discussing cracked and melting dashboard on Infiniti M35"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Use a windshield sunshade and park out of direct sun to slow further deterioration.",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "Owners often use an aftermarket dash cover as a temporary fix to reduce glare and hide cracks when full replacement is too expensive.",
+            "upvotes": 0,
+            "partName": "Interior Trim Retainers",
+            "partBrand": "Dorman",
+            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20M35%20Dorman%20interior%20trim%20retainers%20dashboard%20removal&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Avoid silicone-heavy dressings because they can increase glare and may worsen the sticky feel.",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Infiniti",
+        "model": "M35",
+        "years": [
+          2006,
+          2007,
+          2008,
+          2009,
+          2010
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "interior",
+        "title": "Dashboard Melting and Cracking",
+        "description": "Owners of 2006-2010 Infiniti M35 models frequently report the upper dashboard becoming sticky, shiny, cracked, or melting when exposed to heat and sunlight. The problem is tied to deterioration of the dash pad material, which can create glare on the windshield and worsen over time in hot climates.",
+        "solution": "Diagnosis is visual: inspect the dash surface for tackiness, warping, cracks, and reflected glare. Repair usually requires replacement of the dashboard pad or full upper dash assembly, as cleaning products do not permanently fix the material breakdown. Used parts may reduce cost, but many owners prefer a new OEM-style replacement due to fit and appearance concerns; labor is substantial because the dash must be removed.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Sticky or tacky dashboard surface",
+          "Cracks forming near vents or instrument panel",
+          "Shiny melted appearance in hot weather",
+          "Windshield glare from dashboard reflection"
+        ],
+        "affectedSystems": [
+          "dashboard",
+          "interior trim",
+          "visibility"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 900,
+        "estimatedCostHigh": 2200,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2006/INFINITI/M35",
+            "type": "nhtsa",
+            "title": "NHTSA complaints discussing cracked and melting dashboard on Infiniti M35"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Use a windshield sunshade and park out of direct sun to slow further deterioration.",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "Owners often use an aftermarket dash cover as a temporary fix to reduce glare and hide cracks when full replacement is too expensive.",
+            "upvotes": 0,
+            "partName": "Interior Trim Retainers",
+            "partBrand": "Dorman",
+            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20M35%20Dorman%20interior%20trim%20retainers%20dashboard%20removal&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Avoid silicone-heavy dressings because they can increase glare and may worsen the sticky feel.",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "infiniti-m35-front-lower-control-arm-and-bushing-wear",
+      "model": "M35",
+      "action": "keep_published_pending_source",
+      "reason": "The generic NHTSA vehicle page does not establish one 2006-2010 M35 front lower-control-arm/bushing wear defect, its mechanism, symptoms or whole-arm repair rule. No exact Infiniti/NHTSA bulletin or campaign was found, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; a generic vehicle page, absent source, partial reference or unrelated campaign cannot replace the indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-recall-set-unrelated-and-no-exact-bulletin",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=M35&modelYear=2006",
+          "verifiedOn": "2026-08-06",
+          "observation": "The complete 2006-2010 M35 recall inventory covers airbags, accelerator-pedal sensing and TPMS hardware, not the existing catalog identity infiniti-m35-front-lower-control-arm-and-bushing-wear; no exact same-identity bulletin cleared the gate.",
+          "supportingUrls": [
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=M35&modelYear=2006",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=M35&modelYear=2007",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=M35&modelYear=2008",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=M35&modelYear=2009",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=M35&modelYear=2010"
+          ]
+        }
+      ],
+      "beforeSha256": "af604da0b9218d928623e5dae925a26e1d230e930ed3d26d19090d9f8419c58a",
+      "proposalSha256": "af604da0b9218d928623e5dae925a26e1d230e930ed3d26d19090d9f8419c58a",
+      "before": {
+        "make": "Infiniti",
+        "model": "M35",
+        "years": [
+          2006,
+          2007,
+          2008,
+          2009,
+          2010
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "suspension",
+        "title": "Front Lower Control Arm and Bushing Wear",
+        "description": "The M35 commonly develops wear in the front lower control arms, tension rod bushings, and related suspension joints, especially as mileage climbs. This causes looseness in the front suspension, uneven tire wear, and clunking over bumps or during braking.",
+        "solution": "Inspect the front suspension for torn bushings, leaking hydraulic bushings, and play in the ball joints or control arms. Repair usually involves replacing the affected lower control arms and/or tension rods, followed by a four-wheel alignment. Aftermarket complete arm assemblies are popular because they save labor compared with pressing bushings separately.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Clunking or knocking from front suspension",
+          "Steering wander at highway speeds",
+          "Uneven front tire wear",
+          "Shimmy during braking",
+          "Loose or unstable front-end feel"
+        ],
+        "affectedSystems": [
+          "front suspension",
+          "alignment",
+          "steering stability"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 450,
+        "estimatedCostHigh": 1200,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2007/INFINITI/M35",
+            "type": "nhtsa",
+            "title": "NHTSA complaints referencing front suspension noise and control arm wear"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Moog complete control arms are commonly recommended because they simplify installation and are widely available.",
+            "upvotes": 0,
+            "partName": "Front Lower Control Arm",
+            "partBrand": "Moog",
+            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20M35%20Moog%20front%20lower%20control%20arm&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Replace worn tension rods at the same time if braking shimmy is present, then get an alignment immediately.",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "Inspect inner tire wear before buying tires, since suspension bushing wear often causes rapid edge wear.",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "infiniti-m56-front-lower-control-arm-tension-rod-bushing-wear",
+          "infiniti-fx35-front-suspension-clunk-worn-control-arm-bushings"
+        ]
+      },
+      "proposal": {
+        "make": "Infiniti",
+        "model": "M35",
+        "years": [
+          2006,
+          2007,
+          2008,
+          2009,
+          2010
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "suspension",
+        "title": "Front Lower Control Arm and Bushing Wear",
+        "description": "The M35 commonly develops wear in the front lower control arms, tension rod bushings, and related suspension joints, especially as mileage climbs. This causes looseness in the front suspension, uneven tire wear, and clunking over bumps or during braking.",
+        "solution": "Inspect the front suspension for torn bushings, leaking hydraulic bushings, and play in the ball joints or control arms. Repair usually involves replacing the affected lower control arms and/or tension rods, followed by a four-wheel alignment. Aftermarket complete arm assemblies are popular because they save labor compared with pressing bushings separately.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Clunking or knocking from front suspension",
+          "Steering wander at highway speeds",
+          "Uneven front tire wear",
+          "Shimmy during braking",
+          "Loose or unstable front-end feel"
+        ],
+        "affectedSystems": [
+          "front suspension",
+          "alignment",
+          "steering stability"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 450,
+        "estimatedCostHigh": 1200,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2007/INFINITI/M35",
+            "type": "nhtsa",
+            "title": "NHTSA complaints referencing front suspension noise and control arm wear"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Moog complete control arms are commonly recommended because they simplify installation and are widely available.",
+            "upvotes": 0,
+            "partName": "Front Lower Control Arm",
+            "partBrand": "Moog",
+            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20M35%20Moog%20front%20lower%20control%20arm&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Replace worn tension rods at the same time if braking shimmy is present, then get an alignment immediately.",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "Inspect inner tire wear before buying tires, since suspension bushing wear often causes rapid edge wear.",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "infiniti-m56-front-lower-control-arm-tension-rod-bushing-wear",
+          "infiniti-fx35-front-suspension-clunk-worn-control-arm-bushings"
+        ]
+      }
+    }
+  ]
+}
