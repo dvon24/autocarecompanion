@@ -1,0 +1,788 @@
+{
+  "schemaVersion": 1,
+  "status": "proposal-only",
+  "auditStage": "model-primary-source-adjudication",
+  "requiresIndependentApproval": true,
+  "generatedOn": "2026-08-06",
+  "make": "Hyundai",
+  "model": "Genesis Coupe",
+  "completionStatement": "This packet reconciles all four frozen Hyundai Genesis Coupe rows. No same-identity primary-source rewrite cleared the gate; all four remain byte-for-byte unchanged.",
+  "safetyContract": [
+    "No production database write, cache purge, deployment, archive action, redirect, slug change or public-page change is authorized by this packet.",
+    "All four rows remain published and byte-for-byte unchanged.",
+    "A different differential mechanism, clutch-switch recall, component or shared symptom may never replace the issue named by an existing indexed page.",
+    "Existing commerce remains frozen rather than being silently rewritten without exact repair-role evidence.",
+    "Independent row-by-row approval is required before any separate correction path may be created."
+  ],
+  "source": {
+    "snapshotFile": "data/_hyundai-deeplink-snapshot-2026-08-06.json",
+    "snapshotSha256": "f3e74267205477804060c49c988221cdc4dfcfc4586df369601c8c64736cce60",
+    "snapshotGeneratedAt": "2026-08-06T02:37:36.989Z",
+    "snapshotHash": "444457abb31ca6a5ead423878b37ca790d44a87c74ffa43259362cb4218ba632",
+    "genesisCoupeRecordCount": 4
+  },
+  "observations": [
+    {
+      "code": "mounting-bolt-recall-not-differential-wear",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "hyundai-genesis-coupe-diff-whine"
+      ],
+      "detail": "Recall 15V756 is exact to mounting-bolt assembly, not the frozen whine/bearing/LSD identity."
+    },
+    {
+      "code": "clutch-switch-not-slave-cylinder",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "hyundai-genesis-coupe-slave-cylinder"
+      ],
+      "detail": "Recall 24V562 addresses an ignition-lock switch spring, not a concentric slave cylinder."
+    },
+    {
+      "code": "official-recall-set-reviewed",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "hyundai-genesis-coupe-bk2-oil-consumption",
+        "hyundai-genesis-coupe-diff-whine",
+        "hyundai-genesis-coupe-slave-cylinder",
+        "hyundai-genesis-coupe-steering-clunk"
+      ],
+      "detail": "All four 2013 recall campaigns were checked without converting component-adjacent evidence into page identity."
+    },
+    {
+      "code": "unsupported-owner-narratives-frozen",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "hyundai-genesis-coupe-bk2-oil-consumption",
+        "hyundai-genesis-coupe-steering-clunk"
+      ],
+      "detail": "Forum home pages cannot establish model-wide oil-consumption or steering-shaft defect claims."
+    }
+  ],
+  "mismatchSources": {
+    "nhtsaRecalls2013": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Hyundai&model=Genesis%20Coupe&modelYear=2013",
+    "differentialRecall": "https://static.nhtsa.gov/odi/rcl/2015/RCONL-15V756-4208.pdf",
+    "clutchSwitchChronology": "https://static.nhtsa.gov/odi/rcl/2024/RMISC-24V562-5184.pdf"
+  },
+  "summary": {
+    "rewrite_same_identity": 0,
+    "keep_published_pending_source": 4,
+    "total": 4
+  },
+  "rows": [
+    {
+      "id": "hyundai-genesis-coupe-bk2-oil-consumption",
+      "model": "Genesis Coupe",
+      "action": "keep_published_pending_source",
+      "reason": "Forum home pages do not establish one 2013-2016 3.8L Lambda oil-consumption defect, ring/seal mechanism, consumption rate, oil-weight recommendation or repair cost. No exact Hyundai primary document was found, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; a different differential mechanism, clutch switch, complaint or shared symptom cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-recall-set-reviewed",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Hyundai&model=Genesis%20Coupe&modelYear=2013",
+          "verifiedOn": "2026-08-06",
+          "observation": "The 2013 NHTSA recall set was reviewed without substituting campaigns for a different component or mechanism."
+        }
+      ],
+      "beforeSha256": "c2e65236f4ea51fc4c537c4fde56705df30458a54c5cb0534df1ca2d695fa065",
+      "proposalSha256": "c2e65236f4ea51fc4c537c4fde56705df30458a54c5cb0534df1ca2d695fa065",
+      "before": {
+        "make": "Hyundai",
+        "model": "Genesis Coupe",
+        "years": [
+          2013,
+          2014,
+          2015,
+          2016
+        ],
+        "trims": [],
+        "engines": [
+          "3.8L V6"
+        ],
+        "category": "engine",
+        "title": "Excessive Oil Consumption - 3.8L Lambda V6",
+        "description": "The 3.8L Lambda V6 in the BK2 Genesis Coupe consumes oil at an excessive rate, often 1 quart every 1,500-2,500 miles. The issue is related to piston ring design and valve stem seal degradation. Some engines require a quart of oil every 1,000 miles. Hyundai acknowledged the issue but did not issue a recall.",
+        "solution": "Use a heavier weight oil within spec (5W-30 instead of 5W-20) to reduce consumption. Valve stem seal replacement costs $800-1,400 and may reduce consumption. Full piston ring replacement requires engine disassembly ($2,500-4,000). Monitor oil level weekly and keep extra oil on hand. Use full synthetic oil rated for high-mileage vehicles.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Oil level drops 1+ quart between changes",
+          "Blue smoke on startup",
+          "Oil smell from exhaust",
+          "Spark plug fouling",
+          "Check engine light for misfire"
+        ],
+        "affectedSystems": [
+          "Engine"
+        ],
+        "dtcCodes": [
+          "P0420",
+          "P0171",
+          "P0174"
+        ],
+        "estimatedCostLow": 50,
+        "estimatedCostHigh": 4000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.gencoupe.com",
+            "type": "forum",
+            "title": "GenCoupe.com - 3.8 Oil Consumption Thread (500+ replies)"
+          },
+          {
+            "url": "https://www.reddit.com/r/genesiscoupe",
+            "type": "forum",
+            "title": "Reddit r/genesiscoupe - Oil consumption fix options"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Valvoline High Mileage MaxLife 5W-30 reduces consumption in many 3.8L engines",
+            "upvotes": 0,
+            "partName": "High Mileage MaxLife 5W-30",
+            "partBrand": "Valvoline",
+            "affiliateUrl": "https://www.amazon.com/s?k=Valvoline%20High%20Mileage%20MaxLife%205W-30&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Keep a quart of oil in the trunk and check level at every fuel stop - running low even once can damage the rod bearings",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 540,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2024-04-10",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "kia-optima-oil-consumption",
+          "hyundai-tucson-oil-consumption-2011"
+        ]
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Genesis Coupe",
+        "years": [
+          2013,
+          2014,
+          2015,
+          2016
+        ],
+        "trims": [],
+        "engines": [
+          "3.8L V6"
+        ],
+        "category": "engine",
+        "title": "Excessive Oil Consumption - 3.8L Lambda V6",
+        "description": "The 3.8L Lambda V6 in the BK2 Genesis Coupe consumes oil at an excessive rate, often 1 quart every 1,500-2,500 miles. The issue is related to piston ring design and valve stem seal degradation. Some engines require a quart of oil every 1,000 miles. Hyundai acknowledged the issue but did not issue a recall.",
+        "solution": "Use a heavier weight oil within spec (5W-30 instead of 5W-20) to reduce consumption. Valve stem seal replacement costs $800-1,400 and may reduce consumption. Full piston ring replacement requires engine disassembly ($2,500-4,000). Monitor oil level weekly and keep extra oil on hand. Use full synthetic oil rated for high-mileage vehicles.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Oil level drops 1+ quart between changes",
+          "Blue smoke on startup",
+          "Oil smell from exhaust",
+          "Spark plug fouling",
+          "Check engine light for misfire"
+        ],
+        "affectedSystems": [
+          "Engine"
+        ],
+        "dtcCodes": [
+          "P0420",
+          "P0171",
+          "P0174"
+        ],
+        "estimatedCostLow": 50,
+        "estimatedCostHigh": 4000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.gencoupe.com",
+            "type": "forum",
+            "title": "GenCoupe.com - 3.8 Oil Consumption Thread (500+ replies)"
+          },
+          {
+            "url": "https://www.reddit.com/r/genesiscoupe",
+            "type": "forum",
+            "title": "Reddit r/genesiscoupe - Oil consumption fix options"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Valvoline High Mileage MaxLife 5W-30 reduces consumption in many 3.8L engines",
+            "upvotes": 0,
+            "partName": "High Mileage MaxLife 5W-30",
+            "partBrand": "Valvoline",
+            "affiliateUrl": "https://www.amazon.com/s?k=Valvoline%20High%20Mileage%20MaxLife%205W-30&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Keep a quart of oil in the trunk and check level at every fuel stop - running low even once can damage the rod bearings",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 540,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2024-04-10",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "kia-optima-oil-consumption",
+          "hyundai-tucson-oil-consumption-2011"
+        ]
+      }
+    },
+    {
+      "id": "hyundai-genesis-coupe-diff-whine",
+      "model": "Genesis Coupe",
+      "action": "keep_published_pending_source",
+      "reason": "Recall 15V756 covers improperly aligned differential/crossmember mounting bolts on certain 2013-2015 manual-transmission cars. It does not establish the frozen seven-year pinion-bearing, ring-gear, fluid, whine, LSD-chatter and rebuild-cost narrative, so substituting it would change the indexed issue and the row remains unchanged.",
+      "identityRule": "No content or publication-state changes; a different differential mechanism, clutch switch, complaint or shared symptom cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-recall-set-reviewed",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Hyundai&model=Genesis%20Coupe&modelYear=2013",
+          "verifiedOn": "2026-08-06",
+          "observation": "The 2013 NHTSA recall set was reviewed without substituting campaigns for a different component or mechanism."
+        },
+        {
+          "kind": "mechanism-mismatch",
+          "url": "https://static.nhtsa.gov/odi/rcl/2015/RCONL-15V756-4208.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "Recall 15V756 is a differential mounting-bolt assembly condition, not pinion-bearing/ring-gear whine or an LSD service issue."
+        }
+      ],
+      "beforeSha256": "bd5adf0914209cf2327b32eda9b7198dfc2c732fcbdaf121b4a0e36d055ad943",
+      "proposalSha256": "bd5adf0914209cf2327b32eda9b7198dfc2c732fcbdaf121b4a0e36d055ad943",
+      "before": {
+        "make": "Hyundai",
+        "model": "Genesis Coupe",
+        "years": [
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "drivetrain",
+        "title": "Rear Differential Whine / Bearing Failure",
+        "description": "The rear differential on the Genesis Coupe develops a whining noise, particularly under load or deceleration. The pinion bearing and ring gear wear prematurely, especially on vehicles that have been driven aggressively or used for drifting. The OEM differential fluid is not adequate for spirited driving.",
+        "solution": "Change differential fluid to a high-quality 75W-90 GL-5 synthetic every 15,000 miles. If whining is present, the differential needs rebuild or replacement. Bearing kit replacement costs $400-800 at a specialist. Complete differential replacement with an OEM unit costs $1,200-2,000. An LSD rebuild is $500-900.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Whining noise on acceleration",
+          "Humming from rear that changes with speed",
+          "Clunking on deceleration",
+          "Vibration at certain speeds",
+          "Noise worse under load"
+        ],
+        "affectedSystems": [
+          "Drivetrain",
+          "Differential"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 150,
+        "estimatedCostHigh": 2000,
+        "typicalMileageLow": 12000,
+        "typicalMileageHigh": 18000,
+        "citations": [
+          {
+            "url": "https://www.gencoupe.com",
+            "type": "forum",
+            "title": "GenCoupe.com - Diff Whine Fix Guide"
+          },
+          {
+            "url": "https://www.reddit.com/r/genesiscoupe",
+            "type": "forum",
+            "title": "Reddit r/genesiscoupe - Differential rebuild writeup"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Royal Purple 75W-90 Max Gear Oil is the community favorite for the Genesis Coupe diff",
+            "upvotes": 0,
+            "partName": "Max Gear 75W-90",
+            "partBrand": "Royal Purple",
+            "partNumber": "01300",
+            "affiliateUrl": "https://www.amazon.com/s?k=Royal%20Purple%2001300&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Change diff fluid every 15,000 miles if driving spiritedly - the OEM fill degrades rapidly with heat",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 380,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2024-02-15",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Genesis Coupe",
+        "years": [
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "drivetrain",
+        "title": "Rear Differential Whine / Bearing Failure",
+        "description": "The rear differential on the Genesis Coupe develops a whining noise, particularly under load or deceleration. The pinion bearing and ring gear wear prematurely, especially on vehicles that have been driven aggressively or used for drifting. The OEM differential fluid is not adequate for spirited driving.",
+        "solution": "Change differential fluid to a high-quality 75W-90 GL-5 synthetic every 15,000 miles. If whining is present, the differential needs rebuild or replacement. Bearing kit replacement costs $400-800 at a specialist. Complete differential replacement with an OEM unit costs $1,200-2,000. An LSD rebuild is $500-900.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Whining noise on acceleration",
+          "Humming from rear that changes with speed",
+          "Clunking on deceleration",
+          "Vibration at certain speeds",
+          "Noise worse under load"
+        ],
+        "affectedSystems": [
+          "Drivetrain",
+          "Differential"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 150,
+        "estimatedCostHigh": 2000,
+        "typicalMileageLow": 12000,
+        "typicalMileageHigh": 18000,
+        "citations": [
+          {
+            "url": "https://www.gencoupe.com",
+            "type": "forum",
+            "title": "GenCoupe.com - Diff Whine Fix Guide"
+          },
+          {
+            "url": "https://www.reddit.com/r/genesiscoupe",
+            "type": "forum",
+            "title": "Reddit r/genesiscoupe - Differential rebuild writeup"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Royal Purple 75W-90 Max Gear Oil is the community favorite for the Genesis Coupe diff",
+            "upvotes": 0,
+            "partName": "Max Gear 75W-90",
+            "partBrand": "Royal Purple",
+            "partNumber": "01300",
+            "affiliateUrl": "https://www.amazon.com/s?k=Royal%20Purple%2001300&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Change diff fluid every 15,000 miles if driving spiritedly - the OEM fill degrades rapidly with heat",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 380,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2024-02-15",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-genesis-coupe-slave-cylinder",
+      "model": "Genesis Coupe",
+      "action": "keep_published_pending_source",
+      "reason": "Recall 24V562 concerns an ignition-lock-switch return spring on 2010-2013 cars, not the concentric slave cylinder. Forum home pages do not establish the frozen seven-year CSC seal defect, clutch contamination, DTCs, part number or repair cost, so the row remains unchanged.",
+      "identityRule": "No content or publication-state changes; a different differential mechanism, clutch switch, complaint or shared symptom cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-recall-set-reviewed",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Hyundai&model=Genesis%20Coupe&modelYear=2013",
+          "verifiedOn": "2026-08-06",
+          "observation": "The 2013 NHTSA recall set was reviewed without substituting campaigns for a different component or mechanism."
+        },
+        {
+          "kind": "component-mismatch",
+          "url": "https://static.nhtsa.gov/odi/rcl/2024/RMISC-24V562-5184.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "Recall 24V562 concerns the clutch ignition-lock switch, not the hydraulic concentric slave cylinder."
+        }
+      ],
+      "beforeSha256": "b7bde5086eb744f23bb9654a3a0affe8ad91103f324a70e0b52a8c5f51d273f0",
+      "proposalSha256": "b7bde5086eb744f23bb9654a3a0affe8ad91103f324a70e0b52a8c5f51d273f0",
+      "before": {
+        "make": "Hyundai",
+        "model": "Genesis Coupe",
+        "years": [
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016
+        ],
+        "trims": [
+          "Manual"
+        ],
+        "engines": [],
+        "category": "transmission",
+        "title": "Concentric Slave Cylinder Failure (Manual Transmission)",
+        "description": "The concentric slave cylinder (CSC) in manual-transmission Genesis Coupes fails prematurely, causing soft or spongy clutch pedal feel and eventually inability to disengage the clutch. The internal seal leaks, allowing fluid to contaminate the clutch disc. Replacement requires transmission removal, making it a labor-intensive repair.",
+        "solution": "Replace the concentric slave cylinder (Hyundai part 41421-2C000) when symptoms first appear. Since the transmission must be removed, most owners also replace the clutch disc, pressure plate, and throw-out bearing at the same time. CSC alone is $100-150 for the part. Complete clutch kit with labor is $1,200-2,000.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Soft or spongy clutch pedal",
+          "Clutch pedal goes to floor",
+          "Difficulty shifting into gear",
+          "Clutch fluid level dropping",
+          "Grinding when shifting"
+        ],
+        "affectedSystems": [
+          "Transmission",
+          "Clutch"
+        ],
+        "dtcCodes": [
+          "P0700",
+          "P0730",
+          "P0741",
+          "P0751"
+        ],
+        "estimatedCostLow": 500,
+        "estimatedCostHigh": 2000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.gencoupe.com",
+            "type": "forum",
+            "title": "GenCoupe.com - CSC Failure Prevention and Replacement Guide"
+          },
+          {
+            "url": "https://www.reddit.com/r/genesiscoupe",
+            "type": "forum",
+            "title": "Reddit r/genesiscoupe - CSC went out at 45k miles"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "South Korean Exedy stage 1 clutch kit includes the CSC and is a popular upgrade",
+            "upvotes": 0,
+            "partName": "Stage 1 Clutch Kit",
+            "partBrand": "Exedy",
+            "affiliateUrl": "https://www.amazon.com/s?k=Exedy%20Stage%201%20Clutch%20Kit&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "When replacing the CSC, always do the full clutch kit at the same time since the transmission is already out - saves $600+ in labor later",
+            "upvotes": 0
+          },
+          {
+            "type": "warning",
+            "content": "Do not drive with a leaking CSC - clutch fluid will contaminate and destroy the clutch disc",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 420,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2024-01-18",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Genesis Coupe",
+        "years": [
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016
+        ],
+        "trims": [
+          "Manual"
+        ],
+        "engines": [],
+        "category": "transmission",
+        "title": "Concentric Slave Cylinder Failure (Manual Transmission)",
+        "description": "The concentric slave cylinder (CSC) in manual-transmission Genesis Coupes fails prematurely, causing soft or spongy clutch pedal feel and eventually inability to disengage the clutch. The internal seal leaks, allowing fluid to contaminate the clutch disc. Replacement requires transmission removal, making it a labor-intensive repair.",
+        "solution": "Replace the concentric slave cylinder (Hyundai part 41421-2C000) when symptoms first appear. Since the transmission must be removed, most owners also replace the clutch disc, pressure plate, and throw-out bearing at the same time. CSC alone is $100-150 for the part. Complete clutch kit with labor is $1,200-2,000.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Soft or spongy clutch pedal",
+          "Clutch pedal goes to floor",
+          "Difficulty shifting into gear",
+          "Clutch fluid level dropping",
+          "Grinding when shifting"
+        ],
+        "affectedSystems": [
+          "Transmission",
+          "Clutch"
+        ],
+        "dtcCodes": [
+          "P0700",
+          "P0730",
+          "P0741",
+          "P0751"
+        ],
+        "estimatedCostLow": 500,
+        "estimatedCostHigh": 2000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.gencoupe.com",
+            "type": "forum",
+            "title": "GenCoupe.com - CSC Failure Prevention and Replacement Guide"
+          },
+          {
+            "url": "https://www.reddit.com/r/genesiscoupe",
+            "type": "forum",
+            "title": "Reddit r/genesiscoupe - CSC went out at 45k miles"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "South Korean Exedy stage 1 clutch kit includes the CSC and is a popular upgrade",
+            "upvotes": 0,
+            "partName": "Stage 1 Clutch Kit",
+            "partBrand": "Exedy",
+            "affiliateUrl": "https://www.amazon.com/s?k=Exedy%20Stage%201%20Clutch%20Kit&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "When replacing the CSC, always do the full clutch kit at the same time since the transmission is already out - saves $600+ in labor later",
+            "upvotes": 0
+          },
+          {
+            "type": "warning",
+            "content": "Do not drive with a leaking CSC - clutch fluid will contaminate and destroy the clutch disc",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 420,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2024-01-18",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "hyundai-genesis-coupe-steering-clunk",
+      "model": "Genesis Coupe",
+      "action": "keep_published_pending_source",
+      "reason": "A forum home page does not establish one 2010-2016 steering-rack/intermediate-shaft defect, bushing versus U-joint mechanism, updated part or repair cost. No exact Hyundai campaign or bulletin was found, so the row remains unchanged.",
+      "identityRule": "No content or publication-state changes; a different differential mechanism, clutch switch, complaint or shared symptom cannot replace this indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-recall-set-reviewed",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Hyundai&model=Genesis%20Coupe&modelYear=2013",
+          "verifiedOn": "2026-08-06",
+          "observation": "The 2013 NHTSA recall set was reviewed without substituting campaigns for a different component or mechanism."
+        }
+      ],
+      "beforeSha256": "f89d01bdff86416471e26834e3634a6203d1dec7017fd42410506b2c4a1d6e67",
+      "proposalSha256": "f89d01bdff86416471e26834e3634a6203d1dec7017fd42410506b2c4a1d6e67",
+      "before": {
+        "make": "Hyundai",
+        "model": "Genesis Coupe",
+        "years": [
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "suspension",
+        "title": "Steering Rack Clunk / Intermediate Shaft Noise",
+        "description": "The Genesis Coupe develops a clunking noise from the steering system, traced to either the steering rack mounting bushings wearing or the intermediate steering shaft U-joint drying out. The noise is most noticeable at low speeds or when turning from lock to lock. Some owners also experience play/dead spot in the steering.",
+        "solution": "Lubricate the intermediate steering shaft U-joint with white lithium grease as a temporary fix ($5). Replace the steering rack bushings or the intermediate shaft if worn (shaft part 56400-2M000, $80-120). Steering rack replacement costs $600-1,000 if bushings are not available separately. Full rack and pinion replacement is $800-1,400 with alignment.",
+        "severity": "low",
+        "confidence": "high",
+        "symptoms": [
+          "Clunk when turning at low speed",
+          "Play or dead spot in steering",
+          "Noise when going over bumps while turning",
+          "Steering feels loose on center",
+          "Popping noise from steering column area"
+        ],
+        "affectedSystems": [
+          "Steering",
+          "Suspension"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 5,
+        "estimatedCostHigh": 1400,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.gencoupe.com",
+            "type": "forum",
+            "title": "GenCoupe.com - Steering Clunk Fix Thread"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "White lithium grease on the intermediate shaft U-joint is a quick $5 fix that works for 6-12 months",
+            "upvotes": 0,
+            "partName": "White Lithium Grease Spray",
+            "partBrand": "WD-40",
+            "affiliateUrl": "https://www.amazon.com/s?k=WD-40%20White%20Lithium%20Grease%20Spray&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Check steering rack mounting bolts first - they can loosen over time and cause the clunk at zero cost to fix",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 290,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2023-12-05",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "kia-k5-steering-column-intermediate-shaft-clunk-or-knock-low-speed-turns",
+          "kia-sorento-steering-coupler-clunk",
+          "hyundai-santafe-steering-coupler-clunk"
+        ]
+      },
+      "proposal": {
+        "make": "Hyundai",
+        "model": "Genesis Coupe",
+        "years": [
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "suspension",
+        "title": "Steering Rack Clunk / Intermediate Shaft Noise",
+        "description": "The Genesis Coupe develops a clunking noise from the steering system, traced to either the steering rack mounting bushings wearing or the intermediate steering shaft U-joint drying out. The noise is most noticeable at low speeds or when turning from lock to lock. Some owners also experience play/dead spot in the steering.",
+        "solution": "Lubricate the intermediate steering shaft U-joint with white lithium grease as a temporary fix ($5). Replace the steering rack bushings or the intermediate shaft if worn (shaft part 56400-2M000, $80-120). Steering rack replacement costs $600-1,000 if bushings are not available separately. Full rack and pinion replacement is $800-1,400 with alignment.",
+        "severity": "low",
+        "confidence": "high",
+        "symptoms": [
+          "Clunk when turning at low speed",
+          "Play or dead spot in steering",
+          "Noise when going over bumps while turning",
+          "Steering feels loose on center",
+          "Popping noise from steering column area"
+        ],
+        "affectedSystems": [
+          "Steering",
+          "Suspension"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 5,
+        "estimatedCostHigh": 1400,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.gencoupe.com",
+            "type": "forum",
+            "title": "GenCoupe.com - Steering Clunk Fix Thread"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "White lithium grease on the intermediate shaft U-joint is a quick $5 fix that works for 6-12 months",
+            "upvotes": 0,
+            "partName": "White Lithium Grease Spray",
+            "partBrand": "WD-40",
+            "affiliateUrl": "https://www.amazon.com/s?k=WD-40%20White%20Lithium%20Grease%20Spray&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Check steering rack mounting bolts first - they can loosen over time and cause the clunk at zero cost to fix",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 290,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2023-12-05",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "kia-k5-steering-column-intermediate-shaft-clunk-or-knock-low-speed-turns",
+          "kia-sorento-steering-coupler-clunk",
+          "hyundai-santafe-steering-coupler-clunk"
+        ]
+      }
+    }
+  ]
+}
