@@ -1,0 +1,2705 @@
+{
+  "schemaVersion": 1,
+  "status": "proposal-only",
+  "auditStage": "model-primary-source-adjudication",
+  "requiresIndependentApproval": true,
+  "generatedOn": "2026-08-06",
+  "make": "Honda",
+  "model": "HR-V",
+  "completionStatement": "This packet reconciles all 15 frozen Honda HR-V rows. Seven same-identity Honda/NHTSA corrections are proposed; eight rows remain byte-for-byte unchanged pending exact evidence or independent disposition.",
+  "safetyContract": [
+    "No production database write, cache purge, deployment, archive action, redirect, slug change or public-page change is authorized by this packet.",
+    "All 15 rows remain published. Eight are byte-for-byte unchanged.",
+    "An unrelated campaign, bulletin, component or model may never replace the issue named by an existing indexed page.",
+    "Each rewrite contains zero commerce, zero cost or mileage claims, and empty trim and engine arrays.",
+    "Independent row-by-row approval is required before a separate guarded apply path may be created."
+  ],
+  "source": {
+    "snapshotFile": "data/_honda-deeplink-snapshot-2026-08-05.json",
+    "snapshotSha256": "671de2660f31c07e01610e26c13382b6d59b293fb74ecc3e3abc02d248d6dd5e",
+    "snapshotGeneratedAt": "2026-08-05T21:54:08.563Z",
+    "snapshotHash": "fcd155f1e269b1d8c691655699cc2e18f6029c3ee54c650b88df00004025729a",
+    "hrvRecordCount": 15
+  },
+  "observations": [
+    {
+      "code": "camera-recall-number-and-years-corrected",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "honda-hrv-rear-camera-failure-2023"
+      ],
+      "detail": "The frozen page says 2023 and cites seat-belt recall 23V782. The exact rear-camera recall is 23V046 for VIN-eligible 2019-2022 HR-V vehicles."
+    },
+    {
+      "code": "two-false-bulletin-identities-frozen",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "honda-hrv-infotainment-freezing-2016",
+        "honda-hrv-oil-leaks-engine-2016"
+      ],
+      "detail": "Bulletin 23-010 is an idle-stop restart bulletin for other Honda models; Bulletin 23-017 is a 2023 CR-V Hybrid active-grille software update. Neither supports its frozen HR-V card."
+    },
+    {
+      "code": "cvt-scope-narrowed",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "honda-hrv-cvt-transmission-shudder-2016"
+      ],
+      "detail": "Honda supports VIN-eligible 2016-2020 HR-V CVT software monitoring and premature belt deterioration, not the broader 2016-2022 shudder/maintenance aggregation."
+    },
+    {
+      "code": "paint-color-scope-corrected",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "honda-hrv-paint-peeling-2016"
+      ],
+      "detail": "Honda Bulletin 19-064 covers 2016-2018 White Orchid Pearl HR-V vehicles; Bellanova White and other colors are not included by this source."
+    },
+    {
+      "code": "rear-glass-product-update-added",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "honda-hrv-rear-window-shattering-2023"
+      ],
+      "detail": "Honda Bulletin 24-012 now provides the exact 2023 sealer/defroster mechanism and inspect-or-replace product-update remedy."
+    },
+    {
+      "code": "generic-source-cluster",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "honda-hr-v-door-lock-actuator-failure-clicking-erratic-locking",
+        "honda-hrv-ac-compressor-failure-2016",
+        "honda-hrv-drive-belt-tensioner-rattle-2016",
+        "honda-hrv-electrical-battery-drain-2016",
+        "honda-hrv-wheel-bearing-noise-2016",
+        "honda-hrv-window-gasket-failure-2016"
+      ],
+      "detail": "Generic pages, complaints, forums and videos do not establish the exact model-wide defect, mechanism, scope and remedy claims."
+    }
+  ],
+  "summary": {
+    "rewrite_same_identity": 7,
+    "keep_published_pending_source": 8,
+    "total": 15
+  },
+  "rows": [
+    {
+      "id": "honda-hr-v-door-lock-actuator-failure-clicking-erratic-locking",
+      "model": "HR-V",
+      "action": "keep_published_pending_source",
+      "reason": "A forum thread and cost estimator do not establish a 2016-2020 HR-V door-lock-actuator defect, system-wide mechanism, part family or Honda remedy. The row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; a complaint, forum, video or unrelated bulletin cannot replace this issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "502e7cbe61aae45b684c2a176da3e08ff76503c12da2896ae37d032beefa76d6",
+      "proposalSha256": "502e7cbe61aae45b684c2a176da3e08ff76503c12da2896ae37d032beefa76d6",
+      "before": {
+        "make": "Honda",
+        "model": "HR-V",
+        "years": [
+          2016,
+          2017,
+          2018,
+          2019,
+          2020
+        ],
+        "trims": [
+          "LX",
+          "EX",
+          "EX-L"
+        ],
+        "engines": [
+          "1.8L i-VTEC R18 inline-4"
+        ],
+        "category": "electrical",
+        "title": "Door Lock Actuator Failure — Clicking and Erratic Locking",
+        "description": "First-generation HR-V owners report internal failure of the power door lock actuators, most often at the driver's door. A failing actuator produces repeated clicking, doors that lock/unlock on their own or won't respond to the fob, and security/warning lights. Because the driver's door actuator can signal all doors and tie into the security system, a single bad actuator can cause system-wide locking glitches. Distinct from general battery-drain electrical gremlins — this is a discrete actuator/switch mechanical-electrical failure.",
+        "solution": "Diagnose whether the fault is the door lock actuator, the door latch switch, or wiring in the door harness loom (which flexes and chafes at the door hinge). Replace the failed actuator (OEM part numbers in the 72150-T7W / 72150-T5R family for related Honda doors). Parts run roughly $60-$150; with labor to remove the door panel and window/regulator clearance, total ~$200-$450 per door.",
+        "severity": "low",
+        "confidence": "high",
+        "symptoms": [
+          "Repeated clicking from a door lock",
+          "Doors lock/unlock by themselves",
+          "Key fob fails to lock or unlock one or all doors",
+          "Security/warning light illuminated",
+          "Single door won't actuate"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 200,
+        "estimatedCostHigh": 450,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.hrvforum.com/threads/locking-mechanism-defect.37265/",
+            "type": "forum",
+            "title": "Locking mechanism defect — Honda HR-V Forum"
+          },
+          {
+            "url": "https://repairpal.com/estimator/honda/hr-v/door-lock-actuator-replacement-cost",
+            "type": "article",
+            "title": "Honda HR-V Door Lock Actuator Replacement Cost Estimate — RepairPal"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-19",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "HR-V",
+        "years": [
+          2016,
+          2017,
+          2018,
+          2019,
+          2020
+        ],
+        "trims": [
+          "LX",
+          "EX",
+          "EX-L"
+        ],
+        "engines": [
+          "1.8L i-VTEC R18 inline-4"
+        ],
+        "category": "electrical",
+        "title": "Door Lock Actuator Failure — Clicking and Erratic Locking",
+        "description": "First-generation HR-V owners report internal failure of the power door lock actuators, most often at the driver's door. A failing actuator produces repeated clicking, doors that lock/unlock on their own or won't respond to the fob, and security/warning lights. Because the driver's door actuator can signal all doors and tie into the security system, a single bad actuator can cause system-wide locking glitches. Distinct from general battery-drain electrical gremlins — this is a discrete actuator/switch mechanical-electrical failure.",
+        "solution": "Diagnose whether the fault is the door lock actuator, the door latch switch, or wiring in the door harness loom (which flexes and chafes at the door hinge). Replace the failed actuator (OEM part numbers in the 72150-T7W / 72150-T5R family for related Honda doors). Parts run roughly $60-$150; with labor to remove the door panel and window/regulator clearance, total ~$200-$450 per door.",
+        "severity": "low",
+        "confidence": "high",
+        "symptoms": [
+          "Repeated clicking from a door lock",
+          "Doors lock/unlock by themselves",
+          "Key fob fails to lock or unlock one or all doors",
+          "Security/warning light illuminated",
+          "Single door won't actuate"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 200,
+        "estimatedCostHigh": 450,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.hrvforum.com/threads/locking-mechanism-defect.37265/",
+            "type": "forum",
+            "title": "Locking mechanism defect — Honda HR-V Forum"
+          },
+          {
+            "url": "https://repairpal.com/estimator/honda/hr-v/door-lock-actuator-replacement-cost",
+            "type": "article",
+            "title": "Honda HR-V Door Lock Actuator Replacement Cost Estimate — RepairPal"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-19",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-hr-v-front-seat-belt-pretensioner-missing-rivet",
+      "model": "HR-V",
+      "action": "rewrite_same_identity",
+      "reason": "Retained the seat-belt-pretensioner identity and exact 2023-2024 scope while replacing secondary-source counts with NHTSA recall 23V782 and its inspection/replacement remedy.",
+      "identityRule": "The indexed issue identity remains on the same ID; official Honda/NHTSA scope, mechanism and remedy replace unsupported generalizations.",
+      "commerceDecision": "no-commerce",
+      "changedFields": [
+        "trims",
+        "engines",
+        "title",
+        "description",
+        "solution",
+        "symptoms",
+        "affectedSystems",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "humanApproved",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
+      "evidence": [
+        {
+          "kind": "manufacturer-record",
+          "url": "https://static.nhtsa.gov/odi/rcl/2023/RCAK-23V782-7406.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "NHTSA Recall Acknowledgment 23V782 - 2023-2024 HR-V Seat Belt Pretensioners supports the proposed same-identity scope, mechanism and remedy."
+        }
+      ],
+      "beforeSha256": "2f7e65a333c416464eff680f232e2a44670a5166b4b6724ae6bd7e2dd22043d2",
+      "proposalSha256": "0d3d7b7e30525f2e3826b6bd673ff8484998e35204b5382a98a7f63afd56a277",
+      "before": {
+        "make": "Honda",
+        "model": "HR-V",
+        "years": [
+          2023,
+          2024
+        ],
+        "trims": [
+          "LX",
+          "Sport",
+          "EX-L"
+        ],
+        "engines": [
+          "2.0L i-VTEC inline-4"
+        ],
+        "category": "safety",
+        "title": "Front Seat Belt Pretensioner Missing Rivet (Recall 23V-782)",
+        "description": "Certain 2023-2024 HR-V (and Accord) vehicles left the assembly line with front seat belt pretensioners missing the rivet that secures the quick connector and wire plate. In a crash, the pretensioner may not properly tighten the belt, so an occupant may not be adequately restrained, increasing injury risk. More than 300,000 Accord/HR-V units were covered, though Honda estimated under 1% actually contain the defect.",
+        "solution": "Safety recall NHTSA 23V-782 (owner letters mailed January 8, 2024). Dealers inspect the front seat belt pretensioners and replace any affected assembly free of charge. Owners should verify VIN status at nhtsa.gov/recalls — there is no owner-paid remedy.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "No driver-visible symptom — latent assembly defect",
+          "Pretensioner may fail to fully tension belt in a collision"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 0,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://hondanews.com/en-US/honda-corporate/releases/release-ce25b2bdc6167d48c9de61f4f905d5be-2023-2024-accord-and-hr-v-seat-belt-pretensioner-recall",
+            "type": "recall",
+            "title": "2023-2024 Accord and HR-V Seat Belt Pretensioner Recall — Honda News"
+          },
+          {
+            "url": "https://www.cbsnews.com/news/honda-recalls-accords-and-hr-vs-over-missing-seat-belt-piece/",
+            "type": "article",
+            "title": "Honda recalls more than 300,000 Accords and HR-Vs over missing seat belt piece — CBS News"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-19",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "HR-V",
+        "years": [
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "safety",
+        "title": "Front Seat Belt Pretensioner Missing Rivet Recall 23V782",
+        "description": "Honda recall 23V782 covers VIN-eligible 2023-2024 HR-V vehicles. Some front seat belt pretensioners were assembled without the rivet securing the quick connector and wire plate, so the belt may not properly restrain an occupant in a crash.",
+        "solution": "Have a Honda dealer check VIN eligibility. The recall remedy is to inspect the front seat belt pretensioners and replace affected assemblies as necessary, free of charge.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "No driver-visible warning is expected",
+          "A missing rivet can prevent the pretensioner from properly restraining an occupant in a crash"
+        ],
+        "affectedSystems": [
+          "Front seat belt pretensioners"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "NHTSA Recall Acknowledgment 23V782 - 2023-2024 HR-V Seat Belt Pretensioners",
+            "url": "https://static.nhtsa.gov/odi/rcl/2023/RCAK-23V782-7406.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Retained the seat-belt-pretensioner identity and exact 2023-2024 scope while replacing secondary-source counts with NHTSA recall 23V782 and its inspection/replacement remedy.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-hr-v-fuel-pump-impeller-swelling-causing-engine-stall",
+      "model": "HR-V",
+      "action": "rewrite_same_identity",
+      "reason": "Corrected the mixed 20V314/23V858 narrative to the exact 2018-2020 AWD and 2WD HR-V recall bulletins and removed unsupported supplier, pricing, sound and out-of-recall repair claims.",
+      "identityRule": "The indexed issue identity remains on the same ID; official Honda/NHTSA scope, mechanism and remedy replace unsupported generalizations.",
+      "commerceDecision": "no-commerce",
+      "changedFields": [
+        "trims",
+        "engines",
+        "title",
+        "description",
+        "solution",
+        "symptoms",
+        "affectedSystems",
+        "dtcCodes",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "humanApproved",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
+      "evidence": [
+        {
+          "kind": "manufacturer-record",
+          "url": "https://static.nhtsa.gov/odi/rcl/2023/RCRIT-23V858-1142.PDF",
+          "verifiedOn": "2026-08-06",
+          "observation": "Honda Bulletin 24-015 - 2018-2020 HR-V AWD Fuel Pump Motor Recall supports the proposed same-identity scope, mechanism and remedy."
+        },
+        {
+          "kind": "manufacturer-record",
+          "url": "https://static.nhtsa.gov/odi/rcl/2023/RCRIT-23V858-5560.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "Honda Bulletin 24-026 - 2018-2020 HR-V 2WD Fuel Pump Motor Recall supports the proposed same-identity scope, mechanism and remedy."
+        }
+      ],
+      "beforeSha256": "82421d75bc6c3c283d5a1d15c9153e2c02fa85fd0d397888d4e5f1bc335acbca",
+      "proposalSha256": "904ba619d8cc65efb9fa12323b2b7fb4404623edb858b85b59ba35d5f3a530ba",
+      "before": {
+        "make": "Honda",
+        "model": "HR-V",
+        "years": [
+          2018,
+          2019,
+          2020
+        ],
+        "trims": [
+          "LX",
+          "Sport",
+          "EX",
+          "EX-L",
+          "Touring"
+        ],
+        "engines": [
+          "1.8L i-VTEC R18 inline-4"
+        ],
+        "category": "fuel",
+        "title": "Fuel Pump Impeller Swelling Causing Engine Stall (Recall C2P / 20V-314 / 23V-858)",
+        "description": "The low-pressure in-tank fuel pump (Denso-supplied) was built with out-of-specification impellers that absorb fuel, swell, and deform over time. A deformed impeller can bind and seize the pump, cutting off fuel delivery. The engine can crank but fail to start, or stall without warning while driving, which is a crash hazard. The defect is part of the massive Honda/Acura fuel-pump recall campaign (originally ~136,000 vehicles, later expanded to ~2.5 million across the brand), with 2018-2020 HR-V 2WD among the affected populations.",
+        "solution": "This is a safety recall (Honda recall codes including the 2018-2019 HR-V fuel-pump-motor campaign; NHTSA 20V-314 and the expanded 23V-858). Dealers replace the entire fuel pump module/assembly free of charge. Owners should verify VIN status at nhtsa.gov/recalls and schedule the free replacement; out of recall, a Denso/OEM fuel pump assembly runs roughly $400-$800 installed.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Engine cranks but will not start",
+          "Sudden stall while driving",
+          "Whining noise from fuel tank area",
+          "Hard starting when tank is low",
+          "Loss of motive power at speed"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0087",
+          "P0230",
+          "P0627"
+        ],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 800,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://honda.oemdtc.com/1480/safety-recall-2018-2019-honda-hr-v-fuel-pump-motor",
+            "type": "recall",
+            "title": "Safety Recall: 2018-2019 Honda HR-V Fuel Pump Motor"
+          },
+          {
+            "url": "https://www.hrvforum.com/threads/2018-2019-fuel-pump-recall.41652/",
+            "type": "forum",
+            "title": "2018-2019 Fuel Pump recall — Honda HR-V Forum"
+          },
+          {
+            "url": "https://www.asburyauto.com/honda-hr-v-fuel-pump-recall",
+            "type": "article",
+            "title": "Honda HR-V Fuel Pump Recall — Asbury Automotive"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-19",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "HR-V",
+        "years": [
+          2018,
+          2019,
+          2020
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "fuel",
+        "title": "In-Tank Fuel Pump Motor Recall 23V858",
+        "description": "Honda Bulletins 24-015 and 24-026 cover VIN-eligible 2018-2020 HR-V AWD and 2WD vehicles. A low-density fuel-pump impeller can absorb fuel and deform, interfere with the pump body and make the pump inoperative. The engine may not start or may stall while driving, increasing crash risk.",
+        "solution": "Have a Honda dealer check VIN eligibility. The recall remedy is replacement of the in-tank fuel pump motor under recall 23V858.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Difficulty starting",
+          "Engine hesitation while driving",
+          "Malfunction indicator lamp may illuminate",
+          "Engine may stall while driving",
+          "DTC P0087 may be stored"
+        ],
+        "affectedSystems": [
+          "In-tank fuel pump motor",
+          "Fuel pump impeller"
+        ],
+        "dtcCodes": [
+          "P0087"
+        ],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "Honda Bulletin 24-015 - 2018-2020 HR-V AWD Fuel Pump Motor Recall",
+            "url": "https://static.nhtsa.gov/odi/rcl/2023/RCRIT-23V858-1142.PDF"
+          },
+          {
+            "type": "recall",
+            "title": "Honda Bulletin 24-026 - 2018-2020 HR-V 2WD Fuel Pump Motor Recall",
+            "url": "https://static.nhtsa.gov/odi/rcl/2023/RCRIT-23V858-5560.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Corrected the mixed 20V314/23V858 narrative to the exact 2018-2020 AWD and 2WD HR-V recall bulletins and removed unsupported supplier, pricing, sound and out-of-recall repair claims.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-hrv-ac-compressor-failure-2016",
+      "model": "HR-V",
+      "action": "keep_published_pending_source",
+      "reason": "Two complaints do not establish a 2016-2023 HR-V compressor defect, mileage range, clutch-first progression, system contamination or Honda remedy. The row remains unchanged.",
+      "identityRule": "No content or publication-state changes; a complaint, forum, video or unrelated bulletin cannot replace this issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "4a35a1e69662cad9b68ce297863b1966055f1c7a33c506fbd7a1e91b6fc8ae32",
+      "proposalSha256": "4a35a1e69662cad9b68ce297863b1966055f1c7a33c506fbd7a1e91b6fc8ae32",
+      "before": {
+        "make": "Honda",
+        "model": "HR-V",
+        "years": [
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "cooling",
+        "title": "AC Compressor Failure",
+        "description": "Honda HR-V AC compressors (2016-2023) fail prematurely, often between 40,000-80,000 miles. Symptoms include no cold air, loud grinding/squealing noises from the compressor, and intermittent cooling. The compressor clutch bearing fails first, then the entire compressor seizes. If caught early (just clutch failure), replacement is cheaper. If the compressor grenades, metal debris contaminates the entire AC system requiring full flush and component replacement ($1,500-2,500).",
+        "solution": "If just the clutch/bearing is bad, replace the AC compressor clutch assembly (~$400-600). If the compressor seized or failed, replace the entire AC compressor, receiver-drier, expansion valve, and flush all lines to remove metal debris ($1,500-2,500). Use OEM (Denso/Sanden) or high-quality aftermarket (Four Seasons, UAC) compressors - cheap compressors fail quickly.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "No cold air from AC vents",
+          "AC blows warm air only",
+          "Loud grinding or squealing noise when AC is on",
+          "Intermittent cooling (works then stops)",
+          "Clicking sound from compressor area",
+          "AC clutch not engaging"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 400,
+        "estimatedCostHigh": 2500,
+        "typicalMileageLow": 40000,
+        "typicalMileageHigh": 80000,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2018/HONDA/HR-V/SUV/FWD#complaints",
+            "type": "nhtsa",
+            "title": "NHTSA Complaint #11497878 - 2018 Honda HR-V Air Conditioner Compressor Failed"
+          },
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2019/HONDA/HR-V/SUV/FWD#complaints",
+            "type": "nhtsa",
+            "title": "NHTSA Complaint #11576470 - 2019 Honda HR-V AC Compressor Failure / No Cold Air"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "HRVForum consensus: OEM Denso compressors last longest. Four Seasons and UAC are acceptable aftermarket alternatives at half the price.",
+            "upvotes": 0,
+            "partName": "OEM AC Compressor",
+            "partBrand": "Denso",
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Denso%20OEM%20AC%20Compressor&tag=au7o-20"
+          },
+          {
+            "type": "warning",
+            "content": "CRITICAL: If the compressor seized, you MUST replace the receiver-drier and flush all AC lines - metal debris will destroy a new compressor in weeks.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Catch it early - if you hear clicking/grinding from the AC compressor, replace it before it grenades and sends metal shavings through the whole system.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "Use PAG46 refrigerant oil only (not PAG100) - wrong oil type accelerates compressor wear in Honda systems.",
+            "upvotes": 0,
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20HR-V%20Use%20PAG46%20refrigerant%20oil%20only%20(not%20PAG100)%20-%20wrong%20oil%20type&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-02-22",
+        "reviewedOn": "2026-02-22",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "HR-V",
+        "years": [
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "cooling",
+        "title": "AC Compressor Failure",
+        "description": "Honda HR-V AC compressors (2016-2023) fail prematurely, often between 40,000-80,000 miles. Symptoms include no cold air, loud grinding/squealing noises from the compressor, and intermittent cooling. The compressor clutch bearing fails first, then the entire compressor seizes. If caught early (just clutch failure), replacement is cheaper. If the compressor grenades, metal debris contaminates the entire AC system requiring full flush and component replacement ($1,500-2,500).",
+        "solution": "If just the clutch/bearing is bad, replace the AC compressor clutch assembly (~$400-600). If the compressor seized or failed, replace the entire AC compressor, receiver-drier, expansion valve, and flush all lines to remove metal debris ($1,500-2,500). Use OEM (Denso/Sanden) or high-quality aftermarket (Four Seasons, UAC) compressors - cheap compressors fail quickly.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "No cold air from AC vents",
+          "AC blows warm air only",
+          "Loud grinding or squealing noise when AC is on",
+          "Intermittent cooling (works then stops)",
+          "Clicking sound from compressor area",
+          "AC clutch not engaging"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 400,
+        "estimatedCostHigh": 2500,
+        "typicalMileageLow": 40000,
+        "typicalMileageHigh": 80000,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2018/HONDA/HR-V/SUV/FWD#complaints",
+            "type": "nhtsa",
+            "title": "NHTSA Complaint #11497878 - 2018 Honda HR-V Air Conditioner Compressor Failed"
+          },
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2019/HONDA/HR-V/SUV/FWD#complaints",
+            "type": "nhtsa",
+            "title": "NHTSA Complaint #11576470 - 2019 Honda HR-V AC Compressor Failure / No Cold Air"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "HRVForum consensus: OEM Denso compressors last longest. Four Seasons and UAC are acceptable aftermarket alternatives at half the price.",
+            "upvotes": 0,
+            "partName": "OEM AC Compressor",
+            "partBrand": "Denso",
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Denso%20OEM%20AC%20Compressor&tag=au7o-20"
+          },
+          {
+            "type": "warning",
+            "content": "CRITICAL: If the compressor seized, you MUST replace the receiver-drier and flush all AC lines - metal debris will destroy a new compressor in weeks.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Catch it early - if you hear clicking/grinding from the AC compressor, replace it before it grenades and sends metal shavings through the whole system.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "Use PAG46 refrigerant oil only (not PAG100) - wrong oil type accelerates compressor wear in Honda systems.",
+            "upvotes": 0,
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20HR-V%20Use%20PAG46%20refrigerant%20oil%20only%20(not%20PAG100)%20-%20wrong%20oil%20type&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-02-22",
+        "reviewedOn": "2026-02-22",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-hrv-cvt-transmission-shudder-2016",
+      "model": "HR-V",
+      "action": "rewrite_same_identity",
+      "reason": "Narrowed the 2016-2022 shudder aggregation to Honda's VIN-eligible 2016-2020 CVT software and premature-belt-deterioration campaigns and removed unsupported fluid intervals, towing rules, pricing and extra DTCs.",
+      "identityRule": "The indexed issue identity remains on the same ID; official Honda/NHTSA scope, mechanism and remedy replace unsupported generalizations.",
+      "commerceDecision": "no-commerce",
+      "changedFields": [
+        "years",
+        "title",
+        "description",
+        "solution",
+        "confidence",
+        "symptoms",
+        "affectedSystems",
+        "dtcCodes",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "typicalMileageLow",
+        "typicalMileageHigh",
+        "citations",
+        "communityRecommendations",
+        "source",
+        "lastReportedByOwners",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary",
+        "relatedIssueIds"
+      ],
+      "evidence": [
+        {
+          "kind": "manufacturer-record",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2021/MC-10198210-0001.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "Honda 2016-2020 HR-V CVT Product Update and Warranty Extension Notice supports the proposed same-identity scope, mechanism and remedy."
+        }
+      ],
+      "beforeSha256": "76026870e2e376bde3c45860e305a6e446578da9e90105529c74b7cb20e79d0c",
+      "proposalSha256": "f235b8a2d24143ba5617d731598ed2e7eac70de70d1bc0ef580941ccdceb9277",
+      "before": {
+        "make": "Honda",
+        "model": "HR-V",
+        "years": [
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "transmission",
+        "title": "CVT Transmission Shuddering and Judder",
+        "description": "The 2016-2022 Honda HR-V CVT (Continuously Variable Transmission) experiences shuddering, judder, hesitation, and premature belt deterioration. Symptoms include vibrations during acceleration (especially 15-35 mph), delayed engagement, and strange whining/grinding noises. Honda extended the CVT warranty to 7 years/150,000 miles for 2016-2020 models due to premature belt wear. If caught early, CVT fluid replacement can help, but severe cases require complete CVT replacement ($3,000-5,000).",
+        "solution": "Early-stage: Replace CVT fluid with genuine Honda HCF-2 fluid every 25,000-30,000 miles (not per Honda's \"lifetime\" fluid claim). Severe cases: Replace entire CVT assembly ($3,000-5,000). Check if your vehicle qualifies for Honda's extended 7yr/150k warranty coverage (2016-2020 models). Avoid frequent towing, heavy loads, and aggressive driving to extend CVT life.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "Shuddering or vibration during acceleration",
+          "Hesitation when accelerating from a stop",
+          "Whining or grinding noise from transmission",
+          "Delayed engagement when shifting to Drive",
+          "Loss of acceleration or power",
+          "Check engine light with transmission codes"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0700",
+          "P0730",
+          "P0740",
+          "P0868",
+          "P17F0",
+          "P17F1"
+        ],
+        "estimatedCostLow": 300,
+        "estimatedCostHigh": 5000,
+        "typicalMileageLow": 25000,
+        "typicalMileageHigh": 30000,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2016/HONDA/HR-V",
+            "type": "nhtsa",
+            "title": "NHTSA Vehicle Page for 2016 Honda HR-V - Includes Complaints and Investigations"
+          },
+          {
+            "url": "https://www.reddit.com/r/MechanicAdvice/comments/9x1y7k/honda_hrv_cvt_shudder_and_judder_issues/",
+            "type": "forum",
+            "title": "Reddit r/MechanicAdvice Thread Discussing Honda HR-V CVT Shudder and Judder Issues"
+          },
+          {
+            "url": "https://www.youtube.com/watch?v=G1rL5q7q6mE",
+            "type": "video",
+            "title": "EricTheCarGuy - Honda HR-V CVT Transmission Shudder Repair Walkthrough"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Use ONLY genuine Honda HCF-2 CVT fluid - aftermarket fluids destroy the belt. Many HRVForum members who used aftermarket fluid had failures within 10k miles.",
+            "upvotes": 0,
+            "partName": "HCF-2 CVT Fluid",
+            "partBrand": "Honda",
+            "partNumber": "08200-HCF",
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%2008200-HCF&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Change CVT fluid every 25k-30k miles regardless of Honda saying \"lifetime fluid\" - owners who follow this schedule report CVTs lasting 150k+ miles without issues.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "warning",
+            "content": "CRITICAL: Avoid towing or heavy loads with the HR-V CVT - the transmission is not designed for it and will fail prematurely under stress.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Check if your 2016-2020 HR-V qualifies for Honda's extended 7yr/150k CVT warranty - many owners got free replacements under this program.",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-02-22",
+        "reviewedOn": "2026-02-22",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "honda-crv-cvt-shudder-2015",
+          "honda-insight-cvt-transmission-judder-2010",
+          "honda-accord-cvt-start-clutch-judder",
+          "honda-fit-cvt-transmission-problems-2015",
+          "honda-crosstour-transmission-shudder-2010"
+        ]
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "HR-V",
+        "years": [
+          2016,
+          2017,
+          2018,
+          2019,
+          2020
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "transmission",
+        "title": "CVT Software Update and Premature Belt Deterioration - Bulletins 21-046/21-047",
+        "description": "Honda product update 21-046 and warranty extension 21-047 apply to VIN-eligible 2016-2020 HR-V vehicles. The original CVT software may not properly monitor internal fluid pressure or detect early belt failure. Early belt deterioration can eventually cause the vehicle not to move when accelerating.",
+        "solution": "Have a Honda dealer check VIN eligibility and campaign completion. Honda directs a CVT software update followed by inspection; a CVT that fails the inspection is replaced under the campaign. Honda announced coverage of 7 years from original purchase or 150,000 miles, whichever comes first, after the product update is completed.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Malfunction indicator lamp may illuminate",
+          "Vehicle may not move when accelerating",
+          "DTC P721E may be stored after the software update"
+        ],
+        "affectedSystems": [
+          "Continuously variable transmission software",
+          "CVT belt"
+        ],
+        "dtcCodes": [
+          "P721E"
+        ],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "Honda 2016-2020 HR-V CVT Product Update and Warranty Extension Notice",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2021/MC-10198210-0001.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Narrowed the 2016-2022 shudder aggregation to Honda's VIN-eligible 2016-2020 CVT software and premature-belt-deterioration campaigns and removed unsupported fluid intervals, towing rules, pricing and extra DTCs.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-hrv-drive-belt-tensioner-rattle-2016",
+      "model": "HR-V",
+      "action": "keep_published_pending_source",
+      "reason": "The citations include fabricated-looking forum and video paths plus a generic model page; they do not establish an HR-V tensioner defect or the claimed accessory-loss consequences. The row remains unchanged.",
+      "identityRule": "No content or publication-state changes; a complaint, forum, video or unrelated bulletin cannot replace this issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "961250946ffd4c5eb858b8491f04f09be6fb0880fdfeb3feac832aafeffda70f",
+      "proposalSha256": "961250946ffd4c5eb858b8491f04f09be6fb0880fdfeb3feac832aafeffda70f",
+      "before": {
+        "make": "Honda",
+        "model": "HR-V",
+        "years": [
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "other",
+        "title": "Drive Belt Tensioner Bearing Rattle",
+        "description": "The Honda HR-V drive belt tensioner bearing fails prematurely, causing a rattling or squealing noise from the front of the engine, especially on cold starts. The tensioner pulley bearing wears out and creates noise, but the belt stays tight. If ignored, the tensioner can seize, causing the serpentine belt to slip or break, resulting in loss of power steering, alternator, and water pump (overheating). Replacement: $150-300.",
+        "solution": "Inspect the drive belt tensioner pulley for play/wobble. If the bearing is bad, replace the entire tensioner assembly (not just the pulley). Also replace the serpentine belt at the same time (~$20-30). Total cost: $150-300 for tensioner + belt + labor. Use OEM Honda or quality aftermarket (Gates, Dayco) tensioners.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Rattling noise from front of engine",
+          "Squealing or chirping on cold starts",
+          "Noise goes away when engine warms up (sometimes)",
+          "Visible wobble in tensioner pulley",
+          "Serpentine belt squealing"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0128",
+          "P2181"
+        ],
+        "estimatedCostLow": 150,
+        "estimatedCostHigh": 300,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2016/HONDA/HR-V",
+            "type": "nhtsa",
+            "title": "NHTSA Vehicle Page for 2016 Honda HR-V - includes complaints and investigations"
+          },
+          {
+            "url": "https://www.reddit.com/r/MechanicAdvice/comments/abc123/honda_hrv_drive_belt_tensioner_bearing_noise/",
+            "type": "forum",
+            "title": "Reddit r/MechanicAdvice thread discussing Honda HR-V drive belt tensioner bearing noise"
+          },
+          {
+            "url": "https://www.youtube.com/watch?v=xyz789",
+            "type": "video",
+            "title": "YouTube - Repair video on replacing Honda HR-V drive belt tensioner bearing by EricTheCarGuy"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "DIY-friendly - the tensioner is easily accessible on the HR-V. Takes 30-45 minutes with basic hand tools.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "HRVForum members report good results with Gates or Dayco tensioners at half the price of OEM Honda.",
+            "upvotes": 0,
+            "partBrand": "Gates",
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20HR-V%20HRVForum%20members%20report%20good%20results%20with%20Gates%20or%20Dayco%20ten&tag=au7o-20"
+          },
+          {
+            "type": "warning",
+            "content": "Don't ignore the rattle - if the tensioner seizes, the belt will break and your engine will overheat (no water pump).",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "While you're there, replace the serpentine belt too - it's cheap ($20-30) and you're already in there.",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-02-22",
+        "reviewedOn": "2026-02-22",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "HR-V",
+        "years": [
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "other",
+        "title": "Drive Belt Tensioner Bearing Rattle",
+        "description": "The Honda HR-V drive belt tensioner bearing fails prematurely, causing a rattling or squealing noise from the front of the engine, especially on cold starts. The tensioner pulley bearing wears out and creates noise, but the belt stays tight. If ignored, the tensioner can seize, causing the serpentine belt to slip or break, resulting in loss of power steering, alternator, and water pump (overheating). Replacement: $150-300.",
+        "solution": "Inspect the drive belt tensioner pulley for play/wobble. If the bearing is bad, replace the entire tensioner assembly (not just the pulley). Also replace the serpentine belt at the same time (~$20-30). Total cost: $150-300 for tensioner + belt + labor. Use OEM Honda or quality aftermarket (Gates, Dayco) tensioners.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Rattling noise from front of engine",
+          "Squealing or chirping on cold starts",
+          "Noise goes away when engine warms up (sometimes)",
+          "Visible wobble in tensioner pulley",
+          "Serpentine belt squealing"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0128",
+          "P2181"
+        ],
+        "estimatedCostLow": 150,
+        "estimatedCostHigh": 300,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2016/HONDA/HR-V",
+            "type": "nhtsa",
+            "title": "NHTSA Vehicle Page for 2016 Honda HR-V - includes complaints and investigations"
+          },
+          {
+            "url": "https://www.reddit.com/r/MechanicAdvice/comments/abc123/honda_hrv_drive_belt_tensioner_bearing_noise/",
+            "type": "forum",
+            "title": "Reddit r/MechanicAdvice thread discussing Honda HR-V drive belt tensioner bearing noise"
+          },
+          {
+            "url": "https://www.youtube.com/watch?v=xyz789",
+            "type": "video",
+            "title": "YouTube - Repair video on replacing Honda HR-V drive belt tensioner bearing by EricTheCarGuy"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "DIY-friendly - the tensioner is easily accessible on the HR-V. Takes 30-45 minutes with basic hand tools.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "HRVForum members report good results with Gates or Dayco tensioners at half the price of OEM Honda.",
+            "upvotes": 0,
+            "partBrand": "Gates",
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20HR-V%20HRVForum%20members%20report%20good%20results%20with%20Gates%20or%20Dayco%20ten&tag=au7o-20"
+          },
+          {
+            "type": "warning",
+            "content": "Don't ignore the rattle - if the tensioner seizes, the belt will break and your engine will overheat (no water pump).",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "While you're there, replace the serpentine belt too - it's cheap ($20-30) and you're already in there.",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-02-22",
+        "reviewedOn": "2026-02-22",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-hrv-electrical-battery-drain-2016",
+      "model": "HR-V",
+      "action": "keep_published_pending_source",
+      "reason": "A generic model page and forum path do not establish the combined door-lock, infotainment, stability-module and battery-drain narrative or the claimed fuse diagnosis. The row remains unchanged.",
+      "identityRule": "No content or publication-state changes; a complaint, forum, video or unrelated bulletin cannot replace this issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "e26c68cbdeed822dd70d3cb8fb5bd31d6c2d9e84afc8c06152f52f27b316005f",
+      "proposalSha256": "e26c68cbdeed822dd70d3cb8fb5bd31d6c2d9e84afc8c06152f52f27b316005f",
+      "before": {
+        "make": "Honda",
+        "model": "HR-V",
+        "years": [
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Electrical System Issues and Battery Drain",
+        "description": "Honda HR-V models across all years experience electrical system problems including parasitic battery drain, premature battery failure, and stability control module failures. Owners report dead batteries after 24-48 hours of sitting, with the vehicle not holding a charge. Common causes include faulty door lock actuators causing constant drain, infotainment system staying on, and failing stability control modules. Stability control module replacement can cost $1,500+.",
+        "solution": "Perform parasitic draw test to identify the circuit causing drain (normal is <50mA). Common culprits: door lock actuators (pull fuse #13 to test), infotainment system, or stability control module. Replace faulty component. If battery is weak (load test <12.4V), replace battery first before chasing gremlins. OEM Honda battery: $150-250. Stability control module: $1,500-2,000.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Battery dies after 1-2 days of sitting",
+          "Battery won't hold charge",
+          "Multiple electrical warning lights",
+          "VSA (stability control) warning light",
+          "Infotainment system won't shut off",
+          "Random electrical glitches"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 150,
+        "estimatedCostHigh": 2000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2016/HONDA/HR-V",
+            "type": "nhtsa",
+            "title": "NHTSA Vehicle Complaints for 2016 Honda HR-V"
+          },
+          {
+            "url": "https://www.reddit.com/r/MechanicAdvice/comments/ix1v4s/honda_hrv_battery_drain_issue/",
+            "type": "forum",
+            "title": "Reddit r/MechanicAdvice Thread Discussing Honda HR-V Battery Drain Issues"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "HRVForum DIY: Pull fuse #13 (power door locks) overnight - if battery stays charged, you have a bad door lock actuator causing the drain.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "Many owners report Interstate or DieHard AGM batteries lasting longer than OEM Honda batteries in the HR-V.",
+            "upvotes": 0,
+            "partBrand": "Interstate",
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20HR-V%20Many%20owners%20report%20Interstate%20or%20DieHard%20AGM%20batteries%20lasti&tag=au7o-20"
+          },
+          {
+            "type": "warning",
+            "content": "Don't just keep replacing the battery - find and fix the parasitic drain or you'll kill battery after battery.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Disconnect the infotainment harness overnight (under dash) - if drain stops, the head unit is staying awake and needs replacement/reflash.",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-02-22",
+        "reviewedOn": "2026-02-22",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "HR-V",
+        "years": [
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Electrical System Issues and Battery Drain",
+        "description": "Honda HR-V models across all years experience electrical system problems including parasitic battery drain, premature battery failure, and stability control module failures. Owners report dead batteries after 24-48 hours of sitting, with the vehicle not holding a charge. Common causes include faulty door lock actuators causing constant drain, infotainment system staying on, and failing stability control modules. Stability control module replacement can cost $1,500+.",
+        "solution": "Perform parasitic draw test to identify the circuit causing drain (normal is <50mA). Common culprits: door lock actuators (pull fuse #13 to test), infotainment system, or stability control module. Replace faulty component. If battery is weak (load test <12.4V), replace battery first before chasing gremlins. OEM Honda battery: $150-250. Stability control module: $1,500-2,000.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Battery dies after 1-2 days of sitting",
+          "Battery won't hold charge",
+          "Multiple electrical warning lights",
+          "VSA (stability control) warning light",
+          "Infotainment system won't shut off",
+          "Random electrical glitches"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 150,
+        "estimatedCostHigh": 2000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2016/HONDA/HR-V",
+            "type": "nhtsa",
+            "title": "NHTSA Vehicle Complaints for 2016 Honda HR-V"
+          },
+          {
+            "url": "https://www.reddit.com/r/MechanicAdvice/comments/ix1v4s/honda_hrv_battery_drain_issue/",
+            "type": "forum",
+            "title": "Reddit r/MechanicAdvice Thread Discussing Honda HR-V Battery Drain Issues"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "HRVForum DIY: Pull fuse #13 (power door locks) overnight - if battery stays charged, you have a bad door lock actuator causing the drain.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "Many owners report Interstate or DieHard AGM batteries lasting longer than OEM Honda batteries in the HR-V.",
+            "upvotes": 0,
+            "partBrand": "Interstate",
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20HR-V%20Many%20owners%20report%20Interstate%20or%20DieHard%20AGM%20batteries%20lasti&tag=au7o-20"
+          },
+          {
+            "type": "warning",
+            "content": "Don't just keep replacing the battery - find and fix the parasitic drain or you'll kill battery after battery.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Disconnect the infotainment harness overnight (under dash) - if drain stops, the head unit is staying awake and needs replacement/reflash.",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-02-22",
+        "reviewedOn": "2026-02-22",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-hrv-infotainment-freezing-2016",
+      "model": "HR-V",
+      "action": "keep_published_pending_source",
+      "reason": "The frozen Bulletin 23-010 citation is false for this identity: Honda Bulletin 23-010 covers idle-stop restart on Passport, Pilot and Ridgeline, not HR-V infotainment. A complaint cannot support the broad multi-generation aggregation, so the row remains unchanged.",
+      "identityRule": "No content or publication-state changes; a complaint, forum, video or unrelated bulletin cannot replace this issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "citation-model-and-identity-mismatch",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2023/MC-10229677-0001.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "Honda Bulletin 23-010 covers auto-idle-stop restart on Passport, Pilot and Ridgeline; it does not cover HR-V infotainment."
+        }
+      ],
+      "beforeSha256": "7b7138bb59718b3576bbdfe1d9db68198aabf877ffc8c2a9ba5e0b59d763987e",
+      "proposalSha256": "7b7138bb59718b3576bbdfe1d9db68198aabf877ffc8c2a9ba5e0b59d763987e",
+      "before": {
+        "make": "Honda",
+        "model": "HR-V",
+        "years": [
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Infotainment System Freezing and Glitches",
+        "description": "Honda HR-V infotainment systems (both generations) freeze, crash, and glitch frequently. The touchscreen becomes unresponsive, audio cuts out, Bluetooth won't connect, and the system randomly reboots. Apple CarPlay/Android Auto connection issues are common. Honda has released multiple software updates to address issues, but many persist. The 2023+ models with the updated system still have problems. Dealer reflash sometimes helps temporarily.",
+        "solution": "Try soft reset first: Hold power button for 10+ seconds until system reboots. If issues persist, visit dealer for latest software update (free under warranty, $150-200 out of warranty). If software updates don't fix it, head unit replacement required ($800-1,500). Many owners install aftermarket head units (Pioneer, Sony, Kenwood) with better reliability and features ($300-800 installed).",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Touchscreen frozen or unresponsive",
+          "System randomly reboots while driving",
+          "Bluetooth won't connect or constantly disconnects",
+          "Apple CarPlay/Android Auto not working",
+          "Audio cutting in and out",
+          "Black screen on startup",
+          "Backup camera display not working"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 150,
+        "estimatedCostHigh": 1500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2023/HONDA/HR-V/SUV/FWD#complaints",
+            "type": "nhtsa",
+            "title": "NHTSA Complaint #11563465 - 2023 Honda HR-V infotainment screen freezes/reboots and backup camera issues"
+          },
+          {
+            "url": "",
+            "type": "tsb",
+            "title": "Service Bulletin 23-010: 2023 HR-V Audio/Information Screen Goes Blank or Reboots"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "HRVForum owners report better success with aftermarket head units (Pioneer, Sony) - more features, better reliability, and CarPlay/AA that actually works.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "Popular replacement: Pioneer DMH-WT7600NEX or Sony XAV-AX8100 - both have wireless CarPlay/AA and fit the HR-V dash with adapter kits.",
+            "upvotes": 0,
+            "partName": "DMH-WT7600NEX",
+            "partBrand": "Pioneer",
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Pioneer%20DMH-WT7600NEX&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Before replacing, visit dealer for software update - Honda has released multiple updates that fix some (but not all) issues.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "warning",
+            "content": "If backup camera stops working, check the camera itself before replacing the head unit - the cameras fail separately.",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-02-22",
+        "reviewedOn": "2026-02-22",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "HR-V",
+        "years": [
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Infotainment System Freezing and Glitches",
+        "description": "Honda HR-V infotainment systems (both generations) freeze, crash, and glitch frequently. The touchscreen becomes unresponsive, audio cuts out, Bluetooth won't connect, and the system randomly reboots. Apple CarPlay/Android Auto connection issues are common. Honda has released multiple software updates to address issues, but many persist. The 2023+ models with the updated system still have problems. Dealer reflash sometimes helps temporarily.",
+        "solution": "Try soft reset first: Hold power button for 10+ seconds until system reboots. If issues persist, visit dealer for latest software update (free under warranty, $150-200 out of warranty). If software updates don't fix it, head unit replacement required ($800-1,500). Many owners install aftermarket head units (Pioneer, Sony, Kenwood) with better reliability and features ($300-800 installed).",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Touchscreen frozen or unresponsive",
+          "System randomly reboots while driving",
+          "Bluetooth won't connect or constantly disconnects",
+          "Apple CarPlay/Android Auto not working",
+          "Audio cutting in and out",
+          "Black screen on startup",
+          "Backup camera display not working"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 150,
+        "estimatedCostHigh": 1500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2023/HONDA/HR-V/SUV/FWD#complaints",
+            "type": "nhtsa",
+            "title": "NHTSA Complaint #11563465 - 2023 Honda HR-V infotainment screen freezes/reboots and backup camera issues"
+          },
+          {
+            "url": "",
+            "type": "tsb",
+            "title": "Service Bulletin 23-010: 2023 HR-V Audio/Information Screen Goes Blank or Reboots"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "HRVForum owners report better success with aftermarket head units (Pioneer, Sony) - more features, better reliability, and CarPlay/AA that actually works.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "Popular replacement: Pioneer DMH-WT7600NEX or Sony XAV-AX8100 - both have wireless CarPlay/AA and fit the HR-V dash with adapter kits.",
+            "upvotes": 0,
+            "partName": "DMH-WT7600NEX",
+            "partBrand": "Pioneer",
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Pioneer%20DMH-WT7600NEX&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Before replacing, visit dealer for software update - Honda has released multiple updates that fix some (but not all) issues.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "warning",
+            "content": "If backup camera stops working, check the camera itself before replacing the head unit - the cameras fail separately.",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-02-22",
+        "reviewedOn": "2026-02-22",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-hrv-oil-leaks-engine-2016",
+      "model": "HR-V",
+      "action": "keep_published_pending_source",
+      "reason": "The frozen Bulletin 23-017 citation is false for this identity: Honda Bulletin 23-017 covers 2023 CR-V Hybrid active-grille software, not HR-V crankshaft-seal leakage. A complaint cannot support the broad multi-seal aggregation, so the row remains unchanged.",
+      "identityRule": "No content or publication-state changes; a complaint, forum, video or unrelated bulletin cannot replace this issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "citation-model-and-identity-mismatch",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2023/MC-10231545-0001.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "Honda Bulletin 23-017 covers a 2023 CR-V Hybrid active-grille software update; it does not cover HR-V oil leakage."
+        }
+      ],
+      "beforeSha256": "8ff6ce452f454767c07d9d087541deec1a6def711679f3fe8c6679c83bc63a76",
+      "proposalSha256": "8ff6ce452f454767c07d9d087541deec1a6def711679f3fe8c6679c83bc63a76",
+      "before": {
+        "make": "Honda",
+        "model": "HR-V",
+        "years": [
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "engine",
+        "title": "Minor Oil Leaks from Engine Seals",
+        "description": "Honda HR-V models develop minor oil leaks from various engine seals as they age, particularly the valve cover gasket, oil pan gasket, and front crankshaft seal. These leaks are usually slow and show up as oil spots on the driveway or oil residue on the engine. While not immediately dangerous, oil leaks can cause smoke/burning oil smell, and if left unaddressed, oil level can drop low enough to cause engine damage. Valve cover gasket: $150-300. Oil pan gasket: $200-400.",
+        "solution": "Clean the engine thoroughly and identify the source of the leak. Common sources: valve cover gasket (top of engine), oil pan gasket (bottom), front crankshaft seal, or rear main seal. Replace the leaking gasket/seal. Valve cover gasket is DIY-friendly ($150-300). Oil pan gasket requires lifting the engine slightly ($200-400). Monitor oil level and top off as needed until repaired.",
+        "severity": "low",
+        "confidence": "medium",
+        "symptoms": [
+          "Oil spots on driveway after parking",
+          "Oil residue visible on engine (top or bottom)",
+          "Burning oil smell from engine bay",
+          "Low oil level between changes",
+          "Smoke from engine bay (oil dripping on exhaust)"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 150,
+        "estimatedCostHigh": 400,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "",
+            "type": "tsb",
+            "title": "Honda Service Bulletin 23-017: 2016-2022 HR-V Front Crankshaft Oil Seal Leak"
+          },
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2019/HONDA/HR-V/SUV/FWD#complaints",
+            "type": "nhtsa",
+            "title": "NHTSA Complaint #11547648 - 2019 Honda HR-V Engine Oil Leak/Burning Oil Smell"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Valve cover gasket is DIY-friendly on the HR-V - takes 1-2 hours with basic tools. Use OEM Honda gasket for best seal.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "Use genuine Honda gaskets - aftermarket gaskets often leak again within a year on Honda engines.",
+            "upvotes": 0,
+            "partBrand": "Honda",
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20HR-V%20Use%20genuine%20Honda%20gaskets%20-%20aftermarket%20gaskets%20often%20leak%20a&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Clean the engine with degreaser first so you can pinpoint exactly where the leak is coming from - saves diagnostic time/money.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "warning",
+            "content": "Don't ignore oil leaks - monitor your oil level weekly and top off as needed to prevent engine damage from low oil.",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-02-22",
+        "reviewedOn": "2026-02-22",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "HR-V",
+        "years": [
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "engine",
+        "title": "Minor Oil Leaks from Engine Seals",
+        "description": "Honda HR-V models develop minor oil leaks from various engine seals as they age, particularly the valve cover gasket, oil pan gasket, and front crankshaft seal. These leaks are usually slow and show up as oil spots on the driveway or oil residue on the engine. While not immediately dangerous, oil leaks can cause smoke/burning oil smell, and if left unaddressed, oil level can drop low enough to cause engine damage. Valve cover gasket: $150-300. Oil pan gasket: $200-400.",
+        "solution": "Clean the engine thoroughly and identify the source of the leak. Common sources: valve cover gasket (top of engine), oil pan gasket (bottom), front crankshaft seal, or rear main seal. Replace the leaking gasket/seal. Valve cover gasket is DIY-friendly ($150-300). Oil pan gasket requires lifting the engine slightly ($200-400). Monitor oil level and top off as needed until repaired.",
+        "severity": "low",
+        "confidence": "medium",
+        "symptoms": [
+          "Oil spots on driveway after parking",
+          "Oil residue visible on engine (top or bottom)",
+          "Burning oil smell from engine bay",
+          "Low oil level between changes",
+          "Smoke from engine bay (oil dripping on exhaust)"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 150,
+        "estimatedCostHigh": 400,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "",
+            "type": "tsb",
+            "title": "Honda Service Bulletin 23-017: 2016-2022 HR-V Front Crankshaft Oil Seal Leak"
+          },
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2019/HONDA/HR-V/SUV/FWD#complaints",
+            "type": "nhtsa",
+            "title": "NHTSA Complaint #11547648 - 2019 Honda HR-V Engine Oil Leak/Burning Oil Smell"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Valve cover gasket is DIY-friendly on the HR-V - takes 1-2 hours with basic tools. Use OEM Honda gasket for best seal.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "Use genuine Honda gaskets - aftermarket gaskets often leak again within a year on Honda engines.",
+            "upvotes": 0,
+            "partBrand": "Honda",
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20HR-V%20Use%20genuine%20Honda%20gaskets%20-%20aftermarket%20gaskets%20often%20leak%20a&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Clean the engine with degreaser first so you can pinpoint exactly where the leak is coming from - saves diagnostic time/money.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "warning",
+            "content": "Don't ignore oil leaks - monitor your oil level weekly and top off as needed to prevent engine damage from low oil.",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-02-22",
+        "reviewedOn": "2026-02-22",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-hrv-paint-peeling-2016",
+      "model": "HR-V",
+      "action": "rewrite_same_identity",
+      "reason": "Restricted the paint card to Honda's exact 2016-2018 White Orchid Pearl campaign and removed unsupported Bellanova White, other-color, rust, class-action, pricing and material claims.",
+      "identityRule": "The indexed issue identity remains on the same ID; official Honda/NHTSA scope, mechanism and remedy replace unsupported generalizations.",
+      "commerceDecision": "no-commerce",
+      "changedFields": [
+        "title",
+        "description",
+        "solution",
+        "severity",
+        "confidence",
+        "symptoms",
+        "affectedSystems",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "communityRecommendations",
+        "source",
+        "lastReportedByOwners",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
+      "evidence": [
+        {
+          "kind": "manufacturer-record",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2019/MC-10163811-0001.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "Honda Bulletin 19-064 - White Orchid Pearl Paint Warranty Extension supports the proposed same-identity scope, mechanism and remedy."
+        }
+      ],
+      "beforeSha256": "70c0a035e1efed46b056cf973a71c9a9e0eb15eea67761d0d1717d6233fc000b",
+      "proposalSha256": "edc44323b456337d59cb91938ab8ae99ff408b0a4963c0fe4d8f763bb8bf6d30",
+      "before": {
+        "make": "Honda",
+        "model": "HR-V",
+        "years": [
+          2016,
+          2017,
+          2018
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "body",
+        "title": "Paint and Clearcoat Peeling (Roof and Hood)",
+        "description": "The 2016-2018 Honda HR-V has widespread paint peeling and clearcoat failures, especially on the roof and hood. The problem appears within months to 2 years of ownership. Honda issued a warranty extension for White Orchid Pearl and Bellanova White colors (2016-2018), covering 7 years from original purchase date. However, other colors are affected too. Dealerships often acknowledge it's Honda's fault but Honda rarely covers repairs outside the specific white colors. Full repaint: $2,000-4,000.",
+        "solution": "Check if your 2016-2018 HR-V has White Orchid Pearl or Bellanova White paint - if so, you may qualify for Honda's warranty extension (7 years from original purchase). For other colors or out-of-warranty vehicles, document the issue with photos and contact Honda Customer Service to request goodwill assistance. If denied, full panel repaint costs $2,000-4,000.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Paint peeling or bubbling (especially roof)",
+          "Clearcoat flaking off in sheets",
+          "Small spots that look like sand under clearcoat",
+          "Tiny rust spots forming where paint is gone",
+          "Most common on White Orchid Pearl and Bellanova White",
+          "Also affects other colors (blue, red, silver)"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 2000,
+        "estimatedCostHigh": 4000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "",
+            "type": "tsb",
+            "title": "Service Bulletin 19-064: Warranty Extension: 2016-18 HR-V White Paint Peeling"
+          },
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2017/HONDA/HR-V/SUV/FWD#complaints",
+            "type": "nhtsa",
+            "title": "NHTSA Complaint #11371289 - 2017 Honda HR-V Paint Peeling/Clear Coat Failure"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Even if your color isn't White Orchid Pearl/Bellanova White, document the issue and contact Honda Customer Service - some owners got goodwill coverage for other colors.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Join the HRVForum.com class action discussion thread - many owners are organizing collective action against Honda for this defect.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "warning",
+            "content": "Don't delay - once the paint peels down to bare metal, rust forms quickly and Honda is less likely to cover it.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "If paying out of pocket, insist on premium paint/clearcoat systems like PPG or Axalta - don't let the shop use cheap materials that will fail again.",
+            "upvotes": 0,
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20HR-V%20If%20paying%20out%20of%20pocket%2C%20insist%20on%20premium%20paint%2Fclearcoat%20s&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-02-22",
+        "reviewedOn": "2026-02-22",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "HR-V",
+        "years": [
+          2016,
+          2017,
+          2018
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "body",
+        "title": "White Orchid Pearl Paint Peeling - Bulletin 19-064",
+        "description": "Honda Bulletin 19-064 applies to VIN-eligible 2016-2018 HR-V vehicles originally painted White Orchid Pearl. Insufficient paint thickness in areas including the roof and around the tailgate can allow ultraviolet light to reach the underlayer, causing oxidation and peeling.",
+        "solution": "Have a Honda dealer check VIN eligibility and inspect the peeling. Honda announced a 7-year, unlimited-mileage paint warranty extension; qualifying factory-application peeling is repaired by repainting the affected panels.",
+        "severity": "low",
+        "confidence": "high",
+        "symptoms": [
+          "White Orchid Pearl paint peels",
+          "Peeling may appear on the roof or around the tailgate"
+        ],
+        "affectedSystems": [
+          "Exterior paint finish"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "Honda Bulletin 19-064 - White Orchid Pearl Paint Warranty Extension",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2019/MC-10163811-0001.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Restricted the paint card to Honda's exact 2016-2018 White Orchid Pearl campaign and removed unsupported Bellanova White, other-color, rust, class-action, pricing and material claims.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-hrv-rear-camera-failure-2023",
+      "model": "HR-V",
+      "action": "rewrite_same_identity",
+      "reason": "Corrected the page from unsupported 2023 scope and unrelated recall 23V782 to Honda recall 23V046 for VIN-eligible 2019-2022 HR-V vehicles and its software-update remedy.",
+      "identityRule": "The indexed issue identity remains on the same ID; official Honda/NHTSA scope, mechanism and remedy replace unsupported generalizations.",
+      "commerceDecision": "no-commerce",
+      "changedFields": [
+        "years",
+        "category",
+        "title",
+        "description",
+        "solution",
+        "severity",
+        "confidence",
+        "symptoms",
+        "affectedSystems",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "communityRecommendations",
+        "source",
+        "lastReportedByOwners",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
+      "evidence": [
+        {
+          "kind": "manufacturer-record",
+          "url": "https://static.nhtsa.gov/odi/rcl/2023/RCAK-23V046-6684.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "NHTSA Recall Acknowledgment 23V046 - 2019-2022 HR-V Rearview Camera Display supports the proposed same-identity scope, mechanism and remedy."
+        }
+      ],
+      "beforeSha256": "5906a29a8933e788b3db5b0ad8e2d2999f473677806c0bb43cee027ca24fcd43",
+      "proposalSha256": "ce8d32bf002fede5fc31ecbe4b4e425b9e66c87c15b257093961011393f64424",
+      "before": {
+        "make": "Honda",
+        "model": "HR-V",
+        "years": [
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "interior",
+        "title": "Rear-View Camera Display Failure (NHTSA Recall)",
+        "description": "The 2023 Honda HR-V has a recall for rear-view camera display failures. The camera display shows no image when the vehicle is shifted into reverse, which violates Federal Motor Vehicle Safety Standard number 111 (rear visibility). This increases the risk of a crash or injury to pedestrians/objects behind the vehicle. Honda recall: Dealers will replace the display unit free of charge.",
+        "solution": "This is a NHTSA recall - contact your Honda dealer to schedule the free repair. Dealers will replace the defective display unit with a corrected part. Repair is free regardless of warranty status. Until repaired, use mirrors and turn around to check behind the vehicle when reversing.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "No image on backup camera display",
+          "Black screen when shifted to reverse",
+          "Camera display shows error message",
+          "Intermittent camera display"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 0,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/recalls?nhtsaId=23V782000",
+            "type": "nhtsa",
+            "title": "NHTSA Recall 23V-782: Rearview Camera Does Not Display Image/FMVSS 111"
+          },
+          {
+            "url": "https://owners.honda.com/service-maintenance/recalls",
+            "type": "manufacturer",
+            "title": "Honda Safety Recall: 2023 HR-V Rear View Camera Display"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Check if your 2023 HR-V is affected by entering your VIN at Honda's recall site: https://www.honda.com/recall",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "warning",
+            "content": "Until repaired, use extra caution when reversing - turn around and check blind spots since the camera is not working.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Repair is quick (30-60 minutes) and free. Schedule it during your next oil change to save a trip.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "Interior trim removal tool set for dash and panel work",
+            "partName": "Interior Trim Tool Set",
+            "partBrand": "MICTUNING",
+            "affiliateUrl": "https://www.amazon.com/s?k=interior%20trim%20removal%20tool%20set%20automotive&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-02-22",
+        "reviewedOn": "2026-02-22",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "HR-V",
+        "years": [
+          2019,
+          2020,
+          2021,
+          2022
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "safety",
+        "title": "Inoperative Rearview Camera Display Recall 23V046",
+        "description": "Honda recall 23V046 covers VIN-eligible 2019-2022 HR-V vehicles. A design error in the display-audio power circuit can prevent the unit from booting when the engine is started with a key, so the rearview camera image may not appear. The vehicles may fail the federal rear-visibility standard.",
+        "solution": "Have a Honda dealer check VIN eligibility and update the display-audio-unit software under recall 23V046.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Rearview camera image may not display after a keyed engine start",
+          "Display audio unit may fail to boot"
+        ],
+        "affectedSystems": [
+          "Display audio unit",
+          "Rearview camera display function"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "NHTSA Recall Acknowledgment 23V046 - 2019-2022 HR-V Rearview Camera Display",
+            "url": "https://static.nhtsa.gov/odi/rcl/2023/RCAK-23V046-6684.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Corrected the page from unsupported 2023 scope and unrelated recall 23V782 to Honda recall 23V046 for VIN-eligible 2019-2022 HR-V vehicles and its software-update remedy.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-hrv-rear-window-shattering-2023",
+      "model": "HR-V",
+      "action": "rewrite_same_identity",
+      "reason": "Replaced the complaint-count, cold-weather, recall-status, pricing and goodwill narrative with Honda's exact 2023 HR-V product update, sealer/defroster mechanism and inspect-or-replace remedy.",
+      "identityRule": "The indexed issue identity remains on the same ID; official Honda/NHTSA scope, mechanism and remedy replace unsupported generalizations.",
+      "commerceDecision": "no-commerce",
+      "changedFields": [
+        "title",
+        "description",
+        "solution",
+        "confidence",
+        "symptoms",
+        "affectedSystems",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "communityRecommendations",
+        "source",
+        "lastReportedByOwners",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
+      "evidence": [
+        {
+          "kind": "manufacturer-record",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2024/MC-11005188-0001.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "Honda Bulletin 24-012 - 2023 HR-V Rear Window Inspection supports the proposed same-identity scope, mechanism and remedy."
+        }
+      ],
+      "beforeSha256": "df99e6aed7d1741a4d094258db470603d118c8a33ecda90a08bedbae1f9b2003",
+      "proposalSha256": "712267842a0431c1dffcdce08ad9814d29625162c00378534f646e6547fa5157",
+      "before": {
+        "make": "Honda",
+        "model": "HR-V",
+        "years": [
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "body",
+        "title": "Rear Window Spontaneous Shattering (Defroster Defect)",
+        "description": "The 2023 Honda HR-V has hundreds of complaints about rear windows spontaneously shattering, often in cold weather. The problem is caused by a manufacturing defect where the sealer used to secure the rear glass contacts the defroster heating elements. Over time, the defroster creates a \"hot spot\" that weakens the glass, causing it to shatter without warning. Consumer Reports investigated and called for a recall, but Honda has not issued one as of early 2025. Replacement cost: $800-1,500.",
+        "solution": "If your 2023 HR-V rear window shatters, contact Honda Customer Service immediately and file a NHTSA complaint. Document everything with photos. Some owners have successfully pressured dealers into goodwill replacements. When replacing, ensure the dealer uses updated parts with correct sealer application (verify with service manager). Cost: $800-1,500 if not covered.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "Rear window shatters spontaneously (often in cold weather)",
+          "Loud popping/cracking sound",
+          "No prior warning or impact",
+          "Glass shards inside vehicle",
+          "Often occurs after using rear defroster"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 800,
+        "estimatedCostHigh": 1500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2023/HONDA/HR-V/SUV/FWD#complaints",
+            "type": "nhtsa",
+            "title": "NHTSA Complaint #11554352 - 2023 Honda HR-V Rear Window Glass Shattered Without Impact"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "warning",
+            "content": "CRITICAL: File an NHTSA complaint immediately if this happens - the more complaints filed, the more likely Honda will issue a recall.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Document EVERYTHING with photos/video and save all receipts - many owners who did this got Honda to cover replacement costs as \"goodwill\".",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "When replacing, ask the dealer if they're using updated parts with corrected sealer application - some dealerships acknowledge the defect privately.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "warning",
+            "content": "Avoid using the rear defroster in extreme cold if possible - this seems to trigger many of the shattering incidents.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "Dorman weatherstrip seal prevents water leaks and wind noise",
+            "partName": "Weatherstrip Seal",
+            "partBrand": "Dorman",
+            "affiliateUrl": "https://www.amazon.com/s?k=Dorman%20weatherstrip%20seal&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "3M Super Weatherstrip Adhesive for reattaching loose seals",
+            "partName": "Weatherstrip Adhesive",
+            "partBrand": "3M",
+            "affiliateUrl": "https://www.amazon.com/s?k=3M%20super%20weatherstrip%20adhesive&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-02-22",
+        "reviewedOn": "2026-02-22",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "HR-V",
+        "years": [
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "body",
+        "title": "Rear Window Defroster Hot-Spot and Glass Weakening - Bulletin 24-012",
+        "description": "Honda Bulletin 24-012 applies to VIN-eligible 2023 HR-V vehicles. During assembly, rear-glass sealer may have contacted the defroster heating elements, creating a hot spot that can weaken the glass over time as the defroster is used.",
+        "solution": "Have a Honda dealer check VIN eligibility and inspect the rear glass. Bulletin 24-012 directs replacement of the rear windshield glass when inspection shows the affected condition.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Rear glass may weaken over time",
+          "Rear glass may shatter as the defroster is used"
+        ],
+        "affectedSystems": [
+          "Rear windshield glass",
+          "Rear defroster heating elements",
+          "Rear-glass sealer"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "Honda Bulletin 24-012 - 2023 HR-V Rear Window Inspection",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2024/MC-11005188-0001.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Replaced the complaint-count, cold-weather, recall-status, pricing and goodwill narrative with Honda's exact 2023 HR-V product update, sealer/defroster mechanism and inspect-or-replace remedy.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-hrv-steering-gearbox-recall-2023",
+      "model": "HR-V",
+      "action": "rewrite_same_identity",
+      "reason": "Corrected the 2023-only generic recall card to Honda recall 24V744/Bulletin 24-118 for VIN-eligible 2023-2025 HR-V vehicles, the exact friction mechanism and campaign repair, with unrelated transmission commerce removed.",
+      "identityRule": "The indexed issue identity remains on the same ID; official Honda/NHTSA scope, mechanism and remedy replace unsupported generalizations.",
+      "commerceDecision": "no-commerce",
+      "changedFields": [
+        "years",
+        "category",
+        "title",
+        "description",
+        "solution",
+        "confidence",
+        "symptoms",
+        "affectedSystems",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "communityRecommendations",
+        "source",
+        "lastReportedByOwners",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
+      "evidence": [
+        {
+          "kind": "manufacturer-record",
+          "url": "https://static.nhtsa.gov/odi/rcl/2024/RCRIT-24V744-9180.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "Honda Bulletin 24-118 - 2023-2025 HR-V Steering Gearbox Recall supports the proposed same-identity scope, mechanism and remedy."
+        }
+      ],
+      "beforeSha256": "7ac3ccb102329e90eccd4d2533aeedea34b4db085093075b77ac0e9f678c2f6d",
+      "proposalSha256": "805bffb3d0f536b6029955e6ebace701332d661d37e4d1c0959c3a88d7ab2048",
+      "before": {
+        "make": "Honda",
+        "model": "HR-V",
+        "years": [
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "transmission",
+        "title": "Steering Gearbox Defect (NHTSA Recall)",
+        "description": "The 2023 Honda HR-V has a steering gearbox recall due to incorrect manufacturing. The worm gear spring may have been manufactured incorrectly, causing excessive internal friction and difficulty steering the vehicle. This increases the risk of a crash. Symptoms include heavy steering, binding when turning, or steering that doesn't return to center. Honda recall: Dealers will replace the worm gear spring and redistribute/add grease as necessary, free of charge.",
+        "solution": "This is a NHTSA recall - contact your Honda dealer immediately to schedule the free repair. Dealers will inspect the steering gearbox, replace the worm gear spring if defective, and add/redistribute grease. Repair is free regardless of warranty status. Do not delay - steering failure while driving is dangerous.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "Heavy or stiff steering",
+          "Steering binds or catches when turning",
+          "Steering doesn't return to center",
+          "Excessive effort required to turn wheel",
+          "Grinding feeling in steering"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 0,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2023/HONDA/HR-V",
+            "type": "nhtsa",
+            "title": "NHTSA Vehicle Page for 2023 Honda HR-V with Complaints and Recalls"
+          },
+          {
+            "url": "https://www.reddit.com/r/MechanicAdvice/comments/xyz123/2023_honda_hrv_steering_heavy_binding_issue/",
+            "type": "forum",
+            "title": "Reddit r/MechanicAdvice Thread Discussing 2023 Honda HR-V Steering Binding"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "warning",
+            "content": "CRITICAL: This is a safety recall - schedule the repair IMMEDIATELY. Steering failure while driving can cause a crash.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Check if your 2023 HR-V is affected by entering your VIN at Honda's recall site: https://www.honda.com/recall",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Repair is free and takes 1-2 hours. Call ahead to ensure your dealer has parts in stock to avoid multiple trips.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "Quality automatic transmission fluid for routine service",
+            "partName": "MaxLife ATF Full Synthetic",
+            "partBrand": "Valvoline",
+            "affiliateUrl": "https://www.amazon.com/s?k=Valvoline%20MaxLife%20ATF%20Honda%20HR-V&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Transmission filter kit with pan gasket for complete fluid service",
+            "partName": "Transmission Filter Kit",
+            "partBrand": "ATP",
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20HR-V%20transmission%20filter%20kit&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "OBD-II scanner with transmission live data for diagnosing shift issues",
+            "partName": "Bluetooth Pro OBD2 Scan Tool",
+            "partBrand": "BlueDriver",
+            "affiliateUrl": "https://www.amazon.com/s?k=BlueDriver%20Bluetooth%20Pro%20OBD2%20scan%20tool&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-02-22",
+        "reviewedOn": "2026-02-22",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "HR-V",
+        "years": [
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "steering",
+        "title": "Sticky Steering From Steering Gearbox Friction - Recall 24V744",
+        "description": "Honda recall 24V744 covers VIN-eligible 2023-2025 HR-V vehicles. An improperly produced steering-gearbox worm wheel can swell during use, and excessive worm-gear spring preload can increase friction between the worm wheel and gear. The resulting increased steering effort or difficulty raises crash risk.",
+        "solution": "Have a Honda dealer check VIN eligibility. Honda Bulletin 24-118 directs repair of the EPS gearbox with an updated end cap, spring and spring seat plus grease, using the campaign procedure.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Increased steering effort",
+          "Steering may feel sticky or difficult"
+        ],
+        "affectedSystems": [
+          "Electric power steering gearbox",
+          "Worm wheel",
+          "Worm gear spring"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "Honda Bulletin 24-118 - 2023-2025 HR-V Steering Gearbox Recall",
+            "url": "https://static.nhtsa.gov/odi/rcl/2024/RCRIT-24V744-9180.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Corrected the 2023-only generic recall card to Honda recall 24V744/Bulletin 24-118 for VIN-eligible 2023-2025 HR-V vehicles, the exact friction mechanism and campaign repair, with unrelated transmission commerce removed.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-hrv-wheel-bearing-noise-2016",
+      "model": "HR-V",
+      "action": "keep_published_pending_source",
+      "reason": "One complaint and a forum thread do not establish a 2016-2023 premature front-wheel-bearing defect, mileage range, catastrophic outcome or Honda remedy. The row remains unchanged.",
+      "identityRule": "No content or publication-state changes; a complaint, forum, video or unrelated bulletin cannot replace this issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "664123fd44cbedc68dcb462ffe5d7aa971e7c65c5218f91a43a90b08d605248c",
+      "proposalSha256": "664123fd44cbedc68dcb462ffe5d7aa971e7c65c5218f91a43a90b08d605248c",
+      "before": {
+        "make": "Honda",
+        "model": "HR-V",
+        "years": [
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "suspension",
+        "title": "Front Wheel Bearing Premature Failure",
+        "description": "Honda HR-V front wheel bearings fail prematurely, often between 40,000-70,000 miles. Symptoms include humming/growling noise that increases with speed, steering wheel vibration, and ABS/VSA warning lights. The noise is usually louder when turning (load shifts to one bearing). If ignored, a failed wheel bearing can cause the wheel to lock up or fall off while driving. Replacement: $250-450 per side (bearing hub assembly).",
+        "solution": "Jack up the vehicle and check for wheel play by grabbing the tire at 12 and 6 o'clock and rocking it. Excessive play = bad bearing. Spin the wheel and listen for grinding. Replace the wheel bearing hub assembly on the affected side ($250-450). Always replace in pairs if both sides have high mileage to avoid another repair soon. Use OEM (NSK, NTN) or quality aftermarket (Timken, SKF) bearings.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Humming or growling noise from front wheels",
+          "Noise increases with vehicle speed",
+          "Noise louder when turning (left or right)",
+          "Steering wheel vibration",
+          "ABS or VSA warning lights",
+          "Loose or wobbly feeling in steering"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 250,
+        "estimatedCostHigh": 450,
+        "typicalMileageLow": 40000,
+        "typicalMileageHigh": 70000,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2016/HONDA/HR-V/SUV/FWD#complaints",
+            "type": "nhtsa",
+            "title": "NHTSA Complaint #11416598 - 2016 Honda HR-V Wheel Bearing Noise/Failure"
+          },
+          {
+            "url": "https://www.hrvforum.com/threads/front-wheel-bearing-noise.42185/",
+            "type": "forum",
+            "title": "HR-V Forum - Front wheel bearing noise / replacement discussion"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "warning",
+            "content": "Don't ignore wheel bearing noise - a seized bearing can lock the wheel or cause it to separate while driving (catastrophic failure).",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "HRVForum consensus: OEM bearings (NSK, NTN) or Timken/SKF aftermarket. Avoid ultra-cheap eBay bearings - many fail within 10k miles.",
+            "upvotes": 0,
+            "partBrand": "Timken",
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20HR-V%20HRVForum%20consensus%3A%20OEM%20bearings%20(NSK%2C%20NTN)%20or%20Timken%2FSKF%20af&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "DIY-friendly if you have a press or can rent one from AutoZone. Otherwise, shop labor is 1.5-2 hours per side.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "The humming noise is usually the first symptom - catch it early before the bearing fully fails and damages the hub/spindle.",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-02-22",
+        "reviewedOn": "2026-02-22",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "HR-V",
+        "years": [
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "suspension",
+        "title": "Front Wheel Bearing Premature Failure",
+        "description": "Honda HR-V front wheel bearings fail prematurely, often between 40,000-70,000 miles. Symptoms include humming/growling noise that increases with speed, steering wheel vibration, and ABS/VSA warning lights. The noise is usually louder when turning (load shifts to one bearing). If ignored, a failed wheel bearing can cause the wheel to lock up or fall off while driving. Replacement: $250-450 per side (bearing hub assembly).",
+        "solution": "Jack up the vehicle and check for wheel play by grabbing the tire at 12 and 6 o'clock and rocking it. Excessive play = bad bearing. Spin the wheel and listen for grinding. Replace the wheel bearing hub assembly on the affected side ($250-450). Always replace in pairs if both sides have high mileage to avoid another repair soon. Use OEM (NSK, NTN) or quality aftermarket (Timken, SKF) bearings.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Humming or growling noise from front wheels",
+          "Noise increases with vehicle speed",
+          "Noise louder when turning (left or right)",
+          "Steering wheel vibration",
+          "ABS or VSA warning lights",
+          "Loose or wobbly feeling in steering"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 250,
+        "estimatedCostHigh": 450,
+        "typicalMileageLow": 40000,
+        "typicalMileageHigh": 70000,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2016/HONDA/HR-V/SUV/FWD#complaints",
+            "type": "nhtsa",
+            "title": "NHTSA Complaint #11416598 - 2016 Honda HR-V Wheel Bearing Noise/Failure"
+          },
+          {
+            "url": "https://www.hrvforum.com/threads/front-wheel-bearing-noise.42185/",
+            "type": "forum",
+            "title": "HR-V Forum - Front wheel bearing noise / replacement discussion"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "warning",
+            "content": "Don't ignore wheel bearing noise - a seized bearing can lock the wheel or cause it to separate while driving (catastrophic failure).",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "HRVForum consensus: OEM bearings (NSK, NTN) or Timken/SKF aftermarket. Avoid ultra-cheap eBay bearings - many fail within 10k miles.",
+            "upvotes": 0,
+            "partBrand": "Timken",
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Honda%20HR-V%20HRVForum%20consensus%3A%20OEM%20bearings%20(NSK%2C%20NTN)%20or%20Timken%2FSKF%20af&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "DIY-friendly if you have a press or can rent one from AutoZone. Otherwise, shop labor is 1.5-2 hours per side.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "The humming noise is usually the first symptom - catch it early before the bearing fully fails and damages the hub/spindle.",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-02-22",
+        "reviewedOn": "2026-02-22",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "honda-hrv-window-gasket-failure-2016",
+      "model": "HR-V",
+      "action": "keep_published_pending_source",
+      "reason": "A forum thread and one complaint do not establish a 2016-2022 all-window gasket design defect, adhesive remedy or durability claim. The row remains unchanged.",
+      "identityRule": "No content or publication-state changes; a complaint, forum, video or unrelated bulletin cannot replace this issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [],
+      "beforeSha256": "68adb9121471347ef3fca197ba806070a56fc660e9e979c0c1af17e2eb502063",
+      "proposalSha256": "68adb9121471347ef3fca197ba806070a56fc660e9e979c0c1af17e2eb502063",
+      "before": {
+        "make": "Honda",
+        "model": "HR-V",
+        "years": [
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "body",
+        "title": "Window Gasket Slipping and Falling Out",
+        "description": "The 2016-2022 Honda HR-V has poorly designed window gaskets that slip out of place, become loose, or fall out completely. This affects both door windows and rear hatch windows. The gaskets create wind noise, water leaks, and look terrible hanging out. Honda dealers often claim \"customer induced\" but it's a widespread defect. Replacement gaskets cost $30-80 per window, but they often fail again unless properly glued.",
+        "solution": "Remove old gasket, clean the channel thoroughly with alcohol, and install new gasket with 3M Black Super Weatherstrip Adhesive (part #08008). Press firmly and let cure for 24 hours before use. Just pressing the gasket back in without adhesive is temporary - it will fall out again. Replacement gasket + adhesive: $30-80 per window.",
+        "severity": "low",
+        "confidence": "medium",
+        "symptoms": [
+          "Window gasket hanging out of door",
+          "Wind noise around windows at highway speeds",
+          "Water leaking into cabin during rain",
+          "Gasket visibly loose or sagging",
+          "Gasket fell out completely"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 30,
+        "estimatedCostHigh": 80,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.hrvforum.com/threads/window-trim-weather-strip-coming-loose.42185/",
+            "type": "forum",
+            "title": "HR-V Forum - Window trim / weather strip coming loose"
+          },
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2019/HONDA/HR-V/SUV/FWD#complaints",
+            "type": "nhtsa",
+            "title": "NHTSA Complaint #11444158 - 2019 Honda HR-V window weather stripping detached"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "HRVForum.com proven fix: 3M Black Super Weatherstrip Adhesive (08008) - clean the channel, apply adhesive, install gasket. Lasts 50k+ miles.",
+            "upvotes": 0,
+            "partName": "Black Super Weatherstrip Adhesive",
+            "partBrand": "3M",
+            "partNumber": "08008",
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=3M%2008008&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "DIY-friendly - takes 30 minutes per window. Clean the channel with rubbing alcohol before applying adhesive or it won't stick.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "warning",
+            "content": "Don't just push the gasket back in - it will fall out again within weeks. You MUST use adhesive for a permanent fix.",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-02-22",
+        "reviewedOn": "2026-02-22",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Honda",
+        "model": "HR-V",
+        "years": [
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "body",
+        "title": "Window Gasket Slipping and Falling Out",
+        "description": "The 2016-2022 Honda HR-V has poorly designed window gaskets that slip out of place, become loose, or fall out completely. This affects both door windows and rear hatch windows. The gaskets create wind noise, water leaks, and look terrible hanging out. Honda dealers often claim \"customer induced\" but it's a widespread defect. Replacement gaskets cost $30-80 per window, but they often fail again unless properly glued.",
+        "solution": "Remove old gasket, clean the channel thoroughly with alcohol, and install new gasket with 3M Black Super Weatherstrip Adhesive (part #08008). Press firmly and let cure for 24 hours before use. Just pressing the gasket back in without adhesive is temporary - it will fall out again. Replacement gasket + adhesive: $30-80 per window.",
+        "severity": "low",
+        "confidence": "medium",
+        "symptoms": [
+          "Window gasket hanging out of door",
+          "Wind noise around windows at highway speeds",
+          "Water leaking into cabin during rain",
+          "Gasket visibly loose or sagging",
+          "Gasket fell out completely"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 30,
+        "estimatedCostHigh": 80,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.hrvforum.com/threads/window-trim-weather-strip-coming-loose.42185/",
+            "type": "forum",
+            "title": "HR-V Forum - Window trim / weather strip coming loose"
+          },
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2019/HONDA/HR-V/SUV/FWD#complaints",
+            "type": "nhtsa",
+            "title": "NHTSA Complaint #11444158 - 2019 Honda HR-V window weather stripping detached"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "HRVForum.com proven fix: 3M Black Super Weatherstrip Adhesive (08008) - clean the channel, apply adhesive, install gasket. Lasts 50k+ miles.",
+            "upvotes": 0,
+            "partName": "Black Super Weatherstrip Adhesive",
+            "partBrand": "3M",
+            "partNumber": "08008",
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=3M%2008008&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "DIY-friendly - takes 30 minutes per window. Clean the channel with rubbing alcohol before applying adhesive or it won't stick.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "warning",
+            "content": "Don't just push the gasket back in - it will fall out again within weeks. You MUST use adhesive for a permanent fix.",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-02-22",
+        "reviewedOn": "2026-02-22",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    }
+  ]
+}
