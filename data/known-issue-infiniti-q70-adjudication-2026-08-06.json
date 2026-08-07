@@ -1,0 +1,239 @@
+{
+  "schemaVersion": 1,
+  "status": "proposal-only",
+  "auditStage": "model-primary-source-adjudication",
+  "requiresIndependentApproval": true,
+  "generatedOn": "2026-08-06",
+  "make": "Infiniti",
+  "model": "Q70",
+  "completionStatement": "This packet reconciles the one frozen Infiniti Q70 row. No exact same-engine primary source cleared the gate, so the row remains byte-for-byte unchanged.",
+  "safetyContract": [
+    "No production database write, cache purge, deployment, archive action, redirect, slug change, new issue or public-page change is authorized by this packet.",
+    "The indexed Q70 row remains published and byte-for-byte unchanged.",
+    "The M56/QX56 timing-chain campaign is not transferred to a VQ37 Q70 identity.",
+    "The recall inventory is deferred until the post-audit new-known-issues phase.",
+    "Independent row-by-row approval is required before any separate correction or addition path may be created."
+  ],
+  "source": {
+    "snapshotFile": "data/_infiniti-deeplink-snapshot-2026-08-06.json",
+    "snapshotSha256": "d39bdd77a0557365946b551a26b951cb1a5ba81773b7b66497201347b5034f64",
+    "snapshotGeneratedAt": "2026-08-06T23:15:05.490Z",
+    "snapshotHash": "45dde736354a9dcd17a72399b0101f30373ca9c267e6cd49a2528a63a023eebd",
+    "q70RecordCount": 1
+  },
+  "observations": [
+    {
+      "code": "q70-timing-identity-frozen",
+      "severity": "high",
+      "recordIds": [
+        "infiniti-m-q70-timing-chain-tensioner"
+      ],
+      "detail": "No exact VQ37 Q70 source supports the title/body; a different-engine campaign is not substituted."
+    },
+    {
+      "code": "q70-recall-inventory-deferred",
+      "severity": "post-audit-review",
+      "recordIds": [],
+      "campaignNumbers": [
+        "19V654000",
+        "20V755000",
+        "24V470000"
+      ],
+      "detail": "Distinct Q70 recall identities are preserved for the later new-issue/deduplication phase."
+    },
+    {
+      "code": "q70-page-preserved",
+      "severity": "seo-safety",
+      "recordIds": [
+        "infiniti-m-q70-timing-chain-tensioner"
+      ],
+      "detail": "The indexed Q70 record remains published with identical ID, title, model, years, engine scope, category, content, citation and commerce."
+    }
+  ],
+  "mismatchSources": {
+    "recallQueries": {
+      "2014": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=Q70&modelYear=2014",
+      "2015": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=Q70&modelYear=2015",
+      "2016": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=Q70&modelYear=2016",
+      "2017": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=Q70&modelYear=2017",
+      "2018": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=Q70&modelYear=2018",
+      "2019": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=Q70&modelYear=2019"
+    },
+    "expectedCampaigns": {
+      "2014": [
+        "20V755000",
+        "24V470000"
+      ],
+      "2015": [
+        "24V470000"
+      ],
+      "2016": [
+        "24V470000"
+      ],
+      "2017": [
+        "24V470000"
+      ],
+      "2018": [
+        "24V470000"
+      ],
+      "2019": [
+        "19V654000",
+        "24V470000"
+      ]
+    }
+  },
+  "summary": {
+    "rewrite_same_identity": 0,
+    "keep_published_pending_source": 1,
+    "total": 1
+  },
+  "rows": [
+    {
+      "id": "infiniti-m-q70-timing-chain-tensioner",
+      "model": "Q70",
+      "action": "keep_published_pending_source",
+      "reason": "The forum citation does not establish a 2014-2019 Q70 VQ37 timing-chain-tensioner failure, check-valve mechanism, startup-rattle duration, DTCs or updated tensioner parts. The P6305 M56/QX56 campaign cannot be transferred to this VQ37 Q70 identity, and the official Q70 recall inventory contains only driveshaft and rear-camera campaigns, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content, engine scope or publication-state changes; another model/engine campaign and unrelated recalls cannot replace the indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-recall-set-unrelated-and-no-exact-bulletin",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=Q70&modelYear=2014",
+          "verifiedOn": "2026-08-06",
+          "observation": "The complete 2014-2019 Q70 recall inventory contains driveshaft-fracture and rear-camera campaigns, not a VQ37 timing-chain-tensioner condition. The separately reviewed P6305 campaign applies to M56/QX56 vehicles and cannot be transferred.",
+          "supportingUrls": [
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=Q70&modelYear=2014",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=Q70&modelYear=2015",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=Q70&modelYear=2016",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=Q70&modelYear=2017",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=Q70&modelYear=2018",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=Q70&modelYear=2019"
+          ]
+        }
+      ],
+      "beforeSha256": "ee9bfcec47904f7386937aea54789b89a2d6242d645328739a2f8278a4822a76",
+      "proposalSha256": "ee9bfcec47904f7386937aea54789b89a2d6242d645328739a2f8278a4822a76",
+      "before": {
+        "make": "Infiniti",
+        "model": "Q70",
+        "years": [
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019
+        ],
+        "trims": [],
+        "engines": [
+          "3.7L VQ37VHR V6"
+        ],
+        "category": "engine",
+        "title": "Timing Chain Tensioner Failure",
+        "description": "The VQ37VHR and VQ35HR engines in the M/Q70 series develop timing chain tensioner wear, leading to chain rattle on startup and potential chain skip. The hydraulic tensioners lose their ability to maintain proper chain tension as the internal check valve wears.",
+        "solution": "Replace the primary timing chain tensioners and inspect the chains and guides. Use updated tensioner part numbers that feature improved check valve design. This repair requires removing the front timing cover.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "Chain rattle on cold start lasting 1-3 seconds",
+          "Check engine light with cam timing codes",
+          "Rough idle after extended parking"
+        ],
+        "affectedSystems": [
+          "engine"
+        ],
+        "dtcCodes": [
+          "P0011",
+          "P0021"
+        ],
+        "estimatedCostLow": 1500,
+        "estimatedCostHigh": 3500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.infinitiscene.com",
+            "title": "M37 Timing Chain Issue",
+            "source": "Infiniti Scene Forum"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "infiniti-fx-qx70-timing-chain",
+          "infiniti-qx50-timing-chain-vvel-2014",
+          "nissan-pathfinder-timing-chain-2013"
+        ]
+      },
+      "proposal": {
+        "make": "Infiniti",
+        "model": "Q70",
+        "years": [
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019
+        ],
+        "trims": [],
+        "engines": [
+          "3.7L VQ37VHR V6"
+        ],
+        "category": "engine",
+        "title": "Timing Chain Tensioner Failure",
+        "description": "The VQ37VHR and VQ35HR engines in the M/Q70 series develop timing chain tensioner wear, leading to chain rattle on startup and potential chain skip. The hydraulic tensioners lose their ability to maintain proper chain tension as the internal check valve wears.",
+        "solution": "Replace the primary timing chain tensioners and inspect the chains and guides. Use updated tensioner part numbers that feature improved check valve design. This repair requires removing the front timing cover.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "Chain rattle on cold start lasting 1-3 seconds",
+          "Check engine light with cam timing codes",
+          "Rough idle after extended parking"
+        ],
+        "affectedSystems": [
+          "engine"
+        ],
+        "dtcCodes": [
+          "P0011",
+          "P0021"
+        ],
+        "estimatedCostLow": 1500,
+        "estimatedCostHigh": 3500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.infinitiscene.com",
+            "title": "M37 Timing Chain Issue",
+            "source": "Infiniti Scene Forum"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "infiniti-fx-qx70-timing-chain",
+          "infiniti-qx50-timing-chain-vvel-2014",
+          "nissan-pathfinder-timing-chain-2013"
+        ]
+      }
+    }
+  ]
+}

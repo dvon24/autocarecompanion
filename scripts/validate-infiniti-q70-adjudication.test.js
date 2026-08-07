@@ -1,0 +1,7 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
+const assert = require('node:assert/strict'); const fs = require('node:fs'); const path = require('node:path'); const test = require('node:test'); const { ID } = require('./build-infiniti-q70-adjudication'); const { validatePacket } = require('./validate-infiniti-q70-adjudication');
+const ROOT = path.resolve(__dirname, '..'); const packet = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'known-issue-infiniti-q70-adjudication-2026-08-06.json'), 'utf8')); const snapshot = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', '_infiniti-deeplink-snapshot-2026-08-06.json'), 'utf8'));
+test('Q70 hold packet passes the complete safety contract', () => assert.deepEqual(validatePacket(packet, snapshot, packet.source.snapshotSha256), []));
+test('the indexed Q70 row remains byte-for-byte frozen', () => { const row = packet.rows[0]; assert.equal(row.id, ID); assert.equal(row.action, 'keep_published_pending_source'); assert.equal(row.beforeSha256, row.proposalSha256); assert.deepEqual(row.changedFields, []); assert.deepEqual(row.proposal, row.before); });
+test('packet covers the one frozen Q70 ID exactly once', () => { const expected = snapshot.records.filter((row) => row.make === 'Infiniti' && row.model === 'Q70').map((row) => row.id); assert.deepEqual(packet.rows.map((row) => row.id), expected); });
+test('the M56 timing campaign is not transferred to the VQ37 Q70 identity', () => assert.match(packet.rows[0].reason, /M56\/QX56 campaign cannot be transferred/i));
