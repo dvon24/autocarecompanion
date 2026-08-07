@@ -1,0 +1,819 @@
+{
+  "schemaVersion": 1,
+  "status": "proposal-only",
+  "auditStage": "model-primary-source-adjudication",
+  "requiresIndependentApproval": true,
+  "generatedOn": "2026-08-06",
+  "make": "Jaguar",
+  "model": "I-PACE",
+  "completionStatement": "This packet reconciles all four frozen Jaguar I-PACE rows. Three official JLR PDFs were downloaded and seven relevant pages visually reviewed; the contactor registry check is explicitly a coverage boundary. All four rows remain byte-for-byte unchanged.",
+  "safetyContract": [
+    "No production database write, cache purge, deployment, archive action, redirect, slug change, new issue or public-page change is authorized by this packet.",
+    "All four I-PACE rows remain published and byte-for-byte unchanged.",
+    "A partial year, VIN, module, outcome, code or remedy match cannot authorize a broader rewrite.",
+    "A recall-registry result is not negative proof that a non-recall issue does not exist.",
+    "The four frozen citation objects contain titles but no URLs and therefore are not treated as verified source evidence.",
+    "Distinct recall identities remain deferred until the post-audit new-known-issues phase."
+  ],
+  "source": {
+    "snapshotFile": "data/_jaguar-deeplink-snapshot-2026-08-06.json",
+    "snapshotSha256": "60f1d4d001e3f56c9b9fc4c2429fe300f44ef3aaaeb7fda2e09a37b6e6c66800",
+    "snapshotGeneratedAt": "2026-08-07T01:28:25.707Z",
+    "snapshotHash": "016c6d9be5ca12dd4a514267ecfed59d36d825395d3e83ef56985dc87003bbfa",
+    "modelRecordCount": 4
+  },
+  "observations": [
+    {
+      "code": "i-pace-12v-vin-year-remedy-scope",
+      "severity": "high",
+      "recordIds": [
+        "jaguar-i-pace-12v-battery-drain-2019"
+      ],
+      "detail": "The exact quiescent-drain SSM is interim and VIN-limits its reset; it does not support the row’s full scope or blanket battery advice."
+    },
+    {
+      "code": "i-pace-cold-weather-outcome-scope-mismatch",
+      "severity": "high",
+      "recordIds": [
+        "jaguar-i-pace-battery-conditioning-2019"
+      ],
+      "detail": "SOTA S014 addresses range prediction/estimation, not inefficient battery thermal conditioning or a 30-40% physical loss."
+    },
+    {
+      "code": "i-pace-contactor-primary-source-gap",
+      "severity": "source-gap",
+      "recordIds": [
+        "jaguar-i-pace-contactor-failure-2019"
+      ],
+      "detail": "No exact Jaguar primary source cleared the contactor identity; distinct recalls are not substituted."
+    },
+    {
+      "code": "i-pace-ota-year-module-remedy-scope",
+      "severity": "high",
+      "recordIds": [
+        "jaguar-i-pace-ota-update-issues-2019"
+      ],
+      "detail": "H474 is a certain-vehicle 2021-2023 wired-recovery campaign, not the frozen seven-year regression narrative."
+    },
+    {
+      "code": "i-pace-existing-citations-missing-urls",
+      "severity": "source-gap",
+      "recordIds": [
+        "jaguar-i-pace-12v-battery-drain-2019",
+        "jaguar-i-pace-battery-conditioning-2019",
+        "jaguar-i-pace-contactor-failure-2019",
+        "jaguar-i-pace-ota-update-issues-2019"
+      ],
+      "detail": "Every frozen citation has a title but no URL, so none can independently clear a rewrite."
+    },
+    {
+      "code": "all-i-pace-pages-preserved",
+      "severity": "seo-safety",
+      "recordIds": [
+        "jaguar-i-pace-12v-battery-drain-2019",
+        "jaguar-i-pace-battery-conditioning-2019",
+        "jaguar-i-pace-contactor-failure-2019",
+        "jaguar-i-pace-ota-update-issues-2019"
+      ],
+      "detail": "Every indexed I-PACE record remains published with identical ID, title, years, category, content, citations and commerce."
+    }
+  ],
+  "reviewSources": {
+    "battery12v": "https://static.nhtsa.gov/odi/tsbs/2019/MC-10164829-9999.pdf",
+    "coldWeather": "https://static.nhtsa.gov/odi/tsbs/2023/MC-10248645-0001.pdf",
+    "contactorRegistry": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JAGUAR&model=I-PACE&modelYear=2019",
+    "ota": "https://static.nhtsa.gov/odi/tsbs/2024/MC-11008447-0001.pdf"
+  },
+  "pdfSources": {
+    "battery12v": "https://static.nhtsa.gov/odi/tsbs/2019/MC-10164829-9999.pdf",
+    "coldWeather": "https://static.nhtsa.gov/odi/tsbs/2023/MC-10248645-0001.pdf",
+    "ota": "https://static.nhtsa.gov/odi/tsbs/2024/MC-11008447-0001.pdf"
+  },
+  "sourceArtifactSha256": {
+    "battery12v": "a03b9b0ef8addfbacd6159c19bbd38b53a17ebeae4a0761f7de530ebad84e743",
+    "coldWeather": "dceff685343e580bd4a3df80bc610f808c9d2d253eb1730cd6cf694874ee92cd",
+    "ota": "7780993ea878e5fbf1584213538fe29556830a755ea355bdbfb8e87c931ea734"
+  },
+  "visuallyInspectedPages": {
+    "battery12v": [
+      1,
+      2,
+      3
+    ],
+    "coldWeather": [
+      1,
+      3
+    ],
+    "ota": [
+      1,
+      4
+    ]
+  },
+  "mismatchSources": {
+    "recallQueries": {
+      "2019": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JAGUAR&model=I-PACE&modelYear=2019",
+      "2020": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JAGUAR&model=I-PACE&modelYear=2020",
+      "2021": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JAGUAR&model=I-PACE&modelYear=2021",
+      "2022": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JAGUAR&model=I-PACE&modelYear=2022",
+      "2023": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JAGUAR&model=I-PACE&modelYear=2023",
+      "2024": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JAGUAR&model=I-PACE&modelYear=2024",
+      "2025": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JAGUAR&model=I-PACE&modelYear=2025",
+      "2026": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JAGUAR&model=I-PACE&modelYear=2026"
+    },
+    "expected": {
+      "2019": {
+        "status": 200,
+        "campaigns": [
+          "19V351000",
+          "23V369000",
+          "23V709000",
+          "24V085000",
+          "24V086000",
+          "24V183000",
+          "24V633000",
+          "24V927000"
+        ]
+      },
+      "2020": {
+        "status": 200,
+        "campaigns": [
+          "19V351000",
+          "20V082000",
+          "23V369000",
+          "23V709000",
+          "24V085000",
+          "24V086000",
+          "24V183000",
+          "26V067000"
+        ]
+      },
+      "2021": {
+        "status": 200,
+        "campaigns": [
+          "23V030000",
+          "23V369000",
+          "23V518000",
+          "23V709000",
+          "24V134000",
+          "26V067000"
+        ]
+      },
+      "2022": {
+        "status": 200,
+        "campaigns": [
+          "23V030000",
+          "23V369000",
+          "23V518000",
+          "23V709000",
+          "24V134000"
+        ]
+      },
+      "2023": {
+        "status": 200,
+        "campaigns": [
+          "23V369000",
+          "23V709000",
+          "24V134000"
+        ]
+      },
+      "2024": {
+        "status": 200,
+        "campaigns": [
+          "23V369000",
+          "24V134000"
+        ]
+      },
+      "2025": {
+        "status": 400,
+        "campaigns": []
+      },
+      "2026": {
+        "status": 400,
+        "campaigns": []
+      }
+    }
+  },
+  "summary": {
+    "rewrite_same_identity": 0,
+    "keep_published_pending_source": 4,
+    "total": 4
+  },
+  "rows": [
+    {
+      "id": "jaguar-i-pace-12v-battery-drain-2019",
+      "model": "I-PACE",
+      "action": "keep_published_pending_source",
+      "reason": "SSM74458 confirms I-PACE 12V quiescent drain from the CAN being kept awake by the TCU and/or passive-entry modules, but it is an interim 2019 diagnostic measure and limits the automated TCU reset to VIN F69000-F80955. It does not establish the frozen 2019-2025 scope, U0155, an OTA sleep-mode fix, mandatory AGM replacement or a five-day battery-tender rule; it warns that replacing the battery without finding the cause may lead to further failures, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content, scope or publication-state changes; partial official evidence cannot be expanded into the frozen indexed identity.",
+      "commerceDecision": "unchanged-no-commerce-present",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "jlr-ssm-partial-vin-year-remedy-scope",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2019/MC-10164829-9999.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "SSM74458 confirms CAN wake by TCU/PEPS but limits the automated reset to VIN F69000-F80955 and warns against battery replacement without root-cause diagnosis."
+        }
+      ],
+      "beforeSha256": "e13d3343c066bc6082dc4377c7216a1368ddf58d0fd7ca37e514392fbfbb57bf",
+      "proposalSha256": "e13d3343c066bc6082dc4377c7216a1368ddf58d0fd7ca37e514392fbfbb57bf",
+      "before": {
+        "make": "Jaguar",
+        "model": "I-PACE",
+        "years": [
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [
+          "Dual Electric Motor"
+        ],
+        "category": "electrical",
+        "title": "12V Auxiliary Battery Drain",
+        "description": "The I-PACE suffers from excessive 12V auxiliary battery drain when the vehicle is parked. Multiple electronic modules fail to enter sleep mode properly, drawing power continuously from the 12V system. A dead 12V battery prevents the high-voltage system from activating, leaving the car completely immobilized.",
+        "solution": "Update the vehicle software to the latest OTA version, which improves module sleep behavior. Replace the 12V battery with a genuine Jaguar AGM battery. If the issue persists, a dealer needs to identify and reprogram the module that is not sleeping. Connect a battery tender if the car sits for more than 5 days.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Dead 12V battery after 3-5 days of sitting",
+          "Vehicle will not power on or unlock",
+          "Infotainment system not booting",
+          "Error messages on first startup after sitting",
+          "Key fob not detected"
+        ],
+        "affectedSystems": [
+          "Electrical",
+          "Battery",
+          "Body Control Module"
+        ],
+        "dtcCodes": [
+          "U0155"
+        ],
+        "estimatedCostLow": 200,
+        "estimatedCostHigh": 500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "JLR TSB — I-PACE 12V battery drain module sleep mode software update"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "source": "JaguarForums.com",
+            "content": "CTEK MXS 5.0 battery tender — connects to the 12V battery to keep it maintained during extended parking. Essential for I-PACE owners who do not drive daily.",
+            "upvotes": 234,
+            "partName": "MXS 5.0 Battery Tender",
+            "partBrand": "CTEK",
+            "partNumber": "MXS5.0",
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=CTEK%20MXS5.0&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 1800,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-03-10",
+        "reviewedOn": "2026-03-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Jaguar",
+        "model": "I-PACE",
+        "years": [
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [
+          "Dual Electric Motor"
+        ],
+        "category": "electrical",
+        "title": "12V Auxiliary Battery Drain",
+        "description": "The I-PACE suffers from excessive 12V auxiliary battery drain when the vehicle is parked. Multiple electronic modules fail to enter sleep mode properly, drawing power continuously from the 12V system. A dead 12V battery prevents the high-voltage system from activating, leaving the car completely immobilized.",
+        "solution": "Update the vehicle software to the latest OTA version, which improves module sleep behavior. Replace the 12V battery with a genuine Jaguar AGM battery. If the issue persists, a dealer needs to identify and reprogram the module that is not sleeping. Connect a battery tender if the car sits for more than 5 days.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Dead 12V battery after 3-5 days of sitting",
+          "Vehicle will not power on or unlock",
+          "Infotainment system not booting",
+          "Error messages on first startup after sitting",
+          "Key fob not detected"
+        ],
+        "affectedSystems": [
+          "Electrical",
+          "Battery",
+          "Body Control Module"
+        ],
+        "dtcCodes": [
+          "U0155"
+        ],
+        "estimatedCostLow": 200,
+        "estimatedCostHigh": 500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "JLR TSB — I-PACE 12V battery drain module sleep mode software update"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "source": "JaguarForums.com",
+            "content": "CTEK MXS 5.0 battery tender — connects to the 12V battery to keep it maintained during extended parking. Essential for I-PACE owners who do not drive daily.",
+            "upvotes": 234,
+            "partName": "MXS 5.0 Battery Tender",
+            "partBrand": "CTEK",
+            "partNumber": "MXS5.0",
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=CTEK%20MXS5.0&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 1800,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-03-10",
+        "reviewedOn": "2026-03-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "jaguar-i-pace-battery-conditioning-2019",
+      "model": "I-PACE",
+      "action": "keep_published_pending_source",
+      "reason": "SOTA S014 applies its specific I-PACE change to 2021 model year, already included in later models, and improves cold-weather range prediction accuracy and climate-control-influenced range estimation. It is not evidence of battery-conditioning inefficiency, excessive heater draw, inability to reach temperature, a 30-40% loss or the frozen 2019-2025 remedy claims, so the row remains unchanged.",
+      "identityRule": "No content, scope or publication-state changes; partial official evidence cannot be expanded into the frozen indexed identity.",
+      "commerceDecision": "unchanged-no-commerce-present",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "jlr-sota-outcome-scope-mismatch",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2023/MC-10248645-0001.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "SOTA S014 improves range prediction/estimation for 21MY I-PACE, not battery thermal-conditioning efficiency or a quantified physical range loss."
+        }
+      ],
+      "beforeSha256": "bd5953ef4d6ca84e47dc17f1091469f402ba5f3f4b124e15c6b6d20b7b3650d4",
+      "proposalSha256": "bd5953ef4d6ca84e47dc17f1091469f402ba5f3f4b124e15c6b6d20b7b3650d4",
+      "before": {
+        "make": "Jaguar",
+        "model": "I-PACE",
+        "years": [
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [
+          "Dual Electric Motor"
+        ],
+        "category": "electrical",
+        "title": "Battery Conditioning Inefficiency in Cold Weather",
+        "description": "The I-PACE high-voltage battery pack loses significant range in cold weather due to inefficient thermal conditioning. The battery heating system draws excessive energy during preconditioning, and the pack struggles to reach optimal operating temperature in sub-freezing conditions, reducing range by 30-40%.",
+        "solution": "Precondition the battery while still connected to the charger so the grid powers the heating rather than the battery. Schedule departure times in the app so conditioning starts before you leave. Update to the latest software which improves thermal management algorithms.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Significant range reduction in cold weather (30-40%)",
+          "Long preconditioning time before fast charging",
+          "Reduced regenerative braking in cold temperatures",
+          "Battery temperature warning",
+          "Slower-than-expected DC fast charging speeds"
+        ],
+        "affectedSystems": [
+          "Battery",
+          "Thermal Management",
+          "Drivetrain"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "forum",
+            "title": "JaguarForums.com — I-PACE cold weather range loss and battery preconditioning optimization guide"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "source": "JaguarForums.com",
+            "content": "Always precondition while plugged in. This alone recovers 15-20% of the cold-weather range loss by heating the battery on grid power instead of battery power.",
+            "upvotes": 267,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 1400,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-02-25",
+        "reviewedOn": "2026-03-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Jaguar",
+        "model": "I-PACE",
+        "years": [
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [
+          "Dual Electric Motor"
+        ],
+        "category": "electrical",
+        "title": "Battery Conditioning Inefficiency in Cold Weather",
+        "description": "The I-PACE high-voltage battery pack loses significant range in cold weather due to inefficient thermal conditioning. The battery heating system draws excessive energy during preconditioning, and the pack struggles to reach optimal operating temperature in sub-freezing conditions, reducing range by 30-40%.",
+        "solution": "Precondition the battery while still connected to the charger so the grid powers the heating rather than the battery. Schedule departure times in the app so conditioning starts before you leave. Update to the latest software which improves thermal management algorithms.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Significant range reduction in cold weather (30-40%)",
+          "Long preconditioning time before fast charging",
+          "Reduced regenerative braking in cold temperatures",
+          "Battery temperature warning",
+          "Slower-than-expected DC fast charging speeds"
+        ],
+        "affectedSystems": [
+          "Battery",
+          "Thermal Management",
+          "Drivetrain"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "forum",
+            "title": "JaguarForums.com — I-PACE cold weather range loss and battery preconditioning optimization guide"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "source": "JaguarForums.com",
+            "content": "Always precondition while plugged in. This alone recovers 15-20% of the cold-weather range loss by heating the battery on grid power instead of battery power.",
+            "upvotes": 267,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 1400,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-02-25",
+        "reviewedOn": "2026-03-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "jaguar-i-pace-contactor-failure-2019",
+      "model": "I-PACE",
+      "action": "keep_published_pending_source",
+      "reason": "No exact Jaguar bulletin or campaign was located that establishes the frozen 2019-2023 high-voltage contactor resistance, arcing and failure identity, P0AA6 or battery-junction-box replacement. The official recall registry contains distinct battery and electrical campaign identities and is not negative proof, so the indexed row remains unchanged pending an exact primary source.",
+      "identityRule": "No content, scope or publication-state changes; partial official evidence cannot be expanded into the frozen indexed identity.",
+      "commerceDecision": "unchanged-no-commerce-present",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-registry-boundary-not-negative-proof",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JAGUAR&model=I-PACE&modelYear=2019",
+          "verifiedOn": "2026-08-06",
+          "observation": "The 2019 registry returns distinct campaign identities; it neither establishes nor disproves a contactor defect."
+        }
+      ],
+      "beforeSha256": "96025e24f7c51c5fab129742dc851900707ec8657081327fe3103e37c3b2a2ac",
+      "proposalSha256": "96025e24f7c51c5fab129742dc851900707ec8657081327fe3103e37c3b2a2ac",
+      "before": {
+        "make": "Jaguar",
+        "model": "I-PACE",
+        "years": [
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [
+          "Dual Electric Motor"
+        ],
+        "category": "electrical",
+        "title": "High-Voltage Contactor Failure Warning",
+        "description": "The high-voltage battery contactors in the I-PACE can develop resistance or fail to close properly, triggering a drivetrain fault warning and preventing the vehicle from entering ready mode. The contactors degrade from repeated cycling and occasional arcing during high-current events.",
+        "solution": "Have the high-voltage system diagnosed at a JLR dealer with EV-certified technicians. Replace the affected contactor assembly within the battery junction box. This requires high-voltage safety procedures and is not a DIY repair.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "Drivetrain fault warning on startup",
+          "Vehicle will not enter ready mode",
+          "Power limited or no power available",
+          "Charging interrupted with fault code",
+          "Warning to stop safely"
+        ],
+        "affectedSystems": [
+          "Battery",
+          "Drivetrain",
+          "High-Voltage System"
+        ],
+        "dtcCodes": [
+          "P0AA6"
+        ],
+        "estimatedCostLow": 1000,
+        "estimatedCostHigh": 3500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "forum",
+            "title": "JaguarForums.com — I-PACE contactor fault diagnosis and dealer repair experience reports"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "warning",
+            "source": "JaguarForums.com",
+            "content": "Never attempt to diagnose or repair high-voltage components yourself. The I-PACE battery operates at 400V and can be lethal. Dealer or EV-specialist only.",
+            "upvotes": 198,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 320,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-12-10",
+        "reviewedOn": "2026-03-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "ford-mache-hv-contactor-failure-2021"
+        ]
+      },
+      "proposal": {
+        "make": "Jaguar",
+        "model": "I-PACE",
+        "years": [
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [
+          "Dual Electric Motor"
+        ],
+        "category": "electrical",
+        "title": "High-Voltage Contactor Failure Warning",
+        "description": "The high-voltage battery contactors in the I-PACE can develop resistance or fail to close properly, triggering a drivetrain fault warning and preventing the vehicle from entering ready mode. The contactors degrade from repeated cycling and occasional arcing during high-current events.",
+        "solution": "Have the high-voltage system diagnosed at a JLR dealer with EV-certified technicians. Replace the affected contactor assembly within the battery junction box. This requires high-voltage safety procedures and is not a DIY repair.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "Drivetrain fault warning on startup",
+          "Vehicle will not enter ready mode",
+          "Power limited or no power available",
+          "Charging interrupted with fault code",
+          "Warning to stop safely"
+        ],
+        "affectedSystems": [
+          "Battery",
+          "Drivetrain",
+          "High-Voltage System"
+        ],
+        "dtcCodes": [
+          "P0AA6"
+        ],
+        "estimatedCostLow": 1000,
+        "estimatedCostHigh": 3500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "forum",
+            "title": "JaguarForums.com — I-PACE contactor fault diagnosis and dealer repair experience reports"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "warning",
+            "source": "JaguarForums.com",
+            "content": "Never attempt to diagnose or repair high-voltage components yourself. The I-PACE battery operates at 400V and can be lethal. Dealer or EV-specialist only.",
+            "upvotes": 198,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 320,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-12-10",
+        "reviewedOn": "2026-03-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "ford-mache-hv-contactor-failure-2021"
+        ]
+      }
+    },
+    {
+      "id": "jaguar-i-pace-ota-update-issues-2019",
+      "model": "I-PACE",
+      "action": "keep_published_pending_source",
+      "reason": "H474 confirms failed SOTA updates only for certain 2021-2023 I-PACE vehicles and says VDC PIVI/Gateway Module A attempts were stopped pending a wired intervention with TCU update, PIVI recovery, SOTA-persistency clearing and GWM update. It does not establish the frozen 2019-2025 scope, post-update climate/charging regressions, Wi-Fi cause, hard-reset remedy or boot-loop behavior, so the broader row remains unchanged.",
+      "identityRule": "No content, scope or publication-state changes; partial official evidence cannot be expanded into the frozen indexed identity.",
+      "commerceDecision": "unchanged-no-commerce-present",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "jlr-service-action-partial-year-module-remedy-scope",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2024/MC-11008447-0001.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "H474 is limited to certain 2021-2023 SOTA failures and requires wired module intervention, not Wi-Fi troubleshooting or an infotainment hard reset."
+        }
+      ],
+      "beforeSha256": "2f0cea3cbc230e8981eb43e4560f01a93e8cbc4f268d704a4e0202fd2fcc598f",
+      "proposalSha256": "2f0cea3cbc230e8981eb43e4560f01a93e8cbc4f268d704a4e0202fd2fcc598f",
+      "before": {
+        "make": "Jaguar",
+        "model": "I-PACE",
+        "years": [
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [
+          "Dual Electric Motor"
+        ],
+        "category": "electrical",
+        "title": "OTA Software Update Failure and Glitches",
+        "description": "Over-the-air software updates on the I-PACE occasionally fail mid-installation or introduce new glitches after completion. Failed updates can leave the infotainment system in an inconsistent state, requiring a dealer visit to reflash. Some updates have introduced regression bugs in climate control and charging behavior.",
+        "solution": "Ensure the vehicle has stable WiFi and sufficient 12V battery charge before starting an OTA update. If an update fails, perform a hard reset of the infotainment system. Visit the dealer if the system is stuck in a boot loop. Report any post-update regressions to JLR for hotfix prioritization.",
+        "severity": "low",
+        "confidence": "medium",
+        "symptoms": [
+          "Update stuck at percentage for hours",
+          "System reboot loop after update",
+          "New bugs in climate or charging after update",
+          "Infotainment slower after update",
+          "Features missing after update"
+        ],
+        "affectedSystems": [
+          "Electrical",
+          "Infotainment",
+          "Software"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": 300,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "forum",
+            "title": "JaguarForums.com — I-PACE OTA update failure recovery and known regression bugs tracker"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "source": "JaguarForums.com",
+            "content": "Wait 2-3 weeks after an OTA update is released before installing it. Let early adopters find the bugs. Check the forums for reports before updating.",
+            "upvotes": 156,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 680,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-03-05",
+        "reviewedOn": "2026-03-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "land-rover-defender-pivi-pro-issues-2020"
+        ]
+      },
+      "proposal": {
+        "make": "Jaguar",
+        "model": "I-PACE",
+        "years": [
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [
+          "Dual Electric Motor"
+        ],
+        "category": "electrical",
+        "title": "OTA Software Update Failure and Glitches",
+        "description": "Over-the-air software updates on the I-PACE occasionally fail mid-installation or introduce new glitches after completion. Failed updates can leave the infotainment system in an inconsistent state, requiring a dealer visit to reflash. Some updates have introduced regression bugs in climate control and charging behavior.",
+        "solution": "Ensure the vehicle has stable WiFi and sufficient 12V battery charge before starting an OTA update. If an update fails, perform a hard reset of the infotainment system. Visit the dealer if the system is stuck in a boot loop. Report any post-update regressions to JLR for hotfix prioritization.",
+        "severity": "low",
+        "confidence": "medium",
+        "symptoms": [
+          "Update stuck at percentage for hours",
+          "System reboot loop after update",
+          "New bugs in climate or charging after update",
+          "Infotainment slower after update",
+          "Features missing after update"
+        ],
+        "affectedSystems": [
+          "Electrical",
+          "Infotainment",
+          "Software"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": 300,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "forum",
+            "title": "JaguarForums.com — I-PACE OTA update failure recovery and known regression bugs tracker"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "source": "JaguarForums.com",
+            "content": "Wait 2-3 weeks after an OTA update is released before installing it. Let early adopters find the bugs. Check the forums for reports before updating.",
+            "upvotes": 156,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 680,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-03-05",
+        "reviewedOn": "2026-03-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "land-rover-defender-pivi-pro-issues-2020"
+        ]
+      }
+    }
+  ]
+}
