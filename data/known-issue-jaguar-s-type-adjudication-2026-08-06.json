@@ -1,0 +1,707 @@
+{
+  "schemaVersion": 1,
+  "status": "proposal-only",
+  "auditStage": "model-primary-source-adjudication",
+  "requiresIndependentApproval": true,
+  "generatedOn": "2026-08-06",
+  "make": "Jaguar",
+  "model": "S-TYPE",
+  "completionStatement": "This packet reconciles all three frozen Jaguar S-TYPE rows. Four Jaguar technical PDFs and five relevant pages were visually reviewed; year-by-year NHTSA recall inventories were locked. All three rows remain byte-for-byte unchanged.",
+  "safetyContract": [
+    "No production database write, cache purge, deployment, archive action, redirect, slug change, new issue or public-page change is authorized by this packet.",
+    "All three S-TYPE rows remain published and byte-for-byte unchanged.",
+    "A model, engine, year, cause, code or remedy mismatch cannot authorize a broader rewrite.",
+    "A recall-registry result is not negative proof that a non-recall issue does not exist.",
+    "The three frozen citation objects contain titles but no URLs and therefore are not treated as verified source evidence.",
+    "Distinct issue identities remain deferred until the post-audit new-known-issues phase."
+  ],
+  "source": {
+    "snapshotFile": "data/_jaguar-deeplink-snapshot-2026-08-06.json",
+    "snapshotSha256": "60f1d4d001e3f56c9b9fc4c2429fe300f44ef3aaaeb7fda2e09a37b6e6c66800",
+    "snapshotGeneratedAt": "2026-08-07T01:28:25.707Z",
+    "snapshotHash": "016c6d9be5ca12dd4a514267ecfed59d36d825395d3e83ef56985dc87003bbfa",
+    "modelRecordCount": 3
+  },
+  "observations": [
+    {
+      "code": "s-type-electrical-primary-source-gap",
+      "severity": "source-gap",
+      "recordIds": [
+        "jaguar-s-type-electrical-gremlins-2000"
+      ],
+      "detail": "No exact primary source cleared the frozen nine-year moisture/CAN/module aggregation."
+    },
+    {
+      "code": "s-type-timing-model-engine-year-scope",
+      "severity": "high",
+      "recordIds": [
+        "jaguar-s-type-timing-chain-tensioner-v8-2000"
+      ],
+      "detail": "The located 303-68 scope excludes S-TYPE and cannot support the row through 2008 or its 4.2L applicability."
+    },
+    {
+      "code": "s-type-transmission-identity-cause-remedy-mismatch",
+      "severity": "high",
+      "recordIds": [
+        "jaguar-s-type-transmission-valve-body-2000"
+      ],
+      "detail": "The row misassigns JF506E to S-TYPE and converts an adaptive-software bulletin into broad valve-body wear."
+    },
+    {
+      "code": "s-type-existing-citations-missing-urls",
+      "severity": "source-gap",
+      "recordIds": [
+        "jaguar-s-type-electrical-gremlins-2000",
+        "jaguar-s-type-timing-chain-tensioner-v8-2000",
+        "jaguar-s-type-transmission-valve-body-2000"
+      ],
+      "detail": "Every frozen citation has a title but no URL, so none can independently clear a rewrite."
+    },
+    {
+      "code": "all-s-type-pages-preserved",
+      "severity": "seo-safety",
+      "recordIds": [
+        "jaguar-s-type-electrical-gremlins-2000",
+        "jaguar-s-type-timing-chain-tensioner-v8-2000",
+        "jaguar-s-type-transmission-valve-body-2000"
+      ],
+      "detail": "Every indexed S-TYPE record remains published with identical ID, title, years, category, content, citations and commerce."
+    }
+  ],
+  "reviewSources": {
+    "techLines": "https://jl-discourse-uploads.s3.dualstack.us-east-1.amazonaws.com/original/3X/a/b/ab2c9c44e2bf762ebef53d928dba0c905c677615.pdf",
+    "transmission": "https://jl-discourse-uploads.s3.dualstack.us-east-1.amazonaws.com/original/3X/0/a/0a98a9309fe9a8032d210f87ee6d6eb38dac29c0.pdf",
+    "powertrain": "http://jagrepair.com/images/Electrical/STypeElectrical/STypeTechGuide/2000%20MY%20S-TYPE%20Powertrain%20Introduction.pdf",
+    "jf506e": "http://jagrepair.com/images/TSB/TSB2/X-Type/307Gearbox/XT307-S941%20JATCO%20JF506E%20Transmission%20Replacement.pdf"
+  },
+  "pdfSources": {
+    "techLines": "https://jl-discourse-uploads.s3.dualstack.us-east-1.amazonaws.com/original/3X/a/b/ab2c9c44e2bf762ebef53d928dba0c905c677615.pdf",
+    "transmission": "https://jl-discourse-uploads.s3.dualstack.us-east-1.amazonaws.com/original/3X/0/a/0a98a9309fe9a8032d210f87ee6d6eb38dac29c0.pdf",
+    "powertrain": "http://jagrepair.com/images/Electrical/STypeElectrical/STypeTechGuide/2000%20MY%20S-TYPE%20Powertrain%20Introduction.pdf",
+    "jf506e": "http://jagrepair.com/images/TSB/TSB2/X-Type/307Gearbox/XT307-S941%20JATCO%20JF506E%20Transmission%20Replacement.pdf"
+  },
+  "sourceArtifactSha256": {
+    "techLines": "e9adaa121fdfafd0c4adc459ae06db3bfcb2a0cc2e22d3091ccea94b4c2831b9",
+    "transmission": "801bec1c07499f1af9379f0a07d4396d86fdeca4c4a437a0e6e26558c76aa572",
+    "powertrain": "fe42cee3ecd230e0232eae5b4f200ee56ec14ee34b5881967a1b5e7fb0d71019",
+    "jf506e": "34f83ca8f523ab694e388a87842318cdb1ebf048ce5ca29687e59a0916eeaa6a"
+  },
+  "visuallyInspectedPages": {
+    "techLines": [
+      3
+    ],
+    "transmission": [
+      1,
+      2
+    ],
+    "powertrain": [
+      66
+    ],
+    "jf506e": [
+      1
+    ]
+  },
+  "mismatchSources": {
+    "recallQueries": {
+      "2000": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JAGUAR&model=S-TYPE&modelYear=2000",
+      "2001": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JAGUAR&model=S-TYPE&modelYear=2001",
+      "2002": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JAGUAR&model=S-TYPE&modelYear=2002",
+      "2003": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JAGUAR&model=S-TYPE&modelYear=2003",
+      "2004": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JAGUAR&model=S-TYPE&modelYear=2004",
+      "2005": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JAGUAR&model=S-TYPE&modelYear=2005",
+      "2006": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JAGUAR&model=S-TYPE&modelYear=2006",
+      "2007": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JAGUAR&model=S-TYPE&modelYear=2007",
+      "2008": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JAGUAR&model=S-TYPE&modelYear=2008"
+    },
+    "expected": {
+      "2000": {
+        "status": 200,
+        "campaigns": [
+          "00V228004",
+          "00V359002",
+          "06E043000",
+          "06E056000"
+        ]
+      },
+      "2001": {
+        "status": 200,
+        "campaigns": [
+          "00V228004",
+          "00V359002",
+          "06E043000",
+          "06E056000"
+        ]
+      },
+      "2002": {
+        "status": 200,
+        "campaigns": [
+          "04V484000",
+          "06E056000"
+        ]
+      },
+      "2003": {
+        "status": 200,
+        "campaigns": [
+          "04V024000",
+          "04V484000",
+          "04V488000",
+          "06E056000"
+        ]
+      },
+      "2004": {
+        "status": 200,
+        "campaigns": [
+          "04V024000",
+          "04V484000",
+          "04V488000",
+          "06E056000"
+        ]
+      },
+      "2005": {
+        "status": 200,
+        "campaigns": [
+          "04V484000",
+          "06E056000",
+          "06V418000"
+        ]
+      },
+      "2006": {
+        "status": 200,
+        "campaigns": [
+          "05V503000",
+          "06E056000"
+        ]
+      },
+      "2007": {
+        "status": 200,
+        "campaigns": [
+          "06V467000"
+        ]
+      },
+      "2008": {
+        "status": 400,
+        "campaigns": []
+      }
+    }
+  },
+  "summary": {
+    "rewrite_same_identity": 0,
+    "keep_published_pending_source": 3,
+    "total": 3
+  },
+  "rows": [
+    {
+      "id": "jaguar-s-type-electrical-gremlins-2000",
+      "model": "S-TYPE",
+      "action": "keep_published_pending_source",
+      "reason": "No exact Jaguar primary source was located that establishes moisture ingress into control modules and poor CAN connections as one 2000-2008 S-TYPE issue with the frozen module locations, U0140/U0155/U0100 codes, dealer-equipment claim and blanket battery remedy. The official recall inventory contains distinct campaign identities and is not negative proof, so the indexed row remains byte-for-byte unchanged pending an exact source.",
+      "identityRule": "No content, scope or publication-state changes; partial or mismatched evidence cannot be expanded into the frozen indexed identity.",
+      "commerceDecision": "unchanged-no-commerce-present",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-registry-boundary-not-negative-proof",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JAGUAR&model=S-TYPE&modelYear=2000",
+          "verifiedOn": "2026-08-06",
+          "observation": "The official year inventory contains separate campaign identities and cannot establish or disprove the broad moisture/CAN aggregation."
+        }
+      ],
+      "beforeSha256": "1d6b33e723fa17016f4c5bc60d32940c8b8f93dfd2a49042f41ec336b273c8be",
+      "proposalSha256": "1d6b33e723fa17016f4c5bc60d32940c8b8f93dfd2a49042f41ec336b273c8be",
+      "before": {
+        "make": "Jaguar",
+        "model": "S-TYPE",
+        "years": [
+          2000,
+          2001,
+          2002,
+          2003,
+          2004,
+          2005,
+          2006,
+          2007,
+          2008
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Electrical System Gremlins and Module Failures",
+        "description": "The S-TYPE is notorious for electrical gremlins caused by moisture ingress into control modules and poor CAN bus connections. Phantom warning lights, inoperative features, and intermittent faults across multiple systems are common and difficult to diagnose without dealer-level equipment.",
+        "solution": "Check all module locations for moisture ingress, particularly the driver footwell and trunk. Clean and reseal all CAN bus connectors with dielectric grease. Reprogram affected modules with the latest software. Replace the 12V battery if it is over 4 years old.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Multiple warning lights illuminated simultaneously",
+          "Windows or locks operating erratically",
+          "Instrument cluster errors or flickering",
+          "Intermittent no-start condition",
+          "Features working one day and not the next"
+        ],
+        "affectedSystems": [
+          "Electrical",
+          "Body Control Module",
+          "CAN Bus"
+        ],
+        "dtcCodes": [
+          "U0140",
+          "U0155",
+          "U0100"
+        ],
+        "estimatedCostLow": 200,
+        "estimatedCostHigh": 1500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "forum",
+            "title": "JaguarForums.com — S-TYPE electrical gremlin master troubleshooting guide and module locations"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "source": "JaguarForums.com",
+            "content": "Buy an iCarsoft i930 Jaguar-specific scanner. It reads all Jaguar modules and saves thousands in dealer diagnostic fees. Essential tool for S-TYPE ownership.",
+            "upvotes": 234,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 2100,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-09-05",
+        "reviewedOn": "2026-03-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "jaguar-xj-electrical-gremlins-bcm-2004"
+        ]
+      },
+      "proposal": {
+        "make": "Jaguar",
+        "model": "S-TYPE",
+        "years": [
+          2000,
+          2001,
+          2002,
+          2003,
+          2004,
+          2005,
+          2006,
+          2007,
+          2008
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Electrical System Gremlins and Module Failures",
+        "description": "The S-TYPE is notorious for electrical gremlins caused by moisture ingress into control modules and poor CAN bus connections. Phantom warning lights, inoperative features, and intermittent faults across multiple systems are common and difficult to diagnose without dealer-level equipment.",
+        "solution": "Check all module locations for moisture ingress, particularly the driver footwell and trunk. Clean and reseal all CAN bus connectors with dielectric grease. Reprogram affected modules with the latest software. Replace the 12V battery if it is over 4 years old.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Multiple warning lights illuminated simultaneously",
+          "Windows or locks operating erratically",
+          "Instrument cluster errors or flickering",
+          "Intermittent no-start condition",
+          "Features working one day and not the next"
+        ],
+        "affectedSystems": [
+          "Electrical",
+          "Body Control Module",
+          "CAN Bus"
+        ],
+        "dtcCodes": [
+          "U0140",
+          "U0155",
+          "U0100"
+        ],
+        "estimatedCostLow": 200,
+        "estimatedCostHigh": 1500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "forum",
+            "title": "JaguarForums.com — S-TYPE electrical gremlin master troubleshooting guide and module locations"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "source": "JaguarForums.com",
+            "content": "Buy an iCarsoft i930 Jaguar-specific scanner. It reads all Jaguar modules and saves thousands in dealer diagnostic fees. Essential tool for S-TYPE ownership.",
+            "upvotes": 234,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 2100,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-09-05",
+        "reviewedOn": "2026-03-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "jaguar-xj-electrical-gremlins-bcm-2004"
+        ]
+      }
+    },
+    {
+      "id": "jaguar-s-type-timing-chain-tensioner-v8-2000",
+      "model": "S-TYPE",
+      "action": "keep_published_pending_source",
+      "reason": "Jaguar TechLines lists bulletin 303-68 for 1997-2002 XK and 1998-2002 V8 XJ; it does not include S-TYPE. The frozen row extends the claim through 2008 and includes the later 4.2L and supercharged 4.2L engines without an exact primary source supporting that full identity, the P0016/P0017 scope, replacement bundle, 18-24 labor hours or cost range. The page therefore remains byte-for-byte unchanged.",
+      "identityRule": "No content, scope or publication-state changes; partial or mismatched evidence cannot be expanded into the frozen indexed identity.",
+      "commerceDecision": "unchanged-no-commerce-present",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "jaguar-bulletin-model-scope-mismatch",
+          "url": "https://jl-discourse-uploads.s3.dualstack.us-east-1.amazonaws.com/original/3X/a/b/ab2c9c44e2bf762ebef53d928dba0c905c677615.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "The Jaguar April 2005 bulletin listing scopes 303-68 to XK and V8 XJ, not S-TYPE."
+        }
+      ],
+      "beforeSha256": "5c3646f7cee889eb8be5723d44acef0c633acf57de9f8fe3c3f3a698639bb2dc",
+      "proposalSha256": "5c3646f7cee889eb8be5723d44acef0c633acf57de9f8fe3c3f3a698639bb2dc",
+      "before": {
+        "make": "Jaguar",
+        "model": "S-TYPE",
+        "years": [
+          2000,
+          2001,
+          2002,
+          2003,
+          2004,
+          2005,
+          2006,
+          2007,
+          2008
+        ],
+        "trims": [],
+        "engines": [
+          "4.0L V8 AJ-V8",
+          "4.2L V8 AJ-V8",
+          "4.2L V8 Supercharged"
+        ],
+        "category": "engine",
+        "title": "Timing Chain Tensioner Failure on V8 Engine",
+        "description": "The early AJ-V8 engines in the S-TYPE have timing chain tensioners that fail prematurely, producing a characteristic cold-start rattle. The tensioners lose hydraulic pressure overnight, allowing chain slack that wears the guides and stretches the chain progressively.",
+        "solution": "Replace the timing chain tensioners, chains, and guides. On the S-TYPE, the engine does not need to come out but front-end disassembly is extensive. Use updated tensioner part numbers. Budget 18-24 hours of labor.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Rattling on cold start lasting several seconds",
+          "Rattle duration increases over months",
+          "Check engine light for cam timing codes",
+          "Rough running on cold start"
+        ],
+        "affectedSystems": [
+          "Engine",
+          "Valvetrain",
+          "Timing System"
+        ],
+        "dtcCodes": [
+          "P0016",
+          "P0017"
+        ],
+        "estimatedCostLow": 3500,
+        "estimatedCostHigh": 7000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "forum",
+            "title": "JaguarForums.com — S-TYPE V8 timing chain tensioner failure and replacement guide with part numbers"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "warning",
+            "source": "JaguarForums.com",
+            "content": "The S-TYPE V8 timing chain job costs more than many of these cars are worth. Factor this into your purchase price or walk away from one with cold-start rattle.",
+            "upvotes": 189,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 1400,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-06-10",
+        "reviewedOn": "2026-03-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "jaguar-xf-timing-chain-tensioner-ajv8-2009",
+          "jaguar-xj-timing-chain-tensioner-ajv8-2004",
+          "jaguar-xk-timing-chain-tensioner-ajv8-2007",
+          "land-rover-range-rover-timing-chain-tensioner-2010"
+        ]
+      },
+      "proposal": {
+        "make": "Jaguar",
+        "model": "S-TYPE",
+        "years": [
+          2000,
+          2001,
+          2002,
+          2003,
+          2004,
+          2005,
+          2006,
+          2007,
+          2008
+        ],
+        "trims": [],
+        "engines": [
+          "4.0L V8 AJ-V8",
+          "4.2L V8 AJ-V8",
+          "4.2L V8 Supercharged"
+        ],
+        "category": "engine",
+        "title": "Timing Chain Tensioner Failure on V8 Engine",
+        "description": "The early AJ-V8 engines in the S-TYPE have timing chain tensioners that fail prematurely, producing a characteristic cold-start rattle. The tensioners lose hydraulic pressure overnight, allowing chain slack that wears the guides and stretches the chain progressively.",
+        "solution": "Replace the timing chain tensioners, chains, and guides. On the S-TYPE, the engine does not need to come out but front-end disassembly is extensive. Use updated tensioner part numbers. Budget 18-24 hours of labor.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Rattling on cold start lasting several seconds",
+          "Rattle duration increases over months",
+          "Check engine light for cam timing codes",
+          "Rough running on cold start"
+        ],
+        "affectedSystems": [
+          "Engine",
+          "Valvetrain",
+          "Timing System"
+        ],
+        "dtcCodes": [
+          "P0016",
+          "P0017"
+        ],
+        "estimatedCostLow": 3500,
+        "estimatedCostHigh": 7000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "forum",
+            "title": "JaguarForums.com — S-TYPE V8 timing chain tensioner failure and replacement guide with part numbers"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "warning",
+            "source": "JaguarForums.com",
+            "content": "The S-TYPE V8 timing chain job costs more than many of these cars are worth. Factor this into your purchase price or walk away from one with cold-start rattle.",
+            "upvotes": 189,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 1400,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-06-10",
+        "reviewedOn": "2026-03-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "jaguar-xf-timing-chain-tensioner-ajv8-2009",
+          "jaguar-xj-timing-chain-tensioner-ajv8-2004",
+          "jaguar-xk-timing-chain-tensioner-ajv8-2007",
+          "land-rover-range-rover-timing-chain-tensioner-2010"
+        ]
+      }
+    },
+    {
+      "id": "jaguar-s-type-transmission-valve-body-2000",
+      "model": "S-TYPE",
+      "action": "keep_published_pending_source",
+      "reason": "Jaguar powertrain training identifies the early S-TYPE automatic as the 5R55N on both V6 and V8 engines, while Jaguar service action XT307-S941 identifies the JATCO JF506E as a specific 2002 X-TYPE transmission, not S-TYPE. Bulletin S307-17 attributes certain 2003-2004 S-TYPE harsh shifts to adaptive shift strategy drift and prescribes clearing adaptations plus TCM/ECM reconfiguration with no parts; it does not establish valve-body wear across 2000-2008. Because the frozen row combines different transmissions, years, causes and remedies, it remains unchanged.",
+      "identityRule": "No content, scope or publication-state changes; partial or mismatched evidence cannot be expanded into the frozen indexed identity.",
+      "commerceDecision": "unchanged-no-commerce-present",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "jaguar-bulletin-cause-remedy-scope-mismatch",
+          "url": "https://jl-discourse-uploads.s3.dualstack.us-east-1.amazonaws.com/original/3X/0/a/0a98a9309fe9a8032d210f87ee6d6eb38dac29c0.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "S307-17 covers certain 2003-2004 S-TYPE adaptive strategy drift and a software/adaptation remedy, not valve-body replacement."
+        },
+        {
+          "kind": "jaguar-powertrain-identity",
+          "url": "http://jagrepair.com/images/Electrical/STypeElectrical/STypeTechGuide/2000%20MY%20S-TYPE%20Powertrain%20Introduction.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "Jaguar training identifies the early S-TYPE automatic as 5R55N on V6 and V8."
+        },
+        {
+          "kind": "jaguar-jf506e-model-mismatch",
+          "url": "http://jagrepair.com/images/TSB/TSB2/X-Type/307Gearbox/XT307-S941%20JATCO%20JF506E%20Transmission%20Replacement.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "XT307-S941 scopes the JATCO JF506E service action to specific 2002 X-TYPE vehicles."
+        }
+      ],
+      "beforeSha256": "187e6a4e54fda8321bb3b3bbbb6ee9ca0b17dd4f9b69aaff1725e7ba36c7e429",
+      "proposalSha256": "187e6a4e54fda8321bb3b3bbbb6ee9ca0b17dd4f9b69aaff1725e7ba36c7e429",
+      "before": {
+        "make": "Jaguar",
+        "model": "S-TYPE",
+        "years": [
+          2000,
+          2001,
+          2002,
+          2003,
+          2004,
+          2005,
+          2006,
+          2007,
+          2008
+        ],
+        "trims": [],
+        "engines": [
+          "2.5L V6 Duratec",
+          "3.0L V6 Duratec",
+          "4.0L V8 AJ-V8",
+          "4.2L V8 AJ-V8"
+        ],
+        "category": "transmission",
+        "title": "Automatic Transmission Valve Body Wear",
+        "description": "The ZF 5HP and 6HP automatic transmissions in the S-TYPE develop valve body wear, causing harsh shifts, slipping between gears, and delayed engagement from park. The Ford JF506E used in some V6 models also suffers from similar solenoid-related issues.",
+        "solution": "Rebuild or replace the valve body. Change the transmission fluid and filter, which may temporarily improve shift quality. For the ZF 5HP/6HP, use only ZF-specified fluid. For the JF506E, a solenoid pack replacement often resolves the issue.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Harsh shifts especially 2-3 and 3-4",
+          "Slipping during acceleration",
+          "Delayed engagement from Park into Drive",
+          "Transmission fault warning",
+          "Shudder at low speeds"
+        ],
+        "affectedSystems": [
+          "Transmission",
+          "Drivetrain"
+        ],
+        "dtcCodes": [
+          "P0730",
+          "P0700"
+        ],
+        "estimatedCostLow": 800,
+        "estimatedCostHigh": 2500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "forum",
+            "title": "JaguarForums.com — S-TYPE transmission valve body rebuild guide for ZF and JF506E units"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "source": "JaguarForums.com",
+            "content": "Change the transmission fluid every 40,000 miles regardless of what the manual says about lifetime fill. This extends valve body life dramatically on both the ZF and Ford transmissions.",
+            "upvotes": 167,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 980,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-08-15",
+        "reviewedOn": "2026-03-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "jaguar-f-type-zf-8hp-valve-body-2014",
+          "jaguar-f-pace-zf-8hp-valve-body-2017"
+        ]
+      },
+      "proposal": {
+        "make": "Jaguar",
+        "model": "S-TYPE",
+        "years": [
+          2000,
+          2001,
+          2002,
+          2003,
+          2004,
+          2005,
+          2006,
+          2007,
+          2008
+        ],
+        "trims": [],
+        "engines": [
+          "2.5L V6 Duratec",
+          "3.0L V6 Duratec",
+          "4.0L V8 AJ-V8",
+          "4.2L V8 AJ-V8"
+        ],
+        "category": "transmission",
+        "title": "Automatic Transmission Valve Body Wear",
+        "description": "The ZF 5HP and 6HP automatic transmissions in the S-TYPE develop valve body wear, causing harsh shifts, slipping between gears, and delayed engagement from park. The Ford JF506E used in some V6 models also suffers from similar solenoid-related issues.",
+        "solution": "Rebuild or replace the valve body. Change the transmission fluid and filter, which may temporarily improve shift quality. For the ZF 5HP/6HP, use only ZF-specified fluid. For the JF506E, a solenoid pack replacement often resolves the issue.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Harsh shifts especially 2-3 and 3-4",
+          "Slipping during acceleration",
+          "Delayed engagement from Park into Drive",
+          "Transmission fault warning",
+          "Shudder at low speeds"
+        ],
+        "affectedSystems": [
+          "Transmission",
+          "Drivetrain"
+        ],
+        "dtcCodes": [
+          "P0730",
+          "P0700"
+        ],
+        "estimatedCostLow": 800,
+        "estimatedCostHigh": 2500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "forum",
+            "title": "JaguarForums.com — S-TYPE transmission valve body rebuild guide for ZF and JF506E units"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "source": "JaguarForums.com",
+            "content": "Change the transmission fluid every 40,000 miles regardless of what the manual says about lifetime fill. This extends valve body life dramatically on both the ZF and Ford transmissions.",
+            "upvotes": 167,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 980,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-08-15",
+        "reviewedOn": "2026-03-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "jaguar-f-type-zf-8hp-valve-body-2014",
+          "jaguar-f-pace-zf-8hp-valve-body-2017"
+        ]
+      }
+    }
+  ]
+}
