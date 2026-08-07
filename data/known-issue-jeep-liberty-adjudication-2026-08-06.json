@@ -1,0 +1,1467 @@
+{
+  "schemaVersion": 1,
+  "status": "proposal-only",
+  "auditStage": "model-primary-source-adjudication",
+  "requiresIndependentApproval": true,
+  "generatedOn": "2026-08-06",
+  "make": "Jeep",
+  "model": "Liberty",
+  "completionStatement": "All five frozen Liberty records remain byte-for-byte holds. The engine page cites a 5.7L HEMI bulletin, the ball-joint page cites two unrelated campaigns, and the remaining pages lack complete primary-source and fitment support.",
+  "safetyContract": [
+    "No production database write, cache purge, deployment, archive action, redirect, slug change, new issue or public-page change is authorized by this packet.",
+    "All five Liberty rows remain published and byte-for-byte unchanged.",
+    "A wrong vehicle, engine, component or year scope cannot replace an indexed identity.",
+    "Secondary sources, structural repair advice and unresolved commerce cannot authorize a rewrite.",
+    "New issue identities remain deferred until the remaining-make audit is complete."
+  ],
+  "source": {
+    "snapshotFile": "data/_jeep-deeplink-snapshot-2026-08-06.json",
+    "snapshotSha256": "e58c24fa8f57e198f5b77a539345b9f36ab5c8232c77263140c6915b311a9ddd",
+    "snapshotGeneratedAt": "2026-08-07T17:03:22.937Z",
+    "snapshotHash": "18ad4be47bc5941799a865d829fd30d5361a0cf7635e9ec106db32a7f109c7eb",
+    "modelRecordCount": 5
+  },
+  "observations": [
+    {
+      "code": "liberty-engine-page-cites-5-7l-hemi-tsb",
+      "severity": "critical",
+      "recordIds": [
+        "jeep-liberty-37-engine-issues"
+      ],
+      "detail": "The cited TSB covers 2019-2022 5.7L HEMI applications and does not list Liberty."
+    },
+    {
+      "code": "liberty-ball-joint-page-cites-two-unrelated-campaigns",
+      "severity": "critical",
+      "recordIds": [
+        "jeep-liberty-ball-joint-failure"
+      ],
+      "detail": "02V313 is an Aviator transmission recall and 03V297 is a trailer brake-valve recall; correct Liberty campaigns are 03V460 and 06V288."
+    },
+    {
+      "code": "liberty-commerce-fitment-unverified",
+      "severity": "high",
+      "recordIds": [
+        "jeep-liberty-37-engine-issues",
+        "jeep-liberty-ball-joint-failure",
+        "jeep-liberty-rust-corrosion",
+        "jeep-liberty-transfer-case-leak",
+        "jeep-liberty-window-regulator-failure"
+      ],
+      "detail": "All product and part claims remain unchanged pending exact configuration fitment."
+    },
+    {
+      "code": "all-liberty-pages-preserved",
+      "severity": "seo-safety",
+      "recordIds": [
+        "jeep-liberty-37-engine-issues",
+        "jeep-liberty-ball-joint-failure",
+        "jeep-liberty-rust-corrosion",
+        "jeep-liberty-transfer-case-leak",
+        "jeep-liberty-window-regulator-failure"
+      ],
+      "detail": "Every frozen Liberty record remains published and byte-for-byte unchanged."
+    }
+  ],
+  "pdfSource": {
+    "url": "https://static.nhtsa.gov/odi/tsbs/2023/MC-10247472-9999.pdf",
+    "sha256": "c2153ed8453ba5ace8883a9baee832bd617a7bb24ba696034d19634601798352",
+    "visuallyInspectedPages": [
+      1
+    ],
+    "markers": [
+      "TSB: 09-019-23",
+      "2019 - 2022",
+      "5.7L V8 Hemi",
+      "Jeep Grand Cherokee",
+      "replacing the exhaust manifolds"
+    ]
+  },
+  "campaignSources": {
+    "miscited02V313": {
+      "campaign": "02V313000",
+      "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=02V313000",
+      "model": "AVIATOR",
+      "years": [
+        "2003"
+      ],
+      "markers": [
+        "transmission shift cable",
+        "shift cable bracket"
+      ]
+    },
+    "miscited03V297": {
+      "campaign": "03V297000",
+      "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=03V297000",
+      "model": "TRAILER",
+      "years": [
+        "2000"
+      ],
+      "markers": [
+        "spring brake control valve",
+        "air valve"
+      ]
+    },
+    "ballJoint03V460": {
+      "campaign": "03V460000",
+      "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=03V460000",
+      "model": "LIBERTY",
+      "years": [
+        "2002",
+        "2003"
+      ],
+      "markers": [
+        "lower control arm ball joints",
+        "loss of lubrication",
+        "possible separation from the steering knuckle"
+      ]
+    },
+    "ballJoint06V288": {
+      "campaign": "06V288000",
+      "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=06V288000",
+      "model": "LIBERTY",
+      "years": [
+        "2002",
+        "2003",
+        "2004",
+        "2005",
+        "2006"
+      ],
+      "markers": [
+        "front lower ball joints",
+        "contamination",
+        "wear and looseness"
+      ]
+    }
+  },
+  "recallInventory": {
+    "queries": {
+      "2002": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=LIBERTY&modelYear=2002",
+      "2003": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=LIBERTY&modelYear=2003",
+      "2004": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=LIBERTY&modelYear=2004",
+      "2005": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=LIBERTY&modelYear=2005",
+      "2006": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=LIBERTY&modelYear=2006",
+      "2007": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=LIBERTY&modelYear=2007",
+      "2008": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=LIBERTY&modelYear=2008",
+      "2009": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=LIBERTY&modelYear=2009",
+      "2010": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=LIBERTY&modelYear=2010",
+      "2011": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=LIBERTY&modelYear=2011",
+      "2012": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=LIBERTY&modelYear=2012"
+    },
+    "expected": {
+      "2002": [
+        "01V311000",
+        "01V373000",
+        "03V460000",
+        "06E022000",
+        "06E026000",
+        "06E049000",
+        "06E065000",
+        "06V288000",
+        "09E012000",
+        "09V119000",
+        "12E047000",
+        "12V527000",
+        "13V252000",
+        "15V046000"
+      ],
+      "2003": [
+        "03V460000",
+        "06E026000",
+        "06E049000",
+        "06E065000",
+        "06V288000",
+        "09E012000",
+        "09E039000",
+        "09V119000",
+        "12E047000",
+        "12V527000",
+        "13V252000",
+        "15V046000",
+        "15V673000"
+      ],
+      "2004": [
+        "04V048000",
+        "04V111000",
+        "04V337000",
+        "06E026000",
+        "06E049000",
+        "06E065000",
+        "06V288000",
+        "09E012000",
+        "09E039000",
+        "12E047000",
+        "12V085000",
+        "13V252000",
+        "18V278000"
+      ],
+      "2005": [
+        "05V460000",
+        "06E026000",
+        "06V288000",
+        "09E039000",
+        "12E047000",
+        "12V085000",
+        "13V252000",
+        "18V278000"
+      ],
+      "2006": [
+        "05V460000",
+        "06V036000",
+        "06V072000",
+        "06V288000",
+        "07V089000",
+        "09E039000",
+        "12V085000",
+        "13V252000",
+        "15V222000",
+        "18V278000"
+      ],
+      "2007": [
+        "06V341000",
+        "06V493000",
+        "07V089000",
+        "09E039000",
+        "12V085000",
+        "13V252000",
+        "18V278000"
+      ],
+      "2008": [
+        "08V455000",
+        "08V525000",
+        "09E039000",
+        "10V550000",
+        "13V121000"
+      ],
+      "2009": [
+        "09E039000"
+      ],
+      "2010": [
+        "10V009000",
+        "10V315000"
+      ],
+      "2011": [
+        "11V315000",
+        "13V282000",
+        "17V640000"
+      ],
+      "2012": [
+        "13V282000",
+        "17V640000"
+      ]
+    }
+  },
+  "summary": {
+    "rewrite_same_identity": 0,
+    "keep_published_pending_source": 5,
+    "total": 5
+  },
+  "rows": [
+    {
+      "id": "jeep-liberty-37-engine-issues",
+      "model": "Liberty",
+      "action": "keep_published_pending_source",
+      "reason": "The visually inspected cited bulletin is TSB 09-019-23 for 2019-2022 5.7L HEMI Ram, Durango and Grand Cherokee applications, not a 3.7L Liberty valve-cover bulletin. The frozen page also combines exhaust-manifold, valve-cover and head-gasket identities with conflicting part claims and search commerce. A 5.7L HEMI source cannot establish the 3.7L Liberty page, so the row remains byte-for-byte unchanged.",
+      "identityRule": "A wrong-model campaign or bulletin, partial year scope, secondary source or unresolved fitment requires a byte-for-byte hold.",
+      "commerceDecision": "unchanged-commerce-pending-exact-source-and-fitment",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "visually-inspected-official-tsb-wrong-engine-model-and-years",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2023/MC-10247472-9999.pdf",
+          "verifiedOn": "2026-08-06",
+          "sha256": "c2153ed8453ba5ace8883a9baee832bd617a7bb24ba696034d19634601798352",
+          "visuallyInspectedPages": [
+            1
+          ],
+          "observation": "TSB 09-019-23 is a 2019-2022 5.7L HEMI exhaust-manifold bulletin and does not list Liberty."
+        }
+      ],
+      "beforeSha256": "9f3e6db1e9204a65009b3728fff40d20be88214b3d44f878a285f24800d08ff6",
+      "proposalSha256": "9f3e6db1e9204a65009b3728fff40d20be88214b3d44f878a285f24800d08ff6",
+      "before": {
+        "make": "Jeep",
+        "model": "Liberty",
+        "years": [
+          2002,
+          2003,
+          2004,
+          2005,
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012
+        ],
+        "trims": [],
+        "engines": [
+          "3.7L V6"
+        ],
+        "category": "engine",
+        "title": "3.7L V6 Exhaust Manifold Crack / Valve Cover Oil Leaks",
+        "description": "The 3.7L PowerTech V6 engine suffers from two common issues: cracked exhaust manifolds (causing ticking noise and exhaust leak) and valve cover gasket oil leaks. The cast iron exhaust manifolds develop stress cracks due to thermal cycling, with the passenger side being more common. TSB 09-001-10 addressed valve cover oil leaks. Head gasket failures have also been reported on higher-mileage engines.",
+        "solution": "For exhaust manifold: Replace cracked manifold with new OEM or aftermarket unit ($200-400 per side, $400-800 labor). For valve cover gaskets: Replace both gaskets using Mopar 53021828AB gasket set ($20-40 parts, $200-400 labor). Use Permatex Ultra Grey sealant on the half-moon seals. For head gasket: If coolant mixes with oil, head gasket replacement needed ($1,500-2,500). TSB 09-001-10 provides dealer diagnostic guidelines for oil leaks.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Ticking noise from engine on cold start",
+          "Exhaust smell in cabin",
+          "Oil leak on valve covers",
+          "Oil spots on driveway",
+          "Reduced fuel economy",
+          "Check engine light for exhaust leak codes"
+        ],
+        "affectedSystems": [
+          "Engine",
+          "Exhaust"
+        ],
+        "dtcCodes": [
+          "P0171",
+          "P0174",
+          "P0300",
+          "P0301",
+          "P0302",
+          "P0303",
+          "P0304",
+          "P0128"
+        ],
+        "estimatedCostLow": 100,
+        "estimatedCostHigh": 2500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://static.nhtsa.gov/odi/tsbs/2023/MC-10247472-9999.pdf",
+            "type": "tsb",
+            "title": "Chrysler TSB 09-001-10 - Valve Cover Gasket Oil Leak Diagnosis"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "The ticking on cold start that goes away when warm is almost always a cracked exhaust manifold - not lifter noise",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "Use Mopar 53021828AB valve cover gasket set with Permatex Ultra Grey on the half-moon seals for a lasting repair",
+            "upvotes": 0,
+            "partName": "Valve Cover Gasket Set",
+            "partBrand": "Mopar",
+            "partNumber": "53021828AB",
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Mopar%2053021828AB&tag=au7o-20"
+          }
+        ],
+        "fixParts": [
+          {
+            "note": "(reconciled from the issue's own fix text)",
+            "source": "reconciliation",
+            "buyLinks": [
+              {
+                "url": "https://www.amazon.com/s?k=53013692AB&tag=au7o-20",
+                "vendor": "Amazon"
+              },
+              {
+                "url": "https://www.rockauto.com/en/partsearch/?q=53013692AB",
+                "vendor": "RockAuto"
+              },
+              {
+                "url": "https://www.ebay.com/sch/i.html?_nkw=53013692AB",
+                "vendor": "eBay"
+              }
+            ],
+            "priceLow": null,
+            "component": "exhaust manifold (right/passenger side, 3.7L V6)",
+            "priceHigh": null,
+            "oemPartNumber": "53013692AB",
+            "aftermarketXref": []
+          }
+        ],
+        "humanApproved": true,
+        "reportCount": 278,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2023-04-10",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "ram-2500-exhaust-manifold-crack-2010",
+          "chevy-astro-intake-gasket-1996",
+          "jaguar-f-type-exhaust-manifold-crack-v6-2014",
+          "chrysler-sebring-3.5l-head-gasket-overheating-2001"
+        ]
+      },
+      "proposal": {
+        "make": "Jeep",
+        "model": "Liberty",
+        "years": [
+          2002,
+          2003,
+          2004,
+          2005,
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012
+        ],
+        "trims": [],
+        "engines": [
+          "3.7L V6"
+        ],
+        "category": "engine",
+        "title": "3.7L V6 Exhaust Manifold Crack / Valve Cover Oil Leaks",
+        "description": "The 3.7L PowerTech V6 engine suffers from two common issues: cracked exhaust manifolds (causing ticking noise and exhaust leak) and valve cover gasket oil leaks. The cast iron exhaust manifolds develop stress cracks due to thermal cycling, with the passenger side being more common. TSB 09-001-10 addressed valve cover oil leaks. Head gasket failures have also been reported on higher-mileage engines.",
+        "solution": "For exhaust manifold: Replace cracked manifold with new OEM or aftermarket unit ($200-400 per side, $400-800 labor). For valve cover gaskets: Replace both gaskets using Mopar 53021828AB gasket set ($20-40 parts, $200-400 labor). Use Permatex Ultra Grey sealant on the half-moon seals. For head gasket: If coolant mixes with oil, head gasket replacement needed ($1,500-2,500). TSB 09-001-10 provides dealer diagnostic guidelines for oil leaks.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Ticking noise from engine on cold start",
+          "Exhaust smell in cabin",
+          "Oil leak on valve covers",
+          "Oil spots on driveway",
+          "Reduced fuel economy",
+          "Check engine light for exhaust leak codes"
+        ],
+        "affectedSystems": [
+          "Engine",
+          "Exhaust"
+        ],
+        "dtcCodes": [
+          "P0171",
+          "P0174",
+          "P0300",
+          "P0301",
+          "P0302",
+          "P0303",
+          "P0304",
+          "P0128"
+        ],
+        "estimatedCostLow": 100,
+        "estimatedCostHigh": 2500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://static.nhtsa.gov/odi/tsbs/2023/MC-10247472-9999.pdf",
+            "type": "tsb",
+            "title": "Chrysler TSB 09-001-10 - Valve Cover Gasket Oil Leak Diagnosis"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "The ticking on cold start that goes away when warm is almost always a cracked exhaust manifold - not lifter noise",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "Use Mopar 53021828AB valve cover gasket set with Permatex Ultra Grey on the half-moon seals for a lasting repair",
+            "upvotes": 0,
+            "partName": "Valve Cover Gasket Set",
+            "partBrand": "Mopar",
+            "partNumber": "53021828AB",
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Mopar%2053021828AB&tag=au7o-20"
+          }
+        ],
+        "fixParts": [
+          {
+            "note": "(reconciled from the issue's own fix text)",
+            "source": "reconciliation",
+            "buyLinks": [
+              {
+                "url": "https://www.amazon.com/s?k=53013692AB&tag=au7o-20",
+                "vendor": "Amazon"
+              },
+              {
+                "url": "https://www.rockauto.com/en/partsearch/?q=53013692AB",
+                "vendor": "RockAuto"
+              },
+              {
+                "url": "https://www.ebay.com/sch/i.html?_nkw=53013692AB",
+                "vendor": "eBay"
+              }
+            ],
+            "priceLow": null,
+            "component": "exhaust manifold (right/passenger side, 3.7L V6)",
+            "priceHigh": null,
+            "oemPartNumber": "53013692AB",
+            "aftermarketXref": []
+          }
+        ],
+        "humanApproved": true,
+        "reportCount": 278,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2023-04-10",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "ram-2500-exhaust-manifold-crack-2010",
+          "chevy-astro-intake-gasket-1996",
+          "jaguar-f-type-exhaust-manifold-crack-v6-2014",
+          "chrysler-sebring-3.5l-head-gasket-overheating-2001"
+        ]
+      }
+    },
+    {
+      "id": "jeep-liberty-ball-joint-failure",
+      "model": "Liberty",
+      "action": "keep_published_pending_source",
+      "reason": "The frozen page cites 02V313, which is a 2003 Lincoln Aviator transmission-shift-cable recall, and 03V297, which is a trailer air-brake-valve recall. The actual Liberty lower-ball-joint campaigns are 03V460 for 2002-2003 and 06V288 for 2002-2006, not the page's full 2002-2007 scope. The wrong campaigns, extra 2007 year and unverified Moog/Mopar commerce require a byte-for-byte hold.",
+      "identityRule": "A wrong-model campaign or bulletin, partial year scope, secondary source or unresolved fitment requires a byte-for-byte hold.",
+      "commerceDecision": "unchanged-commerce-pending-exact-source-and-fitment",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-campaign-cited-wrong-vehicle-and-component",
+          "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=02V313000",
+          "verifiedOn": "2026-08-06",
+          "observation": "Campaign 02V313000 was checked against its exact model, years and component."
+        },
+        {
+          "kind": "official-campaign-cited-wrong-vehicle-and-component",
+          "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=03V297000",
+          "verifiedOn": "2026-08-06",
+          "observation": "Campaign 03V297000 was checked against its exact model, years and component."
+        },
+        {
+          "kind": "official-campaign-correct-liberty-ball-joint-scope",
+          "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=03V460000",
+          "verifiedOn": "2026-08-06",
+          "observation": "Campaign 03V460000 was checked against its exact model, years and component."
+        },
+        {
+          "kind": "official-campaign-correct-liberty-ball-joint-scope",
+          "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=06V288000",
+          "verifiedOn": "2026-08-06",
+          "observation": "Campaign 06V288000 was checked against its exact model, years and component."
+        }
+      ],
+      "beforeSha256": "98f62045cdc081f5897b2455ee0e6ec89806613ac37e23d23177a7b4408509a1",
+      "proposalSha256": "98f62045cdc081f5897b2455ee0e6ec89806613ac37e23d23177a7b4408509a1",
+      "before": {
+        "make": "Jeep",
+        "model": "Liberty",
+        "years": [
+          2002,
+          2003,
+          2004,
+          2005,
+          2006,
+          2007
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "suspension",
+        "title": "Front Lower Ball Joint Separation / Failure",
+        "description": "The front lower ball joints can fail and separate, causing complete loss of steering control. The ball joint seal allows water and contaminants to enter, corroding the joint internally. NHTSA investigated this issue extensively, and multiple recalls were issued (Recall 02V-313 and 03V-297). On vehicles built January 2001 to March 2003, the failure can occur before 50,000 miles. Ball joint failure while driving can cause the front wheel to collapse inward.",
+        "solution": "Dealers replaced front lower control arm ball joint assemblies with modified versions and added heat shields under recalls 02V-313 and 03V-297. For non-recalled vehicles or second replacements, use Moog K80767 ball joints (lifetime warranty) or Mopar 52038118AG. Check ball joints annually by jacking up the front and checking for play. Replace immediately if any looseness is detected - do not wait.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Clunking noise from front suspension over bumps",
+          "Steering wanders or pulls",
+          "Uneven tire wear on front tires",
+          "Visible play in ball joint when jacked up",
+          "Front wheel tilts inward (severe failure)",
+          "Vibration in steering wheel"
+        ],
+        "affectedSystems": [
+          "Suspension",
+          "Steering",
+          "Safety"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 200,
+        "estimatedCostHigh": 800,
+        "typicalMileageLow": 15000,
+        "typicalMileageHigh": 50000,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/recalls",
+            "type": "recall",
+            "title": "NHTSA Recall 02V-313 / 03V-297 - Front Lower Ball Joint"
+          },
+          {
+            "url": "https://m.carcomplaints.com/Jeep/Liberty/2002/suspension/suspension-front-control_arm-upper_ball_joint.shtml",
+            "type": "nhtsa",
+            "title": "CarComplaints.com - 2002 Liberty Ball Joint Problems"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Moog K80767 ball joints come with a lifetime warranty and are more durable than OEM",
+            "upvotes": 0,
+            "partName": "Front Lower Ball Joint",
+            "partBrand": "Moog",
+            "partNumber": "K80767",
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Moog%20K80767&tag=au7o-20"
+          },
+          {
+            "type": "warning",
+            "content": "Ball joint failure causes complete loss of steering control - inspect annually and replace at the first sign of play",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Check ball joints by jacking up the front wheel and trying to wiggle the tire top-to-bottom - any play means immediate replacement",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [
+          {
+            "note": "(reconciled from the issue's own fix text)",
+            "source": "reconciliation",
+            "buyLinks": [
+              {
+                "url": "https://www.amazon.com/s?k=K80767&tag=au7o-20",
+                "vendor": "Amazon"
+              },
+              {
+                "url": "https://www.rockauto.com/en/partsearch/?q=K80767",
+                "vendor": "RockAuto"
+              },
+              {
+                "url": "https://www.ebay.com/sch/i.html?_nkw=K80767",
+                "vendor": "eBay"
+              }
+            ],
+            "priceLow": null,
+            "component": "front lower ball joint",
+            "priceHigh": null,
+            "oemPartNumber": "K80767",
+            "aftermarketXref": []
+          }
+        ],
+        "humanApproved": true,
+        "reportCount": 892,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2022-11-10",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "dodge-durango-ball-joint-1998"
+        ]
+      },
+      "proposal": {
+        "make": "Jeep",
+        "model": "Liberty",
+        "years": [
+          2002,
+          2003,
+          2004,
+          2005,
+          2006,
+          2007
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "suspension",
+        "title": "Front Lower Ball Joint Separation / Failure",
+        "description": "The front lower ball joints can fail and separate, causing complete loss of steering control. The ball joint seal allows water and contaminants to enter, corroding the joint internally. NHTSA investigated this issue extensively, and multiple recalls were issued (Recall 02V-313 and 03V-297). On vehicles built January 2001 to March 2003, the failure can occur before 50,000 miles. Ball joint failure while driving can cause the front wheel to collapse inward.",
+        "solution": "Dealers replaced front lower control arm ball joint assemblies with modified versions and added heat shields under recalls 02V-313 and 03V-297. For non-recalled vehicles or second replacements, use Moog K80767 ball joints (lifetime warranty) or Mopar 52038118AG. Check ball joints annually by jacking up the front and checking for play. Replace immediately if any looseness is detected - do not wait.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Clunking noise from front suspension over bumps",
+          "Steering wanders or pulls",
+          "Uneven tire wear on front tires",
+          "Visible play in ball joint when jacked up",
+          "Front wheel tilts inward (severe failure)",
+          "Vibration in steering wheel"
+        ],
+        "affectedSystems": [
+          "Suspension",
+          "Steering",
+          "Safety"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 200,
+        "estimatedCostHigh": 800,
+        "typicalMileageLow": 15000,
+        "typicalMileageHigh": 50000,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/recalls",
+            "type": "recall",
+            "title": "NHTSA Recall 02V-313 / 03V-297 - Front Lower Ball Joint"
+          },
+          {
+            "url": "https://m.carcomplaints.com/Jeep/Liberty/2002/suspension/suspension-front-control_arm-upper_ball_joint.shtml",
+            "type": "nhtsa",
+            "title": "CarComplaints.com - 2002 Liberty Ball Joint Problems"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Moog K80767 ball joints come with a lifetime warranty and are more durable than OEM",
+            "upvotes": 0,
+            "partName": "Front Lower Ball Joint",
+            "partBrand": "Moog",
+            "partNumber": "K80767",
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Moog%20K80767&tag=au7o-20"
+          },
+          {
+            "type": "warning",
+            "content": "Ball joint failure causes complete loss of steering control - inspect annually and replace at the first sign of play",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Check ball joints by jacking up the front wheel and trying to wiggle the tire top-to-bottom - any play means immediate replacement",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [
+          {
+            "note": "(reconciled from the issue's own fix text)",
+            "source": "reconciliation",
+            "buyLinks": [
+              {
+                "url": "https://www.amazon.com/s?k=K80767&tag=au7o-20",
+                "vendor": "Amazon"
+              },
+              {
+                "url": "https://www.rockauto.com/en/partsearch/?q=K80767",
+                "vendor": "RockAuto"
+              },
+              {
+                "url": "https://www.ebay.com/sch/i.html?_nkw=K80767",
+                "vendor": "eBay"
+              }
+            ],
+            "priceLow": null,
+            "component": "front lower ball joint",
+            "priceHigh": null,
+            "oemPartNumber": "K80767",
+            "aftermarketXref": []
+          }
+        ],
+        "humanApproved": true,
+        "reportCount": 892,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2022-11-10",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "dodge-durango-ball-joint-1998"
+        ]
+      }
+    },
+    {
+      "id": "jeep-liberty-rust-corrosion",
+      "model": "Liberty",
+      "action": "keep_published_pending_source",
+      "reason": "Two secondary listicles do not establish an eleven-year Liberty structural-rust frequency, the named failure areas, safety threshold, welding and panel-replacement remedies, rust-converter or rubber-undercoat sequence, annual oil-spray products or costs. Structural repair advice requires qualified evidence, so the row remains byte-for-byte unchanged.",
+      "identityRule": "A wrong-model campaign or bulletin, partial year scope, secondary source or unresolved fitment requires a byte-for-byte hold.",
+      "commerceDecision": "unchanged-commerce-pending-exact-source-and-fitment",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-recall-inventory-boundary-not-broad-claim-proof",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=LIBERTY&modelYear=2002",
+          "supportingUrls": [
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=LIBERTY&modelYear=2002",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=LIBERTY&modelYear=2003",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=LIBERTY&modelYear=2004",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=LIBERTY&modelYear=2005",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=LIBERTY&modelYear=2006",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=LIBERTY&modelYear=2007",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=LIBERTY&modelYear=2008",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=LIBERTY&modelYear=2009",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=LIBERTY&modelYear=2010",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=LIBERTY&modelYear=2011",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=LIBERTY&modelYear=2012"
+          ],
+          "verifiedOn": "2026-08-06",
+          "observation": "The full 2002-2012 recall inventory does not establish this broad page and its commerce."
+        }
+      ],
+      "beforeSha256": "d2cb61a05637a07602e236462634d79bcc480b03af45f9b32c5bc13db3b45c48",
+      "proposalSha256": "d2cb61a05637a07602e236462634d79bcc480b03af45f9b32c5bc13db3b45c48",
+      "before": {
+        "make": "Jeep",
+        "model": "Liberty",
+        "years": [
+          2002,
+          2003,
+          2004,
+          2005,
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "body",
+        "title": "Severe Body / Frame Rust and Corrosion",
+        "description": "The Liberty is extremely susceptible to rust, particularly in northern and salt-belt states. Common rust areas include the rear quarter panels near the wheel arches, the lower door skins, rocker panels, subframe mounting points, and rear bumper brackets. Structural rust on the subframe and unibody can compromise vehicle safety. Many Liberties have been scrapped due to rust before any mechanical failure occurs.",
+        "solution": "For surface rust: Wire brush affected areas, apply rust converter (Rust-Oleum Rust Reformer), and coat with rubberized undercoating. For structural rust on rocker panels or subframe: Professional welding repair ($500-2,000 per area) or panel replacement. Apply annual rust protection (Fluid Film or Krown, $150-250/year). For prevention, wash undercarriage frequently in winter and fix paint chips immediately.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Bubbling or flaking paint on body panels",
+          "Visible rust on wheel arches and quarter panels",
+          "Holes forming in rocker panels",
+          "Rust stains on driveway from undercarriage",
+          "Structural panels feeling soft or flexible",
+          "Exhaust hangers rusting through"
+        ],
+        "affectedSystems": [
+          "Body",
+          "Frame"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 100,
+        "estimatedCostHigh": 3000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://rerev.com/articles/jeep-liberty-years-to-avoid/",
+            "type": "news",
+            "title": "REREV - Jeep Liberty Years to Avoid (Rust Issues)"
+          },
+          {
+            "url": "https://gearpatro.com/best-worst-jeep-liberty-years/",
+            "type": "news",
+            "title": "GearPatro - Best and Worst Jeep Liberty Years"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "If buying a used Liberty, always inspect underneath for subframe rust - structural rust makes the vehicle unsafe and uneconomical to repair",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "Fluid Film Undercoating applied annually is the best prevention for Liberty rust",
+            "upvotes": 0,
+            "partName": "Undercoating Spray",
+            "partBrand": "Fluid Film",
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Fluid%20Film%20Undercoating%20Spray&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 567,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2023-11-20",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "subaru-loyale-rust-body-1990"
+        ]
+      },
+      "proposal": {
+        "make": "Jeep",
+        "model": "Liberty",
+        "years": [
+          2002,
+          2003,
+          2004,
+          2005,
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "body",
+        "title": "Severe Body / Frame Rust and Corrosion",
+        "description": "The Liberty is extremely susceptible to rust, particularly in northern and salt-belt states. Common rust areas include the rear quarter panels near the wheel arches, the lower door skins, rocker panels, subframe mounting points, and rear bumper brackets. Structural rust on the subframe and unibody can compromise vehicle safety. Many Liberties have been scrapped due to rust before any mechanical failure occurs.",
+        "solution": "For surface rust: Wire brush affected areas, apply rust converter (Rust-Oleum Rust Reformer), and coat with rubberized undercoating. For structural rust on rocker panels or subframe: Professional welding repair ($500-2,000 per area) or panel replacement. Apply annual rust protection (Fluid Film or Krown, $150-250/year). For prevention, wash undercarriage frequently in winter and fix paint chips immediately.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Bubbling or flaking paint on body panels",
+          "Visible rust on wheel arches and quarter panels",
+          "Holes forming in rocker panels",
+          "Rust stains on driveway from undercarriage",
+          "Structural panels feeling soft or flexible",
+          "Exhaust hangers rusting through"
+        ],
+        "affectedSystems": [
+          "Body",
+          "Frame"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 100,
+        "estimatedCostHigh": 3000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://rerev.com/articles/jeep-liberty-years-to-avoid/",
+            "type": "news",
+            "title": "REREV - Jeep Liberty Years to Avoid (Rust Issues)"
+          },
+          {
+            "url": "https://gearpatro.com/best-worst-jeep-liberty-years/",
+            "type": "news",
+            "title": "GearPatro - Best and Worst Jeep Liberty Years"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "If buying a used Liberty, always inspect underneath for subframe rust - structural rust makes the vehicle unsafe and uneconomical to repair",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "Fluid Film Undercoating applied annually is the best prevention for Liberty rust",
+            "upvotes": 0,
+            "partName": "Undercoating Spray",
+            "partBrand": "Fluid Film",
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Fluid%20Film%20Undercoating%20Spray&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 567,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2023-11-20",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "subaru-loyale-rust-body-1990"
+        ]
+      }
+    },
+    {
+      "id": "jeep-liberty-transfer-case-leak",
+      "model": "Liberty",
+      "action": "keep_published_pending_source",
+      "reason": "A forum home page does not establish an eleven-year transfer-case and front/rear differential seal defect, fluid specifications, bearing-damage chain, part 52853699AA, 68003265AA or 52070339AB fitment. The fixParts record also substitutes part 4798125 without reconciling the page text. The row remains byte-for-byte unchanged.",
+      "identityRule": "A wrong-model campaign or bulletin, partial year scope, secondary source or unresolved fitment requires a byte-for-byte hold.",
+      "commerceDecision": "unchanged-commerce-pending-exact-source-and-fitment",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-recall-inventory-boundary-not-broad-claim-proof",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=LIBERTY&modelYear=2002",
+          "supportingUrls": [
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=LIBERTY&modelYear=2002",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=LIBERTY&modelYear=2003",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=LIBERTY&modelYear=2004",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=LIBERTY&modelYear=2005",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=LIBERTY&modelYear=2006",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=LIBERTY&modelYear=2007",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=LIBERTY&modelYear=2008",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=LIBERTY&modelYear=2009",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=LIBERTY&modelYear=2010",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=LIBERTY&modelYear=2011",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=LIBERTY&modelYear=2012"
+          ],
+          "verifiedOn": "2026-08-06",
+          "observation": "The full 2002-2012 recall inventory does not establish this broad page and its commerce."
+        }
+      ],
+      "beforeSha256": "61cb56d6eb5fecebf136cbc6ab185d7b7bcf518e9f5e24f84c7f805047747cb4",
+      "proposalSha256": "61cb56d6eb5fecebf136cbc6ab185d7b7bcf518e9f5e24f84c7f805047747cb4",
+      "before": {
+        "make": "Jeep",
+        "model": "Liberty",
+        "years": [
+          2002,
+          2003,
+          2004,
+          2005,
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "drivetrain",
+        "title": "Transfer Case / Differential Seal Leaks",
+        "description": "The Liberty is notorious for fluid leaks from the transfer case output shaft seal and differential pinion seal. The seals dry out and crack, allowing gear oil to leak and eventually causing bearing and gear damage if fluid level drops too low. The front differential pinion seal is especially prone to failure. Fluid leaks are a significant cause of bearing failure in the transfer case and differentials.",
+        "solution": "Replace the transfer case output shaft seal (Mopar 52853699AA) and/or differential pinion seal (Mopar 68003265AA for front, 52070339AB for rear). These are relatively inexpensive parts ($15-30 each) but require some disassembly. Check and top off transfer case fluid (ATF+4) and differential fluid (75W-90 gear oil) regularly. If bearing damage has occurred from running low on fluid, a complete rebuild may be needed ($800-2,000).",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Oil stain or puddle under center of vehicle",
+          "Whining noise from transfer case area",
+          "Grinding noise in 4WD",
+          "Difficulty engaging or disengaging 4WD",
+          "Low fluid level in transfer case or differential",
+          "Fluid leak at front differential"
+        ],
+        "affectedSystems": [
+          "Drivetrain",
+          "Transfer Case"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 100,
+        "estimatedCostHigh": 2000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.jeepkj.com/",
+            "type": "forum",
+            "title": "JeepKJ.com - Transfer Case and Differential Discussions"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Check transfer case and differential fluid levels every oil change - catching a leak early prevents expensive bearing damage",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "Use Mopar 52853699AA for the transfer case output shaft seal - aftermarket seals tend to leak sooner",
+            "upvotes": 0,
+            "partName": "Transfer Case Output Shaft Seal",
+            "partBrand": "Mopar",
+            "partNumber": "52853699AA",
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Mopar%2052853699AA&tag=au7o-20"
+          }
+        ],
+        "fixParts": [
+          {
+            "note": "(reconciled from the issue's own fix text)",
+            "source": "reconciliation",
+            "buyLinks": [
+              {
+                "url": "https://www.amazon.com/s?k=4798125&tag=au7o-20",
+                "vendor": "Amazon"
+              },
+              {
+                "url": "https://www.rockauto.com/en/partsearch/?q=4798125",
+                "vendor": "RockAuto"
+              },
+              {
+                "url": "https://www.ebay.com/sch/i.html?_nkw=4798125",
+                "vendor": "eBay"
+              }
+            ],
+            "priceLow": null,
+            "component": "transfer case output shaft seal",
+            "priceHigh": null,
+            "oemPartNumber": "4798125",
+            "aftermarketXref": []
+          }
+        ],
+        "humanApproved": true,
+        "reportCount": 345,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2023-07-15",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "alfa-romeo-stelvio-transfer-case-leak"
+        ]
+      },
+      "proposal": {
+        "make": "Jeep",
+        "model": "Liberty",
+        "years": [
+          2002,
+          2003,
+          2004,
+          2005,
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "drivetrain",
+        "title": "Transfer Case / Differential Seal Leaks",
+        "description": "The Liberty is notorious for fluid leaks from the transfer case output shaft seal and differential pinion seal. The seals dry out and crack, allowing gear oil to leak and eventually causing bearing and gear damage if fluid level drops too low. The front differential pinion seal is especially prone to failure. Fluid leaks are a significant cause of bearing failure in the transfer case and differentials.",
+        "solution": "Replace the transfer case output shaft seal (Mopar 52853699AA) and/or differential pinion seal (Mopar 68003265AA for front, 52070339AB for rear). These are relatively inexpensive parts ($15-30 each) but require some disassembly. Check and top off transfer case fluid (ATF+4) and differential fluid (75W-90 gear oil) regularly. If bearing damage has occurred from running low on fluid, a complete rebuild may be needed ($800-2,000).",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Oil stain or puddle under center of vehicle",
+          "Whining noise from transfer case area",
+          "Grinding noise in 4WD",
+          "Difficulty engaging or disengaging 4WD",
+          "Low fluid level in transfer case or differential",
+          "Fluid leak at front differential"
+        ],
+        "affectedSystems": [
+          "Drivetrain",
+          "Transfer Case"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 100,
+        "estimatedCostHigh": 2000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.jeepkj.com/",
+            "type": "forum",
+            "title": "JeepKJ.com - Transfer Case and Differential Discussions"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Check transfer case and differential fluid levels every oil change - catching a leak early prevents expensive bearing damage",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "Use Mopar 52853699AA for the transfer case output shaft seal - aftermarket seals tend to leak sooner",
+            "upvotes": 0,
+            "partName": "Transfer Case Output Shaft Seal",
+            "partBrand": "Mopar",
+            "partNumber": "52853699AA",
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Mopar%2052853699AA&tag=au7o-20"
+          }
+        ],
+        "fixParts": [
+          {
+            "note": "(reconciled from the issue's own fix text)",
+            "source": "reconciliation",
+            "buyLinks": [
+              {
+                "url": "https://www.amazon.com/s?k=4798125&tag=au7o-20",
+                "vendor": "Amazon"
+              },
+              {
+                "url": "https://www.rockauto.com/en/partsearch/?q=4798125",
+                "vendor": "RockAuto"
+              },
+              {
+                "url": "https://www.ebay.com/sch/i.html?_nkw=4798125",
+                "vendor": "eBay"
+              }
+            ],
+            "priceLow": null,
+            "component": "transfer case output shaft seal",
+            "priceHigh": null,
+            "oemPartNumber": "4798125",
+            "aftermarketXref": []
+          }
+        ],
+        "humanApproved": true,
+        "reportCount": 345,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2023-07-15",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "alfa-romeo-stelvio-transfer-case-leak"
+        ]
+      }
+    },
+    {
+      "id": "jeep-liberty-window-regulator-failure",
+      "model": "Liberty",
+      "action": "keep_published_pending_source",
+      "reason": "One forum thread does not establish an all-year extremely high regulator failure rate, a 2010 federal class action, repeated OEM failure, metal-geared Dorman upgrade, labor time or Dorman and Mopar fitment across 2002-2012. The row remains byte-for-byte unchanged.",
+      "identityRule": "A wrong-model campaign or bulletin, partial year scope, secondary source or unresolved fitment requires a byte-for-byte hold.",
+      "commerceDecision": "unchanged-commerce-pending-exact-source-and-fitment",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-recall-inventory-boundary-not-broad-claim-proof",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=LIBERTY&modelYear=2002",
+          "supportingUrls": [
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=LIBERTY&modelYear=2002",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=LIBERTY&modelYear=2003",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=LIBERTY&modelYear=2004",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=LIBERTY&modelYear=2005",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=LIBERTY&modelYear=2006",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=LIBERTY&modelYear=2007",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=LIBERTY&modelYear=2008",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=LIBERTY&modelYear=2009",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=LIBERTY&modelYear=2010",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=LIBERTY&modelYear=2011",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=LIBERTY&modelYear=2012"
+          ],
+          "verifiedOn": "2026-08-06",
+          "observation": "The full 2002-2012 recall inventory does not establish this broad page and its commerce."
+        }
+      ],
+      "beforeSha256": "1aa717fbd564dd4f9657085cd24df67625f72ee9e4ab73e2e3b59f71ece8e28b",
+      "proposalSha256": "1aa717fbd564dd4f9657085cd24df67625f72ee9e4ab73e2e3b59f71ece8e28b",
+      "before": {
+        "make": "Jeep",
+        "model": "Liberty",
+        "years": [
+          2002,
+          2003,
+          2004,
+          2005,
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Power Window Regulator Failure",
+        "description": "The power window regulators fail at an extremely high rate across all Liberty model years, causing windows to fall into the door, get stuck partially open, or make clicking/grinding noises when operated. The failure rate was so widespread that a federal class action lawsuit was filed against Chrysler in 2010. The plastic guide clips and cable mechanism are the primary failure points. Even replacement regulators from the dealer have been reported to fail again.",
+        "solution": "Replace the window regulator assembly (Dorman 741-649 front left, 741-650 front right are popular aftermarket options, $40-80 each). OEM Mopar replacements are available but also suffer from similar longevity issues. Some owners upgrade to metal-geared regulators from Dorman for improved durability. DIY-friendly repair taking 1-2 hours per window. Access panel removal requires a trim tool to avoid breaking clips.",
+        "severity": "low",
+        "confidence": "high",
+        "symptoms": [
+          "Window falls into door panel",
+          "Clicking noise when pressing window switch",
+          "Window moves slowly or unevenly",
+          "Window gets stuck partially open or closed",
+          "Grinding noise from door during window operation",
+          "Door will not latch properly (window stuck in latch area)"
+        ],
+        "affectedSystems": [
+          "Electrical",
+          "Interior"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 80,
+        "estimatedCostHigh": 400,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.jeepforum.com/threads/jeep-liberty-window-problems-solutions.947700/",
+            "type": "forum",
+            "title": "JeepForum.com - Liberty Window Problems Solutions"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Dorman 741-649 (front left) and 741-650 (front right) regulators are more durable than OEM and cost less",
+            "upvotes": 0,
+            "partName": "Power Window Regulator with Motor",
+            "partBrand": "Dorman",
+            "partNumber": "741-649",
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Dorman%20741-649&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "This is a common DIY repair - YouTube has many excellent tutorials for Liberty window regulator replacement",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Apply white lithium grease to the window tracks after replacement to reduce stress on the new regulator",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [
+          {
+            "note": "(reconciled from the issue's own fix text)",
+            "source": "reconciliation",
+            "buyLinks": [
+              {
+                "url": "https://www.amazon.com/s?k=68033455AB&tag=au7o-20",
+                "vendor": "Amazon"
+              },
+              {
+                "url": "https://www.rockauto.com/en/partsearch/?q=68033455AB",
+                "vendor": "RockAuto"
+              },
+              {
+                "url": "https://www.ebay.com/sch/i.html?_nkw=68033455AB",
+                "vendor": "eBay"
+              }
+            ],
+            "priceLow": null,
+            "component": "front door window regulator (driver/left)",
+            "priceHigh": null,
+            "oemPartNumber": "68033455AB",
+            "aftermarketXref": []
+          }
+        ],
+        "humanApproved": true,
+        "reportCount": 756,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2023-09-20",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "dodge-nitro-window-regulator-2007",
+          "chrysler-new-yorker-power-window-1990",
+          "chrysler-300-window-regulator-2011",
+          "chrysler-town-country-sliding-door-2008"
+        ]
+      },
+      "proposal": {
+        "make": "Jeep",
+        "model": "Liberty",
+        "years": [
+          2002,
+          2003,
+          2004,
+          2005,
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Power Window Regulator Failure",
+        "description": "The power window regulators fail at an extremely high rate across all Liberty model years, causing windows to fall into the door, get stuck partially open, or make clicking/grinding noises when operated. The failure rate was so widespread that a federal class action lawsuit was filed against Chrysler in 2010. The plastic guide clips and cable mechanism are the primary failure points. Even replacement regulators from the dealer have been reported to fail again.",
+        "solution": "Replace the window regulator assembly (Dorman 741-649 front left, 741-650 front right are popular aftermarket options, $40-80 each). OEM Mopar replacements are available but also suffer from similar longevity issues. Some owners upgrade to metal-geared regulators from Dorman for improved durability. DIY-friendly repair taking 1-2 hours per window. Access panel removal requires a trim tool to avoid breaking clips.",
+        "severity": "low",
+        "confidence": "high",
+        "symptoms": [
+          "Window falls into door panel",
+          "Clicking noise when pressing window switch",
+          "Window moves slowly or unevenly",
+          "Window gets stuck partially open or closed",
+          "Grinding noise from door during window operation",
+          "Door will not latch properly (window stuck in latch area)"
+        ],
+        "affectedSystems": [
+          "Electrical",
+          "Interior"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 80,
+        "estimatedCostHigh": 400,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.jeepforum.com/threads/jeep-liberty-window-problems-solutions.947700/",
+            "type": "forum",
+            "title": "JeepForum.com - Liberty Window Problems Solutions"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Dorman 741-649 (front left) and 741-650 (front right) regulators are more durable than OEM and cost less",
+            "upvotes": 0,
+            "partName": "Power Window Regulator with Motor",
+            "partBrand": "Dorman",
+            "partNumber": "741-649",
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Dorman%20741-649&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "This is a common DIY repair - YouTube has many excellent tutorials for Liberty window regulator replacement",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Apply white lithium grease to the window tracks after replacement to reduce stress on the new regulator",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [
+          {
+            "note": "(reconciled from the issue's own fix text)",
+            "source": "reconciliation",
+            "buyLinks": [
+              {
+                "url": "https://www.amazon.com/s?k=68033455AB&tag=au7o-20",
+                "vendor": "Amazon"
+              },
+              {
+                "url": "https://www.rockauto.com/en/partsearch/?q=68033455AB",
+                "vendor": "RockAuto"
+              },
+              {
+                "url": "https://www.ebay.com/sch/i.html?_nkw=68033455AB",
+                "vendor": "eBay"
+              }
+            ],
+            "priceLow": null,
+            "component": "front door window regulator (driver/left)",
+            "priceHigh": null,
+            "oemPartNumber": "68033455AB",
+            "aftermarketXref": []
+          }
+        ],
+        "humanApproved": true,
+        "reportCount": 756,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2023-09-20",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "dodge-nitro-window-regulator-2007",
+          "chrysler-new-yorker-power-window-1990",
+          "chrysler-300-window-regulator-2011",
+          "chrysler-town-country-sliding-door-2008"
+        ]
+      }
+    }
+  ]
+}
