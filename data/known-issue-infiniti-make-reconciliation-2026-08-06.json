@@ -1,0 +1,870 @@
+{
+  "schemaVersion": 1,
+  "status": "proposal-only",
+  "auditStage": "make-wide-reconciliation",
+  "requiresIndependentApproval": true,
+  "generatedOn": "2026-08-06",
+  "make": "Infiniti",
+  "completionStatement": "All 17 Infiniti model packets reconcile to all 73 frozen published rows exactly once. Six source-exact same-identity rewrites are proposed; the other 67 rows remain byte-for-byte holds.",
+  "safetyContract": [
+    "No production database write, cache purge, deployment, archive action, redirect, slug change or public-page change is authorized by this packet.",
+    "Every frozen Infiniti ID remains published with the same make, model, years, title and category.",
+    "Only the six explicitly listed source-exact identities may be rewritten after independent approval.",
+    "Newly discovered recall identities remain deferred until the existing-catalog make audit is complete."
+  ],
+  "source": {
+    "snapshotFile": "data/_infiniti-deeplink-snapshot-2026-08-06.json",
+    "snapshotSha256": "d39bdd77a0557365946b551a26b951cb1a5ba81773b7b66497201347b5034f64",
+    "snapshotHash": "45dde736354a9dcd17a72399b0101f30373ca9c267e6cd49a2528a63a023eebd",
+    "snapshotRecordCount": 73
+  },
+  "models": [
+    "EX35",
+    "FX35",
+    "FX45",
+    "FX50",
+    "G35",
+    "G37",
+    "M35",
+    "M37",
+    "M56",
+    "Q50",
+    "Q60",
+    "Q70",
+    "QX50",
+    "QX55",
+    "QX60",
+    "QX70",
+    "QX80"
+  ],
+  "modelPackets": [
+    {
+      "model": "EX35",
+      "file": "data/known-issue-infiniti-ex35-adjudication-2026-08-06.json",
+      "sha256": "0dae714fb764ca0d65903374729dd91e675f5aa1d3785316a5b220bb8101de68",
+      "rowCount": 1,
+      "rewrites": 0,
+      "holds": 1
+    },
+    {
+      "model": "FX35",
+      "file": "data/known-issue-infiniti-fx35-adjudication-2026-08-06.json",
+      "sha256": "fef8c77cca29ccd760895c68225e8d9c1717059659f0a838c7ad21ba02c84d67",
+      "rowCount": 6,
+      "rewrites": 1,
+      "holds": 5
+    },
+    {
+      "model": "FX45",
+      "file": "data/known-issue-infiniti-fx45-adjudication-2026-08-06.json",
+      "sha256": "8d3d2379b05b48bd10ba5c91ed777c585ac221c17d4a8b7ef55c65dd5d2e4644",
+      "rowCount": 6,
+      "rewrites": 0,
+      "holds": 6
+    },
+    {
+      "model": "FX50",
+      "file": "data/known-issue-infiniti-fx50-adjudication-2026-08-06.json",
+      "sha256": "6dc0fd7f6248dbd580e1a66bdf17b2d1d9398ee00a74d43bb5df3f05da10382b",
+      "rowCount": 6,
+      "rewrites": 1,
+      "holds": 5
+    },
+    {
+      "model": "G35",
+      "file": "data/known-issue-infiniti-g35-adjudication-2026-08-06.json",
+      "sha256": "e8e71780c85b95cb5a4dc0d4b97c0bbdc9f0dc4f8d9067dff4efd039553077cf",
+      "rowCount": 3,
+      "rewrites": 0,
+      "holds": 3
+    },
+    {
+      "model": "G37",
+      "file": "data/known-issue-infiniti-g37-adjudication-2026-08-06.json",
+      "sha256": "812d3cded9160c176e33efb7bfef0c361d17d896f4ef399975d8091f70b7f2e0",
+      "rowCount": 3,
+      "rewrites": 0,
+      "holds": 3
+    },
+    {
+      "model": "M35",
+      "file": "data/known-issue-infiniti-m35-adjudication-2026-08-06.json",
+      "sha256": "6c2f9c7b797b7485eecb63dd48853c7798e644dec084aee50199f141ea2f0d6e",
+      "rowCount": 6,
+      "rewrites": 1,
+      "holds": 5
+    },
+    {
+      "model": "M37",
+      "file": "data/known-issue-infiniti-m37-adjudication-2026-08-06.json",
+      "sha256": "51850fbdac2755cdce05c66063d3481edf9a2fe69a17ccc9268894af146cce0d",
+      "rowCount": 6,
+      "rewrites": 1,
+      "holds": 5
+    },
+    {
+      "model": "M56",
+      "file": "data/known-issue-infiniti-m56-adjudication-2026-08-06.json",
+      "sha256": "d63e3c69225425d20229f6b63b947cc074e44d857751cca9df49860be06ae98d",
+      "rowCount": 5,
+      "rewrites": 0,
+      "holds": 5
+    },
+    {
+      "model": "Q50",
+      "file": "data/known-issue-infiniti-q50-adjudication-2026-08-06.json",
+      "sha256": "548b0316c4bf84c9b0836329d609c0c2357b6475cfdca5ba794c768f063054b7",
+      "rowCount": 1,
+      "rewrites": 0,
+      "holds": 1
+    },
+    {
+      "model": "Q60",
+      "file": "data/known-issue-infiniti-q60-adjudication-2026-08-06.json",
+      "sha256": "6f2fdf029591500d449cd70c5206c9452920853073ec6fba2a47bc5861acb0a5",
+      "rowCount": 2,
+      "rewrites": 0,
+      "holds": 2
+    },
+    {
+      "model": "Q70",
+      "file": "data/known-issue-infiniti-q70-adjudication-2026-08-06.json",
+      "sha256": "8440ec5ff4c81403c662d72dfec339e2a3dccd9b728ff551448d2e19d5b0f343",
+      "rowCount": 1,
+      "rewrites": 0,
+      "holds": 1
+    },
+    {
+      "model": "QX50",
+      "file": "data/known-issue-infiniti-qx50-adjudication-2026-08-06.json",
+      "sha256": "dba53b5dee03cf9c3328541178cd4a465786151702e29d6e42cfd994003b17b9",
+      "rowCount": 7,
+      "rewrites": 0,
+      "holds": 7
+    },
+    {
+      "model": "QX55",
+      "file": "data/known-issue-infiniti-qx55-adjudication-2026-08-06.json",
+      "sha256": "ef6f6d638c22c67f782b9b2d4656733c14fc4c76832f6683c5ce064ce4c739e9",
+      "rowCount": 8,
+      "rewrites": 2,
+      "holds": 6
+    },
+    {
+      "model": "QX60",
+      "file": "data/known-issue-infiniti-qx60-adjudication-2026-08-06.json",
+      "sha256": "02d4b638d4bacb1d98bafc225fecab5fa32fc73c778a32c2246d0b5567463c17",
+      "rowCount": 7,
+      "rewrites": 0,
+      "holds": 7
+    },
+    {
+      "model": "QX70",
+      "file": "data/known-issue-infiniti-qx70-adjudication-2026-08-06.json",
+      "sha256": "bcf325809009ad53bbd4abb40101aef791ee60bcc3b6b70d2c3390d6475dfa7d",
+      "rowCount": 2,
+      "rewrites": 0,
+      "holds": 2
+    },
+    {
+      "model": "QX80",
+      "file": "data/known-issue-infiniti-qx80-adjudication-2026-08-06.json",
+      "sha256": "0ab39dd32750f59c3bbb5f7d6c25c9e83a030ea07daed2a5e8b47d6078b55a33",
+      "rowCount": 3,
+      "rewrites": 0,
+      "holds": 3
+    }
+  ],
+  "rewriteIds": [
+    "infiniti-fx35-brake-rotor-warping-front-brake-vibration",
+    "infiniti-fx50-brake-rotor-warping-brake-judder",
+    "infiniti-m35-brake-rotor-warping-and-front-brake-vibration",
+    "infiniti-m37-brake-rotor-warping-front-brake-vibration",
+    "infiniti-qx55-engine-cooling-fan-runs-full-speed-loud-roaring-jet-engine-n",
+    "infiniti-qx55-front-passenger-door-latch-may-not-lock"
+  ],
+  "summary": {
+    "rewrite_same_identity": 6,
+    "keep_published_pending_source": 67,
+    "total": 73
+  },
+  "invariants": {
+    "missingIds": 0,
+    "extraIds": 0,
+    "duplicateIds": 0,
+    "identityDrift": 0,
+    "statusDrift": 0,
+    "changedHolds": 0,
+    "archiveDeleteRedirectOrNewIssue": 0
+  },
+  "decisions": [
+    {
+      "id": "infiniti-ex35-oil-consumption",
+      "model": "EX35",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "2c3c8fcddd0039f51a941bb6199c995fe10f7ead4198e2c844407e84f55e29ab",
+      "proposalSha256": "2c3c8fcddd0039f51a941bb6199c995fe10f7ead4198e2c844407e84f55e29ab",
+      "changedFields": []
+    },
+    {
+      "id": "infiniti-fx-qx70-timing-chain",
+      "model": "QX70",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "9500ef3af7bb73876bb0b25eb4e8be11e7e791361761958146949e25d1bf4a7a",
+      "proposalSha256": "9500ef3af7bb73876bb0b25eb4e8be11e7e791361761958146949e25d1bf4a7a",
+      "changedFields": []
+    },
+    {
+      "id": "infiniti-fx-qx70-transfer-case-seal-leak",
+      "model": "QX70",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "0a513b3280d2d52f2d116db009f45d3a92a95b9830edbea805cd7d31d09310cf",
+      "proposalSha256": "0a513b3280d2d52f2d116db009f45d3a92a95b9830edbea805cd7d31d09310cf",
+      "changedFields": []
+    },
+    {
+      "id": "infiniti-fx35-brake-rotor-warping-front-brake-vibration",
+      "model": "FX35",
+      "action": "rewrite_same_identity",
+      "beforeSha256": "ee73e27a506682b6888afcd9af8baa36d7f847faacf3ea543b46040fe153b388",
+      "proposalSha256": "fb956a1566169eec4b10c4e3e581b8c4fdde76f93dbaf040544af661ed1e1f62",
+      "changedFields": [
+        "description",
+        "solution",
+        "symptoms",
+        "affectedSystems",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "communityRecommendations",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ]
+    },
+    {
+      "id": "infiniti-fx35-camshaft-crankshaft-position-sensor-failure",
+      "model": "FX35",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "6d3e1c3afe5a95b2a4fb819cde049d6d9ea309a592104537484001dfb3eb3611",
+      "proposalSha256": "6d3e1c3afe5a95b2a4fb819cde049d6d9ea309a592104537484001dfb3eb3611",
+      "changedFields": []
+    },
+    {
+      "id": "infiniti-fx35-front-suspension-clunk-worn-control-arm-bushings",
+      "model": "FX35",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "43f52ed490243e0e715352fdf56911d1785bf787e2f9bfba307dc4dcff0b344d",
+      "proposalSha256": "43f52ed490243e0e715352fdf56911d1785bf787e2f9bfba307dc4dcff0b344d",
+      "changedFields": []
+    },
+    {
+      "id": "infiniti-fx35-fuel-gauge-sending-unit-failure",
+      "model": "FX35",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "77a00e728b9703d167f6b978c96a57b4266bd220b400237bb3b8add5d8dab00a",
+      "proposalSha256": "77a00e728b9703d167f6b978c96a57b4266bd220b400237bb3b8add5d8dab00a",
+      "changedFields": []
+    },
+    {
+      "id": "infiniti-fx35-radiator-crack-and-coolant-transmission-cross-contamination",
+      "model": "FX35",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "0bffa5172cfff4858e0960b31e70b95d2c40faae3ac3d02bf9fd1a1fa28472aa",
+      "proposalSha256": "0bffa5172cfff4858e0960b31e70b95d2c40faae3ac3d02bf9fd1a1fa28472aa",
+      "changedFields": []
+    },
+    {
+      "id": "infiniti-fx35-timing-chain-guide-whine-from-front-cover",
+      "model": "FX35",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "28fdb3bc082f3388216ceb2655a8daeb7a93fa8b8f794c751ee45180c0d89430",
+      "proposalSha256": "28fdb3bc082f3388216ceb2655a8daeb7a93fa8b8f794c751ee45180c0d89430",
+      "changedFields": []
+    },
+    {
+      "id": "infiniti-fx45-brake-rotor-warping-and-premature-front-brake-wear",
+      "model": "FX45",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "9b847398314b505da2d5181ec588e745bd1f6844c008283e9a818496225302ab",
+      "proposalSha256": "9b847398314b505da2d5181ec588e745bd1f6844c008283e9a818496225302ab",
+      "changedFields": []
+    },
+    {
+      "id": "infiniti-fx45-camshaft-and-crankshaft-position-sensor-failure",
+      "model": "FX45",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "7e05ae733207d8b22a6f6b179981b70fd3cdfecd6de2964dca54fb6e1165473c",
+      "proposalSha256": "7e05ae733207d8b22a6f6b179981b70fd3cdfecd6de2964dca54fb6e1165473c",
+      "changedFields": []
+    },
+    {
+      "id": "infiniti-fx45-front-suspension-control-arm-and-bushing-wear",
+      "model": "FX45",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "f5e7c9fd240ba13fd4e791651e7b0c923b4bf927b830328f487ae8c0da98d6ec",
+      "proposalSha256": "f5e7c9fd240ba13fd4e791651e7b0c923b4bf927b830328f487ae8c0da98d6ec",
+      "changedFields": []
+    },
+    {
+      "id": "infiniti-fx45-fuel-level-sending-unit-failure",
+      "model": "FX45",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "9abe0e9d1969a9f4bd4f78cf030fef7f70a96ea53711a9d78c3cf61537d72523",
+      "proposalSha256": "9abe0e9d1969a9f4bd4f78cf030fef7f70a96ea53711a9d78c3cf61537d72523",
+      "changedFields": []
+    },
+    {
+      "id": "infiniti-fx45-radiator-failure-causing-overheating",
+      "model": "FX45",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "f9ee70d376e7797c9baa0e8420345dd1dbaa957244bf41e55d56bcd48ed7e637",
+      "proposalSha256": "f9ee70d376e7797c9baa0e8420345dd1dbaa957244bf41e55d56bcd48ed7e637",
+      "changedFields": []
+    },
+    {
+      "id": "infiniti-fx45-timing-chain-guide-wear-and-chain-noise",
+      "model": "FX45",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "16738807ca73c4f82fc08a5fb68b7964bc1914d7f6d9b59d59572cd17ff5c174",
+      "proposalSha256": "16738807ca73c4f82fc08a5fb68b7964bc1914d7f6d9b59d59572cd17ff5c174",
+      "changedFields": []
+    },
+    {
+      "id": "infiniti-fx50-brake-rotor-warping-brake-judder",
+      "model": "FX50",
+      "action": "rewrite_same_identity",
+      "beforeSha256": "bd6526fbaf16bf8c802ccf37e36cfd2f8094f00793e65b48a68002990d6188fb",
+      "proposalSha256": "20ea3ffd4fe2ba102b61174487f3669e9523da95fbf37c66abb1d268634634db",
+      "changedFields": [
+        "description",
+        "solution",
+        "symptoms",
+        "affectedSystems",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "communityRecommendations",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ]
+    },
+    {
+      "id": "infiniti-fx50-evap-leak-check-engine-light-from-fuel-vapor-components",
+      "model": "FX50",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "daf3c8d4248628e3a3af5c4cad1c34a42f229ae174c683b9b27d7504edee178e",
+      "proposalSha256": "daf3c8d4248628e3a3af5c4cad1c34a42f229ae174c683b9b27d7504edee178e",
+      "changedFields": []
+    },
+    {
+      "id": "infiniti-fx50-premature-front-suspension-wear",
+      "model": "FX50",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "6936f2c8ba6e5d75097edf246d2f9a90300e7e6bde1f5475bf7fa6e73a7158c3",
+      "proposalSha256": "6936f2c8ba6e5d75097edf246d2f9a90300e7e6bde1f5475bf7fa6e73a7158c3",
+      "changedFields": []
+    },
+    {
+      "id": "infiniti-fx50-radiator-cooling-fan-related-overheating",
+      "model": "FX50",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "9250d8d6197d76bfc8062f3ca48b9b4b4468cf2acbd04d155b24cb3e80695e7f",
+      "proposalSha256": "9250d8d6197d76bfc8062f3ca48b9b4b4468cf2acbd04d155b24cb3e80695e7f",
+      "changedFields": []
+    },
+    {
+      "id": "infiniti-fx50-steering-lock-module-failure-no-start",
+      "model": "FX50",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "90a9a1bbcb6f403b2cb05646bf5d3183182132c63ab80b51e19657aab6ca0b07",
+      "proposalSha256": "90a9a1bbcb6f403b2cb05646bf5d3183182132c63ab80b51e19657aab6ca0b07",
+      "changedFields": []
+    },
+    {
+      "id": "infiniti-fx50-sunroof-drain-leak-causing-bcm-electrical-problems",
+      "model": "FX50",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "5bb97d825cf40c391e3406460e9eb27f2b2128032ed887b120831ac482055d87",
+      "proposalSha256": "5bb97d825cf40c391e3406460e9eb27f2b2128032ed887b120831ac482055d87",
+      "changedFields": []
+    },
+    {
+      "id": "infiniti-g35-oil-consumption-vq35de",
+      "model": "G35",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "08d8abd6e2012b5407a4ea626f85aeb69fa0cc4994486c46492c117de9afcf86",
+      "proposalSha256": "08d8abd6e2012b5407a4ea626f85aeb69fa0cc4994486c46492c117de9afcf86",
+      "changedFields": []
+    },
+    {
+      "id": "infiniti-g35-steering-wheel-lock",
+      "model": "G35",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "24eba9f0bbf9721e0d95778e16b3c57e792e13107132f1c21f97d33145d626f0",
+      "proposalSha256": "24eba9f0bbf9721e0d95778e16b3c57e792e13107132f1c21f97d33145d626f0",
+      "changedFields": []
+    },
+    {
+      "id": "infiniti-g35-window-regulator-failure",
+      "model": "G35",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "b7ca42ba5e8623e2448b3c258c45174e6e0dc00bc47cc2c7471e5d9c38e3b267",
+      "proposalSha256": "b7ca42ba5e8623e2448b3c258c45174e6e0dc00bc47cc2c7471e5d9c38e3b267",
+      "changedFields": []
+    },
+    {
+      "id": "infiniti-g37-concentric-slave-cylinder",
+      "model": "G37",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "1b28d4b85db26df49a99cfeaba882731c3b420dda4a8ae7ef2d1b42ee8cefb84",
+      "proposalSha256": "1b28d4b85db26df49a99cfeaba882731c3b420dda4a8ae7ef2d1b42ee8cefb84",
+      "changedFields": []
+    },
+    {
+      "id": "infiniti-g37-galley-gasket-oil-leak",
+      "model": "G37",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "6269916af94e6af8c5b7d4330782fff57b749d29b9dffd7b669dd44d64a50fcc",
+      "proposalSha256": "6269916af94e6af8c5b7d4330782fff57b749d29b9dffd7b669dd44d64a50fcc",
+      "changedFields": []
+    },
+    {
+      "id": "infiniti-g37-steering-lock-malfunction",
+      "model": "G37",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "625d262d523801eaaefc98e4b658434ebe16767060079fc7a18479ac63a88d55",
+      "proposalSha256": "625d262d523801eaaefc98e4b658434ebe16767060079fc7a18479ac63a88d55",
+      "changedFields": []
+    },
+    {
+      "id": "infiniti-m-q70-timing-chain-tensioner",
+      "model": "Q70",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "ee9bfcec47904f7386937aea54789b89a2d6242d645328739a2f8278a4822a76",
+      "proposalSha256": "ee9bfcec47904f7386937aea54789b89a2d6242d645328739a2f8278a4822a76",
+      "changedFields": []
+    },
+    {
+      "id": "infiniti-m35-brake-rotor-warping-and-front-brake-vibration",
+      "model": "M35",
+      "action": "rewrite_same_identity",
+      "beforeSha256": "562af2eaf4cca435f12533ec16221bd2580e0669ae4522637d93495242da65c3",
+      "proposalSha256": "9a0c73d8ceef034747f0ec34737c54c223407faa81db7979f77d3f09e95a22f2",
+      "changedFields": [
+        "description",
+        "solution",
+        "symptoms",
+        "affectedSystems",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "communityRecommendations",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ]
+    },
+    {
+      "id": "infiniti-m35-camshaft-and-crankshaft-position-sensor-failure",
+      "model": "M35",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "2d64ae7df6d4d31a401a5d92a240442126b450d62b818e8e4a08e4c014397fd8",
+      "proposalSha256": "2d64ae7df6d4d31a401a5d92a240442126b450d62b818e8e4a08e4c014397fd8",
+      "changedFields": []
+    },
+    {
+      "id": "infiniti-m35-dashboard-melting-and-cracking",
+      "model": "M35",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "cfd4c6d63cf0ed571e49e70882dd796d1739758d94f9c0626b54eb4086d3d27f",
+      "proposalSha256": "cfd4c6d63cf0ed571e49e70882dd796d1739758d94f9c0626b54eb4086d3d27f",
+      "changedFields": []
+    },
+    {
+      "id": "infiniti-m35-front-lower-control-arm-and-bushing-wear",
+      "model": "M35",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "af604da0b9218d928623e5dae925a26e1d230e930ed3d26d19090d9f8419c58a",
+      "proposalSha256": "af604da0b9218d928623e5dae925a26e1d230e930ed3d26d19090d9f8419c58a",
+      "changedFields": []
+    },
+    {
+      "id": "infiniti-m35-fuel-gauge-sending-unit-failure",
+      "model": "M35",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "6c2bb6635f7d4762cd1821d7f6ccd7d4df547f7753a02484e7879f0ba3241176",
+      "proposalSha256": "6c2bb6635f7d4762cd1821d7f6ccd7d4df547f7753a02484e7879f0ba3241176",
+      "changedFields": []
+    },
+    {
+      "id": "infiniti-m35-radiator-cracking-and-coolant-leaks",
+      "model": "M35",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "f042c3732cecbc68fda91052e05968960d01679eea566e8578dd0965275fd947",
+      "proposalSha256": "f042c3732cecbc68fda91052e05968960d01679eea566e8578dd0965275fd947",
+      "changedFields": []
+    },
+    {
+      "id": "infiniti-m37-brake-rotor-warping-front-brake-vibration",
+      "model": "M37",
+      "action": "rewrite_same_identity",
+      "beforeSha256": "989c86f00ef2842946c34d465480097897242abb4b91a1084ffccc5a16f63f3e",
+      "proposalSha256": "0aae8524f9ff386cda82477b40e577f499ba078cd083475262e07d676dbc3ba7",
+      "changedFields": [
+        "description",
+        "solution",
+        "symptoms",
+        "affectedSystems",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "communityRecommendations",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ]
+    },
+    {
+      "id": "infiniti-m37-camshaft-crankshaft-position-sensor-failure",
+      "model": "M37",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "37e33f2b51abdd49d9b02195284c669f3c25bade24553c3098425b1ddb0195c6",
+      "proposalSha256": "37e33f2b51abdd49d9b02195284c669f3c25bade24553c3098425b1ddb0195c6",
+      "changedFields": []
+    },
+    {
+      "id": "infiniti-m37-hvac-blower-motor-fan-speed-control-failure",
+      "model": "M37",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "1d8cc4fe0bb08d7b0860762f36000490dda3c608f2c752c6d4bb6136d62951b6",
+      "proposalSha256": "1d8cc4fe0bb08d7b0860762f36000490dda3c608f2c752c6d4bb6136d62951b6",
+      "changedFields": []
+    },
+    {
+      "id": "infiniti-m37-premature-front-suspension-wear",
+      "model": "M37",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "434012902464bc3e38f74feb703362861b9751a3464edc223d86b2ea408d2ba6",
+      "proposalSha256": "434012902464bc3e38f74feb703362861b9751a3464edc223d86b2ea408d2ba6",
+      "changedFields": []
+    },
+    {
+      "id": "infiniti-m37-steering-wheel-lock-failure-no-start",
+      "model": "M37",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "81a35589e7a373b2dfa4a55eb57bd2dd0a86dad9a86b1c19d6611a82ebf12fa6",
+      "proposalSha256": "81a35589e7a373b2dfa4a55eb57bd2dd0a86dad9a86b1c19d6611a82ebf12fa6",
+      "changedFields": []
+    },
+    {
+      "id": "infiniti-m37-sunroof-drain-leak-causing-bcm-electrical-problems",
+      "model": "M37",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "abfb641f645eb5fea8c04bb7b07207fea936bcee30bb3ab1691e393d6750dc64",
+      "proposalSha256": "abfb641f645eb5fea8c04bb7b07207fea936bcee30bb3ab1691e393d6750dc64",
+      "changedFields": []
+    },
+    {
+      "id": "infiniti-m56-front-lower-control-arm-tension-rod-bushing-wear",
+      "model": "M56",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "4bdc5172f750bfdd68abe23b2d922b9014546e385a5b8089617a7f9d0defc031",
+      "proposalSha256": "4bdc5172f750bfdd68abe23b2d922b9014546e385a5b8089617a7f9d0defc031",
+      "changedFields": []
+    },
+    {
+      "id": "infiniti-m56-radiator-cooling-fan-module-failure",
+      "model": "M56",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "203785450d9283893e59ce938642b09a26234da914a2759adb259687615c229d",
+      "proposalSha256": "203785450d9283893e59ce938642b09a26234da914a2759adb259687615c229d",
+      "changedFields": []
+    },
+    {
+      "id": "infiniti-m56-steering-rack-power-steering-leak-and-noise",
+      "model": "M56",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "d38f30fa7f23ff17234945955454fcd8a50a6c580754aa202bcb9ac86d8e2f9a",
+      "proposalSha256": "d38f30fa7f23ff17234945955454fcd8a50a6c580754aa202bcb9ac86d8e2f9a",
+      "changedFields": []
+    },
+    {
+      "id": "infiniti-m56-timing-chain-guide-wear-chain-noise",
+      "model": "M56",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "edc4861e7f890c36ae48b4bf23f8e5f3fdbcc0ff8ee4b464f79e80ee88129d5d",
+      "proposalSha256": "edc4861e7f890c36ae48b4bf23f8e5f3fdbcc0ff8ee4b464f79e80ee88129d5d",
+      "changedFields": []
+    },
+    {
+      "id": "infiniti-m56-tpms-sensor-battery-failure",
+      "model": "M56",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "1cb68b89da3f720da64554dc21683bc77959aaa678a104cae4183f262f97bf81",
+      "proposalSha256": "1cb68b89da3f720da64554dc21683bc77959aaa678a104cae4183f262f97bf81",
+      "changedFields": []
+    },
+    {
+      "id": "infiniti-q50-intouch-infotainment-lag",
+      "model": "Q50",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "7fa5a3bfbe388bd0f7d72f47f3f083cd48c1a6cf1d43033275ce99749227d82d",
+      "proposalSha256": "7fa5a3bfbe388bd0f7d72f47f3f083cd48c1a6cf1d43033275ce99749227d82d",
+      "changedFields": []
+    },
+    {
+      "id": "infiniti-q60-infotainment-issues",
+      "model": "Q60",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "4d990e70cfb55542ff69640ef92783cd0ee4ca815ef8f148fdf174b90300e35d",
+      "proposalSha256": "4d990e70cfb55542ff69640ef92783cd0ee4ca815ef8f148fdf174b90300e35d",
+      "changedFields": []
+    },
+    {
+      "id": "infiniti-q60-steering-feel-disconnect",
+      "model": "Q60",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "9ad4ffb77c55c5e56d53b349ec2970c7459f43ad78e316e69ba68e8f9fbaae14",
+      "proposalSha256": "9ad4ffb77c55c5e56d53b349ec2970c7459f43ad78e316e69ba68e8f9fbaae14",
+      "changedFields": []
+    },
+    {
+      "id": "infiniti-qx50-cvt-shudder",
+      "model": "QX50",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "ccc691bdd472620343933e074c7d56f389502932d3af23ddd3b9310e9852a27c",
+      "proposalSha256": "ccc691bdd472620343933e074c7d56f389502932d3af23ddd3b9310e9852a27c",
+      "changedFields": []
+    },
+    {
+      "id": "infiniti-qx50-infotainment-lag",
+      "model": "QX50",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "a15834beefc130b3e66ca17a617a977adf25ae99c2b44cd1719cfb4164ca439b",
+      "proposalSha256": "a15834beefc130b3e66ca17a617a977adf25ae99c2b44cd1719cfb4164ca439b",
+      "changedFields": []
+    },
+    {
+      "id": "infiniti-qx50-premature-front-lower-control-2014",
+      "model": "QX50",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "3724552621543c68d8183a8b4f514259a4a9aefdd7641b3456e352bc00a81efc",
+      "proposalSha256": "3724552621543c68d8183a8b4f514259a4a9aefdd7641b3456e352bc00a81efc",
+      "changedFields": []
+    },
+    {
+      "id": "infiniti-qx50-steering-wheel-lock--2014",
+      "model": "QX50",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "0a6ee53e12813dcdf6cb23b333897fc9759c6482858087c766d0c975aa2f8c72",
+      "proposalSha256": "0a6ee53e12813dcdf6cb23b333897fc9759c6482858087c766d0c975aa2f8c72",
+      "changedFields": []
+    },
+    {
+      "id": "infiniti-qx50-sunroof-drain-hvac-2014",
+      "model": "QX50",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "01f31b777cf52a97d2ec89515f6d54e8459513a37821d155c8f1be42dcc685ca",
+      "proposalSha256": "01f31b777cf52a97d2ec89515f6d54e8459513a37821d155c8f1be42dcc685ca",
+      "changedFields": []
+    },
+    {
+      "id": "infiniti-qx50-timing-chain-vvel-2014",
+      "model": "QX50",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "eafb65259f694ec9e0f6814add34c044fdfda0bc8867da3aa89deca730b091a1",
+      "proposalSha256": "eafb65259f694ec9e0f6814add34c044fdfda0bc8867da3aa89deca730b091a1",
+      "changedFields": []
+    },
+    {
+      "id": "infiniti-qx50-vc-turbo-oil-consumption",
+      "model": "QX50",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "186a76fa7246f6c86118c71228e886dbe8d4b77de007556bc5b55a75f7105674",
+      "proposalSha256": "186a76fa7246f6c86118c71228e886dbe8d4b77de007556bc5b55a75f7105674",
+      "changedFields": []
+    },
+    {
+      "id": "infiniti-qx55-cvt-shudder-hesitation-overheating",
+      "model": "QX55",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "7ab17cb3b8dea43d0895f5396626835624a1f6f9ad32d005c68acd2877605bc7",
+      "proposalSha256": "7ab17cb3b8dea43d0895f5396626835624a1f6f9ad32d005c68acd2877605bc7",
+      "changedFields": []
+    },
+    {
+      "id": "infiniti-qx55-engine-cooling-fan-runs-full-speed-loud-roaring-jet-engine-n",
+      "model": "QX55",
+      "action": "rewrite_same_identity",
+      "beforeSha256": "369a12789430d148cce1fa7655bc53c779b9932b675d1824154675471cfbdef1",
+      "proposalSha256": "05bb0b8953a42fdfdbdd39b9918359beaeece821339e02117707d0993082aec0",
+      "changedFields": [
+        "trims",
+        "engines",
+        "description",
+        "solution",
+        "symptoms",
+        "affectedSystems",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "humanApproved",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ]
+    },
+    {
+      "id": "infiniti-qx55-forward-emergency-braking-phantom-false-activation",
+      "model": "QX55",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "e5fcab740a54601d7336b05220dc008f987d85487a2c5a602a04c5460d89ff37",
+      "proposalSha256": "e5fcab740a54601d7336b05220dc008f987d85487a2c5a602a04c5460d89ff37",
+      "changedFields": []
+    },
+    {
+      "id": "infiniti-qx55-front-passenger-door-latch-may-not-lock",
+      "model": "QX55",
+      "action": "rewrite_same_identity",
+      "beforeSha256": "bf0f4e4852e60f19fc61598c7fae23172a45f175fdb7236f049b35b6472beaea",
+      "proposalSha256": "d3b3ce95c53e0f7771ebeea07e9bea424ac9630660637e4a18ce98484df93e8b",
+      "changedFields": [
+        "trims",
+        "engines",
+        "description",
+        "solution",
+        "confidence",
+        "symptoms",
+        "affectedSystems",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "fixParts",
+        "humanApproved",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ]
+    },
+    {
+      "id": "infiniti-qx55-infotainment-issues",
+      "model": "QX55",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "0b08ec466e7cf9123a11744aa5980738f53ebb4ecd19dff26ef0758ccdd7e986",
+      "proposalSha256": "0b08ec466e7cf9123a11744aa5980738f53ebb4ecd19dff26ef0758ccdd7e986",
+      "changedFields": []
+    },
+    {
+      "id": "infiniti-qx55-premature-12v-battery-failure-parasitic-drain",
+      "model": "QX55",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "20be89b33809a1fa36e7cf1d1aab3353963f8d3d2010d6c32a0f2935e9c272a3",
+      "proposalSha256": "20be89b33809a1fa36e7cf1d1aab3353963f8d3d2010d6c32a0f2935e9c272a3",
+      "changedFields": []
+    },
+    {
+      "id": "infiniti-qx55-vc-turbo-engine-main-link-bearing-failure",
+      "model": "QX55",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "be9e326697fa98d49d83939d110cadce7e57890c1017c9880a355c323b2caf45",
+      "proposalSha256": "be9e326697fa98d49d83939d110cadce7e57890c1017c9880a355c323b2caf45",
+      "changedFields": []
+    },
+    {
+      "id": "infiniti-qx55-vc-turbo-oil-consumption",
+      "model": "QX55",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "217fd262cea0f8668a6f2517dc0d8d8b7b80f2e3ee7e28ee269e516e6ba51c46",
+      "proposalSha256": "217fd262cea0f8668a6f2517dc0d8d8b7b80f2e3ee7e28ee269e516e6ba51c46",
+      "changedFields": []
+    },
+    {
+      "id": "infiniti-qx60-battery-drain-no-start-2022",
+      "model": "QX60",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "07c98a4838eb217d03f8d6f10578b0846cf5b3bf46107760c87f52b0d1328142",
+      "proposalSha256": "07c98a4838eb217d03f8d6f10578b0846cf5b3bf46107760c87f52b0d1328142",
+      "changedFields": []
+    },
+    {
+      "id": "infiniti-qx60-cvt-failure",
+      "model": "QX60",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "e25e59d24a179725c9d0334fefa288891d7bb87d4b0c5422a08258700a86491d",
+      "proposalSha256": "e25e59d24a179725c9d0334fefa288891d7bb87d4b0c5422a08258700a86491d",
+      "changedFields": []
+    },
+    {
+      "id": "infiniti-qx60-forward-collision-warning--2022",
+      "model": "QX60",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "2bd3209a5828ea4c5ddff83a1bfe480f4babf84723fe55660498a4f11740d143",
+      "proposalSha256": "2bd3209a5828ea4c5ddff83a1bfe480f4babf84723fe55660498a4f11740d143",
+      "changedFields": []
+    },
+    {
+      "id": "infiniti-qx60-panoramic-moonroof-exploding-or-2022",
+      "model": "QX60",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "367a16ae3117fdc5b7021069ec52c93427c3774cbe786816cfe7fd367b6fa5bf",
+      "proposalSha256": "367a16ae3117fdc5b7021069ec52c93427c3774cbe786816cfe7fd367b6fa5bf",
+      "changedFields": []
+    },
+    {
+      "id": "infiniti-qx60-power-steering-pump-whine",
+      "model": "QX60",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "69e4df22808c91eef7994d28d909ad8bb8c3878febd9375cd01837d99eede838",
+      "proposalSha256": "69e4df22808c91eef7994d28d909ad8bb8c3878febd9375cd01837d99eede838",
+      "changedFields": []
+    },
+    {
+      "id": "infiniti-qx60-rearview-camera-image-blank-2022",
+      "model": "QX60",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "d832217b38fb5dd5bede4389ee0f96b216841268ba8e6c5e3d8381c1fb950b21",
+      "proposalSha256": "d832217b38fb5dd5bede4389ee0f96b216841268ba8e6c5e3d8381c1fb950b21",
+      "changedFields": []
+    },
+    {
+      "id": "infiniti-qx60-transmission-judder",
+      "model": "QX60",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "f22739095515cccfb8127e47801436e2711d9371d9ab3a829af21711bcb15de6",
+      "proposalSha256": "f22739095515cccfb8127e47801436e2711d9371d9ab3a829af21711bcb15de6",
+      "changedFields": []
+    },
+    {
+      "id": "infiniti-qx80-hydraulic-body-motion-control-leak",
+      "model": "QX80",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "3e2a5a6d9c6a7d9db37d868731d658bed75657ee4e687130f64f7bd8fa377659",
+      "proposalSha256": "3e2a5a6d9c6a7d9db37d868731d658bed75657ee4e687130f64f7bd8fa377659",
+      "changedFields": []
+    },
+    {
+      "id": "infiniti-qx80-infotainment-lag",
+      "model": "QX80",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "573fa5fd44fc0c455688206d123b6512e1eb727cc92643bd883dd07d183dc42a",
+      "proposalSha256": "573fa5fd44fc0c455688206d123b6512e1eb727cc92643bd883dd07d183dc42a",
+      "changedFields": []
+    },
+    {
+      "id": "infiniti-qx80-timing-chain-stretch",
+      "model": "QX80",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "208a8e11bace7c3144c977a59648ede8e1374a1b3d07485adbb4ea69ed5526a2",
+      "proposalSha256": "208a8e11bace7c3144c977a59648ede8e1374a1b3d07485adbb4ea69ed5526a2",
+      "changedFields": []
+    }
+  ]
+}
