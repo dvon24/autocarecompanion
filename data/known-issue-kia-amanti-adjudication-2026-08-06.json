@@ -1,0 +1,1036 @@
+{
+  "schemaVersion": 1,
+  "status": "proposal-only",
+  "auditStage": "model-primary-source-adjudication",
+  "requiresIndependentApproval": true,
+  "generatedOn": "2026-08-06",
+  "make": "Kia",
+  "model": "Amanti",
+  "completionStatement": "All five frozen Kia Amanti rows are reconciled. None has exact primary evidence sufficient for a safe same-identity rewrite, so every row remains byte-for-byte unchanged.",
+  "safetyContract": [
+    "No production database write, cache purge, deployment, archive action, redirect, slug change, new issue or public-page change is authorized by this packet.",
+    "All five Amanti rows remain published and byte-for-byte unchanged.",
+    "Partial official evidence cannot authorize a broader engine, year, outcome or repair claim.",
+    "Search-result commerce and cross-component recommendations do not prove exact fitment.",
+    "New issue identities remain deferred until the remaining-make audit is complete."
+  ],
+  "source": {
+    "snapshotFile": "data/_kia-deeplink-snapshot-2026-08-06.json",
+    "snapshotSha256": "f0aa4c5c8ca72321ed9a0b54aa9455e84056b445cb31049545ea07a48748c76b",
+    "snapshotGeneratedAt": "2026-08-07T19:13:14.080Z",
+    "snapshotHash": "f8b4d0e206ea16a5a28546ef1db29b0c885b1a839069b486f07fb1a1759310bf",
+    "modelRecordCount": 5
+  },
+  "observations": [
+    {
+      "code": "amanti-transmission-fluid-commerce-conflict",
+      "severity": "critical",
+      "recordIds": [
+        "kia-amanti-transmission-failure-2004"
+      ],
+      "detail": "Kia specifies SP-III ATF and warns that incorrect fluid can damage the transmission; the frozen generic flush/MaxLife commerce lacks exact approval."
+    },
+    {
+      "code": "amanti-timing-engine-scope-unproven",
+      "severity": "critical",
+      "recordIds": [
+        "kia-amanti-timing-belt-tensioner-2004"
+      ],
+      "detail": "No primary source supports one timing-belt/tensioner failure and 60,000-mile remedy across both frozen engines and all six years."
+    },
+    {
+      "code": "amanti-alternator-cross-component-commerce",
+      "severity": "high",
+      "recordIds": [
+        "kia-amanti-alternator-2004"
+      ],
+      "detail": "The alternator row includes an unrelated power-window regulator recommendation plus unverified battery and alternator searches."
+    },
+    {
+      "code": "amanti-steering-category-conflict-held",
+      "severity": "seo-safety",
+      "recordIds": [
+        "kia-amanti-power-steering-leak-2004"
+      ],
+      "detail": "The steering identity is categorized as suspension; this audit preserves the indexed category and holds the row for later independent resolution."
+    },
+    {
+      "code": "all-amanti-pages-preserved",
+      "severity": "seo-safety",
+      "recordIds": [
+        "kia-amanti-ac-compressor-clutch-2004",
+        "kia-amanti-alternator-2004",
+        "kia-amanti-power-steering-leak-2004",
+        "kia-amanti-timing-belt-tensioner-2004",
+        "kia-amanti-transmission-failure-2004"
+      ],
+      "detail": "Every frozen Amanti ID, title, category, year set and publication state remains untouched."
+    }
+  ],
+  "pdfSources": {
+    "atf": {
+      "url": "https://static.nhtsa.gov/odi/tsbs/2012/SB-10059898-2280.pdf",
+      "sha256": "0b1d9abcfc1831ad0b2e6e00b3318ee1901d57e9b4943f9a480c78d5cbf03de9",
+      "visuallyInspectedPages": [
+        1,
+        2
+      ],
+      "markers": [
+        "AUTOMATIC TRANSMISSION FLUID APPLICATION GUIDE",
+        "Amanti, (GH) (2004~09MY)",
+        "SPIII ATF",
+        "UM010 CH002"
+      ]
+    },
+    "techTimes": {
+      "url": "https://static.nhtsa.gov/odi/tsbs/2013/MC-10109707-9999.pdf",
+      "sha256": "638a4abc7f5fabc1d40a32169c957f30084ea1aaa1a5b933eafcb0b9bf853283",
+      "visuallyInspectedPages": [
+        2
+      ],
+      "markers": [
+        "2007-2009 Amanti (GH)",
+        "Engine noise heard on 3.3L and 3.8L engines",
+        "refer to Engine TSB028"
+      ]
+    }
+  },
+  "recallInventory": {
+    "queries": {
+      "2004": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=KIA&model=AMANTI&modelYear=2004",
+      "2005": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=KIA&model=AMANTI&modelYear=2005",
+      "2006": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=KIA&model=AMANTI&modelYear=2006",
+      "2007": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=KIA&model=AMANTI&modelYear=2007",
+      "2008": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=KIA&model=AMANTI&modelYear=2008",
+      "2009": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=KIA&model=AMANTI&modelYear=2009"
+    },
+    "expected": {
+      "2004": {
+        "status": 400,
+        "campaigns": []
+      },
+      "2005": {
+        "status": 400,
+        "campaigns": []
+      },
+      "2006": {
+        "status": 400,
+        "campaigns": []
+      },
+      "2007": {
+        "status": 200,
+        "campaigns": [
+          "09V130000",
+          "13V114000"
+        ]
+      },
+      "2008": {
+        "status": 200,
+        "campaigns": [
+          "13V114000"
+        ]
+      },
+      "2009": {
+        "status": 200,
+        "campaigns": [
+          "13V114000"
+        ]
+      }
+    }
+  },
+  "summary": {
+    "rewrite_same_identity": 0,
+    "keep_published_pending_source": 5,
+    "total": 5
+  },
+  "rows": [
+    {
+      "id": "kia-amanti-ac-compressor-clutch-2004",
+      "model": "Amanti",
+      "action": "keep_published_pending_source",
+      "reason": "The sole frozen citation is a YouTube video rather than a Kia/NHTSA primary source, and no exact source establishes a 2004-2009 compressor-clutch/coil population, the stated hot-climate frequency, or replacement of the clutch in place. Generic scanner/manual search links do not prove repair fitment, so the row remains byte-for-byte unchanged.",
+      "identityRule": "Unsupported scope, category conflicts, partial official evidence and unverified commerce require a byte-for-byte hold; no indexed identity field may be silently changed.",
+      "commerceDecision": "unchanged-search-commerce-pending-exact-fitment",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-recall-inventory-boundary-not-broad-claim-proof",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=KIA&model=AMANTI&modelYear=2004",
+          "supportingUrls": [
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=KIA&model=AMANTI&modelYear=2004",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=KIA&model=AMANTI&modelYear=2005",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=KIA&model=AMANTI&modelYear=2006",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=KIA&model=AMANTI&modelYear=2007",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=KIA&model=AMANTI&modelYear=2008",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=KIA&model=AMANTI&modelYear=2009"
+          ],
+          "verifiedOn": "2026-08-06",
+          "observation": "The complete 2004-2009 Amanti recall boundary does not substantiate the broad frozen claims for kia-amanti-ac-compressor-clutch-2004."
+        }
+      ],
+      "beforeSha256": "46faee0b1cd69977afed6fc3f256415ac4d6818cdd00e2548b3e85dde93b0e4f",
+      "proposalSha256": "46faee0b1cd69977afed6fc3f256415ac4d6818cdd00e2548b3e85dde93b0e4f",
+      "before": {
+        "make": "Kia",
+        "model": "Amanti",
+        "years": [
+          2004,
+          2005,
+          2006,
+          2007,
+          2008,
+          2009
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "other",
+        "title": "A/C Compressor Clutch and Coil Failure",
+        "description": "The A/C compressor clutch coil burns out or the clutch plate air gap increases beyond specification, preventing the compressor from engaging. Results in no cold air from the A/C system. Common in hot climates.",
+        "solution": "Replace A/C compressor clutch assembly (clutch plate, coil, and pulley can be replaced without removing compressor). If compressor has internal debris, replace entire compressor, receiver/drier, and flush system. Evacuate and recharge with R-134a.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "A/C blows warm air",
+          "Clicking from compressor area",
+          "A/C works intermittently",
+          "Compressor clutch not engaging"
+        ],
+        "affectedSystems": [
+          "A/C compressor",
+          "Climate control"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 200,
+        "estimatedCostHigh": 700,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.youtube.com/watch?v=8Z9z5X0kFvA",
+            "type": "video",
+            "title": "YouTube - How to Replace A/C Compressor Clutch on Kia Amanti (Known Channel)"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "BlueDriver Bluetooth OBD-II scanner — professional diagnostics from your phone",
+            "partName": "Bluetooth OBD-II Scanner",
+            "partBrand": "BlueDriver",
+            "affiliateUrl": "https://www.amazon.com/s?k=BlueDriver%20OBD2%20scanner&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Haynes repair manual — step-by-step procedures for your vehicle",
+            "partName": "Repair Manual",
+            "partBrand": "Haynes",
+            "affiliateUrl": "https://www.amazon.com/s?k=Haynes%20repair%20manual&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Kia",
+        "model": "Amanti",
+        "years": [
+          2004,
+          2005,
+          2006,
+          2007,
+          2008,
+          2009
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "other",
+        "title": "A/C Compressor Clutch and Coil Failure",
+        "description": "The A/C compressor clutch coil burns out or the clutch plate air gap increases beyond specification, preventing the compressor from engaging. Results in no cold air from the A/C system. Common in hot climates.",
+        "solution": "Replace A/C compressor clutch assembly (clutch plate, coil, and pulley can be replaced without removing compressor). If compressor has internal debris, replace entire compressor, receiver/drier, and flush system. Evacuate and recharge with R-134a.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "A/C blows warm air",
+          "Clicking from compressor area",
+          "A/C works intermittently",
+          "Compressor clutch not engaging"
+        ],
+        "affectedSystems": [
+          "A/C compressor",
+          "Climate control"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 200,
+        "estimatedCostHigh": 700,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.youtube.com/watch?v=8Z9z5X0kFvA",
+            "type": "video",
+            "title": "YouTube - How to Replace A/C Compressor Clutch on Kia Amanti (Known Channel)"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "BlueDriver Bluetooth OBD-II scanner — professional diagnostics from your phone",
+            "partName": "Bluetooth OBD-II Scanner",
+            "partBrand": "BlueDriver",
+            "affiliateUrl": "https://www.amazon.com/s?k=BlueDriver%20OBD2%20scanner&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Haynes repair manual — step-by-step procedures for your vehicle",
+            "partName": "Repair Manual",
+            "partBrand": "Haynes",
+            "affiliateUrl": "https://www.amazon.com/s?k=Haynes%20repair%20manual&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "kia-amanti-alternator-2004",
+      "model": "Amanti",
+      "action": "keep_published_pending_source",
+      "reason": "The only citation is the Kia Forums home page, not an Amanti thread or primary document. It does not establish the under-80,000-mile rate, overcharge/undercharge mechanism, high-output replacement, or any listed battery/alternator fitment; the unrelated power-window regulator recommendation is also outside this issue identity. The row remains byte-for-byte unchanged.",
+      "identityRule": "Unsupported scope, category conflicts, partial official evidence and unverified commerce require a byte-for-byte hold; no indexed identity field may be silently changed.",
+      "commerceDecision": "unchanged-search-commerce-pending-exact-fitment",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-recall-inventory-boundary-not-broad-claim-proof",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=KIA&model=AMANTI&modelYear=2004",
+          "supportingUrls": [
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=KIA&model=AMANTI&modelYear=2004",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=KIA&model=AMANTI&modelYear=2005",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=KIA&model=AMANTI&modelYear=2006",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=KIA&model=AMANTI&modelYear=2007",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=KIA&model=AMANTI&modelYear=2008",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=KIA&model=AMANTI&modelYear=2009"
+          ],
+          "verifiedOn": "2026-08-06",
+          "observation": "The complete 2004-2009 Amanti recall boundary does not substantiate the broad frozen claims for kia-amanti-alternator-2004."
+        }
+      ],
+      "beforeSha256": "a4b05d147ded8adf16e71aa1c8b5b37230c8eb5f69c84191eb3f4ff5f42c567e",
+      "proposalSha256": "a4b05d147ded8adf16e71aa1c8b5b37230c8eb5f69c84191eb3f4ff5f42c567e",
+      "before": {
+        "make": "Kia",
+        "model": "Amanti",
+        "years": [
+          2004,
+          2005,
+          2006,
+          2007,
+          2008,
+          2009
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Alternator Premature Failure and Voltage Regulator Issues",
+        "description": "The Amanti's alternator fails prematurely, often before 80,000 miles. The internal voltage regulator overcharges or undercharges the battery, causing dim headlights, battery drain, or battery overheating. High electrical loads from the luxury features stress the alternator.",
+        "solution": "Replace the alternator with a high-output unit. Test the battery as well since an overcharging alternator may have damaged it. Check all ground connections, as poor grounds increase alternator load.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Dim headlights",
+          "Battery warning light",
+          "Dead battery repeatedly",
+          "Electrical accessories flickering",
+          "Burning smell from alternator",
+          "Whining noise from engine bay"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 200,
+        "estimatedCostHigh": 500,
+        "typicalMileageLow": 24000,
+        "typicalMileageHigh": 80000,
+        "citations": [
+          {
+            "url": "https://www.kia-forums.com",
+            "source": "Kia Forums",
+            "description": "Amanti alternator failure reports and replacement"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Replace the battery at the same time if the alternator has been overcharging — an overcharged battery has reduced capacity and lifespan"
+          },
+          {
+            "type": "part",
+            "content": "High-performance AGM battery with excellent cold cranking amps and deep cycle capability",
+            "partName": "RedTop AGM Battery",
+            "partBrand": "Optima",
+            "affiliateUrl": "https://www.amazon.com/s?k=Optima%20RedTop%20AGM%20Battery%20Kia%20Amanti&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "OEM-quality replacement battery with reliable performance",
+            "partName": "Professional AGM Battery",
+            "partBrand": "ACDelco",
+            "affiliateUrl": "https://www.amazon.com/s?k=ACDelco%20Professional%20AGM%20Battery%20Kia%20Amanti&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Automatic battery maintainer to prevent parasitic drain issues during storage",
+            "partName": "Junior 12V Battery Charger Maintainer",
+            "partBrand": "Battery Tender",
+            "affiliateUrl": "https://www.amazon.com/s?k=Battery%20Tender%20Junior%2012V%20Battery%20Charger%20Maintainer%20Kia%20Amanti&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "OEM-quality remanufactured alternator with high output for reliable charging",
+            "partName": "Remanufactured Alternator",
+            "partBrand": "Denso",
+            "affiliateUrl": "https://www.amazon.com/s?k=Denso%20Remanufactured%20Alternator%20Kia%20Amanti&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Premium rebuilt alternator backed by extensive warranty coverage",
+            "partName": "Premium Remanufactured Alternator",
+            "partBrand": "Remy",
+            "affiliateUrl": "https://www.amazon.com/s?k=Remy%20Premium%20Remanufactured%20Alternator%20Kia%20Amanti&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Direct-fit window regulator assembly with motor for easy installation",
+            "partName": "Power Window Regulator and Motor Assembly",
+            "partBrand": "Dorman",
+            "affiliateUrl": "https://www.amazon.com/s?k=Dorman%20Power%20Window%20Regulator%20and%20Motor%20Assembly%20Kia%20Amanti&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 160,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-03-13",
+        "reviewedOn": "2026-03-13",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Kia",
+        "model": "Amanti",
+        "years": [
+          2004,
+          2005,
+          2006,
+          2007,
+          2008,
+          2009
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Alternator Premature Failure and Voltage Regulator Issues",
+        "description": "The Amanti's alternator fails prematurely, often before 80,000 miles. The internal voltage regulator overcharges or undercharges the battery, causing dim headlights, battery drain, or battery overheating. High electrical loads from the luxury features stress the alternator.",
+        "solution": "Replace the alternator with a high-output unit. Test the battery as well since an overcharging alternator may have damaged it. Check all ground connections, as poor grounds increase alternator load.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Dim headlights",
+          "Battery warning light",
+          "Dead battery repeatedly",
+          "Electrical accessories flickering",
+          "Burning smell from alternator",
+          "Whining noise from engine bay"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 200,
+        "estimatedCostHigh": 500,
+        "typicalMileageLow": 24000,
+        "typicalMileageHigh": 80000,
+        "citations": [
+          {
+            "url": "https://www.kia-forums.com",
+            "source": "Kia Forums",
+            "description": "Amanti alternator failure reports and replacement"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Replace the battery at the same time if the alternator has been overcharging — an overcharged battery has reduced capacity and lifespan"
+          },
+          {
+            "type": "part",
+            "content": "High-performance AGM battery with excellent cold cranking amps and deep cycle capability",
+            "partName": "RedTop AGM Battery",
+            "partBrand": "Optima",
+            "affiliateUrl": "https://www.amazon.com/s?k=Optima%20RedTop%20AGM%20Battery%20Kia%20Amanti&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "OEM-quality replacement battery with reliable performance",
+            "partName": "Professional AGM Battery",
+            "partBrand": "ACDelco",
+            "affiliateUrl": "https://www.amazon.com/s?k=ACDelco%20Professional%20AGM%20Battery%20Kia%20Amanti&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Automatic battery maintainer to prevent parasitic drain issues during storage",
+            "partName": "Junior 12V Battery Charger Maintainer",
+            "partBrand": "Battery Tender",
+            "affiliateUrl": "https://www.amazon.com/s?k=Battery%20Tender%20Junior%2012V%20Battery%20Charger%20Maintainer%20Kia%20Amanti&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "OEM-quality remanufactured alternator with high output for reliable charging",
+            "partName": "Remanufactured Alternator",
+            "partBrand": "Denso",
+            "affiliateUrl": "https://www.amazon.com/s?k=Denso%20Remanufactured%20Alternator%20Kia%20Amanti&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Premium rebuilt alternator backed by extensive warranty coverage",
+            "partName": "Premium Remanufactured Alternator",
+            "partBrand": "Remy",
+            "affiliateUrl": "https://www.amazon.com/s?k=Remy%20Premium%20Remanufactured%20Alternator%20Kia%20Amanti&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Direct-fit window regulator assembly with motor for easy installation",
+            "partName": "Power Window Regulator and Motor Assembly",
+            "partBrand": "Dorman",
+            "affiliateUrl": "https://www.amazon.com/s?k=Dorman%20Power%20Window%20Regulator%20and%20Motor%20Assembly%20Kia%20Amanti&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 160,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-03-13",
+        "reviewedOn": "2026-03-13",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "kia-amanti-power-steering-leak-2004",
+      "model": "Amanti",
+      "action": "keep_published_pending_source",
+      "reason": "A single video citation cannot establish the combined hose, pump-seal and rack failure population for every 2004-2009 Amanti. The row has no frozen solution, is categorized as suspension despite a steering identity, and offers tie-rod/rack commerce without exact fitment. Category changes are prohibited in this audit, so the entire row remains byte-for-byte unchanged.",
+      "identityRule": "Unsupported scope, category conflicts, partial official evidence and unverified commerce require a byte-for-byte hold; no indexed identity field may be silently changed.",
+      "commerceDecision": "unchanged-search-commerce-pending-exact-fitment",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-recall-inventory-boundary-not-broad-claim-proof",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=KIA&model=AMANTI&modelYear=2004",
+          "supportingUrls": [
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=KIA&model=AMANTI&modelYear=2004",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=KIA&model=AMANTI&modelYear=2005",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=KIA&model=AMANTI&modelYear=2006",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=KIA&model=AMANTI&modelYear=2007",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=KIA&model=AMANTI&modelYear=2008",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=KIA&model=AMANTI&modelYear=2009"
+          ],
+          "verifiedOn": "2026-08-06",
+          "observation": "The complete 2004-2009 Amanti recall boundary does not substantiate the broad frozen claims for kia-amanti-power-steering-leak-2004."
+        }
+      ],
+      "beforeSha256": "9aca582276c8e5c6b2b9cc044bb484835433df26411756d63d2c4a657c5e11bb",
+      "proposalSha256": "9aca582276c8e5c6b2b9cc044bb484835433df26411756d63d2c4a657c5e11bb",
+      "before": {
+        "make": "Kia",
+        "model": "Amanti",
+        "years": [
+          2004,
+          2005,
+          2006,
+          2007,
+          2008,
+          2009
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "suspension",
+        "title": "Power Steering System Leak",
+        "description": "The Amanti power steering system develops leaks from the high-pressure hose, pump seals, and steering rack. The rubber hoses deteriorate with age and heat, developing leaks at crimp fittings. The power steering pump shaft seal is another common failure point. A leaking power steering system causes whining noise, heavy steering, and potential pump failure from running low on fluid. The Amanti shares power steering components with the Hyundai XG350 platform.",
+        "solution": "",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Power steering fluid on ground",
+          "Whining noise when turning",
+          "Heavy steering effort",
+          "Low fluid level requiring frequent top-off",
+          "Groaning at full steering lock"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 200,
+        "estimatedCostHigh": 800,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.youtube.com/watch?v=4X5YtqE3x2M",
+            "type": "video",
+            "title": "Power Steering Hose Replacement on 2005 Kia Amanti - EricTheCarGuy"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Inner and outer tie rod ends for steering precision restoration",
+            "partName": "Tie Rod End",
+            "partBrand": "Moog",
+            "affiliateUrl": "https://www.amazon.com/s?k=Moog%20tie%20rod%20end%20Kia%20Amanti&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Remanufactured power steering rack for complete steering system repair",
+            "partName": "Remanufactured Steering Rack",
+            "partBrand": "Cardone",
+            "affiliateUrl": "https://www.amazon.com/s?k=Cardone%20steering%20rack%20Kia%20Amanti&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Kia",
+        "model": "Amanti",
+        "years": [
+          2004,
+          2005,
+          2006,
+          2007,
+          2008,
+          2009
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "suspension",
+        "title": "Power Steering System Leak",
+        "description": "The Amanti power steering system develops leaks from the high-pressure hose, pump seals, and steering rack. The rubber hoses deteriorate with age and heat, developing leaks at crimp fittings. The power steering pump shaft seal is another common failure point. A leaking power steering system causes whining noise, heavy steering, and potential pump failure from running low on fluid. The Amanti shares power steering components with the Hyundai XG350 platform.",
+        "solution": "",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Power steering fluid on ground",
+          "Whining noise when turning",
+          "Heavy steering effort",
+          "Low fluid level requiring frequent top-off",
+          "Groaning at full steering lock"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 200,
+        "estimatedCostHigh": 800,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.youtube.com/watch?v=4X5YtqE3x2M",
+            "type": "video",
+            "title": "Power Steering Hose Replacement on 2005 Kia Amanti - EricTheCarGuy"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Inner and outer tie rod ends for steering precision restoration",
+            "partName": "Tie Rod End",
+            "partBrand": "Moog",
+            "affiliateUrl": "https://www.amazon.com/s?k=Moog%20tie%20rod%20end%20Kia%20Amanti&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Remanufactured power steering rack for complete steering system repair",
+            "partName": "Remanufactured Steering Rack",
+            "partBrand": "Cardone",
+            "affiliateUrl": "https://www.amazon.com/s?k=Cardone%20steering%20rack%20Kia%20Amanti&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "kia-amanti-timing-belt-tensioner-2004",
+      "model": "Amanti",
+      "action": "keep_published_pending_source",
+      "reason": "The sole video URL contains a placeholder-style ID and is not primary evidence. The frozen row applies one timing-belt/tensioner claim to both 3.5L and 3.8L engines across 2004-2009, while the visually inspected Kia technician bulletin only directs 2007-2009 3.8L engine-noise cases to a separate TSB and does not establish this belt failure or 60,000-mile remedy. The row remains byte-for-byte unchanged.",
+      "identityRule": "Unsupported scope, category conflicts, partial official evidence and unverified commerce require a byte-for-byte hold; no indexed identity field may be silently changed.",
+      "commerceDecision": "unchanged-search-commerce-pending-exact-fitment",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-technician-bulletin-partial-engine-noise-reference",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2013/MC-10109707-9999.pdf",
+          "sha256": "638a4abc7f5fabc1d40a32169c957f30084ea1aaa1a5b933eafcb0b9bf853283",
+          "visuallyInspectedPages": [
+            2
+          ],
+          "verifiedOn": "2026-08-06",
+          "observation": "Kia Tech Times sends 2007-2009 Amanti 3.8L engine-noise cases to ENG028 but does not substantiate the frozen timing-belt identity, years or remedy."
+        }
+      ],
+      "beforeSha256": "281e1c692f734eeb873c150dbf8748d61e0d011489ff3a73de0692fe459d71f3",
+      "proposalSha256": "281e1c692f734eeb873c150dbf8748d61e0d011489ff3a73de0692fe459d71f3",
+      "before": {
+        "make": "Kia",
+        "model": "Amanti",
+        "years": [
+          2004,
+          2005,
+          2006,
+          2007,
+          2008,
+          2009
+        ],
+        "trims": [],
+        "engines": [
+          "3.5L V6",
+          "3.8L V6"
+        ],
+        "category": "engine",
+        "title": "Timing Belt Tensioner Bearing Failure",
+        "description": "The hydraulic timing belt tensioner and idler pulley bearings fail, causing timing belt noise and potential catastrophic engine damage if the belt jumps or breaks. The 3.5L and 3.8L V6 are interference engines.",
+        "solution": "Replace timing belt, tensioner, idler pulleys, and water pump as a complete kit every 60,000 miles. Do not skip the water pump — it is driven by the timing belt and is accessible during this service. Use Gates or Continental kits.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "Squealing from timing cover area",
+          "Rhythmic ticking noise",
+          "Engine runs rough if belt has jumped",
+          "High-pitched whine at idle"
+        ],
+        "affectedSystems": [
+          "Timing belt system",
+          "Valvetrain"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 400,
+        "estimatedCostHigh": 800,
+        "typicalMileageLow": 48000,
+        "typicalMileageHigh": 72000,
+        "citations": [
+          {
+            "url": "https://www.youtube.com/watch?v=abcd1234efg",
+            "type": "video",
+            "title": "YouTube Repair Video on Replacing Timing Belt Tensioner on 2004 Kia Amanti by EricTheCarGuy"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Complete timing belt kit with water pump for a comprehensive replacement",
+            "partName": "Timing Belt Kit with Water Pump",
+            "partBrand": "Gates",
+            "affiliateUrl": "https://www.amazon.com/s?k=Kia%20Amanti%20Gates%20Timing%20Belt%20Kit%20with%20Water%20Pump&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "High-quality engine oil is critical after timing service",
+            "partName": "Edge Full Synthetic Motor Oil",
+            "partBrand": "Castrol",
+            "affiliateUrl": "https://www.amazon.com/s?k=Kia%20Amanti%20Castrol%20Edge%20Full%20Synthetic%20Motor%20Oil&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "lexus-lx-timing-belt-tensioner-2000"
+        ]
+      },
+      "proposal": {
+        "make": "Kia",
+        "model": "Amanti",
+        "years": [
+          2004,
+          2005,
+          2006,
+          2007,
+          2008,
+          2009
+        ],
+        "trims": [],
+        "engines": [
+          "3.5L V6",
+          "3.8L V6"
+        ],
+        "category": "engine",
+        "title": "Timing Belt Tensioner Bearing Failure",
+        "description": "The hydraulic timing belt tensioner and idler pulley bearings fail, causing timing belt noise and potential catastrophic engine damage if the belt jumps or breaks. The 3.5L and 3.8L V6 are interference engines.",
+        "solution": "Replace timing belt, tensioner, idler pulleys, and water pump as a complete kit every 60,000 miles. Do not skip the water pump — it is driven by the timing belt and is accessible during this service. Use Gates or Continental kits.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "Squealing from timing cover area",
+          "Rhythmic ticking noise",
+          "Engine runs rough if belt has jumped",
+          "High-pitched whine at idle"
+        ],
+        "affectedSystems": [
+          "Timing belt system",
+          "Valvetrain"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 400,
+        "estimatedCostHigh": 800,
+        "typicalMileageLow": 48000,
+        "typicalMileageHigh": 72000,
+        "citations": [
+          {
+            "url": "https://www.youtube.com/watch?v=abcd1234efg",
+            "type": "video",
+            "title": "YouTube Repair Video on Replacing Timing Belt Tensioner on 2004 Kia Amanti by EricTheCarGuy"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Complete timing belt kit with water pump for a comprehensive replacement",
+            "partName": "Timing Belt Kit with Water Pump",
+            "partBrand": "Gates",
+            "affiliateUrl": "https://www.amazon.com/s?k=Kia%20Amanti%20Gates%20Timing%20Belt%20Kit%20with%20Water%20Pump&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "High-quality engine oil is critical after timing service",
+            "partName": "Edge Full Synthetic Motor Oil",
+            "partBrand": "Castrol",
+            "affiliateUrl": "https://www.amazon.com/s?k=Kia%20Amanti%20Castrol%20Edge%20Full%20Synthetic%20Motor%20Oil&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "lexus-lx-timing-belt-tensioner-2000"
+        ]
+      }
+    },
+    {
+      "id": "kia-amanti-transmission-failure-2004",
+      "model": "Amanti",
+      "action": "keep_published_pending_source",
+      "reason": "Kia TSB TRANS 046, visually inspected on pages 1-2, specifies SP-III ATF and warns that incorrect fluid can damage the transmission. It does not establish the frozen 80,000-120,000-mile failure rate, torque-converter/forward-clutch/valve-body aggregation or DTC set, and the generic MaxLife/flush-kit search commerce is not the bulletin-specified fluid or an exact repair. The row remains byte-for-byte unchanged.",
+      "identityRule": "Unsupported scope, category conflicts, partial official evidence and unverified commerce require a byte-for-byte hold; no indexed identity field may be silently changed.",
+      "commerceDecision": "unchanged-search-commerce-pending-exact-fitment",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-fluid-specification-does-not-prove-aggregated-failure",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2012/SB-10059898-2280.pdf",
+          "sha256": "0b1d9abcfc1831ad0b2e6e00b3318ee1901d57e9b4943f9a480c78d5cbf03de9",
+          "visuallyInspectedPages": [
+            1,
+            2
+          ],
+          "verifiedOn": "2026-08-06",
+          "observation": "Kia TRANS 046 specifies SP-III ATF for 2004-2009 Amanti and warns against incorrect fluid; it does not substantiate the frozen failure aggregation or generic commerce."
+        }
+      ],
+      "beforeSha256": "5107ccfe36200c72920a34ea39d9fd7bd32aabe7eeb92ec7d0a701e107a12732",
+      "proposalSha256": "5107ccfe36200c72920a34ea39d9fd7bd32aabe7eeb92ec7d0a701e107a12732",
+      "before": {
+        "make": "Kia",
+        "model": "Amanti",
+        "years": [
+          2004,
+          2005,
+          2006,
+          2007,
+          2008,
+          2009
+        ],
+        "trims": [],
+        "engines": [
+          "3.5L V6"
+        ],
+        "category": "transmission",
+        "title": "Automatic Transmission Failure (5-Speed)",
+        "description": "The 5-speed automatic transmission in the Kia Amanti is prone to premature failure, particularly affecting the torque converter, forward clutch pack, and valve body. The transmission was shared with the Hyundai XG350 platform and struggles with the 3.5L V6 engine torque output. Symptoms progress from harsh shifting to slipping to complete failure, typically between 80,000-120,000 miles. Regular ATF changes can extend life, but the transmission design has inherent durability limitations.",
+        "solution": "",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "Harsh or delayed shifts",
+          "Transmission slipping under acceleration",
+          "Shudder during gear changes",
+          "Loss of forward or reverse gears",
+          "Check engine light with transmission codes"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0700",
+          "P0741",
+          "P0751"
+        ],
+        "estimatedCostLow": 1500,
+        "estimatedCostHigh": 3500,
+        "typicalMileageLow": 80000,
+        "typicalMileageHigh": 120000,
+        "citations": [
+          {
+            "url": "https://www.youtube.com/watch?v=QfW7uQ2G3xA",
+            "type": "video",
+            "title": "EricTheCarGuy - Kia Amanti Transmission Rebuild and Diagnosis"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Transmission flush kit for complete fluid exchange to address shudder",
+            "partName": "Transmission Flush Kit",
+            "partBrand": "Liqui Moly",
+            "affiliateUrl": "https://www.amazon.com/s?k=Kia%20Amanti%20transmission%20flush%20kit&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Full synthetic ATF designed to reduce shudder in automatic transmissions",
+            "partName": "MaxLife ATF Full Synthetic",
+            "partBrand": "Valvoline",
+            "affiliateUrl": "https://www.amazon.com/s?k=Valvoline%20MaxLife%20ATF%20full%20synthetic%20transmission%20fluid&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "kia-sedona-transmission-shudder"
+        ]
+      },
+      "proposal": {
+        "make": "Kia",
+        "model": "Amanti",
+        "years": [
+          2004,
+          2005,
+          2006,
+          2007,
+          2008,
+          2009
+        ],
+        "trims": [],
+        "engines": [
+          "3.5L V6"
+        ],
+        "category": "transmission",
+        "title": "Automatic Transmission Failure (5-Speed)",
+        "description": "The 5-speed automatic transmission in the Kia Amanti is prone to premature failure, particularly affecting the torque converter, forward clutch pack, and valve body. The transmission was shared with the Hyundai XG350 platform and struggles with the 3.5L V6 engine torque output. Symptoms progress from harsh shifting to slipping to complete failure, typically between 80,000-120,000 miles. Regular ATF changes can extend life, but the transmission design has inherent durability limitations.",
+        "solution": "",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "Harsh or delayed shifts",
+          "Transmission slipping under acceleration",
+          "Shudder during gear changes",
+          "Loss of forward or reverse gears",
+          "Check engine light with transmission codes"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0700",
+          "P0741",
+          "P0751"
+        ],
+        "estimatedCostLow": 1500,
+        "estimatedCostHigh": 3500,
+        "typicalMileageLow": 80000,
+        "typicalMileageHigh": 120000,
+        "citations": [
+          {
+            "url": "https://www.youtube.com/watch?v=QfW7uQ2G3xA",
+            "type": "video",
+            "title": "EricTheCarGuy - Kia Amanti Transmission Rebuild and Diagnosis"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Transmission flush kit for complete fluid exchange to address shudder",
+            "partName": "Transmission Flush Kit",
+            "partBrand": "Liqui Moly",
+            "affiliateUrl": "https://www.amazon.com/s?k=Kia%20Amanti%20transmission%20flush%20kit&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Full synthetic ATF designed to reduce shudder in automatic transmissions",
+            "partName": "MaxLife ATF Full Synthetic",
+            "partBrand": "Valvoline",
+            "affiliateUrl": "https://www.amazon.com/s?k=Valvoline%20MaxLife%20ATF%20full%20synthetic%20transmission%20fluid&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "kia-sedona-transmission-shudder"
+        ]
+      }
+    }
+  ]
+}
