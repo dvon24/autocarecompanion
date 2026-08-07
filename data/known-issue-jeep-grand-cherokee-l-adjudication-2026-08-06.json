@@ -1,0 +1,678 @@
+{
+  "schemaVersion": 1,
+  "status": "proposal-only",
+  "auditStage": "model-primary-source-adjudication",
+  "requiresIndependentApproval": true,
+  "generatedOn": "2026-08-06",
+  "make": "Jeep",
+  "model": "Grand Cherokee L",
+  "completionStatement": "All three frozen Grand Cherokee L rows remain byte-for-byte holds. Two visually inspected official bulletins are materially narrower than the indexed pages, and the eTorque row lacks an exact primary source.",
+  "safetyContract": [
+    "No production database write, cache purge, deployment, archive action, redirect, slug change, new issue or public-page change is authorized by this packet.",
+    "All three Grand Cherokee L rows remain published and byte-for-byte unchanged.",
+    "A one-year software bulletin or different sunroof failure cause cannot replace a multi-year aggregate identity.",
+    "Placeholder videos, forum home pages and search-query commerce cannot authorize a rewrite.",
+    "New issue identities remain deferred until the remaining-make audit is complete."
+  ],
+  "source": {
+    "snapshotFile": "data/_jeep-deeplink-snapshot-2026-08-06.json",
+    "snapshotSha256": "e58c24fa8f57e198f5b77a539345b9f36ab5c8232c77263140c6915b311a9ddd",
+    "snapshotGeneratedAt": "2026-08-07T17:03:22.937Z",
+    "snapshotHash": "18ad4be47bc5941799a865d829fd30d5361a0cf7635e9ec106db32a7f109c7eb",
+    "modelRecordCount": 3
+  },
+  "observations": [
+    {
+      "code": "grand-cherokee-l-uconnect-tsb-is-2022-only",
+      "severity": "critical",
+      "recordIds": [
+        "jeep-grand-cherokee-l-infotainment-uconnect5-2021"
+      ],
+      "detail": "TSB 08-131-23 covers specified 2022 WL radios, not 2021-2026."
+    },
+    {
+      "code": "grand-cherokee-l-sunroof-source-is-wind-deflector-not-drains",
+      "severity": "critical",
+      "recordIds": [
+        "jeep-grand-cherokee-l-panoramic-roof-leak-2021"
+      ],
+      "detail": "TSB 23-102-23 identifies a trapped wind deflector on certain 2021-2023 vehicles, not drain blockage across 2021-2025."
+    },
+    {
+      "code": "grand-cherokee-l-etorque-commerce-is-unverified",
+      "severity": "high",
+      "recordIds": [
+        "jeep-grand-cherokee-l-etorque-2021"
+      ],
+      "detail": "The 48V page carries search links for 12V batteries and conventional starters without exact fitment proof."
+    },
+    {
+      "code": "all-grand-cherokee-l-pages-preserved",
+      "severity": "seo-safety",
+      "recordIds": [
+        "jeep-grand-cherokee-l-etorque-2021",
+        "jeep-grand-cherokee-l-infotainment-uconnect5-2021",
+        "jeep-grand-cherokee-l-panoramic-roof-leak-2021"
+      ],
+      "detail": "Every frozen Grand Cherokee L record remains published and byte-for-byte unchanged."
+    }
+  ],
+  "pdfSources": {
+    "uconnect": {
+      "url": "https://static.nhtsa.gov/odi/tsbs/2023/MC-10239977-9999.pdf",
+      "sha256": "b5717f6c148ea08ef1a4f2a3812b5c228952eb56dc4051824ec424ace76fb0bd",
+      "visuallyInspectedPages": [
+        1
+      ],
+      "markers": [
+        "TSB: 08-131-23",
+        "2022 (WL) Jeep Grand Cherokee/Grand Cherokee L",
+        "Uconnect 5",
+        "Radio reset",
+        "Wireless CarPlay"
+      ]
+    },
+    "sunroof": {
+      "url": "https://static.nhtsa.gov/odi/tsbs/2023/MC-10248624-9999.pdf",
+      "sha256": "f44b6fb62d915f528bac84564b37d57e0b2db0566ecd1e9e26a52ca8b2654936",
+      "visuallyInspectedPages": [
+        1
+      ],
+      "markers": [
+        "TSB: 23-102-23",
+        "2021 - 2023 (WL) Jeep Grand Cherokee",
+        "Dual-Pane Panoramic Sunroof",
+        "Wind deflector assembly",
+        "replacing the dual-pane wind deflector assembly"
+      ]
+    }
+  },
+  "recallInventory": {
+    "queries": {
+      "2021": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=GRAND%20CHEROKEE%20L&modelYear=2021",
+      "2022": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=GRAND%20CHEROKEE%20L&modelYear=2022",
+      "2023": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=GRAND%20CHEROKEE%20L&modelYear=2023",
+      "2024": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=GRAND%20CHEROKEE%20L&modelYear=2024",
+      "2025": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=GRAND%20CHEROKEE%20L&modelYear=2025",
+      "2026": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=GRAND%20CHEROKEE%20L&modelYear=2026"
+    },
+    "expected": {
+      "2021": {
+        "status": 200,
+        "campaigns": [
+          "24V897000",
+          "25V083000",
+          "26V051000"
+        ]
+      },
+      "2022": {
+        "status": 200,
+        "campaigns": [
+          "24V897000",
+          "25V083000",
+          "26V051000"
+        ]
+      },
+      "2023": {
+        "status": 200,
+        "campaigns": [
+          "24V897000",
+          "25V430000",
+          "25V472000",
+          "26V051000",
+          "26V328000"
+        ]
+      },
+      "2024": {
+        "status": 200,
+        "campaigns": [
+          "24V872000",
+          "24V897000",
+          "24V926000",
+          "24V944000",
+          "25V472000",
+          "26V328000",
+          "26V413000"
+        ]
+      },
+      "2025": {
+        "status": 200,
+        "campaigns": [
+          "26V328000"
+        ]
+      },
+      "2026": {
+        "status": 400,
+        "campaigns": []
+      }
+    }
+  },
+  "summary": {
+    "rewrite_same_identity": 0,
+    "keep_published_pending_source": 3,
+    "total": 3
+  },
+  "rows": [
+    {
+      "id": "jeep-grand-cherokee-l-etorque-2021",
+      "model": "Grand Cherokee L",
+      "action": "keep_published_pending_source",
+      "reason": "One forum home page does not establish a 2021-2024 Grand Cherokee L 48V battery defect, stop/start calibration, belt-starter-generator vibration, battery life or dealer-only replacement. The page also combines unverified 48V and 12V battery advice with unrelated conventional starter commerce. The row remains byte-for-byte unchanged.",
+      "identityRule": "A partial-year bulletin, different failure cause, placeholder citation or unverified powertrain and commerce requires a byte-for-byte hold.",
+      "commerceDecision": "unchanged-commerce-pending-exact-source-and-fitment",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-recall-inventory-boundary-not-broad-claim-proof",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=GRAND%20CHEROKEE%20L&modelYear=2021",
+          "supportingUrls": [
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=GRAND%20CHEROKEE%20L&modelYear=2021",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=GRAND%20CHEROKEE%20L&modelYear=2022",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=GRAND%20CHEROKEE%20L&modelYear=2023",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=GRAND%20CHEROKEE%20L&modelYear=2024",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=GRAND%20CHEROKEE%20L&modelYear=2025",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=GRAND%20CHEROKEE%20L&modelYear=2026"
+          ],
+          "verifiedOn": "2026-08-06",
+          "observation": "The complete 2021-2026 recall inventory does not establish the broad eTorque battery, belt-starter-generator and commerce claims."
+        }
+      ],
+      "beforeSha256": "b6a604dbb689e04bbb366b321c33ef09502002de69344d8506207354e7729ff6",
+      "proposalSha256": "b6a604dbb689e04bbb366b321c33ef09502002de69344d8506207354e7729ff6",
+      "before": {
+        "make": "Jeep",
+        "model": "Grand Cherokee L",
+        "years": [
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "eTorque Mild Hybrid 48V Battery and Stop/Start Malfunction",
+        "description": "The Grand Cherokee L's eTorque mild hybrid system experiences 48V battery faults and stop/start malfunctions. The auxiliary battery loses charge capacity, causing the stop/start system to disable itself and triggering warning messages. The belt-starter-generator can also produce vibration during engine restarts.",
+        "solution": "A dealer software update recalibrates the battery management system. If the 48V battery has degraded, it must be replaced (dealer-only part). Ensure the 12V auxiliary battery is also in good condition as a weak 12V battery stresses the eTorque system.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Stop/Start system disabled message",
+          "ESS unavailable warning",
+          "Rough engine restart at stop lights",
+          "48V battery warning",
+          "Reduced fuel economy",
+          "Belt chirp on engine restart"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 1200,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.jeepgarage.org",
+            "source": "Jeep Garage",
+            "description": "Grand Cherokee L eTorque system faults and battery replacement"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Keep both the 48V and 12V batteries healthy — a weak 12V battery causes the eTorque system to overwork and fail prematurely"
+          },
+          {
+            "type": "part",
+            "content": "High-performance AGM battery with excellent cold cranking amps and deep cycle capability",
+            "partName": "RedTop AGM Battery",
+            "partBrand": "Optima",
+            "affiliateUrl": "https://www.amazon.com/s?k=Optima%20RedTop%20AGM%20Battery%20Jeep%20Grand%20Cherokee%20L&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "OEM-quality replacement battery with reliable performance",
+            "partName": "Professional AGM Battery",
+            "partBrand": "ACDelco",
+            "affiliateUrl": "https://www.amazon.com/s?k=ACDelco%20Professional%20AGM%20Battery%20Jeep%20Grand%20Cherokee%20L&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Automatic battery maintainer to prevent parasitic drain issues during storage",
+            "partName": "Junior 12V Battery Charger Maintainer",
+            "partBrand": "Battery Tender",
+            "affiliateUrl": "https://www.amazon.com/s?k=Battery%20Tender%20Junior%2012V%20Battery%20Charger%20Maintainer%20Jeep%20Grand%20Cherokee%20L&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "OEM-quality starter motor for reliable engine cranking",
+            "partName": "Starter Motor",
+            "partBrand": "Denso",
+            "affiliateUrl": "https://www.amazon.com/s?k=Denso%20Starter%20Motor%20Jeep%20Grand%20Cherokee%20L&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Remanufactured starter with gear reduction for improved cranking performance",
+            "partName": "Remanufactured Starter Motor",
+            "partBrand": "Remy",
+            "affiliateUrl": "https://www.amazon.com/s?k=Remy%20Remanufactured%20Starter%20Motor%20Jeep%20Grand%20Cherokee%20L&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 170,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-03-13",
+        "reviewedOn": "2026-03-13",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Jeep",
+        "model": "Grand Cherokee L",
+        "years": [
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "eTorque Mild Hybrid 48V Battery and Stop/Start Malfunction",
+        "description": "The Grand Cherokee L's eTorque mild hybrid system experiences 48V battery faults and stop/start malfunctions. The auxiliary battery loses charge capacity, causing the stop/start system to disable itself and triggering warning messages. The belt-starter-generator can also produce vibration during engine restarts.",
+        "solution": "A dealer software update recalibrates the battery management system. If the 48V battery has degraded, it must be replaced (dealer-only part). Ensure the 12V auxiliary battery is also in good condition as a weak 12V battery stresses the eTorque system.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Stop/Start system disabled message",
+          "ESS unavailable warning",
+          "Rough engine restart at stop lights",
+          "48V battery warning",
+          "Reduced fuel economy",
+          "Belt chirp on engine restart"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 1200,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.jeepgarage.org",
+            "source": "Jeep Garage",
+            "description": "Grand Cherokee L eTorque system faults and battery replacement"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Keep both the 48V and 12V batteries healthy — a weak 12V battery causes the eTorque system to overwork and fail prematurely"
+          },
+          {
+            "type": "part",
+            "content": "High-performance AGM battery with excellent cold cranking amps and deep cycle capability",
+            "partName": "RedTop AGM Battery",
+            "partBrand": "Optima",
+            "affiliateUrl": "https://www.amazon.com/s?k=Optima%20RedTop%20AGM%20Battery%20Jeep%20Grand%20Cherokee%20L&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "OEM-quality replacement battery with reliable performance",
+            "partName": "Professional AGM Battery",
+            "partBrand": "ACDelco",
+            "affiliateUrl": "https://www.amazon.com/s?k=ACDelco%20Professional%20AGM%20Battery%20Jeep%20Grand%20Cherokee%20L&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Automatic battery maintainer to prevent parasitic drain issues during storage",
+            "partName": "Junior 12V Battery Charger Maintainer",
+            "partBrand": "Battery Tender",
+            "affiliateUrl": "https://www.amazon.com/s?k=Battery%20Tender%20Junior%2012V%20Battery%20Charger%20Maintainer%20Jeep%20Grand%20Cherokee%20L&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "OEM-quality starter motor for reliable engine cranking",
+            "partName": "Starter Motor",
+            "partBrand": "Denso",
+            "affiliateUrl": "https://www.amazon.com/s?k=Denso%20Starter%20Motor%20Jeep%20Grand%20Cherokee%20L&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Remanufactured starter with gear reduction for improved cranking performance",
+            "partName": "Remanufactured Starter Motor",
+            "partBrand": "Remy",
+            "affiliateUrl": "https://www.amazon.com/s?k=Remy%20Remanufactured%20Starter%20Motor%20Jeep%20Grand%20Cherokee%20L&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 170,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-03-13",
+        "reviewedOn": "2026-03-13",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "jeep-grand-cherokee-l-infotainment-uconnect5-2021",
+      "model": "Grand Cherokee L",
+      "action": "keep_published_pending_source",
+      "reason": "Visually inspected Stellantis TSB 08-131-23 supports specified 2022 Grand Cherokee and Grand Cherokee L Uconnect 5 radios and a defined software symptom list, not the frozen 2021-2026 frequency, every display, hard-reset, cost or backup-camera-delay aggregation. The placeholder video and generic scanner commerce do not bridge that gap, so the row remains byte-for-byte unchanged.",
+      "identityRule": "A partial-year bulletin, different failure cause, placeholder citation or unverified powertrain and commerce requires a byte-for-byte hold.",
+      "commerceDecision": "unchanged-commerce-pending-exact-source-and-fitment",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-tsb-partial-year-and-radio-scope",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2023/MC-10239977-9999.pdf",
+          "verifiedOn": "2026-08-06",
+          "sha256": "b5717f6c148ea08ef1a4f2a3812b5c228952eb56dc4051824ec424ace76fb0bd",
+          "visuallyInspectedPages": [
+            1
+          ],
+          "observation": "TSB 08-131-23 covers specified 2022 WL Uconnect 5 radios, not the full 2021-2026 aggregate."
+        }
+      ],
+      "beforeSha256": "dce505fdfe7577eaa5c5da38f9883911d66fa6e2a78cae1ae11996e25adda0d5",
+      "proposalSha256": "dce505fdfe7577eaa5c5da38f9883911d66fa6e2a78cae1ae11996e25adda0d5",
+      "before": {
+        "make": "Jeep",
+        "model": "Grand Cherokee L",
+        "years": [
+          2021,
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Uconnect 5 Infotainment Freezing and Lag",
+        "description": "The Uconnect 5 system in the Grand Cherokee L experiences frequent freezing, touchscreen lag, wireless CarPlay/Android Auto disconnections, and occasional black screen events requiring a hard reset.",
+        "solution": "",
+        "severity": "low",
+        "confidence": "medium",
+        "symptoms": [
+          "Touchscreen freezing",
+          "Black screen",
+          "CarPlay/Android Auto disconnecting",
+          "Slow response to inputs",
+          "Backup camera delay"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 200,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.youtube.com/watch?v=abcd1234efg",
+            "type": "video",
+            "title": "YouTube video by 'Auto Repair Guys' showing diagnosis and fix of Uconnect 5 freezing in Jeep Grand Cherokee L"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Professional OBD-II diagnostic scanner for reading infotainment and body module codes",
+            "partName": "Bluetooth Pro OBD2 Scan Tool",
+            "partBrand": "BlueDriver",
+            "affiliateUrl": "https://www.amazon.com/s?k=BlueDriver%20Bluetooth%20Pro%20OBD2%20Scan%20Tool%20Jeep%20Grand%20Cherokee%20L&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Jeep",
+        "model": "Grand Cherokee L",
+        "years": [
+          2021,
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Uconnect 5 Infotainment Freezing and Lag",
+        "description": "The Uconnect 5 system in the Grand Cherokee L experiences frequent freezing, touchscreen lag, wireless CarPlay/Android Auto disconnections, and occasional black screen events requiring a hard reset.",
+        "solution": "",
+        "severity": "low",
+        "confidence": "medium",
+        "symptoms": [
+          "Touchscreen freezing",
+          "Black screen",
+          "CarPlay/Android Auto disconnecting",
+          "Slow response to inputs",
+          "Backup camera delay"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 200,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.youtube.com/watch?v=abcd1234efg",
+            "type": "video",
+            "title": "YouTube video by 'Auto Repair Guys' showing diagnosis and fix of Uconnect 5 freezing in Jeep Grand Cherokee L"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Professional OBD-II diagnostic scanner for reading infotainment and body module codes",
+            "partName": "Bluetooth Pro OBD2 Scan Tool",
+            "partBrand": "BlueDriver",
+            "affiliateUrl": "https://www.amazon.com/s?k=BlueDriver%20Bluetooth%20Pro%20OBD2%20Scan%20Tool%20Jeep%20Grand%20Cherokee%20L&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "jeep-grand-cherokee-l-panoramic-roof-leak-2021",
+      "model": "Grand Cherokee L",
+      "action": "keep_published_pending_source",
+      "reason": "Visually inspected Stellantis TSB 23-102-23 covers certain 2021-2023 WL vehicles whose wind deflector can become trapped and cause a leak. It does not establish the frozen 2021-2025 drain blockage, longer Grand Cherokee L tube routing, C-pillar clog, compressed-air procedure or unrelated body-filler commerce. The wind deflector source cannot replace a drain blockage identity, so the row remains byte-for-byte unchanged.",
+      "identityRule": "A partial-year bulletin, different failure cause, placeholder citation or unverified powertrain and commerce requires a byte-for-byte hold.",
+      "commerceDecision": "unchanged-commerce-pending-exact-source-and-fitment",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-tsb-different-cause-and-partial-year-scope",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2023/MC-10248624-9999.pdf",
+          "verifiedOn": "2026-08-06",
+          "sha256": "f44b6fb62d915f528bac84564b37d57e0b2db0566ecd1e9e26a52ca8b2654936",
+          "visuallyInspectedPages": [
+            1
+          ],
+          "observation": "TSB 23-102-23 identifies a trapped wind deflector on certain 2021-2023 WL vehicles, not clogged drain tubes across 2021-2025."
+        }
+      ],
+      "beforeSha256": "920ab6ea272c59e8c3c937bfeacbfdbf1951bfc5456fb7ef98d91f27579adfd4",
+      "proposalSha256": "920ab6ea272c59e8c3c937bfeacbfdbf1951bfc5456fb7ef98d91f27579adfd4",
+      "before": {
+        "make": "Jeep",
+        "model": "Grand Cherokee L",
+        "years": [
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "body",
+        "title": "Panoramic Sunroof Drain Blockage and Water Leak",
+        "description": "The Grand Cherokee L with the dual-pane panoramic sunroof is prone to water leaks caused by clogged or kinked drain tubes. The extended-length L model has longer drain tube runs than the standard Grand Cherokee, increasing the likelihood of blockage. Water pools in the sunroof channel and overflows into the headliner, dripping onto the front seats, center console electronics, and overhead console modules. The rear drain tubes are especially prone to clogging where they pass through the C-pillar.",
+        "solution": "Clear all four sunroof drain tubes using compressed air blown from the top opening — do NOT use a wire, which can puncture the tubes. Check that the drain tube exits under the vehicle are clear of debris. If water has already entered the headliner, pull it back to dry the insulation and check for mold. Inspect the overhead console module and ambient lighting connectors for corrosion. Stellantis has issued a TSB with revised drain tube routing for 2021-2022 models.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Water dripping from headliner near sunroof area",
+          "Wet spots on front or rear seats after rain",
+          "Water stains on headliner fabric",
+          "Musty smell inside vehicle",
+          "Overhead console lights or controls malfunctioning"
+        ],
+        "affectedSystems": [
+          "body",
+          "interior"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 800,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.youtube.com/watch?v=abcd1234efg",
+            "type": "video",
+            "title": "YouTube video by 'ChrisFix' on diagnosing and fixing panoramic sunroof drain clogs on Jeep Grand Cherokee L"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "text": "Clear the drain tubes every fall and spring — it is a 10-minute job with a can of compressed air that prevents thousands in water damage to the electronics.",
+            "source": "JeepGarage",
+            "upvotes": 234
+          },
+          {
+            "type": "part",
+            "content": "Trim removal tool set for body panel work without damage",
+            "partName": "Trim Removal Tool Set",
+            "partBrand": "MICTUNING",
+            "affiliateUrl": "https://www.amazon.com/s?k=trim%20removal%20tool%20set%20automotive&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Bondo body filler for dent and panel repair",
+            "partName": "Body Filler Kit",
+            "partBrand": "Bondo",
+            "affiliateUrl": "https://www.amazon.com/s?k=Bondo%20body%20filler%20kit&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "jeep-grand-wagoneer-pano-sunroof-leak-2022"
+        ]
+      },
+      "proposal": {
+        "make": "Jeep",
+        "model": "Grand Cherokee L",
+        "years": [
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "body",
+        "title": "Panoramic Sunroof Drain Blockage and Water Leak",
+        "description": "The Grand Cherokee L with the dual-pane panoramic sunroof is prone to water leaks caused by clogged or kinked drain tubes. The extended-length L model has longer drain tube runs than the standard Grand Cherokee, increasing the likelihood of blockage. Water pools in the sunroof channel and overflows into the headliner, dripping onto the front seats, center console electronics, and overhead console modules. The rear drain tubes are especially prone to clogging where they pass through the C-pillar.",
+        "solution": "Clear all four sunroof drain tubes using compressed air blown from the top opening — do NOT use a wire, which can puncture the tubes. Check that the drain tube exits under the vehicle are clear of debris. If water has already entered the headliner, pull it back to dry the insulation and check for mold. Inspect the overhead console module and ambient lighting connectors for corrosion. Stellantis has issued a TSB with revised drain tube routing for 2021-2022 models.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Water dripping from headliner near sunroof area",
+          "Wet spots on front or rear seats after rain",
+          "Water stains on headliner fabric",
+          "Musty smell inside vehicle",
+          "Overhead console lights or controls malfunctioning"
+        ],
+        "affectedSystems": [
+          "body",
+          "interior"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 800,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.youtube.com/watch?v=abcd1234efg",
+            "type": "video",
+            "title": "YouTube video by 'ChrisFix' on diagnosing and fixing panoramic sunroof drain clogs on Jeep Grand Cherokee L"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "text": "Clear the drain tubes every fall and spring — it is a 10-minute job with a can of compressed air that prevents thousands in water damage to the electronics.",
+            "source": "JeepGarage",
+            "upvotes": 234
+          },
+          {
+            "type": "part",
+            "content": "Trim removal tool set for body panel work without damage",
+            "partName": "Trim Removal Tool Set",
+            "partBrand": "MICTUNING",
+            "affiliateUrl": "https://www.amazon.com/s?k=trim%20removal%20tool%20set%20automotive&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Bondo body filler for dent and panel repair",
+            "partName": "Body Filler Kit",
+            "partBrand": "Bondo",
+            "affiliateUrl": "https://www.amazon.com/s?k=Bondo%20body%20filler%20kit&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "jeep-grand-wagoneer-pano-sunroof-leak-2022"
+        ]
+      }
+    }
+  ]
+}
