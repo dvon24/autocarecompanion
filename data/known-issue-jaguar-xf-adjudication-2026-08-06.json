@@ -1,0 +1,1294 @@
+{
+  "schemaVersion": 1,
+  "status": "proposal-only",
+  "auditStage": "model-primary-source-adjudication",
+  "requiresIndependentApproval": true,
+  "generatedOn": "2026-08-06",
+  "make": "Jaguar",
+  "model": "XF",
+  "completionStatement": "This packet reconciles all six frozen Jaguar XF rows. Four official technical PDFs and eight relevant pages were visually reviewed; current Jaguar DPF guidance and year-by-year NHTSA recall inventories were live-locked. All six rows remain byte-for-byte unchanged.",
+  "safetyContract": [
+    "No production database write, cache purge, deployment, archive action, redirect, slug change, new issue or public-page change is authorized by this packet.",
+    "All six XF rows remain published and byte-for-byte unchanged.",
+    "A brand, model, equipment, engine, VIN, year, cause, code, symptom or remedy mismatch cannot authorize a broader rewrite.",
+    "A recall-registry result is not negative proof that a non-recall issue does not exist.",
+    "The six frozen citation objects contain titles but no URLs and therefore are not treated as verified source evidence.",
+    "Distinct issue identities remain deferred until the post-audit new-known-issues phase."
+  ],
+  "source": {
+    "snapshotFile": "data/_jaguar-deeplink-snapshot-2026-08-06.json",
+    "snapshotSha256": "60f1d4d001e3f56c9b9fc4c2429fe300f44ef3aaaeb7fda2e09a37b6e6c66800",
+    "snapshotGeneratedAt": "2026-08-07T01:28:25.707Z",
+    "snapshotHash": "016c6d9be5ca12dd4a514267ecfed59d36d825395d3e83ef56985dc87003bbfa",
+    "modelRecordCount": 6
+  },
+  "observations": [
+    {
+      "code": "xf-pcv-primary-source-gap",
+      "severity": "source-gap",
+      "recordIds": [
+        "jaguar-xf-crankcase-vent-valve-2009"
+      ],
+      "detail": "No exact primary source cleared the seven-year, four-engine PCV aggregation."
+    },
+    {
+      "code": "xf-dpf-remedy-claim-mismatch",
+      "severity": "high",
+      "recordIds": [
+        "jaguar-xf-diesel-dpf-regen-2009"
+      ],
+      "detail": "Jaguar guidance supports regeneration constraints but not the frozen DTC scope or repair ladder."
+    },
+    {
+      "code": "xf-timing-citation-brand-model-scope-mismatch",
+      "severity": "high",
+      "recordIds": [
+        "jaguar-xf-timing-chain-tensioner-ajv8-2009"
+      ],
+      "detail": "The named LTB00473 was not verified; LTB00474NAS2 is Land Rover-only and materially narrower."
+    },
+    {
+      "code": "xf-turbo-hose-primary-source-gap",
+      "severity": "source-gap",
+      "recordIds": [
+        "jaguar-xf-turbo-coolant-hose-ingenium-2016"
+      ],
+      "detail": "The located same-engine cooling action concerns pump control software, not turbo hoses."
+    },
+    {
+      "code": "xf-window-symptom-cause-remedy-scope-mismatch",
+      "severity": "high",
+      "recordIds": [
+        "jaguar-xf-window-regulator-2009"
+      ],
+      "detail": "JTB00345NAS3 is a limited pulley-squeak lubrication bulletin, not broad cable and motor failure."
+    },
+    {
+      "code": "xf-mechatronic-dtc-mileage-diagnostic-mismatch",
+      "severity": "high",
+      "recordIds": [
+        "jaguar-xf-zf-8hp-mechatronic-2016"
+      ],
+      "detail": "SSM73852 is a narrow low-mileage event with exact DTCs and adaptation-first diagnosis."
+    },
+    {
+      "code": "xf-existing-citations-missing-urls",
+      "severity": "source-gap",
+      "recordIds": [
+        "jaguar-xf-crankcase-vent-valve-2009",
+        "jaguar-xf-diesel-dpf-regen-2009",
+        "jaguar-xf-timing-chain-tensioner-ajv8-2009",
+        "jaguar-xf-turbo-coolant-hose-ingenium-2016",
+        "jaguar-xf-window-regulator-2009",
+        "jaguar-xf-zf-8hp-mechatronic-2016"
+      ],
+      "detail": "Every frozen citation has a title but no URL, so none can independently clear a rewrite."
+    },
+    {
+      "code": "all-xf-pages-preserved",
+      "severity": "seo-safety",
+      "recordIds": [
+        "jaguar-xf-crankcase-vent-valve-2009",
+        "jaguar-xf-diesel-dpf-regen-2009",
+        "jaguar-xf-timing-chain-tensioner-ajv8-2009",
+        "jaguar-xf-turbo-coolant-hose-ingenium-2016",
+        "jaguar-xf-window-regulator-2009",
+        "jaguar-xf-zf-8hp-mechatronic-2016"
+      ],
+      "detail": "Every indexed XF record remains published with identical ID, title, years, category, content, citations and commerce."
+    }
+  ],
+  "reviewSources": {
+    "dpf": "https://www.jaguar.com/en-au/jdx/ownership/choose-your-engine/jaguar-diesel-particulate-filter.html",
+    "coolant": "https://static.nhtsa.gov/odi/tsbs/2020/MC-10177147-0001.pdf",
+    "window": "https://static.nhtsa.gov/odi/tsbs/2014/SB-10065160-6903.pdf",
+    "timingLandRover": "https://static.nhtsa.gov/odi/tsbs/2014/SB-10056266-1292.pdf",
+    "mechatronic": "https://static.nhtsa.gov/odi/tsbs/2018/MC-10142399-9999.pdf"
+  },
+  "pdfSources": {
+    "coolant": "https://static.nhtsa.gov/odi/tsbs/2020/MC-10177147-0001.pdf",
+    "window": "https://static.nhtsa.gov/odi/tsbs/2014/SB-10065160-6903.pdf",
+    "timingLandRover": "https://static.nhtsa.gov/odi/tsbs/2014/SB-10056266-1292.pdf",
+    "mechatronic": "https://static.nhtsa.gov/odi/tsbs/2018/MC-10142399-9999.pdf"
+  },
+  "sourceArtifactSha256": {
+    "coolant": "604bdc73f9458965ae7c29ef0767387b35db71ab578924f0e6e68e6394bc9f8e",
+    "window": "ce7a17454a6dfb7ab7e3b28c4cf9a68f2bb4ece8abad2db3cbd174585301ed52",
+    "timingLandRover": "bcda1e671fcf2d1f888edf1d2baceff11190f1abb7fe7f582f2d3362a5db280f",
+    "mechatronic": "09c530498ece98c13c2c6f0c8080ff25b78bc249d7439fa690237b91601feced"
+  },
+  "visuallyInspectedPages": {
+    "coolant": [
+      1,
+      2
+    ],
+    "window": [
+      1,
+      2
+    ],
+    "timingLandRover": [
+      1,
+      2
+    ],
+    "mechatronic": [
+      1,
+      2
+    ]
+  },
+  "webSourceMarkers": {
+    "dpf": [
+      "frequently driving short distances",
+      "60km/h and 112km/h for 20 minutes",
+      "red warning light indicates that the filter is full"
+    ]
+  },
+  "mismatchSources": {
+    "recallQueries": {
+      "2009": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JAGUAR&model=XF&modelYear=2009",
+      "2010": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JAGUAR&model=XF&modelYear=2010",
+      "2011": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JAGUAR&model=XF&modelYear=2011",
+      "2012": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JAGUAR&model=XF&modelYear=2012",
+      "2013": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JAGUAR&model=XF&modelYear=2013",
+      "2014": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JAGUAR&model=XF&modelYear=2014",
+      "2015": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JAGUAR&model=XF&modelYear=2015",
+      "2016": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JAGUAR&model=XF&modelYear=2016",
+      "2017": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JAGUAR&model=XF&modelYear=2017",
+      "2018": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JAGUAR&model=XF&modelYear=2018",
+      "2019": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JAGUAR&model=XF&modelYear=2019",
+      "2020": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JAGUAR&model=XF&modelYear=2020",
+      "2021": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JAGUAR&model=XF&modelYear=2021",
+      "2022": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JAGUAR&model=XF&modelYear=2022",
+      "2023": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JAGUAR&model=XF&modelYear=2023"
+    },
+    "expected": {
+      "2009": {
+        "status": 200,
+        "campaigns": [
+          "08V396000",
+          "08V607000",
+          "16V229000",
+          "16V373000",
+          "17V027000",
+          "18V009000"
+        ]
+      },
+      "2010": {
+        "status": 200,
+        "campaigns": [
+          "09V316000",
+          "09V424000",
+          "10V332000",
+          "11V168000",
+          "12V521000",
+          "16V187000",
+          "16V373000",
+          "18V009000",
+          "18V010000",
+          "20V081000"
+        ]
+      },
+      "2011": {
+        "status": 200,
+        "campaigns": [
+          "12V521000",
+          "16V229000",
+          "16V373000",
+          "18V010000"
+        ]
+      },
+      "2012": {
+        "status": 200,
+        "campaigns": [
+          "11V604000",
+          "12V521000",
+          "16V229000",
+          "17V027000",
+          "18V010000"
+        ]
+      },
+      "2013": {
+        "status": 200,
+        "campaigns": [
+          "12V571000",
+          "13V341000",
+          "14V123000",
+          "14V157000",
+          "14V181000",
+          "14V291000",
+          "14V390000",
+          "15V091000",
+          "16V137000",
+          "16V796000",
+          "18V009000",
+          "18V010000"
+        ]
+      },
+      "2014": {
+        "status": 200,
+        "campaigns": [
+          "14V157000",
+          "14V181000",
+          "14V291000",
+          "14V390000",
+          "16V137000",
+          "16V796000",
+          "18V010000"
+        ]
+      },
+      "2015": {
+        "status": 200,
+        "campaigns": [
+          "14V673000",
+          "16V137000",
+          "16V229000",
+          "16V796000",
+          "18V010000"
+        ]
+      },
+      "2016": {
+        "status": 400,
+        "campaigns": []
+      },
+      "2017": {
+        "status": 200,
+        "campaigns": [
+          "17V084000",
+          "17V678000"
+        ]
+      },
+      "2018": {
+        "status": 200,
+        "campaigns": [
+          "17V678000",
+          "18V090000",
+          "18V112000"
+        ]
+      },
+      "2019": {
+        "status": 400,
+        "campaigns": []
+      },
+      "2020": {
+        "status": 400,
+        "campaigns": []
+      },
+      "2021": {
+        "status": 200,
+        "campaigns": [
+          "21V667000"
+        ]
+      },
+      "2022": {
+        "status": 200,
+        "campaigns": [
+          "22V524000"
+        ]
+      },
+      "2023": {
+        "status": 400,
+        "campaigns": []
+      }
+    }
+  },
+  "summary": {
+    "rewrite_same_identity": 0,
+    "keep_published_pending_source": 6,
+    "total": 6
+  },
+  "rows": [
+    {
+      "id": "jaguar-xf-crankcase-vent-valve-2009",
+      "model": "XF",
+      "action": "keep_published_pending_source",
+      "reason": "No exact Jaguar primary source was located that establishes one diaphragm-failure identity across 2009-2015 XF 4.2L and 5.0L naturally aspirated and supercharged engines with the frozen lean codes, oil-consumption threshold, intake-removal statement, gasket remedy, prevalence and cost range. The official recall inventory is a boundary rather than negative proof, and the frozen citation has no URL, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content, scope or publication-state changes; partial or mismatched evidence cannot be expanded into the frozen indexed identity.",
+      "commerceDecision": "unchanged-no-commerce-present",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-registry-boundary-not-negative-proof",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JAGUAR&model=XF&modelYear=2009",
+          "verifiedOn": "2026-08-06",
+          "observation": "The official inventory contains distinct campaign identities and cannot establish or disprove the broad PCV aggregation."
+        }
+      ],
+      "beforeSha256": "f2dbf631fbf748ac5a3ba72e2a3afa3f7702bfe4095242c9415eb559a1a02a4a",
+      "proposalSha256": "f2dbf631fbf748ac5a3ba72e2a3afa3f7702bfe4095242c9415eb559a1a02a4a",
+      "before": {
+        "make": "Jaguar",
+        "model": "XF",
+        "years": [
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015
+        ],
+        "trims": [],
+        "engines": [
+          "5.0L V8 NA",
+          "5.0L V8 Supercharged",
+          "4.2L V8 NA",
+          "4.2L V8 Supercharged"
+        ],
+        "category": "engine",
+        "title": "Crankcase Ventilation Valve Failure on AJ-V8",
+        "description": "The crankcase ventilation (PCV) valve on AJ-V8 engines fails, causing excessive oil consumption, oil leaks from gaskets under positive crankcase pressure, and rough idle. The valve diaphragm tears, disrupting crankcase pressure management.",
+        "solution": "Replace the crankcase ventilation valve assembly. On the 5.0L, the valve is located on the rear of the engine and requires intake manifold removal on some models. Replace the intake manifold gaskets at the same time.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Excessive oil consumption between changes",
+          "Oil leaks from valve cover or front main seal",
+          "Rough idle",
+          "Whistling noise from engine",
+          "Check engine light for lean codes"
+        ],
+        "affectedSystems": [
+          "Engine",
+          "Emissions"
+        ],
+        "dtcCodes": [
+          "P0171",
+          "P0174"
+        ],
+        "estimatedCostLow": 400,
+        "estimatedCostHigh": 1200,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "forum",
+            "title": "JaguarForums.com — AJ-V8 crankcase vent valve failure symptoms and replacement procedure"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "source": "JaguarForums.com",
+            "content": "If your V8 XF is consuming more than 1 quart per 3,000 miles, check the PCV valve before chasing other oil consumption causes. It is the most common culprit.",
+            "upvotes": 134,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 870,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-09-10",
+        "reviewedOn": "2026-03-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "jaguar-xj-rear-main-seal-v8-2004",
+          "audi-q5-sportback-pcv-valve-2021",
+          "jaguar-xj-timing-chain-tensioner-ajv8-2004",
+          "jaguar-xk-nikasil-bore-wear-2007"
+        ]
+      },
+      "proposal": {
+        "make": "Jaguar",
+        "model": "XF",
+        "years": [
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015
+        ],
+        "trims": [],
+        "engines": [
+          "5.0L V8 NA",
+          "5.0L V8 Supercharged",
+          "4.2L V8 NA",
+          "4.2L V8 Supercharged"
+        ],
+        "category": "engine",
+        "title": "Crankcase Ventilation Valve Failure on AJ-V8",
+        "description": "The crankcase ventilation (PCV) valve on AJ-V8 engines fails, causing excessive oil consumption, oil leaks from gaskets under positive crankcase pressure, and rough idle. The valve diaphragm tears, disrupting crankcase pressure management.",
+        "solution": "Replace the crankcase ventilation valve assembly. On the 5.0L, the valve is located on the rear of the engine and requires intake manifold removal on some models. Replace the intake manifold gaskets at the same time.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Excessive oil consumption between changes",
+          "Oil leaks from valve cover or front main seal",
+          "Rough idle",
+          "Whistling noise from engine",
+          "Check engine light for lean codes"
+        ],
+        "affectedSystems": [
+          "Engine",
+          "Emissions"
+        ],
+        "dtcCodes": [
+          "P0171",
+          "P0174"
+        ],
+        "estimatedCostLow": 400,
+        "estimatedCostHigh": 1200,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "forum",
+            "title": "JaguarForums.com — AJ-V8 crankcase vent valve failure symptoms and replacement procedure"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "source": "JaguarForums.com",
+            "content": "If your V8 XF is consuming more than 1 quart per 3,000 miles, check the PCV valve before chasing other oil consumption causes. It is the most common culprit.",
+            "upvotes": 134,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 870,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-09-10",
+        "reviewedOn": "2026-03-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "jaguar-xj-rear-main-seal-v8-2004",
+          "audi-q5-sportback-pcv-valve-2021",
+          "jaguar-xj-timing-chain-tensioner-ajv8-2004",
+          "jaguar-xk-nikasil-bore-wear-2007"
+        ]
+      }
+    },
+    {
+      "id": "jaguar-xf-diesel-dpf-regen-2009",
+      "model": "XF",
+      "action": "keep_published_pending_source",
+      "reason": "Jaguar owner guidance confirms that short trips, slow traffic and cold weather can prevent regeneration, but its amber-warning instruction is to drive between 60 and 112 km/h for 20 minutes and its full-filter instruction is to contact a retailer. It does not establish the frozen P2463/P244A scope, permanent-damage claim, forced regeneration, chemical-cleaning/replacement ladder or 2,500 RPM weekly prescription across 2009-2018 XF diesels. The broader row remains unchanged.",
+      "identityRule": "No content, scope or publication-state changes; partial or mismatched evidence cannot be expanded into the frozen indexed identity.",
+      "commerceDecision": "unchanged-no-commerce-present",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "jaguar-owner-guidance-remedy-boundary",
+          "url": "https://www.jaguar.com/en-au/jdx/ownership/choose-your-engine/jaguar-diesel-particulate-filter.html",
+          "verifiedOn": "2026-08-06",
+          "observation": "Jaguar describes short-trip regeneration limits and a 60-112 km/h, 20-minute amber-warning drive, not the frozen DTC and repair ladder."
+        }
+      ],
+      "beforeSha256": "99b6ea43c12e0958e97671db4f2e4580ea86507ea74097fa2e34d585af54fc33",
+      "proposalSha256": "99b6ea43c12e0958e97671db4f2e4580ea86507ea74097fa2e34d585af54fc33",
+      "before": {
+        "make": "Jaguar",
+        "model": "XF",
+        "years": [
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018
+        ],
+        "trims": [],
+        "engines": [
+          "2.2L Diesel I4",
+          "3.0L TDV6 Diesel"
+        ],
+        "category": "fuel",
+        "title": "Diesel Particulate Filter Regeneration Failure",
+        "description": "Diesel XF models suffer from DPF regeneration issues, particularly in urban driving where the exhaust never reaches regeneration temperature. The DPF clogs with soot, triggering warning lights and reduced power. Repeated failed regeneration cycles can permanently damage the filter.",
+        "solution": "Perform a forced DPF regeneration via dealer diagnostic tool. If the DPF is heavily blocked, chemical cleaning or replacement is required. Adopt a driving pattern that includes regular highway runs of 20+ minutes at 2,500+ RPM to allow passive regeneration.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "DPF warning light on dashboard",
+          "Reduced engine power",
+          "Increased fuel consumption",
+          "Strong diesel smell from exhaust",
+          "Engine management light"
+        ],
+        "affectedSystems": [
+          "Exhaust",
+          "Engine",
+          "Emissions"
+        ],
+        "dtcCodes": [
+          "P2463",
+          "P244A"
+        ],
+        "estimatedCostLow": 300,
+        "estimatedCostHigh": 3000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "forum",
+            "title": "JaguarForum.com — XF diesel DPF regeneration failure prevention and cleaning guide"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "source": "JaguarForum.com",
+            "content": "Take the XF diesel on a 30-minute highway run once a week to allow passive DPF regeneration. Short urban trips are the #1 killer of diesel DPFs.",
+            "upvotes": 189,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 1300,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-10-15",
+        "reviewedOn": "2026-03-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "land-rover-discovery-dpf-regen-2010",
+          "jaguar-xe-diesel-dpf-2017"
+        ]
+      },
+      "proposal": {
+        "make": "Jaguar",
+        "model": "XF",
+        "years": [
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018
+        ],
+        "trims": [],
+        "engines": [
+          "2.2L Diesel I4",
+          "3.0L TDV6 Diesel"
+        ],
+        "category": "fuel",
+        "title": "Diesel Particulate Filter Regeneration Failure",
+        "description": "Diesel XF models suffer from DPF regeneration issues, particularly in urban driving where the exhaust never reaches regeneration temperature. The DPF clogs with soot, triggering warning lights and reduced power. Repeated failed regeneration cycles can permanently damage the filter.",
+        "solution": "Perform a forced DPF regeneration via dealer diagnostic tool. If the DPF is heavily blocked, chemical cleaning or replacement is required. Adopt a driving pattern that includes regular highway runs of 20+ minutes at 2,500+ RPM to allow passive regeneration.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "DPF warning light on dashboard",
+          "Reduced engine power",
+          "Increased fuel consumption",
+          "Strong diesel smell from exhaust",
+          "Engine management light"
+        ],
+        "affectedSystems": [
+          "Exhaust",
+          "Engine",
+          "Emissions"
+        ],
+        "dtcCodes": [
+          "P2463",
+          "P244A"
+        ],
+        "estimatedCostLow": 300,
+        "estimatedCostHigh": 3000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "forum",
+            "title": "JaguarForum.com — XF diesel DPF regeneration failure prevention and cleaning guide"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "source": "JaguarForum.com",
+            "content": "Take the XF diesel on a 30-minute highway run once a week to allow passive DPF regeneration. Short urban trips are the #1 killer of diesel DPFs.",
+            "upvotes": 189,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 1300,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-10-15",
+        "reviewedOn": "2026-03-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "land-rover-discovery-dpf-regen-2010",
+          "jaguar-xe-diesel-dpf-2017"
+        ]
+      }
+    },
+    {
+      "id": "jaguar-xf-timing-chain-tensioner-ajv8-2009",
+      "model": "XF",
+      "action": "keep_published_pending_source",
+      "reason": "The frozen citation names LTB00473, but that reference could not be verified as the claimed Jaguar XF timing-chain bulletin. The verifiable official LTB00474NAS2 is a Land Rover bulletin limited to 2010-2012 LR4, Range Rover Sport and Range Rover 5.0L engines; it excludes Jaguar XF, 4.2L engines and the frozen 2009-2015 scope. It specifies tensioners and tensioner levers rather than all four tensioners, both chains and all guides, and lists 8.1-9.2 labor hours rather than 20+. The row remains byte-for-byte unchanged.",
+      "identityRule": "No content, scope or publication-state changes; partial or mismatched evidence cannot be expanded into the frozen indexed identity.",
+      "commerceDecision": "unchanged-no-commerce-present",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-bulletin-brand-model-year-remedy-mismatch",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2014/SB-10056266-1292.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "LTB00474NAS2 is Land Rover-only, limited to 2010-2012 5.0L applications and tensioner/lever replacement."
+        }
+      ],
+      "beforeSha256": "55a8655f65db6456f6edaac46ad668f31e0f5e8dae6af06c5621272b27272bd6",
+      "proposalSha256": "55a8655f65db6456f6edaac46ad668f31e0f5e8dae6af06c5621272b27272bd6",
+      "before": {
+        "make": "Jaguar",
+        "model": "XF",
+        "years": [
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015
+        ],
+        "trims": [],
+        "engines": [
+          "5.0L V8 NA",
+          "5.0L V8 Supercharged",
+          "4.2L V8 NA",
+          "4.2L V8 Supercharged"
+        ],
+        "category": "engine",
+        "title": "Timing Chain Tensioner Failure on AJ-V8",
+        "description": "The Jaguar AJ-V8 engines in the XF suffer from hydraulic timing chain tensioner failure, causing chain slack on cold starts. The tensioner bleed-down allows the chain to rattle against the guides, and prolonged neglect leads to stretched chains and jumped timing, risking catastrophic valve-to-piston contact.",
+        "solution": "Replace all four timing chain tensioners, both timing chains, and all chain guides. Use updated JLR tensioner part numbers. This is a major engine-out or front-cover-off job requiring 20+ hours labor. Do not delay once cold-start rattle is observed.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Rattling noise on cold start lasting several seconds",
+          "Check engine light with cam timing codes",
+          "Rough idle on cold start",
+          "Progressive worsening of rattle over months"
+        ],
+        "affectedSystems": [
+          "Engine",
+          "Valvetrain",
+          "Timing System"
+        ],
+        "dtcCodes": [
+          "P0016",
+          "P0017",
+          "P0018",
+          "P0019"
+        ],
+        "estimatedCostLow": 4000,
+        "estimatedCostHigh": 8000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "JLR TSB LTB00473 — AJ-V8 timing chain tensioner noise investigation and replacement"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "warning",
+            "source": "JaguarForums.com",
+            "content": "Do not ignore cold-start rattle. Once the chain jumps, expect $10,000+ in engine damage or a full engine replacement. Budget $5,000-$8,000 for preventive replacement at a specialist.",
+            "upvotes": 278,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 2500,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-01-10",
+        "reviewedOn": "2026-03-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "jaguar-xk-timing-chain-tensioner-ajv8-2007",
+          "jaguar-xj-timing-chain-tensioner-ajv8-2004",
+          "jaguar-s-type-timing-chain-tensioner-v8-2000",
+          "land-rover-range-rover-timing-chain-tensioner-2010"
+        ]
+      },
+      "proposal": {
+        "make": "Jaguar",
+        "model": "XF",
+        "years": [
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015
+        ],
+        "trims": [],
+        "engines": [
+          "5.0L V8 NA",
+          "5.0L V8 Supercharged",
+          "4.2L V8 NA",
+          "4.2L V8 Supercharged"
+        ],
+        "category": "engine",
+        "title": "Timing Chain Tensioner Failure on AJ-V8",
+        "description": "The Jaguar AJ-V8 engines in the XF suffer from hydraulic timing chain tensioner failure, causing chain slack on cold starts. The tensioner bleed-down allows the chain to rattle against the guides, and prolonged neglect leads to stretched chains and jumped timing, risking catastrophic valve-to-piston contact.",
+        "solution": "Replace all four timing chain tensioners, both timing chains, and all chain guides. Use updated JLR tensioner part numbers. This is a major engine-out or front-cover-off job requiring 20+ hours labor. Do not delay once cold-start rattle is observed.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Rattling noise on cold start lasting several seconds",
+          "Check engine light with cam timing codes",
+          "Rough idle on cold start",
+          "Progressive worsening of rattle over months"
+        ],
+        "affectedSystems": [
+          "Engine",
+          "Valvetrain",
+          "Timing System"
+        ],
+        "dtcCodes": [
+          "P0016",
+          "P0017",
+          "P0018",
+          "P0019"
+        ],
+        "estimatedCostLow": 4000,
+        "estimatedCostHigh": 8000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "JLR TSB LTB00473 — AJ-V8 timing chain tensioner noise investigation and replacement"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "warning",
+            "source": "JaguarForums.com",
+            "content": "Do not ignore cold-start rattle. Once the chain jumps, expect $10,000+ in engine damage or a full engine replacement. Budget $5,000-$8,000 for preventive replacement at a specialist.",
+            "upvotes": 278,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 2500,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-01-10",
+        "reviewedOn": "2026-03-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "jaguar-xk-timing-chain-tensioner-ajv8-2007",
+          "jaguar-xj-timing-chain-tensioner-ajv8-2004",
+          "jaguar-s-type-timing-chain-tensioner-v8-2000",
+          "land-rover-range-rover-timing-chain-tensioner-2010"
+        ]
+      }
+    },
+    {
+      "id": "jaguar-xf-turbo-coolant-hose-ingenium-2016",
+      "model": "XF",
+      "action": "keep_published_pending_source",
+      "reason": "No exact Jaguar primary source was located for cracking turbocharger coolant feed and return hoses across 2016-2023 XF Ingenium 2.0L vehicles. Jaguar H291 instead covers a limited 2019-21 2.0L petrol coolant-pump operation issue remedied by PCM software with no parts; it does not identify turbo hoses, heat-rating failure, updated silicone construction or a 60,000-mile preventive interval. The unrelated component and remedy cannot authorize a rewrite, so the row remains unchanged.",
+      "identityRule": "No content, scope or publication-state changes; partial or mismatched evidence cannot be expanded into the frozen indexed identity.",
+      "commerceDecision": "unchanged-no-commerce-present",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "jaguar-bulletin-component-cause-remedy-mismatch",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2020/MC-10177147-0001.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "H291 covers a limited 2019-21 2.0L petrol coolant-pump software action with no parts, not turbo hose failure."
+        }
+      ],
+      "beforeSha256": "209b885a1d6f2f612f36719a745b83f85af83d402e35bec067a7a045b39d12df",
+      "proposalSha256": "209b885a1d6f2f612f36719a745b83f85af83d402e35bec067a7a045b39d12df",
+      "before": {
+        "make": "Jaguar",
+        "model": "XF",
+        "years": [
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [
+          "2.0L Ingenium Turbo I4",
+          "Ingenium 2.0L"
+        ],
+        "category": "cooling",
+        "title": "Turbo Coolant Hose Failure on Ingenium Engine",
+        "description": "The turbocharger coolant feed and return hoses on the Ingenium 2.0L engine in the XF crack and leak due to heat cycling. The hoses are routed near the turbo housing where temperatures exceed the hose material rating, leading to premature failure and coolant loss.",
+        "solution": "Replace both turbo coolant hoses with updated JLR parts that use higher-temperature silicone construction. Inspect the turbo oil lines at the same time. Top off coolant and bleed the system after replacement.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Coolant loss without visible puddle",
+          "Burning smell from engine bay",
+          "Low coolant warning",
+          "Steam near turbocharger area",
+          "Coolant spray on underside of hood"
+        ],
+        "affectedSystems": [
+          "Cooling System",
+          "Turbocharger"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 300,
+        "estimatedCostHigh": 800,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "forum",
+            "title": "JaguarForum.com — Ingenium 2.0T turbo coolant hose failure and replacement with updated hoses"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "source": "JaguarForum.com",
+            "content": "Proactively replace both turbo coolant hoses at 60,000 miles. The updated silicone hoses are $50-80 and prevent a roadside breakdown.",
+            "upvotes": 108,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 540,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-12-05",
+        "reviewedOn": "2026-03-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "jaguar-e-pace-turbo-coolant-hose-ingenium-2018",
+          "jaguar-xe-water-pump-ingenium-2017",
+          "jaguar-f-pace-water-pump-ingenium-2017"
+        ]
+      },
+      "proposal": {
+        "make": "Jaguar",
+        "model": "XF",
+        "years": [
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [
+          "2.0L Ingenium Turbo I4",
+          "Ingenium 2.0L"
+        ],
+        "category": "cooling",
+        "title": "Turbo Coolant Hose Failure on Ingenium Engine",
+        "description": "The turbocharger coolant feed and return hoses on the Ingenium 2.0L engine in the XF crack and leak due to heat cycling. The hoses are routed near the turbo housing where temperatures exceed the hose material rating, leading to premature failure and coolant loss.",
+        "solution": "Replace both turbo coolant hoses with updated JLR parts that use higher-temperature silicone construction. Inspect the turbo oil lines at the same time. Top off coolant and bleed the system after replacement.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Coolant loss without visible puddle",
+          "Burning smell from engine bay",
+          "Low coolant warning",
+          "Steam near turbocharger area",
+          "Coolant spray on underside of hood"
+        ],
+        "affectedSystems": [
+          "Cooling System",
+          "Turbocharger"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 300,
+        "estimatedCostHigh": 800,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "forum",
+            "title": "JaguarForum.com — Ingenium 2.0T turbo coolant hose failure and replacement with updated hoses"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "source": "JaguarForum.com",
+            "content": "Proactively replace both turbo coolant hoses at 60,000 miles. The updated silicone hoses are $50-80 and prevent a roadside breakdown.",
+            "upvotes": 108,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 540,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-12-05",
+        "reviewedOn": "2026-03-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "jaguar-e-pace-turbo-coolant-hose-ingenium-2018",
+          "jaguar-xe-water-pump-ingenium-2017",
+          "jaguar-f-pace-water-pump-ingenium-2017"
+        ]
+      }
+    },
+    {
+      "id": "jaguar-xf-window-regulator-2009",
+      "model": "XF",
+      "action": "keep_published_pending_source",
+      "reason": "Jaguar bulletin JTB00345NAS3 covers a limited 2012-2014 XF VIN range with a squeak during window operation caused by inadequately lubricated regulator cable pulleys and prescribes lubrication. It does not establish cable fraying, motor failure, windows dropping into doors or broad 2009-2020 prevalence, and it does not validate the frozen switch-contact or annual-silicone recommendations. The broader identity remains unchanged.",
+      "identityRule": "No content, scope or publication-state changes; partial or mismatched evidence cannot be expanded into the frozen indexed identity.",
+      "commerceDecision": "unchanged-no-commerce-present",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "jaguar-bulletin-symptom-cause-remedy-scope-mismatch",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2014/SB-10065160-6903.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "JTB00345NAS3 covers 2012-2014 XF pulley squeak and lubrication, not broad cable or motor failure."
+        }
+      ],
+      "beforeSha256": "4b45cb30ef2bae1ceca46a73edbb6a22c717dd97e9eaf6552ecf1c26c673132b",
+      "proposalSha256": "4b45cb30ef2bae1ceca46a73edbb6a22c717dd97e9eaf6552ecf1c26c673132b",
+      "before": {
+        "make": "Jaguar",
+        "model": "XF",
+        "years": [
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Window Regulator Cable and Motor Failure",
+        "description": "The electric window regulators in the XF are prone to cable fraying and motor failure. The window drops into the door panel or operates intermittently, often failing in the closed position. The driver window is most commonly affected due to frequent use.",
+        "solution": "Replace the window regulator assembly. Use OEM or quality aftermarket unit. Lubricate the window channel guides during installation. Check the window switch for burned contacts if the motor tests good.",
+        "severity": "low",
+        "confidence": "high",
+        "symptoms": [
+          "Window drops into door panel",
+          "Grinding noise when operating window",
+          "Window moves slowly or intermittently",
+          "Window stuck in up or down position"
+        ],
+        "affectedSystems": [
+          "Electrical",
+          "Body"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 250,
+        "estimatedCostHigh": 600,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "forum",
+            "title": "JaguarForum.com — XF window regulator replacement DIY guide with part numbers"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "source": "JaguarForum.com",
+            "content": "Apply silicone spray to the window channel guides yearly to reduce strain on the regulator motor and cable.",
+            "upvotes": 94,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 1100,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-11-20",
+        "reviewedOn": "2026-03-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "jaguar-x-type-window-regulator-2002"
+        ]
+      },
+      "proposal": {
+        "make": "Jaguar",
+        "model": "XF",
+        "years": [
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Window Regulator Cable and Motor Failure",
+        "description": "The electric window regulators in the XF are prone to cable fraying and motor failure. The window drops into the door panel or operates intermittently, often failing in the closed position. The driver window is most commonly affected due to frequent use.",
+        "solution": "Replace the window regulator assembly. Use OEM or quality aftermarket unit. Lubricate the window channel guides during installation. Check the window switch for burned contacts if the motor tests good.",
+        "severity": "low",
+        "confidence": "high",
+        "symptoms": [
+          "Window drops into door panel",
+          "Grinding noise when operating window",
+          "Window moves slowly or intermittently",
+          "Window stuck in up or down position"
+        ],
+        "affectedSystems": [
+          "Electrical",
+          "Body"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 250,
+        "estimatedCostHigh": 600,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "forum",
+            "title": "JaguarForum.com — XF window regulator replacement DIY guide with part numbers"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "source": "JaguarForum.com",
+            "content": "Apply silicone spray to the window channel guides yearly to reduce strain on the regulator motor and cable.",
+            "upvotes": 94,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 1100,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-11-20",
+        "reviewedOn": "2026-03-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "jaguar-x-type-window-regulator-2002"
+        ]
+      }
+    },
+    {
+      "id": "jaguar-xf-zf-8hp-mechatronic-2016",
+      "model": "XF",
+      "action": "keep_published_pending_source",
+      "reason": "Jaguar SSM73852 covers a specific flashing-D/gearbox-fault concern following an Eco Stop/Start event, typically below 2,500 miles, with only P0715-64 and P0700-02 stored. It identifies either TCM software or a mechatronic valve-block fault and first prescribes clearing codes, an adaptation drive and Technical Assistance review. It does not establish broad 2016-2023 internal electrical, solenoid and bore failure with P0730/P0657/P0700, loss of reverse, mandatory rebuild/replacement, simultaneous fluid service or the frozen costs. The row remains unchanged.",
+      "identityRule": "No content, scope or publication-state changes; partial or mismatched evidence cannot be expanded into the frozen indexed identity.",
+      "commerceDecision": "unchanged-no-commerce-present",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "jaguar-ssm-dtc-mileage-diagnostic-boundary",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2018/MC-10142399-9999.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "SSM73852 is limited to a low-mileage Eco Stop/Start event with exact DTCs and an adaptation-first diagnostic path."
+        }
+      ],
+      "beforeSha256": "16688b4b9eb5e34e8bcd9c13b64a6a5e6a118584fbefd07ac7ece5339ae83d48",
+      "proposalSha256": "16688b4b9eb5e34e8bcd9c13b64a6a5e6a118584fbefd07ac7ece5339ae83d48",
+      "before": {
+        "make": "Jaguar",
+        "model": "XF",
+        "years": [
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [
+          "2.0L Ingenium Turbo I4",
+          "3.0L V6 Supercharged"
+        ],
+        "category": "transmission",
+        "title": "ZF 8HP Mechatronic Unit Failure",
+        "description": "The ZF 8HP transmission mechatronic unit in the second-generation XF develops internal electrical faults. Failed solenoids and worn valve body bores cause erratic shifting, stuck gears, and transmission fault warnings that put the vehicle into limp mode.",
+        "solution": "Replace or rebuild the mechatronic unit assembly. A ZF-certified rebuild with updated solenoids is more cost-effective than a new unit. Perform a full fluid and filter service simultaneously. Reprogram the TCM after installation.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Transmission fault warning on dash",
+          "Vehicle stuck in single gear (limp mode)",
+          "Harsh or delayed shifts",
+          "Loss of reverse gear",
+          "Shudder during low-speed acceleration"
+        ],
+        "affectedSystems": [
+          "Transmission",
+          "Drivetrain"
+        ],
+        "dtcCodes": [
+          "P0730",
+          "P0657",
+          "P0700"
+        ],
+        "estimatedCostLow": 2000,
+        "estimatedCostHigh": 4500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "forum",
+            "title": "JaguarForums.com — XF X260 ZF 8HP mechatronic failure diagnosis and specialist rebuild options"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "source": "JaguarForums.com",
+            "content": "Find a ZF-certified independent shop rather than a dealer. Mechatronic rebuild is $2,000-$2,500 at a specialist vs $4,500+ at the dealer.",
+            "upvotes": 167,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 980,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-02-05",
+        "reviewedOn": "2026-03-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "jaguar-xe-zf-8hp-harsh-shift-2017",
+          "jaguar-f-pace-zf-8hp-valve-body-2017",
+          "jaguar-f-type-zf-8hp-valve-body-2014",
+          "land-rover-range-rover-sport-zf-valve-body-2014"
+        ]
+      },
+      "proposal": {
+        "make": "Jaguar",
+        "model": "XF",
+        "years": [
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [
+          "2.0L Ingenium Turbo I4",
+          "3.0L V6 Supercharged"
+        ],
+        "category": "transmission",
+        "title": "ZF 8HP Mechatronic Unit Failure",
+        "description": "The ZF 8HP transmission mechatronic unit in the second-generation XF develops internal electrical faults. Failed solenoids and worn valve body bores cause erratic shifting, stuck gears, and transmission fault warnings that put the vehicle into limp mode.",
+        "solution": "Replace or rebuild the mechatronic unit assembly. A ZF-certified rebuild with updated solenoids is more cost-effective than a new unit. Perform a full fluid and filter service simultaneously. Reprogram the TCM after installation.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Transmission fault warning on dash",
+          "Vehicle stuck in single gear (limp mode)",
+          "Harsh or delayed shifts",
+          "Loss of reverse gear",
+          "Shudder during low-speed acceleration"
+        ],
+        "affectedSystems": [
+          "Transmission",
+          "Drivetrain"
+        ],
+        "dtcCodes": [
+          "P0730",
+          "P0657",
+          "P0700"
+        ],
+        "estimatedCostLow": 2000,
+        "estimatedCostHigh": 4500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "forum",
+            "title": "JaguarForums.com — XF X260 ZF 8HP mechatronic failure diagnosis and specialist rebuild options"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "source": "JaguarForums.com",
+            "content": "Find a ZF-certified independent shop rather than a dealer. Mechatronic rebuild is $2,000-$2,500 at a specialist vs $4,500+ at the dealer.",
+            "upvotes": 167,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 980,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-02-05",
+        "reviewedOn": "2026-03-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "jaguar-xe-zf-8hp-harsh-shift-2017",
+          "jaguar-f-pace-zf-8hp-valve-body-2017",
+          "jaguar-f-type-zf-8hp-valve-body-2014",
+          "land-rover-range-rover-sport-zf-valve-body-2014"
+        ]
+      }
+    }
+  ]
+}
