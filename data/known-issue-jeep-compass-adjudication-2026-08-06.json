@@ -1,0 +1,2547 @@
+{
+  "schemaVersion": 1,
+  "status": "proposal-only",
+  "auditStage": "model-primary-source-adjudication",
+  "requiresIndependentApproval": true,
+  "generatedOn": "2026-08-06",
+  "make": "Jeep",
+  "model": "Compass",
+  "completionStatement": "All nine frozen Compass records remain byte-for-byte holds. Two exact recalls are materially narrower than their indexed aggregate pages, and the other rows lack complete primary-source, generation or fitment support.",
+  "safetyContract": [
+    "No production database write, cache purge, deployment, archive action, redirect, slug change, new issue or public-page change is authorized by this packet.",
+    "All nine Compass rows remain published and byte-for-byte unchanged.",
+    "A one-year recall cannot be expanded across a multi-year or multi-system indexed page.",
+    "Placeholder citations, generation overlap, unrelated commerce and unverified fitment cannot authorize content changes.",
+    "New issue identities remain deferred until the remaining-make audit is complete."
+  ],
+  "source": {
+    "snapshotFile": "data/_jeep-deeplink-snapshot-2026-08-06.json",
+    "snapshotSha256": "e58c24fa8f57e198f5b77a539345b9f36ab5c8232c77263140c6915b311a9ddd",
+    "snapshotGeneratedAt": "2026-08-07T17:03:22.937Z",
+    "snapshotHash": "18ad4be47bc5941799a865d829fd30d5361a0cf7635e9ec106db32a7f109c7eb",
+    "modelRecordCount": 9
+  },
+  "observations": [
+    {
+      "code": "compass-oil-pump-recall-is-2018-only",
+      "severity": "critical",
+      "recordIds": [
+        "jeep-compass-oil-pump-stalling"
+      ],
+      "detail": "17V670 supports certain 2018 2.4L vehicles, not 2017-2022."
+    },
+    {
+      "code": "compass-voltage-recall-is-2018-pcm-only",
+      "severity": "critical",
+      "recordIds": [
+        "jeep-compass-electrical-stalling"
+      ],
+      "detail": "18V524 supports a 2018 PCM chip condition, not the full multi-system 2017-2021 page."
+    },
+    {
+      "code": "compass-nine-speed-commerce-mislabeled-eight-speed",
+      "severity": "critical",
+      "recordIds": [
+        "jeep-compass-9speed-transmission"
+      ],
+      "detail": "The propagated fixParts entry identifies an 8-speed application and Challenger-derived fitment on a Compass 9-speed page."
+    },
+    {
+      "code": "compass-windshield-unsourced-glazing-advice",
+      "severity": "high",
+      "recordIds": [
+        "jeep-compass-windshield-stress-crack-2017"
+      ],
+      "detail": "The silicone advice lacks a qualified glazing source."
+    },
+    {
+      "code": "all-compass-pages-preserved",
+      "severity": "seo-safety",
+      "recordIds": [
+        "jeep-compass-9speed-transmission",
+        "jeep-compass-ac-evaporator-leak-2017",
+        "jeep-compass-cvt-failure",
+        "jeep-compass-electrical-stalling",
+        "jeep-compass-liftgate-strut-failure-2017",
+        "jeep-compass-oil-filter-housing-leak-2017",
+        "jeep-compass-oil-pump-stalling",
+        "jeep-compass-thermostat-housing-leak",
+        "jeep-compass-windshield-stress-crack-2017"
+      ],
+      "detail": "Every frozen Compass record remains published and byte-for-byte unchanged."
+    }
+  ],
+  "campaignSources": {
+    "oilPump": {
+      "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=17V670000",
+      "campaign": "17V670000",
+      "model": "COMPASS",
+      "year": "2018",
+      "markers": [
+        "2.4L engines",
+        "cracked oil pump housing",
+        "oil pump failure",
+        "engine will stall",
+        "inspect the oil pump",
+        "replacing it as necessary",
+        "free of charge"
+      ]
+    },
+    "voltage": {
+      "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=18V524000",
+      "campaign": "18V524000",
+      "model": "COMPASS",
+      "year": "2018",
+      "markers": [
+        "voltage regulator chip",
+        "stall or a no start condition",
+        "replace the powertrain control module",
+        "free of charge"
+      ]
+    }
+  },
+  "recallInventory": {
+    "queries": {
+      "2007": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2007",
+      "2008": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2008",
+      "2009": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2009",
+      "2010": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2010",
+      "2011": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2011",
+      "2012": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2012",
+      "2013": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2013",
+      "2014": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2014",
+      "2015": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2015",
+      "2016": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2016",
+      "2017": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2017",
+      "2018": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2018",
+      "2019": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2019",
+      "2020": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2020",
+      "2021": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2021",
+      "2022": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2022",
+      "2023": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2023",
+      "2024": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2024",
+      "2025": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2025"
+    },
+    "expected": {
+      "2007": {
+        "status": 200,
+        "campaigns": [
+          "06V434000",
+          "06V493000",
+          "10V234000"
+        ]
+      },
+      "2008": {
+        "status": 400,
+        "campaigns": []
+      },
+      "2009": {
+        "status": 200,
+        "campaigns": [
+          "08V528000"
+        ]
+      },
+      "2010": {
+        "status": 200,
+        "campaigns": [
+          "13V233000",
+          "16V668000"
+        ]
+      },
+      "2011": {
+        "status": 200,
+        "campaigns": [
+          "11V315000",
+          "13V233000",
+          "16V668000"
+        ]
+      },
+      "2012": {
+        "status": 200,
+        "campaigns": [
+          "12V142000",
+          "13V120000",
+          "13V233000",
+          "16V668000"
+        ]
+      },
+      "2013": {
+        "status": 200,
+        "campaigns": [
+          "16V668000"
+        ]
+      },
+      "2014": {
+        "status": 200,
+        "campaigns": [
+          "13V552000",
+          "16V668000"
+        ]
+      },
+      "2015": {
+        "status": 200,
+        "campaigns": [
+          "15V878000"
+        ]
+      },
+      "2016": {
+        "status": 200,
+        "campaigns": [
+          "16V907000"
+        ]
+      },
+      "2017": {
+        "status": 200,
+        "campaigns": [
+          "17V301000",
+          "17V433000",
+          "17V740000",
+          "17V824000"
+        ]
+      },
+      "2018": {
+        "status": 200,
+        "campaigns": [
+          "17V670000",
+          "17V732000",
+          "17V740000",
+          "18V279000",
+          "18V523000",
+          "18V524000"
+        ]
+      },
+      "2019": {
+        "status": 200,
+        "campaigns": [
+          "18V523000",
+          "20V208000"
+        ]
+      },
+      "2020": {
+        "status": 200,
+        "campaigns": [
+          "20V208000"
+        ]
+      },
+      "2021": {
+        "status": 400,
+        "campaigns": []
+      },
+      "2022": {
+        "status": 200,
+        "campaigns": [
+          "22V248000",
+          "23V058000",
+          "23V576000",
+          "24V436000"
+        ]
+      },
+      "2023": {
+        "status": 200,
+        "campaigns": [
+          "23V576000",
+          "24V436000"
+        ]
+      },
+      "2024": {
+        "status": 400,
+        "campaigns": []
+      },
+      "2025": {
+        "status": 400,
+        "campaigns": []
+      }
+    }
+  },
+  "summary": {
+    "rewrite_same_identity": 0,
+    "keep_published_pending_source": 9,
+    "total": 9
+  },
+  "rows": [
+    {
+      "id": "jeep-compass-9speed-transmission",
+      "model": "Compass",
+      "action": "keep_published_pending_source",
+      "reason": "No exact primary bulletin was pinned for the frozen 2017-2025 rough-shift aggregation, 30-percent frequency, DTC set, costs or fluid interval. The propagated fixParts text incorrectly labels the Compass 9-speed application as a ZF 8-speed, asserts an approximately eight-quart drain-and-fill and says fitment came from a Dodge Challenger record. That transmission and commerce mismatch requires a byte-for-byte hold.",
+      "identityRule": "A narrower recall, placeholder source, overlapping generation or unverified fitment requires a byte-for-byte hold.",
+      "commerceDecision": "unchanged-commerce-pending-exact-source-and-fitment",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-recall-inventory-boundary-not-broad-claim-proof",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2007",
+          "supportingUrls": [
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2007",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2008",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2009",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2010",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2011",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2012",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2013",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2014",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2015",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2016",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2017",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2018",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2019",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2020",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2021",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2022",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2023",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2024",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2025"
+          ],
+          "verifiedOn": "2026-08-06",
+          "observation": "The complete frozen-year recall inventory does not establish this page’s full causes, remedies and commerce."
+        }
+      ],
+      "beforeSha256": "01074b02531f78dc4e5decd5a4b8a8adc083bbfbf947b96cba0013d4f6c54a23",
+      "proposalSha256": "01074b02531f78dc4e5decd5a4b8a8adc083bbfbf947b96cba0013d4f6c54a23",
+      "before": {
+        "make": "Jeep",
+        "model": "Compass",
+        "years": [
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "transmission",
+        "title": "9-Speed Automatic Transmission Rough Shifting",
+        "description": "The ZF 9HP48 9-speed automatic transmission in second-generation Compass models suffers from rough shifting, delayed engagement, hunting for gears, and jerky low-speed operation. Approximately 30% of owners report transmission issues within 100,000 miles per Consumer Reports data. The transmission control module software often struggles with shift logic at low speeds.",
+        "solution": "Start with a TCM software update at the dealer (free under warranty or TSB). If persists, perform transmission fluid change with Mopar ZF 9-speed ATF (68218925AB). In severe cases, the TCM or valve body may need replacement ($800-1,500). Some owners report improvement after an adaptive learning reset procedure performed by the dealer.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Harsh or jerky shifts at low speeds",
+          "Delayed engagement when shifting from park",
+          "Transmission hunting between gears on hills",
+          "Hesitation during acceleration",
+          "Rough 1-2 and 2-3 upshifts",
+          "Clunking noise during gear changes"
+        ],
+        "affectedSystems": [
+          "Transmission"
+        ],
+        "dtcCodes": [
+          "P0700",
+          "P0730",
+          "P0741",
+          "P0751"
+        ],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 4000,
+        "typicalMileageLow": 30000,
+        "typicalMileageHigh": 100000,
+        "citations": [
+          {
+            "url": "https://www.myjeepcompass.com/threads/transmission-advice.47231/",
+            "type": "forum",
+            "title": "MyJeepCompass.com - Transmission Advice Thread"
+          },
+          {
+            "url": "https://www.copilotsearch.com/posts/jeep-compass-transmission-problems/",
+            "type": "news",
+            "title": "CoPilot - Jeep Compass Transmission Problems"
+          },
+          {
+            "type": "tsb",
+            "title": "ZF 9HP48 Shift Quality TSB - TCM Reflash"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Use only Mopar ZF 9-speed ATF (68218925AB) - generic ATF causes shift quality issues",
+            "upvotes": 0,
+            "partName": "ZF 9-Speed ATF",
+            "partBrand": "Mopar",
+            "partNumber": "68218925AB",
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Mopar%2068218925AB&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Ask the dealer to perform the adaptive learning reset after any TCM reflash - it helps the transmission relearn shift points",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Keeping the transmission fluid fresh (every 60,000 miles) significantly improves shift quality",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [
+          {
+            "note": "Per-quart price; ZF spec requires ~8 qt for a drain-and-fill. Use ONLY Mopar 8&9-speed ATF or ZF LifeGuard 8 — wrong ATF causes harsh shifting. Despite 'sealed for life,' change every ~50k mi. Shared platform part (verified to fit Jeep Compass); confirmed via the Dodge Challenger fix.",
+            "source": "propagation",
+            "buyLinks": [
+              {
+                "url": "https://www.amazon.com/s?k=Jeep%20Compass%20ZF%208-Speed%20Automatic%20Transmission%20Fluid&tag=au7o-20",
+                "vendor": "Amazon"
+              },
+              {
+                "url": "https://www.rockauto.com/en/partsearch/?q=68218925AB",
+                "vendor": "RockAuto"
+              },
+              {
+                "url": "https://www.ebay.com/sch/i.html?_nkw=68218925AB",
+                "vendor": "eBay"
+              }
+            ],
+            "priceLow": 14,
+            "component": "ZF 8-Speed Automatic Transmission Fluid (Mopar 8&9-Speed ATF, ~8 qt for drain-and-fill)",
+            "priceHigh": 22,
+            "oemPartNumber": "68218925AB",
+            "aftermarketXref": [
+              "Mopar 68218925AA (original, superseded to 68218925AB)",
+              "ZF LifeGuard 8 S671090312 (OEM-equivalent factory fill)",
+              "ZF LifeGuardFluid 8 G060162A2"
+            ]
+          }
+        ],
+        "humanApproved": true,
+        "reportCount": 623,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-01-20",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "chrysler-voyager-transmission-shudder-2020",
+          "jeep-renegade-9speed-transmission",
+          "chrysler-200-9speed-trans-2015"
+        ]
+      },
+      "proposal": {
+        "make": "Jeep",
+        "model": "Compass",
+        "years": [
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "transmission",
+        "title": "9-Speed Automatic Transmission Rough Shifting",
+        "description": "The ZF 9HP48 9-speed automatic transmission in second-generation Compass models suffers from rough shifting, delayed engagement, hunting for gears, and jerky low-speed operation. Approximately 30% of owners report transmission issues within 100,000 miles per Consumer Reports data. The transmission control module software often struggles with shift logic at low speeds.",
+        "solution": "Start with a TCM software update at the dealer (free under warranty or TSB). If persists, perform transmission fluid change with Mopar ZF 9-speed ATF (68218925AB). In severe cases, the TCM or valve body may need replacement ($800-1,500). Some owners report improvement after an adaptive learning reset procedure performed by the dealer.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Harsh or jerky shifts at low speeds",
+          "Delayed engagement when shifting from park",
+          "Transmission hunting between gears on hills",
+          "Hesitation during acceleration",
+          "Rough 1-2 and 2-3 upshifts",
+          "Clunking noise during gear changes"
+        ],
+        "affectedSystems": [
+          "Transmission"
+        ],
+        "dtcCodes": [
+          "P0700",
+          "P0730",
+          "P0741",
+          "P0751"
+        ],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 4000,
+        "typicalMileageLow": 30000,
+        "typicalMileageHigh": 100000,
+        "citations": [
+          {
+            "url": "https://www.myjeepcompass.com/threads/transmission-advice.47231/",
+            "type": "forum",
+            "title": "MyJeepCompass.com - Transmission Advice Thread"
+          },
+          {
+            "url": "https://www.copilotsearch.com/posts/jeep-compass-transmission-problems/",
+            "type": "news",
+            "title": "CoPilot - Jeep Compass Transmission Problems"
+          },
+          {
+            "type": "tsb",
+            "title": "ZF 9HP48 Shift Quality TSB - TCM Reflash"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Use only Mopar ZF 9-speed ATF (68218925AB) - generic ATF causes shift quality issues",
+            "upvotes": 0,
+            "partName": "ZF 9-Speed ATF",
+            "partBrand": "Mopar",
+            "partNumber": "68218925AB",
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Mopar%2068218925AB&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Ask the dealer to perform the adaptive learning reset after any TCM reflash - it helps the transmission relearn shift points",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Keeping the transmission fluid fresh (every 60,000 miles) significantly improves shift quality",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [
+          {
+            "note": "Per-quart price; ZF spec requires ~8 qt for a drain-and-fill. Use ONLY Mopar 8&9-speed ATF or ZF LifeGuard 8 — wrong ATF causes harsh shifting. Despite 'sealed for life,' change every ~50k mi. Shared platform part (verified to fit Jeep Compass); confirmed via the Dodge Challenger fix.",
+            "source": "propagation",
+            "buyLinks": [
+              {
+                "url": "https://www.amazon.com/s?k=Jeep%20Compass%20ZF%208-Speed%20Automatic%20Transmission%20Fluid&tag=au7o-20",
+                "vendor": "Amazon"
+              },
+              {
+                "url": "https://www.rockauto.com/en/partsearch/?q=68218925AB",
+                "vendor": "RockAuto"
+              },
+              {
+                "url": "https://www.ebay.com/sch/i.html?_nkw=68218925AB",
+                "vendor": "eBay"
+              }
+            ],
+            "priceLow": 14,
+            "component": "ZF 8-Speed Automatic Transmission Fluid (Mopar 8&9-Speed ATF, ~8 qt for drain-and-fill)",
+            "priceHigh": 22,
+            "oemPartNumber": "68218925AB",
+            "aftermarketXref": [
+              "Mopar 68218925AA (original, superseded to 68218925AB)",
+              "ZF LifeGuard 8 S671090312 (OEM-equivalent factory fill)",
+              "ZF LifeGuardFluid 8 G060162A2"
+            ]
+          }
+        ],
+        "humanApproved": true,
+        "reportCount": 623,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-01-20",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "chrysler-voyager-transmission-shudder-2020",
+          "jeep-renegade-9speed-transmission",
+          "chrysler-200-9speed-trans-2015"
+        ]
+      }
+    },
+    {
+      "id": "jeep-compass-ac-evaporator-leak-2017",
+      "model": "Compass",
+      "action": "keep_published_pending_source",
+      "reason": "The video alone does not establish evaporator corrosion, an 8-12-hour procedure, R-1234yf applicability across every frozen year, cabin-filter causation, always replacing the receiver/drier and expansion valve, cost/mileage ranges or part 68350423AA fitment. The row remains byte-for-byte unchanged.",
+      "identityRule": "A narrower recall, placeholder source, overlapping generation or unverified fitment requires a byte-for-byte hold.",
+      "commerceDecision": "unchanged-commerce-pending-exact-source-and-fitment",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-recall-inventory-boundary-not-broad-claim-proof",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2007",
+          "supportingUrls": [
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2007",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2008",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2009",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2010",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2011",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2012",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2013",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2014",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2015",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2016",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2017",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2018",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2019",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2020",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2021",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2022",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2023",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2024",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2025"
+          ],
+          "verifiedOn": "2026-08-06",
+          "observation": "The complete frozen-year recall inventory does not establish this page’s full causes, remedies and commerce."
+        }
+      ],
+      "beforeSha256": "c69d361d30acbcf660d26eee7c0a760170b77a64ab0abca010fb672a0e91821c",
+      "proposalSha256": "c69d361d30acbcf660d26eee7c0a760170b77a64ab0abca010fb672a0e91821c",
+      "before": {
+        "make": "Jeep",
+        "model": "Compass",
+        "years": [
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "other",
+        "title": "A/C Evaporator Core Leak",
+        "description": "The A/C evaporator core in the Compass develops pinhole leaks from internal corrosion, causing the A/C system to lose refrigerant. The evaporator is located deep inside the HVAC housing behind the dashboard, making replacement extremely labor-intensive (8-12 hours). The issue is accelerated by infrequent cabin filter changes, which allow moisture and debris to accumulate on the evaporator surface. R-1234yf refrigerant adds to the repair cost.",
+        "solution": "Diagnose with UV dye and electronic leak detector to confirm evaporator as leak source. Replace the evaporator core — this requires partial dashboard removal and HVAC housing disassembly. Replace the receiver/drier and expansion valve at the same time (always done when the system is opened). Flush the system to remove any debris. Evacuate, vacuum test for leaks, and recharge with R-1234yf. Change cabin filters every 15,000 miles to keep the evaporator clean and dry.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "A/C blows warm air",
+          "A/C works after recharge but fails again within weeks",
+          "Sweet chemical smell from vents (refrigerant leak)",
+          "Foggy windshield when A/C is on (refrigerant in cabin)",
+          "Wet passenger floor from evaporator condensation leak"
+        ],
+        "affectedSystems": [
+          "hvac"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 800,
+        "estimatedCostHigh": 2000,
+        "typicalMileageLow": 12000,
+        "typicalMileageHigh": 18000,
+        "citations": [
+          {
+            "url": "https://www.youtube.com/watch?v=2vWJ9v6bq8w",
+            "type": "video",
+            "title": "YouTube - Jeep Compass 2017-2021 A/C Evaporator Replacement - Step by Step Guide"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "text": "Get quotes from independent shops for this job. Dealer charges $1,800-2,200 but independent shops with Chrysler experience do it for $900-1,200.",
+            "source": "JeepCompassForum.com",
+            "upvotes": 167
+          },
+          {
+            "text": "Change your cabin filter every 15,000 miles. A dirty filter traps moisture on the evaporator surface and accelerates the corrosion that causes leaks.",
+            "source": "r/JeepCompass",
+            "upvotes": 134
+          },
+          {
+            "type": "part",
+            "content": "BlueDriver Bluetooth OBD-II scanner — professional diagnostics from your phone",
+            "partName": "Bluetooth OBD-II Scanner",
+            "partBrand": "BlueDriver",
+            "affiliateUrl": "https://www.amazon.com/s?k=BlueDriver%20OBD2%20scanner&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Haynes repair manual — step-by-step procedures for your vehicle",
+            "partName": "Repair Manual",
+            "partBrand": "Haynes",
+            "affiliateUrl": "https://www.amazon.com/s?k=Haynes%20repair%20manual&tag=au7o-20"
+          }
+        ],
+        "fixParts": [
+          {
+            "note": "(reconciled from the issue's own fix text)",
+            "source": "reconciliation",
+            "buyLinks": [
+              {
+                "url": "https://www.amazon.com/s?k=68350423AA&tag=au7o-20",
+                "vendor": "Amazon"
+              },
+              {
+                "url": "https://www.rockauto.com/en/partsearch/?q=68350423AA",
+                "vendor": "RockAuto"
+              },
+              {
+                "url": "https://www.ebay.com/sch/i.html?_nkw=68350423AA",
+                "vendor": "eBay"
+              }
+            ],
+            "priceLow": null,
+            "component": "A/C evaporator core",
+            "priceHigh": null,
+            "oemPartNumber": "68350423AA",
+            "aftermarketXref": []
+          }
+        ],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "chrysler-200-ac-evaporator-2011"
+        ]
+      },
+      "proposal": {
+        "make": "Jeep",
+        "model": "Compass",
+        "years": [
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "other",
+        "title": "A/C Evaporator Core Leak",
+        "description": "The A/C evaporator core in the Compass develops pinhole leaks from internal corrosion, causing the A/C system to lose refrigerant. The evaporator is located deep inside the HVAC housing behind the dashboard, making replacement extremely labor-intensive (8-12 hours). The issue is accelerated by infrequent cabin filter changes, which allow moisture and debris to accumulate on the evaporator surface. R-1234yf refrigerant adds to the repair cost.",
+        "solution": "Diagnose with UV dye and electronic leak detector to confirm evaporator as leak source. Replace the evaporator core — this requires partial dashboard removal and HVAC housing disassembly. Replace the receiver/drier and expansion valve at the same time (always done when the system is opened). Flush the system to remove any debris. Evacuate, vacuum test for leaks, and recharge with R-1234yf. Change cabin filters every 15,000 miles to keep the evaporator clean and dry.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "A/C blows warm air",
+          "A/C works after recharge but fails again within weeks",
+          "Sweet chemical smell from vents (refrigerant leak)",
+          "Foggy windshield when A/C is on (refrigerant in cabin)",
+          "Wet passenger floor from evaporator condensation leak"
+        ],
+        "affectedSystems": [
+          "hvac"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 800,
+        "estimatedCostHigh": 2000,
+        "typicalMileageLow": 12000,
+        "typicalMileageHigh": 18000,
+        "citations": [
+          {
+            "url": "https://www.youtube.com/watch?v=2vWJ9v6bq8w",
+            "type": "video",
+            "title": "YouTube - Jeep Compass 2017-2021 A/C Evaporator Replacement - Step by Step Guide"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "text": "Get quotes from independent shops for this job. Dealer charges $1,800-2,200 but independent shops with Chrysler experience do it for $900-1,200.",
+            "source": "JeepCompassForum.com",
+            "upvotes": 167
+          },
+          {
+            "text": "Change your cabin filter every 15,000 miles. A dirty filter traps moisture on the evaporator surface and accelerates the corrosion that causes leaks.",
+            "source": "r/JeepCompass",
+            "upvotes": 134
+          },
+          {
+            "type": "part",
+            "content": "BlueDriver Bluetooth OBD-II scanner — professional diagnostics from your phone",
+            "partName": "Bluetooth OBD-II Scanner",
+            "partBrand": "BlueDriver",
+            "affiliateUrl": "https://www.amazon.com/s?k=BlueDriver%20OBD2%20scanner&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Haynes repair manual — step-by-step procedures for your vehicle",
+            "partName": "Repair Manual",
+            "partBrand": "Haynes",
+            "affiliateUrl": "https://www.amazon.com/s?k=Haynes%20repair%20manual&tag=au7o-20"
+          }
+        ],
+        "fixParts": [
+          {
+            "note": "(reconciled from the issue's own fix text)",
+            "source": "reconciliation",
+            "buyLinks": [
+              {
+                "url": "https://www.amazon.com/s?k=68350423AA&tag=au7o-20",
+                "vendor": "Amazon"
+              },
+              {
+                "url": "https://www.rockauto.com/en/partsearch/?q=68350423AA",
+                "vendor": "RockAuto"
+              },
+              {
+                "url": "https://www.ebay.com/sch/i.html?_nkw=68350423AA",
+                "vendor": "eBay"
+              }
+            ],
+            "priceLow": null,
+            "component": "A/C evaporator core",
+            "priceHigh": null,
+            "oemPartNumber": "68350423AA",
+            "aftermarketXref": []
+          }
+        ],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "chrysler-200-ac-evaporator-2011"
+        ]
+      }
+    },
+    {
+      "id": "jeep-compass-cvt-failure",
+      "model": "Compass",
+      "action": "keep_published_pending_source",
+      "reason": "The frozen page overlaps 2017 with the separate second-generation 9-speed page and aggregates eleven years of CVT overheating, towing, fluid, filter and replacement claims without an exact primary source. P17F0/P17F1 and part 5191890AA fitment are also not cleared for this Jeep scope, so the row remains byte-for-byte unchanged.",
+      "identityRule": "A narrower recall, placeholder source, overlapping generation or unverified fitment requires a byte-for-byte hold.",
+      "commerceDecision": "unchanged-commerce-pending-exact-source-and-fitment",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-recall-inventory-boundary-not-broad-claim-proof",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2007",
+          "supportingUrls": [
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2007",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2008",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2009",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2010",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2011",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2012",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2013",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2014",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2015",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2016",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2017",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2018",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2019",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2020",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2021",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2022",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2023",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2024",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2025"
+          ],
+          "verifiedOn": "2026-08-06",
+          "observation": "The complete frozen-year recall inventory does not establish this page’s full causes, remedies and commerce."
+        }
+      ],
+      "beforeSha256": "f25591dacab9aca28c515c881909cce734021e174efdbc8ab24ace53adba035d",
+      "proposalSha256": "f25591dacab9aca28c515c881909cce734021e174efdbc8ab24ace53adba035d",
+      "before": {
+        "make": "Jeep",
+        "model": "Compass",
+        "years": [
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "transmission",
+        "title": "Jatco CVT Transmission Failure / Overheating",
+        "description": "First-generation Compass models (2007-2017) equipped with the Jatco CVT2 continuously variable transmission suffer from overheating, slipping, shuddering, and premature failure. The CVT fluid breaks down under heat stress, causing the pulleys to wear and the belt to slip. Overheating is especially common in hot weather, stop-and-go traffic, or when towing. \"Transmission Over Temp\" warnings are extremely common.",
+        "solution": "Change CVT fluid every 30,000-40,000 miles using only MOPAR CVTF+4 (05191184AA). Replace the CVT external cooler filter (inside the \"soup can\" filter housing on the cooler line). If CVT is slipping badly, replacement is typically needed ($3,000-5,000 at dealer, $2,000-3,500 independent). Some owners have found success with Valvoline CVT fluid as an alternative.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Transmission Over Temp warning light",
+          "Vehicle enters limp mode",
+          "Whining or droning noise from transmission",
+          "Slipping sensation during acceleration",
+          "Jerky or shuddering movement",
+          "Loss of power on hills"
+        ],
+        "affectedSystems": [
+          "Transmission"
+        ],
+        "dtcCodes": [
+          "P0700",
+          "P0730",
+          "P0740",
+          "P0868",
+          "P17F0",
+          "P17F1"
+        ],
+        "estimatedCostLow": 200,
+        "estimatedCostHigh": 5000,
+        "typicalMileageLow": 30000,
+        "typicalMileageHigh": 40000,
+        "citations": [
+          {
+            "url": "https://www.myjeepcompass.com/threads/problem-solved-my-cvt-overheated-and-i-fixed-it.33745/",
+            "type": "forum",
+            "title": "MyJeepCompass.com - CVT Overheating Fix"
+          },
+          {
+            "url": "https://www.myjeepcompass.com/threads/my-story-wont-be-buying-a-cvt-transmission-again-soon.45786/",
+            "type": "forum",
+            "title": "MyJeepCompass.com - CVT Transmission Woes"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Use only MOPAR CVTF+4 (05191184AA) - incorrect fluid will accelerate CVT wear and failure",
+            "upvotes": 0,
+            "partName": "CVTF+4 Transmission Fluid",
+            "partBrand": "Mopar",
+            "partNumber": "05191184AA",
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Mopar%2005191184AA&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Replace the external cooler filter (\"soup can\") when changing CVT fluid - a clogged filter causes overheating",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "warning",
+            "content": "Never tow with a CVT-equipped Compass - the added heat will destroy the transmission quickly",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [
+          {
+            "note": "(reconciled from the issue's own fix text)",
+            "source": "reconciliation",
+            "buyLinks": [
+              {
+                "url": "https://www.amazon.com/s?k=5191890AA&tag=au7o-20",
+                "vendor": "Amazon"
+              },
+              {
+                "url": "https://www.rockauto.com/en/partsearch/?q=5191890AA",
+                "vendor": "RockAuto"
+              },
+              {
+                "url": "https://www.ebay.com/sch/i.html?_nkw=5191890AA",
+                "vendor": "eBay"
+              }
+            ],
+            "priceLow": null,
+            "component": "CVT transmission oil \"soup can\" cooler filter",
+            "priceHigh": null,
+            "oemPartNumber": "5191890AA",
+            "aftermarketXref": []
+          }
+        ],
+        "humanApproved": true,
+        "reportCount": 534,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2024-03-20",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "jeep-patriot-cvt-failure",
+          "dodge-caliber-cvt-overheating-2007",
+          "dodge-caliber-cvt-failure-2007"
+        ]
+      },
+      "proposal": {
+        "make": "Jeep",
+        "model": "Compass",
+        "years": [
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "transmission",
+        "title": "Jatco CVT Transmission Failure / Overheating",
+        "description": "First-generation Compass models (2007-2017) equipped with the Jatco CVT2 continuously variable transmission suffer from overheating, slipping, shuddering, and premature failure. The CVT fluid breaks down under heat stress, causing the pulleys to wear and the belt to slip. Overheating is especially common in hot weather, stop-and-go traffic, or when towing. \"Transmission Over Temp\" warnings are extremely common.",
+        "solution": "Change CVT fluid every 30,000-40,000 miles using only MOPAR CVTF+4 (05191184AA). Replace the CVT external cooler filter (inside the \"soup can\" filter housing on the cooler line). If CVT is slipping badly, replacement is typically needed ($3,000-5,000 at dealer, $2,000-3,500 independent). Some owners have found success with Valvoline CVT fluid as an alternative.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Transmission Over Temp warning light",
+          "Vehicle enters limp mode",
+          "Whining or droning noise from transmission",
+          "Slipping sensation during acceleration",
+          "Jerky or shuddering movement",
+          "Loss of power on hills"
+        ],
+        "affectedSystems": [
+          "Transmission"
+        ],
+        "dtcCodes": [
+          "P0700",
+          "P0730",
+          "P0740",
+          "P0868",
+          "P17F0",
+          "P17F1"
+        ],
+        "estimatedCostLow": 200,
+        "estimatedCostHigh": 5000,
+        "typicalMileageLow": 30000,
+        "typicalMileageHigh": 40000,
+        "citations": [
+          {
+            "url": "https://www.myjeepcompass.com/threads/problem-solved-my-cvt-overheated-and-i-fixed-it.33745/",
+            "type": "forum",
+            "title": "MyJeepCompass.com - CVT Overheating Fix"
+          },
+          {
+            "url": "https://www.myjeepcompass.com/threads/my-story-wont-be-buying-a-cvt-transmission-again-soon.45786/",
+            "type": "forum",
+            "title": "MyJeepCompass.com - CVT Transmission Woes"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Use only MOPAR CVTF+4 (05191184AA) - incorrect fluid will accelerate CVT wear and failure",
+            "upvotes": 0,
+            "partName": "CVTF+4 Transmission Fluid",
+            "partBrand": "Mopar",
+            "partNumber": "05191184AA",
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Mopar%2005191184AA&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Replace the external cooler filter (\"soup can\") when changing CVT fluid - a clogged filter causes overheating",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "warning",
+            "content": "Never tow with a CVT-equipped Compass - the added heat will destroy the transmission quickly",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [
+          {
+            "note": "(reconciled from the issue's own fix text)",
+            "source": "reconciliation",
+            "buyLinks": [
+              {
+                "url": "https://www.amazon.com/s?k=5191890AA&tag=au7o-20",
+                "vendor": "Amazon"
+              },
+              {
+                "url": "https://www.rockauto.com/en/partsearch/?q=5191890AA",
+                "vendor": "RockAuto"
+              },
+              {
+                "url": "https://www.ebay.com/sch/i.html?_nkw=5191890AA",
+                "vendor": "eBay"
+              }
+            ],
+            "priceLow": null,
+            "component": "CVT transmission oil \"soup can\" cooler filter",
+            "priceHigh": null,
+            "oemPartNumber": "5191890AA",
+            "aftermarketXref": []
+          }
+        ],
+        "humanApproved": true,
+        "reportCount": 534,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2024-03-20",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "jeep-patriot-cvt-failure",
+          "dodge-caliber-cvt-overheating-2007",
+          "dodge-caliber-cvt-failure-2007"
+        ]
+      }
+    },
+    {
+      "id": "jeep-compass-electrical-stalling",
+      "model": "Compass",
+      "action": "keep_published_pending_source",
+      "reason": "NHTSA campaign 18V524000 supports only certain 2018 Compass vehicles with a PCM voltage-regulator chip that may cause stall or no-start and a free PCM replacement. The frozen 2017-2021 page additionally aggregates Uconnect, instrument-cluster, accessory, ORC, BCM and unrelated window-regulator commerce claims. This exact 2018 recall cannot be expanded across the 2017-2021 multi-system identity, so the row remains byte-for-byte unchanged.",
+      "identityRule": "A narrower recall, placeholder source, overlapping generation or unverified fitment requires a byte-for-byte hold.",
+      "commerceDecision": "unchanged-commerce-pending-exact-source-and-fitment",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-recall-partial-year-and-system-scope",
+          "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=18V524000",
+          "verifiedOn": "2026-08-06",
+          "observation": "Campaign 18V524000 covers a 2018 PCM voltage-regulator chip and PCM replacement, not the broader 2017-2021 multi-system page."
+        }
+      ],
+      "beforeSha256": "a566f7b840063793439fb0c0234389a121d1fca6c1a226eff35ffb506ec6b5b2",
+      "proposalSha256": "a566f7b840063793439fb0c0234389a121d1fca6c1a226eff35ffb506ec6b5b2",
+      "before": {
+        "make": "Jeep",
+        "model": "Compass",
+        "years": [
+          2017,
+          2018,
+          2019,
+          2020,
+          2021
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Electrical System / Voltage Regulator Failure Causing Stalling",
+        "description": "The voltage regulator can fail, causing the vehicle to stall unexpectedly. A separate recall (affecting 12,779 units of 2018 models) addressed this specific failure mode. Additional electrical gremlins include failing infotainment system (Uconnect freezing/rebooting), erratic instrument cluster behavior, and intermittent power loss. The ORC (Occupant Restraint Controller) module has also failed at low mileage, disabling airbags.",
+        "solution": "For voltage regulator: Dealer replacement under recall if applicable. For Uconnect issues: Perform a hard reset (hold power and volume buttons for 10 seconds) or dealer software update. For ORC module failure: Dealer replacement required ($300-600). Check for TSBs related to BCM (Body Control Module) software updates.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "Vehicle stalls without warning",
+          "Battery warning light illuminates",
+          "Infotainment screen goes blank or reboots",
+          "Airbag warning light stays on",
+          "Intermittent electrical accessories failure",
+          "Dim or flickering headlights"
+        ],
+        "affectedSystems": [
+          "Electrical",
+          "Safety"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 100,
+        "estimatedCostHigh": 1200,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/recalls",
+            "type": "recall",
+            "title": "NHTSA Recall - Voltage Regulator Failure (2018 Compass)"
+          },
+          {
+            "url": "https://m.carcomplaints.com/Jeep/Compass/2017/electrical/electrical_system.shtml",
+            "type": "nhtsa",
+            "title": "CarComplaints.com - 2017 Compass Electrical System Problems"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Uconnect freezing often resolves with a firmware update - ask dealer for latest version",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "warning",
+            "content": "An illuminated airbag warning light means your airbags may not deploy in a crash - have it diagnosed immediately",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "Direct-fit window regulator assembly with motor for easy installation",
+            "partName": "Power Window Regulator and Motor Assembly",
+            "partBrand": "Dorman",
+            "affiliateUrl": "https://www.amazon.com/s?k=Dorman%20Power%20Window%20Regulator%20and%20Motor%20Assembly%20Jeep%20Compass&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Professional OBD-II diagnostic scanner for reading infotainment and body module codes",
+            "partName": "Bluetooth Pro OBD2 Scan Tool",
+            "partBrand": "BlueDriver",
+            "affiliateUrl": "https://www.amazon.com/s?k=BlueDriver%20Bluetooth%20Pro%20OBD2%20Scan%20Tool%20Jeep%20Compass&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Automotive relay replacement set for common relay failures",
+            "partName": "Automotive Relay 5-Pin 12V",
+            "partBrand": "Bosch",
+            "affiliateUrl": "https://www.amazon.com/s?k=Bosch%20Automotive%20Relay%205-Pin%2012V%20Jeep%20Compass&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Digital multimeter for diagnosing fuse, relay, and module electrical faults",
+            "partName": "Digital Multimeter",
+            "partBrand": "Innova",
+            "affiliateUrl": "https://www.amazon.com/s?k=Innova%20Digital%20Multimeter%20Jeep%20Compass&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 267,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2024-04-10",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "jeep-renegade-electrical-infotainment",
+          "chrysler-300-alternator-2011"
+        ]
+      },
+      "proposal": {
+        "make": "Jeep",
+        "model": "Compass",
+        "years": [
+          2017,
+          2018,
+          2019,
+          2020,
+          2021
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Electrical System / Voltage Regulator Failure Causing Stalling",
+        "description": "The voltage regulator can fail, causing the vehicle to stall unexpectedly. A separate recall (affecting 12,779 units of 2018 models) addressed this specific failure mode. Additional electrical gremlins include failing infotainment system (Uconnect freezing/rebooting), erratic instrument cluster behavior, and intermittent power loss. The ORC (Occupant Restraint Controller) module has also failed at low mileage, disabling airbags.",
+        "solution": "For voltage regulator: Dealer replacement under recall if applicable. For Uconnect issues: Perform a hard reset (hold power and volume buttons for 10 seconds) or dealer software update. For ORC module failure: Dealer replacement required ($300-600). Check for TSBs related to BCM (Body Control Module) software updates.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "Vehicle stalls without warning",
+          "Battery warning light illuminates",
+          "Infotainment screen goes blank or reboots",
+          "Airbag warning light stays on",
+          "Intermittent electrical accessories failure",
+          "Dim or flickering headlights"
+        ],
+        "affectedSystems": [
+          "Electrical",
+          "Safety"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 100,
+        "estimatedCostHigh": 1200,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/recalls",
+            "type": "recall",
+            "title": "NHTSA Recall - Voltage Regulator Failure (2018 Compass)"
+          },
+          {
+            "url": "https://m.carcomplaints.com/Jeep/Compass/2017/electrical/electrical_system.shtml",
+            "type": "nhtsa",
+            "title": "CarComplaints.com - 2017 Compass Electrical System Problems"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Uconnect freezing often resolves with a firmware update - ask dealer for latest version",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "warning",
+            "content": "An illuminated airbag warning light means your airbags may not deploy in a crash - have it diagnosed immediately",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "Direct-fit window regulator assembly with motor for easy installation",
+            "partName": "Power Window Regulator and Motor Assembly",
+            "partBrand": "Dorman",
+            "affiliateUrl": "https://www.amazon.com/s?k=Dorman%20Power%20Window%20Regulator%20and%20Motor%20Assembly%20Jeep%20Compass&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Professional OBD-II diagnostic scanner for reading infotainment and body module codes",
+            "partName": "Bluetooth Pro OBD2 Scan Tool",
+            "partBrand": "BlueDriver",
+            "affiliateUrl": "https://www.amazon.com/s?k=BlueDriver%20Bluetooth%20Pro%20OBD2%20Scan%20Tool%20Jeep%20Compass&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Automotive relay replacement set for common relay failures",
+            "partName": "Automotive Relay 5-Pin 12V",
+            "partBrand": "Bosch",
+            "affiliateUrl": "https://www.amazon.com/s?k=Bosch%20Automotive%20Relay%205-Pin%2012V%20Jeep%20Compass&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Digital multimeter for diagnosing fuse, relay, and module electrical faults",
+            "partName": "Digital Multimeter",
+            "partBrand": "Innova",
+            "affiliateUrl": "https://www.amazon.com/s?k=Innova%20Digital%20Multimeter%20Jeep%20Compass&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 267,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2024-04-10",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "jeep-renegade-electrical-infotainment",
+          "chrysler-300-alternator-2011"
+        ]
+      }
+    },
+    {
+      "id": "jeep-compass-liftgate-strut-failure-2017",
+      "model": "Compass",
+      "action": "keep_published_pending_source",
+      "reason": "A single video does not establish nine years of manual and power-liftgate failures, cold-climate mechanism, four-to-five-year life, stronger-strut upgrade, motor failure or part 68242418AB fitment. The row remains byte-for-byte unchanged.",
+      "identityRule": "A narrower recall, placeholder source, overlapping generation or unverified fitment requires a byte-for-byte hold.",
+      "commerceDecision": "unchanged-commerce-pending-exact-source-and-fitment",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-recall-inventory-boundary-not-broad-claim-proof",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2007",
+          "supportingUrls": [
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2007",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2008",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2009",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2010",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2011",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2012",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2013",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2014",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2015",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2016",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2017",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2018",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2019",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2020",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2021",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2022",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2023",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2024",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2025"
+          ],
+          "verifiedOn": "2026-08-06",
+          "observation": "The complete frozen-year recall inventory does not establish this page’s full causes, remedies and commerce."
+        }
+      ],
+      "beforeSha256": "322827392607bfb6a12a3cd24558dcfa3fb32aa807e296196d7e316d79880aa0",
+      "proposalSha256": "322827392607bfb6a12a3cd24558dcfa3fb32aa807e296196d7e316d79880aa0",
+      "before": {
+        "make": "Jeep",
+        "model": "Compass",
+        "years": [
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "body",
+        "title": "Liftgate Strut Failure and Liftgate Dropping",
+        "description": "The gas struts that hold the rear liftgate open on the Compass fail prematurely, causing the liftgate to drop onto the user's head or not stay open. The struts lose their gas charge due to seal deterioration, particularly in cold climates where the temperature differential accelerates seal contraction. Both power liftgate and manual liftgate models are affected. On power liftgate models, the motor can also fail, adding to the issue.",
+        "solution": "Replace both liftgate gas struts as a pair (they wear evenly). OEM Mopar struts or quality aftermarket (Stabilus, Strong Arm) last 4-5 years. For power liftgate models, if the motor fails, the power liftgate motor assembly must be replaced. After strut replacement, test the liftgate in both hot and cold temperatures to confirm proper holding force. Some owners upgrade to slightly stronger aftermarket struts for better cold-weather performance.",
+        "severity": "low",
+        "confidence": "medium",
+        "symptoms": [
+          "Liftgate drops slowly when opened",
+          "Liftgate will not stay open unassisted",
+          "Liftgate drops rapidly and hits user",
+          "Power liftgate struggles to open fully",
+          "Hissing sound from strut (gas escaping)"
+        ],
+        "affectedSystems": [
+          "body"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 50,
+        "estimatedCostHigh": 400,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.youtube.com/watch?v=8YVJv1Z3d5M",
+            "type": "video",
+            "title": "YouTube - How to Replace Liftgate Struts on Jeep Compass (Known Channel)"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "text": "Stabilus brand struts (they make the OEM ones for Jeep) are available on Amazon for $30-40/pair vs $120 at the dealer. Same part, half the price.",
+            "source": "JeepCompassForum.com",
+            "upvotes": 198
+          },
+          {
+            "text": "Always replace both struts at the same time even if only one is weak. Uneven force causes the liftgate to twist and wears the hinges.",
+            "source": "r/JeepCompass",
+            "upvotes": 145
+          },
+          {
+            "type": "part",
+            "content": "Dorman weatherstrip seal prevents water leaks and wind noise",
+            "partName": "Weatherstrip Seal",
+            "partBrand": "Dorman",
+            "affiliateUrl": "https://www.amazon.com/s?k=Dorman%20weatherstrip%20seal&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "3M Super Weatherstrip Adhesive for reattaching loose seals",
+            "partName": "Weatherstrip Adhesive",
+            "partBrand": "3M",
+            "affiliateUrl": "https://www.amazon.com/s?k=3M%20super%20weatherstrip%20adhesive&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "StrongArm liftgate struts — easy bolt-on replacement",
+            "partName": "Liftgate Support Struts",
+            "partBrand": "StrongArm",
+            "affiliateUrl": "https://www.amazon.com/s?k=StrongArm%20liftgate%20struts&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Sachs OE-quality liftgate gas struts",
+            "partName": "Liftgate Gas Struts",
+            "partBrand": "Sachs",
+            "affiliateUrl": "https://www.amazon.com/s?k=Sachs%20liftgate%20gas%20struts&tag=au7o-20"
+          }
+        ],
+        "fixParts": [
+          {
+            "note": "(reconciled from the issue's own fix text)",
+            "source": "reconciliation",
+            "buyLinks": [
+              {
+                "url": "https://www.amazon.com/s?k=68242418AB&tag=au7o-20",
+                "vendor": "Amazon"
+              },
+              {
+                "url": "https://www.rockauto.com/en/partsearch/?q=68242418AB",
+                "vendor": "RockAuto"
+              },
+              {
+                "url": "https://www.ebay.com/sch/i.html?_nkw=68242418AB",
+                "vendor": "eBay"
+              }
+            ],
+            "priceLow": null,
+            "component": "liftgate gas strut (lift support)",
+            "priceHigh": null,
+            "oemPartNumber": "68242418AB",
+            "aftermarketXref": []
+          }
+        ],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Jeep",
+        "model": "Compass",
+        "years": [
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "body",
+        "title": "Liftgate Strut Failure and Liftgate Dropping",
+        "description": "The gas struts that hold the rear liftgate open on the Compass fail prematurely, causing the liftgate to drop onto the user's head or not stay open. The struts lose their gas charge due to seal deterioration, particularly in cold climates where the temperature differential accelerates seal contraction. Both power liftgate and manual liftgate models are affected. On power liftgate models, the motor can also fail, adding to the issue.",
+        "solution": "Replace both liftgate gas struts as a pair (they wear evenly). OEM Mopar struts or quality aftermarket (Stabilus, Strong Arm) last 4-5 years. For power liftgate models, if the motor fails, the power liftgate motor assembly must be replaced. After strut replacement, test the liftgate in both hot and cold temperatures to confirm proper holding force. Some owners upgrade to slightly stronger aftermarket struts for better cold-weather performance.",
+        "severity": "low",
+        "confidence": "medium",
+        "symptoms": [
+          "Liftgate drops slowly when opened",
+          "Liftgate will not stay open unassisted",
+          "Liftgate drops rapidly and hits user",
+          "Power liftgate struggles to open fully",
+          "Hissing sound from strut (gas escaping)"
+        ],
+        "affectedSystems": [
+          "body"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 50,
+        "estimatedCostHigh": 400,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.youtube.com/watch?v=8YVJv1Z3d5M",
+            "type": "video",
+            "title": "YouTube - How to Replace Liftgate Struts on Jeep Compass (Known Channel)"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "text": "Stabilus brand struts (they make the OEM ones for Jeep) are available on Amazon for $30-40/pair vs $120 at the dealer. Same part, half the price.",
+            "source": "JeepCompassForum.com",
+            "upvotes": 198
+          },
+          {
+            "text": "Always replace both struts at the same time even if only one is weak. Uneven force causes the liftgate to twist and wears the hinges.",
+            "source": "r/JeepCompass",
+            "upvotes": 145
+          },
+          {
+            "type": "part",
+            "content": "Dorman weatherstrip seal prevents water leaks and wind noise",
+            "partName": "Weatherstrip Seal",
+            "partBrand": "Dorman",
+            "affiliateUrl": "https://www.amazon.com/s?k=Dorman%20weatherstrip%20seal&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "3M Super Weatherstrip Adhesive for reattaching loose seals",
+            "partName": "Weatherstrip Adhesive",
+            "partBrand": "3M",
+            "affiliateUrl": "https://www.amazon.com/s?k=3M%20super%20weatherstrip%20adhesive&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "StrongArm liftgate struts — easy bolt-on replacement",
+            "partName": "Liftgate Support Struts",
+            "partBrand": "StrongArm",
+            "affiliateUrl": "https://www.amazon.com/s?k=StrongArm%20liftgate%20struts&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Sachs OE-quality liftgate gas struts",
+            "partName": "Liftgate Gas Struts",
+            "partBrand": "Sachs",
+            "affiliateUrl": "https://www.amazon.com/s?k=Sachs%20liftgate%20gas%20struts&tag=au7o-20"
+          }
+        ],
+        "fixParts": [
+          {
+            "note": "(reconciled from the issue's own fix text)",
+            "source": "reconciliation",
+            "buyLinks": [
+              {
+                "url": "https://www.amazon.com/s?k=68242418AB&tag=au7o-20",
+                "vendor": "Amazon"
+              },
+              {
+                "url": "https://www.rockauto.com/en/partsearch/?q=68242418AB",
+                "vendor": "RockAuto"
+              },
+              {
+                "url": "https://www.ebay.com/sch/i.html?_nkw=68242418AB",
+                "vendor": "eBay"
+              }
+            ],
+            "priceLow": null,
+            "component": "liftgate gas strut (lift support)",
+            "priceHigh": null,
+            "oemPartNumber": "68242418AB",
+            "aftermarketXref": []
+          }
+        ],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "jeep-compass-oil-filter-housing-leak-2017",
+      "model": "Compass",
+      "action": "keep_published_pending_source",
+      "reason": "The only citation uses a placeholder YouTube identifier. No exact primary service source clears the four-bolt procedure, 15-ft-lb torque, oil/coolant mixing claim, OEM-only gasket recommendation, cooler-thermostat advice or part 5048037AA fitment, so the row remains byte-for-byte unchanged.",
+      "identityRule": "A narrower recall, placeholder source, overlapping generation or unverified fitment requires a byte-for-byte hold.",
+      "commerceDecision": "unchanged-commerce-pending-exact-source-and-fitment",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-recall-inventory-boundary-not-broad-claim-proof",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2007",
+          "supportingUrls": [
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2007",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2008",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2009",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2010",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2011",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2012",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2013",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2014",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2015",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2016",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2017",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2018",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2019",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2020",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2021",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2022",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2023",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2024",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2025"
+          ],
+          "verifiedOn": "2026-08-06",
+          "observation": "The complete frozen-year recall inventory does not establish this page’s full causes, remedies and commerce."
+        }
+      ],
+      "beforeSha256": "da001d61a97896d46e4ad1e96b8dd1f79d0a4cde7f8e727544546da24e217393",
+      "proposalSha256": "da001d61a97896d46e4ad1e96b8dd1f79d0a4cde7f8e727544546da24e217393",
+      "before": {
+        "make": "Jeep",
+        "model": "Compass",
+        "years": [
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [
+          "2.4L Tigershark"
+        ],
+        "category": "engine",
+        "title": "Oil Filter Housing Leak (2.4L Tigershark)",
+        "description": "The 2.4L Tigershark engine in the Compass develops oil leaks from the oil filter housing adapter gasket. The gasket between the oil filter housing and the engine block hardens and shrinks, allowing oil to seep. The leak drips onto the exhaust manifold, creating a burning oil smell and smoke. The oil filter housing also contains the oil cooler, so a failed gasket can also allow oil and coolant to mix internally in severe cases.",
+        "solution": "Replace the oil filter housing gasket and O-rings. This is a straightforward repair that requires removing the oil filter housing (4 bolts), cleaning both mating surfaces, and installing new gaskets. Use OEM Mopar gaskets — aftermarket gaskets for this application have a high re-leak rate. Torque bolts to spec (15 ft-lbs) in a crisscross pattern. Check oil and coolant for cross-contamination (milky oil or oil in coolant).",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Burning oil smell from engine bay",
+          "Oil dripping onto exhaust manifold causing smoke",
+          "Oil spots on driveway under engine",
+          "Low oil level between changes",
+          "Oil weeping from oil filter housing area"
+        ],
+        "affectedSystems": [
+          "engine"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 150,
+        "estimatedCostHigh": 500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.youtube.com/watch?v=abcd1234efg",
+            "type": "video",
+            "title": "Jeep Compass 2.4L Tigershark Oil Filter Housing Gasket Replacement - EricTheCarGuy"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "text": "Use only Mopar OEM gaskets for this repair. The aftermarket gaskets from Dorman and others leak again within 10,000 miles.",
+            "source": "JeepCompassForum.com",
+            "upvotes": 178
+          },
+          {
+            "text": "While you have the housing off, replace the oil cooler thermostat ($15 part) inside it. If it sticks closed, your oil runs too hot and degrades faster.",
+            "source": "r/JeepCompass",
+            "upvotes": 134
+          },
+          {
+            "type": "part",
+            "content": "Premium radiator provides improved cooling capacity",
+            "partName": "Aluminum Radiator",
+            "partBrand": "Mishimoto",
+            "affiliateUrl": "https://www.amazon.com/s?k=Jeep%20Compass%20Mishimoto%20Aluminum%20Radiator&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Pre-mixed coolant ready for top-off or full flush",
+            "partName": "Extended Life Antifreeze Coolant",
+            "partBrand": "Prestone",
+            "affiliateUrl": "https://www.amazon.com/s?k=Jeep%20Compass%20Prestone%20Extended%20Life%20Antifreeze%20Coolant&tag=au7o-20"
+          }
+        ],
+        "fixParts": [
+          {
+            "note": "(reconciled from the issue's own fix text)",
+            "source": "reconciliation",
+            "buyLinks": [
+              {
+                "url": "https://www.amazon.com/s?k=5048037AA&tag=au7o-20",
+                "vendor": "Amazon"
+              },
+              {
+                "url": "https://www.rockauto.com/en/partsearch/?q=5048037AA",
+                "vendor": "RockAuto"
+              },
+              {
+                "url": "https://www.ebay.com/sch/i.html?_nkw=5048037AA",
+                "vendor": "eBay"
+              }
+            ],
+            "priceLow": null,
+            "component": "oil filter housing (adapter) gasket",
+            "priceHigh": null,
+            "oemPartNumber": "5048037AA",
+            "aftermarketXref": []
+          }
+        ],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "chrysler-200-oil-filter-housing-leak-2015",
+          "fiat-500x-oil-consumption-24",
+          "jeep-renegade-engine-oil-consumption",
+          "jeep-cherokee-kl-oil-consumption-2014",
+          "chrysler-200-oil-consumption-2015"
+        ]
+      },
+      "proposal": {
+        "make": "Jeep",
+        "model": "Compass",
+        "years": [
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [
+          "2.4L Tigershark"
+        ],
+        "category": "engine",
+        "title": "Oil Filter Housing Leak (2.4L Tigershark)",
+        "description": "The 2.4L Tigershark engine in the Compass develops oil leaks from the oil filter housing adapter gasket. The gasket between the oil filter housing and the engine block hardens and shrinks, allowing oil to seep. The leak drips onto the exhaust manifold, creating a burning oil smell and smoke. The oil filter housing also contains the oil cooler, so a failed gasket can also allow oil and coolant to mix internally in severe cases.",
+        "solution": "Replace the oil filter housing gasket and O-rings. This is a straightforward repair that requires removing the oil filter housing (4 bolts), cleaning both mating surfaces, and installing new gaskets. Use OEM Mopar gaskets — aftermarket gaskets for this application have a high re-leak rate. Torque bolts to spec (15 ft-lbs) in a crisscross pattern. Check oil and coolant for cross-contamination (milky oil or oil in coolant).",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Burning oil smell from engine bay",
+          "Oil dripping onto exhaust manifold causing smoke",
+          "Oil spots on driveway under engine",
+          "Low oil level between changes",
+          "Oil weeping from oil filter housing area"
+        ],
+        "affectedSystems": [
+          "engine"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 150,
+        "estimatedCostHigh": 500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.youtube.com/watch?v=abcd1234efg",
+            "type": "video",
+            "title": "Jeep Compass 2.4L Tigershark Oil Filter Housing Gasket Replacement - EricTheCarGuy"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "text": "Use only Mopar OEM gaskets for this repair. The aftermarket gaskets from Dorman and others leak again within 10,000 miles.",
+            "source": "JeepCompassForum.com",
+            "upvotes": 178
+          },
+          {
+            "text": "While you have the housing off, replace the oil cooler thermostat ($15 part) inside it. If it sticks closed, your oil runs too hot and degrades faster.",
+            "source": "r/JeepCompass",
+            "upvotes": 134
+          },
+          {
+            "type": "part",
+            "content": "Premium radiator provides improved cooling capacity",
+            "partName": "Aluminum Radiator",
+            "partBrand": "Mishimoto",
+            "affiliateUrl": "https://www.amazon.com/s?k=Jeep%20Compass%20Mishimoto%20Aluminum%20Radiator&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Pre-mixed coolant ready for top-off or full flush",
+            "partName": "Extended Life Antifreeze Coolant",
+            "partBrand": "Prestone",
+            "affiliateUrl": "https://www.amazon.com/s?k=Jeep%20Compass%20Prestone%20Extended%20Life%20Antifreeze%20Coolant&tag=au7o-20"
+          }
+        ],
+        "fixParts": [
+          {
+            "note": "(reconciled from the issue's own fix text)",
+            "source": "reconciliation",
+            "buyLinks": [
+              {
+                "url": "https://www.amazon.com/s?k=5048037AA&tag=au7o-20",
+                "vendor": "Amazon"
+              },
+              {
+                "url": "https://www.rockauto.com/en/partsearch/?q=5048037AA",
+                "vendor": "RockAuto"
+              },
+              {
+                "url": "https://www.ebay.com/sch/i.html?_nkw=5048037AA",
+                "vendor": "eBay"
+              }
+            ],
+            "priceLow": null,
+            "component": "oil filter housing (adapter) gasket",
+            "priceHigh": null,
+            "oemPartNumber": "5048037AA",
+            "aftermarketXref": []
+          }
+        ],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "chrysler-200-oil-filter-housing-leak-2015",
+          "fiat-500x-oil-consumption-24",
+          "jeep-renegade-engine-oil-consumption",
+          "jeep-cherokee-kl-oil-consumption-2014",
+          "chrysler-200-oil-consumption-2015"
+        ]
+      }
+    },
+    {
+      "id": "jeep-compass-oil-pump-stalling",
+      "model": "Compass",
+      "action": "keep_published_pending_source",
+      "reason": "NHTSA campaign 17V670000 supports certain 2018 Compass 2.4L vehicles with a cracked oil-pump housing, inspection and replacement as necessary. The frozen page spans 2017-2022 and adds oil-consumption causation, 1,000-mile checks, a one-quart-per-3,000-mile threshold, oil specification, unrelated DTCs and retail repair claims. The exact 2018 recall cannot overwrite this 2017-2022 aggregation, so the row remains byte-for-byte unchanged.",
+      "identityRule": "A narrower recall, placeholder source, overlapping generation or unverified fitment requires a byte-for-byte hold.",
+      "commerceDecision": "unchanged-commerce-pending-exact-source-and-fitment",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-recall-partial-year-and-claim-scope",
+          "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=17V670000",
+          "verifiedOn": "2026-08-06",
+          "observation": "Campaign 17V670000 covers certain 2018 Compass 2.4L vehicles, not the frozen 2017-2022 aggregation."
+        }
+      ],
+      "beforeSha256": "b08bf6b9321ed725acaa8fb7b44f84a445b2112135f2d10465f5fc0bad9edbee",
+      "proposalSha256": "b08bf6b9321ed725acaa8fb7b44f84a445b2112135f2d10465f5fc0bad9edbee",
+      "before": {
+        "make": "Jeep",
+        "model": "Compass",
+        "years": [
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022
+        ],
+        "trims": [],
+        "engines": [
+          "2.4L Tigershark"
+        ],
+        "category": "engine",
+        "title": "2.4L Tigershark Oil Pump Failure / Engine Stalling",
+        "description": "The 2.4L Tigershark engine may experience oil pump failure where insufficient oil pressure causes the engine to stall while driving. NHTSA Recall 17V-670 (October 2017) addressed oil pumps that would not deliver adequate pressure. The engine uses hydraulic valve actuators that rely on oil pressure, so low oil starves the valvetrain and causes sudden stalling. Excessive oil consumption between changes exacerbates the problem.",
+        "solution": "Check recall status (NHTSA 17V-670) for oil pump replacement at no cost. Monitor oil level every 1,000 miles and top off as needed. If experiencing oil consumption over 1 quart per 3,000 miles, have dealer perform an oil consumption test. Replace oil pump assembly if not covered by recall ($400-800). Use 0W-20 full synthetic oil per specification.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Low oil pressure warning light",
+          "Engine stalls while driving",
+          "Oil level drops significantly between changes",
+          "Ticking or knocking noise from engine",
+          "Check engine light for oil pressure codes",
+          "Vehicle will not restart after stalling"
+        ],
+        "affectedSystems": [
+          "Engine",
+          "Lubrication"
+        ],
+        "dtcCodes": [
+          "P0420",
+          "P0171",
+          "P0174"
+        ],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 800,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/recalls",
+            "type": "recall",
+            "title": "NHTSA Recall 17V-670 - Oil Pump Insufficient Pressure"
+          },
+          {
+            "url": "https://www.myjeepcompass.com/threads/oil-pressure-light-then-jeep-shuts-off.41441/",
+            "type": "forum",
+            "title": "MyJeepCompass.com - Oil Pressure Light & Engine Shutoff"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "warning",
+            "content": "Check your oil level every 1,000 miles - the 2.4L Tigershark is known to consume oil and running low can destroy the engine",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "If your engine stalls from low oil pressure, do NOT try to restart immediately - check oil level first to avoid further damage",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Verify recall 17V-670 status at recalls.mopar.com - oil pump replacement is covered at no cost",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "High-quality synthetic oil helps reduce consumption and protect worn engines",
+            "partName": "Extended Performance Full Synthetic Motor Oil",
+            "partBrand": "Mobil 1",
+            "affiliateUrl": "https://www.amazon.com/s?k=Jeep%20Compass%20Mobil%201%20Extended%20Performance%20Full%20Synthetic%20Motor%20Oil&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Premium oil filter ensures proper filtration with high-mileage engines",
+            "partName": "Oil Filter",
+            "partBrand": "Wix",
+            "affiliateUrl": "https://www.amazon.com/s?k=Jeep%20Compass%20Wix%20Oil%20Filter&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 389,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2024-06-15",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "jeep-renegade-engine-oil-consumption",
+          "chrysler-200-oil-consumption-2015",
+          "jeep-cherokee-kl-oil-consumption-2014",
+          "fiat-500x-oil-consumption-24",
+          "chrysler-200-oil-filter-housing-leak-2015"
+        ]
+      },
+      "proposal": {
+        "make": "Jeep",
+        "model": "Compass",
+        "years": [
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022
+        ],
+        "trims": [],
+        "engines": [
+          "2.4L Tigershark"
+        ],
+        "category": "engine",
+        "title": "2.4L Tigershark Oil Pump Failure / Engine Stalling",
+        "description": "The 2.4L Tigershark engine may experience oil pump failure where insufficient oil pressure causes the engine to stall while driving. NHTSA Recall 17V-670 (October 2017) addressed oil pumps that would not deliver adequate pressure. The engine uses hydraulic valve actuators that rely on oil pressure, so low oil starves the valvetrain and causes sudden stalling. Excessive oil consumption between changes exacerbates the problem.",
+        "solution": "Check recall status (NHTSA 17V-670) for oil pump replacement at no cost. Monitor oil level every 1,000 miles and top off as needed. If experiencing oil consumption over 1 quart per 3,000 miles, have dealer perform an oil consumption test. Replace oil pump assembly if not covered by recall ($400-800). Use 0W-20 full synthetic oil per specification.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Low oil pressure warning light",
+          "Engine stalls while driving",
+          "Oil level drops significantly between changes",
+          "Ticking or knocking noise from engine",
+          "Check engine light for oil pressure codes",
+          "Vehicle will not restart after stalling"
+        ],
+        "affectedSystems": [
+          "Engine",
+          "Lubrication"
+        ],
+        "dtcCodes": [
+          "P0420",
+          "P0171",
+          "P0174"
+        ],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 800,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/recalls",
+            "type": "recall",
+            "title": "NHTSA Recall 17V-670 - Oil Pump Insufficient Pressure"
+          },
+          {
+            "url": "https://www.myjeepcompass.com/threads/oil-pressure-light-then-jeep-shuts-off.41441/",
+            "type": "forum",
+            "title": "MyJeepCompass.com - Oil Pressure Light & Engine Shutoff"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "warning",
+            "content": "Check your oil level every 1,000 miles - the 2.4L Tigershark is known to consume oil and running low can destroy the engine",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "If your engine stalls from low oil pressure, do NOT try to restart immediately - check oil level first to avoid further damage",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Verify recall 17V-670 status at recalls.mopar.com - oil pump replacement is covered at no cost",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "High-quality synthetic oil helps reduce consumption and protect worn engines",
+            "partName": "Extended Performance Full Synthetic Motor Oil",
+            "partBrand": "Mobil 1",
+            "affiliateUrl": "https://www.amazon.com/s?k=Jeep%20Compass%20Mobil%201%20Extended%20Performance%20Full%20Synthetic%20Motor%20Oil&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Premium oil filter ensures proper filtration with high-mileage engines",
+            "partName": "Oil Filter",
+            "partBrand": "Wix",
+            "affiliateUrl": "https://www.amazon.com/s?k=Jeep%20Compass%20Wix%20Oil%20Filter&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 389,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2024-06-15",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "jeep-renegade-engine-oil-consumption",
+          "chrysler-200-oil-consumption-2015",
+          "jeep-cherokee-kl-oil-consumption-2014",
+          "fiat-500x-oil-consumption-24",
+          "chrysler-200-oil-filter-housing-leak-2015"
+        ]
+      }
+    },
+    {
+      "id": "jeep-compass-thermostat-housing-leak",
+      "model": "Compass",
+      "action": "keep_published_pending_source",
+      "reason": "The forum and marketplace listing do not establish the eleven-year crack/warp identity, an updated aluminum OEM housing, Dorman 902-319 equivalence, complete sensor/thermostat contents, DTC set, two-bolt procedure or part 68003582AB fitment across both engines. The row and commerce remain byte-for-byte unchanged.",
+      "identityRule": "A narrower recall, placeholder source, overlapping generation or unverified fitment requires a byte-for-byte hold.",
+      "commerceDecision": "unchanged-commerce-pending-exact-source-and-fitment",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-recall-inventory-boundary-not-broad-claim-proof",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2007",
+          "supportingUrls": [
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2007",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2008",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2009",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2010",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2011",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2012",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2013",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2014",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2015",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2016",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2017",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2018",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2019",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2020",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2021",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2022",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2023",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2024",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2025"
+          ],
+          "verifiedOn": "2026-08-06",
+          "observation": "The complete frozen-year recall inventory does not establish this page’s full causes, remedies and commerce."
+        }
+      ],
+      "beforeSha256": "7ea695ec5a3ca9f8f5c3a1a340e3d1b1d71fb9441ca57582085cdcebf13b8679",
+      "proposalSha256": "7ea695ec5a3ca9f8f5c3a1a340e3d1b1d71fb9441ca57582085cdcebf13b8679",
+      "before": {
+        "make": "Jeep",
+        "model": "Compass",
+        "years": [
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017
+        ],
+        "trims": [],
+        "engines": [
+          "2.0L",
+          "2.4L"
+        ],
+        "category": "cooling",
+        "title": "Thermostat Housing Coolant Leak",
+        "description": "The plastic thermostat housing on the 2.0L and 2.4L World engines is prone to cracking and leaking coolant. The housing warps from heat cycling, causing the O-ring seal to fail. This leads to external coolant leaks, overheating, and potential engine damage if not addressed. The same housing is used across Compass, Patriot, and Dodge Caliber platforms.",
+        "solution": "Replace the thermostat housing assembly with the updated aluminum version (OEM 68003582AB, aftermarket Dorman 902-319). The aluminum housing is far more durable than the original plastic unit. The assembly includes housing, thermostat, temperature sensor, and O-ring. Parts cost $40-80, labor 1-2 hours. This is a common DIY repair.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Coolant leak near thermostat area",
+          "Low coolant warning light",
+          "Engine overheating",
+          "Sweet smell of coolant under hood",
+          "White residue or stains around thermostat housing",
+          "Temperature gauge running higher than normal"
+        ],
+        "affectedSystems": [
+          "Cooling"
+        ],
+        "dtcCodes": [
+          "P0128",
+          "P0597",
+          "P0598",
+          "P0599"
+        ],
+        "estimatedCostLow": 80,
+        "estimatedCostHigh": 350,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.jeeppatriot.com/threads/thermostat.33115/",
+            "type": "forum",
+            "title": "JeepPatriot.com - Thermostat Housing Discussion (shared platform)"
+          },
+          {
+            "url": "https://www.amazon.com/68003582AB-AluminiumThermostat-2007-2010-2008-2014-68003582AA/dp/B0DLKMKMGP",
+            "type": "part",
+            "title": "OEM Thermostat Housing Assembly 68003582AB"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Replace with aluminum thermostat housing (Dorman 902-319 or OEM 68003582AB) - the upgraded aluminum version eliminates the cracking issue",
+            "upvotes": 0,
+            "partName": "Aluminum Thermostat Housing Assembly",
+            "partBrand": "Dorman",
+            "partNumber": "902-319",
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Dorman%20902-319&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "This is a straightforward DIY repair - drain some coolant, remove 2 bolts, swap housing, refill and bleed",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [
+          {
+            "note": "(reconciled from the issue's own fix text)",
+            "source": "reconciliation",
+            "buyLinks": [
+              {
+                "url": "https://www.amazon.com/s?k=68003582AB&tag=au7o-20",
+                "vendor": "Amazon"
+              },
+              {
+                "url": "https://www.rockauto.com/en/partsearch/?q=68003582AB",
+                "vendor": "RockAuto"
+              },
+              {
+                "url": "https://www.ebay.com/sch/i.html?_nkw=68003582AB",
+                "vendor": "eBay"
+              }
+            ],
+            "priceLow": null,
+            "component": "thermostat housing assembly",
+            "priceHigh": null,
+            "oemPartNumber": "68003582AB",
+            "aftermarketXref": []
+          }
+        ],
+        "humanApproved": true,
+        "reportCount": 312,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2024-02-15",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "jeep-patriot-thermostat-housing-leak",
+          "dodge-nitro-thermostat-housing-2007"
+        ]
+      },
+      "proposal": {
+        "make": "Jeep",
+        "model": "Compass",
+        "years": [
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017
+        ],
+        "trims": [],
+        "engines": [
+          "2.0L",
+          "2.4L"
+        ],
+        "category": "cooling",
+        "title": "Thermostat Housing Coolant Leak",
+        "description": "The plastic thermostat housing on the 2.0L and 2.4L World engines is prone to cracking and leaking coolant. The housing warps from heat cycling, causing the O-ring seal to fail. This leads to external coolant leaks, overheating, and potential engine damage if not addressed. The same housing is used across Compass, Patriot, and Dodge Caliber platforms.",
+        "solution": "Replace the thermostat housing assembly with the updated aluminum version (OEM 68003582AB, aftermarket Dorman 902-319). The aluminum housing is far more durable than the original plastic unit. The assembly includes housing, thermostat, temperature sensor, and O-ring. Parts cost $40-80, labor 1-2 hours. This is a common DIY repair.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Coolant leak near thermostat area",
+          "Low coolant warning light",
+          "Engine overheating",
+          "Sweet smell of coolant under hood",
+          "White residue or stains around thermostat housing",
+          "Temperature gauge running higher than normal"
+        ],
+        "affectedSystems": [
+          "Cooling"
+        ],
+        "dtcCodes": [
+          "P0128",
+          "P0597",
+          "P0598",
+          "P0599"
+        ],
+        "estimatedCostLow": 80,
+        "estimatedCostHigh": 350,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.jeeppatriot.com/threads/thermostat.33115/",
+            "type": "forum",
+            "title": "JeepPatriot.com - Thermostat Housing Discussion (shared platform)"
+          },
+          {
+            "url": "https://www.amazon.com/68003582AB-AluminiumThermostat-2007-2010-2008-2014-68003582AA/dp/B0DLKMKMGP",
+            "type": "part",
+            "title": "OEM Thermostat Housing Assembly 68003582AB"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Replace with aluminum thermostat housing (Dorman 902-319 or OEM 68003582AB) - the upgraded aluminum version eliminates the cracking issue",
+            "upvotes": 0,
+            "partName": "Aluminum Thermostat Housing Assembly",
+            "partBrand": "Dorman",
+            "partNumber": "902-319",
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Dorman%20902-319&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "This is a straightforward DIY repair - drain some coolant, remove 2 bolts, swap housing, refill and bleed",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [
+          {
+            "note": "(reconciled from the issue's own fix text)",
+            "source": "reconciliation",
+            "buyLinks": [
+              {
+                "url": "https://www.amazon.com/s?k=68003582AB&tag=au7o-20",
+                "vendor": "Amazon"
+              },
+              {
+                "url": "https://www.rockauto.com/en/partsearch/?q=68003582AB",
+                "vendor": "RockAuto"
+              },
+              {
+                "url": "https://www.ebay.com/sch/i.html?_nkw=68003582AB",
+                "vendor": "eBay"
+              }
+            ],
+            "priceLow": null,
+            "component": "thermostat housing assembly",
+            "priceHigh": null,
+            "oemPartNumber": "68003582AB",
+            "aftermarketXref": []
+          }
+        ],
+        "humanApproved": true,
+        "reportCount": 312,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2024-02-15",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "jeep-patriot-thermostat-housing-leak",
+          "dodge-nitro-thermostat-housing-2007"
+        ]
+      }
+    },
+    {
+      "id": "jeep-compass-windshield-stress-crack-2017",
+      "model": "Compass",
+      "action": "keep_published_pending_source",
+      "reason": "The row has no citations for its nine-year stress-crack frequency, adhesive/body-flex cause, temperature mechanism, repeat-replacement claim or costs. Its preventive clear-silicone advice could interfere with professional automotive glazing and water management, so the safety-sensitive page remains byte-for-byte unchanged pending qualified glass-source review.",
+      "identityRule": "A narrower recall, placeholder source, overlapping generation or unverified fitment requires a byte-for-byte hold.",
+      "commerceDecision": "unchanged-commerce-pending-exact-source-and-fitment",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-recall-inventory-boundary-not-broad-claim-proof",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2007",
+          "supportingUrls": [
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2007",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2008",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2009",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2010",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2011",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2012",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2013",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2014",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2015",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2016",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2017",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2018",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2019",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2020",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2021",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2022",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2023",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2024",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMPASS&modelYear=2025"
+          ],
+          "verifiedOn": "2026-08-06",
+          "observation": "The complete frozen-year recall inventory does not establish this page’s full causes, remedies and commerce."
+        }
+      ],
+      "beforeSha256": "e26b2362a683c71cad9c10ef81b3fa0157267e17c84d1f2be8f9723013d78fad",
+      "proposalSha256": "e26b2362a683c71cad9c10ef81b3fa0157267e17c84d1f2be8f9723013d78fad",
+      "before": {
+        "make": "Jeep",
+        "model": "Compass",
+        "years": [
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "body",
+        "title": "Windshield Stress Cracking",
+        "description": "The 2017+ Compass windshield is prone to stress cracking without impact, particularly from the edges and corners. The windshield bonding adhesive and the body flex characteristics of the unibody chassis create stress points in the glass. Temperature changes (cold nights followed by hot morning sun, or using the defroster on a cold windshield) trigger crack propagation. Many owners report multiple windshield replacements during ownership.",
+        "solution": "Replace the windshield with OEM or equivalent quality glass. Ensure proper installation with the correct urethane adhesive and curing time. For vehicles with ADAS cameras (forward collision warning, lane departure), recalibration is required after replacement. File through comprehensive auto insurance — many states have zero-deductible glass coverage. Consider adding a small bead of clear silicone at stress-prone edge points as a preventive measure.",
+        "severity": "low",
+        "confidence": "medium",
+        "symptoms": [
+          "Crack appearing from windshield edge with no impact",
+          "Crack spreading across windshield rapidly",
+          "Multiple stress cracks in corners",
+          "Crack appearing after temperature change"
+        ],
+        "affectedSystems": [
+          "body"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 300,
+        "estimatedCostHigh": 800,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [],
+        "communityRecommendations": [
+          {
+            "text": "Never use hot defrost on a freezing windshield — let the car warm up gradually. Temperature shock is the number one trigger for stress cracks.",
+            "source": "JeepCompassForum.com",
+            "upvotes": 189
+          },
+          {
+            "text": "Get comprehensive glass coverage added to your policy. Compass windshields average a replacement every 2-3 years in harsh climates.",
+            "source": "r/JeepCompass",
+            "upvotes": 156
+          },
+          {
+            "type": "part",
+            "content": "Trim removal tool set for body panel work without damage",
+            "partName": "Trim Removal Tool Set",
+            "partBrand": "MICTUNING",
+            "affiliateUrl": "https://www.amazon.com/s?k=trim%20removal%20tool%20set%20automotive&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Bondo body filler for dent and panel repair",
+            "partName": "Body Filler Kit",
+            "partBrand": "Bondo",
+            "affiliateUrl": "https://www.amazon.com/s?k=Bondo%20body%20filler%20kit&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Jeep",
+        "model": "Compass",
+        "years": [
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "body",
+        "title": "Windshield Stress Cracking",
+        "description": "The 2017+ Compass windshield is prone to stress cracking without impact, particularly from the edges and corners. The windshield bonding adhesive and the body flex characteristics of the unibody chassis create stress points in the glass. Temperature changes (cold nights followed by hot morning sun, or using the defroster on a cold windshield) trigger crack propagation. Many owners report multiple windshield replacements during ownership.",
+        "solution": "Replace the windshield with OEM or equivalent quality glass. Ensure proper installation with the correct urethane adhesive and curing time. For vehicles with ADAS cameras (forward collision warning, lane departure), recalibration is required after replacement. File through comprehensive auto insurance — many states have zero-deductible glass coverage. Consider adding a small bead of clear silicone at stress-prone edge points as a preventive measure.",
+        "severity": "low",
+        "confidence": "medium",
+        "symptoms": [
+          "Crack appearing from windshield edge with no impact",
+          "Crack spreading across windshield rapidly",
+          "Multiple stress cracks in corners",
+          "Crack appearing after temperature change"
+        ],
+        "affectedSystems": [
+          "body"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 300,
+        "estimatedCostHigh": 800,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [],
+        "communityRecommendations": [
+          {
+            "text": "Never use hot defrost on a freezing windshield — let the car warm up gradually. Temperature shock is the number one trigger for stress cracks.",
+            "source": "JeepCompassForum.com",
+            "upvotes": 189
+          },
+          {
+            "text": "Get comprehensive glass coverage added to your policy. Compass windshields average a replacement every 2-3 years in harsh climates.",
+            "source": "r/JeepCompass",
+            "upvotes": 156
+          },
+          {
+            "type": "part",
+            "content": "Trim removal tool set for body panel work without damage",
+            "partName": "Trim Removal Tool Set",
+            "partBrand": "MICTUNING",
+            "affiliateUrl": "https://www.amazon.com/s?k=trim%20removal%20tool%20set%20automotive&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Bondo body filler for dent and panel repair",
+            "partName": "Body Filler Kit",
+            "partBrand": "Bondo",
+            "affiliateUrl": "https://www.amazon.com/s?k=Bondo%20body%20filler%20kit&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    }
+  ]
+}
