@@ -1,0 +1,980 @@
+{
+  "schemaVersion": 1,
+  "status": "proposal-only",
+  "auditStage": "model-primary-source-adjudication",
+  "requiresIndependentApproval": true,
+  "generatedOn": "2026-08-06",
+  "make": "Jaguar",
+  "model": "XE",
+  "completionStatement": "This packet reconciles all five frozen Jaguar XE rows. Three Jaguar technical PDFs and six relevant pages were visually reviewed; two current Jaguar owner pages and year-by-year NHTSA recall inventories were live-locked. All five rows remain byte-for-byte unchanged.",
+  "safetyContract": [
+    "No production database write, cache purge, deployment, archive action, redirect, slug change, new issue or public-page change is authorized by this packet.",
+    "All five XE rows remain published and byte-for-byte unchanged.",
+    "A model, equipment, engine, VIN, year, cause, code or remedy mismatch cannot authorize a broader rewrite.",
+    "A recall-registry result is not negative proof that a non-recall issue does not exist.",
+    "The five frozen citation objects contain titles but no URLs and therefore are not treated as verified source evidence.",
+    "Distinct issue identities remain deferred until the post-audit new-known-issues phase."
+  ],
+  "source": {
+    "snapshotFile": "data/_jaguar-deeplink-snapshot-2026-08-06.json",
+    "snapshotSha256": "60f1d4d001e3f56c9b9fc4c2429fe300f44ef3aaaeb7fda2e09a37b6e6c66800",
+    "snapshotGeneratedAt": "2026-08-07T01:28:25.707Z",
+    "snapshotHash": "016c6d9be5ca12dd4a514267ecfed59d36d825395d3e83ef56985dc87003bbfa",
+    "modelRecordCount": 5
+  },
+  "observations": [
+    {
+      "code": "xe-dpf-remedy-claim-mismatch",
+      "severity": "high",
+      "recordIds": [
+        "jaguar-xe-diesel-dpf-2017"
+      ],
+      "detail": "Jaguar guidance supports regeneration constraints but not the frozen thresholds, DTC scope or repair ladder."
+    },
+    {
+      "code": "xe-infotainment-cause-remedy-overreach",
+      "severity": "high",
+      "recordIds": [
+        "jaguar-xe-infotainment-freeze-2017"
+      ],
+      "detail": "The located bulletin supports software reliability concerns but not the frozen hardware-cause and replacement claims."
+    },
+    {
+      "code": "xe-suspension-primary-source-gap",
+      "severity": "source-gap",
+      "recordIds": [
+        "jaguar-xe-suspension-bushing-wear-2017"
+      ],
+      "detail": "No exact primary source cleared the seven-year control-arm and toe-link aggregation."
+    },
+    {
+      "code": "xe-coolant-year-engine-cause-remedy-mismatch",
+      "severity": "high",
+      "recordIds": [
+        "jaguar-xe-water-pump-ingenium-2017"
+      ],
+      "detail": "H291 is a limited 2019-21 2.0L petrol software action, not the frozen multi-engine mechanical failure."
+    },
+    {
+      "code": "xe-transmission-year-engine-cause-remedy-mismatch",
+      "severity": "high",
+      "recordIds": [
+        "jaguar-xe-zf-8hp-harsh-shift-2017"
+      ],
+      "detail": "JTB00637NAS1 is a limited 2018 2.0L petrol calibration concern, not the frozen broad ZF service claim."
+    },
+    {
+      "code": "xe-existing-citations-missing-urls",
+      "severity": "source-gap",
+      "recordIds": [
+        "jaguar-xe-diesel-dpf-2017",
+        "jaguar-xe-infotainment-freeze-2017",
+        "jaguar-xe-suspension-bushing-wear-2017",
+        "jaguar-xe-water-pump-ingenium-2017",
+        "jaguar-xe-zf-8hp-harsh-shift-2017"
+      ],
+      "detail": "Every frozen citation has a title but no URL, so none can independently clear a rewrite."
+    },
+    {
+      "code": "all-xe-pages-preserved",
+      "severity": "seo-safety",
+      "recordIds": [
+        "jaguar-xe-diesel-dpf-2017",
+        "jaguar-xe-infotainment-freeze-2017",
+        "jaguar-xe-suspension-bushing-wear-2017",
+        "jaguar-xe-water-pump-ingenium-2017",
+        "jaguar-xe-zf-8hp-harsh-shift-2017"
+      ],
+      "detail": "Every indexed XE record remains published with identical ID, title, years, category, content, citations and commerce."
+    }
+  ],
+  "reviewSources": {
+    "dpf": "https://www.jaguar.com/en-au/jdx/ownership/choose-your-engine/jaguar-diesel-particulate-filter.html",
+    "touchProUpdates": "https://www.jaguar.com/en-gb/jdx/ownership/infotainment-systems/infotainment/software-updates/touch-pro.html",
+    "infotainment": "https://static.nhtsa.gov/odi/tsbs/2016/SB-10095323-1020.pdf",
+    "coolant": "https://static.nhtsa.gov/odi/tsbs/2020/MC-10177147-0001.pdf",
+    "transmission": "https://static.nhtsa.gov/odi/tsbs/2018/MC-10142395-9999.pdf"
+  },
+  "pdfSources": {
+    "infotainment": "https://static.nhtsa.gov/odi/tsbs/2016/SB-10095323-1020.pdf",
+    "coolant": "https://static.nhtsa.gov/odi/tsbs/2020/MC-10177147-0001.pdf",
+    "transmission": "https://static.nhtsa.gov/odi/tsbs/2018/MC-10142395-9999.pdf"
+  },
+  "sourceArtifactSha256": {
+    "infotainment": "28d8f4dc04a71f8013dd0593a75e0be1236090dec218df09d58011ea4fce6bfd",
+    "coolant": "604bdc73f9458965ae7c29ef0767387b35db71ab578924f0e6e68e6394bc9f8e",
+    "transmission": "99624ff3287f9c0b27c3a0bf714f2cb706297997ec2acbd3fb51169f848c986e"
+  },
+  "visuallyInspectedPages": {
+    "infotainment": [
+      1,
+      2
+    ],
+    "coolant": [
+      1,
+      2
+    ],
+    "transmission": [
+      1,
+      2
+    ]
+  },
+  "webSourceMarkers": {
+    "dpf": [
+      "frequently driving short distances",
+      "60km/h and 112km/h for 20 minutes",
+      "red warning light indicates that the filter is full"
+    ],
+    "touchProUpdates": [
+      "UPDATE YOUR TOUCH PRO INFOTAINMENT",
+      "Check for update",
+      "Not all vehicles can be updated via OTA"
+    ]
+  },
+  "mismatchSources": {
+    "recallQueries": {
+      "2017": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JAGUAR&model=XE&modelYear=2017",
+      "2018": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JAGUAR&model=XE&modelYear=2018",
+      "2019": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JAGUAR&model=XE&modelYear=2019",
+      "2020": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JAGUAR&model=XE&modelYear=2020",
+      "2021": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JAGUAR&model=XE&modelYear=2021",
+      "2022": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JAGUAR&model=XE&modelYear=2022",
+      "2023": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JAGUAR&model=XE&modelYear=2023"
+    },
+    "expected": {
+      "2017": {
+        "status": 200,
+        "campaigns": [
+          "17V286000",
+          "21V248000"
+        ]
+      },
+      "2018": {
+        "status": 200,
+        "campaigns": [
+          "17V678000",
+          "18V090000",
+          "21V248000"
+        ]
+      },
+      "2019": {
+        "status": 200,
+        "campaigns": [
+          "23V501000",
+          "25V017000"
+        ]
+      },
+      "2020": {
+        "status": 200,
+        "campaigns": [
+          "21V248000",
+          "25V017000"
+        ]
+      },
+      "2021": {
+        "status": 400,
+        "campaigns": []
+      },
+      "2022": {
+        "status": 400,
+        "campaigns": []
+      },
+      "2023": {
+        "status": 400,
+        "campaigns": []
+      }
+    }
+  },
+  "summary": {
+    "rewrite_same_identity": 0,
+    "keep_published_pending_source": 5,
+    "total": 5
+  },
+  "rows": [
+    {
+      "id": "jaguar-xe-diesel-dpf-2017",
+      "model": "XE",
+      "action": "keep_published_pending_source",
+      "reason": "Jaguar owner guidance confirms that short trips, slow traffic and cold weather can prevent regeneration, but its amber-warning instruction is to drive between 60 and 112 km/h for 20 minutes and its full-filter instruction is to contact a retailer. It does not establish the frozen hardened-soot mechanism, P2463 identity, 80% threshold, forced regeneration, chemical-cleaning/replacement ladder or weekly 2,500 RPM prescription specifically across 2017-2020 XE diesels. The broader row remains byte-for-byte unchanged.",
+      "identityRule": "No content, scope or publication-state changes; partial or mismatched evidence cannot be expanded into the frozen indexed identity.",
+      "commerceDecision": "unchanged-no-commerce-present",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "jaguar-owner-guidance-remedy-boundary",
+          "url": "https://www.jaguar.com/en-au/jdx/ownership/choose-your-engine/jaguar-diesel-particulate-filter.html",
+          "verifiedOn": "2026-08-06",
+          "observation": "Jaguar describes short-trip regeneration limits and a 60-112 km/h, 20-minute amber-warning drive; it does not state the frozen 80% or 2,500 RPM rules."
+        }
+      ],
+      "beforeSha256": "f3f849a915807d559d0ce4311cf4cf1faafa01d9e289b07a75519bc514db8ba5",
+      "proposalSha256": "f3f849a915807d559d0ce4311cf4cf1faafa01d9e289b07a75519bc514db8ba5",
+      "before": {
+        "make": "Jaguar",
+        "model": "XE",
+        "years": [
+          2017,
+          2018,
+          2019,
+          2020
+        ],
+        "trims": [],
+        "engines": [
+          "2.0L Ingenium Diesel"
+        ],
+        "category": "fuel",
+        "title": "Diesel Particulate Filter Clogging in Urban Use",
+        "description": "The diesel XE models experience DPF clogging when driven primarily in urban conditions where exhaust temperatures remain too low for passive regeneration. Repeated failed regeneration cycles coat the filter with hardened soot that cannot be burned off during normal driving.",
+        "solution": "Perform a forced regeneration via dealer diagnostic tool. If the DPF is over 80% blocked, professional chemical cleaning or DPF replacement is required. Change driving habits to include at least one weekly 20-minute highway run at 2,500+ RPM.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "DPF warning light illuminated",
+          "Reduced engine power in limp mode",
+          "Increased fuel consumption",
+          "Frequent regeneration attempts (high idle in park)",
+          "Engine management warning light"
+        ],
+        "affectedSystems": [
+          "Exhaust",
+          "Emissions",
+          "Engine"
+        ],
+        "dtcCodes": [
+          "P2463"
+        ],
+        "estimatedCostLow": 300,
+        "estimatedCostHigh": 2800,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "forum",
+            "title": "JaguarForum.com — XE diesel DPF regeneration failure and cleaning options"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "warning",
+            "source": "JaguarForum.com",
+            "content": "Do not buy a diesel XE for pure city driving. The DPF needs regular highway runs or it will clog and require expensive cleaning or replacement.",
+            "upvotes": 167,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 780,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-10-20",
+        "reviewedOn": "2026-03-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "jaguar-xf-diesel-dpf-regen-2009",
+          "land-rover-discovery-dpf-regen-2010"
+        ]
+      },
+      "proposal": {
+        "make": "Jaguar",
+        "model": "XE",
+        "years": [
+          2017,
+          2018,
+          2019,
+          2020
+        ],
+        "trims": [],
+        "engines": [
+          "2.0L Ingenium Diesel"
+        ],
+        "category": "fuel",
+        "title": "Diesel Particulate Filter Clogging in Urban Use",
+        "description": "The diesel XE models experience DPF clogging when driven primarily in urban conditions where exhaust temperatures remain too low for passive regeneration. Repeated failed regeneration cycles coat the filter with hardened soot that cannot be burned off during normal driving.",
+        "solution": "Perform a forced regeneration via dealer diagnostic tool. If the DPF is over 80% blocked, professional chemical cleaning or DPF replacement is required. Change driving habits to include at least one weekly 20-minute highway run at 2,500+ RPM.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "DPF warning light illuminated",
+          "Reduced engine power in limp mode",
+          "Increased fuel consumption",
+          "Frequent regeneration attempts (high idle in park)",
+          "Engine management warning light"
+        ],
+        "affectedSystems": [
+          "Exhaust",
+          "Emissions",
+          "Engine"
+        ],
+        "dtcCodes": [
+          "P2463"
+        ],
+        "estimatedCostLow": 300,
+        "estimatedCostHigh": 2800,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "forum",
+            "title": "JaguarForum.com — XE diesel DPF regeneration failure and cleaning options"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "warning",
+            "source": "JaguarForum.com",
+            "content": "Do not buy a diesel XE for pure city driving. The DPF needs regular highway runs or it will clog and require expensive cleaning or replacement.",
+            "upvotes": 167,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 780,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-10-20",
+        "reviewedOn": "2026-03-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "jaguar-xf-diesel-dpf-regen-2009",
+          "land-rover-discovery-dpf-regen-2010"
+        ]
+      }
+    },
+    {
+      "id": "jaguar-xe-infotainment-freeze-2017",
+      "model": "XE",
+      "action": "keep_published_pending_source",
+      "reason": "Jaguar bulletin JTB00510NAS2 covers XE vehicles with InControl Touch Pro from 2017 onwards and identifies lockups, IMC resets, blank screens, frozen camera images and other reliability concerns. It says these may be caused by a software issue and specifies a software procedure with no parts required; it does not establish memory leaks, an underpowered processor, climate-control loss, a 12V-battery reset or head-unit replacement across the frozen 2017-2021 scope. Because the identity includes unsupported cause and remedy claims, the row remains unchanged.",
+      "identityRule": "No content, scope or publication-state changes; partial or mismatched evidence cannot be expanded into the frozen indexed identity.",
+      "commerceDecision": "unchanged-no-commerce-present",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "jaguar-bulletin-cause-remedy-boundary",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2016/SB-10095323-1020.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "JTB00510NAS2 identifies software-related InControl Touch Pro reliability concerns and a software-only procedure with no parts."
+        },
+        {
+          "kind": "jaguar-current-owner-update-guidance",
+          "url": "https://www.jaguar.com/en-gb/jdx/ownership/infotainment-systems/infotainment/software-updates/touch-pro.html",
+          "verifiedOn": "2026-08-06",
+          "observation": "Current Jaguar guidance explains Touch Pro software updating but does not establish the frozen hardware-failure remedy."
+        }
+      ],
+      "beforeSha256": "4e95028b39f869b66cd44d9e0e7193f1407688daca49da002b8eff3d088805ba",
+      "proposalSha256": "4e95028b39f869b66cd44d9e0e7193f1407688daca49da002b8eff3d088805ba",
+      "before": {
+        "make": "Jaguar",
+        "model": "XE",
+        "years": [
+          2017,
+          2018,
+          2019,
+          2020,
+          2021
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Infotainment System Freeze and Reboot Loop",
+        "description": "The InControl Touch Pro infotainment system in the XE freezes or enters a reboot loop, leaving the driver without navigation, climate control, and audio. The issue is caused by software memory leaks and an underpowered processor in earlier hardware revisions.",
+        "solution": "Update to the latest InControl firmware via dealer or USB. If the issue persists on pre-2020 hardware, the head unit may need replacement with the updated revision. A factory reset can provide temporary relief.",
+        "severity": "low",
+        "confidence": "high",
+        "symptoms": [
+          "Touchscreen freezes and becomes unresponsive",
+          "System reboots continuously on startup",
+          "Loss of climate control interface",
+          "Bluetooth connectivity drops",
+          "Backup camera feed disappears"
+        ],
+        "affectedSystems": [
+          "Electrical",
+          "Infotainment"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": 1500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "forum",
+            "title": "JaguarForum.com — XE InControl infotainment freeze and reboot loop firmware fix guide"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "source": "JaguarForum.com",
+            "content": "Hold the power/volume knob for 20 seconds for a hard reset. If rebooting persists, disconnect the 12V battery for 10 minutes to clear the module memory.",
+            "upvotes": 203,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 1500,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-11-30",
+        "reviewedOn": "2026-03-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "jaguar-e-pace-incontrol-freeze-2018",
+          "jaguar-f-pace-incontrol-freeze-2017",
+          "land-rover-range-rover-evoque-incontrol-freeze-2016"
+        ]
+      },
+      "proposal": {
+        "make": "Jaguar",
+        "model": "XE",
+        "years": [
+          2017,
+          2018,
+          2019,
+          2020,
+          2021
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Infotainment System Freeze and Reboot Loop",
+        "description": "The InControl Touch Pro infotainment system in the XE freezes or enters a reboot loop, leaving the driver without navigation, climate control, and audio. The issue is caused by software memory leaks and an underpowered processor in earlier hardware revisions.",
+        "solution": "Update to the latest InControl firmware via dealer or USB. If the issue persists on pre-2020 hardware, the head unit may need replacement with the updated revision. A factory reset can provide temporary relief.",
+        "severity": "low",
+        "confidence": "high",
+        "symptoms": [
+          "Touchscreen freezes and becomes unresponsive",
+          "System reboots continuously on startup",
+          "Loss of climate control interface",
+          "Bluetooth connectivity drops",
+          "Backup camera feed disappears"
+        ],
+        "affectedSystems": [
+          "Electrical",
+          "Infotainment"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": 1500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "forum",
+            "title": "JaguarForum.com — XE InControl infotainment freeze and reboot loop firmware fix guide"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "source": "JaguarForum.com",
+            "content": "Hold the power/volume knob for 20 seconds for a hard reset. If rebooting persists, disconnect the 12V battery for 10 minutes to clear the module memory.",
+            "upvotes": 203,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 1500,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-11-30",
+        "reviewedOn": "2026-03-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "jaguar-e-pace-incontrol-freeze-2018",
+          "jaguar-f-pace-incontrol-freeze-2017",
+          "land-rover-range-rover-evoque-incontrol-freeze-2016"
+        ]
+      }
+    },
+    {
+      "id": "jaguar-xe-suspension-bushing-wear-2017",
+      "model": "XE",
+      "action": "keep_published_pending_source",
+      "reason": "No exact Jaguar primary source was located that establishes premature bonded-bushing wear of both front lower control arms and rear toe links as one 2017-2023 XE issue with the frozen prevalence, symptoms, assembly-replacement remedy, cost range and all-vehicle scope. The official recall inventory contains distinct campaign identities and is not negative proof, while the frozen citation has no URL. The row therefore remains byte-for-byte unchanged pending an exact source.",
+      "identityRule": "No content, scope or publication-state changes; partial or mismatched evidence cannot be expanded into the frozen indexed identity.",
+      "commerceDecision": "unchanged-no-commerce-present",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-registry-boundary-not-negative-proof",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JAGUAR&model=XE&modelYear=2017",
+          "verifiedOn": "2026-08-06",
+          "observation": "The official year inventory contains distinct campaigns and cannot establish or disprove the broad suspension-wear aggregation."
+        }
+      ],
+      "beforeSha256": "5131e789d5e23100f296a9eb319814366151028fae56bf488ca5d470fb3b013e",
+      "proposalSha256": "5131e789d5e23100f296a9eb319814366151028fae56bf488ca5d470fb3b013e",
+      "before": {
+        "make": "Jaguar",
+        "model": "XE",
+        "years": [
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "suspension",
+        "title": "Front and Rear Suspension Bushing Premature Wear",
+        "description": "The aluminum suspension arms on the XE use bonded rubber bushings that wear prematurely, particularly the front lower control arm and rear toe link bushings. Worn bushings cause vague handling, uneven tire wear, and clunking noises over bumps.",
+        "solution": "Replace the affected suspension arm assemblies as the bushings are pressed and bonded in. Front lower control arms and rear toe links are the most common failures. Perform a four-wheel alignment after replacement.",
+        "severity": "low",
+        "confidence": "medium",
+        "symptoms": [
+          "Clunking noise over bumps",
+          "Vague or wandering steering feel",
+          "Uneven inner tire wear",
+          "Alignment goes out of spec repeatedly",
+          "Knocking from rear over rough roads"
+        ],
+        "affectedSystems": [
+          "Suspension",
+          "Steering"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 400,
+        "estimatedCostHigh": 1200,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "forum",
+            "title": "JaguarForums.com — XE suspension bushing wear pattern and replacement with upgraded arms"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "source": "JaguarForums.com",
+            "content": "If the alignment keeps going out, check the rear toe link bushings before spending money on more alignments. They are the most common cause on the XE.",
+            "upvotes": 88,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 650,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-12-15",
+        "reviewedOn": "2026-03-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "acura-rlx-suspension-bushing-wear-2014"
+        ]
+      },
+      "proposal": {
+        "make": "Jaguar",
+        "model": "XE",
+        "years": [
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "suspension",
+        "title": "Front and Rear Suspension Bushing Premature Wear",
+        "description": "The aluminum suspension arms on the XE use bonded rubber bushings that wear prematurely, particularly the front lower control arm and rear toe link bushings. Worn bushings cause vague handling, uneven tire wear, and clunking noises over bumps.",
+        "solution": "Replace the affected suspension arm assemblies as the bushings are pressed and bonded in. Front lower control arms and rear toe links are the most common failures. Perform a four-wheel alignment after replacement.",
+        "severity": "low",
+        "confidence": "medium",
+        "symptoms": [
+          "Clunking noise over bumps",
+          "Vague or wandering steering feel",
+          "Uneven inner tire wear",
+          "Alignment goes out of spec repeatedly",
+          "Knocking from rear over rough roads"
+        ],
+        "affectedSystems": [
+          "Suspension",
+          "Steering"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 400,
+        "estimatedCostHigh": 1200,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "forum",
+            "title": "JaguarForums.com — XE suspension bushing wear pattern and replacement with upgraded arms"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "source": "JaguarForums.com",
+            "content": "If the alignment keeps going out, check the rear toe link bushings before spending money on more alignments. They are the most common cause on the XE.",
+            "upvotes": 88,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 650,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-12-15",
+        "reviewedOn": "2026-03-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "acura-rlx-suspension-bushing-wear-2014"
+        ]
+      }
+    },
+    {
+      "id": "jaguar-xe-water-pump-ingenium-2017",
+      "model": "XE",
+      "action": "keep_published_pending_source",
+      "reason": "Jaguar service action H291 covers limited 2019-21 XE vehicles with the Ingenium I4 2.0L Petrol engine and addresses coolant-pump operation through a PCM software update with no parts required. It does not establish a mechanical bearing, seal or impeller failure across 2017-2023, does not include the 3.0L V6 Supercharged engine, and does not prescribe water-pump plus thermostat replacement. The source, year, engine, cause and remedy mismatch requires a byte-for-byte hold.",
+      "identityRule": "No content, scope or publication-state changes; partial or mismatched evidence cannot be expanded into the frozen indexed identity.",
+      "commerceDecision": "unchanged-no-commerce-present",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "jaguar-service-action-scope-cause-remedy-mismatch",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2020/MC-10177147-0001.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "H291 covers limited 2019-21 2.0L petrol XE vehicles and a PCM software action with no parts, not the frozen mechanical multi-engine failure."
+        }
+      ],
+      "beforeSha256": "05784dd3ef91be7030b8690d0be43be4662be991798e3bcd4fd770007b32830a",
+      "proposalSha256": "05784dd3ef91be7030b8690d0be43be4662be991798e3bcd4fd770007b32830a",
+      "before": {
+        "make": "Jaguar",
+        "model": "XE",
+        "years": [
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [
+          "25t",
+          "30t",
+          "R-Sport",
+          "S"
+        ],
+        "engines": [
+          "2.0L Ingenium Turbo I4",
+          "3.0L V6 Supercharged"
+        ],
+        "category": "cooling",
+        "title": "Ingenium Water Pump Premature Failure",
+        "description": "The water pump on the Ingenium 2.0L engine in the XE fails prematurely due to bearing wear and impeller separation. Coolant leaks from the pump weep hole as the seal degrades, eventually leading to complete failure and overheating if not addressed.",
+        "solution": "Replace the water pump assembly with the updated JLR part. Include a new thermostat and coolant flush. Use OAT coolant only. Monitor coolant level closely for the first 500 miles after replacement.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Coolant leak from water pump weep hole",
+          "Overheating warning",
+          "Whining noise from front of engine",
+          "Coolant puddle under car after parking",
+          "Temperature gauge rising in traffic"
+        ],
+        "affectedSystems": [
+          "Cooling System",
+          "Engine"
+        ],
+        "dtcCodes": [
+          "P26B7"
+        ],
+        "estimatedCostLow": 700,
+        "estimatedCostHigh": 1600,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "forum",
+            "title": "JaguarForum.com — XE Ingenium water pump failure rate discussion and updated part numbers"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "warning",
+            "source": "JaguarForum.com",
+            "content": "Check for a small coolant drip under the front of the car after every drive. Catching the water pump early saves the head gasket.",
+            "upvotes": 145,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 1200,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-02-15",
+        "reviewedOn": "2026-03-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "jaguar-f-pace-water-pump-ingenium-2017",
+          "jaguar-xf-turbo-coolant-hose-ingenium-2016",
+          "land-rover-range-rover-evoque-fuel-pump-2020",
+          "jaguar-e-pace-turbo-coolant-hose-ingenium-2018"
+        ]
+      },
+      "proposal": {
+        "make": "Jaguar",
+        "model": "XE",
+        "years": [
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [
+          "25t",
+          "30t",
+          "R-Sport",
+          "S"
+        ],
+        "engines": [
+          "2.0L Ingenium Turbo I4",
+          "3.0L V6 Supercharged"
+        ],
+        "category": "cooling",
+        "title": "Ingenium Water Pump Premature Failure",
+        "description": "The water pump on the Ingenium 2.0L engine in the XE fails prematurely due to bearing wear and impeller separation. Coolant leaks from the pump weep hole as the seal degrades, eventually leading to complete failure and overheating if not addressed.",
+        "solution": "Replace the water pump assembly with the updated JLR part. Include a new thermostat and coolant flush. Use OAT coolant only. Monitor coolant level closely for the first 500 miles after replacement.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Coolant leak from water pump weep hole",
+          "Overheating warning",
+          "Whining noise from front of engine",
+          "Coolant puddle under car after parking",
+          "Temperature gauge rising in traffic"
+        ],
+        "affectedSystems": [
+          "Cooling System",
+          "Engine"
+        ],
+        "dtcCodes": [
+          "P26B7"
+        ],
+        "estimatedCostLow": 700,
+        "estimatedCostHigh": 1600,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "forum",
+            "title": "JaguarForum.com — XE Ingenium water pump failure rate discussion and updated part numbers"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "warning",
+            "source": "JaguarForum.com",
+            "content": "Check for a small coolant drip under the front of the car after every drive. Catching the water pump early saves the head gasket.",
+            "upvotes": 145,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 1200,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-02-15",
+        "reviewedOn": "2026-03-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "jaguar-f-pace-water-pump-ingenium-2017",
+          "jaguar-xf-turbo-coolant-hose-ingenium-2016",
+          "land-rover-range-rover-evoque-fuel-pump-2020",
+          "jaguar-e-pace-turbo-coolant-hose-ingenium-2018"
+        ]
+      }
+    },
+    {
+      "id": "jaguar-xe-zf-8hp-harsh-shift-2017",
+      "model": "XE",
+      "action": "keep_published_pending_source",
+      "reason": "Jaguar bulletin JTB00637NAS1 covers a limited 2018 XE VIN range with the Ingenium I4 2.0L Petrol engine. It attributes hesitation or harsh gear changes to engine and/or transmission calibration software and lists no parts required. It does not support the frozen 2017-2023 and 3.0L V6 scope, a recurring 2-3 cold shift, adaptive-logic diagnosis, fluid/filter service, ZF LifeguardFluid 8, valve-body inspection or cost range. The broader row remains unchanged.",
+      "identityRule": "No content, scope or publication-state changes; partial or mismatched evidence cannot be expanded into the frozen indexed identity.",
+      "commerceDecision": "unchanged-no-commerce-present",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "jaguar-bulletin-year-engine-cause-remedy-mismatch",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2018/MC-10142395-9999.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "JTB00637NAS1 covers a limited 2018 2.0L petrol VIN range and calibration software, not the frozen seven-year multi-engine service prescription."
+        }
+      ],
+      "beforeSha256": "d769491dfb8d8cab0b135adaecd1cdb55b86447f6ce523a5efe73b82ce2b33c2",
+      "proposalSha256": "d769491dfb8d8cab0b135adaecd1cdb55b86447f6ce523a5efe73b82ce2b33c2",
+      "before": {
+        "make": "Jaguar",
+        "model": "XE",
+        "years": [
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [
+          "2.0L Ingenium Turbo I4",
+          "3.0L V6 Supercharged"
+        ],
+        "category": "transmission",
+        "title": "ZF 8HP Harsh Shifting and Hesitation",
+        "description": "The ZF 8HP transmission in the XE exhibits harsh shifting between 2nd and 3rd gear and hesitant downshifts during spirited driving. The adaptive shift logic can become confused, leading to inconsistent shift quality that worsens in cold weather.",
+        "solution": "Perform a transmission fluid and filter change with ZF LifeguardFluid 8. Reset the adaptive shift parameters via JLR diagnostic tool. Update the TCM software to the latest calibration. If harsh shifting persists, inspect the valve body solenoids.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Harsh 2-3 upshift especially when cold",
+          "Hesitation on downshift during passing",
+          "Jerking at low speeds",
+          "Shift quality varies day to day",
+          "Occasional transmission fault message"
+        ],
+        "affectedSystems": [
+          "Transmission",
+          "Drivetrain"
+        ],
+        "dtcCodes": [
+          "P0730"
+        ],
+        "estimatedCostLow": 400,
+        "estimatedCostHigh": 2000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "forum",
+            "title": "JaguarForums.com — XE ZF 8HP harsh shift fix with fluid change and TCM reset procedure"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "source": "JaguarForums.com",
+            "content": "A fluid and filter change with TCM reset fixes harsh shifting in 80% of cases. Budget $350-$500 at an independent shop.",
+            "upvotes": 176,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 890,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-01-25",
+        "reviewedOn": "2026-03-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "jaguar-xf-zf-8hp-mechatronic-2016",
+          "chrysler-voyager-transmission-shudder-2020"
+        ]
+      },
+      "proposal": {
+        "make": "Jaguar",
+        "model": "XE",
+        "years": [
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [
+          "2.0L Ingenium Turbo I4",
+          "3.0L V6 Supercharged"
+        ],
+        "category": "transmission",
+        "title": "ZF 8HP Harsh Shifting and Hesitation",
+        "description": "The ZF 8HP transmission in the XE exhibits harsh shifting between 2nd and 3rd gear and hesitant downshifts during spirited driving. The adaptive shift logic can become confused, leading to inconsistent shift quality that worsens in cold weather.",
+        "solution": "Perform a transmission fluid and filter change with ZF LifeguardFluid 8. Reset the adaptive shift parameters via JLR diagnostic tool. Update the TCM software to the latest calibration. If harsh shifting persists, inspect the valve body solenoids.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Harsh 2-3 upshift especially when cold",
+          "Hesitation on downshift during passing",
+          "Jerking at low speeds",
+          "Shift quality varies day to day",
+          "Occasional transmission fault message"
+        ],
+        "affectedSystems": [
+          "Transmission",
+          "Drivetrain"
+        ],
+        "dtcCodes": [
+          "P0730"
+        ],
+        "estimatedCostLow": 400,
+        "estimatedCostHigh": 2000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "forum",
+            "title": "JaguarForums.com — XE ZF 8HP harsh shift fix with fluid change and TCM reset procedure"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "source": "JaguarForums.com",
+            "content": "A fluid and filter change with TCM reset fixes harsh shifting in 80% of cases. Budget $350-$500 at an independent shop.",
+            "upvotes": 176,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 890,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-01-25",
+        "reviewedOn": "2026-03-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "jaguar-xf-zf-8hp-mechatronic-2016",
+          "chrysler-voyager-transmission-shudder-2020"
+        ]
+      }
+    }
+  ]
+}
