@@ -1,0 +1,4356 @@
+{
+  "schemaVersion": 1,
+  "status": "proposal-only",
+  "auditStage": "model-primary-source-adjudication",
+  "requiresIndependentApproval": true,
+  "generatedOn": "2026-08-06",
+  "make": "Jeep",
+  "model": "Cherokee",
+  "completionStatement": "This packet reconciles all 18 frozen Jeep Cherokee rows. Two exact same-identity NHTSA recall pages receive no-commerce rewrites; 16 uncertain, partial or mismatched identities remain byte-for-byte unchanged.",
+  "safetyContract": [
+    "No production database write, cache purge, deployment, archive action, redirect, slug change, title change, category change, year change, new issue or public-page change is authorized by this packet.",
+    "All 18 Cherokee records remain published, all IDs remain present, and all 16 holds remain byte-for-byte unchanged.",
+    "The two rewrites preserve ID, make, model, title, category, years, status and relatedIssueIds while removing unsupported commerce and numeric claims.",
+    "A partial source or a source for a different model cannot be used to overwrite an indexed identity.",
+    "Recall identities found in the inventory but absent from this frozen model remain deferred until the post-audit new-known-issues phase."
+  ],
+  "source": {
+    "snapshotFile": "data/_jeep-deeplink-snapshot-2026-08-06.json",
+    "snapshotSha256": "e58c24fa8f57e198f5b77a539345b9f36ab5c8232c77263140c6915b311a9ddd",
+    "snapshotGeneratedAt": "2026-08-07T17:03:22.937Z",
+    "snapshotHash": "18ad4be47bc5941799a865d829fd30d5361a0cf7635e9ec106db32a7f109c7eb",
+    "modelRecordCount": 18
+  },
+  "observations": [
+    {
+      "code": "cherokee-can-bus-citation-is-ferrari-bulletin",
+      "severity": "critical",
+      "recordIds": [
+        "jeep-cherokee-kl-can-bus-2014"
+      ],
+      "detail": "The live, rendered cited PDF is a Ferrari SABELT racing-seat bulletin and provides no Jeep CAN-bus support."
+    },
+    {
+      "code": "cherokee-shifter-campaign-is-grand-cherokee",
+      "severity": "critical",
+      "recordIds": [
+        "jeep-cherokee-kl-shifter-rollaway-2014"
+      ],
+      "detail": "Campaign 16V240000 applies to Grand Cherokee, not Cherokee."
+    },
+    {
+      "code": "cherokee-headlamp-source-partial-year-scope",
+      "severity": "high",
+      "recordIds": [
+        "jeep-cherokee-kl-headlight-condensation-2014"
+      ],
+      "detail": "Bulletin 23-024-22 supports a 2019-2022 procedure, not the frozen 2014-2023 range."
+    },
+    {
+      "code": "cherokee-rear-main-service-path-conflict",
+      "severity": "high",
+      "recordIds": [
+        "jeep-cherokee-rear-main-seal-oil-leak"
+      ],
+      "detail": "The frozen two-piece-seal identity conflicts with its transmission/flexplate-removal instruction and requires independent service-manual review."
+    },
+    {
+      "code": "all-cherokee-pages-preserved",
+      "severity": "seo-safety",
+      "recordIds": [
+        "jeep-cherokee-cracked-exhaust-manifold-4-0l-i6",
+        "jeep-cherokee-crankshaft-position-sensor-failure-causes-intermittent-no-st",
+        "jeep-cherokee-death-wobble",
+        "jeep-cherokee-kl-9speed-trans-2014",
+        "jeep-cherokee-kl-brake-wear-2014",
+        "jeep-cherokee-kl-can-bus-2014",
+        "jeep-cherokee-kl-engine-stalling-2014",
+        "jeep-cherokee-kl-headlight-condensation-2014",
+        "jeep-cherokee-kl-liftgate-fire-2014",
+        "jeep-cherokee-kl-oil-consumption-2014",
+        "jeep-cherokee-kl-oil-filter-housing-2014",
+        "jeep-cherokee-kl-ptu-failure-2014",
+        "jeep-cherokee-kl-shifter-rollaway-2014",
+        "jeep-cherokee-kl-sunroof-drain-2014",
+        "jeep-cherokee-kl-tipm-fuel-pump-2014",
+        "jeep-cherokee-oil-filter-adapter-o-ring-leak",
+        "jeep-cherokee-rear-main-seal-oil-leak",
+        "jeep-cherokee-rear-unibody-frame-rail-floor-pan-rocker-rust"
+      ],
+      "detail": "Every frozen Cherokee record remains published; no ID, title, category or year scope moves."
+    }
+  ],
+  "pdfSources": {
+    "canBus": {
+      "url": "https://static.nhtsa.gov/odi/tsbs/2019/MC-10162581-9999.pdf",
+      "sha256": "3f841cae0d81726723a7711828ec43b8e02e2a740fa1f881cf20a2ca7569b771",
+      "visuallyInspectedPages": [
+        1
+      ],
+      "expectedMarkers": [
+        "FERRARI NORTH AMERICA",
+        "SABELT Racing Seats",
+        "458",
+        "F12",
+        "California"
+      ]
+    },
+    "headlamp": {
+      "url": "https://static.nhtsa.gov/odi/tsbs/2022/MC-10221500-9999.pdf",
+      "sha256": "a0bcf43e4d49e8b6c8bf5c8d493b2fc84c8d1909cda02ae65ba8d64e02a421ab",
+      "visuallyInspectedPages": [
+        1,
+        2
+      ],
+      "expectedMarkers": [
+        "23-024-22",
+        "2019 - 2022",
+        "Jeep Cherokee",
+        "20 minutes",
+        "does not need to be replaced"
+      ]
+    }
+  },
+  "recallSources": {
+    "liftgate": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=23V338000",
+    "ptu": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=20V343000",
+    "shifterMismatch": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=16V240000"
+  },
+  "expectedCampaigns": {
+    "liftgate": {
+      "campaign": "23V338000",
+      "models": [
+        "CHEROKEE"
+      ],
+      "years": [
+        "2014",
+        "2015",
+        "2016"
+      ],
+      "resultCount": 3,
+      "markers": [
+        "power liftgate module",
+        "vehicle fire with the ignition on or off",
+        "park outside and away from structures",
+        "relocate the power liftgate module",
+        "add a water shield",
+        "replace the module and electrical connectors",
+        "free of charge",
+        "supersedes recalls 15V-393 and 15V-826"
+      ]
+    },
+    "ptu": {
+      "campaign": "20V343000",
+      "models": [
+        "CHEROKEE"
+      ],
+      "years": [
+        "2014",
+        "2015",
+        "2016",
+        "2017"
+      ],
+      "resultCount": 4,
+      "markers": [
+        "two-speed Power Transfer Unit",
+        "input spline teeth to wear off",
+        "loss of drive",
+        "loss of the Park function",
+        "engaging rear wheel drive",
+        "electronic parking brake"
+      ]
+    },
+    "shifterMismatch": {
+      "campaign": "16V240000",
+      "resultCount": 8,
+      "modelYears": [
+        "300|2012",
+        "300|2013",
+        "300|2014",
+        "CHARGER|2012",
+        "CHARGER|2013",
+        "CHARGER|2014",
+        "GRAND CHEROKEE|2014",
+        "GRAND CHEROKEE|2015"
+      ],
+      "markers": [
+        "monostable gear selector",
+        "not in PARK",
+        "software to mitigate the risk of vehicle rollaway"
+      ]
+    }
+  },
+  "recallInventory": {
+    "queries": {
+      "1990": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=CHEROKEE&modelYear=1990",
+      "1991": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=CHEROKEE&modelYear=1991",
+      "1992": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=CHEROKEE&modelYear=1992",
+      "1993": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=CHEROKEE&modelYear=1993",
+      "1994": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=CHEROKEE&modelYear=1994",
+      "1995": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=CHEROKEE&modelYear=1995",
+      "1996": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=CHEROKEE&modelYear=1996",
+      "1997": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=CHEROKEE&modelYear=1997",
+      "1998": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=CHEROKEE&modelYear=1998",
+      "1999": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=CHEROKEE&modelYear=1999",
+      "2014": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=CHEROKEE&modelYear=2014",
+      "2015": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=CHEROKEE&modelYear=2015",
+      "2016": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=CHEROKEE&modelYear=2016",
+      "2017": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=CHEROKEE&modelYear=2017",
+      "2018": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=CHEROKEE&modelYear=2018",
+      "2019": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=CHEROKEE&modelYear=2019",
+      "2020": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=CHEROKEE&modelYear=2020",
+      "2021": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=CHEROKEE&modelYear=2021",
+      "2022": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=CHEROKEE&modelYear=2022",
+      "2023": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=CHEROKEE&modelYear=2023"
+    },
+    "expectedStatus": 200,
+    "expectedCampaignsByYear": {
+      "1990": [
+        "06E026000",
+        "09E012000",
+        "09E025000",
+        "90V177000",
+        "91V003000",
+        "91V063000",
+        "96V260000",
+        "97I002000",
+        "98V005000"
+      ],
+      "1991": [
+        "06E026000",
+        "09E012000",
+        "09E025000",
+        "90V206000",
+        "91V023000",
+        "91V063000",
+        "96V260000",
+        "97I002000",
+        "98V005000"
+      ],
+      "1992": [
+        "06E026000",
+        "09E012000",
+        "09E025000",
+        "97I002000",
+        "99V340000"
+      ],
+      "1993": [
+        "06E026000",
+        "09E012000",
+        "09E025000",
+        "93V037000",
+        "97I002000",
+        "97V069000",
+        "99V340000"
+      ],
+      "1994": [
+        "06E026000",
+        "08V056000",
+        "09E012000",
+        "09E025000",
+        "11V279000",
+        "93V161000",
+        "97I002000",
+        "97V069000",
+        "99V340000"
+      ],
+      "1995": [
+        "06E022000",
+        "06E026000",
+        "08V056000",
+        "09E012000",
+        "09E025000",
+        "11V279000",
+        "95V057000",
+        "95V172000",
+        "97I002000",
+        "97V069000",
+        "99V340000"
+      ],
+      "1996": [
+        "00V136000",
+        "06E022000",
+        "06E026000",
+        "08V056000",
+        "09E012000",
+        "09E025000",
+        "11V279000",
+        "95V193000",
+        "97V040000",
+        "97V069000"
+      ],
+      "1997": [
+        "00V105000",
+        "00V136000",
+        "06E011000",
+        "06E022000",
+        "06E026000",
+        "06E065000",
+        "08V056000",
+        "09E012000",
+        "09E025000",
+        "97V194000"
+      ],
+      "1998": [
+        "00V105000",
+        "00V136000",
+        "06E011000",
+        "06E022000",
+        "06E026000",
+        "06E065000",
+        "08V056000",
+        "09E012000",
+        "09E025000",
+        "98V023000",
+        "98V048000"
+      ],
+      "1999": [
+        "00V105000",
+        "00V136000",
+        "06E011000",
+        "06E022000",
+        "06E026000",
+        "06E065000",
+        "09E012000",
+        "09E025000"
+      ],
+      "2014": [
+        "14V293000",
+        "14V392000",
+        "15V041000",
+        "15V393000",
+        "15V461000",
+        "15V509000",
+        "16V529000",
+        "16V590000",
+        "17V824000",
+        "18V332000",
+        "19V447000",
+        "20V343000",
+        "23V338000"
+      ],
+      "2015": [
+        "15V041000",
+        "15V393000",
+        "15V461000",
+        "15V676000",
+        "15V826000",
+        "16V529000",
+        "16V590000",
+        "17V824000",
+        "18V332000",
+        "20V343000",
+        "23V338000"
+      ],
+      "2016": [
+        "15V826000",
+        "16V284000",
+        "16V287000",
+        "16V590000",
+        "17V824000",
+        "18V332000",
+        "20V343000",
+        "23V302000",
+        "23V338000"
+      ],
+      "2017": [
+        "16V799000",
+        "17V543000",
+        "18V332000",
+        "20V343000",
+        "23V302000",
+        "25V011000"
+      ],
+      "2018": [
+        "17V543000",
+        "17V670000",
+        "18V282000",
+        "18V332000",
+        "18V494000",
+        "18V524000",
+        "25V011000"
+      ],
+      "2019": [
+        "18V344000",
+        "18V492000",
+        "18V523000",
+        "18V524000",
+        "18V739000",
+        "18V917000",
+        "19V248000",
+        "19V449000",
+        "19V637000",
+        "25V011000",
+        "26V290000"
+      ],
+      "2020": [
+        "19V637000",
+        "20V191000",
+        "26V290000"
+      ],
+      "2021": [
+        "20V657000",
+        "21V310000",
+        "24V516000",
+        "26V290000"
+      ],
+      "2022": [
+        "24V239000",
+        "24V516000",
+        "26V290000"
+      ],
+      "2023": [
+        "26V290000"
+      ]
+    }
+  },
+  "summary": {
+    "rewrite_same_identity": 2,
+    "keep_published_pending_source": 16,
+    "total": 18
+  },
+  "rows": [
+    {
+      "id": "jeep-cherokee-death-wobble",
+      "model": "Cherokee",
+      "action": "keep_published_pending_source",
+      "reason": "No exact Jeep or government primary source was pinned for the frozen 1990-1999 cumulative front-end cause hierarchy, speed threshold, track-bar part number, brace/stabilizer outcome or cost range. The indexed page and commerce remain byte-for-byte unchanged pending exact source and fitment review.",
+      "identityRule": "No source may change an indexed page identity. A different model, year scope, component, outcome or remedy requires a byte-for-byte hold.",
+      "commerceDecision": "unchanged-pending-exact-fitment-source",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "nhtsa-recall-inventory-boundary-not-claim-proof",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=CHEROKEE&modelYear=1990",
+          "verifiedOn": "2026-08-06",
+          "observation": "The official recall inventory was locked for the frozen model-year ranges, but it does not prove these broader maintenance, part-fitment or aggregated failure claims."
+        }
+      ],
+      "beforeSha256": "20674d61337e242f23bed2571c347dec74754fc9f1a820989b6327585e3ec758",
+      "proposalSha256": "20674d61337e242f23bed2571c347dec74754fc9f1a820989b6327585e3ec758",
+      "before": {
+        "make": "Jeep",
+        "model": "Cherokee",
+        "years": [
+          1990,
+          1991,
+          1992,
+          1993,
+          1994,
+          1995,
+          1996,
+          1997,
+          1998,
+          1999
+        ],
+        "trims": [
+          "SE",
+          "Sport",
+          "Classic",
+          "Country",
+          "Limited"
+        ],
+        "engines": [
+          "4.0L I6 (242)",
+          "2.5L I4 (150)"
+        ],
+        "category": "steering",
+        "title": "Death Wobble (Front Solid-Axle Steering Oscillation)",
+        "description": "Like other coil-sprung, solid-front-axle Jeeps, the XJ is prone to 'death wobble' - a violent, self-sustaining side-to-side shaking of the front axle and steering, usually triggered by a bump or expansion joint at speeds above ~45 mph. It is caused by cumulative slop anywhere in the front steering/suspension system rather than a single part; the most common single culprit is worn track-bar bushings, followed by tie-rod ends and ball joints. Wear accelerates with age, larger tires, or lift kits, and the violent shaking can feel like a loss of control.",
+        "solution": "Inspect the entire front end and replace worn components - most commonly the front track bar (and its bushings/mount), tie-rod ends, ball joints, and control-arm bushings - then confirm proper torque and alignment. A quality track bar, steering-box brace, and fresh steering stabilizer resolve the vast majority of cases. A new steering stabilizer alone only masks the symptom; the worn joint must be replaced.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Violent front-end shaking after hitting a bump above 45 mph",
+          "Steering wheel shakes hard side to side",
+          "Vibration only stops after slowing down significantly",
+          "Feeling of losing control"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 150,
+        "estimatedCostHigh": 900,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.cherokeeforum.com/f2/death-wobble-why-how-fix-241134/",
+            "type": "forum",
+            "title": "Death wobble. Why, and how to fix it? - Jeep Cherokee Forum"
+          },
+          {
+            "url": "https://www.cherokeetalk.com/threads/death-wobble-check-sheet.294/",
+            "type": "forum",
+            "title": "death wobble check sheet - Jeep Cherokee Talk"
+          },
+          {
+            "url": "https://www.jeepforum.com/threads/the-real-death-wobble-fix.306034/",
+            "type": "forum",
+            "title": "The Real Death Wobble Fix - Jeep Enthusiast Forums"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [
+          {
+            "note": "(reconciled from the issue's own fix text)",
+            "source": "reconciliation",
+            "buyLinks": [
+              {
+                "url": "https://www.amazon.com/s?k=52088432&tag=au7o-20",
+                "vendor": "Amazon"
+              },
+              {
+                "url": "https://www.rockauto.com/en/partsearch/?q=52088432",
+                "vendor": "RockAuto"
+              },
+              {
+                "url": "https://www.ebay.com/sch/i.html?_nkw=52088432",
+                "vendor": "eBay"
+              }
+            ],
+            "priceLow": null,
+            "component": "front track bar",
+            "priceHigh": null,
+            "oemPartNumber": "52088432",
+            "aftermarketXref": []
+          }
+        ],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-08",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Jeep",
+        "model": "Cherokee",
+        "years": [
+          1990,
+          1991,
+          1992,
+          1993,
+          1994,
+          1995,
+          1996,
+          1997,
+          1998,
+          1999
+        ],
+        "trims": [
+          "SE",
+          "Sport",
+          "Classic",
+          "Country",
+          "Limited"
+        ],
+        "engines": [
+          "4.0L I6 (242)",
+          "2.5L I4 (150)"
+        ],
+        "category": "steering",
+        "title": "Death Wobble (Front Solid-Axle Steering Oscillation)",
+        "description": "Like other coil-sprung, solid-front-axle Jeeps, the XJ is prone to 'death wobble' - a violent, self-sustaining side-to-side shaking of the front axle and steering, usually triggered by a bump or expansion joint at speeds above ~45 mph. It is caused by cumulative slop anywhere in the front steering/suspension system rather than a single part; the most common single culprit is worn track-bar bushings, followed by tie-rod ends and ball joints. Wear accelerates with age, larger tires, or lift kits, and the violent shaking can feel like a loss of control.",
+        "solution": "Inspect the entire front end and replace worn components - most commonly the front track bar (and its bushings/mount), tie-rod ends, ball joints, and control-arm bushings - then confirm proper torque and alignment. A quality track bar, steering-box brace, and fresh steering stabilizer resolve the vast majority of cases. A new steering stabilizer alone only masks the symptom; the worn joint must be replaced.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Violent front-end shaking after hitting a bump above 45 mph",
+          "Steering wheel shakes hard side to side",
+          "Vibration only stops after slowing down significantly",
+          "Feeling of losing control"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 150,
+        "estimatedCostHigh": 900,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.cherokeeforum.com/f2/death-wobble-why-how-fix-241134/",
+            "type": "forum",
+            "title": "Death wobble. Why, and how to fix it? - Jeep Cherokee Forum"
+          },
+          {
+            "url": "https://www.cherokeetalk.com/threads/death-wobble-check-sheet.294/",
+            "type": "forum",
+            "title": "death wobble check sheet - Jeep Cherokee Talk"
+          },
+          {
+            "url": "https://www.jeepforum.com/threads/the-real-death-wobble-fix.306034/",
+            "type": "forum",
+            "title": "The Real Death Wobble Fix - Jeep Enthusiast Forums"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [
+          {
+            "note": "(reconciled from the issue's own fix text)",
+            "source": "reconciliation",
+            "buyLinks": [
+              {
+                "url": "https://www.amazon.com/s?k=52088432&tag=au7o-20",
+                "vendor": "Amazon"
+              },
+              {
+                "url": "https://www.rockauto.com/en/partsearch/?q=52088432",
+                "vendor": "RockAuto"
+              },
+              {
+                "url": "https://www.ebay.com/sch/i.html?_nkw=52088432",
+                "vendor": "eBay"
+              }
+            ],
+            "priceLow": null,
+            "component": "front track bar",
+            "priceHigh": null,
+            "oemPartNumber": "52088432",
+            "aftermarketXref": []
+          }
+        ],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-08",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "jeep-cherokee-cracked-exhaust-manifold-4-0l-i6",
+      "model": "Cherokee",
+      "action": "keep_published_pending_source",
+      "reason": "No exact primary source was pinned for the full 1990-1999 scope, collector/weld mechanism, flex-section remedy, welding-recurrence claim or part 4883385 fitment. The row remains byte-for-byte unchanged.",
+      "identityRule": "No source may change an indexed page identity. A different model, year scope, component, outcome or remedy requires a byte-for-byte hold.",
+      "commerceDecision": "unchanged-pending-exact-fitment-source",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "nhtsa-recall-inventory-boundary-not-claim-proof",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=CHEROKEE&modelYear=1990",
+          "verifiedOn": "2026-08-06",
+          "observation": "The official recall inventory was locked for the frozen model-year ranges, but it does not prove these broader maintenance, part-fitment or aggregated failure claims."
+        }
+      ],
+      "beforeSha256": "fb497a5a8ac2849c455a6d6af7d1219331524ffeeb37c31dea5527eb266228b8",
+      "proposalSha256": "fb497a5a8ac2849c455a6d6af7d1219331524ffeeb37c31dea5527eb266228b8",
+      "before": {
+        "make": "Jeep",
+        "model": "Cherokee",
+        "years": [
+          1990,
+          1991,
+          1992,
+          1993,
+          1994,
+          1995,
+          1996,
+          1997,
+          1998,
+          1999
+        ],
+        "trims": [
+          "SE",
+          "Sport",
+          "Classic",
+          "Country",
+          "Limited"
+        ],
+        "engines": [
+          "4.0L I6 (242)"
+        ],
+        "category": "exhaust",
+        "title": "Cracked Exhaust Manifold on the 4.0L I6",
+        "description": "The factory 4.0L exhaust manifold is well known for cracking, most often where the two down pipes converge into the collector. The cracks are frequently hairline and follow the factory welds; a major cause is that the manifold is rigidly mounted to the chassis while it moves with the engine, stressing the metal. Because the leak opens under load and heat expansion, it is easily mistaken for a lifter/valvetrain tick. Left alone it worsens over time and can also throw off idle quality and cause a slight power loss.",
+        "solution": "Replace the exhaust manifold - many owners fit a heavier aftermarket or upgraded one-piece/header manifold with flex sections to prevent recurrence - along with the manifold gasket and hardware. Welding the factory manifold is generally not worthwhile as it tends to re-crack. Diagnosis is confirmed by a loud tick that appears under acceleration and quiets at idle.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Loud ticking/tapping under acceleration that fades at idle",
+          "Exhaust smell or tick from front of engine",
+          "Slightly erratic idle and minor power loss",
+          "Sound resembles a lifter tick but appears under load"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 200,
+        "estimatedCostHigh": 900,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.cherokeeforum.com/f2/cracked-exhaust-manifold-34750/",
+            "type": "forum",
+            "title": "Cracked Exhaust Manifold - Jeep Cherokee Forum"
+          },
+          {
+            "url": "https://www.jeepforum.com/threads/exhaust-manifold-crack-symptoms.244863/",
+            "type": "forum",
+            "title": "Exhaust manifold crack symptoms? - Jeep Enthusiast Forums"
+          },
+          {
+            "url": "https://naxja.org/threads/cracked-exhaust-manifold.38295/",
+            "type": "forum",
+            "title": "cracked exhaust manifold - NAXJA Forums"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [
+          {
+            "note": "(reconciled from the issue's own fix text)",
+            "source": "reconciliation",
+            "buyLinks": [
+              {
+                "url": "https://www.amazon.com/s?k=4883385&tag=au7o-20",
+                "vendor": "Amazon"
+              },
+              {
+                "url": "https://www.rockauto.com/en/partsearch/?q=4883385",
+                "vendor": "RockAuto"
+              },
+              {
+                "url": "https://www.ebay.com/sch/i.html?_nkw=4883385",
+                "vendor": "eBay"
+              }
+            ],
+            "priceLow": null,
+            "component": "exhaust manifold",
+            "priceHigh": null,
+            "oemPartNumber": "4883385",
+            "aftermarketXref": []
+          }
+        ],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-08",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Jeep",
+        "model": "Cherokee",
+        "years": [
+          1990,
+          1991,
+          1992,
+          1993,
+          1994,
+          1995,
+          1996,
+          1997,
+          1998,
+          1999
+        ],
+        "trims": [
+          "SE",
+          "Sport",
+          "Classic",
+          "Country",
+          "Limited"
+        ],
+        "engines": [
+          "4.0L I6 (242)"
+        ],
+        "category": "exhaust",
+        "title": "Cracked Exhaust Manifold on the 4.0L I6",
+        "description": "The factory 4.0L exhaust manifold is well known for cracking, most often where the two down pipes converge into the collector. The cracks are frequently hairline and follow the factory welds; a major cause is that the manifold is rigidly mounted to the chassis while it moves with the engine, stressing the metal. Because the leak opens under load and heat expansion, it is easily mistaken for a lifter/valvetrain tick. Left alone it worsens over time and can also throw off idle quality and cause a slight power loss.",
+        "solution": "Replace the exhaust manifold - many owners fit a heavier aftermarket or upgraded one-piece/header manifold with flex sections to prevent recurrence - along with the manifold gasket and hardware. Welding the factory manifold is generally not worthwhile as it tends to re-crack. Diagnosis is confirmed by a loud tick that appears under acceleration and quiets at idle.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Loud ticking/tapping under acceleration that fades at idle",
+          "Exhaust smell or tick from front of engine",
+          "Slightly erratic idle and minor power loss",
+          "Sound resembles a lifter tick but appears under load"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 200,
+        "estimatedCostHigh": 900,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.cherokeeforum.com/f2/cracked-exhaust-manifold-34750/",
+            "type": "forum",
+            "title": "Cracked Exhaust Manifold - Jeep Cherokee Forum"
+          },
+          {
+            "url": "https://www.jeepforum.com/threads/exhaust-manifold-crack-symptoms.244863/",
+            "type": "forum",
+            "title": "Exhaust manifold crack symptoms? - Jeep Enthusiast Forums"
+          },
+          {
+            "url": "https://naxja.org/threads/cracked-exhaust-manifold.38295/",
+            "type": "forum",
+            "title": "cracked exhaust manifold - NAXJA Forums"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [
+          {
+            "note": "(reconciled from the issue's own fix text)",
+            "source": "reconciliation",
+            "buyLinks": [
+              {
+                "url": "https://www.amazon.com/s?k=4883385&tag=au7o-20",
+                "vendor": "Amazon"
+              },
+              {
+                "url": "https://www.rockauto.com/en/partsearch/?q=4883385",
+                "vendor": "RockAuto"
+              },
+              {
+                "url": "https://www.ebay.com/sch/i.html?_nkw=4883385",
+                "vendor": "eBay"
+              }
+            ],
+            "priceLow": null,
+            "component": "exhaust manifold",
+            "priceHigh": null,
+            "oemPartNumber": "4883385",
+            "aftermarketXref": []
+          }
+        ],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-08",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "jeep-cherokee-crankshaft-position-sensor-failure-causes-intermittent-no-st",
+      "model": "Cherokee",
+      "action": "keep_published_pending_source",
+      "reason": "No exact primary source was pinned for the thermal-failure mechanism, P0320/P0335 mapping, 125,000-175,000-mile range, Mopar/NTK recommendation or part 56027866AB fitment across both frozen engines. The row remains byte-for-byte unchanged.",
+      "identityRule": "No source may change an indexed page identity. A different model, year scope, component, outcome or remedy requires a byte-for-byte hold.",
+      "commerceDecision": "unchanged-pending-exact-fitment-source",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "nhtsa-recall-inventory-boundary-not-claim-proof",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=CHEROKEE&modelYear=1990",
+          "verifiedOn": "2026-08-06",
+          "observation": "The official recall inventory was locked for the frozen model-year ranges, but it does not prove these broader maintenance, part-fitment or aggregated failure claims."
+        }
+      ],
+      "beforeSha256": "9601486eb290eaa82679601d1e9145dc710cdf4a38331f37431a6d048a218650",
+      "proposalSha256": "9601486eb290eaa82679601d1e9145dc710cdf4a38331f37431a6d048a218650",
+      "before": {
+        "make": "Jeep",
+        "model": "Cherokee",
+        "years": [
+          1990,
+          1991,
+          1992,
+          1993,
+          1994,
+          1995,
+          1996,
+          1997,
+          1998,
+          1999
+        ],
+        "trims": [
+          "SE",
+          "Sport",
+          "Classic",
+          "Country",
+          "Limited"
+        ],
+        "engines": [
+          "4.0L I6 (242)",
+          "2.5L I4 (150)"
+        ],
+        "category": "electrical",
+        "title": "Crankshaft Position Sensor (CPS) Failure Causes Intermittent No-Start and Hot Stalling",
+        "description": "The crankshaft position sensor on the 4.0L I6 and 2.5L I4 XJ is a classic thermal-failure item. Internal components and wiring degrade with age and heat, so the sensor works cold but drops signal once the engine reaches operating temperature. Without a CPS signal the PCM cuts spark and fuel, producing a stall or a crank-but-no-start that mysteriously 'fixes itself' after the engine cools. It is one of the most frequently discussed XJ failures in enthusiast communities and typically strikes around 125,000-175,000 miles.",
+        "solution": "Replace the crankshaft position sensor (mounted at the bell housing / transmission). The 4.0L PCM is notoriously picky about signal quality, so owners strongly recommend a Mopar (OEM) or NTK sensor rather than a cheap generic unit, which frequently causes repeat failures. It is a roughly one-hour job; a scan tool showing loss of RPM signal while cranking helps confirm before replacing.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Crank but no start",
+          "Engine stalls when hot then restarts after cooling",
+          "Intermittent sudden stalling while driving",
+          "No tachometer signal while cranking"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0320",
+          "P0335"
+        ],
+        "estimatedCostLow": 30,
+        "estimatedCostHigh": 300,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.cherokeeforum.com/f2/no-start-troubleshooting-cam-crank-sensors-264229/",
+            "type": "forum",
+            "title": "No Start Troubleshooting (Cam and Crank Sensors) - Jeep Cherokee Forum"
+          },
+          {
+            "url": "https://naxja.org/threads/crank-but-no-start-when-hot.1111835/",
+            "type": "forum",
+            "title": "Crank but no start when hot - NAXJA Forums"
+          },
+          {
+            "url": "https://newparts.com/blog/jeep-cherokee-xj-crankshaft-position-sensor-issue",
+            "type": "article",
+            "title": "Jeep Cherokee XJ - Crankshaft Position Sensor Issue - NewParts"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [
+          {
+            "note": "(reconciled from the issue's own fix text)",
+            "source": "reconciliation",
+            "buyLinks": [
+              {
+                "url": "https://www.amazon.com/s?k=56027866AB&tag=au7o-20",
+                "vendor": "Amazon"
+              },
+              {
+                "url": "https://www.rockauto.com/en/partsearch/?q=56027866AB",
+                "vendor": "RockAuto"
+              },
+              {
+                "url": "https://www.ebay.com/sch/i.html?_nkw=56027866AB",
+                "vendor": "eBay"
+              }
+            ],
+            "priceLow": null,
+            "component": "crankshaft position sensor",
+            "priceHigh": null,
+            "oemPartNumber": "56027866AB",
+            "aftermarketXref": []
+          }
+        ],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-08",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Jeep",
+        "model": "Cherokee",
+        "years": [
+          1990,
+          1991,
+          1992,
+          1993,
+          1994,
+          1995,
+          1996,
+          1997,
+          1998,
+          1999
+        ],
+        "trims": [
+          "SE",
+          "Sport",
+          "Classic",
+          "Country",
+          "Limited"
+        ],
+        "engines": [
+          "4.0L I6 (242)",
+          "2.5L I4 (150)"
+        ],
+        "category": "electrical",
+        "title": "Crankshaft Position Sensor (CPS) Failure Causes Intermittent No-Start and Hot Stalling",
+        "description": "The crankshaft position sensor on the 4.0L I6 and 2.5L I4 XJ is a classic thermal-failure item. Internal components and wiring degrade with age and heat, so the sensor works cold but drops signal once the engine reaches operating temperature. Without a CPS signal the PCM cuts spark and fuel, producing a stall or a crank-but-no-start that mysteriously 'fixes itself' after the engine cools. It is one of the most frequently discussed XJ failures in enthusiast communities and typically strikes around 125,000-175,000 miles.",
+        "solution": "Replace the crankshaft position sensor (mounted at the bell housing / transmission). The 4.0L PCM is notoriously picky about signal quality, so owners strongly recommend a Mopar (OEM) or NTK sensor rather than a cheap generic unit, which frequently causes repeat failures. It is a roughly one-hour job; a scan tool showing loss of RPM signal while cranking helps confirm before replacing.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Crank but no start",
+          "Engine stalls when hot then restarts after cooling",
+          "Intermittent sudden stalling while driving",
+          "No tachometer signal while cranking"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0320",
+          "P0335"
+        ],
+        "estimatedCostLow": 30,
+        "estimatedCostHigh": 300,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.cherokeeforum.com/f2/no-start-troubleshooting-cam-crank-sensors-264229/",
+            "type": "forum",
+            "title": "No Start Troubleshooting (Cam and Crank Sensors) - Jeep Cherokee Forum"
+          },
+          {
+            "url": "https://naxja.org/threads/crank-but-no-start-when-hot.1111835/",
+            "type": "forum",
+            "title": "Crank but no start when hot - NAXJA Forums"
+          },
+          {
+            "url": "https://newparts.com/blog/jeep-cherokee-xj-crankshaft-position-sensor-issue",
+            "type": "article",
+            "title": "Jeep Cherokee XJ - Crankshaft Position Sensor Issue - NewParts"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [
+          {
+            "note": "(reconciled from the issue's own fix text)",
+            "source": "reconciliation",
+            "buyLinks": [
+              {
+                "url": "https://www.amazon.com/s?k=56027866AB&tag=au7o-20",
+                "vendor": "Amazon"
+              },
+              {
+                "url": "https://www.rockauto.com/en/partsearch/?q=56027866AB",
+                "vendor": "RockAuto"
+              },
+              {
+                "url": "https://www.ebay.com/sch/i.html?_nkw=56027866AB",
+                "vendor": "eBay"
+              }
+            ],
+            "priceLow": null,
+            "component": "crankshaft position sensor",
+            "priceHigh": null,
+            "oemPartNumber": "56027866AB",
+            "aftermarketXref": []
+          }
+        ],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-08",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "jeep-cherokee-kl-9speed-trans-2014",
+      "model": "Cherokee",
+      "action": "keep_published_pending_source",
+      "reason": "The frozen page combines broad 2014-2019 shifting, neutral, calibration, service-interval and cost claims without one reviewed primary package proving the complete identity and scope. It remains byte-for-byte unchanged rather than substituting a narrower bulletin.",
+      "identityRule": "No source may change an indexed page identity. A different model, year scope, component, outcome or remedy requires a byte-for-byte hold.",
+      "commerceDecision": "unchanged-pending-exact-fitment-source",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "nhtsa-recall-inventory-boundary-not-claim-proof",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=CHEROKEE&modelYear=1990",
+          "verifiedOn": "2026-08-06",
+          "observation": "The official recall inventory was locked for the frozen model-year ranges, but it does not prove these broader maintenance, part-fitment or aggregated failure claims."
+        }
+      ],
+      "beforeSha256": "ca57675729eb89dc03152c374a02f9d506562ce95aa4f2d5aa82581661bfd609",
+      "proposalSha256": "ca57675729eb89dc03152c374a02f9d506562ce95aa4f2d5aa82581661bfd609",
+      "before": {
+        "make": "Jeep",
+        "model": "Cherokee",
+        "years": [
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "transmission",
+        "title": "ZF 9-Speed Transmission Shifting Problems",
+        "description": "The ZF 948TE 9-speed automatic transmission exhibits harsh shifting, delayed engagement, and unexpected shifting into neutral. Early models (2014-2015) experienced the most severe issues. The transmission can unexpectedly shift into neutral while driving, creating a crash risk.",
+        "solution": "Multiple TSB software updates available (TSB 21-013-16, 18-018-17, 21-008-17). For severe cases, transmission replacement or reprogramming required. Always ensure latest software updates installed. Regular transmission fluid services every 60,000 miles recommended.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Lunging forward after downshift",
+          "Hanging in 2nd gear before aggressive shift",
+          "Failure to downshift when accelerating",
+          "Erratic upshifts and downshifts",
+          "Transmission suddenly shifts into neutral while driving"
+        ],
+        "affectedSystems": [
+          "Transmission"
+        ],
+        "dtcCodes": [
+          "P0700",
+          "P0741",
+          "P0742"
+        ],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 6500,
+        "typicalMileageLow": 48000,
+        "typicalMileageHigh": 72000,
+        "citations": [
+          {
+            "url": "http://www.jeepproblems.com/9-speed-transmission/",
+            "type": "media",
+            "title": "JeepProblems: Hard, Strange Shifts and Sudden Shutdowns with the ZF 9-Speed Transmission"
+          },
+          {
+            "url": "https://www.transmissionrepaircostguide.com/zf-9hp48/",
+            "type": "media",
+            "title": "Transmission Repair Cost Guide: ZF 9HP48 Problems & Specs"
+          },
+          {
+            "url": "https://www.allpar.com/threads/what-is-the-truth-about-the-zf-9-speed.244136/",
+            "type": "forum",
+            "title": "Allpar Forums: What is the truth about the ZF 9 speed?"
+          },
+          {
+            "url": "https://www.jeepcherokeeclub.com/threads/transmission-delayed-rough-shifting-solved.249549/",
+            "type": "forum",
+            "title": "Jeep Cherokee Club: Transmission delayed/rough shifting SOLVED?"
+          },
+          {
+            "url": "https://www.cherishyourcar.com/jeep-cherokee-transmission-problems/",
+            "type": "media",
+            "title": "Cherish Your Car: Jeep Cherokee Transmission Problems: 9-Speed Failures"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "warning",
+            "content": "Avoid 2014-2015 model years; 2016+ have significant improvements"
+          },
+          {
+            "type": "tip",
+            "content": "Regular transmission fluid services every 60,000 miles (not \"lifetime\")"
+          },
+          {
+            "type": "part",
+            "content": "Replacement shift solenoid to restore proper gear engagement",
+            "partName": "Transmission Shift Solenoid",
+            "partBrand": "Dorman",
+            "affiliateUrl": "https://www.amazon.com/s?k=Dorman%20shift%20solenoid%20Jeep%20Cherokee&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Transmission filter kit with gasket for fluid service after solenoid replacement",
+            "partName": "Transmission Filter Kit",
+            "partBrand": "ATP",
+            "affiliateUrl": "https://www.amazon.com/s?k=Jeep%20Cherokee%20transmission%20filter%20kit%20with%20gasket&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 3500,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2023-11-15",
+        "reviewedOn": "2026-02-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "jeep-renegade-9speed-transmission",
+          "chrysler-200-9speed-trans-2015",
+          "ram-1500-8speed-trans-2013",
+          "chrysler-voyager-transmission-shudder-2020"
+        ]
+      },
+      "proposal": {
+        "make": "Jeep",
+        "model": "Cherokee",
+        "years": [
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "transmission",
+        "title": "ZF 9-Speed Transmission Shifting Problems",
+        "description": "The ZF 948TE 9-speed automatic transmission exhibits harsh shifting, delayed engagement, and unexpected shifting into neutral. Early models (2014-2015) experienced the most severe issues. The transmission can unexpectedly shift into neutral while driving, creating a crash risk.",
+        "solution": "Multiple TSB software updates available (TSB 21-013-16, 18-018-17, 21-008-17). For severe cases, transmission replacement or reprogramming required. Always ensure latest software updates installed. Regular transmission fluid services every 60,000 miles recommended.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Lunging forward after downshift",
+          "Hanging in 2nd gear before aggressive shift",
+          "Failure to downshift when accelerating",
+          "Erratic upshifts and downshifts",
+          "Transmission suddenly shifts into neutral while driving"
+        ],
+        "affectedSystems": [
+          "Transmission"
+        ],
+        "dtcCodes": [
+          "P0700",
+          "P0741",
+          "P0742"
+        ],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 6500,
+        "typicalMileageLow": 48000,
+        "typicalMileageHigh": 72000,
+        "citations": [
+          {
+            "url": "http://www.jeepproblems.com/9-speed-transmission/",
+            "type": "media",
+            "title": "JeepProblems: Hard, Strange Shifts and Sudden Shutdowns with the ZF 9-Speed Transmission"
+          },
+          {
+            "url": "https://www.transmissionrepaircostguide.com/zf-9hp48/",
+            "type": "media",
+            "title": "Transmission Repair Cost Guide: ZF 9HP48 Problems & Specs"
+          },
+          {
+            "url": "https://www.allpar.com/threads/what-is-the-truth-about-the-zf-9-speed.244136/",
+            "type": "forum",
+            "title": "Allpar Forums: What is the truth about the ZF 9 speed?"
+          },
+          {
+            "url": "https://www.jeepcherokeeclub.com/threads/transmission-delayed-rough-shifting-solved.249549/",
+            "type": "forum",
+            "title": "Jeep Cherokee Club: Transmission delayed/rough shifting SOLVED?"
+          },
+          {
+            "url": "https://www.cherishyourcar.com/jeep-cherokee-transmission-problems/",
+            "type": "media",
+            "title": "Cherish Your Car: Jeep Cherokee Transmission Problems: 9-Speed Failures"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "warning",
+            "content": "Avoid 2014-2015 model years; 2016+ have significant improvements"
+          },
+          {
+            "type": "tip",
+            "content": "Regular transmission fluid services every 60,000 miles (not \"lifetime\")"
+          },
+          {
+            "type": "part",
+            "content": "Replacement shift solenoid to restore proper gear engagement",
+            "partName": "Transmission Shift Solenoid",
+            "partBrand": "Dorman",
+            "affiliateUrl": "https://www.amazon.com/s?k=Dorman%20shift%20solenoid%20Jeep%20Cherokee&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Transmission filter kit with gasket for fluid service after solenoid replacement",
+            "partName": "Transmission Filter Kit",
+            "partBrand": "ATP",
+            "affiliateUrl": "https://www.amazon.com/s?k=Jeep%20Cherokee%20transmission%20filter%20kit%20with%20gasket&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 3500,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2023-11-15",
+        "reviewedOn": "2026-02-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "jeep-renegade-9speed-transmission",
+          "chrysler-200-9speed-trans-2015",
+          "ram-1500-8speed-trans-2013",
+          "chrysler-voyager-transmission-shudder-2020"
+        ]
+      }
+    },
+    {
+      "id": "jeep-cherokee-kl-brake-wear-2014",
+      "model": "Cherokee",
+      "action": "keep_published_pending_source",
+      "reason": "A video citation cannot establish the frozen 2014-2023 soft-rotor mechanism, 20,000-30,000-mile range or part 68459898AB fitment. The row and commerce remain byte-for-byte unchanged.",
+      "identityRule": "No source may change an indexed page identity. A different model, year scope, component, outcome or remedy requires a byte-for-byte hold.",
+      "commerceDecision": "unchanged-pending-exact-fitment-source",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "nhtsa-recall-inventory-boundary-not-claim-proof",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=CHEROKEE&modelYear=1990",
+          "verifiedOn": "2026-08-06",
+          "observation": "The official recall inventory was locked for the frozen model-year ranges, but it does not prove these broader maintenance, part-fitment or aggregated failure claims."
+        }
+      ],
+      "beforeSha256": "2d0d1bbcfdc1df88a5cc96a2fcee35032c99ce13fd19f21e2cc43caac762666c",
+      "proposalSha256": "2d0d1bbcfdc1df88a5cc96a2fcee35032c99ce13fd19f21e2cc43caac762666c",
+      "before": {
+        "make": "Jeep",
+        "model": "Cherokee",
+        "years": [
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "brakes",
+        "title": "Premature Brake Wear",
+        "description": "Front brake rotors warp prematurely (often around 25,000 miles) due to heat management issues. Soft rotors combined with harder pads and thermal cycling causes excessive wear. Corroded caliper slide pins worsen problem.",
+        "solution": "Replace with higher-quality aftermarket components. Service caliper slide pins - clean, lubricate, or replace if corroded. Consider ceramic pads and premium rotors. Avoid water when brakes hot. Brake fluid flush every 2 years.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Brake pulsation or vibration",
+          "Warped rotors at 20,000-30,000 miles",
+          "Uneven brake pad wear",
+          "Squealing or grinding noises",
+          "Electronic parking brake warning"
+        ],
+        "affectedSystems": [
+          "Brakes"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 250,
+        "estimatedCostHigh": 800,
+        "typicalMileageLow": 20000,
+        "typicalMileageHigh": 30000,
+        "citations": [
+          {
+            "url": "https://www.youtube.com/watch?v=Vv1Y1XQvJ6Q",
+            "type": "video",
+            "title": "YouTube - Brake Rotor Warping and Replacement on Jeep Cherokee by Scotty Kilmer"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Upgrade to ceramic pads for better heat management",
+            "affiliateUrl": "https://www.amazon.com/s?k=Jeep%20Cherokee%20Upgrade%20to%20ceramic%20pads%20for%20better%20heat%20management&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Service caliper slide pins every brake job"
+          }
+        ],
+        "fixParts": [
+          {
+            "note": "(reconciled from the issue's own fix text)",
+            "source": "reconciliation",
+            "buyLinks": [
+              {
+                "url": "https://www.amazon.com/s?k=68459898AB&tag=au7o-20",
+                "vendor": "Amazon"
+              },
+              {
+                "url": "https://www.rockauto.com/en/partsearch/?q=68459898AB",
+                "vendor": "RockAuto"
+              },
+              {
+                "url": "https://www.ebay.com/sch/i.html?_nkw=68459898AB",
+                "vendor": "eBay"
+              }
+            ],
+            "priceLow": null,
+            "component": "front disc brake pad set",
+            "priceHigh": null,
+            "oemPartNumber": "68459898AB",
+            "aftermarketXref": []
+          }
+        ],
+        "humanApproved": true,
+        "reportCount": 600,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2023-08-22",
+        "reviewedOn": "2026-02-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "dodge-caliber-rear-brake-seize-2007",
+          "dodge-journey-brake-wear-2009"
+        ]
+      },
+      "proposal": {
+        "make": "Jeep",
+        "model": "Cherokee",
+        "years": [
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "brakes",
+        "title": "Premature Brake Wear",
+        "description": "Front brake rotors warp prematurely (often around 25,000 miles) due to heat management issues. Soft rotors combined with harder pads and thermal cycling causes excessive wear. Corroded caliper slide pins worsen problem.",
+        "solution": "Replace with higher-quality aftermarket components. Service caliper slide pins - clean, lubricate, or replace if corroded. Consider ceramic pads and premium rotors. Avoid water when brakes hot. Brake fluid flush every 2 years.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Brake pulsation or vibration",
+          "Warped rotors at 20,000-30,000 miles",
+          "Uneven brake pad wear",
+          "Squealing or grinding noises",
+          "Electronic parking brake warning"
+        ],
+        "affectedSystems": [
+          "Brakes"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 250,
+        "estimatedCostHigh": 800,
+        "typicalMileageLow": 20000,
+        "typicalMileageHigh": 30000,
+        "citations": [
+          {
+            "url": "https://www.youtube.com/watch?v=Vv1Y1XQvJ6Q",
+            "type": "video",
+            "title": "YouTube - Brake Rotor Warping and Replacement on Jeep Cherokee by Scotty Kilmer"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Upgrade to ceramic pads for better heat management",
+            "affiliateUrl": "https://www.amazon.com/s?k=Jeep%20Cherokee%20Upgrade%20to%20ceramic%20pads%20for%20better%20heat%20management&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Service caliper slide pins every brake job"
+          }
+        ],
+        "fixParts": [
+          {
+            "note": "(reconciled from the issue's own fix text)",
+            "source": "reconciliation",
+            "buyLinks": [
+              {
+                "url": "https://www.amazon.com/s?k=68459898AB&tag=au7o-20",
+                "vendor": "Amazon"
+              },
+              {
+                "url": "https://www.rockauto.com/en/partsearch/?q=68459898AB",
+                "vendor": "RockAuto"
+              },
+              {
+                "url": "https://www.ebay.com/sch/i.html?_nkw=68459898AB",
+                "vendor": "eBay"
+              }
+            ],
+            "priceLow": null,
+            "component": "front disc brake pad set",
+            "priceHigh": null,
+            "oemPartNumber": "68459898AB",
+            "aftermarketXref": []
+          }
+        ],
+        "humanApproved": true,
+        "reportCount": 600,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2023-08-22",
+        "reviewedOn": "2026-02-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "dodge-caliber-rear-brake-seize-2007",
+          "dodge-journey-brake-wear-2009"
+        ]
+      }
+    },
+    {
+      "id": "jeep-cherokee-kl-can-bus-2014",
+      "model": "Cherokee",
+      "action": "keep_published_pending_source",
+      "reason": "The cited official NHTSA PDF MC-10162581-9999 is Ferrari North America bulletin 2583 about SABELT racing seats for Ferrari 458, F12 and California models, not a Jeep Cherokee CAN-bus bulletin. This critical citation and model mismatch cannot authorize any content change, so the indexed row remains byte-for-byte unchanged.",
+      "identityRule": "No source may change an indexed page identity. A different model, year scope, component, outcome or remedy requires a byte-for-byte hold.",
+      "commerceDecision": "unchanged-pending-exact-fitment-source",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "critical-official-pdf-model-and-subject-mismatch",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2019/MC-10162581-9999.pdf",
+          "sha256": "3f841cae0d81726723a7711828ec43b8e02e2a740fa1f881cf20a2ca7569b771",
+          "visuallyInspectedPages": [
+            1
+          ],
+          "verifiedOn": "2026-08-06",
+          "observation": "The rendered first page is Ferrari bulletin 2583 for SABELT racing seats, not a Jeep CAN-bus bulletin."
+        }
+      ],
+      "beforeSha256": "0d3938e2773d07cd2906bb30043fc0188561fc0a2d740b895709c5b3476d7935",
+      "proposalSha256": "0d3938e2773d07cd2906bb30043fc0188561fc0a2d740b895709c5b3476d7935",
+      "before": {
+        "make": "Jeep",
+        "model": "Cherokee",
+        "years": [
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "CAN Bus Communication Failures",
+        "description": "Controller Area Network electrical system experiences communication failures between modules, triggering multiple warning lights and system failures simultaneously. Common codes U0001 and U0131 indicate wiring harness breaks or connector corrosion.",
+        "solution": "Identify failed module/harness and replace damaged components. Check battery terminals, inspect cargo area for water damage, verify Power Steering Control Module wiring harness above transmission. May require dealer-level diagnostics.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Multiple dashboard warning lights simultaneously",
+          "\"Service Power Steering\" warning",
+          "Transmission surging or shifting issues",
+          "Loss of power steering assistance",
+          "Issues worse in freezing temperatures"
+        ],
+        "affectedSystems": [
+          "Electrical"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 150,
+        "estimatedCostHigh": 2000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://static.nhtsa.gov/odi/tsbs/2019/MC-10162581-9999.pdf",
+            "type": "tsb",
+            "title": "Jeep Cherokee 2014-2018 TSB 18-008-19 Rev. A - CAN Bus Communication Issues and Wiring Harness Inspection"
+          },
+          {
+            "url": "https://www.reddit.com/r/MechanicAdvice/comments/jz8x9v/jeep_cherokee_2015_can_bus_communication_failure/",
+            "type": "forum",
+            "title": "Reddit r/MechanicAdvice Thread Discussing 2015 Jeep Cherokee CAN Bus Communication Failures"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Check battery terminals first - clean and tighten connections"
+          },
+          {
+            "type": "tip",
+            "content": "Inspect driver's side cargo area for standing water"
+          },
+          {
+            "type": "part",
+            "content": "High-performance AGM battery with excellent cold cranking amps and deep cycle capability",
+            "partName": "RedTop AGM Battery",
+            "partBrand": "Optima",
+            "affiliateUrl": "https://www.amazon.com/s?k=Optima%20RedTop%20AGM%20Battery%20Jeep%20Cherokee&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "OEM-quality replacement battery with reliable performance",
+            "partName": "Professional AGM Battery",
+            "partBrand": "ACDelco",
+            "affiliateUrl": "https://www.amazon.com/s?k=ACDelco%20Professional%20AGM%20Battery%20Jeep%20Cherokee&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Automatic battery maintainer to prevent parasitic drain issues during storage",
+            "partName": "Junior 12V Battery Charger Maintainer",
+            "partBrand": "Battery Tender",
+            "affiliateUrl": "https://www.amazon.com/s?k=Battery%20Tender%20Junior%2012V%20Battery%20Charger%20Maintainer%20Jeep%20Cherokee&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Premium electrical tape for wiring repairs and harness wrapping",
+            "partName": "Super 33+ Vinyl Electrical Tape",
+            "partBrand": "3M",
+            "affiliateUrl": "https://www.amazon.com/s?k=3M%20Super%2033%2B%20Vinyl%20Electrical%20Tape%20Jeep%20Cherokee&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Split wire loom tubing to protect repaired or exposed wiring harnesses",
+            "partName": "Split Wire Loom Tubing",
+            "partBrand": "DEI",
+            "affiliateUrl": "https://www.amazon.com/s?k=DEI%20Split%20Wire%20Loom%20Tubing%20Jeep%20Cherokee&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Weatherproof terminal connector kit for reliable wiring repairs",
+            "partName": "Automotive Terminal Connector Kit",
+            "partBrand": "Molex",
+            "affiliateUrl": "https://www.amazon.com/s?k=Molex%20Automotive%20Terminal%20Connector%20Kit%20Jeep%20Cherokee&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Automotive relay replacement set for common relay failures",
+            "partName": "Automotive Relay 5-Pin 12V",
+            "partBrand": "Bosch",
+            "affiliateUrl": "https://www.amazon.com/s?k=Bosch%20Automotive%20Relay%205-Pin%2012V%20Jeep%20Cherokee&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Digital multimeter for diagnosing fuse, relay, and module electrical faults",
+            "partName": "Digital Multimeter",
+            "partBrand": "Innova",
+            "affiliateUrl": "https://www.amazon.com/s?k=Innova%20Digital%20Multimeter%20Jeep%20Cherokee&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 1100,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2023-11-08",
+        "reviewedOn": "2026-02-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Jeep",
+        "model": "Cherokee",
+        "years": [
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "CAN Bus Communication Failures",
+        "description": "Controller Area Network electrical system experiences communication failures between modules, triggering multiple warning lights and system failures simultaneously. Common codes U0001 and U0131 indicate wiring harness breaks or connector corrosion.",
+        "solution": "Identify failed module/harness and replace damaged components. Check battery terminals, inspect cargo area for water damage, verify Power Steering Control Module wiring harness above transmission. May require dealer-level diagnostics.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Multiple dashboard warning lights simultaneously",
+          "\"Service Power Steering\" warning",
+          "Transmission surging or shifting issues",
+          "Loss of power steering assistance",
+          "Issues worse in freezing temperatures"
+        ],
+        "affectedSystems": [
+          "Electrical"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 150,
+        "estimatedCostHigh": 2000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://static.nhtsa.gov/odi/tsbs/2019/MC-10162581-9999.pdf",
+            "type": "tsb",
+            "title": "Jeep Cherokee 2014-2018 TSB 18-008-19 Rev. A - CAN Bus Communication Issues and Wiring Harness Inspection"
+          },
+          {
+            "url": "https://www.reddit.com/r/MechanicAdvice/comments/jz8x9v/jeep_cherokee_2015_can_bus_communication_failure/",
+            "type": "forum",
+            "title": "Reddit r/MechanicAdvice Thread Discussing 2015 Jeep Cherokee CAN Bus Communication Failures"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Check battery terminals first - clean and tighten connections"
+          },
+          {
+            "type": "tip",
+            "content": "Inspect driver's side cargo area for standing water"
+          },
+          {
+            "type": "part",
+            "content": "High-performance AGM battery with excellent cold cranking amps and deep cycle capability",
+            "partName": "RedTop AGM Battery",
+            "partBrand": "Optima",
+            "affiliateUrl": "https://www.amazon.com/s?k=Optima%20RedTop%20AGM%20Battery%20Jeep%20Cherokee&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "OEM-quality replacement battery with reliable performance",
+            "partName": "Professional AGM Battery",
+            "partBrand": "ACDelco",
+            "affiliateUrl": "https://www.amazon.com/s?k=ACDelco%20Professional%20AGM%20Battery%20Jeep%20Cherokee&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Automatic battery maintainer to prevent parasitic drain issues during storage",
+            "partName": "Junior 12V Battery Charger Maintainer",
+            "partBrand": "Battery Tender",
+            "affiliateUrl": "https://www.amazon.com/s?k=Battery%20Tender%20Junior%2012V%20Battery%20Charger%20Maintainer%20Jeep%20Cherokee&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Premium electrical tape for wiring repairs and harness wrapping",
+            "partName": "Super 33+ Vinyl Electrical Tape",
+            "partBrand": "3M",
+            "affiliateUrl": "https://www.amazon.com/s?k=3M%20Super%2033%2B%20Vinyl%20Electrical%20Tape%20Jeep%20Cherokee&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Split wire loom tubing to protect repaired or exposed wiring harnesses",
+            "partName": "Split Wire Loom Tubing",
+            "partBrand": "DEI",
+            "affiliateUrl": "https://www.amazon.com/s?k=DEI%20Split%20Wire%20Loom%20Tubing%20Jeep%20Cherokee&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Weatherproof terminal connector kit for reliable wiring repairs",
+            "partName": "Automotive Terminal Connector Kit",
+            "partBrand": "Molex",
+            "affiliateUrl": "https://www.amazon.com/s?k=Molex%20Automotive%20Terminal%20Connector%20Kit%20Jeep%20Cherokee&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Automotive relay replacement set for common relay failures",
+            "partName": "Automotive Relay 5-Pin 12V",
+            "partBrand": "Bosch",
+            "affiliateUrl": "https://www.amazon.com/s?k=Bosch%20Automotive%20Relay%205-Pin%2012V%20Jeep%20Cherokee&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Digital multimeter for diagnosing fuse, relay, and module electrical faults",
+            "partName": "Digital Multimeter",
+            "partBrand": "Innova",
+            "affiliateUrl": "https://www.amazon.com/s?k=Innova%20Digital%20Multimeter%20Jeep%20Cherokee&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 1100,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2023-11-08",
+        "reviewedOn": "2026-02-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "jeep-cherokee-kl-engine-stalling-2014",
+      "model": "Cherokee",
+      "action": "keep_published_pending_source",
+      "reason": "The title-only oil-consumption lead describes at most one engine/oil pathway and cannot support the frozen ten-year multiple-cause stalling aggregation, DTC set, sensor/fuel/transmission causes or remedies. The row remains byte-for-byte unchanged.",
+      "identityRule": "No source may change an indexed page identity. A different model, year scope, component, outcome or remedy requires a byte-for-byte hold.",
+      "commerceDecision": "unchanged-pending-exact-fitment-source",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "nhtsa-recall-inventory-boundary-not-claim-proof",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=CHEROKEE&modelYear=1990",
+          "verifiedOn": "2026-08-06",
+          "observation": "The official recall inventory was locked for the frozen model-year ranges, but it does not prove these broader maintenance, part-fitment or aggregated failure claims."
+        }
+      ],
+      "beforeSha256": "caef2a632cb6a7c0de39a4894f4b4cc5ed5ca428ea7fc05cd6dfb01302bf8515",
+      "proposalSha256": "caef2a632cb6a7c0de39a4894f4b4cc5ed5ca428ea7fc05cd6dfb01302bf8515",
+      "before": {
+        "make": "Jeep",
+        "model": "Cherokee",
+        "years": [
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [
+          "Altitude",
+          "Latitude",
+          "Latitude Plus",
+          "Sport"
+        ],
+        "engines": [],
+        "category": "engine",
+        "title": "Engine Stalling (Multiple Causes)",
+        "description": "Multiple factors cause sudden engine stalling including low oil levels (2.4L), VVT issues, faulty sensors, fuel system problems, and transmission-related stalling (2019 9-speed). Stalling typically emerges after ~1,000 miles.",
+        "solution": "Diagnosis required to identify root cause: check oil level (especially 2.4L), test MAF and throttle position sensors, inspect VVT system, check fuel pump pressure, verify transmission software updates applied.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "Engine stalls during turns",
+          "Sudden stalling at idle or low speed",
+          "Misfires leading to stalling",
+          "Engine cuts out without warning",
+          "Difficult restart after stalling"
+        ],
+        "affectedSystems": [
+          "Engine",
+          "Fuel System"
+        ],
+        "dtcCodes": [
+          "P0011",
+          "P0012",
+          "P0014",
+          "P0021",
+          "P0022"
+        ],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 2500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "",
+            "type": "tsb",
+            "title": "TSB 18-033-16 REV. A: 2.4L Engine Oil Consumption Diagnostic and Repair Procedure"
+          },
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2019/JEEP/CHEROKEE/SUV/FWD#complaints",
+            "type": "nhtsa",
+            "title": "NHTSA Complaint #11415968"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "warning",
+            "content": "For 2.4L engines: Check oil level weekly - stalling often due to low oil"
+          },
+          {
+            "type": "tip",
+            "content": "Document stalling incidents with date, mileage, conditions for warranty"
+          },
+          {
+            "type": "part",
+            "content": "Reliable fuel pump assembly for consistent fuel pressure",
+            "partName": "Fuel Pump Module Assembly",
+            "partBrand": "Delphi",
+            "affiliateUrl": "https://www.amazon.com/s?k=Jeep%20Cherokee%20Delphi%20Fuel%20Pump%20Module%20Assembly&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Fuel filter replacement prevents repeat fuel system issues",
+            "partName": "Fuel Filter",
+            "partBrand": "Wix",
+            "affiliateUrl": "https://www.amazon.com/s?k=Jeep%20Cherokee%20Wix%20Fuel%20Filter&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 2300,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2023-10-15",
+        "reviewedOn": "2026-02-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "dodge-dart-idle-stall-2013",
+          "jeep-renegade-power-loss-stalling",
+          "jeep-commander-engine-stalling"
+        ]
+      },
+      "proposal": {
+        "make": "Jeep",
+        "model": "Cherokee",
+        "years": [
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [
+          "Altitude",
+          "Latitude",
+          "Latitude Plus",
+          "Sport"
+        ],
+        "engines": [],
+        "category": "engine",
+        "title": "Engine Stalling (Multiple Causes)",
+        "description": "Multiple factors cause sudden engine stalling including low oil levels (2.4L), VVT issues, faulty sensors, fuel system problems, and transmission-related stalling (2019 9-speed). Stalling typically emerges after ~1,000 miles.",
+        "solution": "Diagnosis required to identify root cause: check oil level (especially 2.4L), test MAF and throttle position sensors, inspect VVT system, check fuel pump pressure, verify transmission software updates applied.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "Engine stalls during turns",
+          "Sudden stalling at idle or low speed",
+          "Misfires leading to stalling",
+          "Engine cuts out without warning",
+          "Difficult restart after stalling"
+        ],
+        "affectedSystems": [
+          "Engine",
+          "Fuel System"
+        ],
+        "dtcCodes": [
+          "P0011",
+          "P0012",
+          "P0014",
+          "P0021",
+          "P0022"
+        ],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 2500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "",
+            "type": "tsb",
+            "title": "TSB 18-033-16 REV. A: 2.4L Engine Oil Consumption Diagnostic and Repair Procedure"
+          },
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2019/JEEP/CHEROKEE/SUV/FWD#complaints",
+            "type": "nhtsa",
+            "title": "NHTSA Complaint #11415968"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "warning",
+            "content": "For 2.4L engines: Check oil level weekly - stalling often due to low oil"
+          },
+          {
+            "type": "tip",
+            "content": "Document stalling incidents with date, mileage, conditions for warranty"
+          },
+          {
+            "type": "part",
+            "content": "Reliable fuel pump assembly for consistent fuel pressure",
+            "partName": "Fuel Pump Module Assembly",
+            "partBrand": "Delphi",
+            "affiliateUrl": "https://www.amazon.com/s?k=Jeep%20Cherokee%20Delphi%20Fuel%20Pump%20Module%20Assembly&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Fuel filter replacement prevents repeat fuel system issues",
+            "partName": "Fuel Filter",
+            "partBrand": "Wix",
+            "affiliateUrl": "https://www.amazon.com/s?k=Jeep%20Cherokee%20Wix%20Fuel%20Filter&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 2300,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2023-10-15",
+        "reviewedOn": "2026-02-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "dodge-dart-idle-stall-2013",
+          "jeep-renegade-power-loss-stalling",
+          "jeep-commander-engine-stalling"
+        ]
+      }
+    },
+    {
+      "id": "jeep-cherokee-kl-headlight-condensation-2014",
+      "model": "Cherokee",
+      "action": "keep_published_pending_source",
+      "reason": "Official bulletin 23-024-22 covers 2019-2022 KL Jeep Cherokee headlamp condensation evaluation, while the frozen row covers 2014-2023 and cites a different title-only identifier. The partial 2019-2022 procedure cannot overwrite a 2014-2023 indexed identity, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No source may change an indexed page identity. A different model, year scope, component, outcome or remedy requires a byte-for-byte hold.",
+      "commerceDecision": "unchanged-pending-exact-fitment-source",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-pdf-partial-year-scope",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2022/MC-10221500-9999.pdf",
+          "sha256": "a0bcf43e4d49e8b6c8bf5c8d493b2fc84c8d1909cda02ae65ba8d64e02a421ab",
+          "visuallyInspectedPages": [
+            1,
+            2
+          ],
+          "verifiedOn": "2026-08-06",
+          "observation": "Rendered pages 1-2 show bulletin 23-024-22 covers KL Cherokee only for 2019-2022 and gives a 20-minute lamp evaluation."
+        }
+      ],
+      "beforeSha256": "c12e4889e4ee40576cfba7dcf5ebfec21afff691602ed3256ca535c453bff495",
+      "proposalSha256": "c12e4889e4ee40576cfba7dcf5ebfec21afff691602ed3256ca535c453bff495",
+      "before": {
+        "make": "Jeep",
+        "model": "Cherokee",
+        "years": [
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Headlight Condensation",
+        "description": "Moisture accumulates inside headlight housings due to vent holes designed for manufacturing. While FCA considers minor condensation normal, excessive moisture or water droplets indicate seal failure.",
+        "solution": "FCA TSB states condensation should clear within 20 minutes of operation. If persists beyond 20 minutes or large water droplets present, headlight replacement warranted under warranty.",
+        "severity": "low",
+        "confidence": "high",
+        "symptoms": [
+          "Fog or condensation inside headlight lens",
+          "Frost on lens in cold weather",
+          "Water droplets on internal surfaces",
+          "Condensation doesn't clear after 20 minutes"
+        ],
+        "affectedSystems": [
+          "Electrical",
+          "Lighting"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 1200,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "TSB MC-10221500-9999: Headlamp Condensation Clearing"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "FCA uses \"20 minute rule\" - if doesn't clear qualifies for replacement"
+          },
+          {
+            "type": "part",
+            "content": "High-performance LED headlight bulbs with improved visibility and longevity",
+            "partName": "LED Headlight Bulbs",
+            "partBrand": "Sylvania",
+            "affiliateUrl": "https://www.amazon.com/s?k=Sylvania%20LED%20Headlight%20Bulbs%20Jeep%20Cherokee&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "OEM-equivalent headlight assembly for complete headlight replacement",
+            "partName": "Headlight Assembly",
+            "partBrand": "TYC",
+            "affiliateUrl": "https://www.amazon.com/s?k=TYC%20Headlight%20Assembly%20Jeep%20Cherokee&tag=au7o-20"
+          }
+        ],
+        "fixParts": [
+          {
+            "note": "(reconciled from the issue's own fix text)",
+            "source": "reconciliation",
+            "buyLinks": [
+              {
+                "url": "https://www.amazon.com/s?k=68102849AG&tag=au7o-20",
+                "vendor": "Amazon"
+              },
+              {
+                "url": "https://www.rockauto.com/en/partsearch/?q=68102849AG",
+                "vendor": "RockAuto"
+              },
+              {
+                "url": "https://www.ebay.com/sch/i.html?_nkw=68102849AG",
+                "vendor": "eBay"
+              }
+            ],
+            "priceLow": null,
+            "component": "headlight (headlamp) assembly",
+            "priceHigh": null,
+            "oemPartNumber": "68102849AG",
+            "aftermarketXref": []
+          }
+        ],
+        "humanApproved": true,
+        "reportCount": 500,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2023-06-12",
+        "reviewedOn": "2026-02-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "alfa-romeo-4c-headlight-condensation"
+        ]
+      },
+      "proposal": {
+        "make": "Jeep",
+        "model": "Cherokee",
+        "years": [
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Headlight Condensation",
+        "description": "Moisture accumulates inside headlight housings due to vent holes designed for manufacturing. While FCA considers minor condensation normal, excessive moisture or water droplets indicate seal failure.",
+        "solution": "FCA TSB states condensation should clear within 20 minutes of operation. If persists beyond 20 minutes or large water droplets present, headlight replacement warranted under warranty.",
+        "severity": "low",
+        "confidence": "high",
+        "symptoms": [
+          "Fog or condensation inside headlight lens",
+          "Frost on lens in cold weather",
+          "Water droplets on internal surfaces",
+          "Condensation doesn't clear after 20 minutes"
+        ],
+        "affectedSystems": [
+          "Electrical",
+          "Lighting"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 1200,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "TSB MC-10221500-9999: Headlamp Condensation Clearing"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "FCA uses \"20 minute rule\" - if doesn't clear qualifies for replacement"
+          },
+          {
+            "type": "part",
+            "content": "High-performance LED headlight bulbs with improved visibility and longevity",
+            "partName": "LED Headlight Bulbs",
+            "partBrand": "Sylvania",
+            "affiliateUrl": "https://www.amazon.com/s?k=Sylvania%20LED%20Headlight%20Bulbs%20Jeep%20Cherokee&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "OEM-equivalent headlight assembly for complete headlight replacement",
+            "partName": "Headlight Assembly",
+            "partBrand": "TYC",
+            "affiliateUrl": "https://www.amazon.com/s?k=TYC%20Headlight%20Assembly%20Jeep%20Cherokee&tag=au7o-20"
+          }
+        ],
+        "fixParts": [
+          {
+            "note": "(reconciled from the issue's own fix text)",
+            "source": "reconciliation",
+            "buyLinks": [
+              {
+                "url": "https://www.amazon.com/s?k=68102849AG&tag=au7o-20",
+                "vendor": "Amazon"
+              },
+              {
+                "url": "https://www.rockauto.com/en/partsearch/?q=68102849AG",
+                "vendor": "RockAuto"
+              },
+              {
+                "url": "https://www.ebay.com/sch/i.html?_nkw=68102849AG",
+                "vendor": "eBay"
+              }
+            ],
+            "priceLow": null,
+            "component": "headlight (headlamp) assembly",
+            "priceHigh": null,
+            "oemPartNumber": "68102849AG",
+            "aftermarketXref": []
+          }
+        ],
+        "humanApproved": true,
+        "reportCount": 500,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2023-06-12",
+        "reviewedOn": "2026-02-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "alfa-romeo-4c-headlight-condensation"
+        ]
+      }
+    },
+    {
+      "id": "jeep-cherokee-kl-liftgate-fire-2014",
+      "model": "Cherokee",
+      "action": "rewrite_same_identity",
+      "reason": "The frozen page and exact NHTSA campaign describe the same component, failure and vehicle identity. The proposal narrows the language and current remedy without changing ID, title, category, years, status or related links.",
+      "identityRule": "No source may change an indexed page identity. A different model, year scope, component, outcome or remedy requires a byte-for-byte hold.",
+      "commerceDecision": "removed-unverified-commerce-from-proposal",
+      "changedFields": [
+        "description",
+        "solution",
+        "severity",
+        "symptoms",
+        "affectedSystems",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "communityRecommendations",
+        "fixParts",
+        "humanApproved",
+        "reportCount",
+        "source",
+        "lastReportedByOwners",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
+      "evidence": [
+        {
+          "kind": "official-recall-exact-same-identity",
+          "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=23V338000",
+          "verifiedOn": "2026-08-06",
+          "observation": "Campaign 23V338000 exactly matches the frozen power-liftgate fire identity and supplies the current remedy."
+        }
+      ],
+      "beforeSha256": "a0c0dd9c505e749a9585932bef6cfd5a8b0dc2d3121e1e48e62710407fcc48ff",
+      "proposalSha256": "9ca6d1d4c63243dbeec42b1c924830299899213c18f825224e470cfb3556d3c9",
+      "before": {
+        "make": "Jeep",
+        "model": "Cherokee",
+        "years": [
+          2014,
+          2015,
+          2016
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Power Liftgate Fire Hazard",
+        "description": "Water leaks into power liftgate module causing corrosion and high-resistance shorts. Creates fire risk even when vehicle is off. Recall 49A provides remedy, supersedes previous recalls 15V393 and 15V826.",
+        "solution": "Recall 49A (NHTSA 23V338) remedy still under development as of June 2023. Until repair completed, park vehicle outside away from structures. Contact FCA customer service: 1-800-853-1403.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Power liftgate stops working or operates intermittently",
+          "Burning smell from rear of vehicle",
+          "Water visible in liftgate area",
+          "Corrosion on liftgate electrical connector"
+        ],
+        "affectedSystems": [
+          "Electrical",
+          "Body"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 1800,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.consumerreports.org/cars/car-recalls-defects/jeep-cherokee-recall-fire-hazard-linked-to-rear-liftgate-a6432848718/",
+            "type": "media",
+            "title": "Consumer Reports: Jeep Cherokees Recalled for Potential Fire Hazard Linked to Rear Liftgate"
+          },
+          {
+            "url": "https://moparinsiders.com/recall-2014-to-2016-jeep-cherokee-kl-for-power-liftgate-module-short/",
+            "type": "media",
+            "title": "MoparInsiders: RECALL 2014-2016 Jeep Cherokee (KL) For Power Liftgate Module Short"
+          },
+          {
+            "url": "https://www.cbsnews.com/news/jeep-cherokee-recall-park-outside-fire-risk/",
+            "type": "media",
+            "title": "CBS News: Stellantis recalls 132,000 Jeep Cherokee SUVs over fire hazard"
+          },
+          {
+            "url": "https://www.jeepcherokeeclub.com/threads/fire-recall-2014-2016.249434/",
+            "type": "forum",
+            "title": "Jeep Cherokee Club: Fire Recall 2014-2016"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "warning",
+            "content": "Park outside immediately if you have 2014-2016 with power liftgate"
+          },
+          {
+            "type": "part",
+            "content": "Premium electrical tape for wiring repairs and harness wrapping",
+            "partName": "Super 33+ Vinyl Electrical Tape",
+            "partBrand": "3M",
+            "affiliateUrl": "https://www.amazon.com/s?k=3M%20Super%2033%2B%20Vinyl%20Electrical%20Tape%20Jeep%20Cherokee&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Split wire loom tubing to protect repaired or exposed wiring harnesses",
+            "partName": "Split Wire Loom Tubing",
+            "partBrand": "DEI",
+            "affiliateUrl": "https://www.amazon.com/s?k=DEI%20Split%20Wire%20Loom%20Tubing%20Jeep%20Cherokee&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Weatherproof terminal connector kit for reliable wiring repairs",
+            "partName": "Automotive Terminal Connector Kit",
+            "partBrand": "Molex",
+            "affiliateUrl": "https://www.amazon.com/s?k=Molex%20Automotive%20Terminal%20Connector%20Kit%20Jeep%20Cherokee&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Automotive relay replacement set for common relay failures",
+            "partName": "Automotive Relay 5-Pin 12V",
+            "partBrand": "Bosch",
+            "affiliateUrl": "https://www.amazon.com/s?k=Bosch%20Automotive%20Relay%205-Pin%2012V%20Jeep%20Cherokee&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Digital multimeter for diagnosing fuse, relay, and module electrical faults",
+            "partName": "Digital Multimeter",
+            "partBrand": "Innova",
+            "affiliateUrl": "https://www.amazon.com/s?k=Innova%20Digital%20Multimeter%20Jeep%20Cherokee&tag=au7o-20"
+          }
+        ],
+        "fixParts": [
+          {
+            "note": "(reconciled from the issue's own fix text)",
+            "source": "reconciliation",
+            "buyLinks": [
+              {
+                "url": "https://www.amazon.com/s?k=68234603AB&tag=au7o-20",
+                "vendor": "Amazon"
+              },
+              {
+                "url": "https://www.rockauto.com/en/partsearch/?q=68234603AB",
+                "vendor": "RockAuto"
+              },
+              {
+                "url": "https://www.ebay.com/sch/i.html?_nkw=68234603AB",
+                "vendor": "eBay"
+              }
+            ],
+            "priceLow": null,
+            "component": "power liftgate module",
+            "priceHigh": null,
+            "oemPartNumber": "68234603AB",
+            "aftermarketXref": []
+          }
+        ],
+        "humanApproved": true,
+        "reportCount": 450,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2023-05-15",
+        "reviewedOn": "2026-02-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Jeep",
+        "model": "Cherokee",
+        "years": [
+          2014,
+          2015,
+          2016
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Power Liftgate Fire Hazard",
+        "description": "NHTSA campaign 23V338000 covers certain 2014-2016 Jeep Cherokee vehicles equipped with a power liftgate. An electrical short in the power liftgate module may cause a vehicle fire whether the ignition is on or off.",
+        "solution": "Check VIN eligibility. Until the recall repair is complete, park outside and away from structures. Dealers relocate the power liftgate module, add a water shield, inspect for corrosion, and replace the module and electrical connectors when necessary, free of charge. Vehicles repaired under superseded campaigns 15V393 and 15V826 still require the new remedy.",
+        "severity": "critical",
+        "confidence": "high",
+        "symptoms": [],
+        "affectedSystems": [
+          "power liftgate module",
+          "rear liftgate wiring"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "NHTSA Campaign 23V338000 - Power Liftgate Module Fire Risk",
+            "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=23V338000"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Updated the same power-liftgate fire identity to the completed NHTSA 23V338 remedy and removed unsupported commerce, costs and warning symptoms.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "jeep-cherokee-kl-oil-consumption-2014",
+      "model": "Cherokee",
+      "action": "keep_published_pending_source",
+      "reason": "No exact primary source was pinned for the frozen piston-ring cause, one-quart-per-1,000-mile threshold, stall-below-3.5-quarts claim, XB1 eligibility, DTCs and engine-replacement outcome. The row remains byte-for-byte unchanged.",
+      "identityRule": "No source may change an indexed page identity. A different model, year scope, component, outcome or remedy requires a byte-for-byte hold.",
+      "commerceDecision": "unchanged-pending-exact-fitment-source",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "nhtsa-recall-inventory-boundary-not-claim-proof",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=CHEROKEE&modelYear=1990",
+          "verifiedOn": "2026-08-06",
+          "observation": "The official recall inventory was locked for the frozen model-year ranges, but it does not prove these broader maintenance, part-fitment or aggregated failure claims."
+        }
+      ],
+      "beforeSha256": "9c7cdd1724ff205d00869e5ad8153feeef5072669ef7415dee7517d7b0564255",
+      "proposalSha256": "9c7cdd1724ff205d00869e5ad8153feeef5072669ef7415dee7517d7b0564255",
+      "before": {
+        "make": "Jeep",
+        "model": "Cherokee",
+        "years": [
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019
+        ],
+        "trims": [
+          "Altitude",
+          "Latitude",
+          "Latitude Plus",
+          "Sport"
+        ],
+        "engines": [
+          "2.4L I4"
+        ],
+        "category": "engine",
+        "title": "Excessive Oil Consumption (2.4L Tigershark)",
+        "description": "The 2.4L Tigershark MultiAir engine suffers from defective piston rings allowing oil to burn in combustion chamber. Owners report consuming 1 quart per 1,000 miles. Engine can stall when oil falls below 3.5 quarts without warning light.",
+        "solution": "FCA Warranty Extension XB1 covers excessive oil consumption for 7 years/100,000 miles. Engine recalibration/PCM software update can reduce consumption. Severe cases require engine replacement or rebuild with updated piston rings.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Consuming 1+ quart of oil every 1,000-2,000 miles",
+          "Engine stalling without warning",
+          "Oil light only after engine stalls",
+          "Blue smoke from exhaust during acceleration",
+          "Rough idle or misfires"
+        ],
+        "affectedSystems": [
+          "Engine"
+        ],
+        "dtcCodes": [
+          "P0420",
+          "P0171",
+          "P0174"
+        ],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 8500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.valerolaw.com/news/2025/9/14/what-you-need-to-know-the-classaction-over-fcas-tigershark-oil-consumption-defect",
+            "type": "media",
+            "title": "Valero Law: Class-Action over FCAs Tigershark Oil Consumption Defect"
+          },
+          {
+            "url": "https://mycarvoice.com/news/fiat-chrysler-2-4l-tigershark-engine-class-action-settlement/",
+            "type": "media",
+            "title": "MyCarVoice: Fiat Chrysler 2.4L Tigershark Engine Class Action Settlement Announced"
+          },
+          {
+            "url": "https://www.jeeprenegadeforum.com/threads/2-4l-tigershark-class-action-lawsuit-and-oil-consumption-issues.105199/",
+            "type": "forum",
+            "title": "Jeep Renegade Forum: 2.4L Tigershark Class Action Lawsuit and Oil Consumption Issues"
+          },
+          {
+            "url": "https://www.thelemonfirm.com/2022/03/01/jeep-cherokee-2-4l-tigershark-oil-consumption-causes-engine-to-stall/",
+            "type": "media",
+            "title": "The Lemon Firm: Jeep Cherokee 2.4L Tigershark Oil Consumption Causes Engine To Stall"
+          },
+          {
+            "url": "https://sauderschelkopf.com/automotive/jeep-excessive-engine-oil-consumption-class-action-investigation/",
+            "type": "media",
+            "title": "Sauder Schelkopf: Jeep Excessive Engine Oil Consumption Class Action Investigation"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "warning",
+            "content": "Check oil level every 500-1,000 miles religiously"
+          },
+          {
+            "type": "tip",
+            "content": "Document oil consumption with receipts for warranty claims"
+          },
+          {
+            "type": "part",
+            "content": "High-quality synthetic oil helps reduce consumption and protect worn engines",
+            "partName": "Extended Performance Full Synthetic Motor Oil",
+            "partBrand": "Mobil 1",
+            "affiliateUrl": "https://www.amazon.com/s?k=Jeep%20Cherokee%20Mobil%201%20Extended%20Performance%20Full%20Synthetic%20Motor%20Oil&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Premium oil filter ensures proper filtration with high-mileage engines",
+            "partName": "Oil Filter",
+            "partBrand": "Wix",
+            "affiliateUrl": "https://www.amazon.com/s?k=Jeep%20Cherokee%20Wix%20Oil%20Filter&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 4500,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2023-12-05",
+        "reviewedOn": "2026-02-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "fiat-500x-oil-consumption-24",
+          "jeep-renegade-engine-oil-consumption",
+          "chrysler-200-oil-consumption-2015",
+          "dodge-dart-oil-consumption-2013",
+          "jeep-compass-oil-pump-stalling"
+        ]
+      },
+      "proposal": {
+        "make": "Jeep",
+        "model": "Cherokee",
+        "years": [
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019
+        ],
+        "trims": [
+          "Altitude",
+          "Latitude",
+          "Latitude Plus",
+          "Sport"
+        ],
+        "engines": [
+          "2.4L I4"
+        ],
+        "category": "engine",
+        "title": "Excessive Oil Consumption (2.4L Tigershark)",
+        "description": "The 2.4L Tigershark MultiAir engine suffers from defective piston rings allowing oil to burn in combustion chamber. Owners report consuming 1 quart per 1,000 miles. Engine can stall when oil falls below 3.5 quarts without warning light.",
+        "solution": "FCA Warranty Extension XB1 covers excessive oil consumption for 7 years/100,000 miles. Engine recalibration/PCM software update can reduce consumption. Severe cases require engine replacement or rebuild with updated piston rings.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Consuming 1+ quart of oil every 1,000-2,000 miles",
+          "Engine stalling without warning",
+          "Oil light only after engine stalls",
+          "Blue smoke from exhaust during acceleration",
+          "Rough idle or misfires"
+        ],
+        "affectedSystems": [
+          "Engine"
+        ],
+        "dtcCodes": [
+          "P0420",
+          "P0171",
+          "P0174"
+        ],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 8500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.valerolaw.com/news/2025/9/14/what-you-need-to-know-the-classaction-over-fcas-tigershark-oil-consumption-defect",
+            "type": "media",
+            "title": "Valero Law: Class-Action over FCAs Tigershark Oil Consumption Defect"
+          },
+          {
+            "url": "https://mycarvoice.com/news/fiat-chrysler-2-4l-tigershark-engine-class-action-settlement/",
+            "type": "media",
+            "title": "MyCarVoice: Fiat Chrysler 2.4L Tigershark Engine Class Action Settlement Announced"
+          },
+          {
+            "url": "https://www.jeeprenegadeforum.com/threads/2-4l-tigershark-class-action-lawsuit-and-oil-consumption-issues.105199/",
+            "type": "forum",
+            "title": "Jeep Renegade Forum: 2.4L Tigershark Class Action Lawsuit and Oil Consumption Issues"
+          },
+          {
+            "url": "https://www.thelemonfirm.com/2022/03/01/jeep-cherokee-2-4l-tigershark-oil-consumption-causes-engine-to-stall/",
+            "type": "media",
+            "title": "The Lemon Firm: Jeep Cherokee 2.4L Tigershark Oil Consumption Causes Engine To Stall"
+          },
+          {
+            "url": "https://sauderschelkopf.com/automotive/jeep-excessive-engine-oil-consumption-class-action-investigation/",
+            "type": "media",
+            "title": "Sauder Schelkopf: Jeep Excessive Engine Oil Consumption Class Action Investigation"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "warning",
+            "content": "Check oil level every 500-1,000 miles religiously"
+          },
+          {
+            "type": "tip",
+            "content": "Document oil consumption with receipts for warranty claims"
+          },
+          {
+            "type": "part",
+            "content": "High-quality synthetic oil helps reduce consumption and protect worn engines",
+            "partName": "Extended Performance Full Synthetic Motor Oil",
+            "partBrand": "Mobil 1",
+            "affiliateUrl": "https://www.amazon.com/s?k=Jeep%20Cherokee%20Mobil%201%20Extended%20Performance%20Full%20Synthetic%20Motor%20Oil&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Premium oil filter ensures proper filtration with high-mileage engines",
+            "partName": "Oil Filter",
+            "partBrand": "Wix",
+            "affiliateUrl": "https://www.amazon.com/s?k=Jeep%20Cherokee%20Wix%20Oil%20Filter&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 4500,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2023-12-05",
+        "reviewedOn": "2026-02-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "fiat-500x-oil-consumption-24",
+          "jeep-renegade-engine-oil-consumption",
+          "chrysler-200-oil-consumption-2015",
+          "dodge-dart-oil-consumption-2013",
+          "jeep-compass-oil-pump-stalling"
+        ]
+      }
+    },
+    {
+      "id": "jeep-cherokee-kl-oil-filter-housing-2014",
+      "model": "Cherokee",
+      "action": "keep_published_pending_source",
+      "reason": "The row has no primary citation, includes unverified 3.6L Cherokee applicability and contains unverified Dorman/OEM part fitment. It remains byte-for-byte unchanged pending exact VIN/engine and part-source review.",
+      "identityRule": "No source may change an indexed page identity. A different model, year scope, component, outcome or remedy requires a byte-for-byte hold.",
+      "commerceDecision": "unchanged-pending-exact-fitment-source",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "nhtsa-recall-inventory-boundary-not-claim-proof",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=CHEROKEE&modelYear=1990",
+          "verifiedOn": "2026-08-06",
+          "observation": "The official recall inventory was locked for the frozen model-year ranges, but it does not prove these broader maintenance, part-fitment or aggregated failure claims."
+        }
+      ],
+      "beforeSha256": "b279e32fb7e79869e51146a3a418ee596be20725809daed0abe3cbcf65f801c2",
+      "proposalSha256": "b279e32fb7e79869e51146a3a418ee596be20725809daed0abe3cbcf65f801c2",
+      "before": {
+        "make": "Jeep",
+        "model": "Cherokee",
+        "years": [
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [
+          "Altitude",
+          "Latitude",
+          "Latitude Lux",
+          "Latitude Plus",
+          "Limited",
+          "Overland",
+          "Trailhawk"
+        ],
+        "engines": [
+          "3.2L V6",
+          "3.6L V6"
+        ],
+        "category": "engine",
+        "title": "Oil Filter Housing Leak (Pentastar V6)",
+        "description": "The plastic oil filter housing and cooler assembly on Pentastar V6 engines develops leaks due to thermal cycling. The plastic warps, becomes brittle, and cracks over time from constant engine heat exposure.",
+        "solution": "Replace oil filter housing assembly. Highly recommend upgrading to Dorman aluminum aftermarket housing (PN 926-959) instead of OEM plastic, as it won't suffer from thermal expansion issues.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Visible oil on and around oil filter housing",
+          "Oil dripping onto ground after parking",
+          "Low oil level warnings between oil changes",
+          "Burning oil smell from engine bay"
+        ],
+        "affectedSystems": [
+          "Engine"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 700,
+        "estimatedCostHigh": 1500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Upgrade to aluminum housing for permanent fix",
+            "partBrand": "Dorman",
+            "partNumber": "926-959",
+            "affiliateUrl": "https://www.amazon.com/s?k=Dorman%20926-959&tag=au7o-20"
+          },
+          {
+            "type": "warning",
+            "content": "Do NOT overtighten oil filter cap - accelerates cracking"
+          }
+        ],
+        "fixParts": [
+          {
+            "note": "(reconciled from the issue's own fix text)",
+            "source": "reconciliation",
+            "buyLinks": [
+              {
+                "url": "https://www.amazon.com/s?k=68596317AB&tag=au7o-20",
+                "vendor": "Amazon"
+              },
+              {
+                "url": "https://www.rockauto.com/en/partsearch/?q=68596317AB",
+                "vendor": "RockAuto"
+              },
+              {
+                "url": "https://www.ebay.com/sch/i.html?_nkw=68596317AB",
+                "vendor": "eBay"
+              }
+            ],
+            "priceLow": null,
+            "component": "oil filter housing (oil cooler adapter assembly)",
+            "priceHigh": null,
+            "oemPartNumber": "68596317AB",
+            "aftermarketXref": []
+          }
+        ],
+        "humanApproved": true,
+        "reportCount": 2800,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2023-10-20",
+        "reviewedOn": "2026-02-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "dodge-journey-oil-filter-housing-2011",
+          "dodge-challenger-oil-filter-housing-2011",
+          "chrysler-300-oil-filter-housing-2011",
+          "dodge-durango-water-pump-2011",
+          "jeep-grand-cherokee-water-pump-2011"
+        ]
+      },
+      "proposal": {
+        "make": "Jeep",
+        "model": "Cherokee",
+        "years": [
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [
+          "Altitude",
+          "Latitude",
+          "Latitude Lux",
+          "Latitude Plus",
+          "Limited",
+          "Overland",
+          "Trailhawk"
+        ],
+        "engines": [
+          "3.2L V6",
+          "3.6L V6"
+        ],
+        "category": "engine",
+        "title": "Oil Filter Housing Leak (Pentastar V6)",
+        "description": "The plastic oil filter housing and cooler assembly on Pentastar V6 engines develops leaks due to thermal cycling. The plastic warps, becomes brittle, and cracks over time from constant engine heat exposure.",
+        "solution": "Replace oil filter housing assembly. Highly recommend upgrading to Dorman aluminum aftermarket housing (PN 926-959) instead of OEM plastic, as it won't suffer from thermal expansion issues.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Visible oil on and around oil filter housing",
+          "Oil dripping onto ground after parking",
+          "Low oil level warnings between oil changes",
+          "Burning oil smell from engine bay"
+        ],
+        "affectedSystems": [
+          "Engine"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 700,
+        "estimatedCostHigh": 1500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Upgrade to aluminum housing for permanent fix",
+            "partBrand": "Dorman",
+            "partNumber": "926-959",
+            "affiliateUrl": "https://www.amazon.com/s?k=Dorman%20926-959&tag=au7o-20"
+          },
+          {
+            "type": "warning",
+            "content": "Do NOT overtighten oil filter cap - accelerates cracking"
+          }
+        ],
+        "fixParts": [
+          {
+            "note": "(reconciled from the issue's own fix text)",
+            "source": "reconciliation",
+            "buyLinks": [
+              {
+                "url": "https://www.amazon.com/s?k=68596317AB&tag=au7o-20",
+                "vendor": "Amazon"
+              },
+              {
+                "url": "https://www.rockauto.com/en/partsearch/?q=68596317AB",
+                "vendor": "RockAuto"
+              },
+              {
+                "url": "https://www.ebay.com/sch/i.html?_nkw=68596317AB",
+                "vendor": "eBay"
+              }
+            ],
+            "priceLow": null,
+            "component": "oil filter housing (oil cooler adapter assembly)",
+            "priceHigh": null,
+            "oemPartNumber": "68596317AB",
+            "aftermarketXref": []
+          }
+        ],
+        "humanApproved": true,
+        "reportCount": 2800,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2023-10-20",
+        "reviewedOn": "2026-02-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "dodge-journey-oil-filter-housing-2011",
+          "dodge-challenger-oil-filter-housing-2011",
+          "chrysler-300-oil-filter-housing-2011",
+          "dodge-durango-water-pump-2011",
+          "jeep-grand-cherokee-water-pump-2011"
+        ]
+      }
+    },
+    {
+      "id": "jeep-cherokee-kl-ptu-failure-2014",
+      "model": "Cherokee",
+      "action": "rewrite_same_identity",
+      "reason": "The frozen page and exact NHTSA campaign describe the same component, failure and vehicle identity. The proposal narrows the language and current remedy without changing ID, title, category, years, status or related links.",
+      "identityRule": "No source may change an indexed page identity. A different model, year scope, component, outcome or remedy requires a byte-for-byte hold.",
+      "commerceDecision": "removed-unverified-commerce-from-proposal",
+      "changedFields": [
+        "trims",
+        "description",
+        "solution",
+        "severity",
+        "symptoms",
+        "affectedSystems",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "typicalMileageLow",
+        "typicalMileageHigh",
+        "citations",
+        "communityRecommendations",
+        "fixParts",
+        "humanApproved",
+        "reportCount",
+        "source",
+        "lastReportedByOwners",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
+      "evidence": [
+        {
+          "kind": "official-recall-exact-same-identity",
+          "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=20V343000",
+          "verifiedOn": "2026-08-06",
+          "observation": "Campaign 20V343000 exactly matches the frozen two-speed PTU input-spline failure identity and software remedy."
+        }
+      ],
+      "beforeSha256": "c2b259f828b5ccb8c8532711a667f8657b334def79e178243835a4adfe2ff580",
+      "proposalSha256": "e1bcd2b70554fb50172085ace690dadcfbf39dc75763329a0715ca4d8594e20f",
+      "before": {
+        "make": "Jeep",
+        "model": "Cherokee",
+        "years": [
+          2014,
+          2015,
+          2016,
+          2017
+        ],
+        "trims": [
+          "4WD",
+          "AWD"
+        ],
+        "engines": [],
+        "category": "drivetrain",
+        "title": "Power Transfer Unit (PTU) Failure",
+        "description": "The PTU connecting transmission to front axle in AWD models experiences input spline failure, causing loss of engagement and creating a rollaway risk. Recall W47 provides software update but not free PTU replacement.",
+        "solution": "Recall W47 software update maintains propulsion via RWD and activates e-brake if failure occurs. For actual PTU failure, complete replacement required (PN 68307403AG). Check PTU fluid level every 30,000 miles and change every 60,000 miles.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "\"Service 4WD System\" warning message",
+          "Loss of power while driving",
+          "Vehicle won't shift into Park",
+          "Grinding or whining noise from transfer case area",
+          "PTU fluid leaking from housing"
+        ],
+        "affectedSystems": [
+          "Drivetrain",
+          "AWD"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 4500,
+        "typicalMileageLow": 24000,
+        "typicalMileageHigh": 36000,
+        "citations": [
+          {
+            "url": "https://moparinsiders.com/jeep-recalls-over-61700-cherokee-kl-suvs-for-ptu-failure-risk/",
+            "type": "media",
+            "title": "MoparInsiders: Jeep Recalls Over 61,700 Cherokee (KL) SUVs For PTU Failure Risk"
+          },
+          {
+            "url": "https://static.nhtsa.gov/odi/tsbs/2023/MC-10241067-9999.pdf",
+            "type": "nhtsa",
+            "title": "NHTSA: TSB MC-10241067 PTU"
+          },
+          {
+            "url": "https://static.nhtsa.gov/odi/rcl/2020/RCRIT-20V343-3789.pdf",
+            "type": "nhtsa",
+            "title": "NHTSA Safety Recall W47/20V-343: PTU Input Spline"
+          },
+          {
+            "url": "https://www.jeepcherokeeclub.com/threads/ptu-issues.248951/",
+            "type": "forum",
+            "title": "Jeep Cherokee Club: PTU issues"
+          },
+          {
+            "url": "https://www.jeepforum.com/threads/ptu-power-transfer-unit-2020-jeep-cherokee.4474401/",
+            "type": "forum",
+            "title": "Jeep Forum: PTU 2020 Jeep Cherokee"
+          },
+          {
+            "url": "https://moparinsiders.com/recall-2016-to-2017-jeep-cherokee-kl-for-ptu-issues/",
+            "type": "media",
+            "title": "MoparInsiders: RECALL 2016 to 2017 Jeep Cherokee (KL) For PTU Issues"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Check PTU fluid every 30,000 miles, change every 60,000 with Mopar ATF+4"
+          },
+          {
+            "type": "tip",
+            "content": "Install PTU vent extension to prevent water ingestion"
+          },
+          {
+            "type": "part",
+            "content": "TRQ CV axle assembly — complete replacement with new joints",
+            "partName": "CV Axle Assembly",
+            "partBrand": "TRQ",
+            "affiliateUrl": "https://www.amazon.com/s?k=TRQ%20CV%20axle%20assembly&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Dorman CV boot kit to prevent grease loss and joint failure",
+            "partName": "CV Boot Kit",
+            "partBrand": "Dorman",
+            "affiliateUrl": "https://www.amazon.com/s?k=Dorman%20CV%20boot%20kit&tag=au7o-20"
+          }
+        ],
+        "fixParts": [
+          {
+            "note": "(reconciled from the issue's own fix text)",
+            "source": "reconciliation",
+            "buyLinks": [
+              {
+                "url": "https://www.amazon.com/s?k=68307403AG&tag=au7o-20",
+                "vendor": "Amazon"
+              },
+              {
+                "url": "https://www.rockauto.com/en/partsearch/?q=68307403AG",
+                "vendor": "RockAuto"
+              },
+              {
+                "url": "https://www.ebay.com/sch/i.html?_nkw=68307403AG",
+                "vendor": "eBay"
+              }
+            ],
+            "priceLow": null,
+            "component": "Power Transfer Unit (PTU)",
+            "priceHigh": null,
+            "oemPartNumber": "68307403AG",
+            "aftermarketXref": []
+          }
+        ],
+        "humanApproved": true,
+        "reportCount": 1200,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2023-08-10",
+        "reviewedOn": "2026-02-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "ford-edge-ptu-leak-2007",
+          "dodge-stealth-transfer-case-1991"
+        ]
+      },
+      "proposal": {
+        "make": "Jeep",
+        "model": "Cherokee",
+        "years": [
+          2014,
+          2015,
+          2016,
+          2017
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "drivetrain",
+        "title": "Power Transfer Unit (PTU) Failure",
+        "description": "NHTSA campaign 20V343000 covers certain 2014-2017 Jeep Cherokee vehicles equipped with a two-speed Power Transfer Unit. Relative movement between the differential input splines and transmission output shaft may wear away input-spline teeth, causing loss of drive while moving and loss of Park while stationary.",
+        "solution": "Check VIN eligibility. Dealers perform a software update that engages rear-wheel drive to maintain propulsion and activates the electronic parking brake to prevent rollaway if an input-spline failure occurs. The campaign does not state that dealers replace the PTU.",
+        "severity": "critical",
+        "confidence": "high",
+        "symptoms": [],
+        "affectedSystems": [
+          "two-speed power transfer unit",
+          "input splines",
+          "driveline"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "NHTSA Campaign 20V343000 - PTU Input-Spline Failure",
+            "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=20V343000"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Bounded the same PTU-failure identity to NHTSA campaign 20V343 and removed the unsupported retail part, fluid intervals, costs, mileage and replacement promise.",
+        "relatedIssueIds": [
+          "ford-edge-ptu-leak-2007",
+          "dodge-stealth-transfer-case-1991"
+        ]
+      }
+    },
+    {
+      "id": "jeep-cherokee-kl-shifter-rollaway-2014",
+      "model": "Cherokee",
+      "action": "keep_published_pending_source",
+      "reason": "NHTSA campaign 16V240000/S27 covers 2014-2015 Jeep Grand Cherokee, not Jeep Cherokee. The exact model mismatch cannot be repaired by changing this indexed page identity, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No source may change an indexed page identity. A different model, year scope, component, outcome or remedy requires a byte-for-byte hold.",
+      "commerceDecision": "unchanged-pending-exact-fitment-source",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-recall-exact-model-mismatch",
+          "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=16V240000",
+          "verifiedOn": "2026-08-06",
+          "observation": "Campaign 16V240000 includes Jeep GRAND CHEROKEE for 2014-2015 and no Jeep CHEROKEE result."
+        }
+      ],
+      "beforeSha256": "f24eaaac583a84ab72f0d4f01813d8f33770fad9cd1e2492e7a1685bfced950c",
+      "proposalSha256": "f24eaaac583a84ab72f0d4f01813d8f33770fad9cd1e2492e7a1685bfced950c",
+      "before": {
+        "make": "Jeep",
+        "model": "Cherokee",
+        "years": [
+          2014,
+          2015
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "transmission",
+        "title": "Electronic Shifter Rollaway Risk",
+        "description": "The ZF \"Monostable\" electronic shifter returns to same position after each shift, making it difficult to determine if vehicle is in Park. Caused rollaway incidents including death of actor Anton Yelchin in 2016.",
+        "solution": "Original rollaway recall addressed with enhanced park feedback and software updates. Separate issue with shifter bezel wiring harness (TSB 08-054-18 Rev A) requires replacement. Always engage parking brake.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Vehicle rolls away after driver exits",
+          "Difficulty determining gear selection visually",
+          "\"Service Shifter\" warning message",
+          "Shifter bezel wiring harness loose"
+        ],
+        "affectedSystems": [
+          "Transmission",
+          "Safety"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 750,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.jalopnik.com/heres-the-problem-with-jeeps-recalled-gear-shifter-1782364420/",
+            "type": "media",
+            "title": "Jalopnik: Heres The Problem With Jeeps Recalled Gear Shifter"
+          },
+          {
+            "url": "https://www.gardencityjeepchryslerdodge.com/safety-recall-s27-transmission-electronic-shift-lever.htm",
+            "type": "manufacturer",
+            "title": "Garden City Jeep: Safety Recall S27 Transmission Electronic Shift Lever"
+          },
+          {
+            "url": "https://www.hbsslaw.com/press/jeep-gear-shifter-rollaway-defect/two-jeep-grand-cherokee-owners-run-over-by-recalled-rollaway-vehicles-sue-fiat-chrysler-for-shifter-defect",
+            "type": "media",
+            "title": "Hagens Berman: Two Jeep Grand Cherokee Owners Run Over by Recalled Rollaway Vehicles"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "warning",
+            "content": "Always engage parking brake and verify gear on dashboard display"
+          },
+          {
+            "type": "part",
+            "content": "Replacement shift solenoid to restore proper gear engagement",
+            "partName": "Transmission Shift Solenoid",
+            "partBrand": "Dorman",
+            "affiliateUrl": "https://www.amazon.com/s?k=Dorman%20shift%20solenoid%20Jeep%20Cherokee&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Transmission filter kit with gasket for fluid service after solenoid replacement",
+            "partName": "Transmission Filter Kit",
+            "partBrand": "ATP",
+            "affiliateUrl": "https://www.amazon.com/s?k=Jeep%20Cherokee%20transmission%20filter%20kit%20with%20gasket&tag=au7o-20"
+          }
+        ],
+        "fixParts": [
+          {
+            "note": "(reconciled from the issue's own fix text)",
+            "source": "reconciliation",
+            "buyLinks": [
+              {
+                "url": "https://www.amazon.com/s?k=68413957AA&tag=au7o-20",
+                "vendor": "Amazon"
+              },
+              {
+                "url": "https://www.rockauto.com/en/partsearch/?q=68413957AA",
+                "vendor": "RockAuto"
+              },
+              {
+                "url": "https://www.ebay.com/sch/i.html?_nkw=68413957AA",
+                "vendor": "eBay"
+              }
+            ],
+            "priceLow": null,
+            "component": "shifter jumper wiring harness (shifter bezel harness)",
+            "priceHigh": null,
+            "oemPartNumber": "68413957AA",
+            "aftermarketXref": []
+          }
+        ],
+        "humanApproved": true,
+        "reportCount": 800,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2023-07-20",
+        "reviewedOn": "2026-02-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "chrysler-300-shifter-rollaway-2012"
+        ]
+      },
+      "proposal": {
+        "make": "Jeep",
+        "model": "Cherokee",
+        "years": [
+          2014,
+          2015
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "transmission",
+        "title": "Electronic Shifter Rollaway Risk",
+        "description": "The ZF \"Monostable\" electronic shifter returns to same position after each shift, making it difficult to determine if vehicle is in Park. Caused rollaway incidents including death of actor Anton Yelchin in 2016.",
+        "solution": "Original rollaway recall addressed with enhanced park feedback and software updates. Separate issue with shifter bezel wiring harness (TSB 08-054-18 Rev A) requires replacement. Always engage parking brake.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Vehicle rolls away after driver exits",
+          "Difficulty determining gear selection visually",
+          "\"Service Shifter\" warning message",
+          "Shifter bezel wiring harness loose"
+        ],
+        "affectedSystems": [
+          "Transmission",
+          "Safety"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 750,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.jalopnik.com/heres-the-problem-with-jeeps-recalled-gear-shifter-1782364420/",
+            "type": "media",
+            "title": "Jalopnik: Heres The Problem With Jeeps Recalled Gear Shifter"
+          },
+          {
+            "url": "https://www.gardencityjeepchryslerdodge.com/safety-recall-s27-transmission-electronic-shift-lever.htm",
+            "type": "manufacturer",
+            "title": "Garden City Jeep: Safety Recall S27 Transmission Electronic Shift Lever"
+          },
+          {
+            "url": "https://www.hbsslaw.com/press/jeep-gear-shifter-rollaway-defect/two-jeep-grand-cherokee-owners-run-over-by-recalled-rollaway-vehicles-sue-fiat-chrysler-for-shifter-defect",
+            "type": "media",
+            "title": "Hagens Berman: Two Jeep Grand Cherokee Owners Run Over by Recalled Rollaway Vehicles"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "warning",
+            "content": "Always engage parking brake and verify gear on dashboard display"
+          },
+          {
+            "type": "part",
+            "content": "Replacement shift solenoid to restore proper gear engagement",
+            "partName": "Transmission Shift Solenoid",
+            "partBrand": "Dorman",
+            "affiliateUrl": "https://www.amazon.com/s?k=Dorman%20shift%20solenoid%20Jeep%20Cherokee&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Transmission filter kit with gasket for fluid service after solenoid replacement",
+            "partName": "Transmission Filter Kit",
+            "partBrand": "ATP",
+            "affiliateUrl": "https://www.amazon.com/s?k=Jeep%20Cherokee%20transmission%20filter%20kit%20with%20gasket&tag=au7o-20"
+          }
+        ],
+        "fixParts": [
+          {
+            "note": "(reconciled from the issue's own fix text)",
+            "source": "reconciliation",
+            "buyLinks": [
+              {
+                "url": "https://www.amazon.com/s?k=68413957AA&tag=au7o-20",
+                "vendor": "Amazon"
+              },
+              {
+                "url": "https://www.rockauto.com/en/partsearch/?q=68413957AA",
+                "vendor": "RockAuto"
+              },
+              {
+                "url": "https://www.ebay.com/sch/i.html?_nkw=68413957AA",
+                "vendor": "eBay"
+              }
+            ],
+            "priceLow": null,
+            "component": "shifter jumper wiring harness (shifter bezel harness)",
+            "priceHigh": null,
+            "oemPartNumber": "68413957AA",
+            "aftermarketXref": []
+          }
+        ],
+        "humanApproved": true,
+        "reportCount": 800,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2023-07-20",
+        "reviewedOn": "2026-02-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "chrysler-300-shifter-rollaway-2012"
+        ]
+      }
+    },
+    {
+      "id": "jeep-cherokee-kl-sunroof-drain-2014",
+      "model": "Cherokee",
+      "action": "keep_published_pending_source",
+      "reason": "A title-only bulletin and complaint-search page do not support the frozen 2014-2023 scope, DIY line-clearing methods, annual interval or complete remedy. The row remains byte-for-byte unchanged.",
+      "identityRule": "No source may change an indexed page identity. A different model, year scope, component, outcome or remedy requires a byte-for-byte hold.",
+      "commerceDecision": "unchanged-pending-exact-fitment-source",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "nhtsa-recall-inventory-boundary-not-claim-proof",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=CHEROKEE&modelYear=1990",
+          "verifiedOn": "2026-08-06",
+          "observation": "The official recall inventory was locked for the frozen model-year ranges, but it does not prove these broader maintenance, part-fitment or aggregated failure claims."
+        }
+      ],
+      "beforeSha256": "91feef023c95f09696bd64852cf272f9aa97bdcf76da7b1fcb6c9a5bf93819fc",
+      "proposalSha256": "91feef023c95f09696bd64852cf272f9aa97bdcf76da7b1fcb6c9a5bf93819fc",
+      "before": {
+        "make": "Jeep",
+        "model": "Cherokee",
+        "years": [
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "body",
+        "title": "Sunroof Drain Clogs and Water Leaks",
+        "description": "Sunroof drain tubes become clogged with debris, causing water to overflow into cabin. Drain hoses can become kinked or detached, allowing water into headliner. Leads to water damage, mold, electrical issues.",
+        "solution": "Test each drain by pouring water into sunroof corners. Clear restrictions using weed wacker line threaded through drains, flush with water and compressed air. Check for detached hoses in wheel wells. Annual preventative cleaning recommended.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Water dripping from headliner",
+          "Wet carpets and floorboards",
+          "Water in cargo area",
+          "Mold and musty odors",
+          "Water stains on headliner"
+        ],
+        "affectedSystems": [
+          "Body",
+          "Interior"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 900,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "",
+            "type": "tsb",
+            "title": "TSB 23-010-15: Water Leak From A-Pillar / Headliner Area Due To Sunroof Drain Hose Routing"
+          },
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2019/JEEP/CHEROKEE/SUV/FWD#complaints",
+            "type": "nhtsa",
+            "title": "NHTSA Complaint #11403289 - 2019 Jeep Cherokee Water Leak From Sunroof Into Interior"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Clean drains annually before rainy season with weed wacker line"
+          },
+          {
+            "type": "part",
+            "content": "Trim removal tool set for body panel work without damage",
+            "partName": "Trim Removal Tool Set",
+            "partBrand": "MICTUNING",
+            "affiliateUrl": "https://www.amazon.com/s?k=trim%20removal%20tool%20set%20automotive&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Bondo body filler for dent and panel repair",
+            "partName": "Body Filler Kit",
+            "partBrand": "Bondo",
+            "affiliateUrl": "https://www.amazon.com/s?k=Bondo%20body%20filler%20kit&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 800,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2023-09-18",
+        "reviewedOn": "2026-02-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Jeep",
+        "model": "Cherokee",
+        "years": [
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "body",
+        "title": "Sunroof Drain Clogs and Water Leaks",
+        "description": "Sunroof drain tubes become clogged with debris, causing water to overflow into cabin. Drain hoses can become kinked or detached, allowing water into headliner. Leads to water damage, mold, electrical issues.",
+        "solution": "Test each drain by pouring water into sunroof corners. Clear restrictions using weed wacker line threaded through drains, flush with water and compressed air. Check for detached hoses in wheel wells. Annual preventative cleaning recommended.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Water dripping from headliner",
+          "Wet carpets and floorboards",
+          "Water in cargo area",
+          "Mold and musty odors",
+          "Water stains on headliner"
+        ],
+        "affectedSystems": [
+          "Body",
+          "Interior"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 900,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "",
+            "type": "tsb",
+            "title": "TSB 23-010-15: Water Leak From A-Pillar / Headliner Area Due To Sunroof Drain Hose Routing"
+          },
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2019/JEEP/CHEROKEE/SUV/FWD#complaints",
+            "type": "nhtsa",
+            "title": "NHTSA Complaint #11403289 - 2019 Jeep Cherokee Water Leak From Sunroof Into Interior"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Clean drains annually before rainy season with weed wacker line"
+          },
+          {
+            "type": "part",
+            "content": "Trim removal tool set for body panel work without damage",
+            "partName": "Trim Removal Tool Set",
+            "partBrand": "MICTUNING",
+            "affiliateUrl": "https://www.amazon.com/s?k=trim%20removal%20tool%20set%20automotive&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Bondo body filler for dent and panel repair",
+            "partName": "Body Filler Kit",
+            "partBrand": "Bondo",
+            "affiliateUrl": "https://www.amazon.com/s?k=Bondo%20body%20filler%20kit&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 800,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2023-09-18",
+        "reviewedOn": "2026-02-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "jeep-cherokee-kl-tipm-fuel-pump-2014",
+      "model": "Cherokee",
+      "action": "keep_published_pending_source",
+      "reason": "The only frozen source is a video and no reviewed primary source establishes an integrated fuel-pump relay defect, bypass/rebuild remedy or costs across 2014-2023 Cherokee. The row remains byte-for-byte unchanged.",
+      "identityRule": "No source may change an indexed page identity. A different model, year scope, component, outcome or remedy requires a byte-for-byte hold.",
+      "commerceDecision": "unchanged-pending-exact-fitment-source",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "nhtsa-recall-inventory-boundary-not-claim-proof",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=CHEROKEE&modelYear=1990",
+          "verifiedOn": "2026-08-06",
+          "observation": "The official recall inventory was locked for the frozen model-year ranges, but it does not prove these broader maintenance, part-fitment or aggregated failure claims."
+        }
+      ],
+      "beforeSha256": "906df68bea64c6239629187b1d2b62f02f3eeabafc8757fa805206792ffe0672",
+      "proposalSha256": "906df68bea64c6239629187b1d2b62f02f3eeabafc8757fa805206792ffe0672",
+      "before": {
+        "make": "Jeep",
+        "model": "Cherokee",
+        "years": [
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "TIPM Fuel Pump Relay Failure",
+        "description": "The Totally Integrated Power Module fuel pump relay fails, causing no-start conditions or fuel pump running continuously. Unlike older models, the relay is integrated and cannot be replaced separately.",
+        "solution": "Options include TIPM replacement ($1,500-2,000), professional TIPM repair service ($300-500), or external relay bypass installation ($75). TIPM repair services can complete work within 24-48 hours.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Hard starting or no start condition",
+          "Multiple cranking attempts needed",
+          "Fuel pump runs continuously after shutting off",
+          "Dead battery from fuel pump running",
+          "Starting issues worse when cold"
+        ],
+        "affectedSystems": [
+          "Electrical",
+          "Fuel System"
+        ],
+        "dtcCodes": [
+          "P0087",
+          "P0230",
+          "P0231",
+          "P0232"
+        ],
+        "estimatedCostLow": 75,
+        "estimatedCostHigh": 2000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.youtube.com/watch?v=Q0z0Fq6N6nY",
+            "type": "video",
+            "title": "YouTube - How to Diagnose and Replace TIPM Fuel Pump Relay on Jeep Cherokee"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "TIPM repair services ($300-500) more cost-effective than dealer replacement"
+          },
+          {
+            "type": "tip",
+            "content": "External relay bypass kits available for ~$75 (DIY solution)"
+          },
+          {
+            "type": "part",
+            "content": "OEM-quality starter motor for reliable engine cranking",
+            "partName": "Starter Motor",
+            "partBrand": "Denso",
+            "affiliateUrl": "https://www.amazon.com/s?k=Denso%20Starter%20Motor%20Jeep%20Cherokee&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Remanufactured starter with gear reduction for improved cranking performance",
+            "partName": "Remanufactured Starter Motor",
+            "partBrand": "Remy",
+            "affiliateUrl": "https://www.amazon.com/s?k=Remy%20Remanufactured%20Starter%20Motor%20Jeep%20Cherokee&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Automotive relay replacement set for common relay failures",
+            "partName": "Automotive Relay 5-Pin 12V",
+            "partBrand": "Bosch",
+            "affiliateUrl": "https://www.amazon.com/s?k=Bosch%20Automotive%20Relay%205-Pin%2012V%20Jeep%20Cherokee&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Digital multimeter for diagnosing fuse, relay, and module electrical faults",
+            "partName": "Digital Multimeter",
+            "partBrand": "Innova",
+            "affiliateUrl": "https://www.amazon.com/s?k=Innova%20Digital%20Multimeter%20Jeep%20Cherokee&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 900,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2023-09-12",
+        "reviewedOn": "2026-02-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "chrysler-300-fuel-pump-relay-2011",
+          "dodge-journey-fuel-pump-relay-2009",
+          "jeep-grand-cherokee-tipm",
+          "ram-1500-tipm-failure-2009",
+          "chrysler-town-country-tipm-2008"
+        ]
+      },
+      "proposal": {
+        "make": "Jeep",
+        "model": "Cherokee",
+        "years": [
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "TIPM Fuel Pump Relay Failure",
+        "description": "The Totally Integrated Power Module fuel pump relay fails, causing no-start conditions or fuel pump running continuously. Unlike older models, the relay is integrated and cannot be replaced separately.",
+        "solution": "Options include TIPM replacement ($1,500-2,000), professional TIPM repair service ($300-500), or external relay bypass installation ($75). TIPM repair services can complete work within 24-48 hours.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Hard starting or no start condition",
+          "Multiple cranking attempts needed",
+          "Fuel pump runs continuously after shutting off",
+          "Dead battery from fuel pump running",
+          "Starting issues worse when cold"
+        ],
+        "affectedSystems": [
+          "Electrical",
+          "Fuel System"
+        ],
+        "dtcCodes": [
+          "P0087",
+          "P0230",
+          "P0231",
+          "P0232"
+        ],
+        "estimatedCostLow": 75,
+        "estimatedCostHigh": 2000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.youtube.com/watch?v=Q0z0Fq6N6nY",
+            "type": "video",
+            "title": "YouTube - How to Diagnose and Replace TIPM Fuel Pump Relay on Jeep Cherokee"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "TIPM repair services ($300-500) more cost-effective than dealer replacement"
+          },
+          {
+            "type": "tip",
+            "content": "External relay bypass kits available for ~$75 (DIY solution)"
+          },
+          {
+            "type": "part",
+            "content": "OEM-quality starter motor for reliable engine cranking",
+            "partName": "Starter Motor",
+            "partBrand": "Denso",
+            "affiliateUrl": "https://www.amazon.com/s?k=Denso%20Starter%20Motor%20Jeep%20Cherokee&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Remanufactured starter with gear reduction for improved cranking performance",
+            "partName": "Remanufactured Starter Motor",
+            "partBrand": "Remy",
+            "affiliateUrl": "https://www.amazon.com/s?k=Remy%20Remanufactured%20Starter%20Motor%20Jeep%20Cherokee&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Automotive relay replacement set for common relay failures",
+            "partName": "Automotive Relay 5-Pin 12V",
+            "partBrand": "Bosch",
+            "affiliateUrl": "https://www.amazon.com/s?k=Bosch%20Automotive%20Relay%205-Pin%2012V%20Jeep%20Cherokee&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Digital multimeter for diagnosing fuse, relay, and module electrical faults",
+            "partName": "Digital Multimeter",
+            "partBrand": "Innova",
+            "affiliateUrl": "https://www.amazon.com/s?k=Innova%20Digital%20Multimeter%20Jeep%20Cherokee&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 900,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2023-09-12",
+        "reviewedOn": "2026-02-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "chrysler-300-fuel-pump-relay-2011",
+          "dodge-journey-fuel-pump-relay-2009",
+          "jeep-grand-cherokee-tipm",
+          "ram-1500-tipm-failure-2009",
+          "chrysler-town-country-tipm-2008"
+        ]
+      }
+    },
+    {
+      "id": "jeep-cherokee-oil-filter-adapter-o-ring-leak",
+      "model": "Cherokee",
+      "action": "keep_published_pending_source",
+      "reason": "No exact primary source was pinned for the ten-year scope, three-seal configuration, fastener-style split, relocation/delete claims or part 4720363 fitment. The row and commerce remain byte-for-byte unchanged.",
+      "identityRule": "No source may change an indexed page identity. A different model, year scope, component, outcome or remedy requires a byte-for-byte hold.",
+      "commerceDecision": "unchanged-pending-exact-fitment-source",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "nhtsa-recall-inventory-boundary-not-claim-proof",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=CHEROKEE&modelYear=1990",
+          "verifiedOn": "2026-08-06",
+          "observation": "The official recall inventory was locked for the frozen model-year ranges, but it does not prove these broader maintenance, part-fitment or aggregated failure claims."
+        }
+      ],
+      "beforeSha256": "86b0bb9f866ec68d5111395e72d63f3c8604c151ddff36dd7d9cbfa033b43920",
+      "proposalSha256": "86b0bb9f866ec68d5111395e72d63f3c8604c151ddff36dd7d9cbfa033b43920",
+      "before": {
+        "make": "Jeep",
+        "model": "Cherokee",
+        "years": [
+          1990,
+          1991,
+          1992,
+          1993,
+          1994,
+          1995,
+          1996,
+          1997,
+          1998,
+          1999
+        ],
+        "trims": [
+          "SE",
+          "Sport",
+          "Classic",
+          "Country",
+          "Limited"
+        ],
+        "engines": [
+          "4.0L I6 (242)"
+        ],
+        "category": "engine",
+        "title": "Oil Filter Adapter O-Ring Leak (Commonly Misdiagnosed as Rear Main Seal)",
+        "description": "The 4.0L oil filter adapter uses three O-rings that harden and shrink with age (owners describe them becoming brittle 'like bakelite'). When they fail, pressurized oil weeps out and gets blown back onto the rear of the engine, so it is very frequently misdiagnosed as a rear main seal or valve cover leak - compounded by the nose-up engine geometry that makes all oil collect at the RMS area. It is an inexpensive but genuinely common XJ oil-leak source and worth checking before any major RMS teardown.",
+        "solution": "Replace the three adapter O-rings with an oil filter adapter O-ring kit (e.g., Crown 4720363). Note there are two adapter styles - an early hex type and a later Torx type that is harder to access; some owners delete the adapter entirely with a relocation/bypass. It is a low-cost part but requires care to reseal correctly.",
+        "severity": "low",
+        "confidence": "high",
+        "symptoms": [
+          "Oil collecting on rear/side of engine block",
+          "Leak appears near the oil filter area",
+          "Mistaken for rear main or valve cover leak",
+          "Oil drips after driving"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 15,
+        "estimatedCostHigh": 350,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "http://mikestrawbridge.com/blog/2010/11/jeep-4-0-oil-filter-adapter-leak/",
+            "type": "article",
+            "title": "Jeep 4.0 Oil filter adapter leak - The Jeep Guru"
+          },
+          {
+            "url": "https://naxja.org/threads/4-0-oil-filter-leak-best-fix.1115947/",
+            "type": "forum",
+            "title": "4.0 oil filter leak, best fix? - NAXJA Forums"
+          },
+          {
+            "url": "https://www.cherokeeforum.com/f2/oil-filter-adapter-fix-4338/",
+            "type": "forum",
+            "title": "Oil Filter Adapter fix - Jeep Cherokee Forum"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [
+          {
+            "note": "(reconciled from the issue's own fix text)",
+            "source": "reconciliation",
+            "buyLinks": [
+              {
+                "url": "https://www.amazon.com/s?k=4720363&tag=au7o-20",
+                "vendor": "Amazon"
+              },
+              {
+                "url": "https://www.rockauto.com/en/partsearch/?q=4720363",
+                "vendor": "RockAuto"
+              },
+              {
+                "url": "https://www.ebay.com/sch/i.html?_nkw=4720363",
+                "vendor": "eBay"
+              }
+            ],
+            "priceLow": null,
+            "component": "oil filter adapter O-ring seal kit",
+            "priceHigh": null,
+            "oemPartNumber": "4720363",
+            "aftermarketXref": []
+          }
+        ],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-08",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Jeep",
+        "model": "Cherokee",
+        "years": [
+          1990,
+          1991,
+          1992,
+          1993,
+          1994,
+          1995,
+          1996,
+          1997,
+          1998,
+          1999
+        ],
+        "trims": [
+          "SE",
+          "Sport",
+          "Classic",
+          "Country",
+          "Limited"
+        ],
+        "engines": [
+          "4.0L I6 (242)"
+        ],
+        "category": "engine",
+        "title": "Oil Filter Adapter O-Ring Leak (Commonly Misdiagnosed as Rear Main Seal)",
+        "description": "The 4.0L oil filter adapter uses three O-rings that harden and shrink with age (owners describe them becoming brittle 'like bakelite'). When they fail, pressurized oil weeps out and gets blown back onto the rear of the engine, so it is very frequently misdiagnosed as a rear main seal or valve cover leak - compounded by the nose-up engine geometry that makes all oil collect at the RMS area. It is an inexpensive but genuinely common XJ oil-leak source and worth checking before any major RMS teardown.",
+        "solution": "Replace the three adapter O-rings with an oil filter adapter O-ring kit (e.g., Crown 4720363). Note there are two adapter styles - an early hex type and a later Torx type that is harder to access; some owners delete the adapter entirely with a relocation/bypass. It is a low-cost part but requires care to reseal correctly.",
+        "severity": "low",
+        "confidence": "high",
+        "symptoms": [
+          "Oil collecting on rear/side of engine block",
+          "Leak appears near the oil filter area",
+          "Mistaken for rear main or valve cover leak",
+          "Oil drips after driving"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 15,
+        "estimatedCostHigh": 350,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "http://mikestrawbridge.com/blog/2010/11/jeep-4-0-oil-filter-adapter-leak/",
+            "type": "article",
+            "title": "Jeep 4.0 Oil filter adapter leak - The Jeep Guru"
+          },
+          {
+            "url": "https://naxja.org/threads/4-0-oil-filter-leak-best-fix.1115947/",
+            "type": "forum",
+            "title": "4.0 oil filter leak, best fix? - NAXJA Forums"
+          },
+          {
+            "url": "https://www.cherokeeforum.com/f2/oil-filter-adapter-fix-4338/",
+            "type": "forum",
+            "title": "Oil Filter Adapter fix - Jeep Cherokee Forum"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [
+          {
+            "note": "(reconciled from the issue's own fix text)",
+            "source": "reconciliation",
+            "buyLinks": [
+              {
+                "url": "https://www.amazon.com/s?k=4720363&tag=au7o-20",
+                "vendor": "Amazon"
+              },
+              {
+                "url": "https://www.rockauto.com/en/partsearch/?q=4720363",
+                "vendor": "RockAuto"
+              },
+              {
+                "url": "https://www.ebay.com/sch/i.html?_nkw=4720363",
+                "vendor": "eBay"
+              }
+            ],
+            "priceLow": null,
+            "component": "oil filter adapter O-ring seal kit",
+            "priceHigh": null,
+            "oemPartNumber": "4720363",
+            "aftermarketXref": []
+          }
+        ],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-08",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "jeep-cherokee-rear-main-seal-oil-leak",
+      "model": "Cherokee",
+      "action": "keep_published_pending_source",
+      "reason": "No exact primary service source was pinned, and the frozen instruction that the transmission and flexplate must be removed conflicts with the stated two-piece-seal identity, which ordinarily requires a different service path. The safety-sensitive procedure and part fitment remain byte-for-byte unchanged for independent manual review.",
+      "identityRule": "No source may change an indexed page identity. A different model, year scope, component, outcome or remedy requires a byte-for-byte hold.",
+      "commerceDecision": "unchanged-pending-exact-fitment-source",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "nhtsa-recall-inventory-boundary-not-claim-proof",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=CHEROKEE&modelYear=1990",
+          "verifiedOn": "2026-08-06",
+          "observation": "The official recall inventory was locked for the frozen model-year ranges, but it does not prove these broader maintenance, part-fitment or aggregated failure claims."
+        }
+      ],
+      "beforeSha256": "c15df0b93e1322aacc846af79e736d8f4338b09ee5af7118db288a4ea0c0916e",
+      "proposalSha256": "c15df0b93e1322aacc846af79e736d8f4338b09ee5af7118db288a4ea0c0916e",
+      "before": {
+        "make": "Jeep",
+        "model": "Cherokee",
+        "years": [
+          1990,
+          1991,
+          1992,
+          1993,
+          1994,
+          1995,
+          1996,
+          1997,
+          1998,
+          1999
+        ],
+        "trims": [
+          "SE",
+          "Sport",
+          "Classic",
+          "Country",
+          "Limited"
+        ],
+        "engines": [
+          "4.0L I6 (242)"
+        ],
+        "category": "engine",
+        "title": "Rear Main Seal Oil Leak (Two-Piece Seal Design)",
+        "description": "The 4.0L is notorious for rear main seal (RMS) leaks, in part due to its two-piece seal design. Compounding the diagnosis, the XJ engine sits nose-up, so oil from almost any upstream leak runs down and collects at the RMS area - the lowest point on the engine - making other leaks look like an RMS failure. A genuine RMS leak leaves oil at the bell housing/flexplate area and can drip onto the driveway over time.",
+        "solution": "Before pulling the transmission, clean the engine thoroughly and rule out cheaper upstream sources (valve cover gasket, distributor gasket, oil pressure sender, oil filter adapter O-rings, timing cover). If the RMS is truly the source, replace it - the seal is inexpensive but labor-intensive because the transmission/flexplate must come off, which drives the cost.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Oil drips from bell housing / back of engine",
+          "Oil spots on driveway",
+          "Oil film covering rear of engine and oil pan",
+          "Gradual oil loss between changes"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 150,
+        "estimatedCostHigh": 900,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.cherokeeforum.com/f2/common-4-0-oil-leak-points-126890/",
+            "type": "forum",
+            "title": "Common 4.0 oil leak points - Jeep Cherokee Forum"
+          },
+          {
+            "url": "https://naxja.org/threads/identifying-oil-pan-gasket-or-rms-leak.1154754/",
+            "type": "forum",
+            "title": "Identifying Oil pan gasket or RMS leak - NAXJA Forums"
+          },
+          {
+            "url": "https://bleepinjeep.com/video/how-to-fix-a-rear-main-seal-and-oil-pan-gasket-leak/",
+            "type": "article",
+            "title": "How To Fix a Rear Main Seal and Oil Pan Gasket Leak - BleepinJeep"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [
+          {
+            "note": "(reconciled from the issue's own fix text)",
+            "source": "reconciliation",
+            "buyLinks": [
+              {
+                "url": "https://www.amazon.com/s?k=4778126&tag=au7o-20",
+                "vendor": "Amazon"
+              },
+              {
+                "url": "https://www.rockauto.com/en/partsearch/?q=4778126",
+                "vendor": "RockAuto"
+              },
+              {
+                "url": "https://www.ebay.com/sch/i.html?_nkw=4778126",
+                "vendor": "eBay"
+              }
+            ],
+            "priceLow": null,
+            "component": "rear main seal (crankshaft rear main seal kit)",
+            "priceHigh": null,
+            "oemPartNumber": "4778126",
+            "aftermarketXref": []
+          }
+        ],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-08",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Jeep",
+        "model": "Cherokee",
+        "years": [
+          1990,
+          1991,
+          1992,
+          1993,
+          1994,
+          1995,
+          1996,
+          1997,
+          1998,
+          1999
+        ],
+        "trims": [
+          "SE",
+          "Sport",
+          "Classic",
+          "Country",
+          "Limited"
+        ],
+        "engines": [
+          "4.0L I6 (242)"
+        ],
+        "category": "engine",
+        "title": "Rear Main Seal Oil Leak (Two-Piece Seal Design)",
+        "description": "The 4.0L is notorious for rear main seal (RMS) leaks, in part due to its two-piece seal design. Compounding the diagnosis, the XJ engine sits nose-up, so oil from almost any upstream leak runs down and collects at the RMS area - the lowest point on the engine - making other leaks look like an RMS failure. A genuine RMS leak leaves oil at the bell housing/flexplate area and can drip onto the driveway over time.",
+        "solution": "Before pulling the transmission, clean the engine thoroughly and rule out cheaper upstream sources (valve cover gasket, distributor gasket, oil pressure sender, oil filter adapter O-rings, timing cover). If the RMS is truly the source, replace it - the seal is inexpensive but labor-intensive because the transmission/flexplate must come off, which drives the cost.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Oil drips from bell housing / back of engine",
+          "Oil spots on driveway",
+          "Oil film covering rear of engine and oil pan",
+          "Gradual oil loss between changes"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 150,
+        "estimatedCostHigh": 900,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.cherokeeforum.com/f2/common-4-0-oil-leak-points-126890/",
+            "type": "forum",
+            "title": "Common 4.0 oil leak points - Jeep Cherokee Forum"
+          },
+          {
+            "url": "https://naxja.org/threads/identifying-oil-pan-gasket-or-rms-leak.1154754/",
+            "type": "forum",
+            "title": "Identifying Oil pan gasket or RMS leak - NAXJA Forums"
+          },
+          {
+            "url": "https://bleepinjeep.com/video/how-to-fix-a-rear-main-seal-and-oil-pan-gasket-leak/",
+            "type": "article",
+            "title": "How To Fix a Rear Main Seal and Oil Pan Gasket Leak - BleepinJeep"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [
+          {
+            "note": "(reconciled from the issue's own fix text)",
+            "source": "reconciliation",
+            "buyLinks": [
+              {
+                "url": "https://www.amazon.com/s?k=4778126&tag=au7o-20",
+                "vendor": "Amazon"
+              },
+              {
+                "url": "https://www.rockauto.com/en/partsearch/?q=4778126",
+                "vendor": "RockAuto"
+              },
+              {
+                "url": "https://www.ebay.com/sch/i.html?_nkw=4778126",
+                "vendor": "eBay"
+              }
+            ],
+            "priceLow": null,
+            "component": "rear main seal (crankshaft rear main seal kit)",
+            "priceHigh": null,
+            "oemPartNumber": "4778126",
+            "aftermarketXref": []
+          }
+        ],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-08",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "jeep-cherokee-rear-unibody-frame-rail-floor-pan-rocker-rust",
+      "model": "Cherokee",
+      "action": "keep_published_pending_source",
+      "reason": "No exact primary source was pinned for the full 1990-1999 structural-location set, corrosion mechanism, death-wobble linkage or weld-in repair claims. The row remains byte-for-byte unchanged.",
+      "identityRule": "No source may change an indexed page identity. A different model, year scope, component, outcome or remedy requires a byte-for-byte hold.",
+      "commerceDecision": "unchanged-pending-exact-fitment-source",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "nhtsa-recall-inventory-boundary-not-claim-proof",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=CHEROKEE&modelYear=1990",
+          "verifiedOn": "2026-08-06",
+          "observation": "The official recall inventory was locked for the frozen model-year ranges, but it does not prove these broader maintenance, part-fitment or aggregated failure claims."
+        }
+      ],
+      "beforeSha256": "b09f9255a72130e41a4f38cbe19d86e6f806e47118f60f2ecec59b20165770dd",
+      "proposalSha256": "b09f9255a72130e41a4f38cbe19d86e6f806e47118f60f2ecec59b20165770dd",
+      "before": {
+        "make": "Jeep",
+        "model": "Cherokee",
+        "years": [
+          1990,
+          1991,
+          1992,
+          1993,
+          1994,
+          1995,
+          1996,
+          1997,
+          1998,
+          1999
+        ],
+        "trims": [
+          "SE",
+          "Sport",
+          "Classic",
+          "Country",
+          "Limited"
+        ],
+        "engines": [
+          "4.0L I6 (242)",
+          "2.5L I4 (150)"
+        ],
+        "category": "body",
+        "title": "Rear Unibody Frame Rail, Floor Pan and Rocker Rust (Structural)",
+        "description": "The XJ uses a thin unibody with no separate frame, and corrosion is one of its defining long-term problems, especially in salt-belt climates. The rear unibody rails rot where the fuel lines pass through the rail 'tunnel' and near the leaf-spring mounts, while floor pans under the seats/cargo area, rocker panels (which rot from the inside out), and rear quarter panels around the wheel wells also corrode. Because the structure is load-bearing, advanced rust here is a safety/structural issue, not just cosmetic, and can affect leaf-spring mounting integrity. Rust and cracks at the front frame rails/bulkhead welds have also been traced as a cause of death wobble.",
+        "solution": "Cut out all rusted metal and weld in new steel. A large aftermarket ecosystem sells XJ-specific weld-in repair panels for the rear rails, floor pans, rockers, and rear crossmember (Rustbuster, C2C Fabrication, etc.). After repair, treat cavities with rust-inhibiting coatings. Catching it early before it reaches spring/mount points keeps cost far lower.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Rust holes in rear unibody rails near fuel lines",
+          "Soft/flaking floor pans under seats and cargo area",
+          "Rocker panels rotting from inside out",
+          "Rust around rear wheel arches and leaf-spring mounts"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 300,
+        "estimatedCostHigh": 3000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.cherokeeforum.com/f2/frame-rail-rust-fixable-210146/",
+            "type": "forum",
+            "title": "Frame rail rust - is this fixable? - Jeep Cherokee Forum"
+          },
+          {
+            "url": "https://naxja.org/threads/floor-pan-repair.9375/",
+            "type": "forum",
+            "title": "Floor pan repair - NAXJA Forums"
+          },
+          {
+            "url": "https://www.jalopnik.com/how-i-fixed-a-huge-rust-hole-in-my-500-jeep-cherokees-1846161769/",
+            "type": "article",
+            "title": "How I Fixed A Huge Rust Hole In My $500 Jeep Cherokee's Frame - Jalopnik"
+          },
+          {
+            "url": "https://www.c2cfabrication.com/pages/1984-2001-jeep-cherokee-xj-rust-repair-panels-premium-aftermarket-replacement-parts",
+            "type": "article",
+            "title": "1984-2001 Jeep Cherokee XJ Rust Repair Panels - C2C Fabrication"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-08",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Jeep",
+        "model": "Cherokee",
+        "years": [
+          1990,
+          1991,
+          1992,
+          1993,
+          1994,
+          1995,
+          1996,
+          1997,
+          1998,
+          1999
+        ],
+        "trims": [
+          "SE",
+          "Sport",
+          "Classic",
+          "Country",
+          "Limited"
+        ],
+        "engines": [
+          "4.0L I6 (242)",
+          "2.5L I4 (150)"
+        ],
+        "category": "body",
+        "title": "Rear Unibody Frame Rail, Floor Pan and Rocker Rust (Structural)",
+        "description": "The XJ uses a thin unibody with no separate frame, and corrosion is one of its defining long-term problems, especially in salt-belt climates. The rear unibody rails rot where the fuel lines pass through the rail 'tunnel' and near the leaf-spring mounts, while floor pans under the seats/cargo area, rocker panels (which rot from the inside out), and rear quarter panels around the wheel wells also corrode. Because the structure is load-bearing, advanced rust here is a safety/structural issue, not just cosmetic, and can affect leaf-spring mounting integrity. Rust and cracks at the front frame rails/bulkhead welds have also been traced as a cause of death wobble.",
+        "solution": "Cut out all rusted metal and weld in new steel. A large aftermarket ecosystem sells XJ-specific weld-in repair panels for the rear rails, floor pans, rockers, and rear crossmember (Rustbuster, C2C Fabrication, etc.). After repair, treat cavities with rust-inhibiting coatings. Catching it early before it reaches spring/mount points keeps cost far lower.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Rust holes in rear unibody rails near fuel lines",
+          "Soft/flaking floor pans under seats and cargo area",
+          "Rocker panels rotting from inside out",
+          "Rust around rear wheel arches and leaf-spring mounts"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 300,
+        "estimatedCostHigh": 3000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.cherokeeforum.com/f2/frame-rail-rust-fixable-210146/",
+            "type": "forum",
+            "title": "Frame rail rust - is this fixable? - Jeep Cherokee Forum"
+          },
+          {
+            "url": "https://naxja.org/threads/floor-pan-repair.9375/",
+            "type": "forum",
+            "title": "Floor pan repair - NAXJA Forums"
+          },
+          {
+            "url": "https://www.jalopnik.com/how-i-fixed-a-huge-rust-hole-in-my-500-jeep-cherokees-1846161769/",
+            "type": "article",
+            "title": "How I Fixed A Huge Rust Hole In My $500 Jeep Cherokee's Frame - Jalopnik"
+          },
+          {
+            "url": "https://www.c2cfabrication.com/pages/1984-2001-jeep-cherokee-xj-rust-repair-panels-premium-aftermarket-replacement-parts",
+            "type": "article",
+            "title": "1984-2001 Jeep Cherokee XJ Rust Repair Panels - C2C Fabrication"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-08",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    }
+  ]
+}
