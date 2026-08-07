@@ -1,0 +1,665 @@
+{
+  "schemaVersion": 1,
+  "status": "proposal-only",
+  "auditStage": "make-wide-reconciliation",
+  "requiresIndependentApproval": true,
+  "generatedOn": "2026-08-06",
+  "make": "Jaguar",
+  "completionStatement": "All 10 Jaguar model packets reconcile to all 63 frozen published rows exactly once. Two exact NHTSA recall rewrites are proposed; the other 61 rows remain byte-for-byte holds.",
+  "safetyContract": [
+    "No production database write, cache purge, deployment, archive action, redirect, slug change, new issue or public-page change is authorized by this packet.",
+    "Every frozen Jaguar ID remains published with the same make, model, years, title, category and related-issue identity.",
+    "Only the two explicitly listed NHTSA recall identities may be rewritten after independent approval.",
+    "Newly discovered issue identities remain deferred until the existing-catalog make audit is complete."
+  ],
+  "source": {
+    "snapshotFile": "data/_jaguar-deeplink-snapshot-2026-08-06.json",
+    "snapshotSha256": "60f1d4d001e3f56c9b9fc4c2429fe300f44ef3aaaeb7fda2e09a37b6e6c66800",
+    "snapshotHash": "016c6d9be5ca12dd4a514267ecfed59d36d825395d3e83ef56985dc87003bbfa",
+    "snapshotRecordCount": 63
+  },
+  "models": [
+    "E-PACE",
+    "F-PACE",
+    "F-TYPE",
+    "I-PACE",
+    "S-TYPE",
+    "X-TYPE",
+    "XE",
+    "XF",
+    "XJ",
+    "XK"
+  ],
+  "modelPackets": [
+    {
+      "model": "E-PACE",
+      "file": "data/known-issue-jaguar-e-pace-adjudication-2026-08-06.json",
+      "sha256": "ff2149fbd739fed0623406d4fa8790240a384e58a4081a1cfef3a203fbc26768",
+      "rowCount": 4,
+      "rewrites": 0,
+      "holds": 4
+    },
+    {
+      "model": "F-PACE",
+      "file": "data/known-issue-jaguar-f-pace-adjudication-2026-08-06.json",
+      "sha256": "06456d053c70961e34e97e762f5007ddefb62a9ee96da706376ea76265aef305",
+      "rowCount": 6,
+      "rewrites": 0,
+      "holds": 6
+    },
+    {
+      "model": "F-TYPE",
+      "file": "data/known-issue-jaguar-f-type-adjudication-2026-08-06.json",
+      "sha256": "f24fdee78d9a1c98e73917df018a17cdcb01ca7babbf88e3bea5d9ff2ccdf50b",
+      "rowCount": 4,
+      "rewrites": 0,
+      "holds": 4
+    },
+    {
+      "model": "I-PACE",
+      "file": "data/known-issue-jaguar-i-pace-adjudication-2026-08-06.json",
+      "sha256": "e76707cb4bd2ffd197eab7a60c6f5cfc9f56d6b18ad6c9448dc5df44c7d2cc74",
+      "rowCount": 4,
+      "rewrites": 0,
+      "holds": 4
+    },
+    {
+      "model": "S-TYPE",
+      "file": "data/known-issue-jaguar-s-type-adjudication-2026-08-06.json",
+      "sha256": "15b3df6fa47580038b10f684f5f1d934ec6747673e50b693b99a94e89ec92f37",
+      "rowCount": 3,
+      "rewrites": 0,
+      "holds": 3
+    },
+    {
+      "model": "X-TYPE",
+      "file": "data/known-issue-jaguar-x-type-adjudication-2026-08-06.json",
+      "sha256": "597067ddc05e87be1278735b50aeb535c8943196175b58f472fb0da393a1adfb",
+      "rowCount": 4,
+      "rewrites": 0,
+      "holds": 4
+    },
+    {
+      "model": "XE",
+      "file": "data/known-issue-jaguar-xe-adjudication-2026-08-06.json",
+      "sha256": "ee9f6cc22ae92e306f581ff387b9d3abe8739cd0d24233e64e8148e8e6e173e0",
+      "rowCount": 5,
+      "rewrites": 0,
+      "holds": 5
+    },
+    {
+      "model": "XF",
+      "file": "data/known-issue-jaguar-xf-adjudication-2026-08-06.json",
+      "sha256": "3854e2f9d9f9a2f33698431367f3746acb48c6e3e1a03abe7720174db9ed17bf",
+      "rowCount": 6,
+      "rewrites": 0,
+      "holds": 6
+    },
+    {
+      "model": "XJ",
+      "file": "data/known-issue-jaguar-xj-adjudication-2026-08-06.json",
+      "sha256": "eee102d3e9e7065143f28485f7040238cbaee95e99131625634d4e66e741fbb5",
+      "rowCount": 5,
+      "rewrites": 0,
+      "holds": 5
+    },
+    {
+      "model": "XK",
+      "file": "data/known-issue-jaguar-xk-adjudication-2026-08-06.json",
+      "sha256": "8fbf2a93048a3939692544eccf51712fd3b5fe7f1040a5f874d53f941441b81c",
+      "rowCount": 22,
+      "rewrites": 2,
+      "holds": 20
+    }
+  ],
+  "rewriteIds": [
+    "jaguar-xk-headlamp-adjustment-mechanism-compliance-setup-issue",
+    "jaguar-xk-unintended-acceleration-during-braking"
+  ],
+  "summary": {
+    "rewrite_same_identity": 2,
+    "keep_published_pending_source": 61,
+    "total": 63
+  },
+  "invariants": {
+    "missingIds": 0,
+    "extraIds": 0,
+    "duplicateIds": 0,
+    "identityDrift": 0,
+    "statusDrift": 0,
+    "changedHolds": 0,
+    "archiveDeleteRedirectOrNewIssue": 0
+  },
+  "decisions": [
+    {
+      "id": "jaguar-e-pace-9-speed-harsh-shift-2018",
+      "model": "E-PACE",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "5eb44eb559eb5ad181273aa6fdc6ee9827ecadf7d4c112ca158b976a63791b2e",
+      "proposalSha256": "5eb44eb559eb5ad181273aa6fdc6ee9827ecadf7d4c112ca158b976a63791b2e",
+      "changedFields": []
+    },
+    {
+      "id": "jaguar-e-pace-incontrol-freeze-2018",
+      "model": "E-PACE",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "53a75f8eab087897368f2598fa6dd6c7b15771852a6814193f021714e6e61968",
+      "proposalSha256": "53a75f8eab087897368f2598fa6dd6c7b15771852a6814193f021714e6e61968",
+      "changedFields": []
+    },
+    {
+      "id": "jaguar-e-pace-panoramic-roof-leak-2018",
+      "model": "E-PACE",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "121447f464d88fa6827b12a7f3c34173dc5dc48bc3f732d58c8ec61258533fda",
+      "proposalSha256": "121447f464d88fa6827b12a7f3c34173dc5dc48bc3f732d58c8ec61258533fda",
+      "changedFields": []
+    },
+    {
+      "id": "jaguar-e-pace-turbo-coolant-hose-ingenium-2018",
+      "model": "E-PACE",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "c0481d55006a2ed2629898fda4501861fe5be8661819900553efa324090659dd",
+      "proposalSha256": "c0481d55006a2ed2629898fda4501861fe5be8661819900553efa324090659dd",
+      "changedFields": []
+    },
+    {
+      "id": "jaguar-f-pace-coolant-crossover-v6-2017",
+      "model": "F-PACE",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "3f3b85c8678a8df3ba1a2efefa75caf70cae1f3e0e79e8503eaf59b1a2c22d6e",
+      "proposalSha256": "3f3b85c8678a8df3ba1a2efefa75caf70cae1f3e0e79e8503eaf59b1a2c22d6e",
+      "changedFields": []
+    },
+    {
+      "id": "jaguar-f-pace-incontrol-freeze-2017",
+      "model": "F-PACE",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "f1fb8e5d1ba0babe148c0df90b82c964bea0a29afb02cf0d56668e699cab1224",
+      "proposalSha256": "f1fb8e5d1ba0babe148c0df90b82c964bea0a29afb02cf0d56668e699cab1224",
+      "changedFields": []
+    },
+    {
+      "id": "jaguar-f-pace-panoramic-roof-creak-2017",
+      "model": "F-PACE",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "c65b390d4b41250551a01e78f6f912482e2d4a096727c913b0a232035c19e3a6",
+      "proposalSha256": "c65b390d4b41250551a01e78f6f912482e2d4a096727c913b0a232035c19e3a6",
+      "changedFields": []
+    },
+    {
+      "id": "jaguar-f-pace-rear-diff-bushing-2017",
+      "model": "F-PACE",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "2fe6a63d01fd90ddca9ed008f6e44b300ee55891164436630b3d18dd36214617",
+      "proposalSha256": "2fe6a63d01fd90ddca9ed008f6e44b300ee55891164436630b3d18dd36214617",
+      "changedFields": []
+    },
+    {
+      "id": "jaguar-f-pace-water-pump-ingenium-2017",
+      "model": "F-PACE",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "c4c2dba4358bd07962238f3934d9f6b512233c0d20f98d199e1c8566f4fbbaf8",
+      "proposalSha256": "c4c2dba4358bd07962238f3934d9f6b512233c0d20f98d199e1c8566f4fbbaf8",
+      "changedFields": []
+    },
+    {
+      "id": "jaguar-f-pace-zf-8hp-valve-body-2017",
+      "model": "F-PACE",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "6138b01ab782e5f7dd2c16f90bfef4d0c2c53d6caed8fb77ea6dd92c3d02aa15",
+      "proposalSha256": "6138b01ab782e5f7dd2c16f90bfef4d0c2c53d6caed8fb77ea6dd92c3d02aa15",
+      "changedFields": []
+    },
+    {
+      "id": "jaguar-f-type-convertible-hydraulic-leak-2014",
+      "model": "F-TYPE",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "706657e36192b1a60ff644a2b61349d1f742019bda8780aa4dfb1ea091713cc9",
+      "proposalSha256": "706657e36192b1a60ff644a2b61349d1f742019bda8780aa4dfb1ea091713cc9",
+      "changedFields": []
+    },
+    {
+      "id": "jaguar-f-type-differential-whine-2014",
+      "model": "F-TYPE",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "115b73581472ce9835e5b16ba1a39233475bf8ed2ef97d5eaa2afd45aa612e12",
+      "proposalSha256": "115b73581472ce9835e5b16ba1a39233475bf8ed2ef97d5eaa2afd45aa612e12",
+      "changedFields": []
+    },
+    {
+      "id": "jaguar-f-type-supercharger-bearing-v8-2014",
+      "model": "F-TYPE",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "fcab47c25ef6c1f96e8a9bb0978850d68b324eaa453f8d54401099314816732d",
+      "proposalSha256": "fcab47c25ef6c1f96e8a9bb0978850d68b324eaa453f8d54401099314816732d",
+      "changedFields": []
+    },
+    {
+      "id": "jaguar-f-type-zf-8hp-valve-body-2014",
+      "model": "F-TYPE",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "6e0fe248b53c130063014afcecfc998309869593539ea08134620faa528ffdd4",
+      "proposalSha256": "6e0fe248b53c130063014afcecfc998309869593539ea08134620faa528ffdd4",
+      "changedFields": []
+    },
+    {
+      "id": "jaguar-i-pace-12v-battery-drain-2019",
+      "model": "I-PACE",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "e13d3343c066bc6082dc4377c7216a1368ddf58d0fd7ca37e514392fbfbb57bf",
+      "proposalSha256": "e13d3343c066bc6082dc4377c7216a1368ddf58d0fd7ca37e514392fbfbb57bf",
+      "changedFields": []
+    },
+    {
+      "id": "jaguar-i-pace-battery-conditioning-2019",
+      "model": "I-PACE",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "bd5953ef4d6ca84e47dc17f1091469f402ba5f3f4b124e15c6b6d20b7b3650d4",
+      "proposalSha256": "bd5953ef4d6ca84e47dc17f1091469f402ba5f3f4b124e15c6b6d20b7b3650d4",
+      "changedFields": []
+    },
+    {
+      "id": "jaguar-i-pace-contactor-failure-2019",
+      "model": "I-PACE",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "96025e24f7c51c5fab129742dc851900707ec8657081327fe3103e37c3b2a2ac",
+      "proposalSha256": "96025e24f7c51c5fab129742dc851900707ec8657081327fe3103e37c3b2a2ac",
+      "changedFields": []
+    },
+    {
+      "id": "jaguar-i-pace-ota-update-issues-2019",
+      "model": "I-PACE",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "2f0cea3cbc230e8981eb43e4560f01a93e8cbc4f268d704a4e0202fd2fcc598f",
+      "proposalSha256": "2f0cea3cbc230e8981eb43e4560f01a93e8cbc4f268d704a4e0202fd2fcc598f",
+      "changedFields": []
+    },
+    {
+      "id": "jaguar-s-type-electrical-gremlins-2000",
+      "model": "S-TYPE",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "1d6b33e723fa17016f4c5bc60d32940c8b8f93dfd2a49042f41ec336b273c8be",
+      "proposalSha256": "1d6b33e723fa17016f4c5bc60d32940c8b8f93dfd2a49042f41ec336b273c8be",
+      "changedFields": []
+    },
+    {
+      "id": "jaguar-s-type-timing-chain-tensioner-v8-2000",
+      "model": "S-TYPE",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "5c3646f7cee889eb8be5723d44acef0c633acf57de9f8fe3c3f3a698639bb2dc",
+      "proposalSha256": "5c3646f7cee889eb8be5723d44acef0c633acf57de9f8fe3c3f3a698639bb2dc",
+      "changedFields": []
+    },
+    {
+      "id": "jaguar-s-type-transmission-valve-body-2000",
+      "model": "S-TYPE",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "187e6a4e54fda8321bb3b3bbbb6ee9ca0b17dd4f9b69aaff1725e7ba36c7e429",
+      "proposalSha256": "187e6a4e54fda8321bb3b3bbbb6ee9ca0b17dd4f9b69aaff1725e7ba36c7e429",
+      "changedFields": []
+    },
+    {
+      "id": "jaguar-x-type-alternator-failure-2002",
+      "model": "X-TYPE",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "6856646b132ca139aab1825c6455387fb3efd02723d46c59c925ff13d296e5a2",
+      "proposalSha256": "6856646b132ca139aab1825c6455387fb3efd02723d46c59c925ff13d296e5a2",
+      "changedFields": []
+    },
+    {
+      "id": "jaguar-x-type-thermostat-housing-leak-2002",
+      "model": "X-TYPE",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "ad89ca7391425a152410175557ef61abe2443ff9fe768411db0c5b2d486cca4d",
+      "proposalSha256": "ad89ca7391425a152410175557ef61abe2443ff9fe768411db0c5b2d486cca4d",
+      "changedFields": []
+    },
+    {
+      "id": "jaguar-x-type-transfer-case-viscous-coupling-2002",
+      "model": "X-TYPE",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "bf0b42ee50d082c6a83605bff1d951028d4c8be69fe23d088ccd5b885bb848fc",
+      "proposalSha256": "bf0b42ee50d082c6a83605bff1d951028d4c8be69fe23d088ccd5b885bb848fc",
+      "changedFields": []
+    },
+    {
+      "id": "jaguar-x-type-window-regulator-2002",
+      "model": "X-TYPE",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "b33066eede6b6eb2214ff8b4656cbdff1f68e2178f4c590d8099ac0e505a89f8",
+      "proposalSha256": "b33066eede6b6eb2214ff8b4656cbdff1f68e2178f4c590d8099ac0e505a89f8",
+      "changedFields": []
+    },
+    {
+      "id": "jaguar-xe-diesel-dpf-2017",
+      "model": "XE",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "f3f849a915807d559d0ce4311cf4cf1faafa01d9e289b07a75519bc514db8ba5",
+      "proposalSha256": "f3f849a915807d559d0ce4311cf4cf1faafa01d9e289b07a75519bc514db8ba5",
+      "changedFields": []
+    },
+    {
+      "id": "jaguar-xe-infotainment-freeze-2017",
+      "model": "XE",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "4e95028b39f869b66cd44d9e0e7193f1407688daca49da002b8eff3d088805ba",
+      "proposalSha256": "4e95028b39f869b66cd44d9e0e7193f1407688daca49da002b8eff3d088805ba",
+      "changedFields": []
+    },
+    {
+      "id": "jaguar-xe-suspension-bushing-wear-2017",
+      "model": "XE",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "5131e789d5e23100f296a9eb319814366151028fae56bf488ca5d470fb3b013e",
+      "proposalSha256": "5131e789d5e23100f296a9eb319814366151028fae56bf488ca5d470fb3b013e",
+      "changedFields": []
+    },
+    {
+      "id": "jaguar-xe-water-pump-ingenium-2017",
+      "model": "XE",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "05784dd3ef91be7030b8690d0be43be4662be991798e3bcd4fd770007b32830a",
+      "proposalSha256": "05784dd3ef91be7030b8690d0be43be4662be991798e3bcd4fd770007b32830a",
+      "changedFields": []
+    },
+    {
+      "id": "jaguar-xe-zf-8hp-harsh-shift-2017",
+      "model": "XE",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "d769491dfb8d8cab0b135adaecd1cdb55b86447f6ce523a5efe73b82ce2b33c2",
+      "proposalSha256": "d769491dfb8d8cab0b135adaecd1cdb55b86447f6ce523a5efe73b82ce2b33c2",
+      "changedFields": []
+    },
+    {
+      "id": "jaguar-xf-crankcase-vent-valve-2009",
+      "model": "XF",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "f2dbf631fbf748ac5a3ba72e2a3afa3f7702bfe4095242c9415eb559a1a02a4a",
+      "proposalSha256": "f2dbf631fbf748ac5a3ba72e2a3afa3f7702bfe4095242c9415eb559a1a02a4a",
+      "changedFields": []
+    },
+    {
+      "id": "jaguar-xf-diesel-dpf-regen-2009",
+      "model": "XF",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "99b6ea43c12e0958e97671db4f2e4580ea86507ea74097fa2e34d585af54fc33",
+      "proposalSha256": "99b6ea43c12e0958e97671db4f2e4580ea86507ea74097fa2e34d585af54fc33",
+      "changedFields": []
+    },
+    {
+      "id": "jaguar-xf-timing-chain-tensioner-ajv8-2009",
+      "model": "XF",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "55a8655f65db6456f6edaac46ad668f31e0f5e8dae6af06c5621272b27272bd6",
+      "proposalSha256": "55a8655f65db6456f6edaac46ad668f31e0f5e8dae6af06c5621272b27272bd6",
+      "changedFields": []
+    },
+    {
+      "id": "jaguar-xf-turbo-coolant-hose-ingenium-2016",
+      "model": "XF",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "209b885a1d6f2f612f36719a745b83f85af83d402e35bec067a7a045b39d12df",
+      "proposalSha256": "209b885a1d6f2f612f36719a745b83f85af83d402e35bec067a7a045b39d12df",
+      "changedFields": []
+    },
+    {
+      "id": "jaguar-xf-window-regulator-2009",
+      "model": "XF",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "4b45cb30ef2bae1ceca46a73edbb6a22c717dd97e9eaf6552ecf1c26c673132b",
+      "proposalSha256": "4b45cb30ef2bae1ceca46a73edbb6a22c717dd97e9eaf6552ecf1c26c673132b",
+      "changedFields": []
+    },
+    {
+      "id": "jaguar-xf-zf-8hp-mechatronic-2016",
+      "model": "XF",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "16688b4b9eb5e34e8bcd9c13b64a6a5e6a118584fbefd07ac7ece5339ae83d48",
+      "proposalSha256": "16688b4b9eb5e34e8bcd9c13b64a6a5e6a118584fbefd07ac7ece5339ae83d48",
+      "changedFields": []
+    },
+    {
+      "id": "jaguar-xj-air-suspension-compressor-2004",
+      "model": "XJ",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "fcc596dbad4473321af7f8ed5538ce694ce86d0821ab6801fdb664feaa92a2d0",
+      "proposalSha256": "fcc596dbad4473321af7f8ed5538ce694ce86d0821ab6801fdb664feaa92a2d0",
+      "changedFields": []
+    },
+    {
+      "id": "jaguar-xj-electrical-gremlins-bcm-2004",
+      "model": "XJ",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "e76cc4aeb7b971d9c26c82fae1da2d6d711af64d55cac16a311a3ed514c40195",
+      "proposalSha256": "e76cc4aeb7b971d9c26c82fae1da2d6d711af64d55cac16a311a3ed514c40195",
+      "changedFields": []
+    },
+    {
+      "id": "jaguar-xj-rear-main-seal-v8-2004",
+      "model": "XJ",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "11e20d70f4f3a0248f9be3b597d81033a2397cb7810bf159d8dc294e5f469066",
+      "proposalSha256": "11e20d70f4f3a0248f9be3b597d81033a2397cb7810bf159d8dc294e5f469066",
+      "changedFields": []
+    },
+    {
+      "id": "jaguar-xj-supercharger-nose-cone-2010",
+      "model": "XJ",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "7c2bfc0279147aeff4cc357a2cdb32d7a6a13f1557fb72818220f465d88c8f1b",
+      "proposalSha256": "7c2bfc0279147aeff4cc357a2cdb32d7a6a13f1557fb72818220f465d88c8f1b",
+      "changedFields": []
+    },
+    {
+      "id": "jaguar-xj-throttle-body-2004",
+      "model": "XJ",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "45c0dc91b231c0289635bf15640219dd885e20caf707ed47af8e4e9266c40169",
+      "proposalSha256": "45c0dc91b231c0289635bf15640219dd885e20caf707ed47af8e4e9266c40169",
+      "changedFields": []
+    },
+    {
+      "id": "jaguar-xk-5-0l-aj133-water-pump-bearing-seal-failure",
+      "model": "XK",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "464b254e7db68b4b8a19ca58b96c64fa9aa4a5477a44e09f000413dfee2cc720",
+      "proposalSha256": "464b254e7db68b4b8a19ca58b96c64fa9aa4a5477a44e09f000413dfee2cc720",
+      "changedFields": []
+    },
+    {
+      "id": "jaguar-xk-blocked-hvac-condensate-duckbill-drain-flooding-passenger-fo",
+      "model": "XK",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "d155581b0462a5b6dead728717735d38f1850f72ac35bce882d983a699ffd6e7",
+      "proposalSha256": "d155581b0462a5b6dead728717735d38f1850f72ac35bce882d983a699ffd6e7",
+      "changedFields": []
+    },
+    {
+      "id": "jaguar-xk-cam-cover-gasket-oil-leak-4-2-aj-v8",
+      "model": "XK",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "9f5d044b773f709d0710c2eebd03c9efbdeec970c2358df7e484df71d2d85117",
+      "proposalSha256": "9f5d044b773f709d0710c2eebd03c9efbdeec970c2358df7e484df71d2d85117",
+      "changedFields": []
+    },
+    {
+      "id": "jaguar-xk-center-touchscreen-blank-unresponsive",
+      "model": "XK",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "bf92a39e9940325b96528c5c45a0bfd66af2d6f3fab361fa0598e60eef82435a",
+      "proposalSha256": "bf92a39e9940325b96528c5c45a0bfd66af2d6f3fab361fa0598e60eef82435a",
+      "changedFields": []
+    },
+    {
+      "id": "jaguar-xk-convertible-roof-mechanism-2007",
+      "model": "XK",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "9553096059afa9d23ae2ebe3009bc566d0a0a22e76ee46c10acc6522d92d0936",
+      "proposalSha256": "9553096059afa9d23ae2ebe3009bc566d0a0a22e76ee46c10acc6522d92d0936",
+      "changedFields": []
+    },
+    {
+      "id": "jaguar-xk-electronic-parking-brake-motor-module-failure",
+      "model": "XK",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "b194dc69bf9b906acefefea80c077243a3757a0e651ffc7d08075a0302234550",
+      "proposalSha256": "b194dc69bf9b906acefefea80c077243a3757a0e651ffc7d08075a0302234550",
+      "changedFields": []
+    },
+    {
+      "id": "jaguar-xk-front-lower-control-arm-hydrobush-failure",
+      "model": "XK",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "08077ff7e0846f8e2a7e0416e2dabc7cba4d0f402d2e70c810f60697f9b45b9f",
+      "proposalSha256": "08077ff7e0846f8e2a7e0416e2dabc7cba4d0f402d2e70c810f60697f9b45b9f",
+      "changedFields": []
+    },
+    {
+      "id": "jaguar-xk-headlamp-adjustment-mechanism-compliance-setup-issue",
+      "model": "XK",
+      "action": "rewrite_same_identity",
+      "beforeSha256": "602b965cd6505f50fb26788539516719b8952a1c69b64aeed1493af96a8518c4",
+      "proposalSha256": "36f47d2eec8d596211abcaf18ad6658572115adf35a601524038852f22200683",
+      "changedFields": [
+        "description",
+        "solution",
+        "severity",
+        "symptoms",
+        "affectedSystems",
+        "estimatedCostHigh",
+        "citations",
+        "communityRecommendations",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ]
+    },
+    {
+      "id": "jaguar-xk-ignition-coil-plug-misfire",
+      "model": "XK",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "07ab82dd416782017bd6d0adc51560e67525c40eadb1e5f9a7ccf2a151501740",
+      "proposalSha256": "07ab82dd416782017bd6d0adc51560e67525c40eadb1e5f9a7ccf2a151501740",
+      "changedFields": []
+    },
+    {
+      "id": "jaguar-xk-limp-mode-and-sudden-loss-of-power",
+      "model": "XK",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "dd6497df9160b2b3e9faa5644ad54582857125d570613891fb28ca2d5ec4f9db",
+      "proposalSha256": "dd6497df9160b2b3e9faa5644ad54582857125d570613891fb28ca2d5ec4f9db",
+      "changedFields": []
+    },
+    {
+      "id": "jaguar-xk-non-serviceable-rear-propshaft-rubber-coupling-splitting",
+      "model": "XK",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "f5c8fbd86124ff1cc1d0e3e2456935797bc6e05fcea028da4c2b2dd633c9e24a",
+      "proposalSha256": "f5c8fbd86124ff1cc1d0e3e2456935797bc6e05fcea028da4c2b2dd633c9e24a",
+      "changedFields": []
+    },
+    {
+      "id": "jaguar-xk-parasitic-battery-drain",
+      "model": "XK",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "2c714671d01817bdce7f85e84203d8faa65550bf956f6486700647fd6983d3f6",
+      "proposalSha256": "2c714671d01817bdce7f85e84203d8faa65550bf956f6486700647fd6983d3f6",
+      "changedFields": []
+    },
+    {
+      "id": "jaguar-xk-passenger-seat-airbag-occupancy-sensor-failure",
+      "model": "XK",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "24e5144fe8afe7fc01ebe4a479f9504cf7ab0fddffaf5fe2f6738855e21c3417",
+      "proposalSha256": "24e5144fe8afe7fc01ebe4a479f9504cf7ab0fddffaf5fe2f6738855e21c3417",
+      "changedFields": []
+    },
+    {
+      "id": "jaguar-xk-plastic-crossover-valley-coolant-pipe-splitting",
+      "model": "XK",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "de0776b1d6d48a4756992bf7b185c561e66137fc59e42ca884293b2f2ddb1f6b",
+      "proposalSha256": "de0776b1d6d48a4756992bf7b185c561e66137fc59e42ca884293b2f2ddb1f6b",
+      "changedFields": []
+    },
+    {
+      "id": "jaguar-xk-rear-differential-bearing-whine",
+      "model": "XK",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "96b811c38486e3fb44f14772f60244eb8c6b087a7f4e0e48dd76150c05be50cf",
+      "proposalSha256": "96b811c38486e3fb44f14772f60244eb8c6b087a7f4e0e48dd76150c05be50cf",
+      "changedFields": []
+    },
+    {
+      "id": "jaguar-xk-supercharger-nose-cone-coupler-isolator-breakdown",
+      "model": "XK",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "ba88179c92484d2b856ad995e7fbda88ed2ddda193f717282754849990fdd3f5",
+      "proposalSha256": "ba88179c92484d2b856ad995e7fbda88ed2ddda193f717282754849990fdd3f5",
+      "changedFields": []
+    },
+    {
+      "id": "jaguar-xk-throttle-body-sensor-2007",
+      "model": "XK",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "6c42524fb6101a4d5a2f8724df7b8ce37f0bb19ee57a72098e732e24f2b2c27b",
+      "proposalSha256": "6c42524fb6101a4d5a2f8724df7b8ce37f0bb19ee57a72098e732e24f2b2c27b",
+      "changedFields": []
+    },
+    {
+      "id": "jaguar-xk-timing-chain-tensioner-ajv8-2007",
+      "model": "XK",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "ddfef104e7f2bdd8b21aa85d2ac15ffa0d57c533bd446d003f7489eda707ec95",
+      "proposalSha256": "ddfef104e7f2bdd8b21aa85d2ac15ffa0d57c533bd446d003f7489eda707ec95",
+      "changedFields": []
+    },
+    {
+      "id": "jaguar-xk-tpms-sensor-under-seat-module-failure",
+      "model": "XK",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "d3a13abce242c6587ee599487db33de91e848f61e434f928dece29d1f1faa171",
+      "proposalSha256": "d3a13abce242c6587ee599487db33de91e848f61e434f928dece29d1f1faa171",
+      "changedFields": []
+    },
+    {
+      "id": "jaguar-xk-unintended-acceleration-during-braking",
+      "model": "XK",
+      "action": "rewrite_same_identity",
+      "beforeSha256": "3f4f0ed723123dd7bbd3b429a55d0a70d83ec42db1224f08ef94081651bff740",
+      "proposalSha256": "fa23ce2f89c6de7f7d5ec5cdaa7f0da99202f997982af22feed5bb7af62c3aab",
+      "changedFields": [
+        "description",
+        "solution",
+        "symptoms",
+        "affectedSystems",
+        "estimatedCostHigh",
+        "citations",
+        "communityRecommendations",
+        "reportCount",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ]
+    },
+    {
+      "id": "jaguar-xk-variable-valve-timing-solenoid-cold-start-rattle",
+      "model": "XK",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "fc178be0b39d4c14c2e7690a50f172d4373888b2c9d70b8d7730f9810fed0bd9",
+      "proposalSha256": "fc178be0b39d4c14c2e7690a50f172d4373888b2c9d70b8d7730f9810fed0bd9",
+      "changedFields": []
+    },
+    {
+      "id": "jaguar-xk-zf-6hp-automatic-transmission-mechatronic-bridge-seal-sealin",
+      "model": "XK",
+      "action": "keep_published_pending_source",
+      "beforeSha256": "42d1e6f68bee2da2b0842ca81168fba3f6a8a019224c3ba70780684b58bb98e9",
+      "proposalSha256": "42d1e6f68bee2da2b0842ca81168fba3f6a8a019224c3ba70780684b58bb98e9",
+      "changedFields": []
+    }
+  ]
+}
