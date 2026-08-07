@@ -1,0 +1,1136 @@
+{
+  "schemaVersion": 1,
+  "status": "proposal-only",
+  "auditStage": "model-primary-source-adjudication",
+  "requiresIndependentApproval": true,
+  "generatedOn": "2026-08-06",
+  "make": "Jaguar",
+  "model": "XJ",
+  "completionStatement": "This packet reconciles all five frozen Jaguar XJ rows. Three Jaguar technical PDFs and eight relevant pages were visually inspected, NHTSA communication record 10017595 was confirmed in the official dataset, and 2004-2019 recall inventories were live-locked. All five rows remain byte-for-byte unchanged.",
+  "safetyContract": [
+    "No production database write, cache purge, deployment, archive action, redirect, slug change, new issue or public-page change is authorized by this packet.",
+    "All five XJ rows remain published and byte-for-byte unchanged.",
+    "ID, title, model, category, years and publication state are immutable in this packet.",
+    "A component, model generation, engine, VIN, year, cause, code, symptom, remedy or commerce-fitment mismatch cannot authorize a broader rewrite.",
+    "A recall-registry result is not negative proof that a non-recall issue does not exist.",
+    "Unsafe or contradicted maintenance advice is documented for independent correction; it is not silently normalized inside a broader identity.",
+    "Distinct issue identities remain deferred until the post-audit new-known-issues phase."
+  ],
+  "source": {
+    "snapshotFile": "data/_jaguar-deeplink-snapshot-2026-08-06.json",
+    "snapshotSha256": "60f1d4d001e3f56c9b9fc4c2429fe300f44ef3aaaeb7fda2e09a37b6e6c66800",
+    "snapshotGeneratedAt": "2026-08-07T01:28:25.707Z",
+    "snapshotHash": "016c6d9be5ca12dd4a514267ecfed59d36d825395d3e83ef56985dc87003bbfa",
+    "modelRecordCount": 5
+  },
+  "observations": [
+    {
+      "code": "xj-air-diagnostic-and-component-scope-mismatch",
+      "severity": "high",
+      "recordIds": [
+        "jaguar-xj-air-suspension-compressor-2004"
+      ],
+      "detail": "The official bulletins separate leak, compressor and connector diagnosis and do not validate the frozen blanket cause, DTC or aftermarket-fitment claims."
+    },
+    {
+      "code": "xj-bcm-primary-source-gap",
+      "severity": "source-gap",
+      "recordIds": [
+        "jaguar-xj-electrical-gremlins-bcm-2004"
+      ],
+      "detail": "No exact primary source cleared the nine-year BCM/battery/ground/software aggregation."
+    },
+    {
+      "code": "xj-rear-main-primary-source-and-equipment-gap",
+      "severity": "high",
+      "recordIds": [
+        "jaguar-xj-rear-main-seal-v8-2004"
+      ],
+      "detail": "The sixteen-year seal aggregation and manual-clutch claim lack exact primary support."
+    },
+    {
+      "code": "xj-supercharger-cause-remedy-identity-mismatch",
+      "severity": "high",
+      "recordIds": [
+        "jaguar-xj-supercharger-nose-cone-2010"
+      ],
+      "detail": "JTB00349NAS2 is an isolator-backlash repair bulletin, not a bearing/oil-maintenance identity."
+    },
+    {
+      "code": "xj-throttle-official-cleaning-prohibition-conflict",
+      "severity": "critical-safety",
+      "recordIds": [
+        "jaguar-xj-throttle-body-2004"
+      ],
+      "detail": "NHTSA record 10017595 says cleaning is prohibited, directly conflicting with the frozen solution and preventive-maintenance tip."
+    },
+    {
+      "code": "xj-existing-citations-missing-urls",
+      "severity": "source-gap",
+      "recordIds": [
+        "jaguar-xj-air-suspension-compressor-2004",
+        "jaguar-xj-electrical-gremlins-bcm-2004",
+        "jaguar-xj-rear-main-seal-v8-2004",
+        "jaguar-xj-supercharger-nose-cone-2010",
+        "jaguar-xj-throttle-body-2004"
+      ],
+      "detail": "Every frozen citation is title-only and cannot independently clear a rewrite."
+    },
+    {
+      "code": "all-xj-pages-preserved",
+      "severity": "seo-safety",
+      "recordIds": [
+        "jaguar-xj-air-suspension-compressor-2004",
+        "jaguar-xj-electrical-gremlins-bcm-2004",
+        "jaguar-xj-rear-main-seal-v8-2004",
+        "jaguar-xj-supercharger-nose-cone-2010",
+        "jaguar-xj-throttle-body-2004"
+      ],
+      "detail": "Every indexed XJ record remains published with identical identity, content, citations and commerce."
+    }
+  ],
+  "reviewSources": {
+    "airDiagnostic": "https://jl-discourse-uploads.s3.dualstack.us-east-1.amazonaws.com/original/3X/6/0/6081fe383444af86a78fcf6c79b6d0813e45c041.pdf",
+    "airConnector": "https://static.nhtsa.gov/odi/tsbs/2015/SB-10096760-1020.pdf",
+    "supercharger": "https://static.nhtsa.gov/odi/tsbs/2017/MC-10127304-9999.pdf",
+    "communicationsDataset": "https://static.nhtsa.gov/odi/ffdd/tsbs/MFR_COMMS_RECEIVED_2005-2009.zip"
+  },
+  "pdfSources": {
+    "airDiagnostic": "https://jl-discourse-uploads.s3.dualstack.us-east-1.amazonaws.com/original/3X/6/0/6081fe383444af86a78fcf6c79b6d0813e45c041.pdf",
+    "airConnector": "https://static.nhtsa.gov/odi/tsbs/2015/SB-10096760-1020.pdf",
+    "supercharger": "https://static.nhtsa.gov/odi/tsbs/2017/MC-10127304-9999.pdf"
+  },
+  "sourceArtifactSha256": {
+    "airDiagnostic": "74fc391fb8aff949f50eaf5fe27d8eddf10b5318b5ceecb3e07127a91b8611b2",
+    "airConnector": "fb7c07241202f377305f3834b26ba86771acb209077b74fd164c5c65c92b0afd",
+    "supercharger": "4c9043550244d576ac04dd36649fac92a8bf93bac14e48fc1996b51fc0d527f5"
+  },
+  "visuallyInspectedPages": {
+    "airDiagnostic": [
+      1,
+      2,
+      3
+    ],
+    "airConnector": [
+      1
+    ],
+    "supercharger": [
+      1,
+      2,
+      3,
+      4
+    ]
+  },
+  "nhtsaCommunicationRecord": {
+    "tsbId": "10017595",
+    "make": "JAGUAR",
+    "model": "XJ",
+    "years": "2004",
+    "summary": "ELECTRONIC THROTTLE BODY - CLEANING PROHIBITED.    *TT"
+  },
+  "datasetMarkers": [
+    "10017595",
+    "JAGUAR",
+    "XJ",
+    "2004",
+    "ELECTRONIC THROTTLE BODY - CLEANING PROHIBITED."
+  ],
+  "mismatchSources": {
+    "recallQueries": {
+      "2004": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JAGUAR&model=XJ&modelYear=2004",
+      "2005": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JAGUAR&model=XJ&modelYear=2005",
+      "2006": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JAGUAR&model=XJ&modelYear=2006",
+      "2007": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JAGUAR&model=XJ&modelYear=2007",
+      "2008": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JAGUAR&model=XJ&modelYear=2008",
+      "2009": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JAGUAR&model=XJ&modelYear=2009",
+      "2010": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JAGUAR&model=XJ&modelYear=2010",
+      "2011": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JAGUAR&model=XJ&modelYear=2011",
+      "2012": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JAGUAR&model=XJ&modelYear=2012",
+      "2013": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JAGUAR&model=XJ&modelYear=2013",
+      "2014": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JAGUAR&model=XJ&modelYear=2014",
+      "2015": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JAGUAR&model=XJ&modelYear=2015",
+      "2016": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JAGUAR&model=XJ&modelYear=2016",
+      "2017": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JAGUAR&model=XJ&modelYear=2017",
+      "2018": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JAGUAR&model=XJ&modelYear=2018",
+      "2019": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JAGUAR&model=XJ&modelYear=2019"
+    },
+    "expected": {
+      "2004": {
+        "status": 200,
+        "campaigns": [
+          "04V024000",
+          "04V136000",
+          "09V144000"
+        ]
+      },
+      "2005": {
+        "status": 400,
+        "campaigns": []
+      },
+      "2006": {
+        "status": 200,
+        "campaigns": [
+          "05V503000",
+          "06V018000",
+          "06V358000"
+        ]
+      },
+      "2007": {
+        "status": 200,
+        "campaigns": [
+          "06V358000"
+        ]
+      },
+      "2008": {
+        "status": 400,
+        "campaigns": []
+      },
+      "2009": {
+        "status": 400,
+        "campaigns": []
+      },
+      "2010": {
+        "status": 200,
+        "campaigns": [
+          "10V578000",
+          "17V394000",
+          "20V557000"
+        ]
+      },
+      "2011": {
+        "status": 200,
+        "campaigns": [
+          "10V578000",
+          "17V394000",
+          "20V557000"
+        ]
+      },
+      "2012": {
+        "status": 400,
+        "campaigns": []
+      },
+      "2013": {
+        "status": 200,
+        "campaigns": [
+          "14V123000",
+          "14V157000",
+          "14V292000"
+        ]
+      },
+      "2014": {
+        "status": 200,
+        "campaigns": [
+          "14V157000",
+          "14V741000"
+        ]
+      },
+      "2015": {
+        "status": 200,
+        "campaigns": [
+          "14V673000",
+          "14V741000",
+          "15V037000"
+        ]
+      },
+      "2016": {
+        "status": 200,
+        "campaigns": [
+          "16V943000",
+          "17V678000"
+        ]
+      },
+      "2017": {
+        "status": 200,
+        "campaigns": [
+          "16V943000",
+          "17V678000",
+          "20V557000"
+        ]
+      },
+      "2018": {
+        "status": 400,
+        "campaigns": []
+      },
+      "2019": {
+        "status": 200,
+        "campaigns": [
+          "19V039000"
+        ]
+      }
+    }
+  },
+  "summary": {
+    "rewrite_same_identity": 0,
+    "keep_published_pending_source": 5,
+    "total": 5
+  },
+  "rows": [
+    {
+      "id": "jaguar-xj-air-suspension-compressor-2004",
+      "model": "XJ",
+      "action": "keep_published_pending_source",
+      "reason": "Jaguar bulletin XJ204-06 is a 2004-MY-on diagnostic workflow: test air springs, compressor pipes and valve-block connections for leaks, then separately test compressor electrical continuity and reservoir fill time. JTB00438NAS1 is a 2010-on X351 action for specific connector and compressor damage with OEM compressor C2D34552. Neither source establishes one 2004-2019 compressor-overwork identity across all frozen engines, the frozen C1A20/C1A13 pair, broad prevalence, costs or the aftermarket remedy. Arnott P-2936 fitment and the Amazon affiliate recommendation were not verified by a primary source, so the entire indexed row remains byte-for-byte unchanged.",
+      "identityRule": "No content, scope, remedy, commerce or publication-state changes; partial, conflicting or mismatched evidence cannot be expanded into the frozen indexed identity.",
+      "commerceDecision": "unchanged-affiliate-fitment-unverified",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "jaguar-bulletin-diagnostic-cause-remedy-boundary",
+          "url": "https://jl-discourse-uploads.s3.dualstack.us-east-1.amazonaws.com/original/3X/6/0/6081fe383444af86a78fcf6c79b6d0813e45c041.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "XJ204-06 separates leak checks, air-spring replacement and compressor electrical/fill-time diagnosis; it does not state the frozen blanket cause or aftermarket remedy."
+        },
+        {
+          "kind": "jaguar-bulletin-model-generation-component-boundary",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2015/SB-10096760-1020.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "JTB00438NAS1 is limited to 2010-on X351 connector/compressor damage and names OEM compressor C2D34552."
+        }
+      ],
+      "beforeSha256": "fcc596dbad4473321af7f8ed5538ce694ce86d0821ab6801fdb664feaa92a2d0",
+      "proposalSha256": "fcc596dbad4473321af7f8ed5538ce694ce86d0821ab6801fdb664feaa92a2d0",
+      "before": {
+        "make": "Jaguar",
+        "model": "XJ",
+        "years": [
+          2004,
+          2005,
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019
+        ],
+        "trims": [],
+        "engines": [
+          "4.2L V8 NA",
+          "4.2L V8 Supercharged",
+          "5.0L V8 NA",
+          "5.0L V8 Supercharged",
+          "3.0L V6 Supercharged",
+          "3.0L TDV6 Diesel"
+        ],
+        "category": "suspension",
+        "title": "Air Suspension Compressor Failure",
+        "description": "The Dunlop or Hitachi air suspension compressor on the XJ fails due to overwork from leaking air springs or aging valve blocks. The compressor runs continuously, overheats, and eventually burns out. This is one of the most common and expensive repairs on the XJ.",
+        "solution": "Replace the air suspension compressor. Inspect all four air springs for leaks and replace any that are cracked or deflated. Check the valve block for internal leaks. Consider an Arnott or AMK aftermarket compressor for improved reliability.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Vehicle sitting low on one or all corners",
+          "Suspension fault warning on dashboard",
+          "Compressor running audibly and continuously",
+          "Unable to change ride height",
+          "Bouncy ride quality"
+        ],
+        "affectedSystems": [
+          "Suspension",
+          "Air Suspension"
+        ],
+        "dtcCodes": [
+          "C1A20",
+          "C1A13"
+        ],
+        "estimatedCostLow": 1000,
+        "estimatedCostHigh": 3000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "forum",
+            "title": "JaguarForums.com — XJ air suspension compressor failure comprehensive guide X350/X351"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "source": "JaguarForums.com",
+            "content": "Arnott P-2936 remanufactured air suspension compressor for X351 XJ. Direct fit with improved thermal relay and drier filter. 2-year warranty.",
+            "upvotes": 198,
+            "partName": "Air Suspension Compressor",
+            "partBrand": "Arnott",
+            "partNumber": "P-2936",
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Arnott%20P-2936&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 2200,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-01-30",
+        "reviewedOn": "2026-03-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "land-rover-range-rover-air-suspension-compressor-2003",
+          "land-rover-discovery-air-suspension-compressor-2005",
+          "land-rover-range-rover-sport-air-suspension-2005"
+        ]
+      },
+      "proposal": {
+        "make": "Jaguar",
+        "model": "XJ",
+        "years": [
+          2004,
+          2005,
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019
+        ],
+        "trims": [],
+        "engines": [
+          "4.2L V8 NA",
+          "4.2L V8 Supercharged",
+          "5.0L V8 NA",
+          "5.0L V8 Supercharged",
+          "3.0L V6 Supercharged",
+          "3.0L TDV6 Diesel"
+        ],
+        "category": "suspension",
+        "title": "Air Suspension Compressor Failure",
+        "description": "The Dunlop or Hitachi air suspension compressor on the XJ fails due to overwork from leaking air springs or aging valve blocks. The compressor runs continuously, overheats, and eventually burns out. This is one of the most common and expensive repairs on the XJ.",
+        "solution": "Replace the air suspension compressor. Inspect all four air springs for leaks and replace any that are cracked or deflated. Check the valve block for internal leaks. Consider an Arnott or AMK aftermarket compressor for improved reliability.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Vehicle sitting low on one or all corners",
+          "Suspension fault warning on dashboard",
+          "Compressor running audibly and continuously",
+          "Unable to change ride height",
+          "Bouncy ride quality"
+        ],
+        "affectedSystems": [
+          "Suspension",
+          "Air Suspension"
+        ],
+        "dtcCodes": [
+          "C1A20",
+          "C1A13"
+        ],
+        "estimatedCostLow": 1000,
+        "estimatedCostHigh": 3000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "forum",
+            "title": "JaguarForums.com — XJ air suspension compressor failure comprehensive guide X350/X351"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "source": "JaguarForums.com",
+            "content": "Arnott P-2936 remanufactured air suspension compressor for X351 XJ. Direct fit with improved thermal relay and drier filter. 2-year warranty.",
+            "upvotes": 198,
+            "partName": "Air Suspension Compressor",
+            "partBrand": "Arnott",
+            "partNumber": "P-2936",
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Arnott%20P-2936&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 2200,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-01-30",
+        "reviewedOn": "2026-03-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "land-rover-range-rover-air-suspension-compressor-2003",
+          "land-rover-discovery-air-suspension-compressor-2005",
+          "land-rover-range-rover-sport-air-suspension-2005"
+        ]
+      }
+    },
+    {
+      "id": "jaguar-xj-electrical-gremlins-bcm-2004",
+      "model": "XJ",
+      "action": "keep_published_pending_source",
+      "reason": "No exact Jaguar primary source was located that establishes one 2004-2012 XJ body-control-module software/CAN/ground/battery identity with frozen U0140/U0155, the claim that a weak battery is the number-one cause, mandatory AGM replacement, jump-start warning, prevalence and costs. The official recall inventory is a boundary rather than negative proof, and the frozen forum citation has no URL. The row remains byte-for-byte unchanged.",
+      "identityRule": "No content, scope, remedy, commerce or publication-state changes; partial, conflicting or mismatched evidence cannot be expanded into the frozen indexed identity.",
+      "commerceDecision": "unchanged-no-affiliate-commerce-present",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-registry-boundary-not-negative-proof",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JAGUAR&model=XJ&modelYear=2004",
+          "verifiedOn": "2026-08-06",
+          "observation": "Year-by-year recall results contain distinct campaign identities and cannot establish or disprove the broad BCM aggregation."
+        }
+      ],
+      "beforeSha256": "e76cc4aeb7b971d9c26c82fae1da2d6d711af64d55cac16a311a3ed514c40195",
+      "proposalSha256": "e76cc4aeb7b971d9c26c82fae1da2d6d711af64d55cac16a311a3ed514c40195",
+      "before": {
+        "make": "Jaguar",
+        "model": "XJ",
+        "years": [
+          2004,
+          2005,
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Electrical Gremlins from Body Control Module Issues",
+        "description": "The XJ suffers from cascading electrical faults caused by body control module (BCM) software glitches and CAN bus communication errors. Phantom warning lights, inoperative features, and intermittent failures across multiple systems are common, especially after battery disconnection or jump-starting.",
+        "solution": "Have the BCM reprogrammed with the latest JLR software at a dealer. Check all ground connections for corrosion, especially the main chassis ground behind the engine. Replace the 12V battery with a genuine Jaguar-spec AGM battery. Avoid jump-starting without a proper battery management system.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Multiple random warning lights illuminated",
+          "Windows or sunroof operating on their own",
+          "Central locking malfunction",
+          "Instrument cluster errors",
+          "Intermittent failure of various electrical accessories"
+        ],
+        "affectedSystems": [
+          "Electrical",
+          "Body Control Module"
+        ],
+        "dtcCodes": [
+          "U0140",
+          "U0155"
+        ],
+        "estimatedCostLow": 200,
+        "estimatedCostHigh": 1500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "forum",
+            "title": "JaguarForums.com — XJ electrical gremlins BCM reprogramming and ground connection fix guide"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "source": "JaguarForums.com",
+            "content": "Always maintain the 12V battery in good condition. A weak battery is the #1 cause of BCM glitches on the XJ. Use a battery tender if the car sits for more than a week.",
+            "upvotes": 223,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 1600,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-11-25",
+        "reviewedOn": "2026-03-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "jaguar-s-type-electrical-gremlins-2000",
+          "fiat-500l-bcm-electrical"
+        ]
+      },
+      "proposal": {
+        "make": "Jaguar",
+        "model": "XJ",
+        "years": [
+          2004,
+          2005,
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Electrical Gremlins from Body Control Module Issues",
+        "description": "The XJ suffers from cascading electrical faults caused by body control module (BCM) software glitches and CAN bus communication errors. Phantom warning lights, inoperative features, and intermittent failures across multiple systems are common, especially after battery disconnection or jump-starting.",
+        "solution": "Have the BCM reprogrammed with the latest JLR software at a dealer. Check all ground connections for corrosion, especially the main chassis ground behind the engine. Replace the 12V battery with a genuine Jaguar-spec AGM battery. Avoid jump-starting without a proper battery management system.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Multiple random warning lights illuminated",
+          "Windows or sunroof operating on their own",
+          "Central locking malfunction",
+          "Instrument cluster errors",
+          "Intermittent failure of various electrical accessories"
+        ],
+        "affectedSystems": [
+          "Electrical",
+          "Body Control Module"
+        ],
+        "dtcCodes": [
+          "U0140",
+          "U0155"
+        ],
+        "estimatedCostLow": 200,
+        "estimatedCostHigh": 1500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "forum",
+            "title": "JaguarForums.com — XJ electrical gremlins BCM reprogramming and ground connection fix guide"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "source": "JaguarForums.com",
+            "content": "Always maintain the 12V battery in good condition. A weak battery is the #1 cause of BCM glitches on the XJ. Use a battery tender if the car sits for more than a week.",
+            "upvotes": 223,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 1600,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-11-25",
+        "reviewedOn": "2026-03-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "jaguar-s-type-electrical-gremlins-2000",
+          "fiat-500l-bcm-electrical"
+        ]
+      }
+    },
+    {
+      "id": "jaguar-xj-rear-main-seal-v8-2004",
+      "model": "XJ",
+      "action": "keep_published_pending_source",
+      "reason": "No exact Jaguar primary source was located for one rear-main-seal hardening and crankshaft-groove identity across 2004-2019 XJ 4.2L and 5.0L naturally aspirated and supercharged engines. The frozen statement about contaminating a clutch on manual models, two-piece seal availability, Speedi-Sleeve remedy, prevalence, mileage and cost all require exact support; the modern XJ scope is otherwise presented as automatic-equipped. The recall inventory cannot prove absence, and the title-only forum citation cannot clear a rewrite, so the row remains unchanged.",
+      "identityRule": "No content, scope, remedy, commerce or publication-state changes; partial, conflicting or mismatched evidence cannot be expanded into the frozen indexed identity.",
+      "commerceDecision": "unchanged-no-affiliate-commerce-present",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-registry-boundary-not-negative-proof",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JAGUAR&model=XJ&modelYear=2004",
+          "verifiedOn": "2026-08-06",
+          "observation": "The recall inventory does not establish the frozen seal cause, transmission/clutch scope or repair details and is not negative proof."
+        }
+      ],
+      "beforeSha256": "11e20d70f4f3a0248f9be3b597d81033a2397cb7810bf159d8dc294e5f469066",
+      "proposalSha256": "11e20d70f4f3a0248f9be3b597d81033a2397cb7810bf159d8dc294e5f469066",
+      "before": {
+        "make": "Jaguar",
+        "model": "XJ",
+        "years": [
+          2004,
+          2005,
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019
+        ],
+        "trims": [],
+        "engines": [
+          "4.2L V8 NA",
+          "4.2L V8 Supercharged",
+          "5.0L V8 NA",
+          "5.0L V8 Supercharged",
+          "AJ-V8"
+        ],
+        "category": "engine",
+        "title": "Rear Main Seal Oil Leak on V8 Engines",
+        "description": "The rear crankshaft main seal on AJ-V8 engines in the XJ develops a slow oil leak over time. The leak worsens as the seal hardens and the crankshaft seal surface develops minor wear grooves. Oil drips onto the transmission bellhousing and can contaminate the clutch on manual models.",
+        "solution": "Replace the rear main crankshaft seal. This requires transmission removal for access. Use the updated two-piece seal if available. Inspect the crankshaft seal surface for grooves and install a Speedi-Sleeve if wear is present.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Oil leak at transmission-to-engine junction",
+          "Oil drips visible on ground at rear of engine",
+          "Oil smell after driving",
+          "Low oil level between changes",
+          "Oil on transmission bellhousing"
+        ],
+        "affectedSystems": [
+          "Engine",
+          "Lubrication"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 800,
+        "estimatedCostHigh": 2000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "forum",
+            "title": "JaguarForums.com — XJ V8 rear main seal replacement with transmission removal guide"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "source": "JaguarForums.com",
+            "content": "If the leak is minor (less than a drip per day), monitor it rather than immediately replacing. The repair cost is high due to transmission removal. Replace it when the transmission is out for other service.",
+            "upvotes": 98,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 750,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-09-15",
+        "reviewedOn": "2026-03-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "jaguar-xf-crankcase-vent-valve-2009",
+          "jaguar-xk-timing-chain-tensioner-ajv8-2007"
+        ]
+      },
+      "proposal": {
+        "make": "Jaguar",
+        "model": "XJ",
+        "years": [
+          2004,
+          2005,
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019
+        ],
+        "trims": [],
+        "engines": [
+          "4.2L V8 NA",
+          "4.2L V8 Supercharged",
+          "5.0L V8 NA",
+          "5.0L V8 Supercharged",
+          "AJ-V8"
+        ],
+        "category": "engine",
+        "title": "Rear Main Seal Oil Leak on V8 Engines",
+        "description": "The rear crankshaft main seal on AJ-V8 engines in the XJ develops a slow oil leak over time. The leak worsens as the seal hardens and the crankshaft seal surface develops minor wear grooves. Oil drips onto the transmission bellhousing and can contaminate the clutch on manual models.",
+        "solution": "Replace the rear main crankshaft seal. This requires transmission removal for access. Use the updated two-piece seal if available. Inspect the crankshaft seal surface for grooves and install a Speedi-Sleeve if wear is present.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Oil leak at transmission-to-engine junction",
+          "Oil drips visible on ground at rear of engine",
+          "Oil smell after driving",
+          "Low oil level between changes",
+          "Oil on transmission bellhousing"
+        ],
+        "affectedSystems": [
+          "Engine",
+          "Lubrication"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 800,
+        "estimatedCostHigh": 2000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "forum",
+            "title": "JaguarForums.com — XJ V8 rear main seal replacement with transmission removal guide"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "source": "JaguarForums.com",
+            "content": "If the leak is minor (less than a drip per day), monitor it rather than immediately replacing. The repair cost is high due to transmission removal. Replace it when the transmission is out for other service.",
+            "upvotes": 98,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 750,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-09-15",
+        "reviewedOn": "2026-03-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "jaguar-xf-crankcase-vent-valve-2009",
+          "jaguar-xk-timing-chain-tensioner-ajv8-2007"
+        ]
+      }
+    },
+    {
+      "id": "jaguar-xj-supercharger-nose-cone-2010",
+      "model": "XJ",
+      "action": "keep_published_pending_source",
+      "reason": "Jaguar bulletin JTB00349NAS2 covers 2010-on X351 5.0L supercharged vehicles with clatter/knock/rattle caused by torsional isolator or torsional-isolator spring-support-shaft wear and prescribes an isolator kit or complete supercharger after exact physical checks. It does not establish a nose-cone bearing identity, an on-car bearing-and-coupler rebuild, supercharger-oil replacement or a 50,000-mile oil interval. Those are materially different cause and remedy claims, so the frozen row remains byte-for-byte unchanged.",
+      "identityRule": "No content, scope, remedy, commerce or publication-state changes; partial, conflicting or mismatched evidence cannot be expanded into the frozen indexed identity.",
+      "commerceDecision": "unchanged-no-affiliate-commerce-present",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "jaguar-bulletin-cause-remedy-identity-mismatch",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2017/MC-10127304-9999.pdf",
+          "verifiedOn": "2026-08-06",
+          "observation": "JTB00349NAS2 identifies torsional-isolator backlash and an isolator-kit/full-assembly decision, not a bearing rebuild or oil interval."
+        }
+      ],
+      "beforeSha256": "7c2bfc0279147aeff4cc357a2cdb32d7a6a13f1557fb72818220f465d88c8f1b",
+      "proposalSha256": "7c2bfc0279147aeff4cc357a2cdb32d7a6a13f1557fb72818220f465d88c8f1b",
+      "before": {
+        "make": "Jaguar",
+        "model": "XJ",
+        "years": [
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019
+        ],
+        "trims": [
+          "XJR",
+          "Supersport",
+          "XJR575"
+        ],
+        "engines": [
+          "5.0L V8 Supercharged"
+        ],
+        "category": "engine",
+        "title": "Supercharger Nose Cone Bearing Wear",
+        "description": "The Eaton TVS supercharger on the XJR and Supersport develops bearing wear in the nose cone assembly. The bearings dry out over time, producing a whining noise that increases with RPM. The coupler between the supercharger and the drive pulley also wears, causing rattle at idle.",
+        "solution": "Replace the supercharger nose cone bearing assembly and snout coupler. This can be done on-car by removing the supercharger lid. Use OEM JLR bearings or a specialist rebuild kit. Change the supercharger oil during reassembly.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Whining noise increasing with RPM",
+          "Rattling at idle from supercharger area",
+          "Metallic grinding noise at high RPM",
+          "Reduced boost pressure",
+          "Supercharger snout excessively warm"
+        ],
+        "affectedSystems": [
+          "Engine",
+          "Supercharger"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 1200,
+        "estimatedCostHigh": 3500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "forum",
+            "title": "JaguarForums.com — XJR supercharger nose cone bearing replacement procedure and parts list"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "source": "JaguarForums.com",
+            "content": "Change the supercharger oil every 50,000 miles. Use Eaton-spec supercharger oil only. This extends bearing life significantly.",
+            "upvotes": 112,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 650,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-10-10",
+        "reviewedOn": "2026-03-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "land-rover-range-rover-supercharger-nose-cone-2010",
+          "jaguar-f-type-supercharger-bearing-v8-2014"
+        ]
+      },
+      "proposal": {
+        "make": "Jaguar",
+        "model": "XJ",
+        "years": [
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019
+        ],
+        "trims": [
+          "XJR",
+          "Supersport",
+          "XJR575"
+        ],
+        "engines": [
+          "5.0L V8 Supercharged"
+        ],
+        "category": "engine",
+        "title": "Supercharger Nose Cone Bearing Wear",
+        "description": "The Eaton TVS supercharger on the XJR and Supersport develops bearing wear in the nose cone assembly. The bearings dry out over time, producing a whining noise that increases with RPM. The coupler between the supercharger and the drive pulley also wears, causing rattle at idle.",
+        "solution": "Replace the supercharger nose cone bearing assembly and snout coupler. This can be done on-car by removing the supercharger lid. Use OEM JLR bearings or a specialist rebuild kit. Change the supercharger oil during reassembly.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Whining noise increasing with RPM",
+          "Rattling at idle from supercharger area",
+          "Metallic grinding noise at high RPM",
+          "Reduced boost pressure",
+          "Supercharger snout excessively warm"
+        ],
+        "affectedSystems": [
+          "Engine",
+          "Supercharger"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 1200,
+        "estimatedCostHigh": 3500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "forum",
+            "title": "JaguarForums.com — XJR supercharger nose cone bearing replacement procedure and parts list"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "source": "JaguarForums.com",
+            "content": "Change the supercharger oil every 50,000 miles. Use Eaton-spec supercharger oil only. This extends bearing life significantly.",
+            "upvotes": 112,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 650,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-10-10",
+        "reviewedOn": "2026-03-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "land-rover-range-rover-supercharger-nose-cone-2010",
+          "jaguar-f-type-supercharger-bearing-v8-2014"
+        ]
+      }
+    },
+    {
+      "id": "jaguar-xj-throttle-body-2004",
+      "model": "XJ",
+      "action": "keep_published_pending_source",
+      "reason": "NHTSA manufacturer-communication record 10017595 identifies 2004 Jaguar XJ bulletin XJ303-10 as “Electronic Throttle Body - Cleaning Prohibited.” That directly conflicts with the frozen solution to clean and recalibrate first and its 30,000-mile preventive cleaning recommendation. The official record does not establish the frozen 2004-2009 P2135/P2101 failure identity or motor-wear claim, so an automatic correction would mix identity and remedy changes. The row remains byte-for-byte unchanged for independent safety review.",
+      "identityRule": "No content, scope, remedy, commerce or publication-state changes; partial, conflicting or mismatched evidence cannot be expanded into the frozen indexed identity.",
+      "commerceDecision": "unchanged-no-affiliate-commerce-present",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "nhtsa-manufacturer-communication-remedy-conflict",
+          "url": "https://static.nhtsa.gov/odi/ffdd/tsbs/MFR_COMMS_RECEIVED_2005-2009.zip",
+          "verifiedOn": "2026-08-06",
+          "observation": "Official record 10017595 says throttle-body cleaning is prohibited for 2004 XJ, directly conflicting with the frozen cleaning advice."
+        }
+      ],
+      "beforeSha256": "45c0dc91b231c0289635bf15640219dd885e20caf707ed47af8e4e9266c40169",
+      "proposalSha256": "45c0dc91b231c0289635bf15640219dd885e20caf707ed47af8e4e9266c40169",
+      "before": {
+        "make": "Jaguar",
+        "model": "XJ",
+        "years": [
+          2004,
+          2005,
+          2006,
+          2007,
+          2008,
+          2009
+        ],
+        "trims": [],
+        "engines": [
+          "4.2L V8 NA",
+          "4.2L V8 Supercharged"
+        ],
+        "category": "engine",
+        "title": "Electronic Throttle Body Failure",
+        "description": "The electronic throttle body on the X350 XJ develops a sticky or erratic response due to carbon buildup and motor wear. The drive-by-wire throttle loses calibration, causing surging idle, hesitation on acceleration, and intermittent limp mode.",
+        "solution": "Clean the throttle body with approved cleaner and recalibrate using JLR diagnostic software. If cleaning does not resolve the issue, replace the throttle body. Reset the adaptive idle and throttle position values after any throttle body service.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Surging or hunting idle",
+          "Hesitation on initial throttle application",
+          "Reduced Engine Power message",
+          "Intermittent limp mode",
+          "Check engine light for throttle position codes"
+        ],
+        "affectedSystems": [
+          "Engine",
+          "Fuel System"
+        ],
+        "dtcCodes": [
+          "P2135",
+          "P2101"
+        ],
+        "estimatedCostLow": 200,
+        "estimatedCostHigh": 900,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "forum",
+            "title": "JaguarForums.com — X350 XJ throttle body cleaning and replacement guide with calibration procedure"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "source": "JaguarForums.com",
+            "content": "Clean the throttle body every 30,000 miles as preventive maintenance. Use CRC throttle body cleaner and a soft cloth — never scrape the butterfly valve.",
+            "upvotes": 134,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 820,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-08-10",
+        "reviewedOn": "2026-03-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "jaguar-xk-throttle-body-sensor-2007",
+          "jaguar-s-type-throttle-body-v6-2000"
+        ]
+      },
+      "proposal": {
+        "make": "Jaguar",
+        "model": "XJ",
+        "years": [
+          2004,
+          2005,
+          2006,
+          2007,
+          2008,
+          2009
+        ],
+        "trims": [],
+        "engines": [
+          "4.2L V8 NA",
+          "4.2L V8 Supercharged"
+        ],
+        "category": "engine",
+        "title": "Electronic Throttle Body Failure",
+        "description": "The electronic throttle body on the X350 XJ develops a sticky or erratic response due to carbon buildup and motor wear. The drive-by-wire throttle loses calibration, causing surging idle, hesitation on acceleration, and intermittent limp mode.",
+        "solution": "Clean the throttle body with approved cleaner and recalibrate using JLR diagnostic software. If cleaning does not resolve the issue, replace the throttle body. Reset the adaptive idle and throttle position values after any throttle body service.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Surging or hunting idle",
+          "Hesitation on initial throttle application",
+          "Reduced Engine Power message",
+          "Intermittent limp mode",
+          "Check engine light for throttle position codes"
+        ],
+        "affectedSystems": [
+          "Engine",
+          "Fuel System"
+        ],
+        "dtcCodes": [
+          "P2135",
+          "P2101"
+        ],
+        "estimatedCostLow": 200,
+        "estimatedCostHigh": 900,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "forum",
+            "title": "JaguarForums.com — X350 XJ throttle body cleaning and replacement guide with calibration procedure"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "source": "JaguarForums.com",
+            "content": "Clean the throttle body every 30,000 miles as preventive maintenance. Use CRC throttle body cleaner and a soft cloth — never scrape the butterfly valve.",
+            "upvotes": 134,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 820,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-08-10",
+        "reviewedOn": "2026-03-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "jaguar-xk-throttle-body-sensor-2007",
+          "jaguar-s-type-throttle-body-v6-2000"
+        ]
+      }
+    }
+  ]
+}
