@@ -1,0 +1,8 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
+const assert = require('node:assert/strict'); const fs = require('node:fs'); const path = require('node:path'); const test = require('node:test');
+const { ID, SOURCES } = require('./build-infiniti-q50-adjudication'); const { validatePacket } = require('./validate-infiniti-q50-adjudication');
+const ROOT = path.resolve(__dirname, '..'); const packet = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'known-issue-infiniti-q50-adjudication-2026-08-06.json'), 'utf8')); const snapshot = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', '_infiniti-deeplink-snapshot-2026-08-06.json'), 'utf8'));
+test('Q50 hold packet passes the complete safety contract', () => assert.deepEqual(validatePacket(packet, snapshot, packet.source.snapshotSha256), []));
+test('the indexed Q50 row remains byte-for-byte frozen', () => { const row = packet.rows[0]; assert.equal(row.id, ID); assert.equal(row.action, 'keep_published_pending_source'); assert.equal(row.beforeSha256, row.proposalSha256); assert.deepEqual(row.changedFields, []); assert.deepEqual(row.proposal, row.before); });
+test('packet covers the one frozen Q50 ID exactly once', () => { const expected = snapshot.records.filter((row) => row.make === 'Infiniti' && row.model === 'Q50').map((row) => row.id); assert.deepEqual(packet.rows.map((row) => row.id), expected); });
+test('partial infotainment evidence cannot expand to the frozen 2014-2026 scope', () => { const row = packet.rows[0]; assert.deepEqual(row.evidence.map((item) => item.url), [SOURCES.diagnostic, SOURCES.q50Update]); assert.match(row.reason, /do not validate the frozen 2014-2026 scope/i); assert.deepEqual(row.proposal, row.before); });
