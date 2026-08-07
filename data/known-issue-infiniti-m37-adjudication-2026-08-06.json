@@ -1,0 +1,1132 @@
+{
+  "schemaVersion": 1,
+  "status": "proposal-only",
+  "auditStage": "model-primary-source-adjudication",
+  "requiresIndependentApproval": true,
+  "generatedOn": "2026-08-06",
+  "make": "Infiniti",
+  "model": "M37",
+  "completionStatement": "This packet reconciles all six frozen Infiniti M37 rows. One exact same-identity brake rewrite clears the primary-source gate; five rows remain byte-for-byte unchanged.",
+  "safetyContract": [
+    "No production database write, cache purge, deployment, archive action, redirect, slug change, new issue or public-page change is authorized by this packet.",
+    "All six indexed records remain published with identical IDs, titles, years and categories.",
+    "Only an exact same-identity primary source may support a rewrite; absent, partial or unrelated evidence produces a byte-for-byte hold.",
+    "The brake rewrite removes unverified commerce and does not add part numbers, fitment, costs or DTCs.",
+    "Independent row-by-row approval is required before any separate correction path may be created."
+  ],
+  "source": {
+    "snapshotFile": "data/_infiniti-deeplink-snapshot-2026-08-06.json",
+    "snapshotSha256": "d39bdd77a0557365946b551a26b951cb1a5ba81773b7b66497201347b5034f64",
+    "snapshotGeneratedAt": "2026-08-06T23:15:05.490Z",
+    "snapshotHash": "45dde736354a9dcd17a72399b0101f30373ca9c267e6cd49a2528a63a023eebd",
+    "m37RecordCount": 6
+  },
+  "observations": [
+    {
+      "code": "brake-judder-exact-source-rewrite",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "infiniti-m37-brake-rotor-warping-front-brake-vibration"
+      ],
+      "detail": "The visually inspected ITB00-024I supports the existing brake-warping/front-vibration identity without changing indexed identity or scope."
+    },
+    {
+      "code": "five-m37-identities-frozen",
+      "severity": "high",
+      "recordIds": [
+        "infiniti-m37-camshaft-crankshaft-position-sensor-failure",
+        "infiniti-m37-hvac-blower-motor-fan-speed-control-failure",
+        "infiniti-m37-premature-front-suspension-wear",
+        "infiniti-m37-steering-wheel-lock-failure-no-start",
+        "infiniti-m37-sunroof-drain-leak-causing-bcm-electrical-problems"
+      ],
+      "detail": "Five rows lack an exact same-identity primary source; their content and publication state remain byte-for-byte unchanged."
+    },
+    {
+      "code": "m37-recall-inventory-empty",
+      "severity": "source-observation",
+      "recordIds": [],
+      "campaignCount": 0,
+      "detail": "The official NHTSA API returns Count 0 for M37 model years 2011, 2012 and 2013; an empty set cannot authorize replacement content."
+    },
+    {
+      "code": "all-m37-pages-preserved",
+      "severity": "seo-safety",
+      "recordIds": [
+        "infiniti-m37-brake-rotor-warping-front-brake-vibration",
+        "infiniti-m37-camshaft-crankshaft-position-sensor-failure",
+        "infiniti-m37-hvac-blower-motor-fan-speed-control-failure",
+        "infiniti-m37-premature-front-suspension-wear",
+        "infiniti-m37-steering-wheel-lock-failure-no-start",
+        "infiniti-m37-sunroof-drain-leak-causing-bcm-electrical-problems"
+      ],
+      "detail": "All six indexed M37 records remain published with the same IDs, titles, model, years and categories."
+    }
+  ],
+  "primarySources": {
+    "brake": "https://static.nhtsa.gov/odi/tsbs/2021/MC-10195353-0001.pdf"
+  },
+  "mismatchSources": {
+    "recallQueries": {
+      "2011": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=M37&modelYear=2011",
+      "2012": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=M37&modelYear=2012",
+      "2013": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=M37&modelYear=2013"
+    }
+  },
+  "summary": {
+    "rewrite_same_identity": 1,
+    "keep_published_pending_source": 5,
+    "total": 6
+  },
+  "rows": [
+    {
+      "id": "infiniti-m37-brake-rotor-warping-front-brake-vibration",
+      "model": "M37",
+      "action": "rewrite_same_identity",
+      "reason": "Infiniti ITB00-024I is an exact same-identity primary source for the indexed brake-rotor-warping/front-vibration condition, symptoms and repair direction.",
+      "identityRule": "The indexed ID, title, make, model, years, category and publication state remain unchanged; only unsupported body, cost, commerce and citation claims are replaced.",
+      "commerceDecision": "removed-unverified-commerce",
+      "changedFields": [
+        "description",
+        "solution",
+        "symptoms",
+        "affectedSystems",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "communityRecommendations",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
+      "evidence": [
+        {
+          "kind": "official-service-bulletin-exact-identity",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2021/MC-10195353-0001.pdf",
+          "verifiedOn": "2026-08-06",
+          "documentSha256": "a76ed66b06637a80045cc7c570172419ae0c89806dd564f26c967e448dc0b939",
+          "visuallyInspectedPages": [
+            1,
+            4,
+            5,
+            6
+          ],
+          "observation": "ITB00-024I applies to all Infiniti vehicles, defines brake judder and its symptoms, attributes it to rotor thickness variation/runout, and specifies on-car rotor machining or indexed replacement plus proper torque and burnishing."
+        }
+      ],
+      "beforeSha256": "989c86f00ef2842946c34d465480097897242abb4b91a1084ffccc5a16f63f3e",
+      "proposalSha256": "0aae8524f9ff386cda82477b40e577f499ba078cd083475262e07d676dbc3ba7",
+      "before": {
+        "make": "Infiniti",
+        "model": "M37",
+        "years": [
+          2011,
+          2012,
+          2013
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "brakes",
+        "title": "Brake Rotor Warping / Front Brake Vibration",
+        "description": "Owners commonly report front brake pulsation and steering wheel shake during moderate to hard braking, often attributed to rotor thickness variation or heat-related rotor distortion. The heavy curb weight of the M37 can accelerate front pad and rotor wear, especially with aggressive driving or low-quality replacement parts.",
+        "solution": "Diagnosis includes measuring rotor runout and thickness variation, checking pad deposits, and inspecting suspension bushings that can amplify vibration. Repair usually means replacing front rotors and pads together, cleaning hub mating surfaces, and torquing wheels correctly; quality parts and labor generally cost $350-$800 for the front axle.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Steering wheel shakes while braking",
+          "Brake pedal pulsation",
+          "Reduced smoothness during highway stops",
+          "Premature front pad or rotor wear"
+        ],
+        "affectedSystems": [
+          "Front brake rotors",
+          "Brake pads",
+          "Caliper hardware",
+          "Front suspension interface"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 350,
+        "estimatedCostHigh": 800,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2011/INFINITI/M37",
+            "type": "nhtsa",
+            "title": "NHTSA complaints - brake vibration and rotor concerns on Infiniti M37"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Owners often recommend quality coated rotors and ceramic pads from established brands to reduce repeat pulsation and dust.",
+            "upvotes": 0,
+            "partName": "QuietCast Brake Rotor and Pad Set",
+            "partBrand": "Bosch",
+            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20M37%20Bosch%20QuietCast%20front%20brakes&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Have the wheel hubs cleaned and wheel lug nuts torqued with a torque wrench; uneven torque can contribute to rotor runout.",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "Some owners prefer premium aftermarket pads for lower dust and better heat handling than budget replacements.",
+            "upvotes": 0,
+            "partName": "Professional Ceramic Brake Pads",
+            "partBrand": "ACDelco",
+            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20M37%20ACDelco%20ceramic%20brake%20pads&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "infiniti-m35-brake-rotor-warping-and-front-brake-vibration",
+          "infiniti-fx50-brake-rotor-warping-brake-judder"
+        ]
+      },
+      "proposal": {
+        "make": "Infiniti",
+        "model": "M37",
+        "years": [
+          2011,
+          2012,
+          2013
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "brakes",
+        "title": "Brake Rotor Warping / Front Brake Vibration",
+        "description": "Infiniti service bulletin ITB00-024I applies to all Infiniti vehicles and defines brake judder as vibration felt through the vehicle, steering wheel or brake pedal while braking. The bulletin identifies rotor thickness variation and/or rotor runout as the cause; brake-pedal pulsation and, in severe cases, steering-wheel oscillation can result.",
+        "solution": "Verify the condition with the driver and a road test. Infiniti directs technicians to correct brake judder by machining the rotors with an approved on-car brake lathe. If a rotor is replaced, index it to the axle hub for minimum runout, tighten lug nuts evenly with a torque wrench, and burnish serviced brakes as specified in ITB00-024I.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Vehicle vibration while braking",
+          "Brake-pedal pulsation",
+          "Steering-wheel oscillation while braking"
+        ],
+        "affectedSystems": [
+          "Brake rotors",
+          "Brake pads and calipers",
+          "Wheel hubs and lug fasteners"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "Infiniti ITB00-024I - Brake Noise/Judder/Pedal Feel Diagnosis and Repair",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2021/MC-10195353-0001.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Kept the indexed brake-rotor-warping/front-vibration identity and 2011-2013 scope, replaced generic claims with Infiniti ITB00-024I, and removed unsupported frequency, cost, DTC and commerce claims.",
+        "relatedIssueIds": [
+          "infiniti-m35-brake-rotor-warping-and-front-brake-vibration",
+          "infiniti-fx50-brake-rotor-warping-brake-judder"
+        ]
+      }
+    },
+    {
+      "id": "infiniti-m37-camshaft-crankshaft-position-sensor-failure",
+      "model": "M37",
+      "action": "keep_published_pending_source",
+      "reason": "The generic NHTSA vehicle page does not establish a 2011-2013 M37 camshaft/crankshaft-position-sensor failure, the five-DTC bundle or sensor replacement. No exact Infiniti/NHTSA bulletin or campaign cleared the identity gate, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; a generic vehicle page, empty recall set, absent source or unrelated bulletin cannot replace the indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-recall-set-empty-and-no-exact-bulletin",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=M37&modelYear=2011",
+          "verifiedOn": "2026-08-06",
+          "observation": "NHTSA returns an explicit zero-count result for every 2011-2013 M37 model-year query; no exact primary source cleared the gate for infiniti-m37-camshaft-crankshaft-position-sensor-failure.",
+          "supportingUrls": [
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=M37&modelYear=2011",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=M37&modelYear=2012",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=M37&modelYear=2013"
+          ]
+        }
+      ],
+      "beforeSha256": "37e33f2b51abdd49d9b02195284c669f3c25bade24553c3098425b1ddb0195c6",
+      "proposalSha256": "37e33f2b51abdd49d9b02195284c669f3c25bade24553c3098425b1ddb0195c6",
+      "before": {
+        "make": "Infiniti",
+        "model": "M37",
+        "years": [
+          2011,
+          2012,
+          2013
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "engine",
+        "title": "Camshaft / Crankshaft Position Sensor Failure",
+        "description": "The VQ37VHR engine can develop intermittent camshaft or crankshaft position sensor failures, causing hard starts, stalling, or reduced performance. Heat and age can degrade the sensors or their signal quality, and owners across Nissan/Infiniti VQ applications frequently report these failures as mileage increases.",
+        "solution": "Diagnosis is done with a scan tool and live data to identify which sensor is dropping out, followed by checking connector condition and harness integrity. Repair involves replacing the failed camshaft or crankshaft position sensor with a quality OE-equivalent part and clearing codes; typical repair costs range from about $180-$450 depending on which sensor failed and labor access.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Check engine light",
+          "Extended cranking or hard starting",
+          "Engine stalling intermittently",
+          "Reduced power or limp-like behavior"
+        ],
+        "affectedSystems": [
+          "Engine timing input sensors",
+          "ECM",
+          "Ignition/injection synchronization"
+        ],
+        "dtcCodes": [
+          "P0335",
+          "P0340",
+          "P0345",
+          "P0365",
+          "P0390"
+        ],
+        "estimatedCostLow": 180,
+        "estimatedCostHigh": 450,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2012/INFINITI/M37",
+            "type": "nhtsa",
+            "title": "NHTSA complaints - stalling and engine sensor-related reports on Infiniti M37"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Denso sensors are commonly recommended because owners report better reliability than unknown budget brands for engine position sensors.",
+            "upvotes": 0,
+            "partName": "Camshaft / Crankshaft Position Sensor",
+            "partBrand": "Denso",
+            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20M37%20Denso%20camshaft%20position%20sensor&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "If one sensor fails at higher mileage, inspect the others and the connectors at the same time since heat exposure affects them similarly.",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "Avoid cheap no-name sensors; many owners report repeat check-engine lights and drivability issues with low-cost replacements.",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "infiniti-fx35-camshaft-crankshaft-position-sensor-failure",
+          "infiniti-fx45-camshaft-and-crankshaft-position-sensor-failure",
+          "infiniti-m35-camshaft-and-crankshaft-position-sensor-failure",
+          "nissan-sentra-crankshaft-and-camshaft-position-2002",
+          "nissan-altima-crankshaft-and-camshaft-position-2002"
+        ]
+      },
+      "proposal": {
+        "make": "Infiniti",
+        "model": "M37",
+        "years": [
+          2011,
+          2012,
+          2013
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "engine",
+        "title": "Camshaft / Crankshaft Position Sensor Failure",
+        "description": "The VQ37VHR engine can develop intermittent camshaft or crankshaft position sensor failures, causing hard starts, stalling, or reduced performance. Heat and age can degrade the sensors or their signal quality, and owners across Nissan/Infiniti VQ applications frequently report these failures as mileage increases.",
+        "solution": "Diagnosis is done with a scan tool and live data to identify which sensor is dropping out, followed by checking connector condition and harness integrity. Repair involves replacing the failed camshaft or crankshaft position sensor with a quality OE-equivalent part and clearing codes; typical repair costs range from about $180-$450 depending on which sensor failed and labor access.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Check engine light",
+          "Extended cranking or hard starting",
+          "Engine stalling intermittently",
+          "Reduced power or limp-like behavior"
+        ],
+        "affectedSystems": [
+          "Engine timing input sensors",
+          "ECM",
+          "Ignition/injection synchronization"
+        ],
+        "dtcCodes": [
+          "P0335",
+          "P0340",
+          "P0345",
+          "P0365",
+          "P0390"
+        ],
+        "estimatedCostLow": 180,
+        "estimatedCostHigh": 450,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2012/INFINITI/M37",
+            "type": "nhtsa",
+            "title": "NHTSA complaints - stalling and engine sensor-related reports on Infiniti M37"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Denso sensors are commonly recommended because owners report better reliability than unknown budget brands for engine position sensors.",
+            "upvotes": 0,
+            "partName": "Camshaft / Crankshaft Position Sensor",
+            "partBrand": "Denso",
+            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20M37%20Denso%20camshaft%20position%20sensor&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "If one sensor fails at higher mileage, inspect the others and the connectors at the same time since heat exposure affects them similarly.",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "Avoid cheap no-name sensors; many owners report repeat check-engine lights and drivability issues with low-cost replacements.",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "infiniti-fx35-camshaft-crankshaft-position-sensor-failure",
+          "infiniti-fx45-camshaft-and-crankshaft-position-sensor-failure",
+          "infiniti-m35-camshaft-and-crankshaft-position-sensor-failure",
+          "nissan-sentra-crankshaft-and-camshaft-position-2002",
+          "nissan-altima-crankshaft-and-camshaft-position-2002"
+        ]
+      }
+    },
+    {
+      "id": "infiniti-m37-hvac-blower-motor-fan-speed-control-failure",
+      "model": "M37",
+      "action": "keep_published_pending_source",
+      "reason": "The generic NHTSA vehicle page does not establish one 2011-2013 M37 blower-motor/fan-speed-control defect, its asserted controller mechanism or replacement procedure. No exact primary source cleared the identity gate, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; a generic vehicle page, empty recall set, absent source or unrelated bulletin cannot replace the indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-recall-set-empty-and-no-exact-bulletin",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=M37&modelYear=2011",
+          "verifiedOn": "2026-08-06",
+          "observation": "NHTSA returns an explicit zero-count result for every 2011-2013 M37 model-year query; no exact primary source cleared the gate for infiniti-m37-hvac-blower-motor-fan-speed-control-failure.",
+          "supportingUrls": [
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=M37&modelYear=2011",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=M37&modelYear=2012",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=M37&modelYear=2013"
+          ]
+        }
+      ],
+      "beforeSha256": "1d8cc4fe0bb08d7b0860762f36000490dda3c608f2c752c6d4bb6136d62951b6",
+      "proposalSha256": "1d8cc4fe0bb08d7b0860762f36000490dda3c608f2c752c6d4bb6136d62951b6",
+      "before": {
+        "make": "Infiniti",
+        "model": "M37",
+        "years": [
+          2011,
+          2012,
+          2013
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "hvac",
+        "title": "HVAC Blower Motor / Fan Speed Control Failure",
+        "description": "Some M37 owners report the cabin blower motor becoming noisy, intermittent, or inoperative, sometimes tied to the blower motor itself and sometimes to the fan control module. As the blower ages, worn bearings or electrical faults can reduce airflow or cause the fan to work only at certain speeds.",
+        "solution": "Diagnosis includes checking blower power and ground, command signals from the HVAC control head, and current draw of the blower motor. Repair usually involves replacing the blower motor and, if needed, the blower control module/resistor equivalent; total cost is commonly about $250-$700 depending on parts source and labor time.",
+        "severity": "low",
+        "confidence": "medium",
+        "symptoms": [
+          "Weak or no airflow from vents",
+          "Blower works intermittently",
+          "Squealing or chirping from dash area",
+          "Fan only works on certain speeds"
+        ],
+        "affectedSystems": [
+          "Blower motor",
+          "HVAC control module",
+          "Cabin ventilation"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 250,
+        "estimatedCostHigh": 700,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2013/INFINITI/M37",
+            "type": "nhtsa",
+            "title": "NHTSA complaints - HVAC and blower concerns on Infiniti M37"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Denso HVAC components are often recommended by owners seeking OE-like fit and quieter blower operation.",
+            "upvotes": 0,
+            "partName": "Blower Motor",
+            "partBrand": "Denso",
+            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20M37%20Denso%20blower%20motor&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Replace the cabin air filter when servicing the blower; a clogged filter can increase blower load and noise.",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "Owners also recommend quality cabin filters to maintain airflow and reduce blower strain.",
+            "upvotes": 0,
+            "partName": "Cabin Air Filter",
+            "partBrand": "Wix",
+            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20M37%20Wix%20cabin%20air%20filter&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Infiniti",
+        "model": "M37",
+        "years": [
+          2011,
+          2012,
+          2013
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "hvac",
+        "title": "HVAC Blower Motor / Fan Speed Control Failure",
+        "description": "Some M37 owners report the cabin blower motor becoming noisy, intermittent, or inoperative, sometimes tied to the blower motor itself and sometimes to the fan control module. As the blower ages, worn bearings or electrical faults can reduce airflow or cause the fan to work only at certain speeds.",
+        "solution": "Diagnosis includes checking blower power and ground, command signals from the HVAC control head, and current draw of the blower motor. Repair usually involves replacing the blower motor and, if needed, the blower control module/resistor equivalent; total cost is commonly about $250-$700 depending on parts source and labor time.",
+        "severity": "low",
+        "confidence": "medium",
+        "symptoms": [
+          "Weak or no airflow from vents",
+          "Blower works intermittently",
+          "Squealing or chirping from dash area",
+          "Fan only works on certain speeds"
+        ],
+        "affectedSystems": [
+          "Blower motor",
+          "HVAC control module",
+          "Cabin ventilation"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 250,
+        "estimatedCostHigh": 700,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2013/INFINITI/M37",
+            "type": "nhtsa",
+            "title": "NHTSA complaints - HVAC and blower concerns on Infiniti M37"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Denso HVAC components are often recommended by owners seeking OE-like fit and quieter blower operation.",
+            "upvotes": 0,
+            "partName": "Blower Motor",
+            "partBrand": "Denso",
+            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20M37%20Denso%20blower%20motor&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Replace the cabin air filter when servicing the blower; a clogged filter can increase blower load and noise.",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "Owners also recommend quality cabin filters to maintain airflow and reduce blower strain.",
+            "upvotes": 0,
+            "partName": "Cabin Air Filter",
+            "partBrand": "Wix",
+            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20M37%20Wix%20cabin%20air%20filter&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "infiniti-m37-premature-front-suspension-wear",
+      "model": "M37",
+      "action": "keep_published_pending_source",
+      "reason": "The generic NHTSA vehicle page does not establish one 2011-2013 M37 premature front-suspension-wear defect, its component bundle or whole-arm repair rule. No exact primary source cleared the identity gate, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; a generic vehicle page, empty recall set, absent source or unrelated bulletin cannot replace the indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-recall-set-empty-and-no-exact-bulletin",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=M37&modelYear=2011",
+          "verifiedOn": "2026-08-06",
+          "observation": "NHTSA returns an explicit zero-count result for every 2011-2013 M37 model-year query; no exact primary source cleared the gate for infiniti-m37-premature-front-suspension-wear.",
+          "supportingUrls": [
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=M37&modelYear=2011",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=M37&modelYear=2012",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=M37&modelYear=2013"
+          ]
+        }
+      ],
+      "beforeSha256": "434012902464bc3e38f74feb703362861b9751a3464edc223d86b2ea408d2ba6",
+      "proposalSha256": "434012902464bc3e38f74feb703362861b9751a3464edc223d86b2ea408d2ba6",
+      "before": {
+        "make": "Infiniti",
+        "model": "M37",
+        "years": [
+          2011,
+          2012,
+          2013
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "suspension",
+        "title": "Premature Front Suspension Wear",
+        "description": "The M37's weight and wheel/tire package contribute to wear in front suspension components such as tension rods, lower control arm bushings, and sway bar end links. Owners frequently report clunks, looseness, vibration under braking, and uneven tire wear as bushings crack or hydraulic-filled components deteriorate.",
+        "solution": "A proper inspection checks for play in the front lower arms, compression/tension rods, ball joints, and sway bar links, followed by an alignment after repairs. Typical fixes include replacing worn control arms or tension rods in pairs; parts and labor usually total about $400-$1,200 depending on how many components are replaced and whether OEM or aftermarket parts are used.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Clunking over bumps",
+          "Steering shimmy or vibration",
+          "Uneven front tire wear",
+          "Wandering or loose front-end feel",
+          "Brake vibration not caused by rotors"
+        ],
+        "affectedSystems": [
+          "Front control arms",
+          "Tension rods",
+          "Bushings",
+          "Sway bar links",
+          "Wheel alignment"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 400,
+        "estimatedCostHigh": 1200,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2013/INFINITI/M37",
+            "type": "nhtsa",
+            "title": "NHTSA complaints - suspension and steering concerns on Infiniti M37"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Moog suspension components are commonly recommended by owners looking for a durable aftermarket option for links and some arm assemblies.",
+            "upvotes": 0,
+            "partName": "Sway Bar Link / Control Arm Components",
+            "partBrand": "Moog",
+            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20M37%20Moog%20suspension%20parts&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Replace worn suspension parts in pairs and get a four-wheel alignment immediately afterward to avoid rapid tire wear.",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "If the car shimmies during braking, inspect tension rod bushings before assuming the brake rotors are the only problem.",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "infiniti-fx50-premature-front-suspension-wear",
+          "infiniti-fx45-front-suspension-control-arm-and-bushing-wear"
+        ]
+      },
+      "proposal": {
+        "make": "Infiniti",
+        "model": "M37",
+        "years": [
+          2011,
+          2012,
+          2013
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "suspension",
+        "title": "Premature Front Suspension Wear",
+        "description": "The M37's weight and wheel/tire package contribute to wear in front suspension components such as tension rods, lower control arm bushings, and sway bar end links. Owners frequently report clunks, looseness, vibration under braking, and uneven tire wear as bushings crack or hydraulic-filled components deteriorate.",
+        "solution": "A proper inspection checks for play in the front lower arms, compression/tension rods, ball joints, and sway bar links, followed by an alignment after repairs. Typical fixes include replacing worn control arms or tension rods in pairs; parts and labor usually total about $400-$1,200 depending on how many components are replaced and whether OEM or aftermarket parts are used.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Clunking over bumps",
+          "Steering shimmy or vibration",
+          "Uneven front tire wear",
+          "Wandering or loose front-end feel",
+          "Brake vibration not caused by rotors"
+        ],
+        "affectedSystems": [
+          "Front control arms",
+          "Tension rods",
+          "Bushings",
+          "Sway bar links",
+          "Wheel alignment"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 400,
+        "estimatedCostHigh": 1200,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2013/INFINITI/M37",
+            "type": "nhtsa",
+            "title": "NHTSA complaints - suspension and steering concerns on Infiniti M37"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Moog suspension components are commonly recommended by owners looking for a durable aftermarket option for links and some arm assemblies.",
+            "upvotes": 0,
+            "partName": "Sway Bar Link / Control Arm Components",
+            "partBrand": "Moog",
+            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20M37%20Moog%20suspension%20parts&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Replace worn suspension parts in pairs and get a four-wheel alignment immediately afterward to avoid rapid tire wear.",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "If the car shimmies during braking, inspect tension rod bushings before assuming the brake rotors are the only problem.",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "infiniti-fx50-premature-front-suspension-wear",
+          "infiniti-fx45-front-suspension-control-arm-and-bushing-wear"
+        ]
+      }
+    },
+    {
+      "id": "infiniti-m37-steering-wheel-lock-failure-no-start",
+      "model": "M37",
+      "action": "keep_published_pending_source",
+      "reason": "The generic NHTSA vehicle page does not establish an M37 steering-lock no-start defect, module cause, bypass or replacement/relearn procedure. Steering-lock programs for other models cannot be transferred, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; a generic vehicle page, empty recall set, absent source or unrelated bulletin cannot replace the indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-recall-set-empty-and-no-exact-bulletin",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=M37&modelYear=2011",
+          "verifiedOn": "2026-08-06",
+          "observation": "NHTSA returns an explicit zero-count result for every 2011-2013 M37 model-year query; no exact primary source cleared the gate for infiniti-m37-steering-wheel-lock-failure-no-start.",
+          "supportingUrls": [
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=M37&modelYear=2011",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=M37&modelYear=2012",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=M37&modelYear=2013"
+          ]
+        }
+      ],
+      "beforeSha256": "81a35589e7a373b2dfa4a55eb57bd2dd0a86dad9a86b1c19d6611a82ebf12fa6",
+      "proposalSha256": "81a35589e7a373b2dfa4a55eb57bd2dd0a86dad9a86b1c19d6611a82ebf12fa6",
+      "before": {
+        "make": "Infiniti",
+        "model": "M37",
+        "years": [
+          2011,
+          2012,
+          2013
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "steering",
+        "title": "Steering Wheel Lock Failure / No-Start",
+        "description": "A well-documented failure on early Y51-platform Infiniti models is the electronic steering column lock (ESCL) malfunction, which can prevent the vehicle from recognizing the ignition sequence and leave the car unable to start. Owners report intermittent no-crank/no-start conditions that often become permanent as the steering lock module or related control logic fails.",
+        "solution": "Diagnosis typically confirms power and Intelligent Key operation but no start authorization, often with steering lock-related faults stored. Repair usually involves replacing the steering lock assembly or performing the Infiniti service campaign/TSB procedure, then reprogramming as needed; dealer repairs commonly run about $900-$1,500, while some independent shops may be lower if programming capability is available.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "No-crank no-start condition",
+          "Ignition turns on but engine will not start",
+          "Steering lock warning or key system warning",
+          "Intermittent starting before complete failure"
+        ],
+        "affectedSystems": [
+          "Electronic steering lock",
+          "Push-button start system",
+          "Immobilizer/Intelligent Key"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 900,
+        "estimatedCostHigh": 1500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2011/INFINITI/M37",
+            "type": "nhtsa",
+            "title": "NHTSA complaints - 2011 Infiniti M37 steering / electrical no-start reports"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "If the car intermittently fails to start, scan for BCM/steering lock faults before replacing the battery or starter; many owners misdiagnose this issue at first.",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "Owners often recommend using an OEM steering lock assembly or dealer-sourced replacement because used modules and low-cost electronics can create programming and reliability problems.",
+            "upvotes": 0,
+            "partName": "Battery Terminal / Electrical Repair Components",
+            "partBrand": "Dorman",
+            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20M37%20Dorman%20electrical%20repair%20parts&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Check whether the vehicle qualifies for any Infiniti campaign or prior warranty extension related to steering lock concerns before paying out of pocket.",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "infiniti-qx50-steering-wheel-lock--2014",
+          "nissan-rogue-steering-column-lock--2008"
+        ]
+      },
+      "proposal": {
+        "make": "Infiniti",
+        "model": "M37",
+        "years": [
+          2011,
+          2012,
+          2013
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "steering",
+        "title": "Steering Wheel Lock Failure / No-Start",
+        "description": "A well-documented failure on early Y51-platform Infiniti models is the electronic steering column lock (ESCL) malfunction, which can prevent the vehicle from recognizing the ignition sequence and leave the car unable to start. Owners report intermittent no-crank/no-start conditions that often become permanent as the steering lock module or related control logic fails.",
+        "solution": "Diagnosis typically confirms power and Intelligent Key operation but no start authorization, often with steering lock-related faults stored. Repair usually involves replacing the steering lock assembly or performing the Infiniti service campaign/TSB procedure, then reprogramming as needed; dealer repairs commonly run about $900-$1,500, while some independent shops may be lower if programming capability is available.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "No-crank no-start condition",
+          "Ignition turns on but engine will not start",
+          "Steering lock warning or key system warning",
+          "Intermittent starting before complete failure"
+        ],
+        "affectedSystems": [
+          "Electronic steering lock",
+          "Push-button start system",
+          "Immobilizer/Intelligent Key"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 900,
+        "estimatedCostHigh": 1500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2011/INFINITI/M37",
+            "type": "nhtsa",
+            "title": "NHTSA complaints - 2011 Infiniti M37 steering / electrical no-start reports"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "If the car intermittently fails to start, scan for BCM/steering lock faults before replacing the battery or starter; many owners misdiagnose this issue at first.",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "Owners often recommend using an OEM steering lock assembly or dealer-sourced replacement because used modules and low-cost electronics can create programming and reliability problems.",
+            "upvotes": 0,
+            "partName": "Battery Terminal / Electrical Repair Components",
+            "partBrand": "Dorman",
+            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20M37%20Dorman%20electrical%20repair%20parts&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Check whether the vehicle qualifies for any Infiniti campaign or prior warranty extension related to steering lock concerns before paying out of pocket.",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "infiniti-qx50-steering-wheel-lock--2014",
+          "nissan-rogue-steering-column-lock--2008"
+        ]
+      }
+    },
+    {
+      "id": "infiniti-m37-sunroof-drain-leak-causing-bcm-electrical-problems",
+      "model": "M37",
+      "action": "keep_published_pending_source",
+      "reason": "The generic NHTSA vehicle page does not establish an M37 sunroof-drain leak causing BCM/electrical damage. Search results for other manufacturers cannot be transferred to this model, and no exact Infiniti source cleared the gate, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; a generic vehicle page, empty recall set, absent source or unrelated bulletin cannot replace the indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-recall-set-empty-and-no-exact-bulletin",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=M37&modelYear=2011",
+          "verifiedOn": "2026-08-06",
+          "observation": "NHTSA returns an explicit zero-count result for every 2011-2013 M37 model-year query; no exact primary source cleared the gate for infiniti-m37-sunroof-drain-leak-causing-bcm-electrical-problems.",
+          "supportingUrls": [
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=M37&modelYear=2011",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=M37&modelYear=2012",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=M37&modelYear=2013"
+          ]
+        }
+      ],
+      "beforeSha256": "abfb641f645eb5fea8c04bb7b07207fea936bcee30bb3ab1691e393d6750dc64",
+      "proposalSha256": "abfb641f645eb5fea8c04bb7b07207fea936bcee30bb3ab1691e393d6750dc64",
+      "before": {
+        "make": "Infiniti",
+        "model": "M37",
+        "years": [
+          2011,
+          2012,
+          2013
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Sunroof Drain Leak Causing BCM/Electrical Problems",
+        "description": "Clogged or poorly routed sunroof drains can allow water to enter the cabin and soak wiring, connectors, and control modules under the dash or carpet. On the M37, owners commonly report water intrusion leading to erratic electrical behavior, battery drain, warning lights, and in severe cases damage to the BCM or related harnesses.",
+        "solution": "Diagnosis involves water testing the sunroof drains, inspecting A-pillar and firewall drain routing, and checking for corrosion at connectors and modules. Repair may include clearing or rerouting drains, replacing damaged hose sections, drying the interior, and repairing corroded wiring or modules; minor drain service can be under $250, but BCM/harness damage can push repairs into the $1,200-$3,000 range.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Wet front carpet or damp interior",
+          "Random warning lights or electrical glitches",
+          "Battery drain after rain",
+          "Power accessories acting erratically",
+          "Musty odor inside cabin"
+        ],
+        "affectedSystems": [
+          "Sunroof drainage",
+          "Body control module",
+          "Interior wiring harness",
+          "Power accessories"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 150,
+        "estimatedCostHigh": 3000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2012/INFINITI/M37",
+            "type": "nhtsa",
+            "title": "NHTSA complaints - water leak and electrical issues on Infiniti M37"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Clean the sunroof drains proactively and inspect the front footwells after heavy rain; catching moisture early can prevent module damage.",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "Owners commonly use replacement drain hose, connectors, and weatherproof electrical repair supplies when correcting leak-related wiring damage.",
+            "upvotes": 0,
+            "partName": "Electrical Connector / Repair Kit",
+            "partBrand": "Dorman",
+            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20M37%20Dorman%20electrical%20connector%20repair&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "If water intrusion is found, disconnect the battery and inspect under-carpet harnesses immediately because corrosion spreads quickly once connectors get wet.",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "infiniti-fx50-sunroof-drain-leak-causing-bcm-electrical-problems",
+          "nissan-altima-sunroof-drain-leakage-causing-2007",
+          "infiniti-qx50-sunroof-drain-hvac-2014"
+        ]
+      },
+      "proposal": {
+        "make": "Infiniti",
+        "model": "M37",
+        "years": [
+          2011,
+          2012,
+          2013
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Sunroof Drain Leak Causing BCM/Electrical Problems",
+        "description": "Clogged or poorly routed sunroof drains can allow water to enter the cabin and soak wiring, connectors, and control modules under the dash or carpet. On the M37, owners commonly report water intrusion leading to erratic electrical behavior, battery drain, warning lights, and in severe cases damage to the BCM or related harnesses.",
+        "solution": "Diagnosis involves water testing the sunroof drains, inspecting A-pillar and firewall drain routing, and checking for corrosion at connectors and modules. Repair may include clearing or rerouting drains, replacing damaged hose sections, drying the interior, and repairing corroded wiring or modules; minor drain service can be under $250, but BCM/harness damage can push repairs into the $1,200-$3,000 range.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Wet front carpet or damp interior",
+          "Random warning lights or electrical glitches",
+          "Battery drain after rain",
+          "Power accessories acting erratically",
+          "Musty odor inside cabin"
+        ],
+        "affectedSystems": [
+          "Sunroof drainage",
+          "Body control module",
+          "Interior wiring harness",
+          "Power accessories"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 150,
+        "estimatedCostHigh": 3000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2012/INFINITI/M37",
+            "type": "nhtsa",
+            "title": "NHTSA complaints - water leak and electrical issues on Infiniti M37"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Clean the sunroof drains proactively and inspect the front footwells after heavy rain; catching moisture early can prevent module damage.",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "Owners commonly use replacement drain hose, connectors, and weatherproof electrical repair supplies when correcting leak-related wiring damage.",
+            "upvotes": 0,
+            "partName": "Electrical Connector / Repair Kit",
+            "partBrand": "Dorman",
+            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20M37%20Dorman%20electrical%20connector%20repair&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "If water intrusion is found, disconnect the battery and inspect under-carpet harnesses immediately because corrosion spreads quickly once connectors get wet.",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "infiniti-fx50-sunroof-drain-leak-causing-bcm-electrical-problems",
+          "nissan-altima-sunroof-drain-leakage-causing-2007",
+          "infiniti-qx50-sunroof-drain-hvac-2014"
+        ]
+      }
+    }
+  ]
+}
