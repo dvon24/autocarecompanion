@@ -1,0 +1,10 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
+const crypto = require('node:crypto'); const https = require('node:https');
+const { EXPECTED_CAMPAIGNS, RECALL_QUERIES, SOURCES, SOURCE_SHA256 } = require('./build-infiniti-m56-adjudication');
+function request(url) { return new Promise((resolve, reject) => { const req = https.get(url, { headers: { 'user-agent': 'au7o-known-issues-audit/1.0', accept: '*/*' }, timeout: 60000 }, (response) => { const chunks = []; response.on('data', (chunk) => chunks.push(chunk)); response.on('end', () => resolve({ status: response.statusCode, body: Buffer.concat(chunks) })); }); req.on('timeout', () => req.destroy(new Error(`timeout: ${url}`))); req.on('error', reject); }); }
+async function main() {
+  const timing = await request(SOURCES.timing); const timingHash = crypto.createHash('sha256').update(timing.body).digest('hex'); const pdf = { url: SOURCES.timing, status: timing.status, bytes: timing.body.length, magic: timing.body.subarray(0, 4).toString('ascii'), sha256: timingHash }; pdf.passed = pdf.status === 200 && pdf.magic === '%PDF' && pdf.sha256 === SOURCE_SHA256.timing;
+  const recalls = []; for (const [year, url] of Object.entries(RECALL_QUERIES)) { const response = await request(url); let payload; try { payload = JSON.parse(response.body.toString('utf8')); } catch (error) { throw new Error(`invalid recall JSON for ${year}: ${error.message}`); } const campaigns = [...new Set((payload.results || []).map((item) => item.NHTSACampaignNumber))].sort(); const expected = EXPECTED_CAMPAIGNS[year]; recalls.push({ year: Number(year), url, status: response.status, count: payload.Count, campaigns, expected, passed: response.status === 200 && JSON.stringify(campaigns) === JSON.stringify(expected) }); }
+  const passed = pdf.passed && recalls.length === 3 && recalls.every((item) => item.passed); console.log(JSON.stringify({ passed, checkedOn: '2026-08-06', pdf, recalls }, null, 2)); if (!passed) process.exitCode = 1;
+}
+main().catch((error) => { console.error(error); process.exitCode = 1; });

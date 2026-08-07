@@ -1,0 +1,979 @@
+{
+  "schemaVersion": 1,
+  "status": "proposal-only",
+  "auditStage": "model-primary-source-adjudication",
+  "requiresIndependentApproval": true,
+  "generatedOn": "2026-08-06",
+  "make": "Infiniti",
+  "model": "M56",
+  "completionStatement": "This packet reconciles all five frozen Infiniti M56 rows. No exact full-identity primary-source rewrite cleared the gate; all five remain byte-for-byte unchanged.",
+  "safetyContract": [
+    "No production database write, cache purge, deployment, archive action, redirect, slug change, new issue or public-page change is authorized by this packet.",
+    "All five M56 rows remain published and byte-for-byte unchanged.",
+    "A partial timing-chain campaign cannot substantiate guide wear or chain noise that it does not state.",
+    "Distinct recall identities are deferred until the post-audit new-known-issues phase.",
+    "Independent row-by-row approval is required before any separate correction or addition path may be created."
+  ],
+  "source": {
+    "snapshotFile": "data/_infiniti-deeplink-snapshot-2026-08-06.json",
+    "snapshotSha256": "d39bdd77a0557365946b551a26b951cb1a5ba81773b7b66497201347b5034f64",
+    "snapshotGeneratedAt": "2026-08-06T23:15:05.490Z",
+    "snapshotHash": "45dde736354a9dcd17a72399b0101f30373ca9c267e6cd49a2528a63a023eebd",
+    "m56RecordCount": 5
+  },
+  "observations": [
+    {
+      "code": "timing-campaign-partial-identity",
+      "severity": "high",
+      "recordIds": [
+        "infiniti-m56-timing-chain-guide-wear-chain-noise"
+      ],
+      "detail": "The visually inspected P6305 campaign establishes chain/guide/countermeasure replacement but not the indexed guide-wear or chain-noise assertions, so the row is held unchanged."
+    },
+    {
+      "code": "five-m56-identities-frozen",
+      "severity": "independent-review-required",
+      "recordIds": [
+        "infiniti-m56-front-lower-control-arm-tension-rod-bushing-wear",
+        "infiniti-m56-radiator-cooling-fan-module-failure",
+        "infiniti-m56-steering-rack-power-steering-leak-and-noise",
+        "infiniti-m56-timing-chain-guide-wear-chain-noise",
+        "infiniti-m56-tpms-sensor-battery-failure"
+      ],
+      "detail": "None of the five existing indexed identities has an exact full-identity primary source; all remain byte-for-byte unchanged."
+    },
+    {
+      "code": "deferred-new-m56-recall-candidates",
+      "severity": "post-audit-proposal-only",
+      "recordIds": [],
+      "campaignNumbers": [
+        "14V683000",
+        "20V755000",
+        "24V470000"
+      ],
+      "detail": "M56 fuel-pressure-sensor leakage and driveshaft-fracture campaigns are distinct missing-issue candidates. They are logged only and are not added or substituted during the current make audit."
+    },
+    {
+      "code": "all-m56-pages-preserved",
+      "severity": "seo-safety",
+      "recordIds": [
+        "infiniti-m56-front-lower-control-arm-tension-rod-bushing-wear",
+        "infiniti-m56-radiator-cooling-fan-module-failure",
+        "infiniti-m56-steering-rack-power-steering-leak-and-noise",
+        "infiniti-m56-timing-chain-guide-wear-chain-noise",
+        "infiniti-m56-tpms-sensor-battery-failure"
+      ],
+      "detail": "All five indexed M56 records remain published with identical IDs, titles, models, years, categories, content, citations and commerce."
+    }
+  ],
+  "reviewSources": {
+    "timingPartial": "https://static.nhtsa.gov/odi/tsbs/2016/SB-10091401-2280.pdf"
+  },
+  "mismatchSources": {
+    "recallQueries": {
+      "2011": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=M56&modelYear=2011",
+      "2012": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=M56&modelYear=2012",
+      "2013": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=M56&modelYear=2013"
+    },
+    "expectedCampaigns": {
+      "2011": [
+        "20V755000",
+        "24V470000"
+      ],
+      "2012": [
+        "14V683000",
+        "20V755000",
+        "24V470000"
+      ],
+      "2013": [
+        "14V683000",
+        "20V755000",
+        "24V470000"
+      ]
+    }
+  },
+  "summary": {
+    "rewrite_same_identity": 0,
+    "keep_published_pending_source": 5,
+    "deferred_new_issue_candidates": 3,
+    "total": 5
+  },
+  "rows": [
+    {
+      "id": "infiniti-m56-front-lower-control-arm-tension-rod-bushing-wear",
+      "model": "M56",
+      "action": "keep_published_pending_source",
+      "reason": "The NHTSA complaints URL does not establish one 2011-2013 M56 lower-control-arm/tension-rod-bushing wear defect, its cause or whole-arm repair. No exact Infiniti/NHTSA bulletin or campaign cleared the identity gate, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; a complaint page, partial bulletin, absent source or unrelated campaign cannot replace the indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-recall-set-unrelated-and-no-exact-bulletin",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=M56&modelYear=2011",
+          "verifiedOn": "2026-08-06",
+          "observation": "The complete 2011-2013 M56 recall inventory covers driveshaft fracture and a fuel-pressure-sensor leak, not the existing catalog identity infiniti-m56-front-lower-control-arm-tension-rod-bushing-wear; no exact same-identity bulletin cleared the gate.",
+          "supportingUrls": [
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=M56&modelYear=2011",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=M56&modelYear=2012",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=M56&modelYear=2013"
+          ]
+        }
+      ],
+      "beforeSha256": "4bdc5172f750bfdd68abe23b2d922b9014546e385a5b8089617a7f9d0defc031",
+      "proposalSha256": "4bdc5172f750bfdd68abe23b2d922b9014546e385a5b8089617a7f9d0defc031",
+      "before": {
+        "make": "Infiniti",
+        "model": "M56",
+        "years": [
+          2011,
+          2012,
+          2013
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "suspension",
+        "title": "Front Lower Control Arm / Tension Rod Bushing Wear",
+        "description": "A common wear issue on the Y51 chassis is deterioration of the front lower control arm and tension rod bushings, which leads to looseness under braking and over bumps. The heavy V8 front-end load accelerates bushing cracking and fluid-filled bushing failure, causing alignment instability and uneven tire wear.",
+        "solution": "Diagnosis involves inspecting the front suspension for torn bushings, checking for wheel movement under pry-bar load, and road-testing for brake shimmy or clunks. Repair usually means replacing the affected control arms or tension rods as complete assemblies, followed by a four-wheel alignment; typical cost is about $500 to $1,400 depending on how many arms are replaced and whether OEM or aftermarket parts are used.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Clunk over bumps",
+          "Steering wander",
+          "Brake shimmy",
+          "Uneven front tire wear",
+          "Loose or unstable front-end feel"
+        ],
+        "affectedSystems": [
+          "front suspension",
+          "alignment",
+          "steering stability"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 500,
+        "estimatedCostHigh": 1400,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2013/INFINITI/M56/4%252520DR/RWD#complaints",
+            "type": "nhtsa",
+            "title": "NHTSA complaints for Infiniti M56 suspension/steering concerns"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Owners often replace the whole arm instead of pressing bushings because it saves labor and restores ball joint condition at the same time.",
+            "upvotes": 0,
+            "partName": "Front Lower Control Arm",
+            "partBrand": "Dorman",
+            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20M56%20Dorman%20front%20lower%20control%20arm&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Moog components are commonly recommended for daily-driven cars when OEM pricing is too high.",
+            "upvotes": 0,
+            "partName": "Suspension Control Arm",
+            "partBrand": "Moog",
+            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20M56%20Moog%20control%20arm&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Have alignment checked immediately after arm replacement; owners report rapid tire wear if toe is left out of spec.",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "infiniti-m35-front-lower-control-arm-and-bushing-wear"
+        ]
+      },
+      "proposal": {
+        "make": "Infiniti",
+        "model": "M56",
+        "years": [
+          2011,
+          2012,
+          2013
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "suspension",
+        "title": "Front Lower Control Arm / Tension Rod Bushing Wear",
+        "description": "A common wear issue on the Y51 chassis is deterioration of the front lower control arm and tension rod bushings, which leads to looseness under braking and over bumps. The heavy V8 front-end load accelerates bushing cracking and fluid-filled bushing failure, causing alignment instability and uneven tire wear.",
+        "solution": "Diagnosis involves inspecting the front suspension for torn bushings, checking for wheel movement under pry-bar load, and road-testing for brake shimmy or clunks. Repair usually means replacing the affected control arms or tension rods as complete assemblies, followed by a four-wheel alignment; typical cost is about $500 to $1,400 depending on how many arms are replaced and whether OEM or aftermarket parts are used.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Clunk over bumps",
+          "Steering wander",
+          "Brake shimmy",
+          "Uneven front tire wear",
+          "Loose or unstable front-end feel"
+        ],
+        "affectedSystems": [
+          "front suspension",
+          "alignment",
+          "steering stability"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 500,
+        "estimatedCostHigh": 1400,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2013/INFINITI/M56/4%252520DR/RWD#complaints",
+            "type": "nhtsa",
+            "title": "NHTSA complaints for Infiniti M56 suspension/steering concerns"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Owners often replace the whole arm instead of pressing bushings because it saves labor and restores ball joint condition at the same time.",
+            "upvotes": 0,
+            "partName": "Front Lower Control Arm",
+            "partBrand": "Dorman",
+            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20M56%20Dorman%20front%20lower%20control%20arm&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Moog components are commonly recommended for daily-driven cars when OEM pricing is too high.",
+            "upvotes": 0,
+            "partName": "Suspension Control Arm",
+            "partBrand": "Moog",
+            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20M56%20Moog%20control%20arm&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Have alignment checked immediately after arm replacement; owners report rapid tire wear if toe is left out of spec.",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "infiniti-m35-front-lower-control-arm-and-bushing-wear"
+        ]
+      }
+    },
+    {
+      "id": "infiniti-m56-radiator-cooling-fan-module-failure",
+      "model": "M56",
+      "action": "keep_published_pending_source",
+      "reason": "The NHTSA complaints URL does not establish one 2011-2013 M56 radiator/cooling-fan-module failure, the combined DTC set or replacement rule. No exact Infiniti/NHTSA bulletin or campaign cleared the identity gate, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; a complaint page, partial bulletin, absent source or unrelated campaign cannot replace the indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-recall-set-unrelated-and-no-exact-bulletin",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=M56&modelYear=2011",
+          "verifiedOn": "2026-08-06",
+          "observation": "The complete 2011-2013 M56 recall inventory covers driveshaft fracture and a fuel-pressure-sensor leak, not the existing catalog identity infiniti-m56-radiator-cooling-fan-module-failure; no exact same-identity bulletin cleared the gate.",
+          "supportingUrls": [
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=M56&modelYear=2011",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=M56&modelYear=2012",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=M56&modelYear=2013"
+          ]
+        }
+      ],
+      "beforeSha256": "203785450d9283893e59ce938642b09a26234da914a2759adb259687615c229d",
+      "proposalSha256": "203785450d9283893e59ce938642b09a26234da914a2759adb259687615c229d",
+      "before": {
+        "make": "Infiniti",
+        "model": "M56",
+        "years": [
+          2011,
+          2012,
+          2013
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "cooling",
+        "title": "Radiator / Cooling Fan Module Failure",
+        "description": "M56 owners report overheating or rising coolant temperature caused by radiator leakage and/or electric cooling fan control failure. The issue is typically related to age-related plastic tank cracking, fan motor wear, or failure of the integrated fan control assembly, especially in hot climates or stop-and-go driving.",
+        "solution": "Diagnosis includes pressure-testing the cooling system, checking for seepage at radiator end tanks, and commanding fan operation with a scan tool. Repairs usually involve replacing the radiator and/or fan assembly, refilling with the correct Nissan/Infiniti blue coolant, and bleeding the system; typical cost ranges from about $700 to $1,800 depending on which components fail.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "Engine temperature rising in traffic",
+          "Coolant smell or visible coolant leak",
+          "Cooling fans not running properly",
+          "Overheat warning",
+          "A/C performance drops at idle"
+        ],
+        "affectedSystems": [
+          "radiator",
+          "electric cooling fans",
+          "coolant circulation",
+          "air conditioning condenser airflow"
+        ],
+        "dtcCodes": [
+          "P0480",
+          "P0483",
+          "P0217"
+        ],
+        "estimatedCostLow": 700,
+        "estimatedCostHigh": 1800,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2012/INFINITI/M56/4%252520DR/RWD#complaints",
+            "type": "nhtsa",
+            "title": "NHTSA complaints for Infiniti M56 involving overheating/cooling issues"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Owners often choose a complete replacement fan assembly to avoid repeat labor when only one motor or the controller is weak.",
+            "upvotes": 0,
+            "partName": "Radiator Fan Assembly",
+            "partBrand": "Dorman",
+            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20M56%20Dorman%20radiator%20fan%20assembly&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "If the temperature climbs mainly at idle but drops at speed, inspect fan operation before assuming a thermostat problem.",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "For radiator replacement, owners prefer OE-style units with proper hose neck fitment and transmission cooler compatibility.",
+            "upvotes": 0,
+            "partName": "Radiator",
+            "partBrand": "Denso",
+            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20M56%20Denso%20radiator&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "infiniti-m35-radiator-cracking-and-coolant-leaks"
+        ]
+      },
+      "proposal": {
+        "make": "Infiniti",
+        "model": "M56",
+        "years": [
+          2011,
+          2012,
+          2013
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "cooling",
+        "title": "Radiator / Cooling Fan Module Failure",
+        "description": "M56 owners report overheating or rising coolant temperature caused by radiator leakage and/or electric cooling fan control failure. The issue is typically related to age-related plastic tank cracking, fan motor wear, or failure of the integrated fan control assembly, especially in hot climates or stop-and-go driving.",
+        "solution": "Diagnosis includes pressure-testing the cooling system, checking for seepage at radiator end tanks, and commanding fan operation with a scan tool. Repairs usually involve replacing the radiator and/or fan assembly, refilling with the correct Nissan/Infiniti blue coolant, and bleeding the system; typical cost ranges from about $700 to $1,800 depending on which components fail.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "Engine temperature rising in traffic",
+          "Coolant smell or visible coolant leak",
+          "Cooling fans not running properly",
+          "Overheat warning",
+          "A/C performance drops at idle"
+        ],
+        "affectedSystems": [
+          "radiator",
+          "electric cooling fans",
+          "coolant circulation",
+          "air conditioning condenser airflow"
+        ],
+        "dtcCodes": [
+          "P0480",
+          "P0483",
+          "P0217"
+        ],
+        "estimatedCostLow": 700,
+        "estimatedCostHigh": 1800,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2012/INFINITI/M56/4%252520DR/RWD#complaints",
+            "type": "nhtsa",
+            "title": "NHTSA complaints for Infiniti M56 involving overheating/cooling issues"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Owners often choose a complete replacement fan assembly to avoid repeat labor when only one motor or the controller is weak.",
+            "upvotes": 0,
+            "partName": "Radiator Fan Assembly",
+            "partBrand": "Dorman",
+            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20M56%20Dorman%20radiator%20fan%20assembly&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "If the temperature climbs mainly at idle but drops at speed, inspect fan operation before assuming a thermostat problem.",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "For radiator replacement, owners prefer OE-style units with proper hose neck fitment and transmission cooler compatibility.",
+            "upvotes": 0,
+            "partName": "Radiator",
+            "partBrand": "Denso",
+            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20M56%20Denso%20radiator&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "infiniti-m35-radiator-cracking-and-coolant-leaks"
+        ]
+      }
+    },
+    {
+      "id": "infiniti-m56-steering-rack-power-steering-leak-and-noise",
+      "model": "M56",
+      "action": "keep_published_pending_source",
+      "reason": "The NHTSA complaints URL does not establish an M56 steering-rack/power-steering leak-and-noise defect, its rack-seal cause or replacement rule. No exact Infiniti/NHTSA bulletin or campaign cleared the identity gate, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; a complaint page, partial bulletin, absent source or unrelated campaign cannot replace the indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-recall-set-unrelated-and-no-exact-bulletin",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=M56&modelYear=2011",
+          "verifiedOn": "2026-08-06",
+          "observation": "The complete 2011-2013 M56 recall inventory covers driveshaft fracture and a fuel-pressure-sensor leak, not the existing catalog identity infiniti-m56-steering-rack-power-steering-leak-and-noise; no exact same-identity bulletin cleared the gate.",
+          "supportingUrls": [
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=M56&modelYear=2011",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=M56&modelYear=2012",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=M56&modelYear=2013"
+          ]
+        }
+      ],
+      "beforeSha256": "d38f30fa7f23ff17234945955454fcd8a50a6c580754aa202bcb9ac86d8e2f9a",
+      "proposalSha256": "d38f30fa7f23ff17234945955454fcd8a50a6c580754aa202bcb9ac86d8e2f9a",
+      "before": {
+        "make": "Infiniti",
+        "model": "M56",
+        "years": [
+          2011,
+          2012,
+          2013
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "steering",
+        "title": "Steering Rack / Power Steering Leak and Noise",
+        "description": "Some M56 owners report power steering fluid leaks, groaning, or inconsistent steering assist caused by rack seal leakage or hose seepage. As fluid level drops, the pump can become noisy and steering effort increases, particularly during parking maneuvers.",
+        "solution": "Diagnosis includes inspecting rack boots and hydraulic lines for fluid, checking reservoir level and condition, and listening for pump cavitation. Repair may involve replacing leaking pressure hoses or the steering rack assembly, then flushing and refilling with the correct fluid; costs typically range from about $300 for hose-related repairs to $1,800 for a rack replacement.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Power steering fluid leak",
+          "Groaning noise when turning",
+          "Heavy steering at low speed",
+          "Fluid level repeatedly drops",
+          "Wet steering rack boots or lines"
+        ],
+        "affectedSystems": [
+          "power steering hydraulics",
+          "steering rack",
+          "steering pump"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 300,
+        "estimatedCostHigh": 1800,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2011/INFINITI/M56/4%252520DR/RWD#complaints",
+            "type": "nhtsa",
+            "title": "NHTSA complaints involving steering issues on Infiniti M56"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Do not keep topping off fluid without finding the leak; owners report pumps often become noisy after running low even once.",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "For hose seepage, owners often start with replacing the pressure line before committing to a full rack replacement.",
+            "upvotes": 0,
+            "partName": "Power Steering Pressure Hose",
+            "partBrand": "Gates",
+            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20M56%20Gates%20power%20steering%20pressure%20hose&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "If the rack boots contain fluid, the internal rack seals are usually failing and hose replacement alone will not solve it.",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Infiniti",
+        "model": "M56",
+        "years": [
+          2011,
+          2012,
+          2013
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "steering",
+        "title": "Steering Rack / Power Steering Leak and Noise",
+        "description": "Some M56 owners report power steering fluid leaks, groaning, or inconsistent steering assist caused by rack seal leakage or hose seepage. As fluid level drops, the pump can become noisy and steering effort increases, particularly during parking maneuvers.",
+        "solution": "Diagnosis includes inspecting rack boots and hydraulic lines for fluid, checking reservoir level and condition, and listening for pump cavitation. Repair may involve replacing leaking pressure hoses or the steering rack assembly, then flushing and refilling with the correct fluid; costs typically range from about $300 for hose-related repairs to $1,800 for a rack replacement.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Power steering fluid leak",
+          "Groaning noise when turning",
+          "Heavy steering at low speed",
+          "Fluid level repeatedly drops",
+          "Wet steering rack boots or lines"
+        ],
+        "affectedSystems": [
+          "power steering hydraulics",
+          "steering rack",
+          "steering pump"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 300,
+        "estimatedCostHigh": 1800,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2011/INFINITI/M56/4%252520DR/RWD#complaints",
+            "type": "nhtsa",
+            "title": "NHTSA complaints involving steering issues on Infiniti M56"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Do not keep topping off fluid without finding the leak; owners report pumps often become noisy after running low even once.",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "For hose seepage, owners often start with replacing the pressure line before committing to a full rack replacement.",
+            "upvotes": 0,
+            "partName": "Power Steering Pressure Hose",
+            "partBrand": "Gates",
+            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20M56%20Gates%20power%20steering%20pressure%20hose&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "If the rack boots contain fluid, the internal rack seals are usually failing and hose replacement alone will not solve it.",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "infiniti-m56-timing-chain-guide-wear-chain-noise",
+      "model": "M56",
+      "action": "keep_published_pending_source",
+      "reason": "Infiniti campaign P6305 covers selected 2011-2013 M56 vehicles and directs replacement of timing chains, chain guides and crank sprockets with countermeasure parts plus oil-jet inspection. It does not state guide wear or chain noise, so it is partial evidence for the broader indexed title and cannot authorize a rewrite; the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; a complaint page, partial bulletin, absent source or unrelated campaign cannot replace the indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-service-campaign-partial-identity",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2016/SB-10091401-2280.pdf",
+          "verifiedOn": "2026-08-06",
+          "documentSha256": "9307d5db85364d690d9f97cce65eca57d083bd01fbce39650bd7bd0686c95db7",
+          "visuallyInspectedPages": [
+            1,
+            4,
+            5,
+            13
+          ],
+          "observation": "ITB16-015a/P6305 applies to selected 2011-2013 M56 vehicles and replaces timing chains, chain guides and crank sprockets with countermeasure parts while inspecting chain oil jets, but it does not state guide wear or chain noise."
+        }
+      ],
+      "beforeSha256": "edc4861e7f890c36ae48b4bf23f8e5f3fdbcc0ff8ee4b464f79e80ee88129d5d",
+      "proposalSha256": "edc4861e7f890c36ae48b4bf23f8e5f3fdbcc0ff8ee4b464f79e80ee88129d5d",
+      "before": {
+        "make": "Infiniti",
+        "model": "M56",
+        "years": [
+          2011,
+          2012,
+          2013
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "engine",
+        "title": "Timing Chain Guide Wear / Chain Noise",
+        "description": "Owners of VK56VD-equipped M56 models report startup rattle and persistent front-engine timing noise related to timing chain guide and tensioner wear. As mileage increases, slack in the primary chain system can affect valve timing and trigger correlation faults, especially when oil change intervals have been extended.",
+        "solution": "Diagnosis starts with confirming cold-start rattle, checking oil condition/pressure, and scanning for cam/crank correlation codes. Repair typically involves replacing the timing chains, guides, and tensioners, and resealing the front cover; on this engine the labor is substantial, so total repair commonly runs from about $2,500 to $5,000 depending on parts replaced and shop rate.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "Rattle from front of engine on cold start",
+          "Check engine light",
+          "Rough idle or reduced power",
+          "Engine timing-related noise at idle",
+          "Intermittent cam/crank correlation faults"
+        ],
+        "affectedSystems": [
+          "timing system",
+          "valvetrain",
+          "engine lubrication"
+        ],
+        "dtcCodes": [
+          "P0011",
+          "P0021",
+          "P0340",
+          "P0335"
+        ],
+        "estimatedCostLow": 2500,
+        "estimatedCostHigh": 5000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2011/INFINITI/M56/4%252520DR/RWD#complaints",
+            "type": "nhtsa",
+            "title": "NHTSA complaints mentioning timing chain / engine noise on Infiniti M56"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Use high-quality synthetic oil and avoid extended oil intervals; owners report chain noise is more common on engines with inconsistent maintenance.",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "Owners typically replace the full timing service set rather than only one guide because labor overlap is high and partial repairs often lead to repeat teardown.",
+            "upvotes": 0,
+            "partName": "Timing Chain Kit",
+            "partBrand": "Cloyes",
+            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20M56%20Cloyes%20timing%20chain%20kit%20VK56VD&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "If startup rattle lasts more than a brief second, inspect immediately to avoid chain jump and more severe engine damage.",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "infiniti-fx45-timing-chain-guide-wear-and-chain-noise",
+          "infiniti-qx80-timing-chain-stretch",
+          "nissan-titan-timing-chain-2004"
+        ]
+      },
+      "proposal": {
+        "make": "Infiniti",
+        "model": "M56",
+        "years": [
+          2011,
+          2012,
+          2013
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "engine",
+        "title": "Timing Chain Guide Wear / Chain Noise",
+        "description": "Owners of VK56VD-equipped M56 models report startup rattle and persistent front-engine timing noise related to timing chain guide and tensioner wear. As mileage increases, slack in the primary chain system can affect valve timing and trigger correlation faults, especially when oil change intervals have been extended.",
+        "solution": "Diagnosis starts with confirming cold-start rattle, checking oil condition/pressure, and scanning for cam/crank correlation codes. Repair typically involves replacing the timing chains, guides, and tensioners, and resealing the front cover; on this engine the labor is substantial, so total repair commonly runs from about $2,500 to $5,000 depending on parts replaced and shop rate.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "Rattle from front of engine on cold start",
+          "Check engine light",
+          "Rough idle or reduced power",
+          "Engine timing-related noise at idle",
+          "Intermittent cam/crank correlation faults"
+        ],
+        "affectedSystems": [
+          "timing system",
+          "valvetrain",
+          "engine lubrication"
+        ],
+        "dtcCodes": [
+          "P0011",
+          "P0021",
+          "P0340",
+          "P0335"
+        ],
+        "estimatedCostLow": 2500,
+        "estimatedCostHigh": 5000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2011/INFINITI/M56/4%252520DR/RWD#complaints",
+            "type": "nhtsa",
+            "title": "NHTSA complaints mentioning timing chain / engine noise on Infiniti M56"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Use high-quality synthetic oil and avoid extended oil intervals; owners report chain noise is more common on engines with inconsistent maintenance.",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "Owners typically replace the full timing service set rather than only one guide because labor overlap is high and partial repairs often lead to repeat teardown.",
+            "upvotes": 0,
+            "partName": "Timing Chain Kit",
+            "partBrand": "Cloyes",
+            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20M56%20Cloyes%20timing%20chain%20kit%20VK56VD&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "If startup rattle lasts more than a brief second, inspect immediately to avoid chain jump and more severe engine damage.",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "infiniti-fx45-timing-chain-guide-wear-and-chain-noise",
+          "infiniti-qx80-timing-chain-stretch",
+          "nissan-titan-timing-chain-2004"
+        ]
+      }
+    },
+    {
+      "id": "infiniti-m56-tpms-sensor-battery-failure",
+      "model": "M56",
+      "action": "keep_published_pending_source",
+      "reason": "The NHTSA complaints URL does not establish one 2011-2013 M56 TPMS-sensor battery-failure defect or a campaign-wide replacement rule. The official recall inventory contains no matching TPMS campaign, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content or publication-state changes; a complaint page, partial bulletin, absent source or unrelated campaign cannot replace the indexed issue.",
+      "commerceDecision": "unchanged-pending-audit",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-recall-set-unrelated-and-no-exact-bulletin",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=M56&modelYear=2011",
+          "verifiedOn": "2026-08-06",
+          "observation": "The complete 2011-2013 M56 recall inventory covers driveshaft fracture and a fuel-pressure-sensor leak, not the existing catalog identity infiniti-m56-tpms-sensor-battery-failure; no exact same-identity bulletin cleared the gate.",
+          "supportingUrls": [
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=M56&modelYear=2011",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=M56&modelYear=2012",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=M56&modelYear=2013"
+          ]
+        }
+      ],
+      "beforeSha256": "1cb68b89da3f720da64554dc21683bc77959aaa678a104cae4183f262f97bf81",
+      "proposalSha256": "1cb68b89da3f720da64554dc21683bc77959aaa678a104cae4183f262f97bf81",
+      "before": {
+        "make": "Infiniti",
+        "model": "M56",
+        "years": [
+          2011,
+          2012,
+          2013
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "TPMS Sensor Battery Failure",
+        "description": "As these vehicles age, the original tire pressure monitoring sensors commonly fail when their internal batteries are depleted. This causes the TPMS warning light to flash and then stay on, even when tire pressures are correct, and is a frequent owner-reported nuisance on 2011-2013 cars.",
+        "solution": "Diagnosis is performed with a TPMS scan tool to identify the dead or non-communicating sensor(s). Repair involves replacing the failed sensor(s), installing new seals if reusing serviceable hardware, and registering the IDs to the vehicle; typical cost is about $80 to $300 depending on how many sensors are replaced and whether programming is needed.",
+        "severity": "low",
+        "confidence": "high",
+        "symptoms": [
+          "TPMS light flashing then staying on",
+          "No tire pressure data from one or more wheels",
+          "Warning returns after tire inflation",
+          "Intermittent TPMS faults in cold weather"
+        ],
+        "affectedSystems": [
+          "tire pressure monitoring system",
+          "instrument cluster warnings"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 80,
+        "estimatedCostHigh": 300,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2013/INFINITI/M56/4%252520DR/RWD#complaints",
+            "type": "nhtsa",
+            "title": "NHTSA complaints mentioning TPMS warning issues on Infiniti M56"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Owners often replace all four sensors during a tire change once the originals begin failing because the batteries tend to expire around the same age.",
+            "upvotes": 0,
+            "partName": "TPMS Sensor",
+            "partBrand": "Denso",
+            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20M56%20Denso%20TPMS%20sensor&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Have the shop verify sensor IDs and relearn procedure after installation; many repeat warnings are caused by programming issues rather than bad new sensors.",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "If one original sensor has failed and the others are the same age, budget for the rest soon.",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Infiniti",
+        "model": "M56",
+        "years": [
+          2011,
+          2012,
+          2013
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "TPMS Sensor Battery Failure",
+        "description": "As these vehicles age, the original tire pressure monitoring sensors commonly fail when their internal batteries are depleted. This causes the TPMS warning light to flash and then stay on, even when tire pressures are correct, and is a frequent owner-reported nuisance on 2011-2013 cars.",
+        "solution": "Diagnosis is performed with a TPMS scan tool to identify the dead or non-communicating sensor(s). Repair involves replacing the failed sensor(s), installing new seals if reusing serviceable hardware, and registering the IDs to the vehicle; typical cost is about $80 to $300 depending on how many sensors are replaced and whether programming is needed.",
+        "severity": "low",
+        "confidence": "high",
+        "symptoms": [
+          "TPMS light flashing then staying on",
+          "No tire pressure data from one or more wheels",
+          "Warning returns after tire inflation",
+          "Intermittent TPMS faults in cold weather"
+        ],
+        "affectedSystems": [
+          "tire pressure monitoring system",
+          "instrument cluster warnings"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 80,
+        "estimatedCostHigh": 300,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2013/INFINITI/M56/4%252520DR/RWD#complaints",
+            "type": "nhtsa",
+            "title": "NHTSA complaints mentioning TPMS warning issues on Infiniti M56"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Owners often replace all four sensors during a tire change once the originals begin failing because the batteries tend to expire around the same age.",
+            "upvotes": 0,
+            "partName": "TPMS Sensor",
+            "partBrand": "Denso",
+            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20M56%20Denso%20TPMS%20sensor&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Have the shop verify sensor IDs and relearn procedure after installation; many repeat warnings are caused by programming issues rather than bad new sensors.",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "If one original sensor has failed and the others are the same age, budget for the rest soon.",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    }
+  ]
+}
