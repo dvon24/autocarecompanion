@@ -1,0 +1,1104 @@
+{
+  "schemaVersion": 1,
+  "status": "proposal-only",
+  "auditStage": "model-primary-source-adjudication",
+  "requiresIndependentApproval": true,
+  "generatedOn": "2026-08-06",
+  "make": "Jeep",
+  "model": "Avenger",
+  "completionStatement": "This packet reconciles all five frozen Jeep Avenger rows against the official RDW public recall datasets and the NHTSA vehicle boundary. Neither official Avenger action matches the frozen cause, outcome and year scope closely enough to rewrite; all five rows remain byte-for-byte unchanged.",
+  "safetyContract": [
+    "No production database write, cache purge, deployment, archive action, redirect, slug change, new issue or public-page change is authorized by this packet.",
+    "All five Avenger rows remain published and byte-for-byte unchanged.",
+    "A different cause, model year, outcome, software module, code, remedy or commerce claim cannot be substituted into an indexed page.",
+    "A government registry result is a coverage boundary and is not negative proof that a non-listed issue does not exist.",
+    "Distinct Avenger recalls remain deferred until the post-audit new-known-issues phase."
+  ],
+  "source": {
+    "snapshotFile": "data/_jeep-deeplink-snapshot-2026-08-06.json",
+    "snapshotSha256": "e58c24fa8f57e198f5b77a539345b9f36ab5c8232c77263140c6915b311a9ddd",
+    "snapshotGeneratedAt": "2026-08-07T17:03:22.937Z",
+    "snapshotHash": "18ad4be47bc5941799a865d829fd30d5361a0cf7635e9ec106db32a7f109c7eb",
+    "modelRecordCount": 5
+  },
+  "observations": [
+    {
+      "code": "avenger-steering-cause-year-scope-mismatch",
+      "severity": "high",
+      "recordIds": [
+        "jeep-avenger-steering-rack-defect-2023"
+      ],
+      "detail": "RDW 84B supports a cracking electric-assist motor housing and rack replacement, not the frozen 2023-2024 generalized narrative."
+    },
+    {
+      "code": "avenger-start-stop-outcome-mismatch",
+      "severity": "high",
+      "recordIds": [
+        "jeep-avenger-start-stop-malfunction-2023"
+      ],
+      "detail": "RDW MYQ is an engine-keeps-running emissions coding action, not restart failure or stalling."
+    },
+    {
+      "code": "avenger-camera-primary-record-gap",
+      "severity": "source-gap",
+      "recordIds": [
+        "jeep-avenger-adas-camera-failure-2023"
+      ],
+      "detail": "The secondary citation cannot clear the page year, DTC and simultaneous-system claims."
+    },
+    {
+      "code": "avenger-charge-and-infotainment-placeholder-sources",
+      "severity": "source-gap",
+      "recordIds": [
+        "jeep-avenger-ev-charge-port-issue-2023",
+        "jeep-avenger-infotainment-reboot-2023"
+      ],
+      "detail": "Generic NHTSA pages and placeholder Reddit URLs do not substantiate these identities."
+    },
+    {
+      "code": "all-avenger-pages-preserved",
+      "severity": "seo-safety",
+      "recordIds": [
+        "jeep-avenger-adas-camera-failure-2023",
+        "jeep-avenger-ev-charge-port-issue-2023",
+        "jeep-avenger-infotainment-reboot-2023",
+        "jeep-avenger-start-stop-malfunction-2023",
+        "jeep-avenger-steering-rack-defect-2023"
+      ],
+      "detail": "Every indexed Avenger record remains published and byte-for-byte unchanged."
+    }
+  ],
+  "reviewSources": {
+    "rdwModelRefs": "https://opendata.rdw.nl/resource/mu2x-mu5e.json?%24where=upper%28merk%29%3D%27JEEP%27%20AND%20upper%28type%29%3D%27AVENGER%27&%24limit=5000",
+    "rdwActions": "https://opendata.rdw.nl/resource/j9yg-7rg9.json?%24where=referentiecode_rdw%20in%28%27MGP240312%27%2C%27MGP250060%27%2C%27MGP250067%27%2C%27MGP250283%27%2C%27MGP250387%27%2C%27MGP260097%27%29&%24limit=100"
+  },
+  "rdwReferenceCodes": [
+    "MGP240312",
+    "MGP250060",
+    "MGP250067",
+    "MGP250283",
+    "MGP250387",
+    "MGP260097"
+  ],
+  "rdwActions": {
+    "MGP240312": {
+      "producerReference": "84B",
+      "defectMarkers": [
+        "elektrische stuurbekrachtigingsmotor",
+        "stuurhuis",
+        "scheuren",
+        "plastic onderdelen"
+      ],
+      "consequenceMarkers": [
+        "zware besturing",
+        "blokkeren van de stuurinrichting",
+        "risico op een ongeval"
+      ],
+      "remedyMarkers": [
+        "merkdealer",
+        "stuurhuis vervangen"
+      ]
+    },
+    "MGP250387": {
+      "producerReference": "MYQ",
+      "defectMarkers": [
+        "start&stop functie werkt mogelijk niet",
+        "verkeerde codering",
+        "Body Control Module"
+      ],
+      "consequenceMarkers": [
+        "verhoogde Co2 uitstoot"
+      ],
+      "remedyMarkers": [
+        "software",
+        "Body Control Module",
+        "updaten"
+      ]
+    }
+  },
+  "mismatchSources": {
+    "recallQueries": {
+      "2023": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=AVENGER&modelYear=2023",
+      "2024": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=AVENGER&modelYear=2024",
+      "2025": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=AVENGER&modelYear=2025"
+    },
+    "expected": {
+      "2023": {
+        "status": 400,
+        "campaigns": []
+      },
+      "2024": {
+        "status": 400,
+        "campaigns": []
+      },
+      "2025": {
+        "status": 400,
+        "campaigns": []
+      }
+    }
+  },
+  "summary": {
+    "rewrite_same_identity": 0,
+    "keep_published_pending_source": 5,
+    "total": 5
+  },
+  "rows": [
+    {
+      "id": "jeep-avenger-adas-camera-failure-2023",
+      "model": "Avenger",
+      "action": "keep_published_pending_source",
+      "reason": "The frozen citation is a secondary reliability article, not a pinned manufacturer or government campaign. The exact UK camera action is not present in the official RDW Avenger reference set, and the frozen page additionally asserts 2023 scope, DTC U0428 and simultaneous AEB/LKA disablement that were not established by an accessible primary campaign record. The page remains byte-for-byte unchanged rather than expanding the recall identity.",
+      "identityRule": "No content, scope, remedy, commerce or publication-state changes; a partial, inaccessible, non-US or different-outcome source cannot replace the frozen indexed identity.",
+      "commerceDecision": "unchanged-affiliate-pending-source",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "rdw-official-registry-boundary-not-negative-proof",
+          "url": "https://opendata.rdw.nl/resource/mu2x-mu5e.json?%24where=upper%28merk%29%3D%27JEEP%27%20AND%20upper%28type%29%3D%27AVENGER%27&%24limit=5000",
+          "verifiedOn": "2026-08-06",
+          "observation": "The public Avenger reference set contains distinct campaign identities and cannot establish or disprove this non-matching frozen issue."
+        },
+        {
+          "kind": "nhtsa-non-us-vehicle-registry-boundary",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=AVENGER&modelYear=2023",
+          "verifiedOn": "2026-08-06",
+          "observation": "The NHTSA Avenger query returns no vehicle result and is not an exact primary source for this European-market page."
+        }
+      ],
+      "beforeSha256": "52509b9c1b14dbc4fd67b8b7de1a6cefbaf48fd209bc672d1c735cacff090357",
+      "proposalSha256": "52509b9c1b14dbc4fd67b8b7de1a6cefbaf48fd209bc672d1c735cacff090357",
+      "before": {
+        "make": "Jeep",
+        "model": "Avenger",
+        "years": [
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "ADAS Front Camera Hardware Fault Disabling Safety Systems",
+        "description": "Certain Jeep Avenger vehicles were equipped with a front camera containing an incorrect hardware level ID, causing an internal error code that keeps the Advanced Driver Assistance System (ADAS) permanently inactive. This disables Automatic Emergency Braking (AEB) and Lane Keep Assist (LKA) simultaneously, leaving the vehicle without critical active safety features. Stellantis issued a recall to address the faulty camera hardware.",
+        "solution": "Contact a Jeep dealer to have the front camera module replaced under the manufacturer recall. The dealer will install a camera with the correct hardware ID and verify that AEB and LKA functions are fully operational. This repair is performed at no cost under the recall campaign.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "ADAS warning lights illuminated on dashboard",
+          "Lane Keep Assist not functioning or unavailable",
+          "Automatic Emergency Braking system disabled",
+          "Forward collision warning not activating",
+          "Error message related to camera or driver assistance system"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "U0428"
+        ],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 0,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.whatcar.com/jeep/avenger/hatchback/used-review/n27887/reliability",
+            "type": "recall",
+            "title": "Jeep Avenger ADAS Camera Recall — What Car? Reliability Review"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Check your VIN on the NHTSA website or Stellantis recall portal to confirm whether your Avenger is affected by this camera recall before visiting the dealer.",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "Automotive relay replacement set for common relay failures",
+            "partName": "Automotive Relay 5-Pin 12V",
+            "partBrand": "Bosch",
+            "affiliateUrl": "https://www.amazon.com/s?k=Bosch%20Automotive%20Relay%205-Pin%2012V%20Jeep%20Avenger&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Digital multimeter for diagnosing fuse, relay, and module electrical faults",
+            "partName": "Digital Multimeter",
+            "partBrand": "Innova",
+            "affiliateUrl": "https://www.amazon.com/s?k=Innova%20Digital%20Multimeter%20Jeep%20Avenger&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "OEM-quality replacement sensor for accurate readings and proper system function",
+            "partName": "Replacement Sensor",
+            "partBrand": "Bosch",
+            "affiliateUrl": "https://www.amazon.com/s?k=Bosch%20Replacement%20Sensor%20Jeep%20Avenger&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 120,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-03-06",
+        "reviewedOn": "2026-03-06",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Jeep",
+        "model": "Avenger",
+        "years": [
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "ADAS Front Camera Hardware Fault Disabling Safety Systems",
+        "description": "Certain Jeep Avenger vehicles were equipped with a front camera containing an incorrect hardware level ID, causing an internal error code that keeps the Advanced Driver Assistance System (ADAS) permanently inactive. This disables Automatic Emergency Braking (AEB) and Lane Keep Assist (LKA) simultaneously, leaving the vehicle without critical active safety features. Stellantis issued a recall to address the faulty camera hardware.",
+        "solution": "Contact a Jeep dealer to have the front camera module replaced under the manufacturer recall. The dealer will install a camera with the correct hardware ID and verify that AEB and LKA functions are fully operational. This repair is performed at no cost under the recall campaign.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "ADAS warning lights illuminated on dashboard",
+          "Lane Keep Assist not functioning or unavailable",
+          "Automatic Emergency Braking system disabled",
+          "Forward collision warning not activating",
+          "Error message related to camera or driver assistance system"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "U0428"
+        ],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 0,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.whatcar.com/jeep/avenger/hatchback/used-review/n27887/reliability",
+            "type": "recall",
+            "title": "Jeep Avenger ADAS Camera Recall — What Car? Reliability Review"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Check your VIN on the NHTSA website or Stellantis recall portal to confirm whether your Avenger is affected by this camera recall before visiting the dealer.",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "Automotive relay replacement set for common relay failures",
+            "partName": "Automotive Relay 5-Pin 12V",
+            "partBrand": "Bosch",
+            "affiliateUrl": "https://www.amazon.com/s?k=Bosch%20Automotive%20Relay%205-Pin%2012V%20Jeep%20Avenger&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Digital multimeter for diagnosing fuse, relay, and module electrical faults",
+            "partName": "Digital Multimeter",
+            "partBrand": "Innova",
+            "affiliateUrl": "https://www.amazon.com/s?k=Innova%20Digital%20Multimeter%20Jeep%20Avenger&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "OEM-quality replacement sensor for accurate readings and proper system function",
+            "partName": "Replacement Sensor",
+            "partBrand": "Bosch",
+            "affiliateUrl": "https://www.amazon.com/s?k=Bosch%20Replacement%20Sensor%20Jeep%20Avenger&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 120,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-03-06",
+        "reviewedOn": "2026-03-06",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "jeep-avenger-ev-charge-port-issue-2023",
+      "model": "Avenger",
+      "action": "keep_published_pending_source",
+      "reason": "The generic NHTSA vehicle page is not an exact primary source for this European-market CCS2 charge-port latch and DC-communication identity, the NHTSA recall API returns no Jeep Avenger result, and the frozen Reddit URL contains a placeholder path. The official RDW Avenger recall set is only a boundary and cannot prove the issue absent, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content, scope, remedy, commerce or publication-state changes; a partial, inaccessible, non-US or different-outcome source cannot replace the frozen indexed identity.",
+      "commerceDecision": "unchanged-affiliate-pending-source",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "rdw-official-registry-boundary-not-negative-proof",
+          "url": "https://opendata.rdw.nl/resource/mu2x-mu5e.json?%24where=upper%28merk%29%3D%27JEEP%27%20AND%20upper%28type%29%3D%27AVENGER%27&%24limit=5000",
+          "verifiedOn": "2026-08-06",
+          "observation": "The public Avenger reference set contains distinct campaign identities and cannot establish or disprove this non-matching frozen issue."
+        },
+        {
+          "kind": "nhtsa-non-us-vehicle-registry-boundary",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=AVENGER&modelYear=2023",
+          "verifiedOn": "2026-08-06",
+          "observation": "The NHTSA Avenger query returns no vehicle result and is not an exact primary source for this European-market page."
+        }
+      ],
+      "beforeSha256": "89daca6cf9e2f35786b482e1a20a5eefc22c0dd8ab256b62e8d656ef704b50b6",
+      "proposalSha256": "89daca6cf9e2f35786b482e1a20a5eefc22c0dd8ab256b62e8d656ef704b50b6",
+      "before": {
+        "make": "Jeep",
+        "model": "Avenger",
+        "years": [
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "EV Charging Port Latch and Communication Errors (Electric Models)",
+        "description": "The electric Avenger uses a CCS2 (or Type 2 depending on market) charging port that experiences latch mechanism failures and communication errors with DC fast chargers. The charge port latch can fail to lock or unlock the connector, and the vehicle may reject charging sessions at public DC fast chargers with \"Unable to Charge\" messages while working fine on home AC Level 2 chargers. The issue is caused by charge port module firmware and latch actuator sensitivity.",
+        "solution": "Update the charge port control module firmware at the dealer. Clean the charge port contacts with electronic contact cleaner and inspect for bent or corroded pins. If the latch mechanism is sticking, lubricate the latch with silicone spray (not WD-40). For DC fast charging failures, try a different charger network — the Avenger has known compatibility issues with certain fast charger communication protocols that are resolved via software updates.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Unable to Charge error message on dashboard",
+          "Charging connector stuck in port or refuses to lock",
+          "DC fast charging session failing to initiate",
+          "Charging starting then stopping within minutes",
+          "Home Level 2 charging works but public chargers do not"
+        ],
+        "affectedSystems": [
+          "electrical"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 800,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2023/JEEP/AVENGER",
+            "type": "nhtsa",
+            "title": "NHTSA Vehicle Page for 2023 Jeep Avenger - Includes complaints and recalls"
+          },
+          {
+            "url": "https://www.reddit.com/r/Jeep/comments/xyz123/2023_jeep_avenger_ev_charging_port_latch_problems/",
+            "type": "forum",
+            "title": "Reddit r/Jeep Discussion on 2023 Jeep Avenger EV Charging Port Latch and DC Fast Charger Communication Errors"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "text": "If DC fast charging is failing, check the Stellantis update portal first. They have released three charging-related firmware updates since launch.",
+            "source": "JeepAvenger Forum",
+            "upvotes": 98
+          },
+          {
+            "type": "part",
+            "content": "Premium electrical tape for wiring repairs and harness wrapping",
+            "partName": "Super 33+ Vinyl Electrical Tape",
+            "partBrand": "3M",
+            "affiliateUrl": "https://www.amazon.com/s?k=3M%20Super%2033%2B%20Vinyl%20Electrical%20Tape%20Jeep%20Avenger&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Split wire loom tubing to protect repaired or exposed wiring harnesses",
+            "partName": "Split Wire Loom Tubing",
+            "partBrand": "DEI",
+            "affiliateUrl": "https://www.amazon.com/s?k=DEI%20Split%20Wire%20Loom%20Tubing%20Jeep%20Avenger&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Weatherproof terminal connector kit for reliable wiring repairs",
+            "partName": "Automotive Terminal Connector Kit",
+            "partBrand": "Molex",
+            "affiliateUrl": "https://www.amazon.com/s?k=Molex%20Automotive%20Terminal%20Connector%20Kit%20Jeep%20Avenger&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Automotive relay replacement set for common relay failures",
+            "partName": "Automotive Relay 5-Pin 12V",
+            "partBrand": "Bosch",
+            "affiliateUrl": "https://www.amazon.com/s?k=Bosch%20Automotive%20Relay%205-Pin%2012V%20Jeep%20Avenger&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Digital multimeter for diagnosing fuse, relay, and module electrical faults",
+            "partName": "Digital Multimeter",
+            "partBrand": "Innova",
+            "affiliateUrl": "https://www.amazon.com/s?k=Innova%20Digital%20Multimeter%20Jeep%20Avenger&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Level 2 portable EV charger for reliable home or on-the-go charging",
+            "partName": "Portable Level 2 EV Charger",
+            "partBrand": "Lectron",
+            "affiliateUrl": "https://www.amazon.com/s?k=Lectron%20Portable%20Level%202%20EV%20Charger%20Jeep%20Avenger&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "fiat-500e-charging-port"
+        ]
+      },
+      "proposal": {
+        "make": "Jeep",
+        "model": "Avenger",
+        "years": [
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "EV Charging Port Latch and Communication Errors (Electric Models)",
+        "description": "The electric Avenger uses a CCS2 (or Type 2 depending on market) charging port that experiences latch mechanism failures and communication errors with DC fast chargers. The charge port latch can fail to lock or unlock the connector, and the vehicle may reject charging sessions at public DC fast chargers with \"Unable to Charge\" messages while working fine on home AC Level 2 chargers. The issue is caused by charge port module firmware and latch actuator sensitivity.",
+        "solution": "Update the charge port control module firmware at the dealer. Clean the charge port contacts with electronic contact cleaner and inspect for bent or corroded pins. If the latch mechanism is sticking, lubricate the latch with silicone spray (not WD-40). For DC fast charging failures, try a different charger network — the Avenger has known compatibility issues with certain fast charger communication protocols that are resolved via software updates.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Unable to Charge error message on dashboard",
+          "Charging connector stuck in port or refuses to lock",
+          "DC fast charging session failing to initiate",
+          "Charging starting then stopping within minutes",
+          "Home Level 2 charging works but public chargers do not"
+        ],
+        "affectedSystems": [
+          "electrical"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 800,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2023/JEEP/AVENGER",
+            "type": "nhtsa",
+            "title": "NHTSA Vehicle Page for 2023 Jeep Avenger - Includes complaints and recalls"
+          },
+          {
+            "url": "https://www.reddit.com/r/Jeep/comments/xyz123/2023_jeep_avenger_ev_charging_port_latch_problems/",
+            "type": "forum",
+            "title": "Reddit r/Jeep Discussion on 2023 Jeep Avenger EV Charging Port Latch and DC Fast Charger Communication Errors"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "text": "If DC fast charging is failing, check the Stellantis update portal first. They have released three charging-related firmware updates since launch.",
+            "source": "JeepAvenger Forum",
+            "upvotes": 98
+          },
+          {
+            "type": "part",
+            "content": "Premium electrical tape for wiring repairs and harness wrapping",
+            "partName": "Super 33+ Vinyl Electrical Tape",
+            "partBrand": "3M",
+            "affiliateUrl": "https://www.amazon.com/s?k=3M%20Super%2033%2B%20Vinyl%20Electrical%20Tape%20Jeep%20Avenger&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Split wire loom tubing to protect repaired or exposed wiring harnesses",
+            "partName": "Split Wire Loom Tubing",
+            "partBrand": "DEI",
+            "affiliateUrl": "https://www.amazon.com/s?k=DEI%20Split%20Wire%20Loom%20Tubing%20Jeep%20Avenger&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Weatherproof terminal connector kit for reliable wiring repairs",
+            "partName": "Automotive Terminal Connector Kit",
+            "partBrand": "Molex",
+            "affiliateUrl": "https://www.amazon.com/s?k=Molex%20Automotive%20Terminal%20Connector%20Kit%20Jeep%20Avenger&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Automotive relay replacement set for common relay failures",
+            "partName": "Automotive Relay 5-Pin 12V",
+            "partBrand": "Bosch",
+            "affiliateUrl": "https://www.amazon.com/s?k=Bosch%20Automotive%20Relay%205-Pin%2012V%20Jeep%20Avenger&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Digital multimeter for diagnosing fuse, relay, and module electrical faults",
+            "partName": "Digital Multimeter",
+            "partBrand": "Innova",
+            "affiliateUrl": "https://www.amazon.com/s?k=Innova%20Digital%20Multimeter%20Jeep%20Avenger&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Level 2 portable EV charger for reliable home or on-the-go charging",
+            "partName": "Portable Level 2 EV Charger",
+            "partBrand": "Lectron",
+            "affiliateUrl": "https://www.amazon.com/s?k=Lectron%20Portable%20Level%202%20EV%20Charger%20Jeep%20Avenger&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "fiat-500e-charging-port"
+        ]
+      }
+    },
+    {
+      "id": "jeep-avenger-infotainment-reboot-2023",
+      "model": "Avenger",
+      "action": "keep_published_pending_source",
+      "reason": "The generic NHTSA vehicle page does not establish a 2023-2025 Avenger Uconnect reboot/black-screen identity, and the frozen Reddit URL contains a placeholder path. No exact Jeep/Stellantis primary bulletin was pinned for the firmware, eMMC, USB-reset or disable-OTA claims, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content, scope, remedy, commerce or publication-state changes; a partial, inaccessible, non-US or different-outcome source cannot replace the frozen indexed identity.",
+      "commerceDecision": "unchanged-affiliate-pending-source",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "rdw-official-registry-boundary-not-negative-proof",
+          "url": "https://opendata.rdw.nl/resource/mu2x-mu5e.json?%24where=upper%28merk%29%3D%27JEEP%27%20AND%20upper%28type%29%3D%27AVENGER%27&%24limit=5000",
+          "verifiedOn": "2026-08-06",
+          "observation": "The public Avenger reference set contains distinct campaign identities and cannot establish or disprove this non-matching frozen issue."
+        },
+        {
+          "kind": "nhtsa-non-us-vehicle-registry-boundary",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=AVENGER&modelYear=2023",
+          "verifiedOn": "2026-08-06",
+          "observation": "The NHTSA Avenger query returns no vehicle result and is not an exact primary source for this European-market page."
+        }
+      ],
+      "beforeSha256": "15f5d305a1469af2e2bf16e6070e259325c1a977708b2503124967b910638e1e",
+      "proposalSha256": "15f5d305a1469af2e2bf16e6070e259325c1a977708b2503124967b910638e1e",
+      "before": {
+        "make": "Jeep",
+        "model": "Avenger",
+        "years": [
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Infotainment System Random Reboots and Black Screen",
+        "description": "The Jeep Avenger uses the Stellantis third-generation uConnect system with a 10.25-inch touchscreen. Owners report random reboots during driving, black screen freezes, and loss of navigation/audio that require a vehicle restart to resolve. The issue is software-related, particularly affecting early-production 2023 models. The infotainment system also occasionally loses Apple CarPlay/Android Auto connectivity and fails to reconnect without a manual restart of the system.",
+        "solution": "Update the uConnect software to the latest version via USB download from the Stellantis update portal or at a dealer. Perform a soft reset by holding the power/volume knob for 10+ seconds. If issues persist after a software update, the dealer can reflash the head unit firmware. In rare cases, the head unit hardware (eMMC storage) may need replacement under warranty. Disable automatic software updates and install updates manually for better stability.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Touchscreen goes black during driving",
+          "System reboots showing Jeep logo mid-drive",
+          "Apple CarPlay or Android Auto disconnecting repeatedly",
+          "Navigation freezing or showing incorrect location",
+          "Audio cutting out and not recovering",
+          "Backup camera not displaying when in reverse"
+        ],
+        "affectedSystems": [
+          "electrical",
+          "interior"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 1200,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2023/JEEP/AVENGER",
+            "type": "nhtsa",
+            "title": "NHTSA Vehicle Page for 2023 Jeep Avenger - Owner Complaints and Safety Issues"
+          },
+          {
+            "url": "https://www.reddit.com/r/Jeep/comments/xyz123/2023_jeep_avenger_uconnect_reboot_and_black_screen/",
+            "type": "forum",
+            "title": "Reddit r/Jeep Discussion on 2023 Jeep Avenger Uconnect Reboot and Black Screen Issues"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "text": "Do the USB software update from the Stellantis update website — it fixes most of the reboot issues. The OTA updates seem to cause more problems than they fix.",
+            "source": "JeepAvenger Forum",
+            "upvotes": 145
+          },
+          {
+            "type": "part",
+            "content": "Professional OBD-II diagnostic scanner for reading infotainment and body module codes",
+            "partName": "Bluetooth Pro OBD2 Scan Tool",
+            "partBrand": "BlueDriver",
+            "affiliateUrl": "https://www.amazon.com/s?k=BlueDriver%20Bluetooth%20Pro%20OBD2%20Scan%20Tool%20Jeep%20Avenger&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "jeep-grand-wagoneer-uconnect-freeze-2022",
+          "dodge-hornet-infotainment-freeze-2023",
+          "alfa-romeo-giulia-infotainment-reboot",
+          "dodge-durango-uconnect-2014",
+          "dodge-charger-uconnect-2015"
+        ]
+      },
+      "proposal": {
+        "make": "Jeep",
+        "model": "Avenger",
+        "years": [
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Infotainment System Random Reboots and Black Screen",
+        "description": "The Jeep Avenger uses the Stellantis third-generation uConnect system with a 10.25-inch touchscreen. Owners report random reboots during driving, black screen freezes, and loss of navigation/audio that require a vehicle restart to resolve. The issue is software-related, particularly affecting early-production 2023 models. The infotainment system also occasionally loses Apple CarPlay/Android Auto connectivity and fails to reconnect without a manual restart of the system.",
+        "solution": "Update the uConnect software to the latest version via USB download from the Stellantis update portal or at a dealer. Perform a soft reset by holding the power/volume knob for 10+ seconds. If issues persist after a software update, the dealer can reflash the head unit firmware. In rare cases, the head unit hardware (eMMC storage) may need replacement under warranty. Disable automatic software updates and install updates manually for better stability.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Touchscreen goes black during driving",
+          "System reboots showing Jeep logo mid-drive",
+          "Apple CarPlay or Android Auto disconnecting repeatedly",
+          "Navigation freezing or showing incorrect location",
+          "Audio cutting out and not recovering",
+          "Backup camera not displaying when in reverse"
+        ],
+        "affectedSystems": [
+          "electrical",
+          "interior"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 1200,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2023/JEEP/AVENGER",
+            "type": "nhtsa",
+            "title": "NHTSA Vehicle Page for 2023 Jeep Avenger - Owner Complaints and Safety Issues"
+          },
+          {
+            "url": "https://www.reddit.com/r/Jeep/comments/xyz123/2023_jeep_avenger_uconnect_reboot_and_black_screen/",
+            "type": "forum",
+            "title": "Reddit r/Jeep Discussion on 2023 Jeep Avenger Uconnect Reboot and Black Screen Issues"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "text": "Do the USB software update from the Stellantis update website — it fixes most of the reboot issues. The OTA updates seem to cause more problems than they fix.",
+            "source": "JeepAvenger Forum",
+            "upvotes": 145
+          },
+          {
+            "type": "part",
+            "content": "Professional OBD-II diagnostic scanner for reading infotainment and body module codes",
+            "partName": "Bluetooth Pro OBD2 Scan Tool",
+            "partBrand": "BlueDriver",
+            "affiliateUrl": "https://www.amazon.com/s?k=BlueDriver%20Bluetooth%20Pro%20OBD2%20Scan%20Tool%20Jeep%20Avenger&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "jeep-grand-wagoneer-uconnect-freeze-2022",
+          "dodge-hornet-infotainment-freeze-2023",
+          "alfa-romeo-giulia-infotainment-reboot",
+          "dodge-durango-uconnect-2014",
+          "dodge-charger-uconnect-2015"
+        ]
+      }
+    },
+    {
+      "id": "jeep-avenger-start-stop-malfunction-2023",
+      "model": "Avenger",
+      "action": "keep_published_pending_source",
+      "reason": "Official RDW action MGP250387/MYQ says incorrect Body Control Module coding can cause Start&Stop not to operate, so the engine continues to run and CO2 emissions rise. It does not describe engine stalling, failed restarts, a 2023-2024 mild-hybrid MCU calibration, P0606/P1A0F, a 48V battery or belt-starter-generator replacement. This is an outcome, year-scope and remedy mismatch, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content, scope, remedy, commerce or publication-state changes; a partial, inaccessible, non-US or different-outcome source cannot replace the frozen indexed identity.",
+      "commerceDecision": "unchanged-affiliate-pending-source",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "rdw-official-recall-outcome-year-remedy-mismatch",
+          "url": "https://opendata.rdw.nl/resource/j9yg-7rg9.json?%24where=referentiecode_rdw%20in%28%27MGP240312%27%2C%27MGP250060%27%2C%27MGP250067%27%2C%27MGP250283%27%2C%27MGP250387%27%2C%27MGP260097%27%29&%24limit=100",
+          "verifiedOn": "2026-08-06",
+          "observation": "MGP250387/MYQ describes Stop&Start failing to shut the engine off because of BCM coding and an emissions consequence, not restart failure or stalling."
+        }
+      ],
+      "beforeSha256": "424a91a2e0ace189758a4610e9bfdc92111b03f8e76555383ffac44c53dd7d9c",
+      "proposalSha256": "424a91a2e0ace189758a4610e9bfdc92111b03f8e76555383ffac44c53dd7d9c",
+      "before": {
+        "make": "Jeep",
+        "model": "Avenger",
+        "years": [
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [
+          "1.2L Turbo I3"
+        ],
+        "category": "electrical",
+        "title": "Start-Stop System Malfunction and Engine Stalling",
+        "description": "The Jeep Avenger's 1.2L mild hybrid powertrain experiences frequent Start & Stop system malfunctions. The system may fail to restart the engine properly, cause delayed or sluggish restarts, or stall the engine entirely during stop-and-go driving. The issue is linked to the mild hybrid system's integration with the 48V electrical architecture and MCU software calibration.",
+        "solution": "Visit a Jeep dealer for an MCU (Motor Control Unit) software update that recalibrates the Start & Stop system behavior. The dealer will check error logs and reflash the MCU with updated firmware. If the issue persists after the software update, the 48V battery or belt-starter-generator (BSG) may need inspection or replacement.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Engine fails to restart after automatic stop at traffic lights",
+          "Delayed or slow engine restart when releasing brake pedal",
+          "Random engine stalling while driving at low speeds",
+          "Start & Stop warning light illuminated on dashboard",
+          "Jerky transitions between electric assist and engine power"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0606",
+          "P1A0F"
+        ],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 300,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://jeepavengerforum.com/threads/avenger-breakdown-issues.11/",
+            "type": "owner-report",
+            "title": "Jeep Avenger Breakdown Issues — Jeep Avenger Forum"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Request an MCU software update at your first dealer visit — many stalling and Start & Stop issues are resolved by a firmware reflash alone.",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "If the Start & Stop system is acting erratically, you can manually disable it each drive by pressing the Start & Stop button on the console until a permanent software fix is applied.",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "High-performance AGM battery with excellent cold cranking amps and deep cycle capability",
+            "partName": "RedTop AGM Battery",
+            "partBrand": "Optima",
+            "affiliateUrl": "https://www.amazon.com/s?k=Optima%20RedTop%20AGM%20Battery%20Jeep%20Avenger&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "OEM-quality replacement battery with reliable performance",
+            "partName": "Professional AGM Battery",
+            "partBrand": "ACDelco",
+            "affiliateUrl": "https://www.amazon.com/s?k=ACDelco%20Professional%20AGM%20Battery%20Jeep%20Avenger&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Automatic battery maintainer to prevent parasitic drain issues during storage",
+            "partName": "Junior 12V Battery Charger Maintainer",
+            "partBrand": "Battery Tender",
+            "affiliateUrl": "https://www.amazon.com/s?k=Battery%20Tender%20Junior%2012V%20Battery%20Charger%20Maintainer%20Jeep%20Avenger&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "OEM-quality starter motor for reliable engine cranking",
+            "partName": "Starter Motor",
+            "partBrand": "Denso",
+            "affiliateUrl": "https://www.amazon.com/s?k=Denso%20Starter%20Motor%20Jeep%20Avenger&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Remanufactured starter with gear reduction for improved cranking performance",
+            "partName": "Remanufactured Starter Motor",
+            "partBrand": "Remy",
+            "affiliateUrl": "https://www.amazon.com/s?k=Remy%20Remanufactured%20Starter%20Motor%20Jeep%20Avenger&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 85,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-03-06",
+        "reviewedOn": "2026-03-06",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Jeep",
+        "model": "Avenger",
+        "years": [
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [
+          "1.2L Turbo I3"
+        ],
+        "category": "electrical",
+        "title": "Start-Stop System Malfunction and Engine Stalling",
+        "description": "The Jeep Avenger's 1.2L mild hybrid powertrain experiences frequent Start & Stop system malfunctions. The system may fail to restart the engine properly, cause delayed or sluggish restarts, or stall the engine entirely during stop-and-go driving. The issue is linked to the mild hybrid system's integration with the 48V electrical architecture and MCU software calibration.",
+        "solution": "Visit a Jeep dealer for an MCU (Motor Control Unit) software update that recalibrates the Start & Stop system behavior. The dealer will check error logs and reflash the MCU with updated firmware. If the issue persists after the software update, the 48V battery or belt-starter-generator (BSG) may need inspection or replacement.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Engine fails to restart after automatic stop at traffic lights",
+          "Delayed or slow engine restart when releasing brake pedal",
+          "Random engine stalling while driving at low speeds",
+          "Start & Stop warning light illuminated on dashboard",
+          "Jerky transitions between electric assist and engine power"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0606",
+          "P1A0F"
+        ],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 300,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://jeepavengerforum.com/threads/avenger-breakdown-issues.11/",
+            "type": "owner-report",
+            "title": "Jeep Avenger Breakdown Issues — Jeep Avenger Forum"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Request an MCU software update at your first dealer visit — many stalling and Start & Stop issues are resolved by a firmware reflash alone.",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "If the Start & Stop system is acting erratically, you can manually disable it each drive by pressing the Start & Stop button on the console until a permanent software fix is applied.",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "High-performance AGM battery with excellent cold cranking amps and deep cycle capability",
+            "partName": "RedTop AGM Battery",
+            "partBrand": "Optima",
+            "affiliateUrl": "https://www.amazon.com/s?k=Optima%20RedTop%20AGM%20Battery%20Jeep%20Avenger&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "OEM-quality replacement battery with reliable performance",
+            "partName": "Professional AGM Battery",
+            "partBrand": "ACDelco",
+            "affiliateUrl": "https://www.amazon.com/s?k=ACDelco%20Professional%20AGM%20Battery%20Jeep%20Avenger&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Automatic battery maintainer to prevent parasitic drain issues during storage",
+            "partName": "Junior 12V Battery Charger Maintainer",
+            "partBrand": "Battery Tender",
+            "affiliateUrl": "https://www.amazon.com/s?k=Battery%20Tender%20Junior%2012V%20Battery%20Charger%20Maintainer%20Jeep%20Avenger&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "OEM-quality starter motor for reliable engine cranking",
+            "partName": "Starter Motor",
+            "partBrand": "Denso",
+            "affiliateUrl": "https://www.amazon.com/s?k=Denso%20Starter%20Motor%20Jeep%20Avenger&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Remanufactured starter with gear reduction for improved cranking performance",
+            "partName": "Remanufactured Starter Motor",
+            "partBrand": "Remy",
+            "affiliateUrl": "https://www.amazon.com/s?k=Remy%20Remanufactured%20Starter%20Motor%20Jeep%20Avenger&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 85,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-03-06",
+        "reviewedOn": "2026-03-06",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "jeep-avenger-steering-rack-defect-2023",
+      "model": "Avenger",
+      "action": "keep_published_pending_source",
+      "reason": "Official RDW action MGP240312/84B says the electric power-steering motor housing can crack and release plastic parts, causing heavy steering or possible steering lock; the remedy is to replace the steering rack. It does not establish the frozen 2023 year scope, vague steering, pulling, progressive tire wear or the stated generic out-of-specification mechanism. The partial cause and year scope cannot authorize a rewrite, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No content, scope, remedy, commerce or publication-state changes; a partial, inaccessible, non-US or different-outcome source cannot replace the frozen indexed identity.",
+      "commerceDecision": "unchanged-affiliate-pending-source",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "rdw-official-recall-cause-and-year-scope-mismatch",
+          "url": "https://opendata.rdw.nl/resource/j9yg-7rg9.json?%24where=referentiecode_rdw%20in%28%27MGP240312%27%2C%27MGP250060%27%2C%27MGP250067%27%2C%27MGP250283%27%2C%27MGP250387%27%2C%27MGP260097%27%29&%24limit=100",
+          "verifiedOn": "2026-08-06",
+          "observation": "MGP240312/84B identifies cracking of the electric-assist motor housing and a rack replacement, not the full frozen mechanism, symptoms or 2023 scope."
+        }
+      ],
+      "beforeSha256": "d13c825f34ce7a344590b5b65d29c94c09b142d505c5baaa2877e3fd5079e0c2",
+      "proposalSha256": "d13c825f34ce7a344590b5b65d29c94c09b142d505c5baaa2877e3fd5079e0c2",
+      "before": {
+        "make": "Jeep",
+        "model": "Avenger",
+        "years": [
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "suspension",
+        "title": "Steering Rack Out of Specification Causing Handling Issues",
+        "description": "Some Jeep Avenger vehicles were fitted with a steering rack that does not conform to manufacturer specifications. The defective rack can cause vague or inconsistent steering feel, pulling to one side, and in severe cases, reduced steering control. Stellantis issued a recall to inspect and replace affected steering racks.",
+        "solution": "Visit a Jeep dealer for a steering rack inspection under the recall campaign. If the rack is found to be out of specification, it will be replaced at no cost. Do not ignore any changes in steering feel, as the issue can worsen over time.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Steering feels vague or loose at center position",
+          "Vehicle pulls to one side during straight-line driving",
+          "Uneven steering response when turning left vs. right",
+          "Clunking or clicking noise from steering column area",
+          "Increased steering effort at low speeds"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 0,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.whatcar.com/jeep/avenger/hatchback/used-review/n27887/reliability",
+            "type": "recall",
+            "title": "Jeep Avenger Steering Rack Recall — What Car? Used Review"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Even if you have not received a recall notice, have the dealer inspect the steering rack if your Avenger exhibits any pulling or vague steering — early detection prevents further wear on tires and suspension components.",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "Inner and outer tie rod ends for steering precision restoration",
+            "partName": "Tie Rod End",
+            "partBrand": "Moog",
+            "affiliateUrl": "https://www.amazon.com/s?k=Moog%20tie%20rod%20end%20Jeep%20Avenger&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Remanufactured power steering rack for complete steering system repair",
+            "partName": "Remanufactured Steering Rack",
+            "partBrand": "Cardone",
+            "affiliateUrl": "https://www.amazon.com/s?k=Cardone%20steering%20rack%20Jeep%20Avenger&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 95,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-03-06",
+        "reviewedOn": "2026-03-06",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Jeep",
+        "model": "Avenger",
+        "years": [
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "suspension",
+        "title": "Steering Rack Out of Specification Causing Handling Issues",
+        "description": "Some Jeep Avenger vehicles were fitted with a steering rack that does not conform to manufacturer specifications. The defective rack can cause vague or inconsistent steering feel, pulling to one side, and in severe cases, reduced steering control. Stellantis issued a recall to inspect and replace affected steering racks.",
+        "solution": "Visit a Jeep dealer for a steering rack inspection under the recall campaign. If the rack is found to be out of specification, it will be replaced at no cost. Do not ignore any changes in steering feel, as the issue can worsen over time.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Steering feels vague or loose at center position",
+          "Vehicle pulls to one side during straight-line driving",
+          "Uneven steering response when turning left vs. right",
+          "Clunking or clicking noise from steering column area",
+          "Increased steering effort at low speeds"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 0,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.whatcar.com/jeep/avenger/hatchback/used-review/n27887/reliability",
+            "type": "recall",
+            "title": "Jeep Avenger Steering Rack Recall — What Car? Used Review"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Even if you have not received a recall notice, have the dealer inspect the steering rack if your Avenger exhibits any pulling or vague steering — early detection prevents further wear on tires and suspension components.",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "Inner and outer tie rod ends for steering precision restoration",
+            "partName": "Tie Rod End",
+            "partBrand": "Moog",
+            "affiliateUrl": "https://www.amazon.com/s?k=Moog%20tie%20rod%20end%20Jeep%20Avenger&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Remanufactured power steering rack for complete steering system repair",
+            "partName": "Remanufactured Steering Rack",
+            "partBrand": "Cardone",
+            "affiliateUrl": "https://www.amazon.com/s?k=Cardone%20steering%20rack%20Jeep%20Avenger&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 95,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-03-06",
+        "reviewedOn": "2026-03-06",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    }
+  ]
+}
