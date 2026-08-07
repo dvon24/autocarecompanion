@@ -1,0 +1,35 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
+const fs = require('node:fs'); const path = require('node:path'); const { fullRecord, hashValue, normalizedFileHash } = require('./infiniti-adjudication-utils');
+const ROOT = path.resolve(__dirname, '..'); const SNAPSHOT = path.join(ROOT, 'data', '_infiniti-deeplink-snapshot-2026-08-06.json'); const OUTPUT = path.join(ROOT, 'data', 'known-issue-infiniti-q60-adjudication-2026-08-06.json');
+const IDS = { infotainment: 'infiniti-q60-infotainment-issues', steering: 'infiniti-q60-steering-feel-disconnect' };
+const SOURCES = { diagnostic: 'https://static.nhtsa.gov/odi/tsbs/2023/MC-10231853-0001.pdf', q60Update: 'https://static.nhtsa.gov/odi/tsbs/2020/MC-10179560-0001.pdf' };
+const SOURCE_SHA256 = { diagnostic: '0a0a2d6b538e7892a1a0005188f3cc320c08d7857e7af700e1461dec7dbbdc9f', q60Update: '176795b2f2c461fe3d117e7aa278f7fd42149054bd177a9a85682a70b0b0a683' };
+const RECALL_QUERIES = Object.fromEntries(Array.from({ length: 10 }, (_, index) => 2017 + index).map((year) => [year, `https://api.nhtsa.gov/recalls/recallsByVehicle?make=Infiniti&model=Q60&modelYear=${year}`]));
+const EXPECTED_CAMPAIGNS = { 2017: ['17V476000'], 2018: ['19V654000'], 2019: ['19V654000'], 2020: ['20V145000'], 2021: ['21V234000', '21V599000'], 2022: [], 2023: [], 2024: [], 2025: [], 2026: [] };
+const KEEP_REASONS = {
+  [IDS.infotainment]: 'Infiniti ITB21-011B describes freezes/reboots and blank screens for Infiniti infotainment systems, while ITB20-021 provides a stability update for the 2020 Q60. Those documents do not validate the frozen 2017-2026 scope or its inherited-hardware, connectivity, navigation, reset and aftermarket claims, so the row remains byte-for-byte unchanged.',
+  [IDS.steering]: 'The forum homepage does not establish a Direct Adaptive Steering defect, and the title/body describe subjective steering feel rather than a defined failure. Official Q60 EPS software activity concerns specific conventional-EPS vehicles and does not prove a DAS feedback defect across 2017-2026, so the row remains byte-for-byte unchanged.',
+};
+function evidenceFor(id) {
+  if (id === IDS.infotainment) return [
+    { kind: 'official-service-bulletin-partial-symptom-identity', url: SOURCES.diagnostic, verifiedOn: '2026-08-06', documentSha256: SOURCE_SHA256.diagnostic, visuallyInspectedPages: [1, 2], observation: 'ITB21-011B applies to all Infiniti infotainment systems and distinguishes intermittent freezes/reboots from constant blank screens, but does not establish the full 2017-2026 Q60 scope or the row’s inherited-aging-hardware claim.' },
+    { kind: 'official-model-bulletin-partial-year-scope', url: SOURCES.q60Update, verifiedOn: '2026-08-06', documentSha256: SOURCE_SHA256.q60Update, visuallyInspectedPages: [1], observation: 'ITB20-021 specifically includes the 2020 Q60 and directs an AV software update for stability improvements and bug fixes; it does not cover every frozen model year or authorize the broader claims.' },
+  ];
+  return [{ kind: 'official-recall-set-unrelated-and-no-exact-bulletin', url: RECALL_QUERIES[2017], verifiedOn: '2026-08-06', observation: 'The complete 2017-2026 Q60 recall inventory covers fuel-pump, rear-seat-belt, rear-camera and ECM software conditions, not subjective Direct Adaptive Steering feel; no exact failure identity cleared the gate.', supportingUrls: Object.values(RECALL_QUERIES) }];
+}
+function main() {
+  const snapshot = JSON.parse(fs.readFileSync(SNAPSHOT, 'utf8')); const modelRows = snapshot.records.filter((row) => row.make === 'Infiniti' && row.model === 'Q60'); if (modelRows.length !== 2) throw new Error(`expected 2 Infiniti Q60 rows, found ${modelRows.length}`);
+  const rows = modelRows.map((current) => { if (!KEEP_REASONS[current.id]) throw new Error(`missing Q60 decision: ${current.id}`); const before = fullRecord(current); return { id: current.id, model: current.model, action: 'keep_published_pending_source', reason: KEEP_REASONS[current.id], identityRule: 'No content, year-scope or publication-state changes; partial evidence, subjective preference or an unrelated campaign cannot replace the indexed issue.', commerceDecision: 'unchanged-pending-audit', changedFields: [], evidence: evidenceFor(current.id), beforeSha256: hashValue(before), proposalSha256: hashValue(before), before, proposal: before }; });
+  const packet = { schemaVersion: 1, status: 'proposal-only', auditStage: 'model-primary-source-adjudication', requiresIndependentApproval: true, generatedOn: '2026-08-06', make: 'Infiniti', model: 'Q60',
+    completionStatement: 'This packet reconciles both frozen Infiniti Q60 rows. No exact full-identity primary-source rewrite cleared the gate; both remain byte-for-byte unchanged.',
+    safetyContract: ['No production database write, cache purge, deployment, archive action, redirect, slug change, new issue or public-page change is authorized by this packet.', 'Both Q60 rows remain published and byte-for-byte unchanged.', 'A 2020 infotainment update cannot establish a 2017-2026 defect scope.', 'Subjective steering feedback is not converted into a defect from unrelated EPS activity.', 'The recall inventory is deferred until the post-audit new-known-issues phase.', 'Independent row-by-row approval is required before any separate correction or addition path may be created.'],
+    source: { snapshotFile: 'data/_infiniti-deeplink-snapshot-2026-08-06.json', snapshotSha256: normalizedFileHash(SNAPSHOT), snapshotGeneratedAt: snapshot.generatedAt, snapshotHash: snapshot.snapshotHash, q60RecordCount: 2 },
+    observations: [
+      { code: 'q60-infotainment-evidence-partial-scope', severity: 'high', recordIds: [IDS.infotainment], detail: 'Official bulletins support some symptoms and a 2020 update but not the full frozen year scope or broader cause/remedy claims.' },
+      { code: 'q60-steering-subjective-identity-frozen', severity: 'high', recordIds: [IDS.steering], detail: 'No exact primary source establishes the subjective DAS-feel title as a defect; unrelated conventional-EPS software activity is not substituted.' },
+      { code: 'q60-recall-inventory-deferred', severity: 'post-audit-review', recordIds: [], campaignNumbers: [...new Set(Object.values(EXPECTED_CAMPAIGNS).flat())].sort(), detail: 'Distinct Q60 recall identities are preserved for the later new-issue/deduplication phase.' },
+      { code: 'both-q60-pages-preserved', severity: 'seo-safety', recordIds: Object.values(IDS), detail: 'Both indexed Q60 records remain published with identical IDs, titles, years, categories, content, citations and commerce.' },
+    ], reviewSources: SOURCES, mismatchSources: { recallQueries: RECALL_QUERIES, expectedCampaigns: EXPECTED_CAMPAIGNS }, summary: { rewrite_same_identity: 0, keep_published_pending_source: 2, total: 2 }, rows };
+  fs.writeFileSync(OUTPUT, `${JSON.stringify(packet, null, 2)}\n`); console.log(JSON.stringify({ output: OUTPUT, sha256: normalizedFileHash(OUTPUT), summary: packet.summary }, null, 2));
+}
+if (require.main === module) main(); module.exports = { EXPECTED_CAMPAIGNS, IDS, KEEP_REASONS, RECALL_QUERIES, SOURCES, SOURCE_SHA256, evidenceFor };
