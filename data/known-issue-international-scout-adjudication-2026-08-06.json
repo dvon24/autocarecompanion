@@ -1,0 +1,1417 @@
+{
+  "schemaVersion": 1,
+  "status": "proposal-only",
+  "auditStage": "model-primary-source-adjudication",
+  "requiresIndependentApproval": true,
+  "generatedOn": "2026-08-06",
+  "make": "International",
+  "model": "Scout",
+  "completionStatement": "This packet reconciles all seven frozen International Scout rows. All current citations are live, but no row has exact full-identity evidence strong enough for a safe rewrite; all seven remain byte-for-byte unchanged.",
+  "safetyContract": [
+    "No production database write, cache purge, deployment, archive action, redirect, slug change, new issue or public-page change is authorized by this packet.",
+    "All seven Scout rows remain published and byte-for-byte unchanged.",
+    "A restoration part page may establish product fitment but cannot by itself establish defect prevalence, mechanism, severity or a universal repair.",
+    "Partial year, engine or generation evidence cannot be expanded to the frozen 1961-1980 or 1971-1980 scopes.",
+    "Potentially unsafe or conflicting remedy language is flagged for independent review rather than silently rewritten.",
+    "Distinct recall identities remain deferred until the post-audit new-known-issues phase."
+  ],
+  "source": {
+    "snapshotFile": "data/_international-deeplink-snapshot-2026-08-06.json",
+    "snapshotSha256": "3cf4239b35178de3b284d642c9c7cfc2525a15c69b92099ccfa2f1bd7954c09c",
+    "snapshotGeneratedAt": "2026-08-07T01:04:17.704Z",
+    "snapshotHash": "d904f7bdd3878f91ad00c6afcdce777ce018c38a21d9518ba5824dfcf4c86754",
+    "scoutRecordCount": 7
+  },
+  "observations": [
+    {
+      "code": "all-existing-citations-live",
+      "severity": "link-integrity",
+      "recordIds": [
+        "international-scout-frame-fatigue-cracking-steering-box-mount",
+        "international-scout-frame-rocker-floor-rust-scout-s-defining-weak-point",
+        "international-scout-heat-soaked-starter-solenoid-no-hot-restart",
+        "international-scout-holley-gold-box-electronic-ignition-high-failure-rate",
+        "international-scout-marginal-cooling-system-frozen-heat-riser-overheating",
+        "international-scout-rusted-pinholed-steel-fuel-tank-failing-sending-unit",
+        "international-scout-weak-stock-charging-system"
+      ],
+      "detail": "All 15 citation URLs currently stored across the seven Scout rows returned HTTP 200 during live verification."
+    },
+    {
+      "code": "product-pages-not-defect-proof",
+      "severity": "high",
+      "recordIds": [
+        "international-scout-frame-fatigue-cracking-steering-box-mount",
+        "international-scout-frame-rocker-floor-rust-scout-s-defining-weak-point",
+        "international-scout-heat-soaked-starter-solenoid-no-hot-restart",
+        "international-scout-holley-gold-box-electronic-ignition-high-failure-rate",
+        "international-scout-marginal-cooling-system-frozen-heat-riser-overheating",
+        "international-scout-rusted-pinholed-steel-fuel-tank-failing-sending-unit",
+        "international-scout-weak-stock-charging-system"
+      ],
+      "detail": "Authorized-dealer and manufacturer pages establish selected product fitment, not the broad prevalence, mechanism and outcome claims in the indexed records."
+    },
+    {
+      "code": "cooling-remedy-conflict-frozen",
+      "severity": "safety-review-required",
+      "recordIds": [
+        "international-scout-marginal-cooling-system-frozen-heat-riser-overheating"
+      ],
+      "detail": "The source warns against a missing or frozen-open heat-riser, while the indexed solution suggests deleting or locking it open."
+    },
+    {
+      "code": "split-generation-fitment-frozen",
+      "severity": "high",
+      "recordIds": [
+        "international-scout-rusted-pinholed-steel-fuel-tank-failing-sending-unit",
+        "international-scout-holley-gold-box-electronic-ignition-high-failure-rate",
+        "international-scout-weak-stock-charging-system"
+      ],
+      "detail": "Direct product sources split by generation, year, engine or installed distributor and do not support the frozen universal scopes."
+    },
+    {
+      "code": "nhtsa-vintage-model-api-unavailable",
+      "severity": "source-limit",
+      "recordIds": [
+        "international-scout-frame-fatigue-cracking-steering-box-mount",
+        "international-scout-frame-rocker-floor-rust-scout-s-defining-weak-point",
+        "international-scout-heat-soaked-starter-solenoid-no-hot-restart",
+        "international-scout-holley-gold-box-electronic-ignition-high-failure-rate",
+        "international-scout-marginal-cooling-system-frozen-heat-riser-overheating",
+        "international-scout-rusted-pinholed-steel-fuel-tank-failing-sending-unit",
+        "international-scout-weak-stock-charging-system"
+      ],
+      "detail": "All 1961-1980 International Scout model-year queries returned HTTP 400, so the API cannot be treated as affirmative or negative defect evidence."
+    },
+    {
+      "code": "all-scout-pages-preserved",
+      "severity": "seo-safety",
+      "recordIds": [
+        "international-scout-frame-fatigue-cracking-steering-box-mount",
+        "international-scout-frame-rocker-floor-rust-scout-s-defining-weak-point",
+        "international-scout-heat-soaked-starter-solenoid-no-hot-restart",
+        "international-scout-holley-gold-box-electronic-ignition-high-failure-rate",
+        "international-scout-marginal-cooling-system-frozen-heat-riser-overheating",
+        "international-scout-rusted-pinholed-steel-fuel-tank-failing-sending-unit",
+        "international-scout-weak-stock-charging-system"
+      ],
+      "detail": "Every indexed Scout record remains published with identical ID, title, years, category, content, citations and commerce."
+    }
+  ],
+  "reviewSources": {
+    "steeringBrace": "https://www.ihpartsamerica.com/store/sii-strsteer.html",
+    "steeringPlate": "https://scoutparts.com/Scout_II_Power_Steering_Box_Reinforcement_Plate/p13728",
+    "rustBuyerGuide": "https://www.corsetticruisers.com/post/buyer-s-guide-international-scout-ii-top-5-things-to-look-out-for",
+    "rustRestomod": "https://robbreport.com/motors/cars/first-drive-bulletproof-restorations-international-scout-restomod-1234688869/",
+    "bodyPanels": "https://anythingscout.com/collections/steel-body-parts",
+    "floorPanEarly": "https://anythingscout.com/products/3522-right-floor-pan-800",
+    "starterRelay": "https://scoutparts.com/Starter_Relay_Kit_With_12V_Harness_Send_More_Power_To_Your_Solenoid__Scout_II_Scout_80_Scout_800/p16071",
+    "hotStartForum": "https://forums.ihpartsamerica.com/threads/80-scout-ii-wont-start-when-hot.8426/",
+    "goldBoxForum": "https://forums.ihpartsamerica.com/threads/scout-ii-ignition-issues.6661/",
+    "summitSearch": "https://www.summitracing.com/search/brand/pertronix/part-type/electronic-distributor-conversion-kits/make/international/model/scout-ii",
+    "pertronixGoldBox": "https://pertronixbrands.com/products/pertronix-9ho-181-ignitor-ii-adaptive-dwell-control-holley-8-cyl",
+    "heatRiser": "https://scoutparts.com/IH_V8_Heat_Riser_Valve_NEW_heat_regulator/p13783",
+    "coolingForum": "https://forums.ihpartsamerica.com/threads/improved-cooling-345.2366/page-2",
+    "fuelTank": "https://raybuck.com/product/1972-1980-international-scout-ii-19-gallon-rear-tank-with-ems-fittings/",
+    "fuelSendersCategory": "https://www.gastankdepot.com/international-gas-tank-sending-units.html",
+    "fuelSenderEarly": "https://scoutparts.com/Fuel_Sending_Unit_Fuel_Sender_Scout_80_800_860097R91_860097R91_Scout_80_Scout_800/p10177",
+    "fuelSenderLate": "https://scoutparts.com/products/?product_id=10178&view=product",
+    "alternator": "https://anythingscout.com/products/3478-160-amp-alternator",
+    "alternatorForum": "https://forums.ihpartsamerica.com/threads/alternator-upgrade.3100/"
+  },
+  "mismatchSources": {
+    "recallQueries": {
+      "1961": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=International&model=Scout&modelYear=1961",
+      "1962": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=International&model=Scout&modelYear=1962",
+      "1963": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=International&model=Scout&modelYear=1963",
+      "1964": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=International&model=Scout&modelYear=1964",
+      "1965": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=International&model=Scout&modelYear=1965",
+      "1966": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=International&model=Scout&modelYear=1966",
+      "1967": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=International&model=Scout&modelYear=1967",
+      "1968": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=International&model=Scout&modelYear=1968",
+      "1969": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=International&model=Scout&modelYear=1969",
+      "1970": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=International&model=Scout&modelYear=1970",
+      "1971": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=International&model=Scout&modelYear=1971",
+      "1972": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=International&model=Scout&modelYear=1972",
+      "1973": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=International&model=Scout&modelYear=1973",
+      "1974": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=International&model=Scout&modelYear=1974",
+      "1975": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=International&model=Scout&modelYear=1975",
+      "1976": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=International&model=Scout&modelYear=1976",
+      "1977": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=International&model=Scout&modelYear=1977",
+      "1978": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=International&model=Scout&modelYear=1978",
+      "1979": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=International&model=Scout&modelYear=1979",
+      "1980": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=International&model=Scout&modelYear=1980"
+    },
+    "expectedHttpStatus": 400
+  },
+  "summary": {
+    "rewrite_same_identity": 0,
+    "keep_published_pending_source": 7,
+    "total": 7
+  },
+  "rows": [
+    {
+      "id": "international-scout-frame-fatigue-cracking-steering-box-mount",
+      "model": "Scout",
+      "action": "keep_published_pending_source",
+      "reason": "The two live parts pages establish 1971-1980 Scout II/Terra/Traveler steering-box bracing and frame reinforcement, and one says the brace reduces wandering by stiffening the frame area. They do not establish the frozen row’s fatigue/cracking mechanism, oversized-tire causation, catastrophic-highway consequence, prevalence, severity or repair sequence, so the indexed row remains byte-for-byte unchanged pending an exact technical source.",
+      "identityRule": "No content, scope or publication-state changes; a compatible restoration part or owner discussion cannot establish the full indexed defect identity.",
+      "commerceDecision": "unchanged-no-commerce-present",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "authorized-dealer-product-partial-scope",
+          "url": "https://www.ihpartsamerica.com/store/sii-strsteer.html",
+          "verifiedOn": "2026-08-06",
+          "observation": "Fits 1971-1980 Scout II/Terra/Traveler and says the brace reduces wandering by stiffening the frame at the steering box; does not state frame fatigue/cracking or catastrophic failure."
+        },
+        {
+          "kind": "authorized-dealer-product-partial-scope",
+          "url": "https://scoutparts.com/Scout_II_Power_Steering_Box_Reinforcement_Plate/p13728",
+          "verifiedOn": "2026-08-06",
+          "observation": "Live steering-box reinforcement-plate page; product existence and fitment do not establish the full defect narrative."
+        }
+      ],
+      "beforeSha256": "7a5cfb0f38305334c280b9fdf03efe5b2ddaa1c35ddfcbf7049221377ae121a7",
+      "proposalSha256": "7a5cfb0f38305334c280b9fdf03efe5b2ddaa1c35ddfcbf7049221377ae121a7",
+      "before": {
+        "make": "International",
+        "model": "Scout",
+        "years": [
+          1971,
+          1972,
+          1973,
+          1974,
+          1975,
+          1976,
+          1977,
+          1978,
+          1979,
+          1980
+        ],
+        "trims": [
+          "Scout II",
+          "Terra",
+          "Traveler"
+        ],
+        "engines": [
+          "196 inline-4",
+          "232 inline-6",
+          "258 inline-6",
+          "266 V8",
+          "304 V8",
+          "345 V8"
+        ],
+        "category": "steering",
+        "title": "Frame Fatigue & Cracking at the Steering-Box Mount",
+        "description": "On Scout IIs the steering gear bolts to a relatively thin section of the boxed frame rail. Decades of steering loads — made far worse by oversized tires — flex that area until the frame fatigues, bends, and finally cracks around the box. Owners first notice it as vague, wandering steering as the box rocks on a softening rail; left alone it can crack the rail outright, which is catastrophic at highway speed. It is one of the best-known Scout II structural failures.",
+        "solution": "The proven fix is a bolt-on steering-box-to-frame brace (the 'Straight Steer' brace and similar reinforcement plates from IH Parts America / Anything Scout, for 1971-80 Scout II/Terra/Traveler). It ties the box to a second frame location, stiffening the rail so it stops flexing — tightening up the wander AND stopping the fatigue cracking. On trucks already cracked, restorers weld in a reinforcement/boxing plate first, then add the brace. Considered mandatory on anything running 33-inch or larger tires.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Wandering, vague on-center steering",
+          "Visible flexing of the frame at the steering box under load",
+          "Hairline or open cracks in the frame rail at the gearbox",
+          "Steering box appears to move/rock when wheel is turned"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 120,
+        "estimatedCostHigh": 800,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.ihpartsamerica.com/store/sii-strsteer.html",
+            "type": "manufacturer",
+            "title": "IH Parts America — Straight Steer Steering Box Brace, 71-80 Scout II/Terra/Traveler"
+          },
+          {
+            "url": "https://scoutparts.com/Scout_II_Power_Steering_Box_Reinforcement_Plate/p13728",
+            "type": "manufacturer",
+            "title": "ScoutParts.com — Scout II Power Steering Box Reinforcement Plate"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-20",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "International",
+        "model": "Scout",
+        "years": [
+          1971,
+          1972,
+          1973,
+          1974,
+          1975,
+          1976,
+          1977,
+          1978,
+          1979,
+          1980
+        ],
+        "trims": [
+          "Scout II",
+          "Terra",
+          "Traveler"
+        ],
+        "engines": [
+          "196 inline-4",
+          "232 inline-6",
+          "258 inline-6",
+          "266 V8",
+          "304 V8",
+          "345 V8"
+        ],
+        "category": "steering",
+        "title": "Frame Fatigue & Cracking at the Steering-Box Mount",
+        "description": "On Scout IIs the steering gear bolts to a relatively thin section of the boxed frame rail. Decades of steering loads — made far worse by oversized tires — flex that area until the frame fatigues, bends, and finally cracks around the box. Owners first notice it as vague, wandering steering as the box rocks on a softening rail; left alone it can crack the rail outright, which is catastrophic at highway speed. It is one of the best-known Scout II structural failures.",
+        "solution": "The proven fix is a bolt-on steering-box-to-frame brace (the 'Straight Steer' brace and similar reinforcement plates from IH Parts America / Anything Scout, for 1971-80 Scout II/Terra/Traveler). It ties the box to a second frame location, stiffening the rail so it stops flexing — tightening up the wander AND stopping the fatigue cracking. On trucks already cracked, restorers weld in a reinforcement/boxing plate first, then add the brace. Considered mandatory on anything running 33-inch or larger tires.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Wandering, vague on-center steering",
+          "Visible flexing of the frame at the steering box under load",
+          "Hairline or open cracks in the frame rail at the gearbox",
+          "Steering box appears to move/rock when wheel is turned"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 120,
+        "estimatedCostHigh": 800,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.ihpartsamerica.com/store/sii-strsteer.html",
+            "type": "manufacturer",
+            "title": "IH Parts America — Straight Steer Steering Box Brace, 71-80 Scout II/Terra/Traveler"
+          },
+          {
+            "url": "https://scoutparts.com/Scout_II_Power_Steering_Box_Reinforcement_Plate/p13728",
+            "type": "manufacturer",
+            "title": "ScoutParts.com — Scout II Power Steering Box Reinforcement Plate"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-20",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "international-scout-frame-rocker-floor-rust-scout-s-defining-weak-point",
+      "model": "Scout",
+      "action": "keep_published_pending_source",
+      "reason": "The live restoration pages establish that replacement floors, rockers, mounts and related panels exist for multiple Scout generations. They do not establish the frozen 1961-1980 all-generation factory-coating claim, every listed structural danger zone, the “body literally rusts off” prevalence narrative or one universal body-off remedy, so this broad identity remains byte-for-byte unchanged.",
+      "identityRule": "No content, scope or publication-state changes; a compatible restoration part or owner discussion cannot establish the full indexed defect identity.",
+      "commerceDecision": "unchanged-no-commerce-present",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "authorized-dealer-product-partial-scope",
+          "url": "https://anythingscout.com/products/3522-right-floor-pan-800",
+          "verifiedOn": "2026-08-06",
+          "observation": "The early Scout 80/800 floor-pan page presents a repair for rusty floors; it does not establish every frozen location, cause, prevalence or all-year remedy."
+        },
+        {
+          "kind": "authorized-dealer-catalog-not-defect-proof",
+          "url": "https://anythingscout.com/collections/steel-body-parts",
+          "verifiedOn": "2026-08-06",
+          "observation": "Lists replacement body panels for multiple Scout generations; parts availability is not proof of prevalence, factory coating or one universal remediation path."
+        }
+      ],
+      "beforeSha256": "7ea909b17021f0ee85006519f670cf8a354984915255cddc855af4627ba886d9",
+      "proposalSha256": "7ea909b17021f0ee85006519f670cf8a354984915255cddc855af4627ba886d9",
+      "before": {
+        "make": "International",
+        "model": "Scout",
+        "years": [
+          1961,
+          1962,
+          1963,
+          1964,
+          1965,
+          1966,
+          1967,
+          1968,
+          1969,
+          1970,
+          1971,
+          1972,
+          1973,
+          1974,
+          1975,
+          1976,
+          1977,
+          1978,
+          1979,
+          1980
+        ],
+        "trims": [
+          "Scout 80",
+          "Scout 800",
+          "Scout II",
+          "Terra",
+          "Traveler"
+        ],
+        "engines": [
+          "152 inline-4",
+          "196 inline-4",
+          "232 inline-6",
+          "258 inline-6",
+          "266 V8",
+          "304 V8",
+          "345 V8"
+        ],
+        "category": "body",
+        "title": "Frame, Rocker & Floor Rust — the Scout's Defining Weak Point",
+        "description": "Scouts were never galvanized and left the factory with no body seals or splash shields, so road grime and water pack into every seam. After decades the body literally rusts off the chassis. The structural danger zones are the boxed frame at the rear spring hangers and rear crossmember, the body mounts, the inner rockers, and the floors/cargo (hatch) area. Front fenders, door sills and the windshield/cowl frame trap moisture and hide rot under filler. Frame rot at the rear shackle mounts and crossmember is a 'walk away or full rebuild' problem.",
+        "solution": "Restorers do a body-off (frame-off) restoration: media-blast the frame, cut out and weld in new boxing/crossmember sections, then coat inside and out and inject cavity wax (e.g. Fluid Film / wax-oil) into the boxed rails to stop it returning. Reproduction steel — full floor pans, rocker/rocker-cap panels, cab corners, rear quarters and tailgate skins (Anything Scout, IH Parts America, C2C Fabrication) — replaces rotted shemetal rather than skim-filling it. Reinstall on fresh polyurethane body-mount bushings. Done once properly, the cavity wax + sealed seams is what keeps it from rotting again.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Flaking/bubbling paint along rockers and rear quarters",
+          "Soft or holed floor pans and cargo floor",
+          "Frame perforation at rear spring mounts and crossmember",
+          "Doors/tailgate misaligned from frame sag",
+          "Crunchy/rotten windshield frame and cowl"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 3000,
+        "estimatedCostHigh": 15000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.corsetticruisers.com/post/buyer-s-guide-international-scout-ii-top-5-things-to-look-out-for",
+            "type": "article",
+            "title": "Buyer's Guide: International Scout II — Top 5 Things to Look Out For"
+          },
+          {
+            "url": "https://robbreport.com/motors/cars/first-drive-bulletproof-restorations-international-scout-restomod-1234688869/",
+            "type": "article",
+            "title": "Bulletproof Restorations — International Scout (full frame-off rust remediation)"
+          },
+          {
+            "url": "https://anythingscout.com/collections/steel-body-parts",
+            "type": "manufacturer",
+            "title": "Anything Scout — Steel Body Panels (floors, rockers, quarters)"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-20",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "International",
+        "model": "Scout",
+        "years": [
+          1961,
+          1962,
+          1963,
+          1964,
+          1965,
+          1966,
+          1967,
+          1968,
+          1969,
+          1970,
+          1971,
+          1972,
+          1973,
+          1974,
+          1975,
+          1976,
+          1977,
+          1978,
+          1979,
+          1980
+        ],
+        "trims": [
+          "Scout 80",
+          "Scout 800",
+          "Scout II",
+          "Terra",
+          "Traveler"
+        ],
+        "engines": [
+          "152 inline-4",
+          "196 inline-4",
+          "232 inline-6",
+          "258 inline-6",
+          "266 V8",
+          "304 V8",
+          "345 V8"
+        ],
+        "category": "body",
+        "title": "Frame, Rocker & Floor Rust — the Scout's Defining Weak Point",
+        "description": "Scouts were never galvanized and left the factory with no body seals or splash shields, so road grime and water pack into every seam. After decades the body literally rusts off the chassis. The structural danger zones are the boxed frame at the rear spring hangers and rear crossmember, the body mounts, the inner rockers, and the floors/cargo (hatch) area. Front fenders, door sills and the windshield/cowl frame trap moisture and hide rot under filler. Frame rot at the rear shackle mounts and crossmember is a 'walk away or full rebuild' problem.",
+        "solution": "Restorers do a body-off (frame-off) restoration: media-blast the frame, cut out and weld in new boxing/crossmember sections, then coat inside and out and inject cavity wax (e.g. Fluid Film / wax-oil) into the boxed rails to stop it returning. Reproduction steel — full floor pans, rocker/rocker-cap panels, cab corners, rear quarters and tailgate skins (Anything Scout, IH Parts America, C2C Fabrication) — replaces rotted shemetal rather than skim-filling it. Reinstall on fresh polyurethane body-mount bushings. Done once properly, the cavity wax + sealed seams is what keeps it from rotting again.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Flaking/bubbling paint along rockers and rear quarters",
+          "Soft or holed floor pans and cargo floor",
+          "Frame perforation at rear spring mounts and crossmember",
+          "Doors/tailgate misaligned from frame sag",
+          "Crunchy/rotten windshield frame and cowl"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 3000,
+        "estimatedCostHigh": 15000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.corsetticruisers.com/post/buyer-s-guide-international-scout-ii-top-5-things-to-look-out-for",
+            "type": "article",
+            "title": "Buyer's Guide: International Scout II — Top 5 Things to Look Out For"
+          },
+          {
+            "url": "https://robbreport.com/motors/cars/first-drive-bulletproof-restorations-international-scout-restomod-1234688869/",
+            "type": "article",
+            "title": "Bulletproof Restorations — International Scout (full frame-off rust remediation)"
+          },
+          {
+            "url": "https://anythingscout.com/collections/steel-body-parts",
+            "type": "manufacturer",
+            "title": "Anything Scout — Steel Body Panels (floors, rockers, quarters)"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-20",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "international-scout-heat-soaked-starter-solenoid-no-hot-restart",
+      "model": "Scout",
+      "action": "keep_published_pending_source",
+      "reason": "The live ScoutParts relay page covers 1961-1980 Scouts and attributes intermittent click/no-crank behavior to ignition-switch or harness voltage drop through loose, worn or oxidized connections. It does not establish a starter-solenoid heat-soak defect beside the exhaust, the ten-minute hot-soak condition, slow-crank outcome or the full combined mechanism in the indexed title. Because voltage drop is not interchangeable with heat soak, the row remains byte-for-byte unchanged.",
+      "identityRule": "No content, scope or publication-state changes; a compatible restoration part or owner discussion cannot establish the full indexed defect identity.",
+      "commerceDecision": "unchanged-no-commerce-present",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "authorized-dealer-mechanism-mismatch",
+          "url": "https://scoutparts.com/Starter_Relay_Kit_With_12V_Harness_Send_More_Power_To_Your_Solenoid__Scout_II_Scout_80_Scout_800/p16071",
+          "verifiedOn": "2026-08-06",
+          "observation": "Attributes intermittent click/no-crank to ignition-switch and harness voltage drop; it does not identify starter-solenoid heat soak or a ten-minute hot restart condition."
+        },
+        {
+          "kind": "forum-case-not-scope-proof",
+          "url": "https://forums.ihpartsamerica.com/threads/80-scout-ii-wont-start-when-hot.8426/",
+          "verifiedOn": "2026-08-06",
+          "observation": "A live owner discussion cannot establish the all-year combined heat-soak and wiring mechanism."
+        }
+      ],
+      "beforeSha256": "a2e51fb7597531d0c703a4e8759911047bde1af08cfd49b90de817b5137cb9f4",
+      "proposalSha256": "a2e51fb7597531d0c703a4e8759911047bde1af08cfd49b90de817b5137cb9f4",
+      "before": {
+        "make": "International",
+        "model": "Scout",
+        "years": [
+          1961,
+          1962,
+          1963,
+          1964,
+          1965,
+          1966,
+          1967,
+          1968,
+          1969,
+          1970,
+          1971,
+          1972,
+          1973,
+          1974,
+          1975,
+          1976,
+          1977,
+          1978,
+          1979,
+          1980
+        ],
+        "trims": [
+          "Scout 80",
+          "Scout 800",
+          "Scout II",
+          "Terra",
+          "Traveler"
+        ],
+        "engines": [
+          "266 V8",
+          "304 V8",
+          "345 V8",
+          "392 V8",
+          "232 inline-6",
+          "258 inline-6"
+        ],
+        "category": "electrical",
+        "title": "Heat-Soaked Starter Solenoid — No Hot-Restart",
+        "description": "After the engine sits hot for ten minutes, the starter-mounted solenoid heat-soaks (it sits right next to the exhaust head pipe) and the truck won't restart — it cranks painfully slow, just clicks, or does nothing, exactly like a flat battery. The root cause is two-fold: heat raising resistance at the solenoid, AND the aging factory ignition switch + harness no longer delivering enough current to the solenoid trigger through worn, oxidized connections.",
+        "solution": "The bulletproof fix restorers use is a remote starter relay kit: a Ford-style or cube relay mounted away from exhaust heat that takes a tiny trigger current from the worn ignition switch and switches full battery current straight to the solenoid (kits from ScoutParts/IH Parts America). This restores strong hot cranking and takes the load off the old switch. Pair it with refreshed/upsized battery and starter cables and re-fit the factory exhaust-to-starter heat shield. Many also fit a modern gear-reduction mini-starter that tolerates heat far better.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Engine won't restart when hot but starts fine cold",
+          "Solenoid clicks or just one click on hot restart",
+          "Slow cranking once warmed up",
+          "Returns to normal after the engine cools"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 40,
+        "estimatedCostHigh": 350,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://scoutparts.com/Starter_Relay_Kit_With_12V_Harness_Send_More_Power_To_Your_Solenoid__Scout_II_Scout_80_Scout_800/p16071",
+            "type": "manufacturer",
+            "title": "ScoutParts.com — Starter Relay Kit w/ 12V Harness (more power to the solenoid)"
+          },
+          {
+            "url": "https://forums.ihpartsamerica.com/threads/80-scout-ii-wont-start-when-hot.8426/",
+            "type": "forum",
+            "title": "IH Parts America Forum — '80 Scout II won't start when hot"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-20",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "International",
+        "model": "Scout",
+        "years": [
+          1961,
+          1962,
+          1963,
+          1964,
+          1965,
+          1966,
+          1967,
+          1968,
+          1969,
+          1970,
+          1971,
+          1972,
+          1973,
+          1974,
+          1975,
+          1976,
+          1977,
+          1978,
+          1979,
+          1980
+        ],
+        "trims": [
+          "Scout 80",
+          "Scout 800",
+          "Scout II",
+          "Terra",
+          "Traveler"
+        ],
+        "engines": [
+          "266 V8",
+          "304 V8",
+          "345 V8",
+          "392 V8",
+          "232 inline-6",
+          "258 inline-6"
+        ],
+        "category": "electrical",
+        "title": "Heat-Soaked Starter Solenoid — No Hot-Restart",
+        "description": "After the engine sits hot for ten minutes, the starter-mounted solenoid heat-soaks (it sits right next to the exhaust head pipe) and the truck won't restart — it cranks painfully slow, just clicks, or does nothing, exactly like a flat battery. The root cause is two-fold: heat raising resistance at the solenoid, AND the aging factory ignition switch + harness no longer delivering enough current to the solenoid trigger through worn, oxidized connections.",
+        "solution": "The bulletproof fix restorers use is a remote starter relay kit: a Ford-style or cube relay mounted away from exhaust heat that takes a tiny trigger current from the worn ignition switch and switches full battery current straight to the solenoid (kits from ScoutParts/IH Parts America). This restores strong hot cranking and takes the load off the old switch. Pair it with refreshed/upsized battery and starter cables and re-fit the factory exhaust-to-starter heat shield. Many also fit a modern gear-reduction mini-starter that tolerates heat far better.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Engine won't restart when hot but starts fine cold",
+          "Solenoid clicks or just one click on hot restart",
+          "Slow cranking once warmed up",
+          "Returns to normal after the engine cools"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 40,
+        "estimatedCostHigh": 350,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://scoutparts.com/Starter_Relay_Kit_With_12V_Harness_Send_More_Power_To_Your_Solenoid__Scout_II_Scout_80_Scout_800/p16071",
+            "type": "manufacturer",
+            "title": "ScoutParts.com — Starter Relay Kit w/ 12V Harness (more power to the solenoid)"
+          },
+          {
+            "url": "https://forums.ihpartsamerica.com/threads/80-scout-ii-wont-start-when-hot.8426/",
+            "type": "forum",
+            "title": "IH Parts America Forum — '80 Scout II won't start when hot"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-20",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "international-scout-holley-gold-box-electronic-ignition-high-failure-rate",
+      "model": "Scout",
+      "action": "keep_published_pending_source",
+      "reason": "PerTronix’s direct Gold Box application page supports a Holley Hot Gold Box conversion only for a 1976-1977 Scout II with the 304 V8 and original Holley distributor. It does not support the frozen 1973-1980 range, the 345 V8 or AMC inline-six engines, a high failure rate, potting-compound diagnosis, or the claim that replacement boxes fail the same way. The live forum thread is case-specific rather than scope evidence, so the row remains unchanged.",
+      "identityRule": "No content, scope or publication-state changes; a compatible restoration part or owner discussion cannot establish the full indexed defect identity.",
+      "commerceDecision": "unchanged-no-commerce-present",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "manufacturer-fitment-scope-mismatch",
+          "url": "https://pertronixbrands.com/products/pertronix-9ho-181-ignitor-ii-adaptive-dwell-control-holley-8-cyl",
+          "verifiedOn": "2026-08-06",
+          "observation": "PerTronix 9HO-181 lists 1976-1977 Scout II, 304 V8, factory electronic Holley Hot Gold Box and original Holley distributor only."
+        },
+        {
+          "kind": "forum-case-not-prevalence-proof",
+          "url": "https://forums.ihpartsamerica.com/threads/scout-ii-ignition-issues.6661/",
+          "verifiedOn": "2026-08-06",
+          "observation": "The live diagnostic thread does not substantiate the frozen high-failure-rate or full engine/year claims."
+        }
+      ],
+      "beforeSha256": "24eb98e9d369876c821c2b13e166783a4709535d89585b3099d823c09c9fa980",
+      "proposalSha256": "24eb98e9d369876c821c2b13e166783a4709535d89585b3099d823c09c9fa980",
+      "before": {
+        "make": "International",
+        "model": "Scout",
+        "years": [
+          1973,
+          1974,
+          1975,
+          1976,
+          1977,
+          1978,
+          1979,
+          1980
+        ],
+        "trims": [
+          "Scout II",
+          "Terra",
+          "Traveler"
+        ],
+        "engines": [
+          "304 V8",
+          "345 V8",
+          "232 inline-6",
+          "258 inline-6"
+        ],
+        "category": "electrical",
+        "title": "Holley 'Gold Box' Electronic Ignition High Failure Rate",
+        "description": "Later Scouts use the Holley 'gold box' electronic ignition amplifier mounted on the firewall (right of center). It has a notoriously high failure rate: the module goes intermittent and then dies — sometimes over weeks, sometimes in minutes — leaving the truck dead with no spark. A common tell is black-grey potting compound oozing out of the box. The factory replacement boxes are pricey and fail the same way.",
+        "solution": "Restorers stop chasing replacement gold boxes and convert the distributor to a PerTronix Ignitor (a self-contained magnetic pickup that replaces the points/module entirely) — the forum consensus fix because it costs about the same as a new gold box but is a permanent upgrade, not 'more of the same.' It eliminates the firewall amplifier as a failure point and cures the associated hard-start/stalling gremlins. Owners wanting more output instead drop in a self-contained HEI-style distributor. Either way the fragile gold box leaves the truck.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Sudden total loss of spark / no-start",
+          "Intermittent stalling and misfire that comes and goes",
+          "Black/grey potting material seeping from the firewall box",
+          "Engine dies when hot then restarts when cool"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 100,
+        "estimatedCostHigh": 400,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://forums.ihpartsamerica.com/threads/scout-ii-ignition-issues.6661/",
+            "type": "forum",
+            "title": "IH Parts America Forum — Scout II Ignition Issues (gold box failure, PerTronix fix)"
+          },
+          {
+            "url": "https://www.summitracing.com/search/brand/pertronix/part-type/electronic-distributor-conversion-kits/make/international/model/scout-ii",
+            "type": "manufacturer",
+            "title": "Summit Racing — PerTronix Electronic Distributor Conversion Kits, Scout II"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-20",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "International",
+        "model": "Scout",
+        "years": [
+          1973,
+          1974,
+          1975,
+          1976,
+          1977,
+          1978,
+          1979,
+          1980
+        ],
+        "trims": [
+          "Scout II",
+          "Terra",
+          "Traveler"
+        ],
+        "engines": [
+          "304 V8",
+          "345 V8",
+          "232 inline-6",
+          "258 inline-6"
+        ],
+        "category": "electrical",
+        "title": "Holley 'Gold Box' Electronic Ignition High Failure Rate",
+        "description": "Later Scouts use the Holley 'gold box' electronic ignition amplifier mounted on the firewall (right of center). It has a notoriously high failure rate: the module goes intermittent and then dies — sometimes over weeks, sometimes in minutes — leaving the truck dead with no spark. A common tell is black-grey potting compound oozing out of the box. The factory replacement boxes are pricey and fail the same way.",
+        "solution": "Restorers stop chasing replacement gold boxes and convert the distributor to a PerTronix Ignitor (a self-contained magnetic pickup that replaces the points/module entirely) — the forum consensus fix because it costs about the same as a new gold box but is a permanent upgrade, not 'more of the same.' It eliminates the firewall amplifier as a failure point and cures the associated hard-start/stalling gremlins. Owners wanting more output instead drop in a self-contained HEI-style distributor. Either way the fragile gold box leaves the truck.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Sudden total loss of spark / no-start",
+          "Intermittent stalling and misfire that comes and goes",
+          "Black/grey potting material seeping from the firewall box",
+          "Engine dies when hot then restarts when cool"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 100,
+        "estimatedCostHigh": 400,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://forums.ihpartsamerica.com/threads/scout-ii-ignition-issues.6661/",
+            "type": "forum",
+            "title": "IH Parts America Forum — Scout II Ignition Issues (gold box failure, PerTronix fix)"
+          },
+          {
+            "url": "https://www.summitracing.com/search/brand/pertronix/part-type/electronic-distributor-conversion-kits/make/international/model/scout-ii",
+            "type": "manufacturer",
+            "title": "Summit Racing — PerTronix Electronic Distributor Conversion Kits, Scout II"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-20",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "international-scout-marginal-cooling-system-frozen-heat-riser-overheating",
+      "model": "Scout",
+      "action": "keep_published_pending_source",
+      "reason": "The live heat-riser product page supports the IH V8 valve’s function and warns that a frozen-closed valve can cause overheating, a lean mixture and possible fire. It also says a missing or frozen-open valve causes poor warm-up, fuel economy, carburetor icing and fuel puddling, conflicting with the indexed advice to delete or lock it open. The cooling discussion distinguishes factory standard, increased and improved-cooling configurations rather than proving every Scout II system marginal. This mixed identity and potentially unsafe remedy remain frozen pending an exact rewrite approval.",
+      "identityRule": "No content, scope or publication-state changes; a compatible restoration part or owner discussion cannot establish the full indexed defect identity.",
+      "commerceDecision": "unchanged-no-commerce-present",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "authorized-dealer-remedy-conflict",
+          "url": "https://scoutparts.com/IH_V8_Heat_Riser_Valve_NEW_heat_regulator/p13783",
+          "verifiedOn": "2026-08-06",
+          "observation": "Supports frozen-closed overheating but warns a missing or frozen-open valve has its own adverse consequences, conflicting with delete/lock-open guidance."
+        },
+        {
+          "kind": "technical-discussion-scope-conflict",
+          "url": "https://forums.ihpartsamerica.com/threads/improved-cooling-345.2366/page-2",
+          "verifiedOn": "2026-08-06",
+          "observation": "Distinguishes standard, increased and improved cooling configurations; it does not establish one universally marginal Scout II system."
+        }
+      ],
+      "beforeSha256": "382b359f6d08351d5079e6e05d9daa593641518d245cc5df2f8701f6e6cdeb25",
+      "proposalSha256": "382b359f6d08351d5079e6e05d9daa593641518d245cc5df2f8701f6e6cdeb25",
+      "before": {
+        "make": "International",
+        "model": "Scout",
+        "years": [
+          1971,
+          1972,
+          1973,
+          1974,
+          1975,
+          1976,
+          1977,
+          1978,
+          1979,
+          1980
+        ],
+        "trims": [
+          "Scout II",
+          "Terra",
+          "Traveler"
+        ],
+        "engines": [
+          "266 V8",
+          "304 V8",
+          "345 V8",
+          "392 V8"
+        ],
+        "category": "cooling",
+        "title": "Marginal Cooling System & Frozen Heat-Riser Overheating",
+        "description": "The IH V8s (266/304/345/392) run hot in Scout IIs — the factory radiator and cooling capacity are marginal, especially with A/C, larger tires, or any added power. A specific Scout failure mode is the exhaust heat-riser valve seizing CLOSED: it dams exhaust under the intake, which overheats the engine, drives an over-lean mixture, and in the worst case can start an engine fire. General overheating is one of the most-cited stock-drivetrain complaints.",
+        "solution": "Restorers upgrade to a high-capacity aluminum (or thicker multi-core) radiator and a high-flow water pump, add a proper shroud and a clutch or electric fan, and run a 180-degree thermostat. The seized heat-riser is freed, rebuilt, or deleted/locked open (it's only needed for fast cold-start warm-up). On full builds the chronic-overheat issue is permanently solved by the popular LS V8 swap, which also cures the limited stock power. These fixes turn a temperamental cooler into a reliable one.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Temp gauge climbing in traffic or on grades",
+          "Boil-over, especially with A/C on",
+          "Lean running / spark knock when hot",
+          "Heat-riser valve seized solid when checked by hand"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 250,
+        "estimatedCostHigh": 1200,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://scoutparts.com/IH_V8_Heat_Riser_Valve_NEW_heat_regulator/p13783",
+            "type": "manufacturer",
+            "title": "ScoutParts.com — IH V8 Heat Riser Valve (266/304/345/392) replacement"
+          },
+          {
+            "url": "https://forums.ihpartsamerica.com/threads/improved-cooling-345.2366/page-2",
+            "type": "forum",
+            "title": "IH Parts America Forum — Improved Cooling 345"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-20",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "International",
+        "model": "Scout",
+        "years": [
+          1971,
+          1972,
+          1973,
+          1974,
+          1975,
+          1976,
+          1977,
+          1978,
+          1979,
+          1980
+        ],
+        "trims": [
+          "Scout II",
+          "Terra",
+          "Traveler"
+        ],
+        "engines": [
+          "266 V8",
+          "304 V8",
+          "345 V8",
+          "392 V8"
+        ],
+        "category": "cooling",
+        "title": "Marginal Cooling System & Frozen Heat-Riser Overheating",
+        "description": "The IH V8s (266/304/345/392) run hot in Scout IIs — the factory radiator and cooling capacity are marginal, especially with A/C, larger tires, or any added power. A specific Scout failure mode is the exhaust heat-riser valve seizing CLOSED: it dams exhaust under the intake, which overheats the engine, drives an over-lean mixture, and in the worst case can start an engine fire. General overheating is one of the most-cited stock-drivetrain complaints.",
+        "solution": "Restorers upgrade to a high-capacity aluminum (or thicker multi-core) radiator and a high-flow water pump, add a proper shroud and a clutch or electric fan, and run a 180-degree thermostat. The seized heat-riser is freed, rebuilt, or deleted/locked open (it's only needed for fast cold-start warm-up). On full builds the chronic-overheat issue is permanently solved by the popular LS V8 swap, which also cures the limited stock power. These fixes turn a temperamental cooler into a reliable one.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Temp gauge climbing in traffic or on grades",
+          "Boil-over, especially with A/C on",
+          "Lean running / spark knock when hot",
+          "Heat-riser valve seized solid when checked by hand"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 250,
+        "estimatedCostHigh": 1200,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://scoutparts.com/IH_V8_Heat_Riser_Valve_NEW_heat_regulator/p13783",
+            "type": "manufacturer",
+            "title": "ScoutParts.com — IH V8 Heat Riser Valve (266/304/345/392) replacement"
+          },
+          {
+            "url": "https://forums.ihpartsamerica.com/threads/improved-cooling-345.2366/page-2",
+            "type": "forum",
+            "title": "IH Parts America Forum — Improved Cooling 345"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-20",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "international-scout-rusted-pinholed-steel-fuel-tank-failing-sending-unit",
+      "model": "Scout",
+      "action": "keep_published_pending_source",
+      "reason": "The live Raybuck polyethylene tank page is limited to 1972-1980 Scout II, while direct ScoutParts sender pages split 1961-1971 Scout 80/800 from 1971-1980 Scout II. Those pages establish replacement fitment and gauge-service possibilities, not one 1961-1980 original-steel-tank rust/pinhole defect, common prevalence or a universal 19-gallon replacement procedure. The row remains byte-for-byte unchanged rather than applying the late tank to early Scouts.",
+      "identityRule": "No content, scope or publication-state changes; a compatible restoration part or owner discussion cannot establish the full indexed defect identity.",
+      "commerceDecision": "unchanged-no-commerce-present",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "manufacturer-product-year-mismatch",
+          "url": "https://raybuck.com/product/1972-1980-international-scout-ii-19-gallon-rear-tank-with-ems-fittings/",
+          "verifiedOn": "2026-08-06",
+          "observation": "The polyethylene rear tank is specifically a 1972-1980 Scout II product, not a 1961-1980 universal tank."
+        },
+        {
+          "kind": "authorized-dealer-split-fitment",
+          "url": "https://scoutparts.com/Fuel_Sending_Unit_Fuel_Sender_Scout_80_800_860097R91_860097R91_Scout_80_Scout_800/p10177",
+          "verifiedOn": "2026-08-06",
+          "observation": "The early sender is listed for 1961-1971 Scout 80/800."
+        },
+        {
+          "kind": "authorized-dealer-split-fitment",
+          "url": "https://scoutparts.com/products/?product_id=10178&view=product",
+          "verifiedOn": "2026-08-06",
+          "observation": "The later sender is listed for the Scout II/Terra/Traveler 19-gallon tank through 1980."
+        }
+      ],
+      "beforeSha256": "689720e95500f39292c6dc156912046b9662a799c7353f9b7a13cc195d6b68f5",
+      "proposalSha256": "689720e95500f39292c6dc156912046b9662a799c7353f9b7a13cc195d6b68f5",
+      "before": {
+        "make": "International",
+        "model": "Scout",
+        "years": [
+          1961,
+          1962,
+          1963,
+          1964,
+          1965,
+          1966,
+          1967,
+          1968,
+          1969,
+          1970,
+          1971,
+          1972,
+          1973,
+          1974,
+          1975,
+          1976,
+          1977,
+          1978,
+          1979,
+          1980
+        ],
+        "trims": [
+          "Scout 80",
+          "Scout 800",
+          "Scout II",
+          "Terra",
+          "Traveler"
+        ],
+        "engines": [
+          "152 inline-4",
+          "196 inline-4",
+          "232 inline-6",
+          "258 inline-6",
+          "266 V8",
+          "304 V8",
+          "345 V8"
+        ],
+        "category": "fuel",
+        "title": "Rusted/Pinholed Steel Fuel Tank & Failing Sending Unit",
+        "description": "The original steel fuel tanks rust from the inside and develop pinhole leaks; owners chase patches for years with no lasting fix. The internal rust and varnish also clog the fuel system and wreck the float-type sending unit, so the gauge reads stuck on empty/full or erratic, and corroded float arms and worn senders give junk readings — a classic Scout fuel-system headache that also feeds rust/debris into carburetors.",
+        "solution": "Restorers stop patching and fit a modern polyethylene replacement tank (e.g. Raybuck 19-gal poly tank for 72-80 Scout II) — it physically can't rust again — installed with new straps, filler hose, and a fresh sending unit and gasket at the same time (the standard 'do them together' rule). Add an inline filter and, on builds running EFI/LS swaps, an EMS/in-tank pump provision. Result is reliable fuel delivery and an accurate, repaired gauge.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Fuel smell / wet spots from tank pinholes",
+          "Fuel gauge stuck on empty or full or wildly erratic",
+          "Rust/debris clogging filter and carburetor",
+          "Tank patches that keep re-leaking"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 250,
+        "estimatedCostHigh": 700,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://raybuck.com/product/1972-1980-international-scout-ii-19-gallon-rear-tank-with-ems-fittings/",
+            "type": "manufacturer",
+            "title": "Raybuck — 1972-1980 Scout II 19-gallon polyethylene replacement tank"
+          },
+          {
+            "url": "https://www.gastankdepot.com/international-gas-tank-sending-units.html",
+            "type": "manufacturer",
+            "title": "Gas Tank Depot — International Harvester / Scout sending units (stuck/erratic gauge fix)"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-20",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "International",
+        "model": "Scout",
+        "years": [
+          1961,
+          1962,
+          1963,
+          1964,
+          1965,
+          1966,
+          1967,
+          1968,
+          1969,
+          1970,
+          1971,
+          1972,
+          1973,
+          1974,
+          1975,
+          1976,
+          1977,
+          1978,
+          1979,
+          1980
+        ],
+        "trims": [
+          "Scout 80",
+          "Scout 800",
+          "Scout II",
+          "Terra",
+          "Traveler"
+        ],
+        "engines": [
+          "152 inline-4",
+          "196 inline-4",
+          "232 inline-6",
+          "258 inline-6",
+          "266 V8",
+          "304 V8",
+          "345 V8"
+        ],
+        "category": "fuel",
+        "title": "Rusted/Pinholed Steel Fuel Tank & Failing Sending Unit",
+        "description": "The original steel fuel tanks rust from the inside and develop pinhole leaks; owners chase patches for years with no lasting fix. The internal rust and varnish also clog the fuel system and wreck the float-type sending unit, so the gauge reads stuck on empty/full or erratic, and corroded float arms and worn senders give junk readings — a classic Scout fuel-system headache that also feeds rust/debris into carburetors.",
+        "solution": "Restorers stop patching and fit a modern polyethylene replacement tank (e.g. Raybuck 19-gal poly tank for 72-80 Scout II) — it physically can't rust again — installed with new straps, filler hose, and a fresh sending unit and gasket at the same time (the standard 'do them together' rule). Add an inline filter and, on builds running EFI/LS swaps, an EMS/in-tank pump provision. Result is reliable fuel delivery and an accurate, repaired gauge.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Fuel smell / wet spots from tank pinholes",
+          "Fuel gauge stuck on empty or full or wildly erratic",
+          "Rust/debris clogging filter and carburetor",
+          "Tank patches that keep re-leaking"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 250,
+        "estimatedCostHigh": 700,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://raybuck.com/product/1972-1980-international-scout-ii-19-gallon-rear-tank-with-ems-fittings/",
+            "type": "manufacturer",
+            "title": "Raybuck — 1972-1980 Scout II 19-gallon polyethylene replacement tank"
+          },
+          {
+            "url": "https://www.gastankdepot.com/international-gas-tank-sending-units.html",
+            "type": "manufacturer",
+            "title": "Gas Tank Depot — International Harvester / Scout sending units (stuck/erratic gauge fix)"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-20",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "international-scout-weak-stock-charging-system",
+      "model": "Scout",
+      "action": "keep_published_pending_source",
+      "reason": "The live Anything Scout page supports a plug-in 140/160-amp alternator upgrade and says stock alternators produce 50-60 amps, but it does not establish the frozen 1961-1980 generator/alternator scope, undercharging prevalence, reverse/tail-light failures, CS130 universality or charge-wire prescription across every listed engine and Scout generation. The forum is discussion evidence only, so the broad row remains unchanged.",
+      "identityRule": "No content, scope or publication-state changes; a compatible restoration part or owner discussion cannot establish the full indexed defect identity.",
+      "commerceDecision": "unchanged-no-commerce-present",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "authorized-dealer-product-partial-scope",
+          "url": "https://anythingscout.com/products/3478-160-amp-alternator",
+          "verifiedOn": "2026-08-06",
+          "observation": "Supports a 140/160-amp plug-in alternator upgrade and states stock alternators make 50-60 amps; it does not establish early-generator or all-generation failure claims."
+        },
+        {
+          "kind": "forum-discussion-not-scope-proof",
+          "url": "https://forums.ihpartsamerica.com/threads/alternator-upgrade.3100/",
+          "verifiedOn": "2026-08-06",
+          "observation": "The live discussion does not establish the full 1961-1980 indexed identity."
+        }
+      ],
+      "beforeSha256": "31da17976f26a54b84f00218ec4b8d9c969169aaabf796ae6840c1a741689c2e",
+      "proposalSha256": "31da17976f26a54b84f00218ec4b8d9c969169aaabf796ae6840c1a741689c2e",
+      "before": {
+        "make": "International",
+        "model": "Scout",
+        "years": [
+          1961,
+          1962,
+          1963,
+          1964,
+          1965,
+          1966,
+          1967,
+          1968,
+          1969,
+          1970,
+          1971,
+          1972,
+          1973,
+          1974,
+          1975,
+          1976,
+          1977,
+          1978,
+          1979,
+          1980
+        ],
+        "trims": [
+          "Scout 80",
+          "Scout 800",
+          "Scout II",
+          "Terra",
+          "Traveler"
+        ],
+        "engines": [
+          "152 inline-4",
+          "196 inline-4",
+          "232 inline-6",
+          "258 inline-6",
+          "266 V8",
+          "304 V8",
+          "345 V8"
+        ],
+        "category": "electrical",
+        "title": "Weak Stock Charging System (Low-Output Alternator/Generator)",
+        "description": "Early Scout 80/800s left the factory with a generator, and even alternator-equipped Scout IIs only make about 50-60 amps. That is not enough headroom for a restored truck running modern lighting, a stereo, off-road lights, a winch, or an electric fan — it leaves the battery undercharged, dims the headlights, and causes inoperative reverse/tail lights. Dim lights and taillight/reverse-light failures are common, aging-electrical complaints.",
+        "solution": "The community upgrade is a one-wire/plug-in high-output alternator — a GM CS130 bolts in as a near plug-and-play swap, and 140-160 amp units are sold specifically for Scouts (Anything Scout, IH Parts America). On a Scout 80/800 still running a generator, restorers do the full generator-to-alternator conversion. The critical, often-skipped step: run a new heavy-gauge charge wire from the alternator output to the battery (the original wiring can't carry the higher output). Pair with a refreshed ground strap set to cure the dim-light/dead-light gremlins.",
+        "severity": "low",
+        "confidence": "high",
+        "symptoms": [
+          "Dim or flickering headlights, especially at idle",
+          "Battery repeatedly going flat / undercharged",
+          "Inoperative reverse and tail lights",
+          "Ammeter showing low or no charge"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 150,
+        "estimatedCostHigh": 600,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://anythingscout.com/products/3478-160-amp-alternator",
+            "type": "manufacturer",
+            "title": "Anything Scout — 160-Amp Upgraded Alternator for Scout"
+          },
+          {
+            "url": "https://forums.ihpartsamerica.com/threads/alternator-upgrade.3100/",
+            "type": "forum",
+            "title": "IH Parts America Forum — Alternator upgrade (CS130 plug-and-play, heavy charge wire)"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-20",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "International",
+        "model": "Scout",
+        "years": [
+          1961,
+          1962,
+          1963,
+          1964,
+          1965,
+          1966,
+          1967,
+          1968,
+          1969,
+          1970,
+          1971,
+          1972,
+          1973,
+          1974,
+          1975,
+          1976,
+          1977,
+          1978,
+          1979,
+          1980
+        ],
+        "trims": [
+          "Scout 80",
+          "Scout 800",
+          "Scout II",
+          "Terra",
+          "Traveler"
+        ],
+        "engines": [
+          "152 inline-4",
+          "196 inline-4",
+          "232 inline-6",
+          "258 inline-6",
+          "266 V8",
+          "304 V8",
+          "345 V8"
+        ],
+        "category": "electrical",
+        "title": "Weak Stock Charging System (Low-Output Alternator/Generator)",
+        "description": "Early Scout 80/800s left the factory with a generator, and even alternator-equipped Scout IIs only make about 50-60 amps. That is not enough headroom for a restored truck running modern lighting, a stereo, off-road lights, a winch, or an electric fan — it leaves the battery undercharged, dims the headlights, and causes inoperative reverse/tail lights. Dim lights and taillight/reverse-light failures are common, aging-electrical complaints.",
+        "solution": "The community upgrade is a one-wire/plug-in high-output alternator — a GM CS130 bolts in as a near plug-and-play swap, and 140-160 amp units are sold specifically for Scouts (Anything Scout, IH Parts America). On a Scout 80/800 still running a generator, restorers do the full generator-to-alternator conversion. The critical, often-skipped step: run a new heavy-gauge charge wire from the alternator output to the battery (the original wiring can't carry the higher output). Pair with a refreshed ground strap set to cure the dim-light/dead-light gremlins.",
+        "severity": "low",
+        "confidence": "high",
+        "symptoms": [
+          "Dim or flickering headlights, especially at idle",
+          "Battery repeatedly going flat / undercharged",
+          "Inoperative reverse and tail lights",
+          "Ammeter showing low or no charge"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 150,
+        "estimatedCostHigh": 600,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://anythingscout.com/products/3478-160-amp-alternator",
+            "type": "manufacturer",
+            "title": "Anything Scout — 160-Amp Upgraded Alternator for Scout"
+          },
+          {
+            "url": "https://forums.ihpartsamerica.com/threads/alternator-upgrade.3100/",
+            "type": "forum",
+            "title": "IH Parts America Forum — Alternator upgrade (CS130 plug-and-play, heavy charge wire)"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-20",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    }
+  ]
+}
