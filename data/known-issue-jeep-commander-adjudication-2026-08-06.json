@@ -1,0 +1,1173 @@
+{
+  "schemaVersion": 1,
+  "status": "proposal-only",
+  "auditStage": "model-primary-source-adjudication",
+  "requiresIndependentApproval": true,
+  "generatedOn": "2026-08-06",
+  "make": "Jeep",
+  "model": "Commander",
+  "completionStatement": "All four frozen Commander records are reconciled as byte-for-byte holds because no source clears the complete indexed identity and campaign 08V203 is a narrower engine-stall recall, not transmission overheating.",
+  "safetyContract": [
+    "No production database write, cache purge, deployment, archive action, redirect, slug change, new issue or public-page change is authorized by this packet.",
+    "All four Commander rows remain published and byte-for-byte unchanged.",
+    "A recall for a different outcome or narrower year/engine population cannot replace an indexed page identity.",
+    "Unrelated DTCs, conflicting part numbers and search commerce require independent review.",
+    "New issue identities remain deferred until the remaining-make audit is complete."
+  ],
+  "source": {
+    "snapshotFile": "data/_jeep-deeplink-snapshot-2026-08-06.json",
+    "snapshotSha256": "e58c24fa8f57e198f5b77a539345b9f36ab5c8232c77263140c6915b311a9ddd",
+    "snapshotGeneratedAt": "2026-08-07T17:03:22.937Z",
+    "snapshotHash": "18ad4be47bc5941799a865d829fd30d5361a0cf7635e9ec106db32a7f109c7eb",
+    "modelRecordCount": 4
+  },
+  "observations": [
+    {
+      "code": "commander-08v203-is-engine-stall-not-transmission-overheat",
+      "severity": "critical",
+      "recordIds": [
+        "jeep-commander-transmission-overheating"
+      ],
+      "detail": "Campaign 08V203 is a 2006 4.7L PCM-software engine-stall recall."
+    },
+    {
+      "code": "commander-electrical-dtcs-are-egr-codes",
+      "severity": "critical",
+      "recordIds": [
+        "jeep-commander-electrical-gremlins"
+      ],
+      "detail": "P0401-P0404 do not establish the frozen electrical-gremlins identity."
+    },
+    {
+      "code": "commander-stall-part-and-code-conflicts",
+      "severity": "high",
+      "recordIds": [
+        "jeep-commander-engine-stalling"
+      ],
+      "detail": "The row conflicts on DTC family and crankshaft-sensor part number."
+    },
+    {
+      "code": "all-commander-pages-preserved",
+      "severity": "seo-safety",
+      "recordIds": [
+        "jeep-commander-cooling-overheating",
+        "jeep-commander-electrical-gremlins",
+        "jeep-commander-engine-stalling",
+        "jeep-commander-transmission-overheating"
+      ],
+      "detail": "Every frozen Commander record remains published and byte-for-byte unchanged."
+    }
+  ],
+  "campaignSource": {
+    "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=08V203000",
+    "expected": {
+      "campaign": "08V203000",
+      "resultCount": 1,
+      "model": "COMMANDER",
+      "year": "2006",
+      "component": "POWER TRAIN:AUTOMATIC TRANSMISSION:CONTROL MODULE (TCM/PCM/TECM)",
+      "markers": [
+        "4.7L V8",
+        "powertrain control module",
+        "engine to stall",
+        "reprogram the PCM software",
+        "built prior to January 11, 2006"
+      ]
+    }
+  },
+  "recallInventory": {
+    "queries": {
+      "2006": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMMANDER&modelYear=2006",
+      "2007": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMMANDER&modelYear=2007",
+      "2008": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMMANDER&modelYear=2008",
+      "2009": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMMANDER&modelYear=2009",
+      "2010": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMMANDER&modelYear=2010"
+    },
+    "expectedStatus": 200,
+    "expectedCampaignsByYear": {
+      "2006": [
+        "06V037000",
+        "07V434000",
+        "08V203000",
+        "09E039000",
+        "13V175000",
+        "14V438000"
+      ],
+      "2007": [
+        "06V493000",
+        "07V415000",
+        "07V434000",
+        "09E039000",
+        "13V175000",
+        "14V438000"
+      ],
+      "2008": [
+        "07V415000",
+        "08V059000",
+        "09E039000",
+        "13V175000",
+        "14V567000"
+      ],
+      "2009": [
+        "09E039000",
+        "09V118000",
+        "13V175000"
+      ],
+      "2010": [
+        "10V009000",
+        "10V085000",
+        "10V200000",
+        "13V175000"
+      ]
+    }
+  },
+  "summary": {
+    "rewrite_same_identity": 0,
+    "keep_published_pending_source": 4,
+    "total": 4
+  },
+  "rows": [
+    {
+      "id": "jeep-commander-cooling-overheating",
+      "model": "Commander",
+      "action": "keep_published_pending_source",
+      "reason": "The complaint aggregator is not an exact primary source for the frozen five-year multi-component cooling identity. No reviewed source clears the plastic-tank frequency, 4.7L vulnerability, preventive water-pump interval, 30,000-mile flush interval, DTC set, multiple conflicting water-pump part numbers or universal aluminum-radiator recommendation, so the row remains byte-for-byte unchanged.",
+      "identityRule": "A partial recall, unrelated diagnostic codes or conflicting part numbers require a byte-for-byte hold.",
+      "commerceDecision": "unchanged-search-commerce-pending-exact-fitment",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-recall-inventory-boundary-not-broad-claim-proof",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMMANDER&modelYear=2006",
+          "supportingUrls": [
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMMANDER&modelYear=2006",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMMANDER&modelYear=2007",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMMANDER&modelYear=2008",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMMANDER&modelYear=2009",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMMANDER&modelYear=2010"
+          ],
+          "verifiedOn": "2026-08-06",
+          "observation": "The complete Commander recall inventory does not establish the frozen broad failure and commerce package."
+        }
+      ],
+      "beforeSha256": "f47bf35173385f89aff54d7d1b19163338288f30737f9dd789d8aef9280b5217",
+      "proposalSha256": "f47bf35173385f89aff54d7d1b19163338288f30737f9dd789d8aef9280b5217",
+      "before": {
+        "make": "Jeep",
+        "model": "Commander",
+        "years": [
+          2006,
+          2007,
+          2008,
+          2009,
+          2010
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "cooling",
+        "title": "Engine Overheating / Cooling System Failures",
+        "description": "The Commander is susceptible to engine overheating caused by failing water pumps, cracked radiator tanks, leaking heater core connections, and thermostat failures. The radiator end tanks (plastic) are prone to cracking at the seam where they meet the aluminum core. Power steering cooler line leaks can also compound cooling issues. The 4.7L V8 is especially vulnerable.",
+        "solution": "Replace the thermostat and housing as preventive maintenance ($50-150). Upgrade to an all-aluminum radiator (Mishimoto or CSF) to eliminate plastic tank cracking ($200-400). Replace the water pump at 80,000-100,000 miles as preventive maintenance (Mopar 53021429AB for 3.7L, 53021578AD for 4.7L). Check and replace coolant hoses that show swelling or cracking. Flush cooling system every 30,000 miles.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Temperature gauge runs hot or in red zone",
+          "Coolant leak visible under vehicle",
+          "Steam or sweet smell from under hood",
+          "Low coolant warning light",
+          "Heater blows cold air intermittently",
+          "Coolant puddle at front of vehicle"
+        ],
+        "affectedSystems": [
+          "Cooling",
+          "Engine"
+        ],
+        "dtcCodes": [
+          "P0128",
+          "P0597",
+          "P0598",
+          "P0599"
+        ],
+        "estimatedCostLow": 100,
+        "estimatedCostHigh": 1000,
+        "typicalMileageLow": 80000,
+        "typicalMileageHigh": 100000,
+        "citations": [
+          {
+            "url": "https://www.carcomplaints.com/Jeep/Commander/2006/engine/engine_and_engine_cooling.shtml",
+            "type": "nhtsa",
+            "title": "CarComplaints.com - 2006 Commander Engine & Cooling (173 complaints)"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Replace the radiator proactively with an all-aluminum unit before the plastic tanks crack - it is a matter of when, not if",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "Mopar water pump (53021429AB for 3.7L) should be replaced as preventive maintenance around 80-100k miles",
+            "upvotes": 0,
+            "partName": "Water Pump Assembly",
+            "partBrand": "Mopar",
+            "partNumber": "53021429AB",
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Mopar%2053021429AB&tag=au7o-20"
+          }
+        ],
+        "fixParts": [
+          {
+            "note": "(reconciled from the issue's own fix text)",
+            "source": "reconciliation",
+            "buyLinks": [
+              {
+                "url": "https://www.amazon.com/s?k=53022189AC&tag=au7o-20",
+                "vendor": "Amazon"
+              },
+              {
+                "url": "https://www.rockauto.com/en/partsearch/?q=53022189AC",
+                "vendor": "RockAuto"
+              },
+              {
+                "url": "https://www.ebay.com/sch/i.html?_nkw=53022189AC",
+                "vendor": "eBay"
+              }
+            ],
+            "priceLow": null,
+            "component": "water pump",
+            "priceHigh": null,
+            "oemPartNumber": "53022189AC",
+            "aftermarketXref": []
+          }
+        ],
+        "humanApproved": true,
+        "reportCount": 234,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2023-06-10",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "chrysler-town-country-cooling-2001",
+          "dodge-caliber-overheating-2007",
+          "jeep-patriot-engine-overheating",
+          "dodge-grand-caravan-cooling-2001"
+        ]
+      },
+      "proposal": {
+        "make": "Jeep",
+        "model": "Commander",
+        "years": [
+          2006,
+          2007,
+          2008,
+          2009,
+          2010
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "cooling",
+        "title": "Engine Overheating / Cooling System Failures",
+        "description": "The Commander is susceptible to engine overheating caused by failing water pumps, cracked radiator tanks, leaking heater core connections, and thermostat failures. The radiator end tanks (plastic) are prone to cracking at the seam where they meet the aluminum core. Power steering cooler line leaks can also compound cooling issues. The 4.7L V8 is especially vulnerable.",
+        "solution": "Replace the thermostat and housing as preventive maintenance ($50-150). Upgrade to an all-aluminum radiator (Mishimoto or CSF) to eliminate plastic tank cracking ($200-400). Replace the water pump at 80,000-100,000 miles as preventive maintenance (Mopar 53021429AB for 3.7L, 53021578AD for 4.7L). Check and replace coolant hoses that show swelling or cracking. Flush cooling system every 30,000 miles.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Temperature gauge runs hot or in red zone",
+          "Coolant leak visible under vehicle",
+          "Steam or sweet smell from under hood",
+          "Low coolant warning light",
+          "Heater blows cold air intermittently",
+          "Coolant puddle at front of vehicle"
+        ],
+        "affectedSystems": [
+          "Cooling",
+          "Engine"
+        ],
+        "dtcCodes": [
+          "P0128",
+          "P0597",
+          "P0598",
+          "P0599"
+        ],
+        "estimatedCostLow": 100,
+        "estimatedCostHigh": 1000,
+        "typicalMileageLow": 80000,
+        "typicalMileageHigh": 100000,
+        "citations": [
+          {
+            "url": "https://www.carcomplaints.com/Jeep/Commander/2006/engine/engine_and_engine_cooling.shtml",
+            "type": "nhtsa",
+            "title": "CarComplaints.com - 2006 Commander Engine & Cooling (173 complaints)"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Replace the radiator proactively with an all-aluminum unit before the plastic tanks crack - it is a matter of when, not if",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "Mopar water pump (53021429AB for 3.7L) should be replaced as preventive maintenance around 80-100k miles",
+            "upvotes": 0,
+            "partName": "Water Pump Assembly",
+            "partBrand": "Mopar",
+            "partNumber": "53021429AB",
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Mopar%2053021429AB&tag=au7o-20"
+          }
+        ],
+        "fixParts": [
+          {
+            "note": "(reconciled from the issue's own fix text)",
+            "source": "reconciliation",
+            "buyLinks": [
+              {
+                "url": "https://www.amazon.com/s?k=53022189AC&tag=au7o-20",
+                "vendor": "Amazon"
+              },
+              {
+                "url": "https://www.rockauto.com/en/partsearch/?q=53022189AC",
+                "vendor": "RockAuto"
+              },
+              {
+                "url": "https://www.ebay.com/sch/i.html?_nkw=53022189AC",
+                "vendor": "eBay"
+              }
+            ],
+            "priceLow": null,
+            "component": "water pump",
+            "priceHigh": null,
+            "oemPartNumber": "53022189AC",
+            "aftermarketXref": []
+          }
+        ],
+        "humanApproved": true,
+        "reportCount": 234,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2023-06-10",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "chrysler-town-country-cooling-2001",
+          "dodge-caliber-overheating-2007",
+          "jeep-patriot-engine-overheating",
+          "dodge-grand-caravan-cooling-2001"
+        ]
+      }
+    },
+    {
+      "id": "jeep-commander-electrical-gremlins",
+      "model": "Commander",
+      "action": "keep_published_pending_source",
+      "reason": "The frozen DTCs P0401 through P0404 are EGR-flow/control codes, not evidence for random grounds, TIPM, HVAC, window, battery-drain or harness failures. The complaint aggregator does not establish the broad five-year causal hierarchy, bypass remedy or accessory commerce, so the row remains byte-for-byte unchanged.",
+      "identityRule": "A partial recall, unrelated diagnostic codes or conflicting part numbers require a byte-for-byte hold.",
+      "commerceDecision": "unchanged-search-commerce-pending-exact-fitment",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-recall-inventory-boundary-not-broad-claim-proof",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMMANDER&modelYear=2006",
+          "supportingUrls": [
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMMANDER&modelYear=2006",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMMANDER&modelYear=2007",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMMANDER&modelYear=2008",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMMANDER&modelYear=2009",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=COMMANDER&modelYear=2010"
+          ],
+          "verifiedOn": "2026-08-06",
+          "observation": "The complete Commander recall inventory does not establish the frozen broad failure and commerce package."
+        }
+      ],
+      "beforeSha256": "24c8d14a1ca6c46b77b1d98b6a2c5c96f42277f92b96d825c7eacbd3b97edd7a",
+      "proposalSha256": "24c8d14a1ca6c46b77b1d98b6a2c5c96f42277f92b96d825c7eacbd3b97edd7a",
+      "before": {
+        "make": "Jeep",
+        "model": "Commander",
+        "years": [
+          2006,
+          2007,
+          2008,
+          2009,
+          2010
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Random Electrical Failures / Dashboard Warning Lights",
+        "description": "The Commander is plagued by random electrical issues where dashboard warning lights illuminate and extinguish without cause, the HVAC system shuts off randomly, and various accessories behave erratically. This can occur 1-15 times per day while driving or parked. The issues are often traced to corroded ground connections, a failing TIPM (Totally Integrated Power Module), or wiring harness degradation.",
+        "solution": "Clean and reseal all chassis ground connections (there are 4-5 key ground points on the frame and engine). Inspect and clean battery terminals and ground cable. Check TIPM for signs of corrosion or relay failure. For TIPM issues, a remanufactured unit ($400-600) or relay bypass kit ($30-50 per relay) may be needed. Inspect main wiring harness for chafing near the firewall.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Dashboard warning lights illuminate randomly",
+          "HVAC system shuts off while driving",
+          "Lights flicker or go dim",
+          "Power windows operate intermittently",
+          "Battery drains overnight",
+          "Multiple systems fail simultaneously"
+        ],
+        "affectedSystems": [
+          "Electrical"
+        ],
+        "dtcCodes": [
+          "P0401",
+          "P0402",
+          "P0403",
+          "P0404"
+        ],
+        "estimatedCostLow": 50,
+        "estimatedCostHigh": 1200,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://m.carcomplaints.com/Jeep/Commander/2006/electrical/electrical_system.shtml",
+            "type": "nhtsa",
+            "title": "CarComplaints.com - 2006 Commander Electrical System Problems"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Start by cleaning all chassis ground connections with sandpaper and applying dielectric grease - this fixes many Commander electrical issues for free",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "A corroded battery ground cable is the single most common cause of Commander electrical gremlins",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "High-performance AGM battery with excellent cold cranking amps and deep cycle capability",
+            "partName": "RedTop AGM Battery",
+            "partBrand": "Optima",
+            "affiliateUrl": "https://www.amazon.com/s?k=Optima%20RedTop%20AGM%20Battery%20Jeep%20Commander&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "OEM-quality replacement battery with reliable performance",
+            "partName": "Professional AGM Battery",
+            "partBrand": "ACDelco",
+            "affiliateUrl": "https://www.amazon.com/s?k=ACDelco%20Professional%20AGM%20Battery%20Jeep%20Commander&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Automatic battery maintainer to prevent parasitic drain issues during storage",
+            "partName": "Junior 12V Battery Charger Maintainer",
+            "partBrand": "Battery Tender",
+            "affiliateUrl": "https://www.amazon.com/s?k=Battery%20Tender%20Junior%2012V%20Battery%20Charger%20Maintainer%20Jeep%20Commander&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Premium electrical tape for wiring repairs and harness wrapping",
+            "partName": "Super 33+ Vinyl Electrical Tape",
+            "partBrand": "3M",
+            "affiliateUrl": "https://www.amazon.com/s?k=3M%20Super%2033%2B%20Vinyl%20Electrical%20Tape%20Jeep%20Commander&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Split wire loom tubing to protect repaired or exposed wiring harnesses",
+            "partName": "Split Wire Loom Tubing",
+            "partBrand": "DEI",
+            "affiliateUrl": "https://www.amazon.com/s?k=DEI%20Split%20Wire%20Loom%20Tubing%20Jeep%20Commander&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Weatherproof terminal connector kit for reliable wiring repairs",
+            "partName": "Automotive Terminal Connector Kit",
+            "partBrand": "Molex",
+            "affiliateUrl": "https://www.amazon.com/s?k=Molex%20Automotive%20Terminal%20Connector%20Kit%20Jeep%20Commander&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Automotive relay replacement set for common relay failures",
+            "partName": "Automotive Relay 5-Pin 12V",
+            "partBrand": "Bosch",
+            "affiliateUrl": "https://www.amazon.com/s?k=Bosch%20Automotive%20Relay%205-Pin%2012V%20Jeep%20Commander&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Digital multimeter for diagnosing fuse, relay, and module electrical faults",
+            "partName": "Digital Multimeter",
+            "partBrand": "Innova",
+            "affiliateUrl": "https://www.amazon.com/s?k=Innova%20Digital%20Multimeter%20Jeep%20Commander&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 267,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2023-04-20",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "fiat-500l-bcm-electrical",
+          "chrysler-300-tipm-2011"
+        ]
+      },
+      "proposal": {
+        "make": "Jeep",
+        "model": "Commander",
+        "years": [
+          2006,
+          2007,
+          2008,
+          2009,
+          2010
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Random Electrical Failures / Dashboard Warning Lights",
+        "description": "The Commander is plagued by random electrical issues where dashboard warning lights illuminate and extinguish without cause, the HVAC system shuts off randomly, and various accessories behave erratically. This can occur 1-15 times per day while driving or parked. The issues are often traced to corroded ground connections, a failing TIPM (Totally Integrated Power Module), or wiring harness degradation.",
+        "solution": "Clean and reseal all chassis ground connections (there are 4-5 key ground points on the frame and engine). Inspect and clean battery terminals and ground cable. Check TIPM for signs of corrosion or relay failure. For TIPM issues, a remanufactured unit ($400-600) or relay bypass kit ($30-50 per relay) may be needed. Inspect main wiring harness for chafing near the firewall.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Dashboard warning lights illuminate randomly",
+          "HVAC system shuts off while driving",
+          "Lights flicker or go dim",
+          "Power windows operate intermittently",
+          "Battery drains overnight",
+          "Multiple systems fail simultaneously"
+        ],
+        "affectedSystems": [
+          "Electrical"
+        ],
+        "dtcCodes": [
+          "P0401",
+          "P0402",
+          "P0403",
+          "P0404"
+        ],
+        "estimatedCostLow": 50,
+        "estimatedCostHigh": 1200,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://m.carcomplaints.com/Jeep/Commander/2006/electrical/electrical_system.shtml",
+            "type": "nhtsa",
+            "title": "CarComplaints.com - 2006 Commander Electrical System Problems"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Start by cleaning all chassis ground connections with sandpaper and applying dielectric grease - this fixes many Commander electrical issues for free",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "A corroded battery ground cable is the single most common cause of Commander electrical gremlins",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "High-performance AGM battery with excellent cold cranking amps and deep cycle capability",
+            "partName": "RedTop AGM Battery",
+            "partBrand": "Optima",
+            "affiliateUrl": "https://www.amazon.com/s?k=Optima%20RedTop%20AGM%20Battery%20Jeep%20Commander&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "OEM-quality replacement battery with reliable performance",
+            "partName": "Professional AGM Battery",
+            "partBrand": "ACDelco",
+            "affiliateUrl": "https://www.amazon.com/s?k=ACDelco%20Professional%20AGM%20Battery%20Jeep%20Commander&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Automatic battery maintainer to prevent parasitic drain issues during storage",
+            "partName": "Junior 12V Battery Charger Maintainer",
+            "partBrand": "Battery Tender",
+            "affiliateUrl": "https://www.amazon.com/s?k=Battery%20Tender%20Junior%2012V%20Battery%20Charger%20Maintainer%20Jeep%20Commander&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Premium electrical tape for wiring repairs and harness wrapping",
+            "partName": "Super 33+ Vinyl Electrical Tape",
+            "partBrand": "3M",
+            "affiliateUrl": "https://www.amazon.com/s?k=3M%20Super%2033%2B%20Vinyl%20Electrical%20Tape%20Jeep%20Commander&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Split wire loom tubing to protect repaired or exposed wiring harnesses",
+            "partName": "Split Wire Loom Tubing",
+            "partBrand": "DEI",
+            "affiliateUrl": "https://www.amazon.com/s?k=DEI%20Split%20Wire%20Loom%20Tubing%20Jeep%20Commander&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Weatherproof terminal connector kit for reliable wiring repairs",
+            "partName": "Automotive Terminal Connector Kit",
+            "partBrand": "Molex",
+            "affiliateUrl": "https://www.amazon.com/s?k=Molex%20Automotive%20Terminal%20Connector%20Kit%20Jeep%20Commander&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Automotive relay replacement set for common relay failures",
+            "partName": "Automotive Relay 5-Pin 12V",
+            "partBrand": "Bosch",
+            "affiliateUrl": "https://www.amazon.com/s?k=Bosch%20Automotive%20Relay%205-Pin%2012V%20Jeep%20Commander&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Digital multimeter for diagnosing fuse, relay, and module electrical faults",
+            "partName": "Digital Multimeter",
+            "partBrand": "Innova",
+            "affiliateUrl": "https://www.amazon.com/s?k=Innova%20Digital%20Multimeter%20Jeep%20Commander&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 267,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2023-04-20",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "fiat-500l-bcm-electrical",
+          "chrysler-300-tipm-2011"
+        ]
+      }
+    },
+    {
+      "id": "jeep-commander-engine-stalling",
+      "model": "Commander",
+      "action": "keep_published_pending_source",
+      "reason": "The page aggregates several causes across 2006-2010 and two engines without an exact primary source, lists fuel-system DTCs while its symptoms cite crank/cam codes, and names Mopar 56028373AB in prose but 56028666AB in fixParts. Campaign 08V203 supports only a narrow 2006 4.7L PCM-software stall identity and cannot overwrite this broader page, so it remains byte-for-byte unchanged.",
+      "identityRule": "A partial recall, unrelated diagnostic codes or conflicting part numbers require a byte-for-byte hold.",
+      "commerceDecision": "unchanged-search-commerce-pending-exact-fitment",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-recall-partial-year-engine-and-cause-scope",
+          "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=08V203000",
+          "verifiedOn": "2026-08-06",
+          "observation": "Campaign 08V203000 covers only certain early-build 2006 Commander 4.7L vehicles and directs a PCM software reprogram for engine stalling."
+        }
+      ],
+      "beforeSha256": "485eebebfad6b07e18a1e1027712944aa4ff8ac12b9fe2cc6f083ccfa537daad",
+      "proposalSha256": "485eebebfad6b07e18a1e1027712944aa4ff8ac12b9fe2cc6f083ccfa537daad",
+      "before": {
+        "make": "Jeep",
+        "model": "Commander",
+        "years": [
+          2006,
+          2007,
+          2008,
+          2009,
+          2010
+        ],
+        "trims": [],
+        "engines": [
+          "3.7L V6",
+          "4.7L V8"
+        ],
+        "category": "engine",
+        "title": "Engine Stalling / Loss of Power While Driving",
+        "description": "The Commander can stall or lose engine power without warning at any speed. The problem is linked to multiple causes: faulty crankshaft position sensor, failing fuel pump, PCM software bugs, and throttle body issues. Over 173 engine complaints were filed for the 2006 model year. Some owners report engine compartment fires linked to electrical shorts in the PCM area.",
+        "solution": "Replace the crankshaft position sensor (Mopar 56028373AB, $20-40 part, $100-200 labor) as the most common fix. Clean or replace the throttle body ($150-300). Check fuel pump pressure (should be 49-55 PSI). Update PCM software to the latest calibration at the dealer. For fire risk concerns, inspect wiring harness in the engine bay for chafing or heat damage.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Engine stalls without warning",
+          "Loss of power during acceleration",
+          "No-start condition (cranks but no start)",
+          "Check engine light with P0335/P0340 codes",
+          "Intermittent rough idle",
+          "Engine cuts out at highway speed"
+        ],
+        "affectedSystems": [
+          "Engine",
+          "Electrical"
+        ],
+        "dtcCodes": [
+          "P0087",
+          "P0230",
+          "P0231",
+          "P0232"
+        ],
+        "estimatedCostLow": 100,
+        "estimatedCostHigh": 800,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.carcomplaints.com/Jeep/Commander/2006/engine/engine_and_engine_cooling.shtml",
+            "type": "nhtsa",
+            "title": "CarComplaints.com - 2006 Commander Engine Problems (173 complaints)"
+          },
+          {
+            "url": "https://m.carcomplaints.com/Jeep/Commander/2006/engine/engine.shtml",
+            "type": "nhtsa",
+            "title": "CarComplaints.com - 2006 Commander Engine Page"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Replace the crankshaft position sensor first (Mopar 56028373AB) - it is the most common cause of stalling and costs under $40",
+            "upvotes": 0,
+            "partName": "Crankshaft Position Sensor",
+            "partBrand": "Mopar",
+            "partNumber": "56028373AB",
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Mopar%2056028373AB&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Carry a spare crankshaft position sensor in the glove box - they are known to fail without warning and the repair takes 15 minutes",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "warning",
+            "content": "Stalling at highway speed is extremely dangerous - address this issue immediately",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [
+          {
+            "note": "(reconciled from the issue's own fix text)",
+            "source": "reconciliation",
+            "buyLinks": [
+              {
+                "url": "https://www.amazon.com/s?k=56028666AB&tag=au7o-20",
+                "vendor": "Amazon"
+              },
+              {
+                "url": "https://www.rockauto.com/en/partsearch/?q=56028666AB",
+                "vendor": "RockAuto"
+              },
+              {
+                "url": "https://www.ebay.com/sch/i.html?_nkw=56028666AB",
+                "vendor": "eBay"
+              }
+            ],
+            "priceLow": null,
+            "component": "crankshaft position sensor",
+            "priceHigh": null,
+            "oemPartNumber": "56028666AB",
+            "aftermarketXref": []
+          }
+        ],
+        "humanApproved": true,
+        "reportCount": 312,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2023-05-15",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "jeep-renegade-power-loss-stalling",
+          "chrysler-200-throttle-stall-2011",
+          "dodge-dart-idle-stall-2013",
+          "jeep-cherokee-kl-engine-stalling-2014",
+          "alfa-romeo-giulia-stall"
+        ]
+      },
+      "proposal": {
+        "make": "Jeep",
+        "model": "Commander",
+        "years": [
+          2006,
+          2007,
+          2008,
+          2009,
+          2010
+        ],
+        "trims": [],
+        "engines": [
+          "3.7L V6",
+          "4.7L V8"
+        ],
+        "category": "engine",
+        "title": "Engine Stalling / Loss of Power While Driving",
+        "description": "The Commander can stall or lose engine power without warning at any speed. The problem is linked to multiple causes: faulty crankshaft position sensor, failing fuel pump, PCM software bugs, and throttle body issues. Over 173 engine complaints were filed for the 2006 model year. Some owners report engine compartment fires linked to electrical shorts in the PCM area.",
+        "solution": "Replace the crankshaft position sensor (Mopar 56028373AB, $20-40 part, $100-200 labor) as the most common fix. Clean or replace the throttle body ($150-300). Check fuel pump pressure (should be 49-55 PSI). Update PCM software to the latest calibration at the dealer. For fire risk concerns, inspect wiring harness in the engine bay for chafing or heat damage.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Engine stalls without warning",
+          "Loss of power during acceleration",
+          "No-start condition (cranks but no start)",
+          "Check engine light with P0335/P0340 codes",
+          "Intermittent rough idle",
+          "Engine cuts out at highway speed"
+        ],
+        "affectedSystems": [
+          "Engine",
+          "Electrical"
+        ],
+        "dtcCodes": [
+          "P0087",
+          "P0230",
+          "P0231",
+          "P0232"
+        ],
+        "estimatedCostLow": 100,
+        "estimatedCostHigh": 800,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.carcomplaints.com/Jeep/Commander/2006/engine/engine_and_engine_cooling.shtml",
+            "type": "nhtsa",
+            "title": "CarComplaints.com - 2006 Commander Engine Problems (173 complaints)"
+          },
+          {
+            "url": "https://m.carcomplaints.com/Jeep/Commander/2006/engine/engine.shtml",
+            "type": "nhtsa",
+            "title": "CarComplaints.com - 2006 Commander Engine Page"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Replace the crankshaft position sensor first (Mopar 56028373AB) - it is the most common cause of stalling and costs under $40",
+            "upvotes": 0,
+            "partName": "Crankshaft Position Sensor",
+            "partBrand": "Mopar",
+            "partNumber": "56028373AB",
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Mopar%2056028373AB&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "Carry a spare crankshaft position sensor in the glove box - they are known to fail without warning and the repair takes 15 minutes",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "warning",
+            "content": "Stalling at highway speed is extremely dangerous - address this issue immediately",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [
+          {
+            "note": "(reconciled from the issue's own fix text)",
+            "source": "reconciliation",
+            "buyLinks": [
+              {
+                "url": "https://www.amazon.com/s?k=56028666AB&tag=au7o-20",
+                "vendor": "Amazon"
+              },
+              {
+                "url": "https://www.rockauto.com/en/partsearch/?q=56028666AB",
+                "vendor": "RockAuto"
+              },
+              {
+                "url": "https://www.ebay.com/sch/i.html?_nkw=56028666AB",
+                "vendor": "eBay"
+              }
+            ],
+            "priceLow": null,
+            "component": "crankshaft position sensor",
+            "priceHigh": null,
+            "oemPartNumber": "56028666AB",
+            "aftermarketXref": []
+          }
+        ],
+        "humanApproved": true,
+        "reportCount": 312,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2023-05-15",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "jeep-renegade-power-loss-stalling",
+          "chrysler-200-throttle-stall-2011",
+          "dodge-dart-idle-stall-2013",
+          "jeep-cherokee-kl-engine-stalling-2014",
+          "alfa-romeo-giulia-stall"
+        ]
+      }
+    },
+    {
+      "id": "jeep-commander-transmission-overheating",
+      "model": "Commander",
+      "action": "keep_published_pending_source",
+      "reason": "NHTSA campaign 08V203000 addresses PCM software that may allow the engine to stall on certain early-build 2006 Commander 4.7L vehicles; it does not establish transmission overheating, false over-temperature warnings, TCM failure, fluid service, auxiliary coolers or torque-converter failure across 2006-2010. This outcome and year-scope mismatch requires a byte-for-byte hold.",
+      "identityRule": "A partial recall, unrelated diagnostic codes or conflicting part numbers require a byte-for-byte hold.",
+      "commerceDecision": "unchanged-search-commerce-pending-exact-fitment",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-recall-different-outcome-and-year-scope",
+          "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=08V203000",
+          "verifiedOn": "2026-08-06",
+          "observation": "Campaign 08V203000 covers only certain early-build 2006 Commander 4.7L vehicles and directs a PCM software reprogram for engine stalling."
+        }
+      ],
+      "beforeSha256": "f666e6cd2b5de38f77edbec2621b34d9794b31e9e72a5d43776b5e62a74d6c30",
+      "proposalSha256": "f666e6cd2b5de38f77edbec2621b34d9794b31e9e72a5d43776b5e62a74d6c30",
+      "before": {
+        "make": "Jeep",
+        "model": "Commander",
+        "years": [
+          2006,
+          2007,
+          2008,
+          2009,
+          2010
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "transmission",
+        "title": "Transmission Overheating / Control Module Failure",
+        "description": "The Commander frequently displays \"Transmission Over Temp\" warnings even when fluid level and condition are normal. The transmission control module (TCM) and powertrain control module (PCM) are prone to failure, causing the vehicle to stall, shift erratically, or enter limp mode. NHTSA Campaign 08V203000 addressed TCM issues, but many owners report the repairs did not fully resolve the problem. Over 216 powertrain complaints filed for the 2006 model year alone.",
+        "solution": "Start with a transmission fluid and filter change using ATF+4 (Mopar 68218057AB). Install an auxiliary transmission cooler ($100-200, Hayden 679 or Derale 13502) for sustained relief. Replace the TCM if faulty ($300-500 for module plus programming). Check transmission cooler lines for leaks. If overheating persists, the torque converter may be failing and need replacement ($800-1,500).",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Transmission Over Temp warning on dash",
+          "Vehicle enters limp mode (3rd gear only)",
+          "Erratic or harsh shifting",
+          "Vehicle stalls while driving",
+          "Transmission slips under load",
+          "Check engine light with transmission codes"
+        ],
+        "affectedSystems": [
+          "Transmission"
+        ],
+        "dtcCodes": [
+          "P0700",
+          "P0730",
+          "P0741",
+          "P0751"
+        ],
+        "estimatedCostLow": 200,
+        "estimatedCostHigh": 2500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/recalls",
+            "type": "recall",
+            "title": "NHTSA Campaign 08V203000 - Transmission Control Module"
+          },
+          {
+            "url": "https://www.carcomplaints.com/Jeep/Commander/2006/drivetrain/power_train.shtml",
+            "type": "nhtsa",
+            "title": "CarComplaints.com - 2006 Commander Power Train (216 complaints)"
+          },
+          {
+            "url": "https://www.jeepgarage.org/threads/transmission-over-temp-on-2006-commander.61830/",
+            "type": "forum",
+            "title": "JeepGarage.org - Commander Transmission Over Temp"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Install a Hayden 679 auxiliary transmission cooler to prevent overheating - inexpensive and effective",
+            "upvotes": 0,
+            "partName": "Auxiliary Transmission Cooler",
+            "partBrand": "Hayden",
+            "partNumber": "679",
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Hayden%20679&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Use only Mopar ATF+4 (68218057AB) - incorrect fluid causes shift quality issues and overheating",
+            "upvotes": 0,
+            "partName": "ATF+4 Automatic Transmission Fluid",
+            "partBrand": "Mopar",
+            "partNumber": "68218057AB",
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Mopar%2068218057AB&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "If the transmission enters limp mode, pull over safely and let it cool for 15-20 minutes before driving again",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [
+          {
+            "note": "(reconciled from the issue's own fix text)",
+            "source": "reconciliation",
+            "buyLinks": [
+              {
+                "url": "https://www.amazon.com/s?k=52108325AA&tag=au7o-20",
+                "vendor": "Amazon"
+              },
+              {
+                "url": "https://www.rockauto.com/en/partsearch/?q=52108325AA",
+                "vendor": "RockAuto"
+              },
+              {
+                "url": "https://www.ebay.com/sch/i.html?_nkw=52108325AA",
+                "vendor": "eBay"
+              }
+            ],
+            "priceLow": null,
+            "component": "automatic transmission oil filter",
+            "priceHigh": null,
+            "oemPartNumber": "52108325AA",
+            "aftermarketXref": []
+          }
+        ],
+        "humanApproved": true,
+        "reportCount": 423,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2023-08-10",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "jeep-patriot-cvt-failure"
+        ]
+      },
+      "proposal": {
+        "make": "Jeep",
+        "model": "Commander",
+        "years": [
+          2006,
+          2007,
+          2008,
+          2009,
+          2010
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "transmission",
+        "title": "Transmission Overheating / Control Module Failure",
+        "description": "The Commander frequently displays \"Transmission Over Temp\" warnings even when fluid level and condition are normal. The transmission control module (TCM) and powertrain control module (PCM) are prone to failure, causing the vehicle to stall, shift erratically, or enter limp mode. NHTSA Campaign 08V203000 addressed TCM issues, but many owners report the repairs did not fully resolve the problem. Over 216 powertrain complaints filed for the 2006 model year alone.",
+        "solution": "Start with a transmission fluid and filter change using ATF+4 (Mopar 68218057AB). Install an auxiliary transmission cooler ($100-200, Hayden 679 or Derale 13502) for sustained relief. Replace the TCM if faulty ($300-500 for module plus programming). Check transmission cooler lines for leaks. If overheating persists, the torque converter may be failing and need replacement ($800-1,500).",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Transmission Over Temp warning on dash",
+          "Vehicle enters limp mode (3rd gear only)",
+          "Erratic or harsh shifting",
+          "Vehicle stalls while driving",
+          "Transmission slips under load",
+          "Check engine light with transmission codes"
+        ],
+        "affectedSystems": [
+          "Transmission"
+        ],
+        "dtcCodes": [
+          "P0700",
+          "P0730",
+          "P0741",
+          "P0751"
+        ],
+        "estimatedCostLow": 200,
+        "estimatedCostHigh": 2500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/recalls",
+            "type": "recall",
+            "title": "NHTSA Campaign 08V203000 - Transmission Control Module"
+          },
+          {
+            "url": "https://www.carcomplaints.com/Jeep/Commander/2006/drivetrain/power_train.shtml",
+            "type": "nhtsa",
+            "title": "CarComplaints.com - 2006 Commander Power Train (216 complaints)"
+          },
+          {
+            "url": "https://www.jeepgarage.org/threads/transmission-over-temp-on-2006-commander.61830/",
+            "type": "forum",
+            "title": "JeepGarage.org - Commander Transmission Over Temp"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Install a Hayden 679 auxiliary transmission cooler to prevent overheating - inexpensive and effective",
+            "upvotes": 0,
+            "partName": "Auxiliary Transmission Cooler",
+            "partBrand": "Hayden",
+            "partNumber": "679",
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Hayden%20679&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Use only Mopar ATF+4 (68218057AB) - incorrect fluid causes shift quality issues and overheating",
+            "upvotes": 0,
+            "partName": "ATF+4 Automatic Transmission Fluid",
+            "partBrand": "Mopar",
+            "partNumber": "68218057AB",
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Mopar%2068218057AB&tag=au7o-20"
+          },
+          {
+            "type": "tip",
+            "content": "If the transmission enters limp mode, pull over safely and let it cool for 15-20 minutes before driving again",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [
+          {
+            "note": "(reconciled from the issue's own fix text)",
+            "source": "reconciliation",
+            "buyLinks": [
+              {
+                "url": "https://www.amazon.com/s?k=52108325AA&tag=au7o-20",
+                "vendor": "Amazon"
+              },
+              {
+                "url": "https://www.rockauto.com/en/partsearch/?q=52108325AA",
+                "vendor": "RockAuto"
+              },
+              {
+                "url": "https://www.ebay.com/sch/i.html?_nkw=52108325AA",
+                "vendor": "eBay"
+              }
+            ],
+            "priceLow": null,
+            "component": "automatic transmission oil filter",
+            "priceHigh": null,
+            "oemPartNumber": "52108325AA",
+            "aftermarketXref": []
+          }
+        ],
+        "humanApproved": true,
+        "reportCount": 423,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2023-08-10",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "jeep-patriot-cvt-failure"
+        ]
+      }
+    }
+  ]
+}
