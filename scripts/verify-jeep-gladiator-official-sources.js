@@ -1,0 +1,72 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
+const {
+  CAMPAIGNS,
+  EXPECTED_RECALLS,
+  RECALL_QUERIES,
+} = require('./build-jeep-gladiator-adjudication');
+
+function normalized(value) {
+  return String(value || '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+async function getJson(url) {
+  const response = await fetch(url, { redirect: 'follow', signal: AbortSignal.timeout(90000) });
+  const body = response.status === 200 ? await response.json() : null;
+  return { response, body };
+}
+
+async function verifyCampaign(key, expected) {
+  const { response, body } = await getJson(expected.url);
+  const rows = (body?.results || []).filter((item) => item.Model === expected.model);
+  const years = [...new Set(rows.map((row) => row.ModelYear))].sort();
+  const text = normalized(rows.map((row) => [row.Component, row.Summary, row.Consequence, row.Remedy].join(' ')).join(' '));
+  const markerChecks = expected.markers.map((marker) => ({ marker, present: text.includes(normalized(marker)) }));
+  return {
+    key,
+    url: expected.url,
+    status: response.status,
+    totalResults: body?.results?.length || 0,
+    model: expected.model,
+    years,
+    markerChecks,
+    passed: response.status === 200
+      && rows.every((row) => row.NHTSACampaignNumber === expected.campaign)
+      && JSON.stringify(years) === JSON.stringify(expected.years)
+      && markerChecks.every((item) => item.present),
+  };
+}
+
+async function verifyRecall(year, url) {
+  const { response, body } = await getJson(url);
+  const campaigns = [...new Set((body?.results || []).map((row) => row.NHTSACampaignNumber).filter(Boolean))].sort();
+  const expected = [...EXPECTED_RECALLS[year]].sort();
+  return {
+    year: Number(year),
+    url,
+    status: response.status,
+    campaigns,
+    expected,
+    passed: response.status === 200 && JSON.stringify(campaigns) === JSON.stringify(expected),
+  };
+}
+
+async function main() {
+  const campaigns = [];
+  for (const [key, expected] of Object.entries(CAMPAIGNS)) campaigns.push(await verifyCampaign(key, expected));
+  const recalls = [];
+  for (const [year, url] of Object.entries(RECALL_QUERIES)) recalls.push(await verifyRecall(year, url));
+  const passed = campaigns.every((item) => item.passed) && recalls.every((item) => item.passed);
+  console.log(JSON.stringify({ passed, checkedOn: '2026-08-06', campaigns, recalls }, null, 2));
+  if (!passed) process.exitCode = 1;
+}
+
+if (require.main === module) {
+  main().catch((error) => {
+    console.error(error);
+    process.exitCode = 1;
+  });
+}
