@@ -1,0 +1,1408 @@
+{
+  "schemaVersion": 1,
+  "status": "proposal-only",
+  "auditStage": "model-primary-source-adjudication",
+  "requiresIndependentApproval": true,
+  "generatedOn": "2026-08-06",
+  "make": "Jeep",
+  "model": "CJ-7",
+  "completionStatement": "This packet reconciles all six frozen Jeep CJ-7 rows. Product pages provide only partial fitment anchors, no exact primary source clears a complete rewrite, and all six indexed records remain byte-for-byte unchanged.",
+  "safetyContract": [
+    "No production database write, cache purge, deployment, archive action, redirect, slug change, new issue or public-page change is authorized by this packet.",
+    "All six CJ-7 rows remain published and byte-for-byte unchanged.",
+    "Partial product fitment cannot be expanded across the full indexed model-year range.",
+    "Safety-sensitive structural welding, steering, axle, drivetrain and emissions-delete guidance requires exact primary or qualified manual review before any rewrite.",
+    "New issue identities remain deferred until the remaining-make audit is complete."
+  ],
+  "source": {
+    "snapshotFile": "data/_jeep-deeplink-snapshot-2026-08-06.json",
+    "snapshotSha256": "e58c24fa8f57e198f5b77a539345b9f36ab5c8232c77263140c6915b311a9ddd",
+    "snapshotGeneratedAt": "2026-08-07T17:03:22.937Z",
+    "snapshotHash": "18ad4be47bc5941799a865d829fd30d5361a0cf7635e9ec106db32a7f109c7eb",
+    "modelRecordCount": 6
+  },
+  "observations": [
+    {
+      "code": "cj7-axle-commerce-partial-year-fitment",
+      "severity": "high",
+      "recordIds": [
+        "jeep-cj-7-amc-20-rear-axle-weak-two-piece-axle-shafts"
+      ],
+      "detail": "KR-YCJL is anchored to 1982-1986, not the full 1976-1986 record range."
+    },
+    {
+      "code": "cj7-steering-source-year-and-tubing-mismatch",
+      "severity": "high",
+      "recordIds": [
+        "jeep-cj-7-vague-steering-death-wobble-from-worn-linkage-geometry"
+      ],
+      "detail": "The cited kit is 1982-1986 wide-track and 1-inch by .219-wall, not the frozen page specification."
+    },
+    {
+      "code": "cj7-emissions-delete-guidance-needs-manual-review",
+      "severity": "critical",
+      "recordIds": [
+        "jeep-cj-7-carter-bbd-carburetor-emissions-vacuum-maze"
+      ],
+      "detail": "The frozen carburetor solution recommends emissions and computer deletion without a reviewed legal/primary service source."
+    },
+    {
+      "code": "all-cj7-pages-preserved",
+      "severity": "seo-safety",
+      "recordIds": [
+        "jeep-cj-7-amc-20-rear-axle-weak-two-piece-axle-shafts",
+        "jeep-cj-7-body-tub-floor-pans-rockers-firewall-rust",
+        "jeep-cj-7-carter-bbd-carburetor-emissions-vacuum-maze",
+        "jeep-cj-7-frame-rot-rear-spring-hangers-shackle-mounts-skid-plate-area",
+        "jeep-cj-7-vague-steering-death-wobble-from-worn-linkage-geometry",
+        "jeep-cj-7-weak-light-duty-manual-transmissions"
+      ],
+      "detail": "Every frozen CJ-7 record remains published and byte-for-byte unchanged."
+    }
+  ],
+  "webSources": {
+    "axleKit": {
+      "url": "https://eastcoastgearsupply.com/i-19205984-amc-20-one-piece-axle-kit-82-86-model-20-cj7-cj8.html",
+      "expectedStatus": 200,
+      "markers": [
+        "82-'86 Model 20 CJ7 & CJ8",
+        "KR-YCJL",
+        "29 spline",
+        "Replaces stock two piece axles"
+      ]
+    },
+    "bodyPanels": {
+      "url": "https://www.c2cfabrication.com/collections/jeep-cj-7-series-parts/front-floor-pan",
+      "expectedStatus": 200,
+      "markers": [
+        "Jeep CJ7 Replacement Body Panels",
+        "replacement floor pans",
+        "rocker panels"
+      ]
+    },
+    "frameRepair": {
+      "url": "https://www.rustbuster.com/blogs/news/rusty-cj-jeep-frame-don-t-worry-it-can-be-saved",
+      "expectedStatus": 200,
+      "markers": [
+        "CJ-7 1976-1986",
+        "Rear Shackle Mount Section",
+        "76-86 CJ7"
+      ]
+    },
+    "steeringKit": {
+      "url": "https://mountainoffroad.com/products/tie-rod-drag-link-82-86-cj",
+      "expectedStatus": 200,
+      "markers": [
+        "Jeep CJ (1982-86) Wide Track",
+        "1&quot; O.D. x .219-wall DOM",
+        "Fits 1982-1986 CJs with Dana 30 front axle, wide track"
+      ]
+    }
+  },
+  "mismatchSources": {
+    "recallQueries": {
+      "1976": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=CJ-7&modelYear=1976",
+      "1977": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=CJ-7&modelYear=1977",
+      "1978": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=CJ-7&modelYear=1978",
+      "1979": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=CJ-7&modelYear=1979",
+      "1980": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=CJ-7&modelYear=1980",
+      "1981": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=CJ-7&modelYear=1981",
+      "1982": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=CJ-7&modelYear=1982",
+      "1983": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=CJ-7&modelYear=1983",
+      "1984": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=CJ-7&modelYear=1984",
+      "1985": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=CJ-7&modelYear=1985",
+      "1986": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=CJ-7&modelYear=1986"
+    },
+    "expected": {
+      "1976": {
+        "status": 400,
+        "campaigns": []
+      },
+      "1977": {
+        "status": 400,
+        "campaigns": []
+      },
+      "1978": {
+        "status": 400,
+        "campaigns": []
+      },
+      "1979": {
+        "status": 400,
+        "campaigns": []
+      },
+      "1980": {
+        "status": 400,
+        "campaigns": []
+      },
+      "1981": {
+        "status": 400,
+        "campaigns": []
+      },
+      "1982": {
+        "status": 400,
+        "campaigns": []
+      },
+      "1983": {
+        "status": 400,
+        "campaigns": []
+      },
+      "1984": {
+        "status": 400,
+        "campaigns": []
+      },
+      "1985": {
+        "status": 400,
+        "campaigns": []
+      },
+      "1986": {
+        "status": 400,
+        "campaigns": []
+      }
+    }
+  },
+  "summary": {
+    "rewrite_same_identity": 0,
+    "keep_published_pending_source": 6,
+    "total": 6
+  },
+  "rows": [
+    {
+      "id": "jeep-cj-7-amc-20-rear-axle-weak-two-piece-axle-shafts",
+      "model": "CJ-7",
+      "action": "keep_published_pending_source",
+      "reason": "The exact live axle-kit page supports KR-YCJL only for 1982-1986 CJ-7/CJ-8 with AMC Model 20, while the indexed record and its fix part span 1976-1986 and add hub, torque, key-load and wheel-separation claims. That partial 1982-1986 commerce fitment cannot authorize a rewrite of the 1976-1986 identity, so the row remains byte-for-byte unchanged.",
+      "identityRule": "No partial product fitment, community procedure or inaccessible registry result may change an indexed identity.",
+      "commerceDecision": "unchanged-search-links-pending-exact-fitment",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "live-product-page-partial-year-fitment",
+          "url": "https://eastcoastgearsupply.com/i-19205984-amc-20-one-piece-axle-kit-82-86-model-20-cj7-cj8.html",
+          "verifiedOn": "2026-08-06",
+          "observation": "The exact product page says KR-YCJL fits 1982-1986 CJ-7/CJ-8 with AMC Model 20, not the full frozen 1976-1986 scope."
+        }
+      ],
+      "beforeSha256": "8971a59a55794be3d96898fb9248df044d7e626fe7fc1579c8b4b91451da9866",
+      "proposalSha256": "8971a59a55794be3d96898fb9248df044d7e626fe7fc1579c8b4b91451da9866",
+      "before": {
+        "make": "Jeep",
+        "model": "CJ-7",
+        "years": [
+          1976,
+          1977,
+          1978,
+          1979,
+          1980,
+          1981,
+          1982,
+          1983,
+          1984,
+          1985,
+          1986
+        ],
+        "trims": [
+          "Base",
+          "Renegade",
+          "Laredo",
+          "Golden Eagle"
+        ],
+        "engines": [
+          "258 inline-6",
+          "304 V8",
+          "232 inline-6"
+        ],
+        "category": "drivetrain",
+        "title": "AMC 20 rear axle — weak two-piece axle shafts (spun hub / sheared key)",
+        "description": "The factory AMC Model 20 rear axle uses a two-piece axle shaft: a splined shaft with a separate pressed-on hub retained by a Woodruff key and a single large nut. The hub is held by the spline taper and the torque of that nut — the small key only indexes the splines, it doesn't carry load. If the nut backs off or was never torqued to spec, the hub spins on the shaft, chews out the keyway, and the wheel/hub can walk off the axle entirely. It is one of the best-known CJ failure modes and a real safety issue, especially with bigger tires.",
+        "solution": "The accepted bulletproofing fix is a one-piece axle conversion kit (Yukon, Alloy USA, Omix — sold per model year and for Quadra-Trac vs standard housings). It replaces both two-piece shafts with forged 29-spline one-piece axles plus new bearings, seals, retainers and studs, eliminating the spinning-hub failure entirely. Restorers staying stock instead replace any shaft with a damaged keyway, fit fresh hubs, and torque the hub nut to the factory ~250 ft-lb spec with a new cotter pin (never backing the nut off to line up the pin). For heavily-built rigs the whole AMC 20 is sometimes swapped for a Dana 44.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Clicking or clunking from the rear hub under load",
+          "Wheel wobble or the hub working loose",
+          "Chewed-up keyway or stripped splines when the hub is pulled",
+          "Wheel/hub separating from the axle in severe cases",
+          "Rear-axle play that returns shortly after retorquing the nut"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 250,
+        "estimatedCostHigh": 900,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.jeepforum.com/threads/differance-between-a-spun-axle-or-sheared-key-on-amc-20.1058394/",
+            "type": "forum",
+            "title": "Difference between a spun axle or sheared key on AMC 20 — Jeep Enthusiast Forums"
+          },
+          {
+            "url": "https://eastcoastgearsupply.com/i-19205984-amc-20-one-piece-axle-kit-82-86-model-20-cj7-cj8.html",
+            "type": "manufacturer",
+            "title": "AMC 20 One-Piece Axle Kit '82-'86 CJ7 & CJ8 — East Coast Gear Supply"
+          },
+          {
+            "url": "https://www.quadratec.com/products/916530_22.htm",
+            "type": "manufacturer",
+            "title": "OMIX One Piece Axle Conversion Kit (AMC 20) for 76-86 CJ-7 — Quadratec"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [
+          {
+            "note": "(reconciled from the issue's own fix text)",
+            "source": "reconciliation",
+            "buyLinks": [
+              {
+                "url": "https://www.amazon.com/s?k=YCJL&tag=au7o-20",
+                "vendor": "Amazon"
+              },
+              {
+                "url": "https://www.rockauto.com/en/partsearch/?q=YCJL",
+                "vendor": "RockAuto"
+              },
+              {
+                "url": "https://www.ebay.com/sch/i.html?_nkw=YCJL",
+                "vendor": "eBay"
+              }
+            ],
+            "priceLow": null,
+            "component": "AMC Model 20 one-piece rear axle shaft conversion kit (29-spline)",
+            "priceHigh": null,
+            "oemPartNumber": "YCJL",
+            "aftermarketXref": []
+          }
+        ],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-19",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Jeep",
+        "model": "CJ-7",
+        "years": [
+          1976,
+          1977,
+          1978,
+          1979,
+          1980,
+          1981,
+          1982,
+          1983,
+          1984,
+          1985,
+          1986
+        ],
+        "trims": [
+          "Base",
+          "Renegade",
+          "Laredo",
+          "Golden Eagle"
+        ],
+        "engines": [
+          "258 inline-6",
+          "304 V8",
+          "232 inline-6"
+        ],
+        "category": "drivetrain",
+        "title": "AMC 20 rear axle — weak two-piece axle shafts (spun hub / sheared key)",
+        "description": "The factory AMC Model 20 rear axle uses a two-piece axle shaft: a splined shaft with a separate pressed-on hub retained by a Woodruff key and a single large nut. The hub is held by the spline taper and the torque of that nut — the small key only indexes the splines, it doesn't carry load. If the nut backs off or was never torqued to spec, the hub spins on the shaft, chews out the keyway, and the wheel/hub can walk off the axle entirely. It is one of the best-known CJ failure modes and a real safety issue, especially with bigger tires.",
+        "solution": "The accepted bulletproofing fix is a one-piece axle conversion kit (Yukon, Alloy USA, Omix — sold per model year and for Quadra-Trac vs standard housings). It replaces both two-piece shafts with forged 29-spline one-piece axles plus new bearings, seals, retainers and studs, eliminating the spinning-hub failure entirely. Restorers staying stock instead replace any shaft with a damaged keyway, fit fresh hubs, and torque the hub nut to the factory ~250 ft-lb spec with a new cotter pin (never backing the nut off to line up the pin). For heavily-built rigs the whole AMC 20 is sometimes swapped for a Dana 44.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Clicking or clunking from the rear hub under load",
+          "Wheel wobble or the hub working loose",
+          "Chewed-up keyway or stripped splines when the hub is pulled",
+          "Wheel/hub separating from the axle in severe cases",
+          "Rear-axle play that returns shortly after retorquing the nut"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 250,
+        "estimatedCostHigh": 900,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.jeepforum.com/threads/differance-between-a-spun-axle-or-sheared-key-on-amc-20.1058394/",
+            "type": "forum",
+            "title": "Difference between a spun axle or sheared key on AMC 20 — Jeep Enthusiast Forums"
+          },
+          {
+            "url": "https://eastcoastgearsupply.com/i-19205984-amc-20-one-piece-axle-kit-82-86-model-20-cj7-cj8.html",
+            "type": "manufacturer",
+            "title": "AMC 20 One-Piece Axle Kit '82-'86 CJ7 & CJ8 — East Coast Gear Supply"
+          },
+          {
+            "url": "https://www.quadratec.com/products/916530_22.htm",
+            "type": "manufacturer",
+            "title": "OMIX One Piece Axle Conversion Kit (AMC 20) for 76-86 CJ-7 — Quadratec"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [
+          {
+            "note": "(reconciled from the issue's own fix text)",
+            "source": "reconciliation",
+            "buyLinks": [
+              {
+                "url": "https://www.amazon.com/s?k=YCJL&tag=au7o-20",
+                "vendor": "Amazon"
+              },
+              {
+                "url": "https://www.rockauto.com/en/partsearch/?q=YCJL",
+                "vendor": "RockAuto"
+              },
+              {
+                "url": "https://www.ebay.com/sch/i.html?_nkw=YCJL",
+                "vendor": "eBay"
+              }
+            ],
+            "priceLow": null,
+            "component": "AMC Model 20 one-piece rear axle shaft conversion kit (29-spline)",
+            "priceHigh": null,
+            "oemPartNumber": "YCJL",
+            "aftermarketXref": []
+          }
+        ],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-19",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "jeep-cj-7-body-tub-floor-pans-rockers-firewall-rust",
+      "model": "CJ-7",
+      "action": "keep_published_pending_source",
+      "reason": "The live manufacturer collection confirms that CJ-7 replacement body panels exist, but it does not establish the frozen corrosion mechanism, every structural location, complete 1976-1986 scope, repair sequence, full-tub threshold or part 8130679 fitment. The row and commerce remain byte-for-byte unchanged.",
+      "identityRule": "No partial product fitment, community procedure or inaccessible registry result may change an indexed identity.",
+      "commerceDecision": "unchanged-search-links-pending-exact-fitment",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "live-manufacturer-collection-not-claim-proof",
+          "url": "https://www.c2cfabrication.com/collections/jeep-cj-7-series-parts/front-floor-pan",
+          "verifiedOn": "2026-08-06",
+          "observation": "The collection confirms CJ-7 replacement panels, but not the complete corrosion diagnosis, repair threshold or frozen part fitment."
+        }
+      ],
+      "beforeSha256": "f112b35246f739ef2427d56c2903db514e113a227f8e46ff6ab13121b7b46f2f",
+      "proposalSha256": "f112b35246f739ef2427d56c2903db514e113a227f8e46ff6ab13121b7b46f2f",
+      "before": {
+        "make": "Jeep",
+        "model": "CJ-7",
+        "years": [
+          1976,
+          1977,
+          1978,
+          1979,
+          1980,
+          1981,
+          1982,
+          1983,
+          1984,
+          1985,
+          1986
+        ],
+        "trims": [
+          "Base",
+          "Renegade",
+          "Laredo",
+          "Golden Eagle",
+          "Limited"
+        ],
+        "engines": [
+          "232 inline-6",
+          "258 inline-6",
+          "304 V8",
+          "150 GM 2.5L 4-cyl",
+          "151 Iron Duke 4-cyl"
+        ],
+        "category": "body",
+        "title": "Body tub, floor pans, rockers and firewall rust",
+        "description": "CJ-7 tubs are unprotected stamped steel and the body sits in standing water any time the soft top leaks or the drain holes plug. Corrosion concentrates in the front and rear floor pans, the seat risers, the rocker/sill panels, the wheel-well lips, the cowl/firewall, and the body-mount cups where the tub bolts to the frame. Once the body mounts and floor rot, the tub can no longer locate properly on the frame, doors/tailgate stop lining up, and the whole structure flexes.",
+        "solution": "The community fix is die-stamped factory-gauge replacement panels rather than hand-formed patches: EDP-coated front and rear floor pans, rockers, wheelhouses and cowl repair sections (Key Parts/Quadratec, Classic 2 Current Fabrication) welded in after the rot is cut back to clean steel. Restorers replace the body-mount cups and use new polyurethane body-mount bushings, then seam-seal and undercoat the underside and brush cavity wax into the rockers and tub seams. When the tub is too far gone, a full reproduction steel tub (firewall-to-tailgate) from Willys-Overland/Repli-Tub is the reliable path. Keeping the drain plugs clear and the top sealed prevents a repeat.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Soft, crunchy or holed floor under the carpet/mats",
+          "Rusted-through rockers and rear wheel-well lips",
+          "Doors and tailgate no longer aligning or latching",
+          "Body shifting or squeaking on the frame from rotted mounts",
+          "Bubbling paint along the cowl and seat risers"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 400,
+        "estimatedCostHigh": 6000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.c2cfabrication.com/collections/jeep-cj-7-series-parts/front-floor-pan",
+            "type": "manufacturer",
+            "title": "Jeep CJ7 Replacement Body Panels — Front Floor Pan — Classic 2 Current Fabrication"
+          },
+          {
+            "url": "https://www.quadratec.com/products/22507_0100_07.htm",
+            "type": "manufacturer",
+            "title": "Key Parts Stamped Steel Floor Pans for 76-95 CJ-7 & Wrangler YJ — Quadratec"
+          },
+          {
+            "url": "https://www.offroaders.com/info/tech-corner/project-cj7/project-cj7-tub2.htm",
+            "type": "article",
+            "title": "Restoring a 1978 Jeep CJ-7 Tub — Rust Removal & Treatment — Offroaders.com"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [
+          {
+            "note": "(reconciled from the issue's own fix text)",
+            "source": "reconciliation",
+            "buyLinks": [
+              {
+                "url": "https://www.amazon.com/s?k=8130679&tag=au7o-20",
+                "vendor": "Amazon"
+              },
+              {
+                "url": "https://www.rockauto.com/en/partsearch/?q=8130679",
+                "vendor": "RockAuto"
+              },
+              {
+                "url": "https://www.ebay.com/sch/i.html?_nkw=8130679",
+                "vendor": "eBay"
+              }
+            ],
+            "priceLow": null,
+            "component": "full floor pan assembly",
+            "priceHigh": null,
+            "oemPartNumber": "8130679",
+            "aftermarketXref": []
+          }
+        ],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-19",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Jeep",
+        "model": "CJ-7",
+        "years": [
+          1976,
+          1977,
+          1978,
+          1979,
+          1980,
+          1981,
+          1982,
+          1983,
+          1984,
+          1985,
+          1986
+        ],
+        "trims": [
+          "Base",
+          "Renegade",
+          "Laredo",
+          "Golden Eagle",
+          "Limited"
+        ],
+        "engines": [
+          "232 inline-6",
+          "258 inline-6",
+          "304 V8",
+          "150 GM 2.5L 4-cyl",
+          "151 Iron Duke 4-cyl"
+        ],
+        "category": "body",
+        "title": "Body tub, floor pans, rockers and firewall rust",
+        "description": "CJ-7 tubs are unprotected stamped steel and the body sits in standing water any time the soft top leaks or the drain holes plug. Corrosion concentrates in the front and rear floor pans, the seat risers, the rocker/sill panels, the wheel-well lips, the cowl/firewall, and the body-mount cups where the tub bolts to the frame. Once the body mounts and floor rot, the tub can no longer locate properly on the frame, doors/tailgate stop lining up, and the whole structure flexes.",
+        "solution": "The community fix is die-stamped factory-gauge replacement panels rather than hand-formed patches: EDP-coated front and rear floor pans, rockers, wheelhouses and cowl repair sections (Key Parts/Quadratec, Classic 2 Current Fabrication) welded in after the rot is cut back to clean steel. Restorers replace the body-mount cups and use new polyurethane body-mount bushings, then seam-seal and undercoat the underside and brush cavity wax into the rockers and tub seams. When the tub is too far gone, a full reproduction steel tub (firewall-to-tailgate) from Willys-Overland/Repli-Tub is the reliable path. Keeping the drain plugs clear and the top sealed prevents a repeat.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Soft, crunchy or holed floor under the carpet/mats",
+          "Rusted-through rockers and rear wheel-well lips",
+          "Doors and tailgate no longer aligning or latching",
+          "Body shifting or squeaking on the frame from rotted mounts",
+          "Bubbling paint along the cowl and seat risers"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 400,
+        "estimatedCostHigh": 6000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.c2cfabrication.com/collections/jeep-cj-7-series-parts/front-floor-pan",
+            "type": "manufacturer",
+            "title": "Jeep CJ7 Replacement Body Panels — Front Floor Pan — Classic 2 Current Fabrication"
+          },
+          {
+            "url": "https://www.quadratec.com/products/22507_0100_07.htm",
+            "type": "manufacturer",
+            "title": "Key Parts Stamped Steel Floor Pans for 76-95 CJ-7 & Wrangler YJ — Quadratec"
+          },
+          {
+            "url": "https://www.offroaders.com/info/tech-corner/project-cj7/project-cj7-tub2.htm",
+            "type": "article",
+            "title": "Restoring a 1978 Jeep CJ-7 Tub — Rust Removal & Treatment — Offroaders.com"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [
+          {
+            "note": "(reconciled from the issue's own fix text)",
+            "source": "reconciliation",
+            "buyLinks": [
+              {
+                "url": "https://www.amazon.com/s?k=8130679&tag=au7o-20",
+                "vendor": "Amazon"
+              },
+              {
+                "url": "https://www.rockauto.com/en/partsearch/?q=8130679",
+                "vendor": "RockAuto"
+              },
+              {
+                "url": "https://www.ebay.com/sch/i.html?_nkw=8130679",
+                "vendor": "eBay"
+              }
+            ],
+            "priceLow": null,
+            "component": "full floor pan assembly",
+            "priceHigh": null,
+            "oemPartNumber": "8130679",
+            "aftermarketXref": []
+          }
+        ],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-19",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "jeep-cj-7-carter-bbd-carburetor-emissions-vacuum-maze",
+      "model": "CJ-7",
+      "action": "keep_published_pending_source",
+      "reason": "No exact AMC/Jeep primary service or emissions source was pinned for the frozen 1978-1986 Carter BBD failure aggregation, float setting, vacuum-system claims, or its recommendation to delete computer and emissions equipment. Because emissions-delete and carburetor-fitment advice is safety and legal sensitive, the row remains byte-for-byte unchanged for manual review.",
+      "identityRule": "No partial product fitment, community procedure or inaccessible registry result may change an indexed identity.",
+      "commerceDecision": "unchanged-search-links-pending-exact-fitment",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "nhtsa-api-boundary-not-negative-proof",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=CJ-7&modelYear=1976",
+          "supportingUrls": [
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=CJ-7&modelYear=1976",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=CJ-7&modelYear=1977",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=CJ-7&modelYear=1978",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=CJ-7&modelYear=1979",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=CJ-7&modelYear=1980",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=CJ-7&modelYear=1981",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=CJ-7&modelYear=1982",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=CJ-7&modelYear=1983",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=CJ-7&modelYear=1984",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=CJ-7&modelYear=1985",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=CJ-7&modelYear=1986"
+          ],
+          "verifiedOn": "2026-08-06",
+          "observation": "The NHTSA vehicle endpoint returns HTTP 400 for every CJ-7 year spelling tested and cannot prove these maintenance claims true or false."
+        }
+      ],
+      "beforeSha256": "622e5f61405a7d98046722ec697c51d7e1f11c340dd415f793f1b202b996fece",
+      "proposalSha256": "622e5f61405a7d98046722ec697c51d7e1f11c340dd415f793f1b202b996fece",
+      "before": {
+        "make": "Jeep",
+        "model": "CJ-7",
+        "years": [
+          1978,
+          1979,
+          1980,
+          1981,
+          1982,
+          1983,
+          1984,
+          1985,
+          1986
+        ],
+        "trims": [
+          "Base",
+          "Renegade",
+          "Laredo",
+          "Golden Eagle",
+          "Limited"
+        ],
+        "engines": [
+          "258 inline-6"
+        ],
+        "category": "fuel",
+        "title": "Carter BBD carburetor & emissions vacuum maze (rough idle, stalling)",
+        "description": "Smog-era 258 CJ-7s run the two-barrel Carter BBD feeding a sprawling emissions vacuum system (CTO switches, ported vacuum, stepper-motor/feedback control on later cars). The BBD is dirt-sensitive and drifts out of tune; combined with cracked decades-old vacuum hoses and missing/disconnected emissions components it produces chronic rough idle, idle hunting/runaway, stalling, backfiring and poor mileage. On a restoration the half-rotted vacuum diagram is usually undecipherable, and a worn BBD with a wrong float level (often set to 3/8\" instead of the correct ~1/4\") never idles right.",
+        "solution": "Restorers either properly rebuild the BBD (new kit, correct float level, clean every passage) and renew the entire vacuum harness off a correct year diagram, or — the popular bulletproofing route — convert to a non-feedback carb and delete the computer/emissions tangle. Common swaps are a Motorcraft/Carter 2100-style two-barrel or a Weber 38 with a simple adapter, paired with the HEI ignition so the ECU, stepper motor and most vacuum lines can be removed for a clean, tunable, reliable setup. Many also add a quality fuel filter and rebuild the mechanical pump as part of the job.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Rough or hunting idle, idle runaway to high rpm",
+          "Stalling at idle or when coming off throttle",
+          "Backfiring and hesitation",
+          "Poor fuel economy and black smoke (over-rich)",
+          "Vacuum leaks from cracked/missing emissions hoses"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 60,
+        "estimatedCostHigh": 600,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.jeepforum.com/threads/cj7-carter-bbd-vacuum-line-help.1541274/",
+            "type": "forum",
+            "title": "CJ7 Carter BBD Vacuum Line Help — Jeep Enthusiast Forums"
+          },
+          {
+            "url": "https://jeep-cj.com/community/threads/carter-bbd-carb.4448/",
+            "type": "forum",
+            "title": "Carter BBD carb troubleshooting — Jeep-CJ.com community"
+          },
+          {
+            "url": "https://www.cj-8.com/threads/carter-bbd-blues.25041/",
+            "type": "forum",
+            "title": "Carter BBD Blues — CJ-8 community"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [
+          {
+            "note": "(reconciled from the issue's own fix text)",
+            "source": "reconciliation",
+            "buyLinks": [
+              {
+                "url": "https://www.amazon.com/s?k=BBD42S&tag=au7o-20",
+                "vendor": "Amazon"
+              },
+              {
+                "url": "https://www.rockauto.com/en/partsearch/?q=BBD42S",
+                "vendor": "RockAuto"
+              },
+              {
+                "url": "https://www.ebay.com/sch/i.html?_nkw=BBD42S",
+                "vendor": "eBay"
+              }
+            ],
+            "priceLow": null,
+            "component": "Carter BBD replacement carburetor (non-feedback)",
+            "priceHigh": null,
+            "oemPartNumber": "BBD42S",
+            "aftermarketXref": []
+          }
+        ],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-19",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Jeep",
+        "model": "CJ-7",
+        "years": [
+          1978,
+          1979,
+          1980,
+          1981,
+          1982,
+          1983,
+          1984,
+          1985,
+          1986
+        ],
+        "trims": [
+          "Base",
+          "Renegade",
+          "Laredo",
+          "Golden Eagle",
+          "Limited"
+        ],
+        "engines": [
+          "258 inline-6"
+        ],
+        "category": "fuel",
+        "title": "Carter BBD carburetor & emissions vacuum maze (rough idle, stalling)",
+        "description": "Smog-era 258 CJ-7s run the two-barrel Carter BBD feeding a sprawling emissions vacuum system (CTO switches, ported vacuum, stepper-motor/feedback control on later cars). The BBD is dirt-sensitive and drifts out of tune; combined with cracked decades-old vacuum hoses and missing/disconnected emissions components it produces chronic rough idle, idle hunting/runaway, stalling, backfiring and poor mileage. On a restoration the half-rotted vacuum diagram is usually undecipherable, and a worn BBD with a wrong float level (often set to 3/8\" instead of the correct ~1/4\") never idles right.",
+        "solution": "Restorers either properly rebuild the BBD (new kit, correct float level, clean every passage) and renew the entire vacuum harness off a correct year diagram, or — the popular bulletproofing route — convert to a non-feedback carb and delete the computer/emissions tangle. Common swaps are a Motorcraft/Carter 2100-style two-barrel or a Weber 38 with a simple adapter, paired with the HEI ignition so the ECU, stepper motor and most vacuum lines can be removed for a clean, tunable, reliable setup. Many also add a quality fuel filter and rebuild the mechanical pump as part of the job.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Rough or hunting idle, idle runaway to high rpm",
+          "Stalling at idle or when coming off throttle",
+          "Backfiring and hesitation",
+          "Poor fuel economy and black smoke (over-rich)",
+          "Vacuum leaks from cracked/missing emissions hoses"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 60,
+        "estimatedCostHigh": 600,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.jeepforum.com/threads/cj7-carter-bbd-vacuum-line-help.1541274/",
+            "type": "forum",
+            "title": "CJ7 Carter BBD Vacuum Line Help — Jeep Enthusiast Forums"
+          },
+          {
+            "url": "https://jeep-cj.com/community/threads/carter-bbd-carb.4448/",
+            "type": "forum",
+            "title": "Carter BBD carb troubleshooting — Jeep-CJ.com community"
+          },
+          {
+            "url": "https://www.cj-8.com/threads/carter-bbd-blues.25041/",
+            "type": "forum",
+            "title": "Carter BBD Blues — CJ-8 community"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [
+          {
+            "note": "(reconciled from the issue's own fix text)",
+            "source": "reconciliation",
+            "buyLinks": [
+              {
+                "url": "https://www.amazon.com/s?k=BBD42S&tag=au7o-20",
+                "vendor": "Amazon"
+              },
+              {
+                "url": "https://www.rockauto.com/en/partsearch/?q=BBD42S",
+                "vendor": "RockAuto"
+              },
+              {
+                "url": "https://www.ebay.com/sch/i.html?_nkw=BBD42S",
+                "vendor": "eBay"
+              }
+            ],
+            "priceLow": null,
+            "component": "Carter BBD replacement carburetor (non-feedback)",
+            "priceHigh": null,
+            "oemPartNumber": "BBD42S",
+            "aftermarketXref": []
+          }
+        ],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-19",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "jeep-cj-7-frame-rot-rear-spring-hangers-shackle-mounts-skid-plate-area",
+      "model": "CJ-7",
+      "action": "keep_published_pending_source",
+      "reason": "The live repair-panel manufacturer page supports selected CJ rear shackle sections, but it does not prove the complete hidden-rot mechanism, all frozen locations, inspection method, cavity-treatment recipe or when a structural weld repair is safe. The structural weld and replacement-frame guidance remains byte-for-byte unchanged pending qualified source review.",
+      "identityRule": "No partial product fitment, community procedure or inaccessible registry result may change an indexed identity.",
+      "commerceDecision": "unchanged-no-fixpart-commerce",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "live-manufacturer-page-partial-repair-product-scope",
+          "url": "https://www.rustbuster.com/blogs/news/rusty-cj-jeep-frame-don-t-worry-it-can-be-saved",
+          "verifiedOn": "2026-08-06",
+          "observation": "The manufacturer page supports selected CJ rear shackle sections but not the full structural diagnosis and weld procedure."
+        }
+      ],
+      "beforeSha256": "4ad888db5dd56ecb2dd2d5eee01229bb4acf349eb492078323cce4f0f2547269",
+      "proposalSha256": "4ad888db5dd56ecb2dd2d5eee01229bb4acf349eb492078323cce4f0f2547269",
+      "before": {
+        "make": "Jeep",
+        "model": "CJ-7",
+        "years": [
+          1976,
+          1977,
+          1978,
+          1979,
+          1980,
+          1981,
+          1982,
+          1983,
+          1984,
+          1985,
+          1986
+        ],
+        "trims": [
+          "Base",
+          "Renegade",
+          "Laredo",
+          "Golden Eagle",
+          "Limited"
+        ],
+        "engines": [
+          "232 inline-6",
+          "258 inline-6",
+          "304 V8",
+          "150 GM 2.5L 4-cyl",
+          "151 Iron Duke 4-cyl"
+        ],
+        "category": "body",
+        "title": "Frame rot at the rear spring hangers, shackle mounts and skid-plate area",
+        "description": "The CJ-7's boxed steel frame is thin-wall and ungalvanized, and the boxed rear sections trap mud and water with no good way to drain. Rot concentrates at the rear leaf-spring hangers/shackle mounts, the rear crossmember, the body-mount tabs, and around the fuel-tank skid plate behind the rear wheels. Because the rails are boxed, the inside rusts from the inside out, so a frame that looks paintable on the surface can be paper-thin internally — the classic failure is a spring hanger or shackle mount tearing away, which is a structural/safety defect, not a cosmetic one.",
+        "solution": "Restorers do a frame-off, media-blast or wire-wheel the bare frame, then probe/sound the boxed sections for hidden rot. Rotted spring-hanger, shackle and crossmember areas are cut out and replaced with weld-in repair sections (Rust Buster, Quadratec and others sell CJ-specific boxed hanger and crossmember plates) rather than just plated over. The proven longevity step is to internally treat the boxed rails after repair — flush, dry, and flood the inside with cavity/penetrating wax (e.g. Fluid Film, Woolwax or POR-15 cavity wax) through drilled access holes, then seal the outside with epoxy primer and chassis coating. Badly-gone frames get a new aftermarket reproduction frame.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Flaky or bubbling paint over the rear frame rails",
+          "Soft or perforated metal you can push a screwdriver through near the rear spring hangers",
+          "Clunking or shifting feel from a loose/torn shackle or hanger mount",
+          "Crooked stance or body shifting on the frame",
+          "Visible rot around the fuel-tank skid plate"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 300,
+        "estimatedCostHigh": 4000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://jeep-cj.com/community/threads/cj7-frame-rusted-through.25293/",
+            "type": "forum",
+            "title": "CJ7 Frame rusted through — Jeep-CJ.com community"
+          },
+          {
+            "url": "https://www.rustbuster.com/blogs/news/rusty-cj-jeep-frame-don-t-worry-it-can-be-saved",
+            "type": "article",
+            "title": "Rusty CJ Jeep Frame? Don't Worry, It Can Be Saved — Rust Buster"
+          },
+          {
+            "url": "https://www.quadratec.com/categories/jeep-body-frame/frames-accessories/frame-repair",
+            "type": "manufacturer",
+            "title": "Jeep Frame Repair sections — Quadratec"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-19",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Jeep",
+        "model": "CJ-7",
+        "years": [
+          1976,
+          1977,
+          1978,
+          1979,
+          1980,
+          1981,
+          1982,
+          1983,
+          1984,
+          1985,
+          1986
+        ],
+        "trims": [
+          "Base",
+          "Renegade",
+          "Laredo",
+          "Golden Eagle",
+          "Limited"
+        ],
+        "engines": [
+          "232 inline-6",
+          "258 inline-6",
+          "304 V8",
+          "150 GM 2.5L 4-cyl",
+          "151 Iron Duke 4-cyl"
+        ],
+        "category": "body",
+        "title": "Frame rot at the rear spring hangers, shackle mounts and skid-plate area",
+        "description": "The CJ-7's boxed steel frame is thin-wall and ungalvanized, and the boxed rear sections trap mud and water with no good way to drain. Rot concentrates at the rear leaf-spring hangers/shackle mounts, the rear crossmember, the body-mount tabs, and around the fuel-tank skid plate behind the rear wheels. Because the rails are boxed, the inside rusts from the inside out, so a frame that looks paintable on the surface can be paper-thin internally — the classic failure is a spring hanger or shackle mount tearing away, which is a structural/safety defect, not a cosmetic one.",
+        "solution": "Restorers do a frame-off, media-blast or wire-wheel the bare frame, then probe/sound the boxed sections for hidden rot. Rotted spring-hanger, shackle and crossmember areas are cut out and replaced with weld-in repair sections (Rust Buster, Quadratec and others sell CJ-specific boxed hanger and crossmember plates) rather than just plated over. The proven longevity step is to internally treat the boxed rails after repair — flush, dry, and flood the inside with cavity/penetrating wax (e.g. Fluid Film, Woolwax or POR-15 cavity wax) through drilled access holes, then seal the outside with epoxy primer and chassis coating. Badly-gone frames get a new aftermarket reproduction frame.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Flaky or bubbling paint over the rear frame rails",
+          "Soft or perforated metal you can push a screwdriver through near the rear spring hangers",
+          "Clunking or shifting feel from a loose/torn shackle or hanger mount",
+          "Crooked stance or body shifting on the frame",
+          "Visible rot around the fuel-tank skid plate"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 300,
+        "estimatedCostHigh": 4000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://jeep-cj.com/community/threads/cj7-frame-rusted-through.25293/",
+            "type": "forum",
+            "title": "CJ7 Frame rusted through — Jeep-CJ.com community"
+          },
+          {
+            "url": "https://www.rustbuster.com/blogs/news/rusty-cj-jeep-frame-don-t-worry-it-can-be-saved",
+            "type": "article",
+            "title": "Rusty CJ Jeep Frame? Don't Worry, It Can Be Saved — Rust Buster"
+          },
+          {
+            "url": "https://www.quadratec.com/categories/jeep-body-frame/frames-accessories/frame-repair",
+            "type": "manufacturer",
+            "title": "Jeep Frame Repair sections — Quadratec"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-19",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "jeep-cj-7-vague-steering-death-wobble-from-worn-linkage-geometry",
+      "model": "CJ-7",
+      "action": "keep_published_pending_source",
+      "reason": "The cited live steering-kit page is explicitly for 1982-1986 wide-track CJ vehicles with a Dana 30 and specifies 1-inch by .219-wall tubing, while the indexed record spans 1976-1986 and claims a 1-1/8-inch by .250-wall kit plus part J5350586. This 1982-1986 fitment and specification mismatch requires a byte-for-byte hold.",
+      "identityRule": "No partial product fitment, community procedure or inaccessible registry result may change an indexed identity.",
+      "commerceDecision": "unchanged-search-links-pending-exact-fitment",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "live-product-page-year-and-specification-mismatch",
+          "url": "https://mountainoffroad.com/products/tie-rod-drag-link-82-86-cj",
+          "verifiedOn": "2026-08-06",
+          "observation": "The cited product is 1982-1986 wide-track Dana 30 fitment with 1-inch by .219-wall tubing, not the page-wide scope and specification."
+        }
+      ],
+      "beforeSha256": "1dd0cd06032ccd6af8ab8ecf5ccc09a77a61a735cec597d535746724218c32ee",
+      "proposalSha256": "1dd0cd06032ccd6af8ab8ecf5ccc09a77a61a735cec597d535746724218c32ee",
+      "before": {
+        "make": "Jeep",
+        "model": "CJ-7",
+        "years": [
+          1976,
+          1977,
+          1978,
+          1979,
+          1980,
+          1981,
+          1982,
+          1983,
+          1984,
+          1985,
+          1986
+        ],
+        "trims": [
+          "Base",
+          "Renegade",
+          "Laredo",
+          "Golden Eagle",
+          "Limited"
+        ],
+        "engines": [
+          "258 inline-6",
+          "304 V8",
+          "232 inline-6",
+          "150 GM 2.5L 4-cyl",
+          "151 Iron Duke 4-cyl"
+        ],
+        "category": "steering",
+        "title": "Vague steering / death wobble from worn linkage and geometry",
+        "description": "The CJ-7's leaf-sprung solid front axle with a long drag link and exposed tie-rod ends is prone to wander and to 'death wobble' — a violent self-sustaining shimmy of the front end triggered by a bump. Causes are worn tie-rod/drag-link ends, tired spring bushings and shackles, loose wheel bearings, and incorrect caster (often after a lift). The factory linkage is thin-wall and the steering-box mount can flex, so as the parts age the Jeep gets darty on-road and unstable at speed.",
+        "solution": "The community cure is a systematic refresh: replace all four tie-rod/drag-link ends, the spring bushings and shackles, and set wheel-bearing preload, then verify caster (a degreed shim or correcting the drag-link/tie-rod geometry on lifted rigs — the 'rod flip'). The durable upgrade is a heavy-duty tie rod and drag link kit (e.g. 1-1/8\" x .250-wall DOM, several times stronger than stock) plus a steering-box brace/mount reinforcement, and a good steering stabilizer — especially with larger tires. Correct caster plus tight, beefier linkage eliminates the wobble rather than masking it.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Violent front-end shimmy after hitting a bump (death wobble)",
+          "Wandering / darting that requires constant correction",
+          "Play or slop at the steering wheel",
+          "Clunking from the steering box or linkage",
+          "Uneven or feathered front tire wear"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 200,
+        "estimatedCostHigh": 1200,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.jeepforum.com/threads/cj7-steering-upgrades-replace-tie-rod-bushings-or-upgrade-entire-setup.4443161/",
+            "type": "forum",
+            "title": "CJ7 steering upgrades — tie rod bushings or full setup? — Jeep Enthusiast Forums"
+          },
+          {
+            "url": "https://www.offroaders.com/projects-installations/project-jeep-cj7/cj-flipping-your-tie-rod-drag-link/",
+            "type": "article",
+            "title": "CJ Flipping the Tie Rod & Drag Link — Offroaders.com"
+          },
+          {
+            "url": "https://mountainoffroad.com/products/tie-rod-drag-link-82-86-cj",
+            "type": "manufacturer",
+            "title": "HD Tie Rod & Drag Link Kit for Jeep CJ (1982-86 Wide Track) — Mountain Off Road"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [
+          {
+            "note": "(reconciled from the issue's own fix text)",
+            "source": "reconciliation",
+            "buyLinks": [
+              {
+                "url": "https://www.amazon.com/s?k=J5350586&tag=au7o-20",
+                "vendor": "Amazon"
+              },
+              {
+                "url": "https://www.rockauto.com/en/partsearch/?q=J5350586",
+                "vendor": "RockAuto"
+              },
+              {
+                "url": "https://www.ebay.com/sch/i.html?_nkw=J5350586",
+                "vendor": "eBay"
+              }
+            ],
+            "priceLow": null,
+            "component": "tie rod assembly (tube with inner and outer ends)",
+            "priceHigh": null,
+            "oemPartNumber": "J5350586",
+            "aftermarketXref": []
+          }
+        ],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-19",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Jeep",
+        "model": "CJ-7",
+        "years": [
+          1976,
+          1977,
+          1978,
+          1979,
+          1980,
+          1981,
+          1982,
+          1983,
+          1984,
+          1985,
+          1986
+        ],
+        "trims": [
+          "Base",
+          "Renegade",
+          "Laredo",
+          "Golden Eagle",
+          "Limited"
+        ],
+        "engines": [
+          "258 inline-6",
+          "304 V8",
+          "232 inline-6",
+          "150 GM 2.5L 4-cyl",
+          "151 Iron Duke 4-cyl"
+        ],
+        "category": "steering",
+        "title": "Vague steering / death wobble from worn linkage and geometry",
+        "description": "The CJ-7's leaf-sprung solid front axle with a long drag link and exposed tie-rod ends is prone to wander and to 'death wobble' — a violent self-sustaining shimmy of the front end triggered by a bump. Causes are worn tie-rod/drag-link ends, tired spring bushings and shackles, loose wheel bearings, and incorrect caster (often after a lift). The factory linkage is thin-wall and the steering-box mount can flex, so as the parts age the Jeep gets darty on-road and unstable at speed.",
+        "solution": "The community cure is a systematic refresh: replace all four tie-rod/drag-link ends, the spring bushings and shackles, and set wheel-bearing preload, then verify caster (a degreed shim or correcting the drag-link/tie-rod geometry on lifted rigs — the 'rod flip'). The durable upgrade is a heavy-duty tie rod and drag link kit (e.g. 1-1/8\" x .250-wall DOM, several times stronger than stock) plus a steering-box brace/mount reinforcement, and a good steering stabilizer — especially with larger tires. Correct caster plus tight, beefier linkage eliminates the wobble rather than masking it.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Violent front-end shimmy after hitting a bump (death wobble)",
+          "Wandering / darting that requires constant correction",
+          "Play or slop at the steering wheel",
+          "Clunking from the steering box or linkage",
+          "Uneven or feathered front tire wear"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 200,
+        "estimatedCostHigh": 1200,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.jeepforum.com/threads/cj7-steering-upgrades-replace-tie-rod-bushings-or-upgrade-entire-setup.4443161/",
+            "type": "forum",
+            "title": "CJ7 steering upgrades — tie rod bushings or full setup? — Jeep Enthusiast Forums"
+          },
+          {
+            "url": "https://www.offroaders.com/projects-installations/project-jeep-cj7/cj-flipping-your-tie-rod-drag-link/",
+            "type": "article",
+            "title": "CJ Flipping the Tie Rod & Drag Link — Offroaders.com"
+          },
+          {
+            "url": "https://mountainoffroad.com/products/tie-rod-drag-link-82-86-cj",
+            "type": "manufacturer",
+            "title": "HD Tie Rod & Drag Link Kit for Jeep CJ (1982-86 Wide Track) — Mountain Off Road"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [
+          {
+            "note": "(reconciled from the issue's own fix text)",
+            "source": "reconciliation",
+            "buyLinks": [
+              {
+                "url": "https://www.amazon.com/s?k=J5350586&tag=au7o-20",
+                "vendor": "Amazon"
+              },
+              {
+                "url": "https://www.rockauto.com/en/partsearch/?q=J5350586",
+                "vendor": "RockAuto"
+              },
+              {
+                "url": "https://www.ebay.com/sch/i.html?_nkw=J5350586",
+                "vendor": "eBay"
+              }
+            ],
+            "priceLow": null,
+            "component": "tie rod assembly (tube with inner and outer ends)",
+            "priceHigh": null,
+            "oemPartNumber": "J5350586",
+            "aftermarketXref": []
+          }
+        ],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-19",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "jeep-cj-7-weak-light-duty-manual-transmissions",
+      "model": "CJ-7",
+      "action": "keep_published_pending_source",
+      "reason": "No exact Jeep/AMC primary source was pinned for the broad SR4/T-4/T-5 durability ranking, second-gear failure pattern, direct T-176 interchange, or T-18/NP435/SM465 adapter and driveshaft claims across the frozen engine/year combinations. The row remains byte-for-byte unchanged.",
+      "identityRule": "No partial product fitment, community procedure or inaccessible registry result may change an indexed identity.",
+      "commerceDecision": "unchanged-no-fixpart-commerce",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "nhtsa-api-boundary-not-negative-proof",
+          "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=CJ-7&modelYear=1976",
+          "supportingUrls": [
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=CJ-7&modelYear=1976",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=CJ-7&modelYear=1977",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=CJ-7&modelYear=1978",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=CJ-7&modelYear=1979",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=CJ-7&modelYear=1980",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=CJ-7&modelYear=1981",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=CJ-7&modelYear=1982",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=CJ-7&modelYear=1983",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=CJ-7&modelYear=1984",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=CJ-7&modelYear=1985",
+            "https://api.nhtsa.gov/recalls/recallsByVehicle?make=JEEP&model=CJ-7&modelYear=1986"
+          ],
+          "verifiedOn": "2026-08-06",
+          "observation": "The NHTSA vehicle endpoint returns HTTP 400 for every CJ-7 year spelling tested and cannot prove these maintenance claims true or false."
+        }
+      ],
+      "beforeSha256": "8b69a49635aefce03ed4cb841df628296a110dd313f01ce273169be6376cda07",
+      "proposalSha256": "8b69a49635aefce03ed4cb841df628296a110dd313f01ce273169be6376cda07",
+      "before": {
+        "make": "Jeep",
+        "model": "CJ-7",
+        "years": [
+          1980,
+          1981,
+          1982,
+          1983,
+          1984,
+          1985,
+          1986
+        ],
+        "trims": [
+          "Base",
+          "Renegade",
+          "Laredo",
+          "Golden Eagle",
+          "Limited"
+        ],
+        "engines": [
+          "258 inline-6",
+          "151 Iron Duke 4-cyl",
+          "150 GM 2.5L 4-cyl"
+        ],
+        "category": "transmission",
+        "title": "Weak light-duty manual transmissions (SR4 / T-4 / T-5)",
+        "description": "The 4-speed SR4 and T-4 and the 5-speed T-5 fitted to many late CJ-7s are light-duty units widely regarded as among the worst transmissions ever put in a CJ. The shift levers are integrated into the tail housing, internals are marginal behind the 258, and shift forks/synchros wear quickly — owners report hard or grinding shifts (notably into 2nd) and short service life, especially once larger tires or any off-road abuse is involved.",
+        "solution": "The bulletproofing answer restorers reach for is replacing the SR4/T-4/T-5 with a stronger gearbox. The T-176 (aluminum-case 4-speed) is the easy upgrade — it bolts in place of the SR4/T-4 with no adapters and gives smooth, durable shifts. For maximum strength behind a 258 or V8, builders fit a Ford-derived T-18 (or NP435/SM465) — the T-18 is considered the toughest factory transmission ever offered in a Jeep — though those need an adapter and a driveshaft-length change. Either way the worn original is retired rather than repeatedly rebuilt.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Hard, notchy or grinding shifts, especially into 2nd gear",
+          "Popping out of gear",
+          "Whine or noise that worsens over time",
+          "Worn shift-fork lugs found on teardown",
+          "Repeat failures/short life after rebuild"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 600,
+        "estimatedCostHigh": 2500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://jeep-cj.com/community/wiki/transmissions/",
+            "type": "forum",
+            "title": "Transmissions wiki (SR4/T4/T5 weakness, T176/T18 upgrades) — Jeep-CJ.com"
+          },
+          {
+            "url": "https://www.jeepforum.com/threads/t176-transmission.2223953/",
+            "type": "forum",
+            "title": "T176 Transmission? — Jeep Enthusiast Forums"
+          },
+          {
+            "url": "https://www.cj-8.com/threads/t176-or-t18.36491/",
+            "type": "forum",
+            "title": "T176 or T18 — CJ-8 community"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-19",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Jeep",
+        "model": "CJ-7",
+        "years": [
+          1980,
+          1981,
+          1982,
+          1983,
+          1984,
+          1985,
+          1986
+        ],
+        "trims": [
+          "Base",
+          "Renegade",
+          "Laredo",
+          "Golden Eagle",
+          "Limited"
+        ],
+        "engines": [
+          "258 inline-6",
+          "151 Iron Duke 4-cyl",
+          "150 GM 2.5L 4-cyl"
+        ],
+        "category": "transmission",
+        "title": "Weak light-duty manual transmissions (SR4 / T-4 / T-5)",
+        "description": "The 4-speed SR4 and T-4 and the 5-speed T-5 fitted to many late CJ-7s are light-duty units widely regarded as among the worst transmissions ever put in a CJ. The shift levers are integrated into the tail housing, internals are marginal behind the 258, and shift forks/synchros wear quickly — owners report hard or grinding shifts (notably into 2nd) and short service life, especially once larger tires or any off-road abuse is involved.",
+        "solution": "The bulletproofing answer restorers reach for is replacing the SR4/T-4/T-5 with a stronger gearbox. The T-176 (aluminum-case 4-speed) is the easy upgrade — it bolts in place of the SR4/T-4 with no adapters and gives smooth, durable shifts. For maximum strength behind a 258 or V8, builders fit a Ford-derived T-18 (or NP435/SM465) — the T-18 is considered the toughest factory transmission ever offered in a Jeep — though those need an adapter and a driveshaft-length change. Either way the worn original is retired rather than repeatedly rebuilt.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Hard, notchy or grinding shifts, especially into 2nd gear",
+          "Popping out of gear",
+          "Whine or noise that worsens over time",
+          "Worn shift-fork lugs found on teardown",
+          "Repeat failures/short life after rebuild"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 600,
+        "estimatedCostHigh": 2500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://jeep-cj.com/community/wiki/transmissions/",
+            "type": "forum",
+            "title": "Transmissions wiki (SR4/T4/T5 weakness, T176/T18 upgrades) — Jeep-CJ.com"
+          },
+          {
+            "url": "https://www.jeepforum.com/threads/t176-transmission.2223953/",
+            "type": "forum",
+            "title": "T176 Transmission? — Jeep Enthusiast Forums"
+          },
+          {
+            "url": "https://www.cj-8.com/threads/t176-or-t18.36491/",
+            "type": "forum",
+            "title": "T176 or T18 — CJ-8 community"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-19",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    }
+  ]
+}
