@@ -1,0 +1,1039 @@
+{
+  "schemaVersion": 1,
+  "status": "proposal-only",
+  "auditStage": "model-primary-source-and-duplicate-identity-adjudication",
+  "requiresIndependentApproval": true,
+  "generatedOn": "2026-08-09",
+  "make": "Lincoln",
+  "model": "Continental",
+  "completionStatement": "All six frozen Continental pages are accounted for: one remains byte-for-byte unchanged and five receive bounded source corrections without changing indexed identity.",
+  "applicationGate": {
+    "status": "blocked",
+    "blockerRecordIds": [
+      "lincoln-continental-adaptive-steering-fault-expensive-steering-module-wheel-repl",
+      "lincoln-continental-door-latch-motor-failure-doors-may-open-while-driving",
+      "lincoln-continental-parasitic-battery-drain-repeated-dead-battery",
+      "lincoln-continental-soft-close-door-cinch-motor-failure",
+      "lincoln-continental-suicide-doors-recall"
+    ],
+    "reason": "Five material source corrections and one duplicate recall identity require independent review before any catalog write."
+  },
+  "safetyContract": [
+    "No production write, deployment, archive, redirect, slug change, title change, category change, indexed-year change, trim change, engine change, severity change, related-link change or new issue is authorized.",
+    "All six IDs, titles, categories, indexed year sets, trim sets, engine sets, related issue links, canonical severities and publication states remain unchanged.",
+    "The two 19S03 door-latch URLs remain live and unredirected until an independently approved canonical and redirect order exists.",
+    "A recall is VIN-scoped; a TSB or SSM is limited to its exact model, build date, code, symptom and procedure.",
+    "No replaceable part is promoted without exact diagnosis and VIN/door-position fitment; every changed row has an explicit no-universal-commerce boundary.",
+    "Unknown owner totals remain zero and the production UI hides them rather than presenting fake social proof."
+  ],
+  "source": {
+    "snapshotFile": "data/_lincoln-deeplink-snapshot-2026-08-09.json",
+    "snapshotSha256": "aba95b475d8d6495dead9363f7d2945efc85fbf84d72c0d4983cb5257a1f2088",
+    "snapshotGeneratedAt": "2026-08-08T23:09:50.434Z",
+    "snapshotHash": "8d9a8063d25a32ff037e9e10ac56037af1fb26acfbfda1dc71a90ebeb1601e9e",
+    "modelRecordCount": 6
+  },
+  "observations": [
+    {
+      "code": "continental-five-pages-corrected",
+      "severity": "accuracy-safety",
+      "recordIds": [
+        "lincoln-continental-adaptive-steering-fault-expensive-steering-module-wheel-repl",
+        "lincoln-continental-door-latch-motor-failure-doors-may-open-while-driving",
+        "lincoln-continental-parasitic-battery-drain-repeated-dead-battery",
+        "lincoln-continental-soft-close-door-cinch-motor-failure",
+        "lincoln-continental-suicide-doors-recall"
+      ],
+      "detail": "Five pages contained unsupported scope, cause, cost, part or trim claims that the complete source replay did not substantiate."
+    },
+    {
+      "code": "continental-door-recall-duplicate-identity-hold",
+      "severity": "seo-review",
+      "recordIds": [
+        "lincoln-continental-door-latch-motor-failure-doors-may-open-while-driving",
+        "lincoln-continental-suicide-doors-recall"
+      ],
+      "detail": "Both indexed URLs describe 19S03/19V077. No canonical, redirect, archive or title change is authorized in this packet."
+    },
+    {
+      "code": "continental-adaptive-steering-no-repair-boundary",
+      "severity": "critical-correction",
+      "recordIds": [
+        "lincoln-continental-adaptive-steering-fault-expensive-steering-module-wheel-repl"
+      ],
+      "detail": "SSM 47854 says reset the SASM for U3000:49-only and do not attempt repairs; it does not prove costly steering-wheel/module replacement."
+    },
+    {
+      "code": "continental-battery-cause-narrowed",
+      "severity": "accuracy",
+      "recordIds": [
+        "lincoln-continental-parasitic-battery-drain-repeated-dead-battery"
+      ],
+      "detail": "SSM 50804 proves only a third-party-app network-wake path, not a general seat-module or telematics failure pattern."
+    },
+    {
+      "code": "continental-soft-close-normal-operation-separated",
+      "severity": "accuracy-safety",
+      "recordIds": [
+        "lincoln-continental-soft-close-door-cinch-motor-failure"
+      ],
+      "detail": "Normal 25-cycle/low-battery/transport-mode limits are separated from the early-build 2017 B147F/B1483 latch procedure."
+    },
+    {
+      "code": "all-continental-pages-preserved",
+      "severity": "seo-safety",
+      "recordIds": [
+        "lincoln-continental-adaptive-steering-fault-expensive-steering-module-wheel-repl",
+        "lincoln-continental-door-latch-motor-failure-doors-may-open-while-driving",
+        "lincoln-continental-foggy-cloudy-360-degree-rearview-camera-image",
+        "lincoln-continental-parasitic-battery-drain-repeated-dead-battery",
+        "lincoln-continental-soft-close-door-cinch-motor-failure",
+        "lincoln-continental-suicide-doors-recall"
+      ],
+      "detail": "No Continental page is removed, redirected or allowed to lose its indexed identity or vehicle scope."
+    }
+  ],
+  "pdfSources": {
+    "adaptive": {
+      "title": "Ford SSM 47854: Continental SECM U3000:49 and SASM Reset",
+      "type": "tsb",
+      "url": "https://static.nhtsa.gov/odi/tsbs/2019/MC-10156575-0001.pdf",
+      "pages": 1,
+      "bytes": 10383,
+      "sha256": "1e840be77fa0457ba560b6906662331bd12f06e90e1c073a1ad9e4f73e417679"
+    },
+    "battery": {
+      "title": "Ford SSM 50804: 12-Volt Battery Drain from Third-Party App Network Calls",
+      "type": "tsb",
+      "url": "https://static.nhtsa.gov/odi/tsbs/2022/MC-10212957-0001.pdf",
+      "pages": 2,
+      "bytes": 124974,
+      "sha256": "adb7f41de336698fd4f5bacb713763503b494f4aafad3c8419d687752a882d32"
+    },
+    "camera": {
+      "title": "NHTSA Part 573 Report 22V644 / Ford 22S51: Continental Rear-View Camera",
+      "type": "recall",
+      "url": "https://static.nhtsa.gov/odi/rcl/2022/RCLRPT-22V644-5710.PDF",
+      "pages": 4,
+      "bytes": 215484,
+      "sha256": "d672198d5f357db225953e48ecfd9b4d8a76cbbf25315db882a1560ca7b2cbcc"
+    },
+    "door": {
+      "title": "Ford Safety Recall 19S03 Supplement 5: Continental Door Latch Replacement",
+      "type": "recall",
+      "url": "https://static.nhtsa.gov/odi/rcl/2019/RCMN-19V077-7623.pdf",
+      "pages": 17,
+      "bytes": 1205060,
+      "sha256": "52bcd5727d0fdfb4f575f6ce421630fe0a957d8478ec52c023960bf35b6a51c1"
+    },
+    "softCloseDtc": {
+      "title": "Ford TSB 17-2143: 2017 Continental Soft-Close Door B147F/B1483",
+      "type": "tsb",
+      "url": "https://static.nhtsa.gov/odi/tsbs/2017/MC-10115948-9999.pdf",
+      "pages": 2,
+      "bytes": 87016,
+      "sha256": "cd6503b04fb0bf8331ed9e21d2e5aed00d1704803723fc6e41bd45c4c1046ff4"
+    },
+    "softCloseOperation": {
+      "title": "Ford SSM 46052: Continental Soft-Close Door Normal Operating Limits",
+      "type": "tsb",
+      "url": "https://static.nhtsa.gov/odi/tsbs/2016/MC-10109055-9999.pdf",
+      "pages": 1,
+      "bytes": 6297,
+      "sha256": "cd00fbef1bb1099543fba54600654b2e341e6cb5068ebe45c49c222b4befb45d"
+    }
+  },
+  "manufacturerCommunications": {
+    "source": "https://www.nhtsa.gov/nhtsa-datasets-and-apis",
+    "modelAliases": [
+      "CONTINENTAL"
+    ],
+    "periodCounts": {
+      "1995-1999": 257,
+      "2000-2004": 145,
+      "2005-2009": 11,
+      "2010-2014": 0,
+      "2015-2019": 154,
+      "2020-2024": 95,
+      "2025-2026": 12
+    },
+    "totalRows": 674,
+    "sourceFiles": [
+      {
+        "period": "1995-1999",
+        "length": 3443097,
+        "sha256": "409a86bb7bb37a6313eae9212fb90a5ab45029fdcf2a69d0c0378eab080503db"
+      },
+      {
+        "period": "2000-2004",
+        "length": 8952754,
+        "sha256": "5c755be52d35e060626402ebe6dfcccdf350ae379df5c06b49c71d08497e2264"
+      },
+      {
+        "period": "2005-2009",
+        "length": 5457880,
+        "sha256": "04f72a7bf95530d116b1500c976a9e4d365e1c9a8b0433f58d60dbb36a58679b"
+      },
+      {
+        "period": "2010-2014",
+        "length": 17332775,
+        "sha256": "41e66a9d81a859d469d51c6cdcbc107fc6284c64ed24065ccaf1fe02a52e4387"
+      },
+      {
+        "period": "2015-2019",
+        "length": 144450847,
+        "sha256": "d6c2ff16880cc7b31cfebad94bda08c3e8b3b2c3f28d56d5b1bb810c8b878a2e"
+      },
+      {
+        "period": "2020-2024",
+        "length": 125521629,
+        "sha256": "3b3ca3d690e33386d1d315a0f966285ae8cccb99c45c2386ada164c5e925c3cf"
+      },
+      {
+        "period": "2025-2026",
+        "length": 77786229,
+        "sha256": "419ebda2f1c1bf22e2b0862858d61699c25e61d73842f9031e796f1fafefba4c"
+      }
+    ]
+  },
+  "recallInventory": {
+    "source": "https://www.nhtsa.gov/nhtsa-datasets-and-apis",
+    "modelAliases": [
+      "CONTINENTAL"
+    ],
+    "periodCounts": {
+      "pre": 70,
+      "post": 23
+    },
+    "totalRows": 93,
+    "campaignCount": 50,
+    "sourceFiles": [
+      {
+        "period": "pre",
+        "length": 83786245,
+        "sha256": "71e6e325e2d69d204776fb32d83dad4fd95436a2f7890da54d49622d77a36232"
+      },
+      {
+        "period": "post",
+        "length": 309278972,
+        "sha256": "4803a7f298f1d850736fe55830f4d31b004577424cb6429988c5864786f76a70"
+      }
+    ]
+  },
+  "summary": {
+    "keep_published_no_change": 1,
+    "retain_indexed_identity_and_targeted_accuracy_cleanup_pending_source": 5,
+    "total": 6
+  },
+  "rows": [
+    {
+      "id": "lincoln-continental-adaptive-steering-fault-expensive-steering-module-wheel-repl",
+      "action": "retain_indexed_identity_and_targeted_accuracy_cleanup_pending_source",
+      "commerceDecision": "dealer-or-diagnostic-remedy-no-universal-retail-part",
+      "evidence": [
+        "Complete model-name inventory: 674 exact Continental communications and 93 exact recall rows across 50 campaigns were replayed, including historic generations.",
+        "Visual review of SSM 47854 proves U3000:49-only SASM reset for 2017-2019 and explicitly says not to repair.",
+        "The source does not prove a wheel/module replacement pattern, 2020 scope or any quoted price.",
+        "No search-style commerce or universal retail-part recommendation is introduced."
+      ],
+      "before": {
+        "make": "Lincoln",
+        "model": "Continental",
+        "years": [
+          2017,
+          2018,
+          2019,
+          2020
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "steering",
+        "title": "Adaptive Steering fault — expensive steering module/wheel replacement",
+        "description": "Continentals with Adaptive Steering can throw a 'Service Adaptive Steering' / steering fault warning, often disabling the variable-ratio steering feature. On 2018+ cars the actuator motor and controller are integrated into the steering wheel, so the entire wheel assembly may need replacement and reprogramming. Owners report dealer quotes ranging from roughly $1,200 to as high as $5,000.",
+        "solution": "Have the dealer pull steering codes; module/PCM/BCM reflashing is sometimes tried first but frequently the adaptive steering module (or, on 2018+, the steering wheel assembly) must be replaced and reconfigured. Because programming is required, this is typically a dealer-level repair rather than an independent shop fix.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "'Service Adaptive Steering' warning message",
+          "Steering assist / advanced steering fault light",
+          "Loss of variable-ratio steering feel",
+          "Heavier or inconsistent steering effort"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 1200,
+        "estimatedCostHigh": 5000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://lincolnforums.com/forums/threads/adaptive-steering-fault-light-is-on-in-my-2017-lincoln-continental-dealer-says-module-1200-00-is-required-anyone-else-experience-this-issue.45531/",
+            "type": "forum",
+            "title": "Adaptive steering fault light on 2017 Lincoln Continental — dealer says $1200 module — Lincoln Forums"
+          },
+          {
+            "url": "https://lincolnforums.com/forums/threads/2019-continental-steering.40663/",
+            "type": "forum",
+            "title": "2019 Continental Steering — Lincoln Forums"
+          },
+          {
+            "url": "https://www.justanswer.com/ford-lincoln/olyrb-2018-lincoln-continental-says-service-advanced-steering.html",
+            "type": "forum",
+            "title": "2018 Lincoln Continental Steering Assist Fault — JustAnswer"
+          },
+          {
+            "url": "https://www.nhtsa.gov/vehicle/2017/LINCOLN/CONTINENTAL",
+            "type": "nhtsa",
+            "title": "NHTSA complaints — 2017 Lincoln Continental steering (ODI 11164821: adaptive steering fault, steering control module internal electronic failure)"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-11",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "beforeSha256": "284834c526fa9b45ec5ec12fecb6ecfdeaa54b351b7e3a3de1a9589e02868df3",
+      "proposal": {
+        "make": "Lincoln",
+        "model": "Continental",
+        "years": [
+          2017,
+          2018,
+          2019,
+          2020
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "steering",
+        "title": "Adaptive Steering fault — expensive steering module/wheel replacement",
+        "description": "The reviewed Ford source supports one narrow adaptive-steering diagnostic condition, not the page title’s broad module/wheel-failure and cost claim. SSM 47854 applies to 2017-2019 Continentals with U3000:49 in the Steering Effort Control Module (SECM) and no other DTCs. Ford directs technicians to perform the IDS SASM module-reset routine and explicitly says not to attempt repairs at that time. It does not establish 2020 applicability, a failed steering wheel or controller, replacement frequency, reprogramming as a failed first step, or a $1,200-$5,000 repair range.",
+        "solution": "For the exact U3000:49-only condition on a 2017-2019 vehicle, follow SSM 47854 and perform the SASM module-reset routine before considering hardware. If another code, steering symptom or model year is involved, diagnose it under the current Ford Workshop Manual rather than assuming the SSM applies. Do not buy a steering wheel, SECM, controller, module or other part from this page; no universal replacement part or price is established.",
+        "severity": "high",
+        "confidence": "low",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://static.nhtsa.gov/odi/tsbs/2019/MC-10156575-0001.pdf",
+            "type": "tsb",
+            "title": "Ford SSM 47854: Continental SECM U3000:49 and SASM Reset"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-09",
+        "contentUpdatedOn": "2026-08-09",
+        "contentUpdateSummary": "Replaced unsupported steering-wheel/module replacement and price claims with the exact U3000:49-only Ford diagnostic boundary.",
+        "relatedIssueIds": []
+      },
+      "proposalSha256": "788a5e62b164a1f26c6e3fc1621b9a85a0155067352e51a50bf9ba6b903d8171",
+      "changedFields": [
+        "description",
+        "solution",
+        "confidence",
+        "symptoms",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "humanApproved",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ]
+    },
+    {
+      "id": "lincoln-continental-door-latch-motor-failure-doors-may-open-while-driving",
+      "action": "retain_indexed_identity_and_targeted_accuracy_cleanup_pending_source",
+      "commerceDecision": "dealer-or-diagnostic-remedy-no-universal-retail-part",
+      "evidence": [
+        "Complete model-name inventory: 674 exact Continental communications and 93 exact recall rows across 50 campaigns were replayed, including historic generations.",
+        "Visual review of recall 19S03 Supplement 5 proves the VIN/build population, latch-pawl symptom and free four-door remedy.",
+        "This page and the Coach Door URL describe the same campaign; both stay indexed pending duplicate disposition.",
+        "No search-style commerce or universal retail-part recommendation is introduced."
+      ],
+      "before": {
+        "make": "Lincoln",
+        "model": "Continental",
+        "years": [
+          2017,
+          2018,
+          2019
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "safety",
+        "title": "Door latch (E-latch) motor failure — doors may open while driving",
+        "description": "The Continental's electronic door latches (E-latch) can fail because silicone contamination builds up on the latch pawl motor over time, preventing the latch from fully engaging. This can allow a door to appear closed but open unexpectedly while the vehicle is moving, or fail to latch at all. Ford issued safety recall 19S03 (NHTSA 19V077) covering roughly 27,000 vehicles built Nov 2015–Nov 2018 at the Flat Rock plant.",
+        "solution": "Take the vehicle to a Lincoln dealer for the open recall — dealers replace the latch assemblies on all four doors free of charge. Owners can confirm recall status by entering the VIN at owner.lincoln.com or on the NHTSA recall site.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Door opens unexpectedly while driving",
+          "Door will not latch or stay closed",
+          "Door appears closed but is not secured",
+          "Latch motor clicks but does not engage"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.consumerreports.org/car-recalls-defects/lincoln-continental-recalled-because-some-doors-wont-latch/",
+            "type": "recall",
+            "title": "Lincoln Continentals Are Recalled Because Some Doors Won't Latch — Consumer Reports"
+          },
+          {
+            "url": "https://fordauthority.com/2019/02/lincoln-continental-recalled-over-door-latch-issues/",
+            "type": "recall",
+            "title": "Lincoln Continental Recalled Over Door Latch Issues — Ford Authority"
+          },
+          {
+            "url": "https://www.motorsafety.org/ford-recalls-over-27000-lincoln-continental-vehicles-for-door-latch-issue/",
+            "type": "recall",
+            "title": "Ford Recalls Over 27,000 Lincoln Continental Vehicles For Door Latch Issue — MotorSafety.org"
+          },
+          {
+            "url": "https://lincolnforums.com/forums/threads/17-continental-exterior-door-latch-soft-close-door-failure.45103/",
+            "type": "forum",
+            "title": "17 Continental exterior door latch + soft close door failure — Lincoln Forums"
+          },
+          {
+            "url": "https://static.nhtsa.gov/odi/rcl/2019/RCMN-19V077-2156.pdf",
+            "type": "nhtsa",
+            "title": "NHTSA Recall 19V-077 Dealer Notification (Ford Safety Recall 19S03)"
+          },
+          {
+            "url": "https://www.cars.com/articles/2017-2019-lincoln-continental-recall-alert-1420757364822/",
+            "type": "recall",
+            "title": "2017-2019 Lincoln Continental: Recall Alert — Cars.com"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-11",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "beforeSha256": "2407634aa1c6f985f3b7a0f918d1cd96a5e7fbe440ae293489842150c4ded139",
+      "proposal": {
+        "make": "Lincoln",
+        "model": "Continental",
+        "years": [
+          2017,
+          2018,
+          2019
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "safety",
+        "title": "Door latch (E-latch) motor failure — doors may open while driving",
+        "description": "Ford safety recall 19S03/NHTSA 19V077 covers certain 2017-2019 Continentals built at Flat Rock from November 30, 2015 through November 14, 2018. On an affected vehicle, the electronic door-latch pawl motor may become inoperative so a door cannot close; an intermittently operating latch may not fully engage, allowing the door to open while driving. A door-ajar warning should remain present when the latch is not fully engaged. Eligibility is VIN-specific, not universal to every car in the indexed years.",
+        "solution": "Check the VIN for open recall 19S03/19V077. The free dealer remedy replaces the latches on all four doors and includes the campaign’s functional checks. Do not drive with a door that will not latch or with an unresolved door-ajar/fault warning. Do not buy a latch, pawl motor, control module or other part from this page because this is a VIN-scoped no-charge safety-recall remedy.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://static.nhtsa.gov/odi/rcl/2019/RCMN-19V077-7623.pdf",
+            "type": "recall",
+            "title": "Ford Safety Recall 19S03 Supplement 5: Continental Door Latch Replacement"
+          },
+          {
+            "url": "https://www.nhtsa.gov/recalls",
+            "type": "nhtsa",
+            "title": "NHTSA VIN-Specific Recall Lookup"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-09",
+        "contentUpdatedOn": "2026-08-09",
+        "contentUpdateSummary": "Bound the e-latch page to the exact 19S03 VIN/build population, symptoms and free four-door dealer remedy.",
+        "relatedIssueIds": []
+      },
+      "proposalSha256": "980cbfc5f2b916527242138c869b7e4c06c9eefe829db856ff21a953100b81a2",
+      "changedFields": [
+        "description",
+        "solution",
+        "symptoms",
+        "citations",
+        "humanApproved",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ]
+    },
+    {
+      "id": "lincoln-continental-foggy-cloudy-360-degree-rearview-camera-image",
+      "action": "keep_published_no_change",
+      "commerceDecision": "preserve-current-free-recall-remedy",
+      "evidence": [
+        "Complete model-name inventory: 674 exact Continental communications and 93 exact recall rows across 50 campaigns were replayed, including historic generations.",
+        "The visually inspected 22V644 Part 573 report proves the exact 2017-2020 Continental camera population, internal-lens coating defect, crash risk and free replacement."
+      ],
+      "before": {
+        "make": "Lincoln",
+        "model": "Continental",
+        "years": [
+          2017,
+          2018,
+          2019,
+          2020
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Foggy / cloudy 360-degree rearview camera image",
+        "description": "On Continentals equipped with the 360-degree surround-view camera, the anti-reflective coating on an inner camera lens can crack and degrade from UV exposure, making the rearview/surround image appear foggy or cloudy. A degraded image reduces the driver's view behind the vehicle and increases crash risk. Ford recalled about 13,119 Continentals under campaign 22S51 (NHTSA 22V644).",
+        "solution": "This is covered under safety recall 22S51 / NHTSA 22V644 — dealers replace the surround-view camera free of charge. Verify the recall is still open via VIN lookup at the NHTSA website or owner.lincoln.com.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Backup camera image looks foggy or cloudy",
+          "Hazy or milky rearview display",
+          "Surround-view image quality degrades over time"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.consumerreports.org/cars/car-recalls-defects/ford-super-duty-trucks-lincoln-continental-sedans-recalled-a2043313121/",
+            "type": "recall",
+            "title": "Ford Super Duty Trucks and Lincoln Continental Sedans Recalled for Surround View Camera Problem — Consumer Reports"
+          },
+          {
+            "url": "https://ford.oemdtc.com/10524/22s51-rear-view-camera-replacement-due-to-a-foggy-image-2017-2020-ford-super-duty-lincoln-continental/",
+            "type": "recall",
+            "title": "22S51 — Rear View Camera Replacement Due To A Foggy Image — 2017-2020 Ford Super Duty & Lincoln Continental"
+          },
+          {
+            "url": "https://www.kbb.com/car-news/recall-alert-ford-super-duty-lincoln-continental/",
+            "type": "recall",
+            "title": "Recall Alert: Ford Super Duty, Lincoln Continental Backup Cameras — Kelley Blue Book"
+          },
+          {
+            "url": "https://static.nhtsa.gov/odi/rcl/2022/RCLRPT-22V644-5710.PDF",
+            "type": "nhtsa",
+            "title": "NHTSA Part 573 Safety Recall Report 22V-644 (official filing)"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-11",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "beforeSha256": "8cfeee11b8d979899e2e86db80b351ea07b45058629af91e60f2905b594529ac",
+      "proposal": {
+        "make": "Lincoln",
+        "model": "Continental",
+        "years": [
+          2017,
+          2018,
+          2019,
+          2020
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Foggy / cloudy 360-degree rearview camera image",
+        "description": "On Continentals equipped with the 360-degree surround-view camera, the anti-reflective coating on an inner camera lens can crack and degrade from UV exposure, making the rearview/surround image appear foggy or cloudy. A degraded image reduces the driver's view behind the vehicle and increases crash risk. Ford recalled about 13,119 Continentals under campaign 22S51 (NHTSA 22V644).",
+        "solution": "This is covered under safety recall 22S51 / NHTSA 22V644 — dealers replace the surround-view camera free of charge. Verify the recall is still open via VIN lookup at the NHTSA website or owner.lincoln.com.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Backup camera image looks foggy or cloudy",
+          "Hazy or milky rearview display",
+          "Surround-view image quality degrades over time"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.consumerreports.org/cars/car-recalls-defects/ford-super-duty-trucks-lincoln-continental-sedans-recalled-a2043313121/",
+            "type": "recall",
+            "title": "Ford Super Duty Trucks and Lincoln Continental Sedans Recalled for Surround View Camera Problem — Consumer Reports"
+          },
+          {
+            "url": "https://ford.oemdtc.com/10524/22s51-rear-view-camera-replacement-due-to-a-foggy-image-2017-2020-ford-super-duty-lincoln-continental/",
+            "type": "recall",
+            "title": "22S51 — Rear View Camera Replacement Due To A Foggy Image — 2017-2020 Ford Super Duty & Lincoln Continental"
+          },
+          {
+            "url": "https://www.kbb.com/car-news/recall-alert-ford-super-duty-lincoln-continental/",
+            "type": "recall",
+            "title": "Recall Alert: Ford Super Duty, Lincoln Continental Backup Cameras — Kelley Blue Book"
+          },
+          {
+            "url": "https://static.nhtsa.gov/odi/rcl/2022/RCLRPT-22V644-5710.PDF",
+            "type": "nhtsa",
+            "title": "NHTSA Part 573 Safety Recall Report 22V-644 (official filing)"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-11",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposalSha256": "8cfeee11b8d979899e2e86db80b351ea07b45058629af91e60f2905b594529ac",
+      "changedFields": []
+    },
+    {
+      "id": "lincoln-continental-parasitic-battery-drain-repeated-dead-battery",
+      "action": "retain_indexed_identity_and_targeted_accuracy_cleanup_pending_source",
+      "commerceDecision": "dealer-or-diagnostic-remedy-no-universal-retail-part",
+      "evidence": [
+        "Complete model-name inventory: 674 exact Continental communications and 93 exact recall rows across 50 campaigns were replayed, including historic generations.",
+        "Visual review of SSM 50804 proves third-party app data calls can keep the network active on 2017-2020 Continentals.",
+        "It does not prove the former seat-module, switch, modem-frequency or repeated-battery claims.",
+        "No search-style commerce or universal retail-part recommendation is introduced."
+      ],
+      "before": {
+        "make": "Lincoln",
+        "model": "Continental",
+        "years": [
+          2017,
+          2018,
+          2019,
+          2020
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Parasitic battery drain / repeated dead battery",
+        "description": "Owners report the 12V battery going dead from a parasitic draw, sometimes requiring multiple battery replacements before the real cause is found. Diagnoses have traced the drain to modules that fail to sleep — commonly the driver's seat module, but also door/liftgate switches and the telematics (modem) unit keeping the network awake with the key off. The result is a no-start after the car sits.",
+        "solution": "Have a shop perform a parasitic-draw test (key-off current draw) and isolate the offending module by pulling fuses/disconnecting modules one at a time. Replace the faulty module (driver's seat module is a frequent culprit) and update software where applicable; a healthy battery and clean grounds should be confirmed first.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Dead battery after car sits overnight or a few days",
+          "Repeated battery replacements",
+          "No-start / clicking when cranking",
+          "Random interior lights or alarm activating"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://lincolnforums.com/forums/threads/2017-continental-reserve-dead-battery-parasitic-draw.46431/",
+            "type": "forum",
+            "title": "2017 Continental Reserve: Dead Battery / Parasitic Draw — Lincoln Forums"
+          },
+          {
+            "url": "https://lincolnforums.com/forums/threads/2018-lincoln-continental-parasitic-current-draw.41433/",
+            "type": "forum",
+            "title": "2018 Lincoln Continental Parasitic Current Draw — Lincoln Forums"
+          },
+          {
+            "url": "https://www.700r4transmissionhq.com/lincoln-continental-battery-draining/",
+            "type": "article",
+            "title": "Lincoln Continental Battery Draining: Causes + Diagnosis — Drivetrain Resource"
+          },
+          {
+            "url": "https://static.nhtsa.gov/odi/tsbs/2022/MC-10210816-0001.pdf",
+            "type": "tsb",
+            "title": "SSM 50726 — 2017-2021 Vehicles with Telematics Control Unit (TCU), incl. 2018-2019 Continental — NHTSA"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-11",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "beforeSha256": "6e4a150ad062b705f3398016f8b24bac414df5f7c24e11986434b13e15be69e9",
+      "proposal": {
+        "make": "Lincoln",
+        "model": "Continental",
+        "years": [
+          2017,
+          2018,
+          2019,
+          2020
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Parasitic battery drain / repeated dead battery",
+        "description": "Ford SSM 50804 identifies one specific 12-volt battery-drain path for 2017-2020 Continentals: unaffiliated third-party phone applications can make excessive FordPass/LincolnWay vehicle-data calls and keep the vehicle network active. That source does not establish the page’s former claim that the driver-seat module is a frequent culprit, that door or liftgate switches and the modem commonly share one fault, or that owners typically replace several batteries before diagnosis. A dead battery can have other causes that require measurement.",
+        "solution": "If a third-party app is being used to send vehicle commands, uninstall or disable it first as SSM 50804 directs, then confirm whether the drain stops. If the symptom persists, test battery condition and charging voltage, measure key-off draw after the vehicle reaches sleep state, and isolate the active circuit before replacing anything. Do not replace a seat module, telematics unit, switch, battery or other component from this page alone; no universal retail part is established.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://static.nhtsa.gov/odi/tsbs/2022/MC-10212957-0001.pdf",
+            "type": "tsb",
+            "title": "Ford SSM 50804: 12-Volt Battery Drain from Third-Party App Network Calls"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-09",
+        "contentUpdatedOn": "2026-08-09",
+        "contentUpdateSummary": "Removed unsupported frequent-module and repeated-battery claims and limited the page to Ford’s exact third-party-app network-wake condition plus measured diagnosis.",
+        "relatedIssueIds": []
+      },
+      "proposalSha256": "c5d119e83b38f498229f11799af9320d3142f352a329d048e2b51a7c6d1776d9",
+      "changedFields": [
+        "description",
+        "solution",
+        "symptoms",
+        "citations",
+        "humanApproved",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ]
+    },
+    {
+      "id": "lincoln-continental-soft-close-door-cinch-motor-failure",
+      "action": "retain_indexed_identity_and_targeted_accuracy_cleanup_pending_source",
+      "commerceDecision": "dealer-or-diagnostic-remedy-no-universal-retail-part",
+      "evidence": [
+        "Complete model-name inventory: 674 exact Continental communications and 93 exact recall rows across 50 campaigns were replayed, including historic generations.",
+        "Visual review of SSM 46052 proves the 25-cycle/low-battery/transport-mode no-repair boundaries.",
+        "Visual review of TSB 17-2143 limits latch replacement to early-build 2017 vehicles with B147F/B1483.",
+        "No search-style commerce or universal retail-part recommendation is introduced."
+      ],
+      "before": {
+        "make": "Lincoln",
+        "model": "Continental",
+        "years": [
+          2017,
+          2018,
+          2019
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "body",
+        "title": "Soft-close door cinch motor failure",
+        "description": "The power soft-close (cinching) doors can stop pulling themselves shut, leaving doors that won't fully cinch or that must be slammed. The cinch motor is integrated into the door latch control module and cannot be serviced separately, so a failure of the cinch function often coincides with the broader E-latch problems documented on the car. Multiple owners filed NHTSA complaints describing simultaneous exterior-latch and soft-close failures.",
+        "solution": "Scan for body/door module codes (these may not show on the dash). Because the cinch motor is part of the latch control module, the fix is replacement of the affected door's latch assembly/module at a dealer — frequently performed alongside the 19S03 door-latch recall work.",
+        "severity": "low",
+        "confidence": "high",
+        "symptoms": [
+          "Door no longer pulls itself shut (soft-close inoperative)",
+          "Door must be slammed to close",
+          "Soft-close works intermittently or only on some doors",
+          "Ajar warning with door appearing closed"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://lincolnforums.com/forums/threads/17-continental-exterior-door-latch-soft-close-door-failure.45103/",
+            "type": "forum",
+            "title": "17 Continental exterior door latch + soft close door failure — Lincoln Forums"
+          },
+          {
+            "url": "https://lincolnforums.com/forums/threads/soft-close-door.50706/",
+            "type": "forum",
+            "title": "Soft close door — Lincoln Forums"
+          },
+          {
+            "url": "https://repairpal.com/recall/19V077000",
+            "type": "recall",
+            "title": "Lincoln Continental Door Latch Recall 19V077000 (Ford 19S03) — RepairPal"
+          },
+          {
+            "url": "https://www.consumerreports.org/car-recalls-defects/lincoln-continental-recalled-because-some-doors-wont-latch/",
+            "type": "article",
+            "title": "Lincoln Continentals Are Recalled Because Some Doors Won't Latch — Consumer Reports"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-11",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "beforeSha256": "86fd1652293f91e6d16d51f8f6935c4f060edadf769e02a28259ddc7da893146",
+      "proposal": {
+        "make": "Lincoln",
+        "model": "Continental",
+        "years": [
+          2017,
+          2018,
+          2019
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "body",
+        "title": "Soft-close door cinch motor failure",
+        "description": "Ford documents both normal soft-close limits and one exact early-build fault. SSM 46052 says the 2017 system is limited to 25 cycles per ignition cycle and will not operate at low battery charge or in transportation mode; Ford says not to repair those normal conditions. TSB 17-2143 applies only to soft-close-equipped 2017 Continentals built on or before March 7, 2017 when a door will not open and B147F and/or B1483 is stored in the door-latch control module. It does not establish a general cinch-motor failure across 2018-2019, a separately replaceable motor, or routine co-repair under recall 19S03.",
+        "solution": "First rule out the 25-cycle, low-battery and transportation-mode operating limits. If an eligible early-build 2017 vehicle has a door that will not open, retrieve latch-module codes; TSB 17-2143 calls for replacement of the affected latch only when B147F and/or B1483 is present, otherwise normal Workshop Manual diagnosis applies. This is DTC-, build-date- and door-position-specific dealer service. Do not buy a cinch motor, latch or module from this page without VIN and code confirmation; no universal retail part is asserted.",
+        "severity": "low",
+        "confidence": "medium",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://static.nhtsa.gov/odi/tsbs/2016/MC-10109055-9999.pdf",
+            "type": "tsb",
+            "title": "Ford SSM 46052: Continental Soft-Close Door Normal Operating Limits"
+          },
+          {
+            "url": "https://static.nhtsa.gov/odi/tsbs/2017/MC-10115948-9999.pdf",
+            "type": "tsb",
+            "title": "Ford TSB 17-2143: 2017 Continental Soft-Close Door B147F/B1483"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-09",
+        "contentUpdatedOn": "2026-08-09",
+        "contentUpdateSummary": "Separated normal soft-close limits from the exact B147F/B1483 early-build latch procedure and removed unsupported cross-year motor-failure claims.",
+        "relatedIssueIds": []
+      },
+      "proposalSha256": "7a1c2711a36c95e0ef65a9cb6a355608ad0ea731cf8893cc488ef1a23573c97e",
+      "changedFields": [
+        "description",
+        "solution",
+        "confidence",
+        "symptoms",
+        "citations",
+        "humanApproved",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ]
+    },
+    {
+      "id": "lincoln-continental-suicide-doors-recall",
+      "action": "retain_indexed_identity_and_targeted_accuracy_cleanup_pending_source",
+      "commerceDecision": "dealer-or-diagnostic-remedy-no-universal-retail-part",
+      "evidence": [
+        "Complete model-name inventory: 674 exact Continental communications and 93 exact recall rows across 50 campaigns were replayed, including historic generations.",
+        "Visual review of recall 19S03 Supplement 5 proves VIN/build eligibility and does not create a Coach Door trim-level entitlement.",
+        "This page duplicates the same campaign as the e-latch URL and remains indexed pending review.",
+        "No search-style commerce or universal retail-part recommendation is introduced."
+      ],
+      "before": {
+        "make": "Lincoln",
+        "model": "Continental",
+        "years": [
+          2017,
+          2018,
+          2019
+        ],
+        "trims": [
+          "Premiere",
+          "Select",
+          "Reserve",
+          "Black Label",
+          "30H",
+          "80th Anniversary"
+        ],
+        "engines": [
+          "all"
+        ],
+        "category": "safety",
+        "title": "Continental Door Latch Recall (NHTSA 19V-077 / Ford 19S03) — Affects Coach Doors Too",
+        "description": "NHTSA recall 19V-077 (Ford reference 19S03) covers ~27,000 2017-2019 Lincoln Continentals built Nov 30 2015 - Nov 14 2018 at Ford's Flat Rock plant. Silicon contamination causes the electronic door-latch pawl motor to work intermittently or fail, which can lead to a door that will not close, a persistent \"door ajar\" warning, or — worst case — a door opening while the vehicle is in motion. All four doors are affected. The rare Coach Door (rear-hinged) Edition variants are covered as a subset of the same recall.",
+        "solution": "Check VIN at NHTSA recalls lookup (19V-077). Free dealer remedy: replacement of latch assemblies on all four doors. Until repaired, treat every door warning seriously — do not transport passengers if rear doors will not securely latch. Recall began March 2019.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "rear door opens unexpectedly",
+          "latch warning message"
+        ],
+        "affectedSystems": [
+          "door latch"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 0,
+        "typicalMileageLow": 0,
+        "typicalMileageHigh": 999999,
+        "citations": [],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "beforeSha256": "930d88f3b88db9c5b0037627765440a7ceac9e1fd95027af4223e17da7f67b3c",
+      "proposal": {
+        "make": "Lincoln",
+        "model": "Continental",
+        "years": [
+          2017,
+          2018,
+          2019
+        ],
+        "trims": [
+          "Premiere",
+          "Select",
+          "Reserve",
+          "Black Label",
+          "30H",
+          "80th Anniversary"
+        ],
+        "engines": [
+          "all"
+        ],
+        "category": "safety",
+        "title": "Continental Door Latch Recall (NHTSA 19V-077 / Ford 19S03) — Affects Coach Doors Too",
+        "description": "Despite the frozen Coach Door wording in this page title, Ford safety recall 19S03/NHTSA 19V077 is defined by VIN and build population: certain 2017-2019 Continentals built at Flat Rock from November 30, 2015 through November 14, 2018. The electronic door-latch pawl motor may become inoperative, leaving a door unable to close or not fully engaged and at risk of opening while driving. The reviewed recall document does not grant eligibility by trim name, 80th Anniversary designation or door-hinge arrangement; owners must verify the VIN.",
+        "solution": "Check the VIN for open recall 19S03/19V077. The free dealer remedy replaces the latches on all four doors and performs the required functional checks. Do not transport passengers when a door will not latch or while a door-ajar/fault warning remains unresolved. Do not buy a latch, pawl motor, control module or other part from this page because recall eligibility and the no-charge remedy are VIN-specific.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://static.nhtsa.gov/odi/rcl/2019/RCMN-19V077-7623.pdf",
+            "type": "recall",
+            "title": "Ford Safety Recall 19S03 Supplement 5: Continental Door Latch Replacement"
+          },
+          {
+            "url": "https://www.nhtsa.gov/recalls",
+            "type": "nhtsa",
+            "title": "NHTSA VIN-Specific Recall Lookup"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-09",
+        "contentUpdatedOn": "2026-08-09",
+        "contentUpdateSummary": "Preserved the indexed URL while replacing universal Coach Door applicability with the exact VIN/build-scoped 19S03 recall boundary.",
+        "relatedIssueIds": []
+      },
+      "proposalSha256": "0526cbbe4e2c55069ef8aad46afe1a103eea5d48668b9cbde9f8c2139c69a3a1",
+      "changedFields": [
+        "description",
+        "solution",
+        "symptoms",
+        "affectedSystems",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "typicalMileageLow",
+        "typicalMileageHigh",
+        "citations",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ]
+    }
+  ]
+}

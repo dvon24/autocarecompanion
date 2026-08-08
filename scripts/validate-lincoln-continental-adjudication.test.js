@@ -1,0 +1,21 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
+const fs = require('node:fs');
+const test = require('node:test');
+const assert = require('node:assert/strict');
+const { BLOCKER_IDS, DUPLICATE_RECALL_IDS, OUTPUT, SNAPSHOT } = require('./build-lincoln-continental-adjudication');
+const { hashValue } = require('./lincoln-adjudication-utils');
+const { validatePacket } = require('./validate-lincoln-continental-adjudication');
+const packet = JSON.parse(fs.readFileSync(OUTPUT, 'utf8'));
+const snapshot = JSON.parse(fs.readFileSync(SNAPSHOT, 'utf8'));
+function clone(value) { return JSON.parse(JSON.stringify(value)); }
+function rehash(row) { row.proposalSha256 = hashValue(row.proposal); }
+
+test('Continental packet passes the complete six-page safety contract', () => assert.deepEqual(validatePacket(packet, snapshot), []));
+test('validator rejects missing, duplicate, and unknown pages', () => { const a = clone(packet); a.rows.pop(); assert.ok(validatePacket(a, snapshot).length); const b = clone(packet); b.rows[0] = clone(b.rows[1]); assert.ok(validatePacket(b, snapshot).length); });
+test('validator rejects identity, fitment, severity, relation and archive drift', () => { for (const [field, value] of [['title', 'Changed title'], ['years', [2017]], ['trims', ['Reserve']], ['severity', 'critical'], ['relatedIssueIds', ['other']], ['status', 'archived']]) { const p = clone(packet); const row = p.rows.find((item) => BLOCKER_IDS.includes(item.id)); row.proposal[field] = value; rehash(row); assert.ok(validatePacket(p, snapshot).some((error) => error.includes(field) || error.includes('severity') || error.includes('archived'))); } });
+test('validator rejects mutation to the clean camera row', () => { const p = clone(packet); const row = p.rows.find((item) => !BLOCKER_IDS.includes(item.id)); row.proposal.description += ' drift'; rehash(row); assert.ok(validatePacket(p, snapshot).some((error) => error.includes('keep row'))); });
+test('validator rejects costly adaptive-steering replacement advice', () => { const p = clone(packet); const row = p.rows.find((item) => item.id.includes('adaptive-steering')); row.proposal.description = 'The wheel is frequently replaced for $5,000.'; row.proposal.solution = 'Buy a steering wheel.'; rehash(row); assert.ok(validatePacket(p, snapshot).some((error) => error.includes('adaptive-steering') || error.includes('commerce'))); });
+test('validator rejects unsupported battery-module prescriptions', () => { const p = clone(packet); const row = p.rows.find((item) => item.id.includes('parasitic-battery')); row.proposal.description = 'The seat module is a frequent culprit.'; row.proposal.solution = 'Replace the faulty module.'; rehash(row); assert.ok(validatePacket(p, snapshot).some((error) => error.includes('battery') || error.includes('commerce'))); });
+test('validator rejects loss of soft-close build, code and normal-operation boundaries', () => { const p = clone(packet); const row = p.rows.find((item) => item.id.includes('soft-close-door')); row.proposal.description = 'The cinch motors fail on all 2017-2019 cars.'; rehash(row); assert.ok(validatePacket(p, snapshot).some((error) => error.includes('soft-close'))); });
+test('validator rejects deleting the duplicate-identity hold', () => { const p = clone(packet); p.observations = p.observations.filter((item) => item.code !== 'continental-door-recall-duplicate-identity-hold'); assert.ok(validatePacket(p, snapshot).some((error) => error.includes('duplicate recall'))); const q = clone(packet); q.observations.find((item) => item.code === 'continental-door-recall-duplicate-identity-hold').recordIds = [DUPLICATE_RECALL_IDS[0]]; assert.ok(validatePacket(q, snapshot).some((error) => error.includes('duplicate recall'))); });
+test('validator rejects fake owner social proof and search-style commerce', () => { const p = clone(packet); const row = p.rows.find((item) => BLOCKER_IDS.includes(item.id)); row.proposal.reportCount = 99; row.proposal.solution += ' 99+ owners have reported this.'; row.proposal.citations.push({ type: 'manual', title: 'Search', url: 'https://example.com/search?q=part' }); rehash(row); const errors = validatePacket(p, snapshot); assert.ok(errors.some((error) => error.includes('social proof'))); assert.ok(errors.some((error) => error.includes('search-style'))); });
