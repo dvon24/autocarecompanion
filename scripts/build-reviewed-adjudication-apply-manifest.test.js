@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-require-imports */
 const assert = require('node:assert/strict');
 const test = require('node:test');
-const { buildReviewedAfterState } = require('./build-reviewed-adjudication-apply-manifest');
+const { actionSets, buildReviewedAfterState } = require('./build-reviewed-adjudication-apply-manifest');
 
 function fixture() {
   const current = {
@@ -61,4 +61,22 @@ test('rejects retail commerce in a reviewed no-commerce adjudication', () => {
     buyLinks: [{ vendor: 'Amazon', url: 'https://www.amazon.com/dp/B000000000' }],
   }];
   assert.throws(() => buildReviewedAfterState(row, current), /must remain no-commerce/);
+});
+
+test('requires pending cleanup actions to be explicitly classified as no-ops', () => {
+  const { applyActions, holdActions } = actionSets([
+    '--hold-actions',
+    'targeted_safety_cleanup_pending_source,remove_false_citation_and_search_commerce_pending_source',
+  ]);
+  assert.deepEqual([...applyActions], ['rewrite_same_identity']);
+  assert.ok(holdActions.has('keep_published_pending_source'));
+  assert.ok(holdActions.has('targeted_safety_cleanup_pending_source'));
+  assert.ok(holdActions.has('remove_false_citation_and_search_commerce_pending_source'));
+});
+
+test('rejects an action classified as both apply and hold', () => {
+  assert.throws(
+    () => actionSets(['--apply-actions', 'rewrite_same_identity', '--hold-actions', 'rewrite_same_identity']),
+    /both apply and hold/,
+  );
 });

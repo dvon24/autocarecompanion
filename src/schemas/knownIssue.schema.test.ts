@@ -10,3 +10,12 @@ test('accepts an official manufacturer citation', () => {
   });
   assert.equal(result.success, true);
 });
+
+test('accepts an official NHTSA investigation citation', () => {
+  const result = citationSchema.safeParse({
+    type: 'investigation',
+    title: 'NHTSA Preliminary Evaluation PE25004',
+    url: 'https://static.nhtsa.gov/odi/inv/2025/INOA-PE25004-11072.pdf',
+  });
+  assert.equal(result.success, true);
+});

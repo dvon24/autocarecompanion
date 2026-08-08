@@ -209,6 +209,16 @@ test('a complete changed manifest validates', () => {
   assert.deepEqual(validateManifest(changedManifest()), []);
 });
 
+test('a full-record manifest accepts an official investigation citation', () => {
+  const manifest = fullRecordManifest();
+  manifest.issues[0].after.citations = [{
+    type: 'investigation',
+    title: 'NHTSA Preliminary Evaluation PE25004',
+    url: 'https://static.nhtsa.gov/odi/inv/2025/INOA-PE25004-11072.pdf',
+  }];
+  assert.deepEqual(validateManifest(manifest), []);
+});
+
 test('manifest rejects a search URL masquerading as a product', () => {
   const manifest = changedManifest();
   manifest.issues[0].after.fixParts[0].buyLinks[0].url = 'https://www.ebay.com/sch/i.html?_nkw=06H121026';

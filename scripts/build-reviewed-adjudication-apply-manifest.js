@@ -36,6 +36,17 @@ const PROJECT_ROOT = path.resolve(__dirname, '..');
 const IDENTITY_FIELDS = new Set(['make', 'model', 'title', 'category', 'status']);
 const DEFAULT_HOLD_ACTIONS = new Set(['keep_published_pending_source', 'hold', 'keep']);
 
+function actionSets(args) {
+  const applyActions = new Set((argValue(args, '--apply-actions', false) || 'rewrite_same_identity').split(',').map((value) => value.trim()).filter(Boolean));
+  const holdActions = new Set([
+    ...DEFAULT_HOLD_ACTIONS,
+    ...(argValue(args, '--hold-actions', false) || '').split(',').map((value) => value.trim()).filter(Boolean),
+  ]);
+  const overlaps = [...applyActions].filter((action) => holdActions.has(action));
+  if (overlaps.length) throw new Error(`actions cannot be both apply and hold: ${overlaps.join(', ')}`);
+  return { applyActions, holdActions };
+}
+
 function argValue(args, flag, required = true) {
   const index = args.indexOf(flag);
   const value = index >= 0 ? args[index + 1] : undefined;
@@ -123,7 +134,7 @@ async function main() {
   const expectedTotal = Number(argValue(args, '--expected-total'));
   const expectedWrites = Number(argValue(args, '--expected-writes'));
   const reviewDate = argValue(args, '--review-date', false) || new Date().toISOString().slice(0, 10);
-  const applyActions = new Set((argValue(args, '--apply-actions', false) || 'rewrite_same_identity').split(',').map((v) => v.trim()).filter(Boolean));
+  const { applyActions, holdActions } = actionSets(args);
 
   git(['rev-parse', '--verify', sourceRef]);
   const files = packetFiles(sourceRef, slug);
@@ -145,7 +156,7 @@ async function main() {
       if (stableHash(row.proposal) !== row.proposalSha256) throw new Error(`${row.id}: proposalSha256 mismatch`);
       const actualChanged = changedFields(row.before, row.proposal);
       assertEqual(`${row.id}: changedFields`, actualChanged, row.changedFields || []);
-      if (!applyActions.has(row.action) && !DEFAULT_HOLD_ACTIONS.has(row.action)) {
+      if (!applyActions.has(row.action) && !holdActions.has(row.action)) {
         throw new Error(`${row.id}: unclassified action ${row.action}`);
       }
       rows.push({ ...row, packetFile: file });
@@ -236,4 +247,4 @@ if (require.main === module) {
   });
 }
 
-module.exports = { buildReviewedAfterState, changedFields, stableHash };
+module.exports = { actionSets, buildReviewedAfterState, changedFields, stableHash };
