@@ -1,0 +1,3690 @@
+{
+  "schemaVersion": 1,
+  "status": "proposal-only",
+  "auditStage": "model-primary-source-adjudication",
+  "requiresIndependentApproval": true,
+  "generatedOn": "2026-08-08",
+  "make": "Kia",
+  "model": "K5",
+  "completionStatement": "All 24 frozen Kia K5 records are adjudicated against 197 official manufacturer communications and the complete recall inventory. Three exact identities receive bounded no-retail rewrites, three known placeholder citations/search-commerce sets receive explicit removal proposals, and eighteen unresolved rows remain byte-for-byte holds.",
+  "applicationGate": {
+    "status": "blocked",
+    "blockerRecordIds": [
+      "kia-k5-adas-calibration-fault-2021",
+      "kia-k5-battery-drain-no-start-after-sitting-telematics-module-sleep-issue",
+      "kia-k5-brake-booster-vacuum-pump-noise-and-reduced-brake-assist-1-6t",
+      "kia-k5-door-handle-lock-actuator-failure-door-won-t-open-or-won-t-lock-unlock",
+      "kia-k5-electronic-parking-brake-epb-warning-auto-hold-malfunction",
+      "kia-k5-forward-collision-avoidance-assist-fca-phantom-braking-events",
+      "kia-k5-front-suspension-strut-mount-bearing-noise-creak-pop-while-turning",
+      "kia-k5-heated-and-ventilated-seat-malfunction-element-failure-or-fan-noise",
+      "kia-k5-hvac-blower-motor-noise-failure-squeal-rattle-intermittent-fan",
+      "kia-k5-infotainment-blackout-2021",
+      "kia-k5-paint-chipping-and-clear-coat-peeling-hood-and-roof-panel",
+      "kia-k5-panoramic-sunroof-rattle-2021",
+      "kia-k5-rear-wheel-bearing-premature-failure-and-humming-noise",
+      "kia-k5-smartstream-g2-5-gdi-engine-piston-ring-oil-consumption-issue",
+      "kia-k5-steering-column-intermediate-shaft-clunk-or-knock-low-speed-turns",
+      "kia-k5-theta-ii-knock-sensor-2021",
+      "kia-k5-transmission-control-unit-tcu-software-fault-causing-harsh-upshifts-or-limp-mode-8-speed-at",
+      "kia-k5-trunk-latch-sticking-2021",
+      "kia-k5-turbocharger-oil-feed-return-leak-1-6t-causing-burning-oil-smell-smoke",
+      "kia-k5-windshield-optical-rain-sensor-bracket-detachment-adas-auto-wipers-inoperative",
+      "kia-k5-wireless-phone-charging-pad-overheating-and-device-damage"
+    ],
+    "reason": "Twenty-one live K5 rows remain unsupported, scope-conflicted, component-conflicted or only partially corrected. Independent manual correction and approval are required before any K5 proposal is applied."
+  },
+  "safetyContract": [
+    "No production database write, cache purge, deployment, archive action, redirect, slug change, new issue or public-page change is authorized by this packet.",
+    "All 24 K5 IDs, titles, categories, indexed years and publication states remain unchanged.",
+    "Only exact same-identity official sources may authorize a rewrite; all unresolved records block application.",
+    "Known fabricated placeholder citations cannot remain hidden inside a byte-for-byte hold; their proposal explicitly removes the citation and search commerce while retaining the unresolved blocker.",
+    "A rewrite that names a retail-replaceable part requires a verified direct product link with exact part-number and fitment evidence; recall and internal-transmission remedies carry an explicit dealer-only/no-retail disposition.",
+    "New issue identities and the missing 2024 fuel-tank year expansion remain deferred until the remaining-make audit is complete."
+  ],
+  "source": {
+    "snapshotFile": "data/_kia-deeplink-snapshot-2026-08-06.json",
+    "snapshotSha256": "f0aa4c5c8ca72321ed9a0b54aa9455e84056b445cb31049545ea07a48748c76b",
+    "snapshotGeneratedAt": "2026-08-07T19:13:14.080Z",
+    "snapshotHash": "f8b4d0e206ea16a5a28546ef1db29b0c885b1a839069b486f07fb1a1759310bf",
+    "modelRecordCount": 24
+  },
+  "observations": [
+    {
+      "code": "k5-three-exact-identities-bounded",
+      "severity": "content-correction",
+      "recordIds": [
+        "kia-k5-dct-hesitation-2021",
+        "kia-k5-dct-oil-pump-failure",
+        "kia-k5-fuel-tank-expansion"
+      ],
+      "detail": "TRA100, 22V760/SC250 and 25V794/SC356 exactly support the DCT judder, DCT oil-pump and fuel-tank identities without retail commerce."
+    },
+    {
+      "code": "k5-three-placeholder-citations-explicitly-removed",
+      "severity": "critical-correction",
+      "recordIds": [
+        "kia-k5-infotainment-blackout-2021",
+        "kia-k5-panoramic-sunroof-rattle-2021",
+        "kia-k5-trunk-latch-sticking-2021"
+      ],
+      "detail": "The two YouTube citations use the generic example ID abcd1234efg and the sunroof Reddit URL uses placeholder xyz123. Their proposals remove those citations and all search commerce, but remain blockers."
+    },
+    {
+      "code": "k5-adjacent-bulletins-not-stretched",
+      "severity": "critical",
+      "recordIds": [
+        "kia-k5-battery-drain-no-start-after-sitting-telematics-module-sleep-issue",
+        "kia-k5-electronic-parking-brake-epb-warning-auto-hold-malfunction",
+        "kia-k5-heated-and-ventilated-seat-malfunction-element-failure-or-fan-noise",
+        "kia-k5-hvac-blower-motor-noise-failure-squeal-rattle-intermittent-fan",
+        "kia-k5-smartstream-g2-5-gdi-engine-piston-ring-oil-consumption-issue",
+        "kia-k5-steering-column-intermediate-shaft-clunk-or-knock-low-speed-turns",
+        "kia-k5-transmission-control-unit-tcu-software-fault-causing-harsh-upshifts-or-limp-mode-8-speed-at"
+      ],
+      "detail": "Rendered primary packages cover different components, narrow VIN/build populations or narrower years; none is stretched to validate the broader live page."
+    },
+    {
+      "code": "k5-theta-and-transmission-metadata-conflicts",
+      "severity": "critical",
+      "recordIds": [
+        "kia-k5-theta-ii-knock-sensor-2021",
+        "kia-k5-transmission-control-unit-tcu-software-fault-causing-harsh-upshifts-or-limp-mode-8-speed-at"
+      ],
+      "detail": "Official Kia material identifies the 2.5T K5 engine as Theta III and its transmission as an 8-speed DCT, contradicting the live Theta II and conventional-8AT claims."
+    },
+    {
+      "code": "k5-oil-pump-unrelated-audi-link-removed",
+      "severity": "deeplink-correction",
+      "recordIds": [
+        "kia-k5-dct-oil-pump-failure"
+      ],
+      "detail": "The oil-pump page incorrectly related to an Audi Q5 mechatronic page. The proposal retains only the exact Sorento DCT oil-pump sibling."
+    },
+    {
+      "code": "k5-seven-new-recall-identities-deferred",
+      "severity": "new-issues-deferred",
+      "recordIds": [],
+      "campaignNumbers": [
+        "21V164000",
+        "21V447000",
+        "21V519000",
+        "23V149000",
+        "25V351000",
+        "25V493000",
+        "26V046000"
+      ],
+      "detail": "Seven distinct K5 recall identities are not represented by the 24 frozen pages. They are recorded for the later additions phase rather than introduced during this audit."
+    },
+    {
+      "code": "k5-fuel-tank-2024-expansion-deferred",
+      "severity": "coverage-deferred",
+      "recordIds": [
+        "kia-k5-fuel-tank-expansion"
+      ],
+      "detail": "Recall 25V794 includes 2024 K5, while the frozen indexed year set ends at 2023. The rewrite preserves indexed years; adding 2024 requires a separately approved later coverage expansion."
+    },
+    {
+      "code": "all-k5-pages-preserved",
+      "severity": "seo-safety",
+      "recordIds": [
+        "kia-k5-adas-calibration-fault-2021",
+        "kia-k5-battery-drain-no-start-after-sitting-telematics-module-sleep-issue",
+        "kia-k5-brake-booster-vacuum-pump-noise-and-reduced-brake-assist-1-6t",
+        "kia-k5-dct-hesitation-2021",
+        "kia-k5-dct-oil-pump-failure",
+        "kia-k5-door-handle-lock-actuator-failure-door-won-t-open-or-won-t-lock-unlock",
+        "kia-k5-electronic-parking-brake-epb-warning-auto-hold-malfunction",
+        "kia-k5-forward-collision-avoidance-assist-fca-phantom-braking-events",
+        "kia-k5-front-suspension-strut-mount-bearing-noise-creak-pop-while-turning",
+        "kia-k5-fuel-tank-expansion",
+        "kia-k5-heated-and-ventilated-seat-malfunction-element-failure-or-fan-noise",
+        "kia-k5-hvac-blower-motor-noise-failure-squeal-rattle-intermittent-fan",
+        "kia-k5-infotainment-blackout-2021",
+        "kia-k5-paint-chipping-and-clear-coat-peeling-hood-and-roof-panel",
+        "kia-k5-panoramic-sunroof-rattle-2021",
+        "kia-k5-rear-wheel-bearing-premature-failure-and-humming-noise",
+        "kia-k5-smartstream-g2-5-gdi-engine-piston-ring-oil-consumption-issue",
+        "kia-k5-steering-column-intermediate-shaft-clunk-or-knock-low-speed-turns",
+        "kia-k5-theta-ii-knock-sensor-2021",
+        "kia-k5-transmission-control-unit-tcu-software-fault-causing-harsh-upshifts-or-limp-mode-8-speed-at",
+        "kia-k5-trunk-latch-sticking-2021",
+        "kia-k5-turbocharger-oil-feed-return-leak-1-6t-causing-burning-oil-smell-smoke",
+        "kia-k5-windshield-optical-rain-sensor-bracket-detachment-adas-auto-wipers-inoperative",
+        "kia-k5-wireless-phone-charging-pad-overheating-and-device-damage"
+      ],
+      "detail": "Every frozen K5 ID, title, category, indexed year set and publication state remains preserved; no redirect, archive, deletion or new public page is proposed."
+    }
+  ],
+  "pdfSources": {
+    "judder": {
+      "url": "https://static.nhtsa.gov/odi/tsbs/2022/MC-10206957-0001.pdf",
+      "sha256": "b896bd8c870ce6777bab22509d867c5dd8cfa2c49f1d6d1d23640b28a21674bd",
+      "visuallyInspectedPages": [
+        1,
+        4
+      ],
+      "markers": [
+        "2021MY~",
+        "K5 GT (DL3a)",
+        "2.5L T-GDI",
+        "Dual Clutch Assembly"
+      ]
+    },
+    "oilPump": {
+      "url": "https://static.nhtsa.gov/odi/rcl/2022/RCLRPT-22V760-3227.PDF",
+      "sha256": "64d2bb0ec43010f9e5ac1312234790c9d119ffe0ad2668f1198791f19aabea5b",
+      "visuallyInspectedPages": [
+        2,
+        3
+      ],
+      "markers": [
+        "2021-2023 Kia K5",
+        "electric oil pump",
+        "46220-2N510",
+        "replace the transmission"
+      ]
+    },
+    "fuelTank": {
+      "url": "https://static.nhtsa.gov/odi/rcl/2025/RCLRPT-25V794-5581.pdf",
+      "sha256": "bdede1d800da52e44b44af01f11406693bde297e952ba709c5d319a05ef4e325",
+      "visuallyInspectedPages": [
+        1,
+        2,
+        3
+      ],
+      "markers": [
+        "2021-2024 KIA K5",
+        "1.6L Turbocharged Gasoline Direct Injection",
+        "59133-2H000",
+        "replace the check valve"
+      ]
+    },
+    "radarAlignment": {
+      "url": "https://static.nhtsa.gov/odi/tsbs/2021/MC-10200525-0001.pdf",
+      "sha256": "dca820340f62a52e8d41257eee2d6b7105c5d6664bcfe0aeab1c235b514fdff7",
+      "visuallyInspectedPages": [
+        1
+      ],
+      "markers": [
+        "PS704",
+        "FRONT RADAR SENSOR MOUNTING",
+        "collision or other outside impact",
+        "Front Radar Sensor Alignment"
+      ]
+    },
+    "hecu": {
+      "url": "https://static.nhtsa.gov/odi/tsbs/2023/MC-10230494-0001.pdf",
+      "sha256": "354b0e3c428a3833ca8b5d5e518c982e8ee8779cc08f98390843baeb8cbfc075",
+      "visuallyInspectedPages": [
+        1
+      ],
+      "markers": [
+        "SC252",
+        "22-23MY",
+        "K5 (DL3a)",
+        "internal brake fluid leak"
+      ]
+    },
+    "sunroof": {
+      "url": "https://static.nhtsa.gov/odi/tsbs/2021/MC-10196858-0001.pdf",
+      "sha256": "5355e936db04c867b0375a02024fc3d18f0297636a4d170349b708ae8659dedf",
+      "visuallyInspectedPages": [
+        1
+      ],
+      "markers": [
+        "SA481",
+        "2021MY",
+        "March 16, 2021 through April 22, 2021",
+        "left front bolt"
+      ]
+    },
+    "blower": {
+      "url": "https://static.nhtsa.gov/odi/tsbs/2024/MC-11006548-0001.pdf",
+      "sha256": "a15d0313a7238b3b080ac019d258496f6c890ef5357540dcab1c2c54583ac5b4",
+      "visuallyInspectedPages": [
+        1
+      ],
+      "markers": [
+        "SC307",
+        "2021-2022MY",
+        "7 high-heat states",
+        "40-ampere fuse"
+      ]
+    },
+    "heatedSeat": {
+      "url": "https://static.nhtsa.gov/odi/tsbs/2020/MC-10180655-0001.pdf",
+      "sha256": "e5795e444cb6977133b97c4cd5ba26cfcd1ce1d775154f3cc6a9287efd8cf388",
+      "visuallyInspectedPages": [
+        1
+      ],
+      "markers": [
+        "SA434",
+        "2021MY",
+        "front passenger seat harness",
+        "March 27, 2020 through June 19, 2020"
+      ]
+    },
+    "oilConsumption": {
+      "url": "https://static.nhtsa.gov/odi/tsbs/2025/MC-11017109-0001.pdf",
+      "sha256": "dc3cebacc706a0ed2ac45d8a40bc947c14d0bc94d2efdac915a84ac1c541c305",
+      "visuallyInspectedPages": [
+        1,
+        9
+      ],
+      "markers": [
+        "ENG 222",
+        "EXCESSIVE OIL CONSUMPTION",
+        "K5 (DL3a)",
+        "2022"
+      ]
+    },
+    "steeringBearing": {
+      "url": "https://static.nhtsa.gov/odi/tsbs/2021/MC-10202227-0001.pdf",
+      "sha256": "b019ad71ed57fff0d03a9d7ad50c17114de2de758dcb0165b29394f9b0ead28c",
+      "visuallyInspectedPages": [
+        1
+      ],
+      "markers": [
+        "CHA 111",
+        "K5",
+        "DL3a",
+        "2021",
+        "worm shaft small bearing"
+      ]
+    },
+    "smartKeyBattery": {
+      "url": "https://static.nhtsa.gov/odi/tsbs/2022/MC-10222115-0001.pdf",
+      "sha256": "fc418284055c9a7ca00441509987653ac585f55e2de75ad5c406e44af44d0ff0",
+      "visuallyInspectedPages": [
+        1
+      ],
+      "markers": [
+        "SMART KEY BATTERY DRAIN",
+        "2022MY",
+        "replace the batteries on both",
+        "key fobs"
+      ]
+    },
+    "dctSoftware": {
+      "url": "https://static.nhtsa.gov/odi/tsbs/2023/MC-10232939-0001.pdf",
+      "sha256": "1ed9baf463ab9eef50e112b0e883abfc0f90128b36144d47bb75b84f6e90b4aa",
+      "visuallyInspectedPages": [
+        1
+      ],
+      "markers": [
+        "SA526",
+        "2022-2023MY",
+        "8-Speed DCT",
+        "P086800"
+      ]
+    },
+    "eopLogic": {
+      "url": "https://static.nhtsa.gov/odi/tsbs/2024/MC-11010699-0001.pdf",
+      "sha256": "7c4a43c0aa4fcc378c7459acfa74307eb0a3876d9afeebdafad049c41a389c78",
+      "visuallyInspectedPages": [
+        1,
+        3
+      ],
+      "markers": [
+        "TRA 111",
+        "2021-2023 MY",
+        "Theta III",
+        "P1C2D03"
+      ]
+    }
+  },
+  "campaigns": {
+    "urls": {
+      "oilPump": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=22V760000",
+      "fuelTank": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=25V794000"
+    },
+    "expectedModelYears": {
+      "oilPump": [
+        "K5|2021",
+        "K5|2022",
+        "K5|2023"
+      ],
+      "fuelTank": [
+        "K5|2021",
+        "K5|2022",
+        "K5|2023",
+        "K5|2024"
+      ]
+    }
+  },
+  "manufacturerCommunicationsDataset": {
+    "files": {
+      "2020-2024": {
+        "name": "MFR_COMMS_RECEIVED_2020-2024.csv",
+        "sha256": "3b3ca3d690e33386d1d315a0f966285ae8cccb99c45c2386ada164c5e925c3cf",
+        "expectedK5Rows": 143
+      },
+      "2025-2026": {
+        "name": "MFR_COMMS_RECEIVED_2025-2026.csv",
+        "sha256": "419ebda2f1c1bf22e2b0862858d61699c25e61d73842f9031e796f1fafefba4c",
+        "expectedK5Rows": 54
+      }
+    },
+    "totalExpectedK5Rows": 197,
+    "requiredDocumentIds": [
+      "10180655",
+      "10196858",
+      "10200525",
+      "10202227",
+      "10206957",
+      "10222115",
+      "10230494",
+      "10232939",
+      "11006548",
+      "11010699",
+      "11014912",
+      "11017109"
+    ]
+  },
+  "flatRecallDataset": {
+    "source": {
+      "url": "https://static.nhtsa.gov/odi/ffdd/rcl/FLAT_RCL_POST_2010.zip",
+      "retrievedOn": "2026-08-07",
+      "archiveSha256": "59f15be5de0bde8768606fb03b1135e7fca5bc2c56041c7cfdac9b0d137e6a0f",
+      "extractedFile": "FLAT_RCL_POST_2010.txt",
+      "extractedSha256": "4803a7f298f1d850736fe55830f4d31b004577424cb6429988c5864786f76a70"
+    },
+    "expectedInventory": {
+      "2021": [
+        "21V164000",
+        "21V447000",
+        "21V519000",
+        "22V760000",
+        "23V149000",
+        "25V794000"
+      ],
+      "2022": [
+        "21V447000",
+        "21V519000",
+        "22V760000",
+        "23V149000",
+        "25V794000"
+      ],
+      "2023": [
+        "22V760000",
+        "23V149000",
+        "25V493000",
+        "25V794000"
+      ],
+      "2024": [
+        "25V493000",
+        "25V794000"
+      ],
+      "2025": [
+        "25V351000",
+        "25V493000"
+      ],
+      "2026": [
+        "26V046000"
+      ]
+    }
+  },
+  "deferredCampaigns": [
+    "21V164000",
+    "21V447000",
+    "21V519000",
+    "23V149000",
+    "25V351000",
+    "25V493000",
+    "26V046000"
+  ],
+  "summary": {
+    "rewrite_same_identity": 3,
+    "remove_false_citation_and_search_commerce_pending_source": 3,
+    "keep_published_pending_source": 18,
+    "total": 24
+  },
+  "rows": [
+    {
+      "id": "kia-k5-adas-calibration-fault-2021",
+      "model": "K5",
+      "action": "keep_published_pending_source",
+      "reason": "Rendered PS704 supports front-radar mounting inspection after a collision or outside impact and alignment when required. It does not establish the page's broad 2021-2025 frequency claims, windshield-replacement mechanism, camera contamination theory, costs or replacement recommendation. The secondary-only row remains frozen and blocks application.",
+      "identityRule": "No source may change an indexed page identity. A different model, component, year boundary or failure outcome requires a hold or a later separately approved identity change.",
+      "commerceDecision": "unchanged-commerce-pending-exact-source-and-fitment",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-source-scope-or-component-conflict",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2021/MC-10200525-0001.pdf",
+          "sha256": "dca820340f62a52e8d41257eee2d6b7105c5d6664bcfe0aeab1c235b514fdff7",
+          "visuallyInspectedPages": [
+            1
+          ],
+          "verifiedOn": "2026-08-08",
+          "observation": "Rendered PS704 supports front-radar mounting inspection after a collision or outside impact and alignment when required. It does not establish the page's broad 2021-2025 frequency claims, windshield-replacement mechanism, camera contamination theory, costs or replacement recommendation. The secondary-only row remains frozen and blocks application."
+        }
+      ],
+      "beforeSha256": "00611856691e29714fa621e47b0c0f5eaf53c10fc43a17b7efba2810e54174c7",
+      "proposalSha256": "00611856691e29714fa621e47b0c0f5eaf53c10fc43a17b7efba2810e54174c7",
+      "before": {
+        "make": "Kia",
+        "model": "K5",
+        "years": [
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "ADAS Sensor Calibration Faults (Lane Keep, Forward Collision)",
+        "description": "The Advanced Driver Assistance Systems on the K5 — including Lane Keep Assist, Forward Collision Avoidance, and Blind Spot Monitoring — intermittently throw calibration faults and disable themselves. The forward-facing camera behind the windshield and radar sensor in the front bumper are sensitive to windshield contamination, extreme temperatures, and minor front-end impacts. After a windshield replacement, the ADAS sensors require recalibration that many glass shops skip or perform incorrectly.",
+        "solution": "For intermittent faults in normal conditions: clean the windshield interior and exterior thoroughly around the camera area. Ensure the camera lens cover behind the rearview mirror is clean and unobstructed. A dealer scan and ADAS recalibration costs $200-$500. After windshield replacement, ALWAYS have the ADAS camera recalibrated at a Kia dealer — this requires specialized targets and equipment. If faults persist, the camera module or radar sensor may need replacement ($500-$1,500).",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Lane Keep Assist warning light and system disabled",
+          "Forward Collision warning malfunction message",
+          "Blind Spot Monitor not functioning",
+          "Multiple ADAS warning lights on dashboard",
+          "Systems disabling in rain, fog, or extreme cold",
+          "Phantom braking from Forward Collision system"
+        ],
+        "affectedSystems": [
+          "ADAS",
+          "Electrical",
+          "Safety Systems"
+        ],
+        "dtcCodes": [
+          "C1611",
+          "C1559",
+          "C1564",
+          "U3000"
+        ],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 1500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.reddit.com/r/MechanicAdvice/comments/mx9y9z/kia_k5_lane_keep_assist_and_forward_collision_faults/",
+            "type": "forum",
+            "title": "Reddit r/MechanicAdvice - Kia K5 Lane Keep Assist and Forward Collision Calibration Faults"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "warning",
+            "content": "If you get your windshield replaced, INSIST on ADAS recalibration. The camera must be recalibrated to the new windshield or your safety systems will not function correctly. Budget $300-$500 for this.",
+            "upvotes": 0,
+            "needsReview": true
+          },
+          {
+            "type": "part",
+            "content": "Automotive relay replacement set for common relay failures",
+            "partName": "Automotive Relay 5-Pin 12V",
+            "partBrand": "Bosch",
+            "affiliateUrl": "https://www.amazon.com/s?k=Bosch%20Automotive%20Relay%205-Pin%2012V%20Kia%20K5&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Digital multimeter for diagnosing fuse, relay, and module electrical faults",
+            "partName": "Digital Multimeter",
+            "partBrand": "Innova",
+            "affiliateUrl": "https://www.amazon.com/s?k=Innova%20Digital%20Multimeter%20Kia%20K5&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "OEM-quality replacement sensor for accurate readings and proper system function",
+            "partName": "Replacement Sensor",
+            "partBrand": "Bosch",
+            "affiliateUrl": "https://www.amazon.com/s?k=Bosch%20Replacement%20Sensor%20Kia%20K5&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "hyundai-veloster-forward-collision-avoidance-driver-2019",
+          "kia-rio-forward-collision-avoidance-assist--2021"
+        ]
+      },
+      "proposal": {
+        "make": "Kia",
+        "model": "K5",
+        "years": [
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "ADAS Sensor Calibration Faults (Lane Keep, Forward Collision)",
+        "description": "The Advanced Driver Assistance Systems on the K5 — including Lane Keep Assist, Forward Collision Avoidance, and Blind Spot Monitoring — intermittently throw calibration faults and disable themselves. The forward-facing camera behind the windshield and radar sensor in the front bumper are sensitive to windshield contamination, extreme temperatures, and minor front-end impacts. After a windshield replacement, the ADAS sensors require recalibration that many glass shops skip or perform incorrectly.",
+        "solution": "For intermittent faults in normal conditions: clean the windshield interior and exterior thoroughly around the camera area. Ensure the camera lens cover behind the rearview mirror is clean and unobstructed. A dealer scan and ADAS recalibration costs $200-$500. After windshield replacement, ALWAYS have the ADAS camera recalibrated at a Kia dealer — this requires specialized targets and equipment. If faults persist, the camera module or radar sensor may need replacement ($500-$1,500).",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Lane Keep Assist warning light and system disabled",
+          "Forward Collision warning malfunction message",
+          "Blind Spot Monitor not functioning",
+          "Multiple ADAS warning lights on dashboard",
+          "Systems disabling in rain, fog, or extreme cold",
+          "Phantom braking from Forward Collision system"
+        ],
+        "affectedSystems": [
+          "ADAS",
+          "Electrical",
+          "Safety Systems"
+        ],
+        "dtcCodes": [
+          "C1611",
+          "C1559",
+          "C1564",
+          "U3000"
+        ],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 1500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.reddit.com/r/MechanicAdvice/comments/mx9y9z/kia_k5_lane_keep_assist_and_forward_collision_faults/",
+            "type": "forum",
+            "title": "Reddit r/MechanicAdvice - Kia K5 Lane Keep Assist and Forward Collision Calibration Faults"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "warning",
+            "content": "If you get your windshield replaced, INSIST on ADAS recalibration. The camera must be recalibrated to the new windshield or your safety systems will not function correctly. Budget $300-$500 for this.",
+            "upvotes": 0,
+            "needsReview": true
+          },
+          {
+            "type": "part",
+            "content": "Automotive relay replacement set for common relay failures",
+            "partName": "Automotive Relay 5-Pin 12V",
+            "partBrand": "Bosch",
+            "affiliateUrl": "https://www.amazon.com/s?k=Bosch%20Automotive%20Relay%205-Pin%2012V%20Kia%20K5&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Digital multimeter for diagnosing fuse, relay, and module electrical faults",
+            "partName": "Digital Multimeter",
+            "partBrand": "Innova",
+            "affiliateUrl": "https://www.amazon.com/s?k=Innova%20Digital%20Multimeter%20Kia%20K5&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "OEM-quality replacement sensor for accurate readings and proper system function",
+            "partName": "Replacement Sensor",
+            "partBrand": "Bosch",
+            "affiliateUrl": "https://www.amazon.com/s?k=Bosch%20Replacement%20Sensor%20Kia%20K5&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "hyundai-veloster-forward-collision-avoidance-driver-2019",
+          "kia-rio-forward-collision-avoidance-assist--2021"
+        ]
+      }
+    },
+    {
+      "id": "kia-k5-battery-drain-no-start-after-sitting-telematics-module-sleep-issue",
+      "model": "K5",
+      "action": "keep_published_pending_source",
+      "reason": "The exact K5 battery bulletin is for excessive discharge of the smart-key batteries, not the vehicle's 12V battery. No official K5 package in the complete 197-row inventory establishes a telematics or infotainment module failing to sleep across 2021-2023. The CarComplaints-only mechanism remains frozen and blocks application.",
+      "identityRule": "No source may change an indexed page identity. A different model, component, year boundary or failure outcome requires a hold or a later separately approved identity change.",
+      "commerceDecision": "unchanged-commerce-pending-exact-source-and-fitment",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-source-scope-or-component-conflict",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2022/MC-10222115-0001.pdf",
+          "sha256": "fc418284055c9a7ca00441509987653ac585f55e2de75ad5c406e44af44d0ff0",
+          "visuallyInspectedPages": [
+            1
+          ],
+          "verifiedOn": "2026-08-08",
+          "observation": "The exact K5 battery bulletin is for excessive discharge of the smart-key batteries, not the vehicle's 12V battery. No official K5 package in the complete 197-row inventory establishes a telematics or infotainment module failing to sleep across 2021-2023. The CarComplaints-only mechanism remains frozen and blocks application."
+        }
+      ],
+      "beforeSha256": "a7eec48bcf9b980d3eb9dc119645e577924baabbebc4bf1276e022bd610f07b7",
+      "proposalSha256": "a7eec48bcf9b980d3eb9dc119645e577924baabbebc4bf1276e022bd610f07b7",
+      "before": {
+        "make": "Kia",
+        "model": "K5",
+        "years": [
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Battery Drain / No-Start After Sitting (Telematics/Module Sleep Issue)",
+        "description": "NHTSA complaints and owner reports describe repeated dead 12V batteries and no-start conditions after the vehicle sits for 1–3 days. Reports often point to excessive parasitic draw from modules not entering sleep mode (commonly infotainment/telematics-related) or repeated wake-ups. Owners experience jump-start needs, battery replacements, and intermittent recurrence.",
+        "solution": "Perform parasitic draw testing with an ammeter and isolate the circuit causing draw; check for module wake events and apply Kia software updates where available. Replace the 12V battery if it has been deeply discharged multiple times, and repair/replace the offending module (often telematics/infotainment-related) if it fails to sleep. Verify current draw meets Kia specifications after repairs.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "No-crank/no-start after sitting overnight or a few days",
+          "Repeated jump-starts required",
+          "Battery warning or low-voltage behavior (dim lights, resets)",
+          "Intermittent recurrence after battery replacement"
+        ],
+        "affectedSystems": [
+          "electrical"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 180,
+        "estimatedCostHigh": 1200,
+        "typicalMileageLow": 1000,
+        "typicalMileageHigh": 40000,
+        "citations": [
+          {
+            "url": "https://www.carcomplaints.com/Kia/K5/",
+            "type": "owner-report",
+            "title": "CarComplaints — Kia K5 (aggregated owner complaints; includes electrical/battery-related reports)"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 160,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-04-19",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Kia",
+        "model": "K5",
+        "years": [
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Battery Drain / No-Start After Sitting (Telematics/Module Sleep Issue)",
+        "description": "NHTSA complaints and owner reports describe repeated dead 12V batteries and no-start conditions after the vehicle sits for 1–3 days. Reports often point to excessive parasitic draw from modules not entering sleep mode (commonly infotainment/telematics-related) or repeated wake-ups. Owners experience jump-start needs, battery replacements, and intermittent recurrence.",
+        "solution": "Perform parasitic draw testing with an ammeter and isolate the circuit causing draw; check for module wake events and apply Kia software updates where available. Replace the 12V battery if it has been deeply discharged multiple times, and repair/replace the offending module (often telematics/infotainment-related) if it fails to sleep. Verify current draw meets Kia specifications after repairs.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "No-crank/no-start after sitting overnight or a few days",
+          "Repeated jump-starts required",
+          "Battery warning or low-voltage behavior (dim lights, resets)",
+          "Intermittent recurrence after battery replacement"
+        ],
+        "affectedSystems": [
+          "electrical"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 180,
+        "estimatedCostHigh": 1200,
+        "typicalMileageLow": 1000,
+        "typicalMileageHigh": 40000,
+        "citations": [
+          {
+            "url": "https://www.carcomplaints.com/Kia/K5/",
+            "type": "owner-report",
+            "title": "CarComplaints — Kia K5 (aggregated owner complaints; includes electrical/battery-related reports)"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 160,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-04-19",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "kia-k5-brake-booster-vacuum-pump-noise-and-reduced-brake-assist-1-6t",
+      "model": "K5",
+      "action": "keep_published_pending_source",
+      "reason": "No exact official K5 package was found for the retained 2021-2024 electric vacuum-pump/reduced-brake-assist identity. The page has no citation and names unverified part 59100-L2000 plus safety-critical costs and replacement advice. It remains frozen and blocks application.",
+      "identityRule": "No source may change an indexed page identity. A different model, component, year boundary or failure outcome requires a hold or a later separately approved identity change.",
+      "commerceDecision": "unchanged-commerce-pending-exact-source-and-fitment",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "complete-official-inventory-no-exact-package",
+          "datasetRowsReviewed": 197,
+          "verifiedOn": "2026-08-08",
+          "observation": "No exact official K5 package was found for the retained 2021-2024 electric vacuum-pump/reduced-brake-assist identity. The page has no citation and names unverified part 59100-L2000 plus safety-critical costs and replacement advice. It remains frozen and blocks application."
+        }
+      ],
+      "beforeSha256": "8690bc5740c6da3f096ead5d0354c11ac85a21f9b91a98b2c4da3ebde36d0aa1",
+      "proposalSha256": "8690bc5740c6da3f096ead5d0354c11ac85a21f9b91a98b2c4da3ebde36d0aa1",
+      "before": {
+        "make": "Kia",
+        "model": "K5",
+        "years": [
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "brakes",
+        "title": "Brake Booster / Vacuum Pump Noise and Reduced Brake Assist (1.6T)",
+        "description": "On 1.6T turbocharged K5 variants, some owners and NHTSA complainants have reported a hissing sound from the brake booster area upon brake pedal application, accompanied by a noticeably harder brake pedal and reduced power assistance. The GDi turbocharged engine uses an electric vacuum pump to supplement braking assist; failures or leaks in the vacuum pump, vacuum check valve, or booster hose connection reduce available vacuum and compromise brake pedal feel and stopping distance. This has been flagged as a safety concern in NHTSA filings.",
+        "solution": "Inspection of the vacuum pump, vacuum reservoir, check valve, and all vacuum lines connecting to the brake booster is required. The electric vacuum pump (Kia/Mobis part number 59100-L2000 or per VIN) may require replacement if output is below specification. The vacuum check valve (a common failure point) is a lower-cost item at approximately $20–$50. Full vacuum pump replacement is $300–$700 parts and labor.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "Hissing sound when brake pedal is pressed",
+          "Hard or stiff brake pedal requiring significantly more force to stop",
+          "Longer stopping distances than normal",
+          "Brake warning light or low vacuum warning illumination",
+          "Brake pedal feel improving after engine warms up then worsening again"
+        ],
+        "affectedSystems": [
+          "brakes"
+        ],
+        "dtcCodes": [
+          "C1260",
+          "C1261"
+        ],
+        "estimatedCostLow": 50,
+        "estimatedCostHigh": 900,
+        "typicalMileageLow": 20000,
+        "typicalMileageHigh": 70000,
+        "citations": [],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 31,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-05-09",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Kia",
+        "model": "K5",
+        "years": [
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "brakes",
+        "title": "Brake Booster / Vacuum Pump Noise and Reduced Brake Assist (1.6T)",
+        "description": "On 1.6T turbocharged K5 variants, some owners and NHTSA complainants have reported a hissing sound from the brake booster area upon brake pedal application, accompanied by a noticeably harder brake pedal and reduced power assistance. The GDi turbocharged engine uses an electric vacuum pump to supplement braking assist; failures or leaks in the vacuum pump, vacuum check valve, or booster hose connection reduce available vacuum and compromise brake pedal feel and stopping distance. This has been flagged as a safety concern in NHTSA filings.",
+        "solution": "Inspection of the vacuum pump, vacuum reservoir, check valve, and all vacuum lines connecting to the brake booster is required. The electric vacuum pump (Kia/Mobis part number 59100-L2000 or per VIN) may require replacement if output is below specification. The vacuum check valve (a common failure point) is a lower-cost item at approximately $20–$50. Full vacuum pump replacement is $300–$700 parts and labor.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "Hissing sound when brake pedal is pressed",
+          "Hard or stiff brake pedal requiring significantly more force to stop",
+          "Longer stopping distances than normal",
+          "Brake warning light or low vacuum warning illumination",
+          "Brake pedal feel improving after engine warms up then worsening again"
+        ],
+        "affectedSystems": [
+          "brakes"
+        ],
+        "dtcCodes": [
+          "C1260",
+          "C1261"
+        ],
+        "estimatedCostLow": 50,
+        "estimatedCostHigh": 900,
+        "typicalMileageLow": 20000,
+        "typicalMileageHigh": 70000,
+        "citations": [],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 31,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-05-09",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "kia-k5-dct-hesitation-2021",
+      "model": "K5",
+      "action": "rewrite_same_identity",
+      "reason": "The exact official source matches this indexed failure identity. The proposal narrows claims and removes unsupported commerce without changing ID, title, category, years or status.",
+      "identityRule": "No source may change an indexed page identity. A different model, component, year boundary or failure outcome requires a hold or a later separately approved identity change.",
+      "commerceDecision": "dealer-only-no-retail-part-technical-bulletin",
+      "changedFields": [
+        "trims",
+        "engines",
+        "description",
+        "solution",
+        "confidence",
+        "symptoms",
+        "affectedSystems",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "communityRecommendations",
+        "reportCount",
+        "source",
+        "lastReportedByOwners",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
+      "evidence": [
+        {
+          "kind": "official-tsb-exact-same-identity",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2022/MC-10206957-0001.pdf",
+          "sha256": "b896bd8c870ce6777bab22509d867c5dd8cfa2c49f1d6d1d23640b28a21674bd",
+          "visuallyInspectedPages": [
+            1,
+            4
+          ],
+          "verifiedOn": "2026-08-08",
+          "observation": "TRA100 establishes 2021MY+ K5 GT 2.5L T-GDI wet-DCT creep judder, KDS evaluation and conditional dual-clutch replacement."
+        }
+      ],
+      "beforeSha256": "ae86662fecc49dabd5f786cbbfd03b08e33ae3ea3fccf9240392fc6ce4a89d63",
+      "proposalSha256": "2176421de32d0883888d534f591902f5448bedb95d0e8e7b620507fbbdf275ae",
+      "before": {
+        "make": "Kia",
+        "model": "K5",
+        "years": [
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "transmission",
+        "title": "8-Speed DCT Low-Speed Hesitation and Shudder",
+        "description": "The K5's 8-speed wet dual-clutch transmission (8DCT) exhibits hesitation during low-speed acceleration and parking lot maneuvers. The clutch engagement logic is programmed too aggressively for smooth daily driving. Kia has released multiple software updates to improve behavior.",
+        "solution": "Visit the dealer for the latest DCT software calibration update. If hesitation persists after the update, the clutch assembly may need replacement under warranty. Avoid riding the brakes on hills, as this overheats the clutch packs.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Hesitation from a dead stop",
+          "Shudder at low speed",
+          "Jerky parking lot driving",
+          "Delayed power delivery",
+          "Harsh 1-2 shift",
+          "Vibration when creeping in traffic"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 800,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Always request the latest TCU software update — Kia has revised the K5 DCT calibration multiple times since launch"
+          },
+          {
+            "type": "part",
+            "content": "Transmission flush kit for complete fluid exchange to address shudder",
+            "partName": "Transmission Flush Kit",
+            "partBrand": "Liqui Moly",
+            "affiliateUrl": "https://www.amazon.com/s?k=Kia%20K5%20transmission%20flush%20kit&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Full synthetic ATF designed to reduce shudder in automatic transmissions",
+            "partName": "MaxLife ATF Full Synthetic",
+            "partBrand": "Valvoline",
+            "affiliateUrl": "https://www.amazon.com/s?k=Valvoline%20MaxLife%20ATF%20full%20synthetic%20transmission%20fluid&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 180,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-03-13",
+        "reviewedOn": "2026-03-13",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Kia",
+        "model": "K5",
+        "years": [
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [
+          "GT"
+        ],
+        "engines": [
+          "2.5L T-GDI"
+        ],
+        "category": "transmission",
+        "title": "8-Speed DCT Low-Speed Hesitation and Shudder",
+        "description": "Kia bulletin TRA100 documents clutch judder on some 2021 model year and later K5 GT vehicles equipped with the 2.5L T-GDI engine and 8-speed wet dual-clutch transmission. Kia defines the condition as body vibration, without steering-wheel shudder, during a controlled creep-driving test below 5 mph. The bulletin does not establish a general software defect across all K5 trims or recommend a transmission-fluid flush.",
+        "solution": "Have a Kia dealer or qualified transmission specialist confirm the vehicle is a K5 GT with the 2.5L T-GDI wet DCT and perform Kia's KDS 8 Wet Type DCT Judder Test. Kia's procedure repeats the creep measurement five times and replaces the dual-clutch assembly only when the test indicates replacement. This is a fitment- and diagnostic-dependent internal transmission repair, so no retail clutch kit or universal ATF is recommended.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Body vibration during low-speed creep",
+          "Judder below approximately 5 mph without steering-wheel shudder"
+        ],
+        "affectedSystems": [
+          "8-speed wet dual-clutch transmission",
+          "dual-clutch assembly"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "Kia TSB TRA100 - 8-Speed Wet DCT Judder Evaluation",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2022/MC-10206957-0001.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-08",
+        "contentUpdatedOn": "2026-08-08",
+        "contentUpdateSummary": "Bounded the same low-speed DCT-judder identity to Kia TRA100, corrected applicability to K5 GT with 2.5L T-GDI, and removed unsupported software, fluid-flush, universal-ATF and aftermarket-clutch claims.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "kia-k5-dct-oil-pump-failure",
+      "model": "K5",
+      "action": "rewrite_same_identity",
+      "reason": "The exact official source matches this indexed failure identity. The proposal narrows claims and removes unsupported commerce without changing ID, title, category, years or status.",
+      "identityRule": "No source may change an indexed page identity. A different model, component, year boundary or failure outcome requires a hold or a later separately approved identity change.",
+      "commerceDecision": "dealer-only-no-retail-part-safety-recall",
+      "changedFields": [
+        "trims",
+        "engines",
+        "description",
+        "solution",
+        "severity",
+        "symptoms",
+        "affectedSystems",
+        "dtcCodes",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "communityRecommendations",
+        "reportCount",
+        "source",
+        "lastReportedByOwners",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary",
+        "relatedIssueIds"
+      ],
+      "evidence": [
+        {
+          "kind": "official-safety-recall-exact-same-identity",
+          "urls": [
+            "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=22V760000",
+            "https://static.nhtsa.gov/odi/rcl/2022/RCLRPT-22V760-3227.PDF"
+          ],
+          "sha256": "64d2bb0ec43010f9e5ac1312234790c9d119ffe0ad2668f1198791f19aabea5b",
+          "visuallyInspectedPages": [
+            2,
+            3
+          ],
+          "verifiedOn": "2026-08-08",
+          "observation": "22V760/SC250 establishes the 2021-2023 K5 2.5T DCT oil-pump fault, warning sequence, loss-of-power risk and dealer remedy."
+        }
+      ],
+      "beforeSha256": "55d4d171498c2190857d92eb09773b6e06e38f507dcefae30b69837c0db956bc",
+      "proposalSha256": "dc13d61aeb76c78b9d69aa25246e5d6be25b34f75214cfd36916deba899efe0c",
+      "before": {
+        "make": "Kia",
+        "model": "K5",
+        "years": [
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [
+          "GT",
+          "GT-Line"
+        ],
+        "engines": [
+          "2.5L Turbocharged"
+        ],
+        "category": "transmission",
+        "title": "8-Speed DCT Electric Oil Pump Failure",
+        "description": "K5 vehicles equipped with the 2.5L turbocharged engine and 8-speed wet dual-clutch transmission may experience electric oil pump failure within the transmission. A manufacturing error can cause the pump to fail, resulting in complete loss of vehicle power while driving. This creates a serious safety hazard, particularly at highway speeds.",
+        "solution": "Transmission electric oil pump replacement under recall SC250. Complete transmission replacement if internal damage occurred. Software update for transmission control unit.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Sudden loss of power while driving",
+          "Transmission warning light illumination",
+          "Vehicle unable to accelerate",
+          "Transmission slipping or failing to engage",
+          "Check engine light with transmission codes"
+        ],
+        "affectedSystems": [
+          "Transmission",
+          "DCT"
+        ],
+        "dtcCodes": [
+          "P0700",
+          "P0730",
+          "P0741",
+          "P0920"
+        ],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 0,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.carcomplaints.com/news/2022/kia-k5-and-sorento-transmissions-may-replaced.shtml",
+            "type": "media",
+            "title": "Kia K5 and Sorento Transmissions May Need Replaced - CarComplaints"
+          },
+          {
+            "url": "https://static.nhtsa.gov/odi/rcl/2022/RCLRPT-22V760-3227.PDF",
+            "type": "nhtsa",
+            "title": "NHTSA Safety Recall Report 22V-760 - DCT Oil Pump"
+          },
+          {
+            "url": "https://www.classaction.org/hyundai-kia-transmission-problems-lawsuit",
+            "type": "media",
+            "title": "Hyundai Kia Dual Clutch Transmission Lawsuits - ClassAction"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "warning",
+            "content": "This is a high-severity issue - ignoring it can lead to costly repairs or safety concerns. Address it promptly.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Get a proper diagnosis before replacing parts - similar symptoms can have different causes",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Search Kia K5 forums and owner groups for real-world experiences and DIY guides",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Get multiple quotes from independent mechanics - dealer prices can be 2-3x higher for the same repair",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "Complete clutch replacement kit with disc, pressure plate, and throwout bearing",
+            "partName": "OEM Replacement Clutch Kit",
+            "partBrand": "Exedy",
+            "affiliateUrl": "https://www.amazon.com/s?k=Exedy%20clutch%20kit%20Kia%20K5&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 345,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2024-02-19",
+        "reviewedOn": "2026-02-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "kia-sorento-dct-oil-pump-failure",
+          "audi-q5-mechatronic-2009"
+        ]
+      },
+      "proposal": {
+        "make": "Kia",
+        "model": "K5",
+        "years": [
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [
+          "GT"
+        ],
+        "engines": [
+          "2.5L T-GDI"
+        ],
+        "category": "transmission",
+        "title": "8-Speed DCT Electric Oil Pump Failure",
+        "description": "NHTSA recall 22V760000 (Kia SC250) covers certain 2021-2023 K5 vehicles equipped with the 2.5L T-GDI engine and 8-speed dual-clutch transmission. A supplier soldering defect can cause an internal electric oil-pump circuit-board fault. The vehicle may chime, display “stop safely immediately,” illuminate the malfunction indicator light and then lose motive power when the transmission disengages its drive gears.",
+        "solution": "Check the VIN for open recall 22V760000/SC250 and follow Kia's stop-safely warning if it appears. A Kia dealer inspects the vehicle, replaces the transmission when necessary and updates the transmission-control-unit software, free of charge under the recall. Although the recall report identifies oil-pump assembly 46220-2N510, this is not a retail DIY remedy; the campaign repair is VIN-specific and dealer-installed.",
+        "severity": "critical",
+        "confidence": "high",
+        "symptoms": [
+          "Audible warning chimes",
+          "“Stop safely immediately” cluster message",
+          "Malfunction indicator light",
+          "Loss of motive power"
+        ],
+        "affectedSystems": [
+          "8-speed dual-clutch transmission",
+          "electric oil pump",
+          "transmission control unit"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "NHTSA Campaign 22V760000 - K5 DCT Electric Oil Pump",
+            "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=22V760000"
+          },
+          {
+            "type": "recall",
+            "title": "Part 573 Safety Recall Report 22V760",
+            "url": "https://static.nhtsa.gov/odi/rcl/2022/RCLRPT-22V760-3227.PDF"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-08",
+        "contentUpdatedOn": "2026-08-08",
+        "contentUpdateSummary": "Corrected the same DCT oil-pump identity to recall 22V760/SC250, removed the incorrect GT-Line applicability and aftermarket clutch commerce, and stated the VIN-specific dealer remedy.",
+        "relatedIssueIds": [
+          "kia-sorento-dct-oil-pump-failure"
+        ]
+      }
+    },
+    {
+      "id": "kia-k5-door-handle-lock-actuator-failure-door-won-t-open-or-won-t-lock-unlock",
+      "model": "K5",
+      "action": "keep_published_pending_source",
+      "reason": "No exact official K5 package was found for the retained 2021-2024 door-handle/lock-actuator aggregation. The uncited actuator, latch, linkage and lubrication claims remain frozen and block application.",
+      "identityRule": "No source may change an indexed page identity. A different model, component, year boundary or failure outcome requires a hold or a later separately approved identity change.",
+      "commerceDecision": "unchanged-commerce-pending-exact-source-and-fitment",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "complete-official-inventory-no-exact-package",
+          "datasetRowsReviewed": 197,
+          "verifiedOn": "2026-08-08",
+          "observation": "No exact official K5 package was found for the retained 2021-2024 door-handle/lock-actuator aggregation. The uncited actuator, latch, linkage and lubrication claims remain frozen and block application."
+        }
+      ],
+      "beforeSha256": "6ef519b07e6acd88b5b3dac0649ff36e088d35792f3a67016f191d83a470dc6b",
+      "proposalSha256": "6ef519b07e6acd88b5b3dac0649ff36e088d35792f3a67016f191d83a470dc6b",
+      "before": {
+        "make": "Kia",
+        "model": "K5",
+        "years": [
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "body",
+        "title": "Door Handle/Lock Actuator Failure (Door Won’t Open or Won’t Lock/Unlock)",
+        "description": "Owner reports and NHTSA complaints note exterior door handles and/or door lock actuators failing, leading to doors that won’t open from outside (and sometimes inside) or won’t lock/unlock reliably. Failures are commonly tied to actuator motor wear, latch mechanism binding, or linkage issues inside the door. Owners often report intermittent operation that progresses to complete failure.",
+        "solution": "Remove door trim panel and inspect latch/handle linkage and actuator operation. Replace the failed door lock actuator and/or latch assembly and verify proper cable/rod adjustment; lubricate latch mechanisms. If the exterior handle mechanism is damaged, replace the handle assembly and confirm keyless entry operation.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Door won’t open from outside",
+          "Intermittent lock/unlock operation",
+          "Key fob works but door remains locked",
+          "Grinding/clicking noise inside door when locking"
+        ],
+        "affectedSystems": [
+          "body"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 180,
+        "estimatedCostHigh": 650,
+        "typicalMileageLow": 5000,
+        "typicalMileageHigh": 80000,
+        "citations": [],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 95,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-04-19",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Kia",
+        "model": "K5",
+        "years": [
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "body",
+        "title": "Door Handle/Lock Actuator Failure (Door Won’t Open or Won’t Lock/Unlock)",
+        "description": "Owner reports and NHTSA complaints note exterior door handles and/or door lock actuators failing, leading to doors that won’t open from outside (and sometimes inside) or won’t lock/unlock reliably. Failures are commonly tied to actuator motor wear, latch mechanism binding, or linkage issues inside the door. Owners often report intermittent operation that progresses to complete failure.",
+        "solution": "Remove door trim panel and inspect latch/handle linkage and actuator operation. Replace the failed door lock actuator and/or latch assembly and verify proper cable/rod adjustment; lubricate latch mechanisms. If the exterior handle mechanism is damaged, replace the handle assembly and confirm keyless entry operation.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Door won’t open from outside",
+          "Intermittent lock/unlock operation",
+          "Key fob works but door remains locked",
+          "Grinding/clicking noise inside door when locking"
+        ],
+        "affectedSystems": [
+          "body"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 180,
+        "estimatedCostHigh": 650,
+        "typicalMileageLow": 5000,
+        "typicalMileageHigh": 80000,
+        "citations": [],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 95,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-04-19",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "kia-k5-electronic-parking-brake-epb-warning-auto-hold-malfunction",
+      "model": "K5",
+      "action": "keep_published_pending_source",
+      "reason": "Rendered SC252 supports a narrow VIN-bound 2022-2023 K5 HECU population with an internal brake-fluid leak that can disable EPB and Auto-Hold. It does not support this page's 2021-2024 actuator, caliper-wiring and generic-software diagnosis. The year and failure-mechanism conflation remains frozen and blocks application.",
+      "identityRule": "No source may change an indexed page identity. A different model, component, year boundary or failure outcome requires a hold or a later separately approved identity change.",
+      "commerceDecision": "unchanged-commerce-pending-exact-source-and-fitment",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-source-scope-or-component-conflict",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2023/MC-10230494-0001.pdf",
+          "sha256": "354b0e3c428a3833ca8b5d5e518c982e8ee8779cc08f98390843baeb8cbfc075",
+          "visuallyInspectedPages": [
+            1
+          ],
+          "verifiedOn": "2026-08-08",
+          "observation": "Rendered SC252 supports a narrow VIN-bound 2022-2023 K5 HECU population with an internal brake-fluid leak that can disable EPB and Auto-Hold. It does not support this page's 2021-2024 actuator, caliper-wiring and generic-software diagnosis. The year and failure-mechanism conflation remains frozen and blocks application."
+        }
+      ],
+      "beforeSha256": "a917f96b7f15fdb5671fd598ebf62b02d3c9f8540f1a7d5637a45e142ad6d7f1",
+      "proposalSha256": "a917f96b7f15fdb5671fd598ebf62b02d3c9f8540f1a7d5637a45e142ad6d7f1",
+      "before": {
+        "make": "Kia",
+        "model": "K5",
+        "years": [
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "brakes",
+        "title": "Electronic Parking Brake (EPB) Warning / Auto-Hold Malfunction",
+        "description": "NHTSA complaints and owner reports note intermittent EPB warnings and Auto-Hold faults on Kia K5, sometimes accompanied by the parking brake not applying/releasing as expected. The issue is commonly linked to EPB actuator/motor faults, wiring/connector issues at the rear calipers, or control module logic faults. Owners typically experience warning messages, chimes, and loss of Auto-Hold functionality.",
+        "solution": "Scan for EPB/ESC fault history and inspect rear caliper EPB actuators, connectors, and harness routing for corrosion or damage. Replace the affected EPB actuator/caliper assembly if the motor is failing; perform EPB service mode initialization and verify Auto-Hold operation. If applicable, apply Kia software updates per dealer service bulletins addressing EPB/Auto-Hold warnings.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "EPB warning light/message on cluster",
+          "Auto-Hold unavailable or turns off unexpectedly",
+          "Parking brake fails to apply or release",
+          "Chime and multiple brake/ESC warnings"
+        ],
+        "affectedSystems": [
+          "brakes"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 180,
+        "estimatedCostHigh": 900,
+        "typicalMileageLow": 3000,
+        "typicalMileageHigh": 60000,
+        "citations": [],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 70,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-04-19",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Kia",
+        "model": "K5",
+        "years": [
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "brakes",
+        "title": "Electronic Parking Brake (EPB) Warning / Auto-Hold Malfunction",
+        "description": "NHTSA complaints and owner reports note intermittent EPB warnings and Auto-Hold faults on Kia K5, sometimes accompanied by the parking brake not applying/releasing as expected. The issue is commonly linked to EPB actuator/motor faults, wiring/connector issues at the rear calipers, or control module logic faults. Owners typically experience warning messages, chimes, and loss of Auto-Hold functionality.",
+        "solution": "Scan for EPB/ESC fault history and inspect rear caliper EPB actuators, connectors, and harness routing for corrosion or damage. Replace the affected EPB actuator/caliper assembly if the motor is failing; perform EPB service mode initialization and verify Auto-Hold operation. If applicable, apply Kia software updates per dealer service bulletins addressing EPB/Auto-Hold warnings.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "EPB warning light/message on cluster",
+          "Auto-Hold unavailable or turns off unexpectedly",
+          "Parking brake fails to apply or release",
+          "Chime and multiple brake/ESC warnings"
+        ],
+        "affectedSystems": [
+          "brakes"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 180,
+        "estimatedCostHigh": 900,
+        "typicalMileageLow": 3000,
+        "typicalMileageHigh": 60000,
+        "citations": [],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 70,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-04-19",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "kia-k5-forward-collision-avoidance-assist-fca-phantom-braking-events",
+      "model": "K5",
+      "action": "keep_published_pending_source",
+      "reason": "The complete official K5 bulletin inventory contains no DAS-007 package or exact K5 phantom-braking campaign matching this 2021-2024 aggregation. The page's asserted software updates, environmental prevalence and recommendation to disable FCA are safety-critical and uncited, so the row remains frozen and blocks application.",
+      "identityRule": "No source may change an indexed page identity. A different model, component, year boundary or failure outcome requires a hold or a later separately approved identity change.",
+      "commerceDecision": "unchanged-commerce-pending-exact-source-and-fitment",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "complete-official-inventory-no-exact-package",
+          "datasetRowsReviewed": 197,
+          "verifiedOn": "2026-08-08",
+          "observation": "The complete official K5 bulletin inventory contains no DAS-007 package or exact K5 phantom-braking campaign matching this 2021-2024 aggregation. The page's asserted software updates, environmental prevalence and recommendation to disable FCA are safety-critical and uncited, so the row remains frozen and blocks application."
+        }
+      ],
+      "beforeSha256": "0694036e318025e3585a29e8f8e7fbc4b1857da85822025dc11fc726e2804b45",
+      "proposalSha256": "0694036e318025e3585a29e8f8e7fbc4b1857da85822025dc11fc726e2804b45",
+      "before": {
+        "make": "Kia",
+        "model": "K5",
+        "years": [
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "safety",
+        "title": "Forward Collision Avoidance Assist (FCA) Phantom Braking Events",
+        "description": "Multiple K5 owners and NHTSA complaints document unexpected, uninitiated hard braking events triggered by the Forward Collision Avoidance Assist system in the absence of any actual obstacle. These phantom braking events occur most commonly on highways, elevated roads, or in areas with overhead signs, bridges, or guardrails that the front radar and camera system misidentifies as collision threats. The issue represents a safety concern as following vehicles may be unable to react in time, increasing rear-end collision risk.",
+        "solution": "Kia has released multiple FCA software calibration updates through dealer reprogramming to improve object discrimination and reduce false positives. TSB reference DAS-007 addresses radar and camera fusion logic updates. Owners should have the forward radar sensor (part of the front bumper radar module) and windshield camera inspected for alignment. In persistent cases, FCA can be temporarily disabled via the Driver Assistance menu, though this is not recommended as a permanent fix.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "Sudden hard braking with no obstacle present",
+          "Forward Collision Warning alert with no vehicle or object ahead",
+          "FCA system activating on bridges, overpasses, or metal guardrails",
+          "Brake lights activating unexpectedly at highway speeds",
+          "FCA warning light remaining on after phantom brake event"
+        ],
+        "affectedSystems": [
+          "safety"
+        ],
+        "dtcCodes": [
+          "C1696",
+          "C1697"
+        ],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": 300,
+        "typicalMileageLow": 1000,
+        "typicalMileageHigh": 60000,
+        "citations": [],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 134,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-05-09",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Kia",
+        "model": "K5",
+        "years": [
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "safety",
+        "title": "Forward Collision Avoidance Assist (FCA) Phantom Braking Events",
+        "description": "Multiple K5 owners and NHTSA complaints document unexpected, uninitiated hard braking events triggered by the Forward Collision Avoidance Assist system in the absence of any actual obstacle. These phantom braking events occur most commonly on highways, elevated roads, or in areas with overhead signs, bridges, or guardrails that the front radar and camera system misidentifies as collision threats. The issue represents a safety concern as following vehicles may be unable to react in time, increasing rear-end collision risk.",
+        "solution": "Kia has released multiple FCA software calibration updates through dealer reprogramming to improve object discrimination and reduce false positives. TSB reference DAS-007 addresses radar and camera fusion logic updates. Owners should have the forward radar sensor (part of the front bumper radar module) and windshield camera inspected for alignment. In persistent cases, FCA can be temporarily disabled via the Driver Assistance menu, though this is not recommended as a permanent fix.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "Sudden hard braking with no obstacle present",
+          "Forward Collision Warning alert with no vehicle or object ahead",
+          "FCA system activating on bridges, overpasses, or metal guardrails",
+          "Brake lights activating unexpectedly at highway speeds",
+          "FCA warning light remaining on after phantom brake event"
+        ],
+        "affectedSystems": [
+          "safety"
+        ],
+        "dtcCodes": [
+          "C1696",
+          "C1697"
+        ],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": 300,
+        "typicalMileageLow": 1000,
+        "typicalMileageHigh": 60000,
+        "citations": [],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 134,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-05-09",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "kia-k5-front-suspension-strut-mount-bearing-noise-creak-pop-while-turning",
+      "model": "K5",
+      "action": "keep_published_pending_source",
+      "reason": "No exact official K5 bulletin was found for a 2021-2024 upper-strut-mount/bearing defect. The page is uncited and asserts premature wear, moisture intrusion and a replacement/alignment remedy without primary evidence. It remains frozen and blocks application.",
+      "identityRule": "No source may change an indexed page identity. A different model, component, year boundary or failure outcome requires a hold or a later separately approved identity change.",
+      "commerceDecision": "unchanged-commerce-pending-exact-source-and-fitment",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "complete-official-inventory-no-exact-package",
+          "datasetRowsReviewed": 197,
+          "verifiedOn": "2026-08-08",
+          "observation": "No exact official K5 bulletin was found for a 2021-2024 upper-strut-mount/bearing defect. The page is uncited and asserts premature wear, moisture intrusion and a replacement/alignment remedy without primary evidence. It remains frozen and blocks application."
+        }
+      ],
+      "beforeSha256": "6e72483ea0d45417be6be3e3ab235bd42280f6fc105038bd9a7f7004ead280df",
+      "proposalSha256": "6e72483ea0d45417be6be3e3ab235bd42280f6fc105038bd9a7f7004ead280df",
+      "before": {
+        "make": "Kia",
+        "model": "K5",
+        "years": [
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "suspension",
+        "title": "Front Suspension Strut Mount/Bearing Noise (Creak/Pop While Turning)",
+        "description": "Kia K5 owners report creaking, popping, or groaning noises from the front suspension during steering input, especially at low speeds or when parking. The issue is often tied to strut mount bearings binding or premature wear, sometimes exacerbated by moisture intrusion. The noise can be mistaken for steering rack issues but is frequently localized to the upper strut mounts.",
+        "solution": "Confirm noise source with chassis ears and inspect upper strut mounts and bearings for binding or damage. Replace the affected strut mount/bearing assemblies and verify proper spring indexing; perform alignment afterward. If present, address water intrusion and ensure correct torque on top mount hardware.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Creaking/groaning when turning steering wheel",
+          "Popping noise during parking maneuvers",
+          "Noise more noticeable in wet/cold conditions",
+          "Front-end noise over low-speed bumps"
+        ],
+        "affectedSystems": [
+          "suspension"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 250,
+        "estimatedCostHigh": 900,
+        "typicalMileageLow": 8000,
+        "typicalMileageHigh": 70000,
+        "citations": [],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 110,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-04-19",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "kia-forte-front-strut-bearing-failure"
+        ]
+      },
+      "proposal": {
+        "make": "Kia",
+        "model": "K5",
+        "years": [
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "suspension",
+        "title": "Front Suspension Strut Mount/Bearing Noise (Creak/Pop While Turning)",
+        "description": "Kia K5 owners report creaking, popping, or groaning noises from the front suspension during steering input, especially at low speeds or when parking. The issue is often tied to strut mount bearings binding or premature wear, sometimes exacerbated by moisture intrusion. The noise can be mistaken for steering rack issues but is frequently localized to the upper strut mounts.",
+        "solution": "Confirm noise source with chassis ears and inspect upper strut mounts and bearings for binding or damage. Replace the affected strut mount/bearing assemblies and verify proper spring indexing; perform alignment afterward. If present, address water intrusion and ensure correct torque on top mount hardware.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Creaking/groaning when turning steering wheel",
+          "Popping noise during parking maneuvers",
+          "Noise more noticeable in wet/cold conditions",
+          "Front-end noise over low-speed bumps"
+        ],
+        "affectedSystems": [
+          "suspension"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 250,
+        "estimatedCostHigh": 900,
+        "typicalMileageLow": 8000,
+        "typicalMileageHigh": 70000,
+        "citations": [],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 110,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-04-19",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "kia-forte-front-strut-bearing-failure"
+        ]
+      }
+    },
+    {
+      "id": "kia-k5-fuel-tank-expansion",
+      "model": "K5",
+      "action": "rewrite_same_identity",
+      "reason": "The exact official source matches this indexed failure identity. The proposal narrows claims and removes unsupported commerce without changing ID, title, category, years or status.",
+      "identityRule": "No source may change an indexed page identity. A different model, component, year boundary or failure outcome requires a hold or a later separately approved identity change.",
+      "commerceDecision": "dealer-only-no-retail-part-safety-recall",
+      "changedFields": [
+        "engines",
+        "description",
+        "solution",
+        "severity",
+        "symptoms",
+        "affectedSystems",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "communityRecommendations",
+        "reportCount",
+        "source",
+        "lastReportedByOwners",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
+      "evidence": [
+        {
+          "kind": "official-safety-recall-exact-same-identity",
+          "urls": [
+            "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=25V794000",
+            "https://static.nhtsa.gov/odi/rcl/2025/RCLRPT-25V794-5581.pdf"
+          ],
+          "sha256": "bdede1d800da52e44b44af01f11406693bde297e952ba709c5d319a05ef4e325",
+          "visuallyInspectedPages": [
+            1,
+            2,
+            3
+          ],
+          "verifiedOn": "2026-08-08",
+          "observation": "25V794/SC356 establishes the 2021-2024 1.6T check-valve, tank-expansion, melting, leak/fire-risk and dealer remedy identity."
+        }
+      ],
+      "beforeSha256": "a484f2336493e687c3684978dbeb587dd3f78d5aea0ce7845b59277dcf002134",
+      "proposalSha256": "c640357f58af63a1639f2d2158a3b6f1c27c616bae67493f0ead50134d50c682",
+      "before": {
+        "make": "Kia",
+        "model": "K5",
+        "years": [
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "fuel",
+        "title": "Fuel Tank Expansion and Fire Risk",
+        "description": "A damaged check valve in the fuel system can allow air to enter the fuel tank, causing it to expand. The expanded tank may contact hot exhaust components, potentially melting the tank and creating a fire hazard.",
+        "solution": "Fuel system check valve inspection and replacement under recall. Fuel tank replacement if expansion damage has occurred. Complete fuel system inspection for heat damage.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Fuel odor inside or around vehicle",
+          "Visible swelling or deformation of fuel tank",
+          "Difficulty refueling",
+          "Fuel gauge reading inaccurately",
+          "Hissing sound from fuel system"
+        ],
+        "affectedSystems": [
+          "Fuel System",
+          "Safety"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 0,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.carcomplaints.com/news/2025/kia-k5-fuel-tank-recall-tanks-swell-melt.shtml",
+            "type": "media",
+            "title": "Kia K5 Fuel Tank Recall Gas Tanks Swell and Melt - CarComplaints"
+          },
+          {
+            "url": "https://www.classaction.org/kia-hyundai-expanding-fuel-tank-lawsuits",
+            "type": "media",
+            "title": "Kia K5 Hyundai Sonata Gas Tank Swelling Expanding Lawsuits - ClassAction"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "warning",
+            "content": "This is a high-severity issue - ignoring it can lead to costly repairs or safety concerns. Address it promptly.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Get a proper diagnosis before replacing parts - similar symptoms can have different causes",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Search Kia K5 forums and owner groups for real-world experiences and DIY guides",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Get multiple quotes from independent mechanics - dealer prices can be 2-3x higher for the same repair",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "Spectra Premium fuel tank — direct OE replacement",
+            "partName": "Fuel Tank",
+            "partBrand": "Spectra Premium",
+            "affiliateUrl": "https://www.amazon.com/s?k=Spectra%20Premium%20fuel%20tank&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 234,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2024-02-19",
+        "reviewedOn": "2026-02-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Kia",
+        "model": "K5",
+        "years": [
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [
+          "1.6L T-GDI"
+        ],
+        "category": "fuel",
+        "title": "Fuel Tank Expansion and Fire Risk",
+        "description": "NHTSA recall 25V794000 (Kia SC356) covers 2021-2024 K5 vehicles equipped with the 1.6L T-GDI engine. A deteriorated purge-control-system check valve can allow pressurized intake air into the fuel tank. The tank can expand, contact hot exhaust components and locally melt, which can cause a fuel leak and increase fire risk. Warning signs can include a popping sound near the tank, a check-engine light or rough running.",
+        "solution": "Check the VIN for recall 25V794000/SC356. A Kia dealer replaces the check valve with the improved design, inspects the fuel tank for damage, replaces the tank when necessary and confirms the latest ECU software, free of charge. Do not buy a generic fuel tank or check valve from this page; the recall repair is VIN-, engine- and inspection-specific.",
+        "severity": "critical",
+        "confidence": "high",
+        "symptoms": [
+          "Popping sound from fuel-tank area",
+          "Check-engine light",
+          "Rough running",
+          "Expanded or leaking fuel tank"
+        ],
+        "affectedSystems": [
+          "purge-control-system check valve",
+          "fuel tank",
+          "engine control unit"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "NHTSA Campaign 25V794000 - K5 Fuel Tank May Leak",
+            "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=25V794000"
+          },
+          {
+            "type": "recall",
+            "title": "Part 573 Safety Recall Report 25V794",
+            "url": "https://static.nhtsa.gov/odi/rcl/2025/RCLRPT-25V794-5581.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-08",
+        "contentUpdatedOn": "2026-08-08",
+        "contentUpdateSummary": "Replaced secondary reporting and generic fuel-tank commerce with the exact SC356 safety-recall scope, warnings and VIN-specific dealer remedy while retaining the indexed page identity.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "kia-k5-heated-and-ventilated-seat-malfunction-element-failure-or-fan-noise",
+      "model": "K5",
+      "action": "keep_published_pending_source",
+      "reason": "Rendered SA434 covers only some early-production 2021 K5 vehicles with an incorrect front-passenger ventilated-seat harness that can cause the ventilation feature to time out. It does not support the page's 2021-2024 front/rear heater-element and fan-failure aggregation or part numbers 88350-L3010/88360-L3010. The row remains frozen and blocks application.",
+      "identityRule": "No source may change an indexed page identity. A different model, component, year boundary or failure outcome requires a hold or a later separately approved identity change.",
+      "commerceDecision": "unchanged-commerce-pending-exact-source-and-fitment",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-source-scope-or-component-conflict",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2020/MC-10180655-0001.pdf",
+          "sha256": "e5795e444cb6977133b97c4cd5ba26cfcd1ce1d775154f3cc6a9287efd8cf388",
+          "visuallyInspectedPages": [
+            1
+          ],
+          "verifiedOn": "2026-08-08",
+          "observation": "Rendered SA434 covers only some early-production 2021 K5 vehicles with an incorrect front-passenger ventilated-seat harness that can cause the ventilation feature to time out. It does not support the page's 2021-2024 front/rear heater-element and fan-failure aggregation or part numbers 88350-L3010/88360-L3010. The row remains frozen and blocks application."
+        }
+      ],
+      "beforeSha256": "13f837396e992b8470c3129acbd6f44e653c6fc79205b5a6388c817a3ab386f2",
+      "proposalSha256": "13f837396e992b8470c3129acbd6f44e653c6fc79205b5a6388c817a3ab386f2",
+      "before": {
+        "make": "Kia",
+        "model": "K5",
+        "years": [
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "interior",
+        "title": "Heated and Ventilated Seat Malfunction (Element Failure or Fan Noise)",
+        "description": "K5 owners with heated and ventilated seat packages have reported failures of the seat heating elements—particularly in the rear seat areas—as well as ventilation fan noise or complete fan failure in the front seats. Seat heating elements can develop open circuits causing partial or complete loss of heat, often on one side of the seat. Ventilated seat blower motors have been reported to produce rattling or grinding noises, sometimes from debris infiltration or motor bearing wear, a known issue documented on multiple Kia and Hyundai shared platforms.",
+        "solution": "For failed heating elements, the seat cushion or seatback heater mat assembly must be replaced; front seat heater mats are accessed by removing seat upholstery (Kia part numbers 88350-L3010 / 88360-L3010 for cushion/back heater pads, vary by trim). For ventilation fan noise, the blower motor within the seat frame is replaced; dealers reference seat disassembly procedures in KDS. Labor is significant due to seat upholstery removal.",
+        "severity": "low",
+        "confidence": "medium",
+        "symptoms": [
+          "Seat heat indicator lit but seat not warming, or only partial warming",
+          "Grinding or rattling noise from seat base during ventilation use",
+          "Ventilated seat providing no airflow despite being activated",
+          "Seat heat or ventilation function cutting off intermittently",
+          "One zone of heated seat (cushion or back) working while other does not"
+        ],
+        "affectedSystems": [
+          "interior"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 150,
+        "estimatedCostHigh": 850,
+        "typicalMileageLow": 15000,
+        "typicalMileageHigh": 55000,
+        "citations": [],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 39,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-05-09",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Kia",
+        "model": "K5",
+        "years": [
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "interior",
+        "title": "Heated and Ventilated Seat Malfunction (Element Failure or Fan Noise)",
+        "description": "K5 owners with heated and ventilated seat packages have reported failures of the seat heating elements—particularly in the rear seat areas—as well as ventilation fan noise or complete fan failure in the front seats. Seat heating elements can develop open circuits causing partial or complete loss of heat, often on one side of the seat. Ventilated seat blower motors have been reported to produce rattling or grinding noises, sometimes from debris infiltration or motor bearing wear, a known issue documented on multiple Kia and Hyundai shared platforms.",
+        "solution": "For failed heating elements, the seat cushion or seatback heater mat assembly must be replaced; front seat heater mats are accessed by removing seat upholstery (Kia part numbers 88350-L3010 / 88360-L3010 for cushion/back heater pads, vary by trim). For ventilation fan noise, the blower motor within the seat frame is replaced; dealers reference seat disassembly procedures in KDS. Labor is significant due to seat upholstery removal.",
+        "severity": "low",
+        "confidence": "medium",
+        "symptoms": [
+          "Seat heat indicator lit but seat not warming, or only partial warming",
+          "Grinding or rattling noise from seat base during ventilation use",
+          "Ventilated seat providing no airflow despite being activated",
+          "Seat heat or ventilation function cutting off intermittently",
+          "One zone of heated seat (cushion or back) working while other does not"
+        ],
+        "affectedSystems": [
+          "interior"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 150,
+        "estimatedCostHigh": 850,
+        "typicalMileageLow": 15000,
+        "typicalMileageHigh": 55000,
+        "citations": [],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 39,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-05-09",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "kia-k5-hvac-blower-motor-noise-failure-squeal-rattle-intermittent-fan",
+      "model": "K5",
+      "action": "keep_published_pending_source",
+      "reason": "Rendered SC307 covers only certain 2021-2022 K5 vehicles from a narrow production range in seven high-heat states and remedies damaged multi-fuse terminals by relocating a 40-amp blower fuse. It does not support the page's 2021-2024 squeal, bearing, debris, resistor and generic motor-replacement aggregation. The row remains frozen and blocks application.",
+      "identityRule": "No source may change an indexed page identity. A different model, component, year boundary or failure outcome requires a hold or a later separately approved identity change.",
+      "commerceDecision": "unchanged-commerce-pending-exact-source-and-fitment",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-source-scope-or-component-conflict",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2024/MC-11006548-0001.pdf",
+          "sha256": "a15d0313a7238b3b080ac019d258496f6c890ef5357540dcab1c2c54583ac5b4",
+          "visuallyInspectedPages": [
+            1
+          ],
+          "verifiedOn": "2026-08-08",
+          "observation": "Rendered SC307 covers only certain 2021-2022 K5 vehicles from a narrow production range in seven high-heat states and remedies damaged multi-fuse terminals by relocating a 40-amp blower fuse. It does not support the page's 2021-2024 squeal, bearing, debris, resistor and generic motor-replacement aggregation. The row remains frozen and blocks application."
+        }
+      ],
+      "beforeSha256": "252f2e25df5c0870fb2dabce4176b9b6e7174fb323214007b555d0910bff3fe4",
+      "proposalSha256": "252f2e25df5c0870fb2dabce4176b9b6e7174fb323214007b555d0910bff3fe4",
+      "before": {
+        "make": "Kia",
+        "model": "K5",
+        "years": [
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "hvac",
+        "title": "HVAC Blower Motor Noise/Failure (Squeal, Rattle, Intermittent Fan)",
+        "description": "K5 owners report blower motors that begin squealing, chirping, or rattling and may intermittently stop, reducing cabin airflow. The condition is typically caused by blower motor bearing wear, debris intrusion, or resistor/control issues depending on trim. Symptoms often start as noise at certain fan speeds and progress to reduced or no airflow.",
+        "solution": "Inspect cabin air filter housing and blower for debris; replace the cabin filter if restricted. Replace the blower motor assembly if bearings are noisy or the motor is intermittent; if speed control is erratic, test/replace the blower resistor or blower control module as applicable. Verify HVAC operation across all speeds after repair.",
+        "severity": "low",
+        "confidence": "medium",
+        "symptoms": [
+          "Squealing/chirping from passenger-side dash",
+          "Rattling noise that changes with fan speed",
+          "Intermittent or no airflow from vents",
+          "Burning smell or hot resistor symptoms (in some cases)"
+        ],
+        "affectedSystems": [
+          "hvac"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 120,
+        "estimatedCostHigh": 550,
+        "typicalMileageLow": 10000,
+        "typicalMileageHigh": 90000,
+        "citations": [],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 60,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-04-19",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Kia",
+        "model": "K5",
+        "years": [
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "hvac",
+        "title": "HVAC Blower Motor Noise/Failure (Squeal, Rattle, Intermittent Fan)",
+        "description": "K5 owners report blower motors that begin squealing, chirping, or rattling and may intermittently stop, reducing cabin airflow. The condition is typically caused by blower motor bearing wear, debris intrusion, or resistor/control issues depending on trim. Symptoms often start as noise at certain fan speeds and progress to reduced or no airflow.",
+        "solution": "Inspect cabin air filter housing and blower for debris; replace the cabin filter if restricted. Replace the blower motor assembly if bearings are noisy or the motor is intermittent; if speed control is erratic, test/replace the blower resistor or blower control module as applicable. Verify HVAC operation across all speeds after repair.",
+        "severity": "low",
+        "confidence": "medium",
+        "symptoms": [
+          "Squealing/chirping from passenger-side dash",
+          "Rattling noise that changes with fan speed",
+          "Intermittent or no airflow from vents",
+          "Burning smell or hot resistor symptoms (in some cases)"
+        ],
+        "affectedSystems": [
+          "hvac"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 120,
+        "estimatedCostHigh": 550,
+        "typicalMileageLow": 10000,
+        "typicalMileageHigh": 90000,
+        "citations": [],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 60,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-04-19",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "kia-k5-infotainment-blackout-2021",
+      "model": "K5",
+      "action": "remove_false_citation_and_search_commerce_pending_source",
+      "reason": "The cited YouTube ID “abcd1234efg” is a generic example placeholder, not the claimed EricTheCarGuy K5 repair video. The complete 197-row official K5 bulletin inventory contains narrower phone-projection, radio-icon and head-unit campaigns but no package establishing this 2021-2025 blackout/reboot aggregation. The false citation and search commerce are removed in the proposal, while the substantive page remains blocked pending an exact source.",
+      "identityRule": "No source may change an indexed page identity. A different model, component, year boundary or failure outcome requires a hold or a later separately approved identity change.",
+      "commerceDecision": "unresolved-no-retail-link-until-primary-source-correction",
+      "changedFields": [
+        "citations",
+        "communityRecommendations",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
+      "evidence": [
+        {
+          "kind": "false-placeholder-citation",
+          "verifiedOn": "2026-08-08",
+          "observation": "The cited YouTube ID “abcd1234efg” is a generic example placeholder, not the claimed EricTheCarGuy K5 repair video. The complete 197-row official K5 bulletin inventory contains narrower phone-projection, radio-icon and head-unit campaigns but no package establishing this 2021-2025 blackout/reboot aggregation. The false citation and search commerce are removed in the proposal, while the substantive page remains blocked pending an exact source."
+        }
+      ],
+      "beforeSha256": "f1ff914be165f4491b8f4436676f1b9445f1a5cb3e35f3ae110192e185a659c9",
+      "proposalSha256": "9cb7904354df52154cc3739bb1208369f780ea1fd84c1e336f0b53248a66fe88",
+      "before": {
+        "make": "Kia",
+        "model": "K5",
+        "years": [
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Infotainment Screen Blackout and Random Reboots",
+        "description": "The K5 infotainment system — both the 8-inch and 10.25-inch displays — experiences random screen blackouts, freezes, and spontaneous reboots. The screen may go completely black while driving, losing access to navigation, backup camera, and climate controls. Some owners report the system rebooting in a loop. The issue is typically software-related but can also be caused by a failing display head unit. Android Auto and Apple CarPlay connections can trigger or worsen the problem.",
+        "solution": "First try a system reset by holding the power/volume knob for 10+ seconds. Visit a Kia dealer for the latest infotainment software update — Kia has released multiple updates addressing stability issues (check for updates via the Kia Connect app or USB update). If the software update does not resolve the issue, the head unit may need replacement under warranty ($800-$2,000 if out of warranty). Disconnect the phone and disable wireless CarPlay/Android Auto to test if the issue is phone-related. A factory reset of the infotainment (Settings > General > Reset) can also help.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Infotainment screen goes completely black while driving",
+          "System freezes and becomes unresponsive to touch",
+          "Screen reboots with Kia logo repeatedly",
+          "Backup camera unavailable when in reverse",
+          "Bluetooth audio cutting out",
+          "Climate controls unresponsive on touchscreen-only models"
+        ],
+        "affectedSystems": [
+          "Electrical",
+          "Infotainment"
+        ],
+        "dtcCodes": [
+          "U1110",
+          "B1609"
+        ],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 2000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.youtube.com/watch?v=abcd1234efg",
+            "type": "video",
+            "title": "YouTube - Kia K5 Infotainment Screen Blackout Fix by EricTheCarGuy"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Before going to the dealer, try a USB software update. Download the latest navigation/infotainment update from the Kia owners portal, put it on a USB drive, and install it. Many blackout issues are fixed by the latest software.",
+            "upvotes": 0,
+            "needsReview": true
+          },
+          {
+            "type": "tip",
+            "content": "If the screen goes black, hold the power knob for 10 seconds to force a reboot. This is faster than disconnecting the battery and usually restores the system immediately.",
+            "upvotes": 0,
+            "needsReview": true
+          },
+          {
+            "type": "part",
+            "content": "Professional OBD-II diagnostic scanner for reading infotainment and body module codes",
+            "partName": "Bluetooth Pro OBD2 Scan Tool",
+            "partBrand": "BlueDriver",
+            "affiliateUrl": "https://www.amazon.com/s?k=BlueDriver%20Bluetooth%20Pro%20OBD2%20Scan%20Tool%20Kia%20K5&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "OEM-quality replacement sensor for accurate readings and proper system function",
+            "partName": "Replacement Sensor",
+            "partBrand": "Bosch",
+            "affiliateUrl": "https://www.amazon.com/s?k=Bosch%20Replacement%20Sensor%20Kia%20K5&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "hyundai-santacruz-infotainment-freeze",
+          "hyundai-ioniq5-infotainment-crash"
+        ]
+      },
+      "proposal": {
+        "make": "Kia",
+        "model": "K5",
+        "years": [
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Infotainment Screen Blackout and Random Reboots",
+        "description": "The K5 infotainment system — both the 8-inch and 10.25-inch displays — experiences random screen blackouts, freezes, and spontaneous reboots. The screen may go completely black while driving, losing access to navigation, backup camera, and climate controls. Some owners report the system rebooting in a loop. The issue is typically software-related but can also be caused by a failing display head unit. Android Auto and Apple CarPlay connections can trigger or worsen the problem.",
+        "solution": "First try a system reset by holding the power/volume knob for 10+ seconds. Visit a Kia dealer for the latest infotainment software update — Kia has released multiple updates addressing stability issues (check for updates via the Kia Connect app or USB update). If the software update does not resolve the issue, the head unit may need replacement under warranty ($800-$2,000 if out of warranty). Disconnect the phone and disable wireless CarPlay/Android Auto to test if the issue is phone-related. A factory reset of the infotainment (Settings > General > Reset) can also help.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Infotainment screen goes completely black while driving",
+          "System freezes and becomes unresponsive to touch",
+          "Screen reboots with Kia logo repeatedly",
+          "Backup camera unavailable when in reverse",
+          "Bluetooth audio cutting out",
+          "Climate controls unresponsive on touchscreen-only models"
+        ],
+        "affectedSystems": [
+          "Electrical",
+          "Infotainment"
+        ],
+        "dtcCodes": [
+          "U1110",
+          "B1609"
+        ],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 2000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-08",
+        "contentUpdatedOn": "2026-08-08",
+        "contentUpdateSummary": "Removed an unverifiable placeholder citation and search-style commerce; substantive content remains blocked pending exact primary-source correction.",
+        "relatedIssueIds": [
+          "hyundai-santacruz-infotainment-freeze",
+          "hyundai-ioniq5-infotainment-crash"
+        ]
+      }
+    },
+    {
+      "id": "kia-k5-paint-chipping-and-clear-coat-peeling-hood-and-roof-panel",
+      "model": "K5",
+      "action": "keep_published_pending_source",
+      "reason": "No Kia/NHTSA primary package in the complete K5 inventory establishes insufficient paint-film thickness, platform-wide adhesion failure, color prevalence, warranty entitlement or the stated repair costs across 2021-2024. The uncited row remains frozen and blocks application.",
+      "identityRule": "No source may change an indexed page identity. A different model, component, year boundary or failure outcome requires a hold or a later separately approved identity change.",
+      "commerceDecision": "unchanged-commerce-pending-exact-source-and-fitment",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "complete-official-inventory-no-exact-package",
+          "datasetRowsReviewed": 197,
+          "verifiedOn": "2026-08-08",
+          "observation": "No Kia/NHTSA primary package in the complete K5 inventory establishes insufficient paint-film thickness, platform-wide adhesion failure, color prevalence, warranty entitlement or the stated repair costs across 2021-2024. The uncited row remains frozen and blocks application."
+        }
+      ],
+      "beforeSha256": "7fb6278505ce5b83f21b9e71fb47961a577f302d931ed0eca10dcc3ba2423bae",
+      "proposalSha256": "7fb6278505ce5b83f21b9e71fb47961a577f302d931ed0eca10dcc3ba2423bae",
+      "before": {
+        "make": "Kia",
+        "model": "K5",
+        "years": [
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "body",
+        "title": "Paint Chipping and Clear Coat Peeling (Hood and Roof Panel)",
+        "description": "K5 owners across multiple model years have reported premature paint chipping on the hood and roof panels, with the clear coat peeling in flakes or bubbling in affected areas. This is documented in Kia owner forums and in some NHTSA complaints, particularly in darker colors such as Gravity Gray and Aurora Black Pearl. The issue is attributed to insufficient paint film thickness or adhesion on horizontal panels most exposed to UV radiation and road debris impact, and is a known issue on the shared Sonata/K5 platform. Some owners have had repaints or touch-up coverage denied under warranty as cosmetic exclusions.",
+        "solution": "Kia's new vehicle limited warranty covers paint defects for 3 years or 36,000 miles; owners experiencing premature peeling within this window should request a paint warranty claim at the dealership with documentation. Out-of-warranty repairs require professional repaint of affected panels; hood repaint costs $400–$900 and full roof repaint $500–$1,200 at a body shop. Paint protection film (PPF) application proactively prevents recurrence.",
+        "severity": "low",
+        "confidence": "medium",
+        "symptoms": [
+          "Small paint chips on hood leading edge without identifiable rock impact",
+          "Clear coat peeling or flaking from roof or hood in irregular patches",
+          "Bubbling or lifting of clear coat under sunlight",
+          "Color fading or hazing on horizontal panels disproportionate to age",
+          "Rust spotting developing at paint chip locations in humid climates"
+        ],
+        "affectedSystems": [
+          "body"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 200,
+        "estimatedCostHigh": 1800,
+        "typicalMileageLow": 5000,
+        "typicalMileageHigh": 45000,
+        "citations": [],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 76,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-05-09",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Kia",
+        "model": "K5",
+        "years": [
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "body",
+        "title": "Paint Chipping and Clear Coat Peeling (Hood and Roof Panel)",
+        "description": "K5 owners across multiple model years have reported premature paint chipping on the hood and roof panels, with the clear coat peeling in flakes or bubbling in affected areas. This is documented in Kia owner forums and in some NHTSA complaints, particularly in darker colors such as Gravity Gray and Aurora Black Pearl. The issue is attributed to insufficient paint film thickness or adhesion on horizontal panels most exposed to UV radiation and road debris impact, and is a known issue on the shared Sonata/K5 platform. Some owners have had repaints or touch-up coverage denied under warranty as cosmetic exclusions.",
+        "solution": "Kia's new vehicle limited warranty covers paint defects for 3 years or 36,000 miles; owners experiencing premature peeling within this window should request a paint warranty claim at the dealership with documentation. Out-of-warranty repairs require professional repaint of affected panels; hood repaint costs $400–$900 and full roof repaint $500–$1,200 at a body shop. Paint protection film (PPF) application proactively prevents recurrence.",
+        "severity": "low",
+        "confidence": "medium",
+        "symptoms": [
+          "Small paint chips on hood leading edge without identifiable rock impact",
+          "Clear coat peeling or flaking from roof or hood in irregular patches",
+          "Bubbling or lifting of clear coat under sunlight",
+          "Color fading or hazing on horizontal panels disproportionate to age",
+          "Rust spotting developing at paint chip locations in humid climates"
+        ],
+        "affectedSystems": [
+          "body"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 200,
+        "estimatedCostHigh": 1800,
+        "typicalMileageLow": 5000,
+        "typicalMileageHigh": 45000,
+        "citations": [],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 76,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-05-09",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "kia-k5-panoramic-sunroof-rattle-2021",
+      "model": "K5",
+      "action": "remove_false_citation_and_search_commerce_pending_source",
+      "reason": "The Reddit URL contains the placeholder post ID “xyz123” and could not be verified. Rendered Kia SA481 covers only a narrow March-April 2021 production population with an incorrectly installed left-front tracking bolt and a creak; it does not establish this 2021-2025 rattle-and-water-leak aggregation or compressed-air/sealant advice. The false citation and search commerce are removed, but the page remains blocked.",
+      "identityRule": "No source may change an indexed page identity. A different model, component, year boundary or failure outcome requires a hold or a later separately approved identity change.",
+      "commerceDecision": "unresolved-no-retail-link-until-primary-source-correction",
+      "changedFields": [
+        "citations",
+        "communityRecommendations",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
+      "evidence": [
+        {
+          "kind": "false-placeholder-citation-and-official-scope-conflict",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2021/MC-10196858-0001.pdf",
+          "sha256": "5355e936db04c867b0375a02024fc3d18f0297636a4d170349b708ae8659dedf",
+          "visuallyInspectedPages": [
+            1
+          ],
+          "verifiedOn": "2026-08-08",
+          "observation": "The Reddit URL contains the placeholder post ID “xyz123” and could not be verified. Rendered Kia SA481 covers only a narrow March-April 2021 production population with an incorrectly installed left-front tracking bolt and a creak; it does not establish this 2021-2025 rattle-and-water-leak aggregation or compressed-air/sealant advice. The false citation and search commerce are removed, but the page remains blocked."
+        }
+      ],
+      "beforeSha256": "72f473cb6382e7064605eec864febb590f661ba9947feefb022829731330aa2c",
+      "proposalSha256": "e68c2406970c62347d132bab332158eedd36627efd747e7fb646857cd269357f",
+      "before": {
+        "make": "Kia",
+        "model": "K5",
+        "years": [
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "body",
+        "title": "Panoramic Sunroof Rattle and Water Leak",
+        "description": "K5 models equipped with the panoramic sunroof experience rattling noises from the sunroof area at highway speeds and over rough roads. The sunroof glass and frame develop play over time, creating an annoying rattling or buzzing sound. Some owners also report water leaks at the front corners of the sunroof, with water dripping onto the headliner or A-pillar trim. Clogged sunroof drain tubes exacerbate the leak issue.",
+        "solution": "For rattling: the dealer can apply felt tape or foam padding to the sunroof frame contact points under warranty (TSB available). Adjusting the sunroof glass alignment can also eliminate rattles. For water leaks: clean the sunroof drain tubes by carefully feeding a flexible wire or compressed air through each corner drain. The tubes run down the A-pillars and C-pillars to exit near the wheel wells. If the headliner is water-stained, it may need replacement ($500-$1,000). Apply sunroof sealant to the front weatherstrip if dealer adjustment does not stop the leak.",
+        "severity": "low",
+        "confidence": "medium",
+        "symptoms": [
+          "Rattling or buzzing noise from roof area at speed",
+          "Water dripping from headliner near sunroof edges",
+          "Water stains on A-pillar or headliner fabric",
+          "Wind noise increase over time",
+          "Musty smell from wet headliner"
+        ],
+        "affectedSystems": [
+          "Body",
+          "Interior"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 1000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.reddit.com/r/Kia/comments/xyz123/panoramic_sunroof_rattle_and_water_leak_issues_on/",
+            "type": "forum",
+            "title": "Reddit r/Kia Thread: Panoramic Sunroof Rattle and Water Leak Issues on Kia K5"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Clean sunroof drains every spring. Pour a small amount of water around the sunroof seal and watch for it to exit under the car near the front and rear wheel wells. If it does not drain, the tubes are clogged.",
+            "upvotes": 0,
+            "needsReview": true
+          },
+          {
+            "type": "part",
+            "content": "Trim removal tool set for body panel work without damage",
+            "partName": "Trim Removal Tool Set",
+            "partBrand": "MICTUNING",
+            "affiliateUrl": "https://www.amazon.com/s?k=trim%20removal%20tool%20set%20automotive&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Bondo body filler for dent and panel repair",
+            "partName": "Body Filler Kit",
+            "partBrand": "Bondo",
+            "affiliateUrl": "https://www.amazon.com/s?k=Bondo%20body%20filler%20kit&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "hyundai-kona-panoramic-sunroof-leak",
+          "kia-sorento-sunroof-rattle-2016"
+        ]
+      },
+      "proposal": {
+        "make": "Kia",
+        "model": "K5",
+        "years": [
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "body",
+        "title": "Panoramic Sunroof Rattle and Water Leak",
+        "description": "K5 models equipped with the panoramic sunroof experience rattling noises from the sunroof area at highway speeds and over rough roads. The sunroof glass and frame develop play over time, creating an annoying rattling or buzzing sound. Some owners also report water leaks at the front corners of the sunroof, with water dripping onto the headliner or A-pillar trim. Clogged sunroof drain tubes exacerbate the leak issue.",
+        "solution": "For rattling: the dealer can apply felt tape or foam padding to the sunroof frame contact points under warranty (TSB available). Adjusting the sunroof glass alignment can also eliminate rattles. For water leaks: clean the sunroof drain tubes by carefully feeding a flexible wire or compressed air through each corner drain. The tubes run down the A-pillars and C-pillars to exit near the wheel wells. If the headliner is water-stained, it may need replacement ($500-$1,000). Apply sunroof sealant to the front weatherstrip if dealer adjustment does not stop the leak.",
+        "severity": "low",
+        "confidence": "medium",
+        "symptoms": [
+          "Rattling or buzzing noise from roof area at speed",
+          "Water dripping from headliner near sunroof edges",
+          "Water stains on A-pillar or headliner fabric",
+          "Wind noise increase over time",
+          "Musty smell from wet headliner"
+        ],
+        "affectedSystems": [
+          "Body",
+          "Interior"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 1000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-08",
+        "contentUpdatedOn": "2026-08-08",
+        "contentUpdateSummary": "Removed an unverifiable placeholder citation and search-style commerce; substantive content remains blocked pending exact primary-source correction.",
+        "relatedIssueIds": [
+          "hyundai-kona-panoramic-sunroof-leak",
+          "kia-sorento-sunroof-rattle-2016"
+        ]
+      }
+    },
+    {
+      "id": "kia-k5-rear-wheel-bearing-premature-failure-and-humming-noise",
+      "model": "K5",
+      "action": "keep_published_pending_source",
+      "reason": "No exact official K5 package was found for a 2021-2024 rear-wheel-bearing defect. The page is uncited and asserts press-fit tolerances, early mileage, broad FWD/AWD prevalence and part 52730-L1000 without fitment proof. It remains frozen and blocks application.",
+      "identityRule": "No source may change an indexed page identity. A different model, component, year boundary or failure outcome requires a hold or a later separately approved identity change.",
+      "commerceDecision": "unchanged-commerce-pending-exact-source-and-fitment",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "complete-official-inventory-no-exact-package",
+          "datasetRowsReviewed": 197,
+          "verifiedOn": "2026-08-08",
+          "observation": "No exact official K5 package was found for a 2021-2024 rear-wheel-bearing defect. The page is uncited and asserts press-fit tolerances, early mileage, broad FWD/AWD prevalence and part 52730-L1000 without fitment proof. It remains frozen and blocks application."
+        }
+      ],
+      "beforeSha256": "b9450aef59b716e7204bb08824c60a7d130163c442393c601b4017e844f1ce05",
+      "proposalSha256": "b9450aef59b716e7204bb08824c60a7d130163c442393c601b4017e844f1ce05",
+      "before": {
+        "make": "Kia",
+        "model": "K5",
+        "years": [
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "suspension",
+        "title": "Rear Wheel Bearing Premature Failure and Humming Noise",
+        "description": "A number of K5 owners have reported premature rear wheel bearing failure, typically presenting as a low-pitched humming or growling noise that changes with vehicle speed and varies when turning left or right. The issue has been observed on both FWD and AWD variants and appears linked to bearing press-fit tolerances in the rear knuckle assembly. NHTSA complaints and owner forums document failures occurring well before expected service life, sometimes as early as 25,000 miles.",
+        "solution": "Replacement of the rear wheel bearing/hub assembly is required. The rear bearing is an integrated hub unit (Kia part number 52730-L1000 or equivalent by production date). Labor requires knuckle removal; dealership or independent repair is approximately 1.5–2 hours per side. AWD variants may require additional drivetrain disassembly.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "Humming or growling noise that increases with vehicle speed",
+          "Noise changes pitch or volume when turning or changing lanes",
+          "Vibration felt through floorboard or seat at highway speeds",
+          "ABS or traction control warning light illumination (in advanced cases)",
+          "Looseness or play detected at wheel during inspection"
+        ],
+        "affectedSystems": [
+          "suspension"
+        ],
+        "dtcCodes": [
+          "C1234",
+          "C1235"
+        ],
+        "estimatedCostLow": 250,
+        "estimatedCostHigh": 650,
+        "typicalMileageLow": 25000,
+        "typicalMileageHigh": 75000,
+        "citations": [],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 62,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-05-09",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Kia",
+        "model": "K5",
+        "years": [
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "suspension",
+        "title": "Rear Wheel Bearing Premature Failure and Humming Noise",
+        "description": "A number of K5 owners have reported premature rear wheel bearing failure, typically presenting as a low-pitched humming or growling noise that changes with vehicle speed and varies when turning left or right. The issue has been observed on both FWD and AWD variants and appears linked to bearing press-fit tolerances in the rear knuckle assembly. NHTSA complaints and owner forums document failures occurring well before expected service life, sometimes as early as 25,000 miles.",
+        "solution": "Replacement of the rear wheel bearing/hub assembly is required. The rear bearing is an integrated hub unit (Kia part number 52730-L1000 or equivalent by production date). Labor requires knuckle removal; dealership or independent repair is approximately 1.5–2 hours per side. AWD variants may require additional drivetrain disassembly.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "Humming or growling noise that increases with vehicle speed",
+          "Noise changes pitch or volume when turning or changing lanes",
+          "Vibration felt through floorboard or seat at highway speeds",
+          "ABS or traction control warning light illumination (in advanced cases)",
+          "Looseness or play detected at wheel during inspection"
+        ],
+        "affectedSystems": [
+          "suspension"
+        ],
+        "dtcCodes": [
+          "C1234",
+          "C1235"
+        ],
+        "estimatedCostLow": 250,
+        "estimatedCostHigh": 650,
+        "typicalMileageLow": 25000,
+        "typicalMileageHigh": 75000,
+        "citations": [],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 62,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-05-09",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "kia-k5-smartstream-g2-5-gdi-engine-piston-ring-oil-consumption-issue",
+      "model": "K5",
+      "action": "keep_published_pending_source",
+      "reason": "Rendered ENG222 lists K5 (DL3a) only for model year 2022, not the frozen 2021-2024 scope. It provides an oil-consumption diagnosis/cleaning flow and does not establish piston-ring sealing tolerances as the cause, blue-smoke prevalence, TSB ENG023 or the stated short-block prices. The row remains frozen and blocks application.",
+      "identityRule": "No source may change an indexed page identity. A different model, component, year boundary or failure outcome requires a hold or a later separately approved identity change.",
+      "commerceDecision": "unchanged-commerce-pending-exact-source-and-fitment",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-source-scope-or-component-conflict",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2025/MC-11017109-0001.pdf",
+          "sha256": "dc3cebacc706a0ed2ac45d8a40bc947c14d0bc94d2efdac915a84ac1c541c305",
+          "visuallyInspectedPages": [
+            1,
+            9
+          ],
+          "verifiedOn": "2026-08-08",
+          "observation": "Rendered ENG222 lists K5 (DL3a) only for model year 2022, not the frozen 2021-2024 scope. It provides an oil-consumption diagnosis/cleaning flow and does not establish piston-ring sealing tolerances as the cause, blue-smoke prevalence, TSB ENG023 or the stated short-block prices. The row remains frozen and blocks application."
+        }
+      ],
+      "beforeSha256": "ab5d068cb20fa734259303a122741c7f64bc2dfb0ce41ad264b975a562137fe4",
+      "proposalSha256": "ab5d068cb20fa734259303a122741c7f64bc2dfb0ce41ad264b975a562137fe4",
+      "before": {
+        "make": "Kia",
+        "model": "K5",
+        "years": [
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "engine",
+        "title": "SmartStream G2.5 GDI Engine Piston Ring/Oil Consumption Issue",
+        "description": "Owners of K5 models equipped with the 2.5L naturally aspirated GDI engine (SmartStream G2.5) have reported excessive oil consumption between change intervals, sometimes consuming over a quart per 1,000 miles. The root cause is linked to piston ring sealing tolerances that allow oil to enter the combustion chamber, producing blue smoke from the exhaust on cold starts and acceleration. NHTSA complaint database reflects multiple owners reporting this on 2021-2023 model years, with Kia issuing TSB guidance for inspection and potential short block replacement.",
+        "solution": "Kia dealerships perform an oil consumption test over 3,000-mile intervals per TSB ENG 023. If consumption exceeds specification, piston rings or short block assembly replacement is authorized under warranty. Short block part numbers vary by build date; dealers reference Kia's warranty claim system. Out-of-warranty repair involves short block replacement costing $3,500–$6,000.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "Blue/white smoke from exhaust on cold start or hard acceleration",
+          "Low oil level warning light before scheduled oil change",
+          "Fouled spark plugs causing rough idle",
+          "Burning oil smell from engine bay",
+          "Oil level dropping more than 1 quart per 1,000 miles"
+        ],
+        "affectedSystems": [
+          "engine"
+        ],
+        "dtcCodes": [
+          "P0301",
+          "P0302",
+          "P0303",
+          "P0304"
+        ],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": 6000,
+        "typicalMileageLow": 8000,
+        "typicalMileageHigh": 50000,
+        "citations": [],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 85,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-05-09",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Kia",
+        "model": "K5",
+        "years": [
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "engine",
+        "title": "SmartStream G2.5 GDI Engine Piston Ring/Oil Consumption Issue",
+        "description": "Owners of K5 models equipped with the 2.5L naturally aspirated GDI engine (SmartStream G2.5) have reported excessive oil consumption between change intervals, sometimes consuming over a quart per 1,000 miles. The root cause is linked to piston ring sealing tolerances that allow oil to enter the combustion chamber, producing blue smoke from the exhaust on cold starts and acceleration. NHTSA complaint database reflects multiple owners reporting this on 2021-2023 model years, with Kia issuing TSB guidance for inspection and potential short block replacement.",
+        "solution": "Kia dealerships perform an oil consumption test over 3,000-mile intervals per TSB ENG 023. If consumption exceeds specification, piston rings or short block assembly replacement is authorized under warranty. Short block part numbers vary by build date; dealers reference Kia's warranty claim system. Out-of-warranty repair involves short block replacement costing $3,500–$6,000.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "Blue/white smoke from exhaust on cold start or hard acceleration",
+          "Low oil level warning light before scheduled oil change",
+          "Fouled spark plugs causing rough idle",
+          "Burning oil smell from engine bay",
+          "Oil level dropping more than 1 quart per 1,000 miles"
+        ],
+        "affectedSystems": [
+          "engine"
+        ],
+        "dtcCodes": [
+          "P0301",
+          "P0302",
+          "P0303",
+          "P0304"
+        ],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": 6000,
+        "typicalMileageLow": 8000,
+        "typicalMileageHigh": 50000,
+        "citations": [],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 85,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-05-09",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "kia-k5-steering-column-intermediate-shaft-clunk-or-knock-low-speed-turns",
+      "model": "K5",
+      "action": "keep_published_pending_source",
+      "reason": "Rendered CHA111 covers only certain 2021 K5 vehicles and identifies scraping noise from foreign material in the C-MDPS worm-shaft small bearing; it does not establish a 2021-2023 intermediate-shaft/coupler clunk identity. The component and year mismatch remains frozen and blocks application.",
+      "identityRule": "No source may change an indexed page identity. A different model, component, year boundary or failure outcome requires a hold or a later separately approved identity change.",
+      "commerceDecision": "unchanged-commerce-pending-exact-source-and-fitment",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-source-scope-or-component-conflict",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2021/MC-10202227-0001.pdf",
+          "sha256": "b019ad71ed57fff0d03a9d7ad50c17114de2de758dcb0165b29394f9b0ead28c",
+          "visuallyInspectedPages": [
+            1
+          ],
+          "verifiedOn": "2026-08-08",
+          "observation": "Rendered CHA111 covers only certain 2021 K5 vehicles and identifies scraping noise from foreign material in the C-MDPS worm-shaft small bearing; it does not establish a 2021-2023 intermediate-shaft/coupler clunk identity. The component and year mismatch remains frozen and blocks application."
+        }
+      ],
+      "beforeSha256": "78514cbc04147c00fa19af30dcc29be7c2b392b79bc642287d872fa282e52359",
+      "proposalSha256": "78514cbc04147c00fa19af30dcc29be7c2b392b79bc642287d872fa282e52359",
+      "before": {
+        "make": "Kia",
+        "model": "K5",
+        "years": [
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "suspension",
+        "title": "Steering Column/Intermediate Shaft Clunk or Knock (Low-Speed Turns)",
+        "description": "Owner reports and NHTSA complaints describe a clunk/knock felt through the steering wheel during low-speed turning or over small bumps. The condition is commonly associated with play in the intermediate steering shaft, column coupling, or related fasteners/bushings. Drivers report a noticeable tactile knock and noise that can worsen over time.",
+        "solution": "Inspect the intermediate shaft and steering column coupling for play and verify torque on related fasteners. Replace the intermediate steering shaft/coupler if excessive looseness is found; some repairs involve updated parts and re-torque procedures per Kia service guidance. Perform an alignment check after steering component replacement.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Clunk/knock in steering wheel at low speed",
+          "Noise when turning into driveways/parking maneuvers",
+          "Vibration or looseness felt through steering",
+          "Intermittent clicking over small bumps"
+        ],
+        "affectedSystems": [
+          "suspension"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 120,
+        "estimatedCostHigh": 650,
+        "typicalMileageLow": 5000,
+        "typicalMileageHigh": 50000,
+        "citations": [],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 85,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-04-19",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "hyundai-genesis-coupe-steering-clunk"
+        ]
+      },
+      "proposal": {
+        "make": "Kia",
+        "model": "K5",
+        "years": [
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "suspension",
+        "title": "Steering Column/Intermediate Shaft Clunk or Knock (Low-Speed Turns)",
+        "description": "Owner reports and NHTSA complaints describe a clunk/knock felt through the steering wheel during low-speed turning or over small bumps. The condition is commonly associated with play in the intermediate steering shaft, column coupling, or related fasteners/bushings. Drivers report a noticeable tactile knock and noise that can worsen over time.",
+        "solution": "Inspect the intermediate shaft and steering column coupling for play and verify torque on related fasteners. Replace the intermediate steering shaft/coupler if excessive looseness is found; some repairs involve updated parts and re-torque procedures per Kia service guidance. Perform an alignment check after steering component replacement.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Clunk/knock in steering wheel at low speed",
+          "Noise when turning into driveways/parking maneuvers",
+          "Vibration or looseness felt through steering",
+          "Intermittent clicking over small bumps"
+        ],
+        "affectedSystems": [
+          "suspension"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 120,
+        "estimatedCostHigh": 650,
+        "typicalMileageLow": 5000,
+        "typicalMileageHigh": 50000,
+        "citations": [],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 85,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-04-19",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "hyundai-genesis-coupe-steering-clunk"
+        ]
+      }
+    },
+    {
+      "id": "kia-k5-theta-ii-knock-sensor-2021",
+      "model": "K5",
+      "action": "keep_published_pending_source",
+      "reason": "The page labels the K5 2.5L engine as “Theta II,” while rendered Kia transmission guidance identifies the 2.5L T-GDI K5 engine as Theta III. No exact K5 SA508 knock-sensor package was found, and the page adds unsupported extended-warranty and sensor-replacement claims. The incorrect engine metadata is safety-critical and remains frozen pending correction.",
+      "identityRule": "No source may change an indexed page identity. A different model, component, year boundary or failure outcome requires a hold or a later separately approved identity change.",
+      "commerceDecision": "unchanged-commerce-pending-exact-source-and-fitment",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-source-scope-or-component-conflict",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2024/MC-11010699-0001.pdf",
+          "sha256": "7c4a43c0aa4fcc378c7459acfa74307eb0a3876d9afeebdafad049c41a389c78",
+          "visuallyInspectedPages": [
+            1,
+            3
+          ],
+          "verifiedOn": "2026-08-08",
+          "observation": "The page labels the K5 2.5L engine as “Theta II,” while rendered Kia transmission guidance identifies the 2.5L T-GDI K5 engine as Theta III. No exact K5 SA508 knock-sensor package was found, and the page adds unsupported extended-warranty and sensor-replacement claims. The incorrect engine metadata is safety-critical and remains frozen pending correction."
+        }
+      ],
+      "beforeSha256": "7e37f7caa7a42b13797f3ce3936a79e18fef5ffffe92641e99180075fbaa69ba",
+      "proposalSha256": "7e37f7caa7a42b13797f3ce3936a79e18fef5ffffe92641e99180075fbaa69ba",
+      "before": {
+        "make": "Kia",
+        "model": "K5",
+        "years": [
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [
+          "2.5L Theta II"
+        ],
+        "category": "engine",
+        "title": "Theta II Engine Knock Sensor Issues and Knock-Related Concerns",
+        "description": "The 2.5L Theta II engine in certain K5 models has experienced knock sensor faults and engine knock concerns. The knock sensor may trigger false positives or fail to detect actual detonation, causing the ECU to either retard timing unnecessarily (reducing power) or fail to protect against harmful knock. Kia issued a software update to improve knock detection logic, but some owners report persistent issues after the update.",
+        "solution": "Visit a Kia dealer for the latest ECU software update (TSB SA508) that improves knock detection calibration — this is typically performed at no cost. If the knock sensor itself has failed, replacement costs $200-$400 including labor. Use only 87+ octane fuel as specified. If actual engine knock is present (metallic pinging under load), have the engine inspected immediately as the Theta II engine family has a known history of connecting rod bearing issues in earlier applications. Kia has extended warranty coverage on some Theta II engines.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Check engine light with knock sensor codes",
+          "Reduced engine power or sluggish acceleration",
+          "Audible pinging or knocking under load",
+          "Poor fuel economy from excessive timing retard",
+          "Engine hesitation during acceleration"
+        ],
+        "affectedSystems": [
+          "Engine",
+          "Engine Management"
+        ],
+        "dtcCodes": [
+          "P0325",
+          "P0326",
+          "P0327",
+          "P0328"
+        ],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 400,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Check if your VIN is covered under the Kia engine warranty extension. Many Theta II engines have extended coverage to 150,000 miles for knock-related failures.",
+            "upvotes": 0,
+            "needsReview": true
+          },
+          {
+            "type": "tip",
+            "content": "Request the latest ECU calibration update at every service visit. Kia has released multiple updates to improve knock detection and engine protection logic.",
+            "upvotes": 0,
+            "needsReview": true
+          },
+          {
+            "type": "part",
+            "content": "Replacement knock sensor eliminates false detonation readings",
+            "partName": "Knock Sensor",
+            "partBrand": "Bosch",
+            "affiliateUrl": "https://www.amazon.com/s?k=Kia%20K5%20Bosch%20Knock%20Sensor&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "kia-optima-theta-ii-engine-failure",
+          "kia-sorento-theta-ii-engine-seizure",
+          "hyundai-veloster-knock-sensor-engine-2019",
+          "hyundai-theta2-engine",
+          "kia-sportage-theta-ii-engine-failure"
+        ]
+      },
+      "proposal": {
+        "make": "Kia",
+        "model": "K5",
+        "years": [
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [
+          "2.5L Theta II"
+        ],
+        "category": "engine",
+        "title": "Theta II Engine Knock Sensor Issues and Knock-Related Concerns",
+        "description": "The 2.5L Theta II engine in certain K5 models has experienced knock sensor faults and engine knock concerns. The knock sensor may trigger false positives or fail to detect actual detonation, causing the ECU to either retard timing unnecessarily (reducing power) or fail to protect against harmful knock. Kia issued a software update to improve knock detection logic, but some owners report persistent issues after the update.",
+        "solution": "Visit a Kia dealer for the latest ECU software update (TSB SA508) that improves knock detection calibration — this is typically performed at no cost. If the knock sensor itself has failed, replacement costs $200-$400 including labor. Use only 87+ octane fuel as specified. If actual engine knock is present (metallic pinging under load), have the engine inspected immediately as the Theta II engine family has a known history of connecting rod bearing issues in earlier applications. Kia has extended warranty coverage on some Theta II engines.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Check engine light with knock sensor codes",
+          "Reduced engine power or sluggish acceleration",
+          "Audible pinging or knocking under load",
+          "Poor fuel economy from excessive timing retard",
+          "Engine hesitation during acceleration"
+        ],
+        "affectedSystems": [
+          "Engine",
+          "Engine Management"
+        ],
+        "dtcCodes": [
+          "P0325",
+          "P0326",
+          "P0327",
+          "P0328"
+        ],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 400,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Check if your VIN is covered under the Kia engine warranty extension. Many Theta II engines have extended coverage to 150,000 miles for knock-related failures.",
+            "upvotes": 0,
+            "needsReview": true
+          },
+          {
+            "type": "tip",
+            "content": "Request the latest ECU calibration update at every service visit. Kia has released multiple updates to improve knock detection and engine protection logic.",
+            "upvotes": 0,
+            "needsReview": true
+          },
+          {
+            "type": "part",
+            "content": "Replacement knock sensor eliminates false detonation readings",
+            "partName": "Knock Sensor",
+            "partBrand": "Bosch",
+            "affiliateUrl": "https://www.amazon.com/s?k=Kia%20K5%20Bosch%20Knock%20Sensor&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "kia-optima-theta-ii-engine-failure",
+          "kia-sorento-theta-ii-engine-seizure",
+          "hyundai-veloster-knock-sensor-engine-2019",
+          "hyundai-theta2-engine",
+          "kia-sportage-theta-ii-engine-failure"
+        ]
+      }
+    },
+    {
+      "id": "kia-k5-transmission-control-unit-tcu-software-fault-causing-harsh-upshifts-or-limp-mode-8-speed-at",
+      "model": "K5",
+      "action": "keep_published_pending_source",
+      "reason": "Rendered TRA111 applies to 2021-2023 K5 vehicles with the 2.5L T-GDI Theta III engine and 8-speed DCT, with specific EOP DTCs; SA526 is limited to a narrow August 2022 production window. The page instead calls the unit a conventional 8AT paired with 2.5T, cites unverified TR-004, includes 2024 and adds valve-body claims. It remains frozen and blocks application.",
+      "identityRule": "No source may change an indexed page identity. A different model, component, year boundary or failure outcome requires a hold or a later separately approved identity change.",
+      "commerceDecision": "unchanged-commerce-pending-exact-source-and-fitment",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-source-scope-or-component-conflict",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2024/MC-11010699-0001.pdf",
+          "sha256": "7c4a43c0aa4fcc378c7459acfa74307eb0a3876d9afeebdafad049c41a389c78",
+          "visuallyInspectedPages": [
+            1,
+            3
+          ],
+          "verifiedOn": "2026-08-08",
+          "observation": "Rendered TRA111 applies to 2021-2023 K5 vehicles with the 2.5L T-GDI Theta III engine and 8-speed DCT, with specific EOP DTCs; SA526 is limited to a narrow August 2022 production window. The page instead calls the unit a conventional 8AT paired with 2.5T, cites unverified TR-004, includes 2024 and adds valve-body claims. It remains frozen and blocks application."
+        }
+      ],
+      "beforeSha256": "189342506c56a585cb762708baeac4b9bcf0b93b13240cbd064c5c9ae53e264c",
+      "proposalSha256": "189342506c56a585cb762708baeac4b9bcf0b93b13240cbd064c5c9ae53e264c",
+      "before": {
+        "make": "Kia",
+        "model": "K5",
+        "years": [
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "transmission",
+        "title": "Transmission Control Unit (TCU) Software Fault Causing Harsh Upshifts or Limp Mode (8-Speed AT)",
+        "description": "K5 models equipped with the 8-speed conventional automatic transmission (paired with the 2.5T Turbo engine in higher trims) have generated complaints of harsh, jerky upshifts—particularly the 1-2 and 2-3 shifts—and in some cases the transmission entering limp mode (restricted to lower gears) after a fault is detected. This is distinct from the DCT shudder issue and specifically affects the hydraulic 8AT unit. TSBs from Kia/Hyundai on the shared 8AT platform have addressed TCU software logic for shift pressure and torque converter clutch engagement.",
+        "solution": "Kia dealers perform TCU reprogramming via KDS (Kia Diagnostic System) using updated calibration files per TSB TR-004 and related bulletins. In cases of internal valve body damage from repeated harsh shifts, valve body replacement or full transmission replacement may be required. TCU software update is typically covered under powertrain warranty. Valve body replacement parts range from $600–$1,200 plus labor.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "Hard or jerky upshift felt between 1st-2nd or 2nd-3rd gears",
+          "Transmission warning light or check engine light illumination",
+          "Vehicle entering limp mode with limited gear availability",
+          "Delayed or hunting gear changes during light throttle driving",
+          "Transmission slipping sensation before engaging next gear"
+        ],
+        "affectedSystems": [
+          "transmission"
+        ],
+        "dtcCodes": [
+          "P0700",
+          "P0730",
+          "P0750",
+          "P0755"
+        ],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": 3500,
+        "typicalMileageLow": 5000,
+        "typicalMileageHigh": 60000,
+        "citations": [],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 58,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-05-09",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Kia",
+        "model": "K5",
+        "years": [
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "transmission",
+        "title": "Transmission Control Unit (TCU) Software Fault Causing Harsh Upshifts or Limp Mode (8-Speed AT)",
+        "description": "K5 models equipped with the 8-speed conventional automatic transmission (paired with the 2.5T Turbo engine in higher trims) have generated complaints of harsh, jerky upshifts—particularly the 1-2 and 2-3 shifts—and in some cases the transmission entering limp mode (restricted to lower gears) after a fault is detected. This is distinct from the DCT shudder issue and specifically affects the hydraulic 8AT unit. TSBs from Kia/Hyundai on the shared 8AT platform have addressed TCU software logic for shift pressure and torque converter clutch engagement.",
+        "solution": "Kia dealers perform TCU reprogramming via KDS (Kia Diagnostic System) using updated calibration files per TSB TR-004 and related bulletins. In cases of internal valve body damage from repeated harsh shifts, valve body replacement or full transmission replacement may be required. TCU software update is typically covered under powertrain warranty. Valve body replacement parts range from $600–$1,200 plus labor.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "Hard or jerky upshift felt between 1st-2nd or 2nd-3rd gears",
+          "Transmission warning light or check engine light illumination",
+          "Vehicle entering limp mode with limited gear availability",
+          "Delayed or hunting gear changes during light throttle driving",
+          "Transmission slipping sensation before engaging next gear"
+        ],
+        "affectedSystems": [
+          "transmission"
+        ],
+        "dtcCodes": [
+          "P0700",
+          "P0730",
+          "P0750",
+          "P0755"
+        ],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": 3500,
+        "typicalMileageLow": 5000,
+        "typicalMileageHigh": 60000,
+        "citations": [],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 58,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-05-09",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "kia-k5-trunk-latch-sticking-2021",
+      "model": "K5",
+      "action": "remove_false_citation_and_search_commerce_pending_source",
+      "reason": "The cited YouTube ID “abcd1234efg” is a generic example placeholder, not the claimed K5 trunk-latch repair video. The complete official K5 communication inventory contains no exact trunk-latch package for the retained 2021-2025 identity. The false citation and generic Dorman search commerce are removed, while the substantive page remains blocked pending an exact source.",
+      "identityRule": "No source may change an indexed page identity. A different model, component, year boundary or failure outcome requires a hold or a later separately approved identity change.",
+      "commerceDecision": "unresolved-no-retail-link-until-primary-source-correction",
+      "changedFields": [
+        "citations",
+        "communityRecommendations",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
+      "evidence": [
+        {
+          "kind": "false-placeholder-citation",
+          "verifiedOn": "2026-08-08",
+          "observation": "The cited YouTube ID “abcd1234efg” is a generic example placeholder, not the claimed K5 trunk-latch repair video. The complete official K5 communication inventory contains no exact trunk-latch package for the retained 2021-2025 identity. The false citation and generic Dorman search commerce are removed, while the substantive page remains blocked pending an exact source."
+        }
+      ],
+      "beforeSha256": "1e00baae185693fc8e0e531344a2e94fb8984c53b286e07a2b7efa3fe13514aa",
+      "proposalSha256": "64980502d31bb1984b93657882d80c09cfdabd471a6e86e3db10fff2fb9e4f1e",
+      "before": {
+        "make": "Kia",
+        "model": "K5",
+        "years": [
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "body",
+        "title": "Rear Trunk Latch Sticking and Failure to Open",
+        "description": "The electric trunk latch mechanism on the K5 is prone to sticking or failing to release, leaving the trunk locked. The issue is more common in cold weather when moisture gets into the latch mechanism and freezes. The trunk release button on the key fob, interior button, and exterior trunk handle may all fail to open the trunk when the latch is stuck. Some owners report the latch actuator motor failing entirely, requiring manual release from inside the trunk via the emergency release handle.",
+        "solution": "Lubricate the trunk latch mechanism with white lithium grease or silicone spray every 6 months to prevent sticking ($5-$10). If the latch actuator motor has failed, replace the entire trunk latch assembly ($100-$200 for parts, $100-$200 labor). In an emergency, access the trunk from the rear seat pass-through or use the emergency release handle inside the trunk. The dealer can reprogram the trunk open/close module if the issue is software-related. Apply dielectric grease to the latch electrical connector to prevent corrosion.",
+        "severity": "low",
+        "confidence": "medium",
+        "symptoms": [
+          "Trunk will not open from key fob button",
+          "Interior trunk release button unresponsive",
+          "Trunk latch clicks but does not release",
+          "Trunk opens intermittently or requires multiple presses",
+          "Trunk stuck closed in cold weather"
+        ],
+        "affectedSystems": [
+          "Body",
+          "Electrical"
+        ],
+        "dtcCodes": [
+          "B1352"
+        ],
+        "estimatedCostLow": 10,
+        "estimatedCostHigh": 400,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.youtube.com/watch?v=abcd1234efg",
+            "type": "video",
+            "title": "YouTube - Repairing a Stuck Trunk Latch on a 2021 Kia K5 by EricTheCarGuy"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Spray the trunk latch with silicone lubricant before winter. This prevents moisture from freezing the mechanism shut in cold weather. Takes 30 seconds and saves a lot of frustration.",
+            "upvotes": 0,
+            "needsReview": true
+          },
+          {
+            "type": "part",
+            "content": "Dorman OE-replacement door latch assembly — direct fit",
+            "partName": "Door Latch Assembly",
+            "partBrand": "Dorman",
+            "affiliateUrl": "https://www.amazon.com/s?k=Dorman%20door%20latch%20assembly&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Dorman replacement door handle — matches OEM spec",
+            "partName": "Door Handle",
+            "partBrand": "Dorman",
+            "affiliateUrl": "https://www.amazon.com/s?k=Dorman%20door%20handle&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Kia",
+        "model": "K5",
+        "years": [
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "body",
+        "title": "Rear Trunk Latch Sticking and Failure to Open",
+        "description": "The electric trunk latch mechanism on the K5 is prone to sticking or failing to release, leaving the trunk locked. The issue is more common in cold weather when moisture gets into the latch mechanism and freezes. The trunk release button on the key fob, interior button, and exterior trunk handle may all fail to open the trunk when the latch is stuck. Some owners report the latch actuator motor failing entirely, requiring manual release from inside the trunk via the emergency release handle.",
+        "solution": "Lubricate the trunk latch mechanism with white lithium grease or silicone spray every 6 months to prevent sticking ($5-$10). If the latch actuator motor has failed, replace the entire trunk latch assembly ($100-$200 for parts, $100-$200 labor). In an emergency, access the trunk from the rear seat pass-through or use the emergency release handle inside the trunk. The dealer can reprogram the trunk open/close module if the issue is software-related. Apply dielectric grease to the latch electrical connector to prevent corrosion.",
+        "severity": "low",
+        "confidence": "medium",
+        "symptoms": [
+          "Trunk will not open from key fob button",
+          "Interior trunk release button unresponsive",
+          "Trunk latch clicks but does not release",
+          "Trunk opens intermittently or requires multiple presses",
+          "Trunk stuck closed in cold weather"
+        ],
+        "affectedSystems": [
+          "Body",
+          "Electrical"
+        ],
+        "dtcCodes": [
+          "B1352"
+        ],
+        "estimatedCostLow": 10,
+        "estimatedCostHigh": 400,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-08",
+        "contentUpdatedOn": "2026-08-08",
+        "contentUpdateSummary": "Removed an unverifiable placeholder citation and search-style commerce; substantive content remains blocked pending exact primary-source correction.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "kia-k5-turbocharger-oil-feed-return-leak-1-6t-causing-burning-oil-smell-smoke",
+      "model": "K5",
+      "action": "keep_published_pending_source",
+      "reason": "No exact official K5 package was found for a 2021-2024 1.6T turbo oil-feed/return-line defect. The page is uncited and prescribes line, banjo-bolt and seal replacement without verified part or fitment evidence. It remains frozen and blocks application.",
+      "identityRule": "No source may change an indexed page identity. A different model, component, year boundary or failure outcome requires a hold or a later separately approved identity change.",
+      "commerceDecision": "unchanged-commerce-pending-exact-source-and-fitment",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "complete-official-inventory-no-exact-package",
+          "datasetRowsReviewed": 197,
+          "verifiedOn": "2026-08-08",
+          "observation": "No exact official K5 package was found for a 2021-2024 1.6T turbo oil-feed/return-line defect. The page is uncited and prescribes line, banjo-bolt and seal replacement without verified part or fitment evidence. It remains frozen and blocks application."
+        }
+      ],
+      "beforeSha256": "cda31415f52d880db5db72b8c5b8bd949bbc147a2ffc84a99ea8722b40345919",
+      "proposalSha256": "cda31415f52d880db5db72b8c5b8bd949bbc147a2ffc84a99ea8722b40345919",
+      "before": {
+        "make": "Kia",
+        "model": "K5",
+        "years": [
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [
+          "1.6T"
+        ],
+        "category": "engine",
+        "title": "Turbocharger Oil Feed/Return Leak (1.6T) Causing Burning Oil Smell/Smoke",
+        "description": "Owner reports and NHTSA complaints on 1.6L turbo K5 models describe oil seepage/leaks around the turbocharger oil feed/return lines or related seals, sometimes producing a burning oil smell and light smoke after driving. Heat cycling can harden seals or loosen fittings, allowing oil to drip onto hot exhaust components. Owners typically notice odor in the cabin at stops and oil residue near the turbo area.",
+        "solution": "Inspect turbo oil feed and return lines, banjo bolts, and sealing washers/gaskets for seepage; clean and recheck after a drive. Replace leaking oil line assemblies and sealing washers/gaskets (commonly crush washers at banjo fittings) and torque to specification; verify no oil contacts the exhaust. After repair, monitor oil level and confirm no further smoke/odor.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Burning oil smell after driving",
+          "Light smoke from engine bay near turbo area",
+          "Oil residue around turbocharger lines",
+          "Gradual oil level drop between services"
+        ],
+        "affectedSystems": [
+          "engine"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 220,
+        "estimatedCostHigh": 1200,
+        "typicalMileageLow": 8000,
+        "typicalMileageHigh": 70000,
+        "citations": [],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 35,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-04-19",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "kia-sportage-turbo-oil-line-leak-2017"
+        ]
+      },
+      "proposal": {
+        "make": "Kia",
+        "model": "K5",
+        "years": [
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [
+          "1.6T"
+        ],
+        "category": "engine",
+        "title": "Turbocharger Oil Feed/Return Leak (1.6T) Causing Burning Oil Smell/Smoke",
+        "description": "Owner reports and NHTSA complaints on 1.6L turbo K5 models describe oil seepage/leaks around the turbocharger oil feed/return lines or related seals, sometimes producing a burning oil smell and light smoke after driving. Heat cycling can harden seals or loosen fittings, allowing oil to drip onto hot exhaust components. Owners typically notice odor in the cabin at stops and oil residue near the turbo area.",
+        "solution": "Inspect turbo oil feed and return lines, banjo bolts, and sealing washers/gaskets for seepage; clean and recheck after a drive. Replace leaking oil line assemblies and sealing washers/gaskets (commonly crush washers at banjo fittings) and torque to specification; verify no oil contacts the exhaust. After repair, monitor oil level and confirm no further smoke/odor.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Burning oil smell after driving",
+          "Light smoke from engine bay near turbo area",
+          "Oil residue around turbocharger lines",
+          "Gradual oil level drop between services"
+        ],
+        "affectedSystems": [
+          "engine"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 220,
+        "estimatedCostHigh": 1200,
+        "typicalMileageLow": 8000,
+        "typicalMileageHigh": 70000,
+        "citations": [],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 35,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-04-19",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "kia-sportage-turbo-oil-line-leak-2017"
+        ]
+      }
+    },
+    {
+      "id": "kia-k5-windshield-optical-rain-sensor-bracket-detachment-adas-auto-wipers-inoperative",
+      "model": "K5",
+      "action": "keep_published_pending_source",
+      "reason": "Rendered PS704 concerns the front bumper radar mounting bracket after outside impact, not a windshield optical/rain-sensor bracket detaching across 2021-2024. No exact K5 primary package supports the combined camera, ADAS and auto-wiper identity, so the row remains frozen and blocks application.",
+      "identityRule": "No source may change an indexed page identity. A different model, component, year boundary or failure outcome requires a hold or a later separately approved identity change.",
+      "commerceDecision": "unchanged-commerce-pending-exact-source-and-fitment",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-source-scope-or-component-conflict",
+          "url": "https://static.nhtsa.gov/odi/tsbs/2021/MC-10200525-0001.pdf",
+          "sha256": "dca820340f62a52e8d41257eee2d6b7105c5d6664bcfe0aeab1c235b514fdff7",
+          "visuallyInspectedPages": [
+            1
+          ],
+          "verifiedOn": "2026-08-08",
+          "observation": "Rendered PS704 concerns the front bumper radar mounting bracket after outside impact, not a windshield optical/rain-sensor bracket detaching across 2021-2024. No exact K5 primary package supports the combined camera, ADAS and auto-wiper identity, so the row remains frozen and blocks application."
+        }
+      ],
+      "beforeSha256": "8d9746ee0dcb9f51162f81a01c5fc0ea4b9c21e71fcec638b896da17a14daf49",
+      "proposalSha256": "8d9746ee0dcb9f51162f81a01c5fc0ea4b9c21e71fcec638b896da17a14daf49",
+      "before": {
+        "make": "Kia",
+        "model": "K5",
+        "years": [
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "safety",
+        "title": "Windshield Optical/Rain Sensor Bracket Detachment (ADAS/Auto Wipers Inoperative)",
+        "description": "Owner reports and NHTSA complaints describe the forward-facing camera/rain sensor bracket at the windshield separating or losing adhesion, which can cause the camera module to shift out of position. This can trigger driver-assistance warnings and disable features like Lane Following Assist/Forward Collision-Avoidance Assist and/or cause erratic automatic wiper behavior. The issue is typically tied to windshield bracket bonding/installation and is often noticed after temperature swings or windshield replacement.",
+        "solution": "Inspect the windshield-mounted bracket and camera/sensor alignment; re-bond/replace the windshield bracket or replace the windshield if the bracket is integral. Reinstall and calibrate the front camera using Kia scan tool procedures; if the windshield was replaced, ensure OEM glass and correct bracket are used. Dealers may reference Kia service guidance/TSB procedures for front camera calibration after windshield/bracket service.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "Lane assist/forward collision warnings and features disabled",
+          "Automatic wipers stop working or behave erratically",
+          "Camera calibration/aiming DTCs or calibration failure",
+          "Rattling/loose module at top center of windshield"
+        ],
+        "affectedSystems": [
+          "safety"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 250,
+        "estimatedCostHigh": 1400,
+        "typicalMileageLow": 500,
+        "typicalMileageHigh": 30000,
+        "citations": [],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 45,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-04-19",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Kia",
+        "model": "K5",
+        "years": [
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "safety",
+        "title": "Windshield Optical/Rain Sensor Bracket Detachment (ADAS/Auto Wipers Inoperative)",
+        "description": "Owner reports and NHTSA complaints describe the forward-facing camera/rain sensor bracket at the windshield separating or losing adhesion, which can cause the camera module to shift out of position. This can trigger driver-assistance warnings and disable features like Lane Following Assist/Forward Collision-Avoidance Assist and/or cause erratic automatic wiper behavior. The issue is typically tied to windshield bracket bonding/installation and is often noticed after temperature swings or windshield replacement.",
+        "solution": "Inspect the windshield-mounted bracket and camera/sensor alignment; re-bond/replace the windshield bracket or replace the windshield if the bracket is integral. Reinstall and calibrate the front camera using Kia scan tool procedures; if the windshield was replaced, ensure OEM glass and correct bracket are used. Dealers may reference Kia service guidance/TSB procedures for front camera calibration after windshield/bracket service.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "Lane assist/forward collision warnings and features disabled",
+          "Automatic wipers stop working or behave erratically",
+          "Camera calibration/aiming DTCs or calibration failure",
+          "Rattling/loose module at top center of windshield"
+        ],
+        "affectedSystems": [
+          "safety"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 250,
+        "estimatedCostHigh": 1400,
+        "typicalMileageLow": 500,
+        "typicalMileageHigh": 30000,
+        "citations": [],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 45,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-04-19",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "kia-k5-wireless-phone-charging-pad-overheating-and-device-damage",
+      "model": "K5",
+      "action": "keep_published_pending_source",
+      "reason": "The complete official K5 communication inventory contains no exact package for 2021-2023 wireless charging-pad overheating or device damage. The page's thermal-management mechanism, software-update claim and compensation advice are uncited and remain frozen pending primary evidence.",
+      "identityRule": "No source may change an indexed page identity. A different model, component, year boundary or failure outcome requires a hold or a later separately approved identity change.",
+      "commerceDecision": "unchanged-commerce-pending-exact-source-and-fitment",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "complete-official-inventory-no-exact-package",
+          "datasetRowsReviewed": 197,
+          "verifiedOn": "2026-08-08",
+          "observation": "The complete official K5 communication inventory contains no exact package for 2021-2023 wireless charging-pad overheating or device damage. The page's thermal-management mechanism, software-update claim and compensation advice are uncited and remain frozen pending primary evidence."
+        }
+      ],
+      "beforeSha256": "d0bcaa508e91de053f51174f7b98040502638fdfd862c968d7033b0d72907d4e",
+      "proposalSha256": "d0bcaa508e91de053f51174f7b98040502638fdfd862c968d7033b0d72907d4e",
+      "before": {
+        "make": "Kia",
+        "model": "K5",
+        "years": [
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Wireless Phone Charging Pad Overheating and Device Damage",
+        "description": "K5 models equipped with the optional wireless charging pad have generated NHTSA complaints and owner forum reports describing the pad running excessively hot during charging cycles, causing smartphones to display thermal warnings and in some cases warping or discoloring the charging pad surface. The issue appears related to inadequate thermal management in the Qi charging module integrated into the center console. Kia issued a software update for the UVO telematics/charging control module on some vehicles to limit charging output and improve thermal cutoff response.",
+        "solution": "Kia dealers can apply a software update to the wireless charging control module addressing thermal limits per internal service guidance. If the pad surface is physically damaged, the center console wireless charging module assembly requires replacement. Owners experiencing device damage should document and file with Kia Customer Assistance for consideration of device compensation.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Smartphone displays overheating warning while on charging pad",
+          "Charging pad surface becomes uncomfortably hot to touch",
+          "Discoloration or warping of charging pad surface",
+          "Phone charges slowly or intermittently due to thermal throttling",
+          "Charging pad ceases functioning after thermal shutdown event"
+        ],
+        "affectedSystems": [
+          "electrical"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": 400,
+        "typicalMileageLow": 1000,
+        "typicalMileageHigh": 40000,
+        "citations": [],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 47,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-05-09",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Kia",
+        "model": "K5",
+        "years": [
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Wireless Phone Charging Pad Overheating and Device Damage",
+        "description": "K5 models equipped with the optional wireless charging pad have generated NHTSA complaints and owner forum reports describing the pad running excessively hot during charging cycles, causing smartphones to display thermal warnings and in some cases warping or discoloring the charging pad surface. The issue appears related to inadequate thermal management in the Qi charging module integrated into the center console. Kia issued a software update for the UVO telematics/charging control module on some vehicles to limit charging output and improve thermal cutoff response.",
+        "solution": "Kia dealers can apply a software update to the wireless charging control module addressing thermal limits per internal service guidance. If the pad surface is physically damaged, the center console wireless charging module assembly requires replacement. Owners experiencing device damage should document and file with Kia Customer Assistance for consideration of device compensation.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Smartphone displays overheating warning while on charging pad",
+          "Charging pad surface becomes uncomfortably hot to touch",
+          "Discoloration or warping of charging pad surface",
+          "Phone charges slowly or intermittently due to thermal throttling",
+          "Charging pad ceases functioning after thermal shutdown event"
+        ],
+        "affectedSystems": [
+          "electrical"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": 400,
+        "typicalMileageLow": 1000,
+        "typicalMileageHigh": 40000,
+        "citations": [],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 47,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-05-09",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    }
+  ]
+}
