@@ -108,7 +108,7 @@ const REWRITE_CARDS = {
     description: 'On April 29, 2025, NHTSA opened Preliminary Evaluation PE25004 after receiving five owner questionnaires alleging that windshield wipers stopped while 2024-2025 EV9 vehicles were being driven with snow or ice accumulated on or near the bottom of the windshield. At opening, NHTSA reported no crashes, injuries or fatalities and had not determined a root cause or defect remedy.',
     solution: 'PE25004 is an investigation, not a recall, and it identifies no official remedy or retail part. If the wipers stop or visibility becomes unsafe, pull over safely and do not continue until visibility is restored. Clear snow and ice only when safely stopped, document the event, contact Kia for inspection and check NHTSA for any later campaign or investigation update.',
     commerceDecision: 'no-official-remedy-or-part-investigation-open',
-    severity: 'critical', confidence: 'high',
+    severity: 'high', confidence: 'high',
     symptoms: ['Windshield wipers stop during snow or ice accumulation', 'Reduced visibility in winter weather'],
     affectedSystems: ['windshield-wiper system'],
     citations: [{ type: 'investigation', title: 'NHTSA Preliminary Evaluation PE25004 - EV9 Windshield Wiper Failure', url: PDF_SOURCES.wipers.url }],

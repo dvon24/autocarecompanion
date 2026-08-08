@@ -171,7 +171,7 @@ const REWRITE_CARDS = {
   [REWRITE_IDS.oilPump]: {
     description: 'NHTSA recall 22V760000 (Kia SC250) covers certain 2021-2023 K5 vehicles equipped with the 2.5L T-GDI engine and 8-speed dual-clutch transmission. A supplier soldering defect can cause an internal electric oil-pump circuit-board fault. The vehicle may chime, display “stop safely immediately,” illuminate the malfunction indicator light and then lose motive power when the transmission disengages its drive gears.',
     solution: 'Check the VIN for open recall 22V760000/SC250 and follow Kia\'s stop-safely warning if it appears. A Kia dealer inspects the vehicle, replaces the transmission when necessary and updates the transmission-control-unit software, free of charge under the recall. Although the recall report identifies oil-pump assembly 46220-2N510, this is not a retail DIY remedy; the campaign repair is VIN-specific and dealer-installed.',
-    trims: ['GT'], engines: ['2.5L T-GDI'], commerceDecision: 'dealer-only-no-retail-part-safety-recall', severity: 'critical', confidence: 'high',
+    trims: ['GT'], engines: ['2.5L T-GDI'], commerceDecision: 'dealer-only-no-retail-part-safety-recall', severity: 'high', confidence: 'high',
     symptoms: ['Audible warning chimes', '“Stop safely immediately” cluster message', 'Malfunction indicator light', 'Loss of motive power'], affectedSystems: ['8-speed dual-clutch transmission', 'electric oil pump', 'transmission control unit'],
     relatedIssueIds: ['kia-sorento-dct-oil-pump-failure'],
     citations: [{ type: 'recall', title: 'NHTSA Campaign 22V760000 - K5 DCT Electric Oil Pump', url: CAMPAIGNS.oilPump }, { type: 'recall', title: 'Part 573 Safety Recall Report 22V760', url: PDF_SOURCES.oilPump.url }],
@@ -180,7 +180,7 @@ const REWRITE_CARDS = {
   [REWRITE_IDS.fuelTank]: {
     description: 'NHTSA recall 25V794000 (Kia SC356) covers 2021-2024 K5 vehicles equipped with the 1.6L T-GDI engine. A deteriorated purge-control-system check valve can allow pressurized intake air into the fuel tank. The tank can expand, contact hot exhaust components and locally melt, which can cause a fuel leak and increase fire risk. Warning signs can include a popping sound near the tank, a check-engine light or rough running.',
     solution: 'Check the VIN for recall 25V794000/SC356. A Kia dealer replaces the check valve with the improved design, inspects the fuel tank for damage, replaces the tank when necessary and confirms the latest ECU software, free of charge. Do not buy a generic fuel tank or check valve from this page; the recall repair is VIN-, engine- and inspection-specific.',
-    trims: [], engines: ['1.6L T-GDI'], commerceDecision: 'dealer-only-no-retail-part-safety-recall', severity: 'critical', confidence: 'high',
+    trims: [], engines: ['1.6L T-GDI'], commerceDecision: 'dealer-only-no-retail-part-safety-recall', severity: 'high', confidence: 'high',
     symptoms: ['Popping sound from fuel-tank area', 'Check-engine light', 'Rough running', 'Expanded or leaking fuel tank'], affectedSystems: ['purge-control-system check valve', 'fuel tank', 'engine control unit'],
     citations: [{ type: 'recall', title: 'NHTSA Campaign 25V794000 - K5 Fuel Tank May Leak', url: CAMPAIGNS.fuelTank }, { type: 'recall', title: 'Part 573 Safety Recall Report 25V794', url: PDF_SOURCES.fuelTank.url }],
     summary: 'Replaced secondary reporting and generic fuel-tank commerce with the exact SC356 safety-recall scope, warnings and VIN-specific dealer remedy while retaining the indexed page identity.',

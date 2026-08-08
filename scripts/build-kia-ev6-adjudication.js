@@ -116,7 +116,7 @@ const REWRITE_CARDS = {
   [REWRITE_IDS.iccu]: {
     description: 'NHTSA campaign 24V867000 (Kia SC327) covers all 2022-2023 and certain 2024 EV6 vehicles. Transient high voltage and thermal cycling can damage the Integrated Charging Control Unit, preventing it from charging the 12-volt battery. Continued driving after warnings may cause progressive power reduction and eventual loss of motive power.',
     solution: 'Check the VIN for campaign 24V867000. Kia dealers inspect the ICCU and replace the ICCU and its fuse if necessary, then install improved software that further optimizes thermal management and peak voltage. The recall repair is free. Campaign 24V867 expands and replaces 24V200, so vehicles repaired under the earlier recall need the newer remedy.',
-    severity: 'critical', confidence: 'high',
+    severity: 'high', confidence: 'high',
     symptoms: ['Check Electric Vehicle System warning', 'Charging-system or master warning light', 'Power-down (turtle) warning', 'Progressive reduction or loss of motive power'],
     affectedSystems: ['Integrated Charging Control Unit', 'ICCU fuse', '12-volt battery charging'],
     citations: [{ type: 'recall', title: 'NHTSA Campaign 24V867000 - ICCU May Fail and Discharge 12V Battery', url: CAMPAIGNS.iccuCurrent }, { type: 'recall', title: 'Part 573 Safety Recall Report 24V867', url: PDF_SOURCES.iccu.url }],
@@ -134,7 +134,7 @@ const REWRITE_CARDS = {
   [REWRITE_IDS.rearShaft]: {
     description: 'NHTSA campaign 24V057000 (Kia SC295) covers certain 2023 EV6 vehicles built from January 26 through April 8, 2023. A supplier manufacturing error may have left the rear inner drive shaft improperly heat-treated. The shaft can break under load, causing loss of motive power and increasing crash risk.',
     solution: 'Check the VIN for campaign 24V057000. Kia dealers replace the affected rear inner drive shaft with a properly heat-treated shaft free of charge. The official EV6 recall component is the rear inner drive-shaft assembly, part number 49560-GI000; retail front or rear half-shaft listings are not proof of recall fitment.',
-    severity: 'critical', confidence: 'high',
+    severity: 'high', confidence: 'high',
     symptoms: ['Loss of motive power if the shaft fractures', 'No advance warning identified by the recall'],
     affectedSystems: ['rear inner drive-shaft assembly'],
     citations: [{ type: 'recall', title: 'NHTSA Campaign 24V057000 - Improperly Heat-Treated Drive Shaft', url: CAMPAIGNS.rearShaft }, { type: 'recall', title: 'Part 573 Safety Recall Report 24V057', url: PDF_SOURCES.rearShaft.url }],
@@ -143,7 +143,7 @@ const REWRITE_CARDS = {
   [REWRITE_IDS.rollaway]: {
     description: 'NHTSA campaign 22V322000 (Kia SC236) covers certain 2022 EV6 vehicles built from November 17, 2021 through April 7, 2022. A voltage fluctuation while the vehicle is off and parked can affect the Shifter Control Unit command to the parking-pawl actuator, temporarily disengaging the parking mechanism and allowing the vehicle to roll away.',
     solution: 'Check the VIN for campaign 22V322000. Kia dealers update the Shifter Control Unit software free of charge so the controller does not allow the parking pawl to move out of Park. Until repaired, Kia recommends parking on level ground and avoiding slopes or inclined surfaces whenever possible.',
-    severity: 'critical', confidence: 'high',
+    severity: 'high', confidence: 'high',
     symptoms: ['Vehicle rolls after being placed in Park', 'No advance warning identified by the recall'],
     affectedSystems: ['Shifter Control Unit software', 'parking-pawl actuator control'],
     citations: [{ type: 'recall', title: 'NHTSA Campaign 22V322000 - EV6 Rollaway Risk', url: CAMPAIGNS.rollaway }, { type: 'recall', title: 'Part 573 Safety Recall Report 22V322', url: PDF_SOURCES.rollaway.url }],
