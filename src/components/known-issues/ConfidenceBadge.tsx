@@ -1,5 +1,7 @@
 'use client';
 
+import { formatOwnerReportCount } from '@/lib/owner-report-count';
+
 interface ConfidenceBadgeProps {
   confidence: 'high' | 'medium' | 'low';
   humanApproved: boolean;
@@ -64,6 +66,7 @@ export function ConfidenceBadge({
     month: 'short',
     year: 'numeric',
   });
+  const ownerReportCountLabel = formatOwnerReportCount(reportCount);
 
   return (
     <div className="flex flex-wrap items-center gap-2 text-xs">
@@ -84,9 +87,7 @@ export function ConfidenceBadge({
       )}
 
       {/* Report count */}
-      <span className="text-gray-500">
-        {reportCount.toLocaleString()} reports
-      </span>
+      {ownerReportCountLabel && <span className="text-gray-500">{ownerReportCountLabel}</span>}
 
       {/* Last reported by owners */}
       {formattedOwnerDate && (

@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { formatOwnerReportCount } from '@/lib/owner-report-count';
 
 interface DTCIssue {
   id: string;
@@ -82,6 +83,7 @@ export function CollapsibleMakeSection({ make, issues, dtcCode, makeHref }: Coll
             const yearRange = issue.vehicleMatch.years;
             const minYear = Math.min(...yearRange);
             const maxYear = Math.max(...yearRange);
+            const ownerReportCountLabel = formatOwnerReportCount(issue.reportCount);
             const severityColor = issue.severity === 'high'
               ? 'bg-red-100 text-red-700'
               : issue.severity === 'medium'
@@ -132,7 +134,9 @@ export function CollapsibleMakeSection({ make, issues, dtcCode, makeHref }: Coll
                     {issue.estimatedCost && (
                       <span>${issue.estimatedCost.low.toLocaleString()}-${issue.estimatedCost.high.toLocaleString()}</span>
                     )}
-                    <span>{issue.reportCount.toLocaleString()} reports</span>
+                    {ownerReportCountLabel && (
+                      <span>{ownerReportCountLabel}</span>
+                    )}
                   </div>
                 </div>
                 <svg className="w-5 h-5 text-[#CBD5E1] group-hover:text-blue-500 transition-colors flex-shrink-0 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">

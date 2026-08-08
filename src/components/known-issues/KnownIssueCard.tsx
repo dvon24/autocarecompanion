@@ -12,6 +12,7 @@ import { IssueFix } from '@/hooks/useIssueFixes';
 import { trackAffiliateClick } from '@/lib/analytics';
 import { getKnownIssueCommerce, hasKnownIssueCommerce, knownIssueAffiliateUrl } from '@/lib/known-issue-commerce';
 import { partIsEligibleForVehicle, describeFitment, isNarrowerThanArticle } from '@/lib/known-issue-part-fitment';
+import { formatOwnerReportCount } from '@/lib/owner-report-count';
 
 /**
  * Strip the verification worker's INTERNAL reasoning log out of a fixPart note
@@ -192,6 +193,7 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
   const contentUpdateDate = formatContentUpdatedOn(issue.contentUpdatedOn);
   const contentUpdateSummary = issue.contentUpdateSummary?.trim();
   const recentContentUpdate = isRecentContentUpdate(issue.contentUpdatedOn);
+  const ownerReportCountLabel = formatOwnerReportCount(issue.reportCount);
 
   const handleToggle = () => {
     triggerHaptic('light');
@@ -663,9 +665,9 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
           {/* Citations & Search */}
           <div>
             <h4 className="text-sm font-medium text-[#0B1220] mb-1">Research This Issue</h4>
-            <p className="text-xs text-[#64748B] mb-2">
-              {issue.reportCount.toLocaleString()}+ owners have reported this issue
-            </p>
+            {ownerReportCountLabel && (
+              <p className="text-xs text-[#64748B] mb-2">Based on {ownerReportCountLabel}</p>
+            )}
             <div className="grid grid-cols-2 gap-2">
               {/* Google search */}
               <a
