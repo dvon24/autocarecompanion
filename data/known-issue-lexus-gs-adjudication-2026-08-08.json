@@ -1,0 +1,837 @@
+{
+  "schemaVersion": 1,
+  "status": "proposal-only",
+  "auditStage": "model-primary-source-adjudication",
+  "requiresIndependentApproval": true,
+  "generatedOn": "2026-08-08",
+  "make": "Lexus",
+  "model": "GS",
+  "completionStatement": "All three frozen GS pages remain live under their indexed identities, but each receives a corrective proposal and remains held because exact primary evidence conflicts with or only partially supports the current scope.",
+  "applicationGate": {
+    "status": "blocked",
+    "blockerRecordIds": [
+      "lexus-gs-dashboard-melt-2006",
+      "lexus-gs-steering-rack-leak-2006",
+      "lexus-gs-water-pump-failure-2013"
+    ],
+    "reason": "The dashboard and steering identities conflict with exact Lexus applicability/system evidence, while the water-pump title and broad scope exceed L-SB-0039-20. Independent review is required before any body-copy write."
+  },
+  "safetyContract": [
+    "No production write, deployment, archive, redirect, slug change, title change, category change, indexed-year change, trim change, engine change, severity change or new issue is authorized.",
+    "All three IDs, titles, categories, indexed year sets, trim sets, engine sets, allowed severities and publication states remain unchanged.",
+    "NHTSA row metadata never overrides the visually verified applicability inside an official Lexus PDF.",
+    "No hydraulic fluid service, dashboard warranty promise, water-pump bundle or retail part is approved without exact VIN/application support.",
+    "All 1,890 exact manufacturer-communication rows and 95 exact recall rows / 20 campaigns were replayed; separate recall identities remain deferred."
+  ],
+  "source": {
+    "snapshotFile": "data/_lexus-deeplink-snapshot-2026-08-08.json",
+    "snapshotSha256": "36e9efb61ab76fb184e7d9c5f92fcea5a8ee565555c2f58043d8a74c97c2c4ef",
+    "snapshotGeneratedAt": "2026-08-08T19:11:50.211Z",
+    "snapshotHash": "03786eddba9c1e071682262552ea8f8c95e93924f357e4bf6f2962777fe37e8c",
+    "modelRecordCount": 3
+  },
+  "observations": [
+    {
+      "code": "gs-dashboard-metadata-conflict",
+      "severity": "critical-correction",
+      "recordIds": [
+        "lexus-gs-dashboard-melt-2006"
+      ],
+      "detail": "The ZLD PDF excludes GS and L-SB-0011-15 starts GS coverage after the page’s 2006-2012 scope; ZE7 and complaint/glare claims are removed."
+    },
+    {
+      "code": "gs-steering-system-conflict",
+      "severity": "critical-correction",
+      "recordIds": [
+        "lexus-gs-steering-rack-leak-2006"
+      ],
+      "detail": "Campaign 9LC documents electric power steering, contradicting the page’s hydraulic rack/fluid mechanism."
+    },
+    {
+      "code": "gs-water-pump-scope-bounded",
+      "severity": "critical-correction",
+      "recordIds": [
+        "lexus-gs-water-pump-failure-2013"
+      ],
+      "detail": "L-SB-0039-20 supports a narrower model-year subset and diagnostic process, not a universal premature-failure pattern."
+    },
+    {
+      "code": "gs-no-unverified-commerce",
+      "severity": "commerce-safety",
+      "recordIds": [
+        "lexus-gs-dashboard-melt-2006",
+        "lexus-gs-steering-rack-leak-2006",
+        "lexus-gs-water-pump-failure-2013"
+      ],
+      "detail": "Maval, Cardone and Aisin WPT-190 claims are removed; no guessed part or search link is introduced."
+    },
+    {
+      "code": "gs-twenty-campaign-identities-deferred",
+      "severity": "new-issues-deferred",
+      "recordIds": [],
+      "campaignNumbers": [
+        "06V096000",
+        "06V121000",
+        "07V545000",
+        "09E012000",
+        "09V020000",
+        "10V309000",
+        "10V499000",
+        "11V029000",
+        "11V115000",
+        "12V221000",
+        "13V395000",
+        "14V270000",
+        "14V647000",
+        "18V432000",
+        "20V012000",
+        "20V682000",
+        "26V222000",
+        "95V072000",
+        "98V080000",
+        "99V125000"
+      ],
+      "detail": "Twenty separate recall identities remain deferred until the remaining-make audit is complete."
+    },
+    {
+      "code": "all-gs-pages-preserved",
+      "severity": "seo-safety",
+      "recordIds": [
+        "lexus-gs-dashboard-melt-2006",
+        "lexus-gs-steering-rack-leak-2006",
+        "lexus-gs-water-pump-failure-2013"
+      ],
+      "detail": "Every GS ID, title, category, indexed year set, trim set, engine set, allowed severity and publication state remains preserved."
+    }
+  ],
+  "pdfSources": {
+    "dashboardLaterScope": {
+      "title": "L-SB-0011-15 Rev1 — Instrument Panel Sticky/Cracked",
+      "url": "https://static.nhtsa.gov/odi/tsbs/2018/MC-10145762-9999.pdf",
+      "nhtsaDocumentId": "10145762",
+      "pages": 9,
+      "bytes": 666121,
+      "sha256": "9bfe979f83657505ef84ad7633d25607cfcf547ecaf25cd3368c440881c06c94"
+    },
+    "dashboardMisindexedZld": {
+      "title": "Warranty Enhancement Program ZLD — Phase 2, 3 & 4",
+      "url": "https://static.nhtsa.gov/odi/tsbs/2015/MC-10205392-9999.pdf",
+      "nhtsaDocumentId": "10205392",
+      "pages": 31,
+      "bytes": 30271114,
+      "sha256": "37a8e3db47212ed91fe39773fa03c1afaef7fefc06f22beb3e7eb7ee90876930"
+    },
+    "steeringCampaign": {
+      "title": "Special Service Campaign 9LC — Electric Power Steering Link Assembly Replacement",
+      "url": "https://static.nhtsa.gov/odi/tsbs/2009/CSC-10028182-9095.pdf",
+      "nhtsaDocumentId": "10028182",
+      "pages": 1,
+      "bytes": 85426,
+      "sha256": "2662e2ef157fa76fbca08c7dc4c2c0ccc653c2427893e82db2b7ed19d5b3b2ad"
+    },
+    "waterPump": {
+      "title": "L-SB-0039-20 — Water Pump Leak Inspection and Diagnostic Tips",
+      "url": "https://static.nhtsa.gov/odi/tsbs/2020/MC-10183269-9999.pdf",
+      "nhtsaDocumentId": "10183269",
+      "pages": 8,
+      "bytes": 553561,
+      "sha256": "759039c5f956e86b3de603766775a8c882df7af12a59579b70f17dde38091fab"
+    }
+  },
+  "manufacturerCommunications": {
+    "source": "https://www.nhtsa.gov/nhtsa-datasets-and-apis#manufacturer-communications",
+    "modelAliases": [
+      "GS",
+      "GS 200T",
+      "GS200T",
+      "GS 300",
+      "GS300",
+      "GS 350",
+      "GS350",
+      "GS 430",
+      "GS430",
+      "GS 450H",
+      "GS450H",
+      "GS 460",
+      "GS460"
+    ],
+    "periodCounts": {
+      "1995-1999": 27,
+      "2000-2004": 67,
+      "2005-2009": 48,
+      "2010-2014": 58,
+      "2015-2019": 1164,
+      "2020-2024": 521,
+      "2025-2026": 5
+    },
+    "totalRows": 1890,
+    "sourceFiles": [
+      {
+        "period": "1995-1999",
+        "length": 3443097,
+        "sha256": "409a86bb7bb37a6313eae9212fb90a5ab45029fdcf2a69d0c0378eab080503db"
+      },
+      {
+        "period": "2000-2004",
+        "length": 8952754,
+        "sha256": "5c755be52d35e060626402ebe6dfcccdf350ae379df5c06b49c71d08497e2264"
+      },
+      {
+        "period": "2005-2009",
+        "length": 5457880,
+        "sha256": "04f72a7bf95530d116b1500c976a9e4d365e1c9a8b0433f58d60dbb36a58679b"
+      },
+      {
+        "period": "2010-2014",
+        "length": 17332775,
+        "sha256": "41e66a9d81a859d469d51c6cdcbc107fc6284c64ed24065ccaf1fe02a52e4387"
+      },
+      {
+        "period": "2015-2019",
+        "length": 144450847,
+        "sha256": "d6c2ff16880cc7b31cfebad94bda08c3e8b3b2c3f28d56d5b1bb810c8b878a2e"
+      },
+      {
+        "period": "2020-2024",
+        "length": 125521629,
+        "sha256": "3b3ca3d690e33386d1d315a0f966285ae8cccb99c45c2386ada164c5e925c3cf"
+      },
+      {
+        "period": "2025-2026",
+        "length": 77786229,
+        "sha256": "419ebda2f1c1bf22e2b0862858d61699c25e61d73842f9031e796f1fafefba4c"
+      }
+    ]
+  },
+  "recallInventory": {
+    "source": "https://www.nhtsa.gov/nhtsa-datasets-and-apis#recalls",
+    "modelAliases": [
+      "GS",
+      "GS 200T",
+      "GS200T",
+      "GS 300",
+      "GS300",
+      "GS 350",
+      "GS350",
+      "GS 430",
+      "GS430",
+      "GS 450H",
+      "GS450H",
+      "GS 460",
+      "GS460"
+    ],
+    "periodCounts": {
+      "pre": 19,
+      "post": 76
+    },
+    "totalRows": 95,
+    "campaignCount": 20,
+    "campaigns": [
+      "06V096000",
+      "06V121000",
+      "07V545000",
+      "09E012000",
+      "09V020000",
+      "10V309000",
+      "10V499000",
+      "11V029000",
+      "11V115000",
+      "12V221000",
+      "13V395000",
+      "14V270000",
+      "14V647000",
+      "18V432000",
+      "20V012000",
+      "20V682000",
+      "26V222000",
+      "95V072000",
+      "98V080000",
+      "99V125000"
+    ],
+    "mappedCampaigns": [],
+    "deferredCampaigns": [
+      "06V096000",
+      "06V121000",
+      "07V545000",
+      "09E012000",
+      "09V020000",
+      "10V309000",
+      "10V499000",
+      "11V029000",
+      "11V115000",
+      "12V221000",
+      "13V395000",
+      "14V270000",
+      "14V647000",
+      "18V432000",
+      "20V012000",
+      "20V682000",
+      "26V222000",
+      "95V072000",
+      "98V080000",
+      "99V125000"
+    ],
+    "sourceFiles": [
+      {
+        "period": "pre",
+        "length": 83786245,
+        "sha256": "71e6e325e2d69d204776fb32d83dad4fd95436a2f7890da54d49622d77a36232"
+      },
+      {
+        "period": "post",
+        "length": 309278972,
+        "sha256": "4803a7f298f1d850736fe55830f4d31b004577424cb6429988c5864786f76a70"
+      }
+    ]
+  },
+  "mappedCampaigns": [],
+  "deferredCampaigns": [
+    "06V096000",
+    "06V121000",
+    "07V545000",
+    "09E012000",
+    "09V020000",
+    "10V309000",
+    "10V499000",
+    "11V029000",
+    "11V115000",
+    "12V221000",
+    "13V395000",
+    "14V270000",
+    "14V647000",
+    "18V432000",
+    "20V012000",
+    "20V682000",
+    "26V222000",
+    "95V072000",
+    "98V080000",
+    "99V125000"
+  ],
+  "summary": {
+    "targeted_safety_cleanup_pending_source": 2,
+    "remove_false_citation_and_targeted_safety_cleanup_pending_source": 1,
+    "total": 3
+  },
+  "rows": [
+    {
+      "id": "lexus-gs-dashboard-melt-2006",
+      "action": "remove_false_citation_and_targeted_safety_cleanup_pending_source",
+      "commerceDecision": "blocked-no-exact-fitment-no-retail-part",
+      "evidence": [
+        "Complete inventory: 1890 exact GS-family manufacturer-communication rows and 95 exact recall rows / 20 campaigns were replayed.",
+        "Visual review of L-SB-0011-15 shows GS applicability begins in 2013/2016, outside the frozen 2006-2012 page.",
+        "Visual review of all stated ZLD applicability on its opening page shows no GS model, proving the 2008 GS350 NHTSA row association cannot safely establish coverage."
+      ],
+      "before": {
+        "make": "Lexus",
+        "model": "GS",
+        "years": [
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012
+        ],
+        "trims": [
+          "GS300",
+          "GS350",
+          "GS430",
+          "GS460",
+          "GS450h"
+        ],
+        "engines": [
+          "3.0L 3GR-FSE",
+          "3.5L 2GR-FSE",
+          "4.3L 3UZ-FE",
+          "4.6L 1UR-FSE",
+          "3.5L 2GR-FSE Hybrid"
+        ],
+        "category": "interior",
+        "title": "Dashboard Melting and Sticky Surface",
+        "description": "The GS dashboard suffers from the same melting and sticky surface defect as other Lexus models of this era. Heat exposure causes the dashboard material to chemically degrade, resulting in a shiny, tacky surface that creates dangerous glare on the windshield. This was a widespread issue across the Lexus lineup.",
+        "solution": "Lexus Customer Support Program ZE7 covers dashboard replacement. Contact your dealer or Lexus customer support at 1-800-255-3987. The entire dashboard assembly and associated trim panels are replaced with redesigned materials.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Dashboard surface becomes sticky to touch",
+          "Reflective glare on windshield from melted dashboard",
+          "Material cracking and peeling",
+          "Chemical smell from dashboard in warm weather"
+        ],
+        "affectedSystems": [
+          "Interior",
+          "Dashboard"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": 3000,
+        "typicalMileageLow": 25000,
+        "typicalMileageHigh": 100000,
+        "citations": [
+          {
+            "type": "nhtsa",
+            "title": "NHTSA complaint cluster — Lexus GS dashboard melting defect (500+ complaints)"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "source": "ClubLexus.com",
+            "content": "Use a windshield sun shade religiously to slow the dashboard deterioration. Document the condition with photos as evidence for your warranty claim.",
+            "upvotes": 178,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 2200,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-07-08",
+        "reviewedOn": "2026-03-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "lexus-is-dashboard-melt-2006",
+          "lexus-es-dashboard-melt-2007",
+          "lexus-sc-dashboard-melt-2002",
+          "lexus-rx-dashboard-melt-2007",
+          "toyota-avalon-dashboard-melting-2005"
+        ]
+      },
+      "beforeSha256": "f38e60481e26f350f1432d930471196afb234760ef8569ef42feb319bd6058a3",
+      "proposal": {
+        "make": "Lexus",
+        "model": "GS",
+        "years": [
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012
+        ],
+        "trims": [
+          "GS300",
+          "GS350",
+          "GS430",
+          "GS460",
+          "GS450h"
+        ],
+        "engines": [
+          "3.0L 3GR-FSE",
+          "3.5L 2GR-FSE",
+          "4.3L 3UZ-FE",
+          "4.6L 1UR-FSE",
+          "3.5L 2GR-FSE Hybrid"
+        ],
+        "category": "interior",
+        "title": "Dashboard Melting and Sticky Surface",
+        "description": "The available Lexus primary records do not support this page’s 2006-2012 GS dashboard scope. L-SB-0011-15 begins GS coverage with 2013 GS350/GS450h and 2016 GS200t/GS F vehicles. A NHTSA metadata row associates a 2008 GS350 with ZLD, but visual review of the actual 31-page ZLD packet shows no GS model in its applicability list. The current ZE7 program name, dangerous-glare conclusion, 500+ complaint citation and lineup-wide claim therefore remain unsupported.",
+        "solution": "Do not promise ZE7 coverage or dashboard replacement from this page. Have a Lexus dealer inspect the condition and verify the VIN against current Lexus program and service information; any historical enhancement coverage was time-limited. Avoid solvent, coating or trim-removal experiments that could worsen the surface or affect adjacent safety components. No universal retail part or dealer-only remedy is asserted.",
+        "severity": "medium",
+        "confidence": "low",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "L-SB-0011-15 Rev1 — Instrument Panel Sticky/Cracked",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2018/MC-10145762-9999.pdf"
+          },
+          {
+            "type": "program",
+            "title": "Warranty Enhancement Program ZLD — Phase 2, 3 & 4",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2015/MC-10205392-9999.pdf"
+          },
+          {
+            "type": "nhtsa",
+            "title": "NHTSA Manufacturer Communications datasets",
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis#manufacturer-communications"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-08",
+        "contentUpdatedOn": "2026-08-08",
+        "contentUpdateSummary": "Removed the unsupported ZE7/complaint/glare claims and documented the conflict between NHTSA row metadata and the actual ZLD/L-SB applicability; held the 2006-2012 identity for exact evidence.",
+        "relatedIssueIds": []
+      },
+      "proposalSha256": "f4fd700cd0e60d5de021d640adb06ded7ddff2d4b2318b64a3e5943d2d85d28d",
+      "changedFields": [
+        "description",
+        "solution",
+        "confidence",
+        "symptoms",
+        "affectedSystems",
+        "estimatedCostHigh",
+        "typicalMileageLow",
+        "typicalMileageHigh",
+        "citations",
+        "communityRecommendations",
+        "reportCount",
+        "source",
+        "lastReportedByOwners",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary",
+        "relatedIssueIds"
+      ]
+    },
+    {
+      "id": "lexus-gs-steering-rack-leak-2006",
+      "action": "targeted_safety_cleanup_pending_source",
+      "commerceDecision": "blocked-no-exact-fitment-no-retail-part",
+      "evidence": [
+        "Complete inventory: 1890 exact GS-family manufacturer-communication rows and 95 exact recall rows / 20 campaigns were replayed.",
+        "Visual review of campaign 9LC shows certain 2006-2007 GS vehicles use an Electric Power Steering Link assembly and describes increased low-speed effort.",
+        "No exact communication supports hydraulic fluid loss, inner-tie-rod-boot seepage, pump whine or Maval/Cardone rack fitment across the frozen scope."
+      ],
+      "before": {
+        "make": "Lexus",
+        "model": "GS",
+        "years": [
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015
+        ],
+        "trims": [
+          "GS300",
+          "GS350",
+          "GS430",
+          "GS460"
+        ],
+        "engines": [
+          "3.0L 3GR-FSE",
+          "3.5L 2GR-FSE",
+          "4.3L 3UZ-FE",
+          "4.6L 1UR-FSE"
+        ],
+        "category": "steering",
+        "title": "Power Steering Rack Seal Leak",
+        "description": "The power steering rack develops internal seal leaks that cause power steering fluid loss. The leak typically appears at the inner tie rod boots where fluid seeps past the rack seals. Low fluid levels lead to increased steering effort and pump whining noise, and eventually the rack must be replaced.",
+        "solution": "Replace the power steering rack assembly. Remanufactured racks are available from Maval and Cardone at significant savings over new OEM. Perform a complete power steering fluid flush after installation. Inspect tie rods and replace if worn.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Power steering fluid leaking from rack area",
+          "Whining noise when turning steering wheel",
+          "Increased steering effort especially at low speed",
+          "Power steering fluid level drops",
+          "Fluid-soaked inner tie rod boots"
+        ],
+        "affectedSystems": [
+          "Steering",
+          "Power Steering System"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 800,
+        "estimatedCostHigh": 2000,
+        "typicalMileageLow": 70000,
+        "typicalMileageHigh": 140000,
+        "citations": [
+          {
+            "type": "forum",
+            "title": "ClubLexus.com — GS steering rack leak diagnosis and replacement options"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "source": "ClubLexus.com",
+            "content": "Check the inner tie rod boots regularly for fluid wetness — this is the earliest sign of a leaking rack. Catching it early prevents pump damage from running low on fluid.",
+            "upvotes": 89,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 1100,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-08-22",
+        "reviewedOn": "2026-03-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "toyota-sienna-power-steering-rack-leak-2004",
+          "toyota-echo-power-steering-rack-leak-2000"
+        ]
+      },
+      "beforeSha256": "8d2a8b0a3398ae9f37bd6d90381a1b1f499ab8af0dc1e48e7b3e579bc3ec7718",
+      "proposal": {
+        "make": "Lexus",
+        "model": "GS",
+        "years": [
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015
+        ],
+        "trims": [
+          "GS300",
+          "GS350",
+          "GS430",
+          "GS460"
+        ],
+        "engines": [
+          "3.0L 3GR-FSE",
+          "3.5L 2GR-FSE",
+          "4.3L 3UZ-FE",
+          "4.6L 1UR-FSE"
+        ],
+        "category": "steering",
+        "title": "Power Steering Rack Seal Leak",
+        "description": "The complete GS communication inventory does not support a hydraulic rack-seal leak across the page’s 2006-2015 scope. For certain 2006-2007 GS vehicles, Lexus Special Service Campaign 9LC instead documents an Electric Power Steering Link assembly whose motor could lose torque and increase low-speed steering effort. That electric system evidence conflicts with this page’s fluid-loss, pump-whine and tie-rod-boot mechanism.",
+        "solution": "Do not add power-steering fluid, flush a hydraulic system, or purchase a Maval/Cardone rack from this page. If steering effort changes, record the VIN, warning lamps and when the condition occurs; ask Lexus to verify campaign 9LC completion where applicable and diagnose the installed steering system under current service information. Treat a sudden steering-assist change as safety-critical. No universal retail part or dealer-only remedy is asserted.",
+        "severity": "medium",
+        "confidence": "low",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "campaign",
+            "title": "Special Service Campaign 9LC — Electric Power Steering Link Assembly Replacement",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2009/CSC-10028182-9095.pdf"
+          },
+          {
+            "type": "nhtsa",
+            "title": "NHTSA Manufacturer Communications datasets",
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis#manufacturer-communications"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-08",
+        "contentUpdatedOn": "2026-08-08",
+        "contentUpdateSummary": "Removed the unsupported hydraulic-rack/fluid mechanism, aftermarket rack brands and flush instruction; replaced them with the exact EPS campaign boundary and an evidence hold.",
+        "relatedIssueIds": []
+      },
+      "proposalSha256": "1cd6e3fa7d68b2046b5cec894312f1564e550b2d856f1ee9dd7d45d7de4cf989",
+      "changedFields": [
+        "description",
+        "solution",
+        "confidence",
+        "symptoms",
+        "affectedSystems",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "typicalMileageLow",
+        "typicalMileageHigh",
+        "citations",
+        "communityRecommendations",
+        "reportCount",
+        "source",
+        "lastReportedByOwners",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary",
+        "relatedIssueIds"
+      ]
+    },
+    {
+      "id": "lexus-gs-water-pump-failure-2013",
+      "action": "targeted_safety_cleanup_pending_source",
+      "commerceDecision": "blocked-no-exact-fitment-no-retail-part",
+      "evidence": [
+        "Complete inventory: 1890 exact GS-family manufacturer-communication rows and 95 exact recall rows / 20 campaigns were replayed.",
+        "Visual review of L-SB-0039-20 limits GS applicability to 2016-2019 GS200t/GS300 and 2019-2020 GS350.",
+        "The bulletin says temporary dry residue does not require replacement and supplies no 60,000-100,000-mile pattern, WPT-190 fitment or bundled thermostat/belt/tensioner instruction."
+      ],
+      "before": {
+        "make": "Lexus",
+        "model": "GS",
+        "years": [
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020
+        ],
+        "trims": [
+          "GS350",
+          "GS200t",
+          "GS300"
+        ],
+        "engines": [
+          "3.5L 2GR-FKS",
+          "2.0L 8AR-FTS Turbo"
+        ],
+        "category": "cooling",
+        "title": "Water Pump Premature Failure",
+        "description": "The water pump on the GS models fails prematurely, typically between 60,000-100,000 miles. Coolant leaks from the weep hole as the internal seal deteriorates, and the pump bearing develops play causing a whining noise. If not addressed, overheating and potential engine damage can occur.",
+        "solution": "Replace the water pump assembly and thermostat together as a preventive measure. Use OEM or high-quality aftermarket parts (Aisin brand is the OEM supplier). Replace the serpentine belt and tensioner at the same time if they show wear.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Coolant leak from front of engine",
+          "Whining noise from water pump area at idle",
+          "Engine temperature rising above normal",
+          "Low coolant warning light",
+          "Sweet coolant smell from engine bay"
+        ],
+        "affectedSystems": [
+          "Cooling System",
+          "Engine"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 500,
+        "estimatedCostHigh": 1200,
+        "typicalMileageLow": 60000,
+        "typicalMileageHigh": 100000,
+        "citations": [
+          {
+            "type": "forum",
+            "title": "ClubLexus.com — GS350 water pump failure pattern and replacement guide"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "source": "ClubLexus.com",
+            "content": "Aisin WPT-190 water pump — this is the actual OEM supplier for Toyota/Lexus water pumps at a fraction of the dealer price. Identical quality.",
+            "upvotes": 112,
+            "partName": "Water Pump",
+            "partBrand": "Aisin",
+            "partNumber": "WPT-190",
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 1400,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-10-18",
+        "reviewedOn": "2026-03-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "lexus-rx-water-pump-failure-2010",
+          "toyota-avalon-water-pump-leak-2005",
+          "toyota-rav4-water-pump-2013"
+        ]
+      },
+      "beforeSha256": "0e89edb7aacdb4ad6b5c054732aae6bcf48ff76bb68570d7f1d2919cb4b4634b",
+      "proposal": {
+        "make": "Lexus",
+        "model": "GS",
+        "years": [
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020
+        ],
+        "trims": [
+          "GS350",
+          "GS200t",
+          "GS300"
+        ],
+        "engines": [
+          "3.5L 2GR-FKS",
+          "2.0L 8AR-FTS Turbo"
+        ],
+        "category": "cooling",
+        "title": "Water Pump Premature Failure",
+        "description": "L-SB-0039-20 provides water-pump leak inspection guidance for 2016-2019 GS200t/GS300 and 2019-2020 GS350 vehicles. It distinguishes temporary dry coolant residue from an active leak and does not establish a 60,000-100,000-mile premature-failure pattern, the page’s 2013-2015 scope or a universal bearing/seal diagnosis. The bulletin also does not validate Aisin WPT-190 across the listed trims and engines.",
+        "solution": "Confirm the exact VIN/model-year applicability and inspect under L-SB-0039-20. Dry residue can represent a temporary condition that does not require pump replacement; an active wet leak, low reservoir level with an apparent leak, or excessive pulley/bearing play requires the model-specific repair procedure. Do not automatically replace the thermostat, belt or tensioner, and do not order WPT-190 from this page. No universal retail part or dealer-only remedy is asserted.",
+        "severity": "medium",
+        "confidence": "low",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "L-SB-0039-20 — Water Pump Leak Inspection and Diagnostic Tips",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2020/MC-10183269-9999.pdf"
+          },
+          {
+            "type": "nhtsa",
+            "title": "NHTSA Manufacturer Communications datasets",
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis#manufacturer-communications"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-08",
+        "contentUpdatedOn": "2026-08-08",
+        "contentUpdateSummary": "Bounded the page to exact Lexus bulletin applicability, distinguished temporary residue from an active leak, and removed the unsupported mileage, bundled-parts and WPT-190 fitment claims.",
+        "relatedIssueIds": []
+      },
+      "proposalSha256": "b471766da28fa6a43d171d203ff395c6d0b5f0f318498ecac6cb99f05bf5c675",
+      "changedFields": [
+        "description",
+        "solution",
+        "confidence",
+        "symptoms",
+        "affectedSystems",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "typicalMileageLow",
+        "typicalMileageHigh",
+        "citations",
+        "communityRecommendations",
+        "reportCount",
+        "source",
+        "lastReportedByOwners",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary",
+        "relatedIssueIds"
+      ]
+    }
+  ]
+}
