@@ -1,0 +1,63 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
+const crypto = require('node:crypto');
+const fs = require('node:fs');
+const readline = require('node:readline');
+const { BULLETIN_INVENTORY, MANUAL_SOURCE, MODEL_ALIASES, RECALL_FILES, RECALL_INVENTORY, SOURCE_FILES } = require('./build-land-rover-series-i-adjudication');
+
+const aliases = new Set(MODEL_ALIASES);
+function stable(value) { if (Array.isArray(value)) return value.map(stable); if (value && typeof value === 'object') return Object.fromEntries(Object.keys(value).sort().map((key) => [key, stable(value[key])])); return value; }
+function equal(left, right) { return JSON.stringify(stable(left)) === JSON.stringify(stable(right)); }
+function parseCsv(line) { const values = []; let value = ''; let quoted = false; for (let index = 0; index < line.length; index += 1) { const char = line[index]; if (char === '"') { if (quoted && line[index + 1] === '"') { value += '"'; index += 1; } else quoted = !quoted; } else if (char === ',' && !quoted) { values.push(value); value = ''; } else value += char; } values.push(value); return values; }
+async function readLines(file, onLine) { const reader = readline.createInterface({ input: fs.createReadStream(file), crlfDelay: Infinity }); for await (const line of reader) onLine(line); }
+async function hashFile(file) { const hash = crypto.createHash('sha256'); await new Promise((resolve, reject) => { const stream = fs.createReadStream(file); stream.on('data', (chunk) => hash.update(chunk)); stream.on('end', resolve); stream.on('error', reject); }); return hash.digest('hex'); }
+async function verifyFiles(files) { const results = []; for (const source of files) { const stat = fs.statSync(source.path); const sha256 = await hashFile(source.path); if (stat.size !== source.length || sha256 !== source.sha256) throw new Error(`${source.period}: source file drift`); results.push({ period: source.period, bytes: stat.size, sha256 }); } return results; }
+async function verifyCommunications() {
+  const periodCounts = {};
+  for (const source of SOURCE_FILES) {
+    let count = 0;
+    let first = true;
+    await readLines(source.path, (line) => {
+      if (first) { first = false; return; }
+      const [_id, make, model] = parseCsv(line);
+      if (make === 'LAND ROVER' && aliases.has(model)) count += 1;
+    });
+    periodCounts[source.period] = count;
+  }
+  const totalRows = Object.values(periodCounts).reduce((sum, count) => sum + count, 0);
+  if (!equal(periodCounts, BULLETIN_INVENTORY.periodCounts) || totalRows !== 0) throw new Error(`communication inventory drift: ${JSON.stringify(periodCounts)}`);
+  return { periodCounts, totalRows };
+}
+async function verifyRecalls() {
+  const periodCounts = {};
+  const rows = [];
+  for (const source of RECALL_FILES) {
+    let count = 0;
+    await readLines(source.path, (line) => {
+      const fields = line.split('\t');
+      if (fields[2] !== 'LAND ROVER' || !aliases.has(fields[3])) return;
+      count += 1;
+      rows.push({ campaign: fields[1], model: fields[3], year: fields[4] });
+    });
+    periodCounts[source.period] = count;
+  }
+  const campaigns = [...new Set(rows.map((row) => row.campaign))].sort();
+  if (!equal(periodCounts, RECALL_INVENTORY.periodCounts) || rows.length !== 0 || campaigns.length !== 0) throw new Error(`recall inventory drift: ${JSON.stringify(periodCounts)}`);
+  return { periodCounts, totalRows: rows.length, campaignCount: campaigns.length, campaigns };
+}
+function verifyManualBuffer(buffer, label) {
+  const sha256 = crypto.createHash('sha256').update(buffer).digest('hex');
+  if (buffer.length !== MANUAL_SOURCE.bytes || sha256 !== MANUAL_SOURCE.sha256 || !buffer.subarray(0, 5).equals(Buffer.from('%PDF-'))) throw new Error(`${label}: factory-manual PDF/hash mismatch`);
+  return { label, bytes: buffer.length, sha256 };
+}
+async function verifyManual() {
+  const local = verifyManualBuffer(fs.readFileSync(MANUAL_SOURCE.localPath), 'local');
+  const response = await fetch(MANUAL_SOURCE.url);
+  if (!response.ok) throw new Error(`${response.status} ${MANUAL_SOURCE.url}`);
+  const remote = verifyManualBuffer(Buffer.from(await response.arrayBuffer()), 'remote');
+  return { url: MANUAL_SOURCE.url, pages: MANUAL_SOURCE.pages, publicationNumber: MANUAL_SOURCE.publicationNumber, local, remote, contentType: response.headers.get('content-type') || '' };
+}
+async function main() {
+  const [communicationFiles, recallFiles, communications, recalls, manual] = await Promise.all([verifyFiles(SOURCE_FILES), verifyFiles(RECALL_FILES), verifyCommunications(), verifyRecalls(), verifyManual()]);
+  console.log(JSON.stringify({ passed: true, communicationFiles, recallFiles, communications, recalls, manual }, null, 2));
+}
+main().catch((error) => { console.error(error); process.exitCode = 1; });
