@@ -12,6 +12,8 @@ import { webDetect, googleVisionEnabled, webDetectPromptBlock } from '@/lib/goog
 import { ebayEnabled, resolveEbay } from '@/lib/ebay-resolver';
 import { buildUpgradeOptions } from '@/lib/aftermarket-tier';
 import { ebayAffiliate } from '@/lib/ebay-affiliate';
+import { getKnownIssueCommerce } from '@/lib/known-issue-commerce';
+import { partFitsVehicle } from '@/lib/known-issue-part-fitment';
 import type { IdentifiedPart, PartCategory, IssuePart } from '@/types/vision';
 import Anthropic from '@anthropic-ai/sdk';
 import sharp from 'sharp';
@@ -216,7 +218,27 @@ export async function POST(request: NextRequest) {
         }),
       ]);
       issueIdByHint = issues.map((i) => ({ id: i.id, title: i.title }));
-      for (const it of issues) fixPartsById.set(it.id, it.fixParts);
+      // Pass every issue's parts through the SAME commerce gate the known-issues
+      // pages use. Without it this route served its own unguarded view of
+      // `fixParts` — unverified parts and RockAuto part-number *searches* — while
+      // labelling them `source: 'known_issue'`, the top of the trust hierarchy.
+      // The gate keeps only `verified: true` parts whose buy links are verified
+      // product URLs on a matching vendor, and empties links on recall-first
+      // parts so we never sell a repair the owner is entitled to free.
+      for (const it of issues) {
+        const { fixParts } = getKnownIssueCommerce({
+          fixParts: it.fixParts as Parameters<typeof getKnownIssueCommerce>[0]['fixParts'],
+          communityRecommendations: [],
+        });
+        // We know the exact vehicle here, so drop any part whose declared
+        // fitment excludes it. An issue's year span is wider than one part
+        // number's more often than not, and this is the surface where someone
+        // is standing at the car about to buy.
+        fixPartsById.set(
+          it.id,
+          fixParts.filter((p) => partFitsVehicle(p.fitment, { year: vehicle.year, trim: vehicle.trim ?? null }) !== 'excluded'),
+        );
+      }
 
       const parts: string[] = [];
       for (const cp of cachedParts) {

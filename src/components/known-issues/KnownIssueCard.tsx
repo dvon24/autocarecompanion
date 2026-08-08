@@ -11,6 +11,7 @@ import { triggerHaptic } from '@/hooks/useHaptic';
 import { IssueFix } from '@/hooks/useIssueFixes';
 import { trackAffiliateClick } from '@/lib/analytics';
 import { getKnownIssueCommerce, hasKnownIssueCommerce, knownIssueAffiliateUrl } from '@/lib/known-issue-commerce';
+import { partFitsVehicle, describeFitment, isNarrowerThanArticle } from '@/lib/known-issue-part-fitment';
 
 /**
  * Strip the verification worker's INTERNAL reasoning log out of a fixPart note
@@ -178,7 +179,15 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
 
   // Determine if this is a highly community-reported issue (50+ reports)
   const isCommunityReported = issue.reportCount >= 50;
-  const { fixParts, ownerGuidance } = getKnownIssueCommerce(issue);
+  const { fixParts: gatedParts, ownerGuidance } = getKnownIssueCommerce(issue);
+  // An article's year span is usually wider than any one part number's. When we
+  // know the reader's actual vehicle, drop parts whose declared fitment excludes
+  // it rather than listing a part they cannot use under "What you need to fix
+  // it". Parts with no declared fitment are untouched — that is every part in
+  // the catalog today, so this only takes effect once a part is scoped.
+  const fitmentVehicle = { year: vehicleInfo?.year ?? null, trim: vehicleInfo?.trim ?? null };
+  const fixParts = gatedParts.filter((part) => partFitsVehicle(part.fitment, fitmentVehicle) !== 'excluded');
+  const excludedPartCount = gatedParts.length - fixParts.length;
   const hasPartRecommendations = hasKnownIssueCommerce(fixParts);
   const contentUpdateDate = formatContentUpdatedOn(issue.contentUpdatedOn);
   const contentUpdateSummary = issue.contentUpdateSummary?.trim();
@@ -511,6 +520,11 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
               </h4>
               <p className="mb-3 text-xs leading-relaxed text-[#475569]">
                 Only diagnosis- and fitment-reviewed repair parts are linked here.
+                {excludedPartCount > 0 && vehicleInfo && (
+                  <span className="mt-1 block text-[#64748B]">
+                    {excludedPartCount === 1 ? '1 part is' : `${excludedPartCount} parts are`} hidden — {excludedPartCount === 1 ? 'it does' : 'they do'} not fit your {vehicleInfo.year} {vehicleInfo.model}.
+                  </span>
+                )}
               </p>
 
               {fixParts.some((part) => part.recallFirst) && (
@@ -534,6 +548,14 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
                 {fixParts.map((part, index) => (
                   <li key={`${part.component}-${part.oemPartNumber || ''}-${index}`} className="rounded-md border border-[#D8D1C3] bg-white p-2.5">
                     <div className="text-sm font-medium text-[#0B1220]">{part.component}</div>
+
+                    {/* Only worth showing when the part covers less than the page
+                        does — otherwise the page's own year range already says it. */}
+                    {isNarrowerThanArticle(part.fitment, issue.vehicleMatch.years) && (
+                      <div className="mt-1 inline-flex items-center gap-1 rounded border border-[#C9C0B1] bg-[#F7F4EC] px-1.5 py-0.5 text-[10px] font-medium text-[#3C313D]">
+                        Fits {describeFitment(part.fitment)}
+                      </div>
+                    )}
 
                     {part.variants && part.variants.length > 1 && (
                       <div className="mt-1.5 space-y-1 rounded-md border border-[#D8D1C3] bg-[#F7F4EC] p-2">

@@ -44,12 +44,39 @@ export const fixPartSchema = z.object({
     verified: z.boolean().optional(),
     affiliate: z.boolean().optional(),
   })).optional().default([]),
+  /**
+   * FITMENT SCOPE — which vehicles WITHIN the article's span this exact part fits.
+   *
+   * An article commonly spans more years than any one part number does: a
+   * 2007-2016 page can carry a pump that only fits 2009-2013. Before this field
+   * existed there was nowhere to say so, and the caveat lived in `note` prose
+   * that only a human could read.
+   *
+   * ABSENT means "not yet scoped", NOT "fits everything". Treat an unscoped part
+   * as inheriting the article's own vehicle match — that is how every part
+   * already in the catalog behaves, so adding this field changes nothing until a
+   * part is deliberately scoped.
+   */
+  fitment: z.object({
+    years: z.array(z.number()).optional(),
+    engines: z.array(z.string()).optional(),
+    trims: z.array(z.string()).optional(),
+  }).optional(),
   // ── record-store audit fields (from the parts-audit persist) ──
-  /** Year/engine/package-keyed PN rows when fitment splits (TIPM-style). */
+  /**
+   * Year/engine/package-keyed PN rows when fitment splits (TIPM-style).
+   * `scope` is human-readable; `fitment` is the machine-readable form that
+   * lets a renderer pick the right PN for a specific vehicle on its own.
+   */
   variants: z.array(z.object({
     scope: z.string(),
     oemPartNumber: z.string(),
     note: z.string().optional().default(''),
+    fitment: z.object({
+      years: z.array(z.number()).optional(),
+      engines: z.array(z.string()).optional(),
+      trims: z.array(z.string()).optional(),
+    }).optional(),
   })).optional().default([]),
   /** True when this issue is recall-covered → the primary CTA is a free VIN check. */
   recallFirst: z.boolean().optional(),
