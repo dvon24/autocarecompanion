@@ -42,7 +42,7 @@ const CATEGORY_VALUES = new Set([
 ]);
 const LEVEL_VALUES = new Set(['high', 'medium', 'low']);
 const SOURCE_VALUES = new Set(['nhtsa-verified', 'recall-related', 'ai-researched', 'manual']);
-const CITATION_TYPES = new Set(['tsb', 'recall', 'forum', 'manual', 'nhtsa']);
+const CITATION_TYPES = new Set(['tsb', 'recall', 'forum', 'manual', 'nhtsa', 'manufacturer']);
 
 function hashValue(value) {
   return crypto.createHash('sha256').update(JSON.stringify(value)).digest('hex');

@@ -4,7 +4,9 @@ import { z } from 'zod';
  * Citation source for known issue evidence
  */
 export const citationSchema = z.object({
-  type: z.enum(['tsb', 'recall', 'forum', 'manual', 'nhtsa']),
+  // `manufacturer` is emitted by the research pipeline for official OEM
+  // campaign/bulletin pages that are neither NHTSA records nor owner manuals.
+  type: z.enum(['tsb', 'recall', 'forum', 'manual', 'nhtsa', 'manufacturer']),
   title: z.string(),
   url: z.string().url().optional(),
 });
