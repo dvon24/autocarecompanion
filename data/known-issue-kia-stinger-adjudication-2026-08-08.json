@@ -1,0 +1,2398 @@
+{
+  "schemaVersion": 1,
+  "status": "proposal-only",
+  "auditStage": "model-primary-source-adjudication",
+  "requiresIndependentApproval": true,
+  "generatedOn": "2026-08-08",
+  "make": "Kia",
+  "model": "Stinger",
+  "completionStatement": "All ten frozen Stinger records receive primary-source adjudication. Four exact recall identities receive bounded rewrites and six contradicted, overbroad or unsupported identities receive targeted safety cleanup while every indexed identity remains published and unchanged.",
+  "applicationGate": {
+    "status": "blocked",
+    "blockerRecordIds": [
+      "kia-stinger-carbon-buildup-gdi",
+      "kia-stinger-dct-shift-harshness",
+      "kia-stinger-front-brake-rotor-pulsation-premature-brake-wear",
+      "kia-stinger-interior-rattles",
+      "kia-stinger-oil-pressure-switch-leak-oil-pressure-warning-light",
+      "kia-stinger-panoramic-sunroof-popping-creaking-rattle"
+    ],
+    "reason": "Six Stinger identities retain an immutable title or scope broader than the exact primary evidence, or lack an exact Kia package. Independent review is required before any application."
+  },
+  "safetyContract": [
+    "No production database write, cache purge, deployment, archive, redirect, slug change, title change, category change, indexed-year change, trim change, engine change, new issue or public-page change is authorized.",
+    "All ten Stinger IDs, titles, categories, indexed year sets, trim sets, engine sets and publication states remain unchanged.",
+    "A blocker cannot conceal a false transmission type, false campaign, false DTC, unsafe instruction, wrong-model citation, secondary-only claim, search commerce or unverified relation; targeted cleanup removes those claims while preserving the page.",
+    "All 137 manufacturer communications and all 30 recall rows/seven campaigns in the complete frozen Stinger inventories are accounted for; three separate campaign identities remain deferred until the remaining-make audit is complete."
+  ],
+  "source": {
+    "snapshotFile": "data/_kia-deeplink-snapshot-2026-08-06.json",
+    "snapshotSha256": "f0aa4c5c8ca72321ed9a0b54aa9455e84056b445cb31049545ea07a48748c76b",
+    "snapshotGeneratedAt": "2026-08-07T19:13:14.080Z",
+    "snapshotHash": "f8b4d0e206ea16a5a28546ef1db29b0c885b1a839069b486f07fb1a1759310bf",
+    "modelRecordCount": 10
+  },
+  "observations": [
+    {
+      "code": "stinger-four-exact-recall-identities-bounded",
+      "severity": "critical",
+      "recordIds": [
+        "kia-stinger-abs-hydraulic-electronic-control-unit-engine-bay-fire-risk",
+        "kia-stinger-front-wiring-harness-chafe-short-circuit-fire-risk",
+        "kia-stinger-inaccurate-fuel-gauge-from-instrument-cluster-software-error",
+        "kia-stinger-turbo-oil-feed-pipe-leak"
+      ],
+      "detail": "18V754, 20V518, 21V862 and 24V169 directly support the four same-identity recall rewrites and VIN-specific dealer remedies."
+    },
+    {
+      "code": "stinger-false-dct-identity-corrected",
+      "severity": "critical-correction",
+      "recordIds": [
+        "kia-stinger-dct-shift-harshness"
+      ],
+      "detail": "The Stinger uses an 8AT, not the claimed wet DCT. TRA077 supports only a narrow 2018 static-shift software condition; DCT fluid, clutch, DTC and generic parts claims are removed."
+    },
+    {
+      "code": "stinger-wrong-model-oil-pressure-citation-corrected",
+      "severity": "critical-correction",
+      "recordIds": [
+        "kia-stinger-oil-pressure-switch-leak-oil-pressure-warning-light"
+      ],
+      "detail": "ENG237 excludes Stinger and lists only specified Sorento, Cadenza and Sedona vehicles. The false Stinger applicability, P0521 certainty and switch-replacement prescription are removed."
+    },
+    {
+      "code": "stinger-roof-and-rattle-bulletins-not-stretched",
+      "severity": "critical",
+      "recordIds": [
+        "kia-stinger-interior-rattles",
+        "kia-stinger-panoramic-sunroof-popping-creaking-rattle"
+      ],
+      "detail": "BOD309 and BOD317 describe different, narrow conditions and are not stretched into the frozen all-year interior and sunroof-noise aggregations."
+    },
+    {
+      "code": "stinger-unverified-carbon-and-brake-commerce-removed",
+      "severity": "deeplink-correction",
+      "recordIds": [
+        "kia-stinger-carbon-buildup-gdi",
+        "kia-stinger-front-brake-rotor-pulsation-premature-brake-wear"
+      ],
+      "detail": "Unverified chemical, catch-can, pad and rotor prescriptions are removed; no retail link is supplied without exact part-number and fitment proof."
+    },
+    {
+      "code": "stinger-three-new-campaign-identities-deferred",
+      "severity": "new-issues-deferred",
+      "recordIds": [],
+      "campaignNumbers": [
+        "20V422000",
+        "20V560000",
+        "23V634000"
+      ],
+      "detail": "MDPS, fuel-pump jet-nozzle and high-pressure-fuel-pump campaigns are separate issue identities and remain proposal-deferred until the remaining-make audit is complete."
+    },
+    {
+      "code": "all-stinger-pages-preserved",
+      "severity": "seo-safety",
+      "recordIds": [
+        "kia-stinger-abs-hydraulic-electronic-control-unit-engine-bay-fire-risk",
+        "kia-stinger-carbon-buildup-gdi",
+        "kia-stinger-dct-shift-harshness",
+        "kia-stinger-front-brake-rotor-pulsation-premature-brake-wear",
+        "kia-stinger-front-wiring-harness-chafe-short-circuit-fire-risk",
+        "kia-stinger-inaccurate-fuel-gauge-from-instrument-cluster-software-error",
+        "kia-stinger-interior-rattles",
+        "kia-stinger-oil-pressure-switch-leak-oil-pressure-warning-light",
+        "kia-stinger-panoramic-sunroof-popping-creaking-rattle",
+        "kia-stinger-turbo-oil-feed-pipe-leak"
+      ],
+      "detail": "Every Stinger ID, title, category, indexed year set, trim set, engine set and publication state remains preserved."
+    }
+  ],
+  "campaignSources": {
+    "harness": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=18V754000",
+    "hecu": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=20V518000",
+    "gauge": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=21V862000",
+    "turbo": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=24V169000"
+  },
+  "expectedCampaigns": {
+    "harness": {
+      "years": [
+        2018
+      ],
+      "rows": 1,
+      "markers": [
+        "front wiring harness",
+        "burr on the left fender",
+        "cover will be installed",
+        "SC170"
+      ]
+    },
+    "hecu": {
+      "years": [
+        2018,
+        2019,
+        2020,
+        2021
+      ],
+      "rows": 4,
+      "markers": [
+        "engine compartment fire",
+        "new fuse kit",
+        "park outside and away from structures",
+        "SC196"
+      ]
+    },
+    "gauge": {
+      "years": [
+        2020,
+        2021
+      ],
+      "rows": 2,
+      "markers": [
+        "software error in the instrument cluster",
+        "inaccurate fuel gauge",
+        "update the software",
+        "SC219"
+      ]
+    },
+    "turbo": {
+      "years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ],
+      "rows": 6,
+      "markers": [
+        "left turbocharger oil feed pipe and hose assembly",
+        "leak oil",
+        "replace the left turbocharger oil feed pipe",
+        "SC300"
+      ]
+    }
+  },
+  "pdfSources": {
+    "tra077": {
+      "url": "https://static.nhtsa.gov/odi/tsbs/2018/MC-10144236-9999.pdf",
+      "sha256": "ab8a37b6fb2eab2ae8b0b99a3b1dea4a40e15c118387c73a4caa9fc0825b8e8f",
+      "bytes": 876455,
+      "pages": 7,
+      "title": "Kia TSB TRA077 / SA341 - 2018 Stinger 8AT Static Shift Logic",
+      "markers": [
+        "2018MY Stinger (CK)",
+        "8AT",
+        "Upgrade Event #367",
+        "Upgrade Event #373"
+      ],
+      "visuallyInspectedPages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ]
+    },
+    "eng237WrongModel": {
+      "url": "https://static.nhtsa.gov/odi/tsbs/2022/MC-10216912-0001.pdf",
+      "sha256": "50005402eaaf91aa843c48d843d7962f1d61418d4f7048f5c6779aa3de31ad53",
+      "bytes": 368866,
+      "pages": 4,
+      "title": "Kia TSB ENG237 - Oil-Pressure Switch Replacement (Stinger Excluded)",
+      "markers": [
+        "2014-2015MY Sorento",
+        "2016-2018MY Sorento",
+        "2014-2016MY Cadenza",
+        "2015-2018MY Sedona"
+      ],
+      "forbiddenMarkers": [
+        "Stinger (CK)"
+      ],
+      "visuallyInspectedPages": [
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    "bod309": {
+      "url": "https://static.nhtsa.gov/odi/tsbs/2022/MC-10225558-0001.pdf",
+      "sha256": "ef59414716b2a114d2f526b4bf4f038d5681631c75e342c10cbcdf6f9824906f",
+      "bytes": 1562898,
+      "pages": 8,
+      "title": "Kia TSB BOD309 - Stinger Inoperative Sunroof From Rear-Sled Separation",
+      "markers": [
+        "2018-2023MY Stinger (CK)",
+        "sunroof is inoperative",
+        "rear sled",
+        "guide and sled kit"
+      ],
+      "visuallyInspectedPages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ]
+    },
+    "bod317": {
+      "url": "https://static.nhtsa.gov/odi/tsbs/2023/MC-10237608-0001.pdf",
+      "sha256": "fccc6b6c311d123c2faab0b490aae8d02a02076bc660caae2067ebd8224b4f72",
+      "bytes": 1307037,
+      "pages": 9,
+      "title": "Kia TSB BOD317 - 2022 Stinger Headliner Noise",
+      "markers": [
+        "2022MY Stinger (CK)",
+        "headliner noise",
+        "normal body flex",
+        "Tesa Tape"
+      ],
+      "visuallyInspectedPages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ]
+    }
+  },
+  "manufacturerCommunications": {
+    "files": {
+      "1995-1999": {
+        "name": "MFR_COMMS_RECEIVED_1995-1999.csv",
+        "sha256": "409a86bb7bb37a6313eae9212fb90a5ab45029fdcf2a69d0c0378eab080503db",
+        "expectedStingerRows": 0
+      },
+      "2000-2004": {
+        "name": "MFR_COMMS_RECEIVED_2000-2004.csv",
+        "sha256": "5c755be52d35e060626402ebe6dfcccdf350ae379df5c06b49c71d08497e2264",
+        "expectedStingerRows": 0
+      },
+      "2005-2009": {
+        "name": "MFR_COMMS_RECEIVED_2005-2009.csv",
+        "sha256": "04f72a7bf95530d116b1500c976a9e4d365e1c9a8b0433f58d60dbb36a58679b",
+        "expectedStingerRows": 0
+      },
+      "2010-2014": {
+        "name": "MFR_COMMS_RECEIVED_2010-2014.csv",
+        "sha256": "41e66a9d81a859d469d51c6cdcbc107fc6284c64ed24065ccaf1fe02a52e4387",
+        "expectedStingerRows": 0
+      },
+      "2015-2019": {
+        "name": "MFR_COMMS_RECEIVED_2015-2019.csv",
+        "sha256": "d6c2ff16880cc7b31cfebad94bda08c3e8b3b2c3f28d56d5b1bb810c8b878a2e",
+        "expectedStingerRows": 63
+      },
+      "2020-2024": {
+        "name": "MFR_COMMS_RECEIVED_2020-2024.csv",
+        "sha256": "3b3ca3d690e33386d1d315a0f966285ae8cccb99c45c2386ada164c5e925c3cf",
+        "expectedStingerRows": 66
+      },
+      "2025-2026": {
+        "name": "MFR_COMMS_RECEIVED_2025-2026.csv",
+        "sha256": "419ebda2f1c1bf22e2b0862858d61699c25e61d73842f9031e796f1fafefba4c",
+        "expectedStingerRows": 8
+      }
+    },
+    "totalExpectedStingerRows": 137,
+    "modelNameCounts": {
+      "STINGER": 137
+    },
+    "modelMatchRule": "KIA rows whose Model field equals STINGER",
+    "requiredDocumentIds": [
+      "10144236",
+      "10225558",
+      "10237608"
+    ]
+  },
+  "flatRecallSource": {
+    "pre2010": {
+      "name": "FLAT_RCL_PRE_2010.txt",
+      "sha256": "71e6e325e2d69d204776fb32d83dad4fd95436a2f7890da54d49622d77a36232",
+      "expectedStingerRows": 0
+    },
+    "post2010": {
+      "name": "FLAT_RCL_POST_2010.txt",
+      "sha256": "4803a7f298f1d850736fe55830f4d31b004577424cb6429988c5864786f76a70",
+      "expectedStingerRows": 30
+    }
+  },
+  "expectedPre2010RecallInventory": {},
+  "expectedFlatRecallInventory": {
+    "18V754000": [
+      2018
+    ],
+    "20V422000": [
+      2020
+    ],
+    "20V518000": [
+      2018,
+      2019,
+      2020,
+      2021
+    ],
+    "20V560000": [
+      2020,
+      2021
+    ],
+    "21V862000": [
+      2020,
+      2021
+    ],
+    "23V634000": [
+      2018,
+      2019,
+      2020,
+      2021
+    ],
+    "24V169000": [
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023
+    ]
+  },
+  "expectedCompleteRecallInventory": {
+    "18V754000": [
+      2018
+    ],
+    "20V422000": [
+      2020
+    ],
+    "20V518000": [
+      2018,
+      2019,
+      2020,
+      2021
+    ],
+    "20V560000": [
+      2020,
+      2021
+    ],
+    "21V862000": [
+      2020,
+      2021
+    ],
+    "23V634000": [
+      2018,
+      2019,
+      2020,
+      2021
+    ],
+    "24V169000": [
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023
+    ]
+  },
+  "mappedCampaigns": [
+    "18V754000",
+    "20V518000",
+    "21V862000",
+    "24V169000"
+  ],
+  "deferredCampaigns": [
+    {
+      "campaignNumber": "20V422000",
+      "reason": "Separate Stinger issue identity not represented by a frozen page; proposal-only collection remains deferred until the remaining-make audit is complete."
+    },
+    {
+      "campaignNumber": "20V560000",
+      "reason": "Separate Stinger issue identity not represented by a frozen page; proposal-only collection remains deferred until the remaining-make audit is complete."
+    },
+    {
+      "campaignNumber": "23V634000",
+      "reason": "Separate Stinger issue identity not represented by a frozen page; proposal-only collection remains deferred until the remaining-make audit is complete."
+    }
+  ],
+  "summary": {
+    "rewrite_same_identity": 4,
+    "targeted_safety_cleanup_pending_source": 6,
+    "total": 10
+  },
+  "rows": [
+    {
+      "id": "kia-stinger-abs-hydraulic-electronic-control-unit-engine-bay-fire-risk",
+      "model": "Stinger",
+      "action": "rewrite_same_identity",
+      "reason": "20V518/SC196 exactly supports the frozen 2018-2021 HECU fire-risk identity and dealer-installed fuse-kit remedy; secondary citations and unsupported warning-light claims are removed.",
+      "identityRule": "Preserve every indexed Stinger ID, title, category, year set, trim set, engine set and publication state while correcting false source scope, false transmission type, false DTCs, unsafe advice and unsupported replacement or commerce claims.",
+      "commerceDecision": "dealer-only-no-retail-part-safety-recall",
+      "changedFields": [
+        "description",
+        "solution",
+        "severity",
+        "symptoms",
+        "affectedSystems",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "humanApproved",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
+      "evidence": [
+        {
+          "kind": "complete-official-inventory",
+          "manufacturerCommunicationCount": 137,
+          "recallRowCount": 30,
+          "campaignCount": 7,
+          "verifiedOn": "2026-08-08",
+          "observation": "The frozen, hash-bound Stinger manufacturer-communication and recall inventories were scanned completely before adjudication."
+        },
+        {
+          "kind": "official-nhtsa-campaign",
+          "key": "hecu",
+          "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=20V518000",
+          "expected": {
+            "years": [
+              2018,
+              2019,
+              2020,
+              2021
+            ],
+            "rows": 4,
+            "markers": [
+              "engine compartment fire",
+              "new fuse kit",
+              "park outside and away from structures",
+              "SC196"
+            ]
+          },
+          "verifiedOn": "2026-08-08",
+          "observation": "20V518/SC196 exactly supports the frozen 2018-2021 HECU fire-risk identity and dealer-installed fuse-kit remedy; secondary citations and unsupported warning-light claims are removed."
+        },
+        {
+          "kind": "citation-commerce-relation-review",
+          "removedCitationCount": 3,
+          "removedCommerceCount": 0,
+          "removedRelatedIssueCount": 0,
+          "verifiedOn": "2026-08-08",
+          "observation": "Secondary, missing-URL, wrong-model and search-style material is not carried into the proposal. Exact official sources are retained only where vehicle and remedy scope match; no retail link is invented without exact part-number and fitment proof."
+        }
+      ],
+      "beforeSha256": "129c3b0a6973cebc298bd20d914df10da382e5969d8927210b68c22028db14d8",
+      "proposalSha256": "035f1d489367b4553028fba8310d3871d682b2b02693be7acbb428377f08fbb5",
+      "before": {
+        "make": "Kia",
+        "model": "Stinger",
+        "years": [
+          2018,
+          2019,
+          2020,
+          2021
+        ],
+        "trims": [
+          "GT",
+          "GT1",
+          "GT2"
+        ],
+        "engines": [
+          "3.3L twin-turbo Lambda II V6 (T-GDI)"
+        ],
+        "category": "electrical",
+        "title": "ABS Hydraulic Electronic Control Unit (HECU) Engine-Bay Fire Risk (Recall SC196)",
+        "description": "Electrical current can leak inside the ABS Hydraulic Electronic Control Unit, causing a short-circuit and excessive current that can ignite an engine-compartment fire while driving OR while parked. NHTSA campaign 20V-518 / Kia SC196 initially covered 2019 Stinger 3.3T vehicles (Aug 2020) and was expanded Dec 30, 2020 to certain 2018-2021 Stinger 3.3T vehicles. Kia told owners to park outside and away from structures until repaired.",
+        "solution": "Under the recall, dealers install a new fuse kit in the electrical junction box (to cut standby current to the HECU) free of charge regardless of mileage. Recall repairs began November 30, 2020.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Burning/melting smell from engine bay",
+          "Smoke from under the hood",
+          "Fire while driving or parked",
+          "ABS/traction warning lights"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 0,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://kia.oemdtc.com/535/sc196-engine-compartment-fire-2019-kia-stinger",
+            "type": "recall",
+            "title": "SC196 - Engine Compartment Fire - Kia Stinger (NHTSA 20V-518)"
+          },
+          {
+            "url": "https://www.carcomplaints.com/Kia/Stinger/2019/recalls/abs-unit-may-cause-fire-20v518000.shtml",
+            "type": "recall",
+            "title": "Kia Recall SC196: ABS Unit May Cause Fire - CarComplaints.com"
+          },
+          {
+            "url": "https://stingerforum.org/threads/hydrolic-electronic-control-unit-recall.19486/",
+            "type": "forum",
+            "title": "Hydraulic Electronic Control Unit Recall - Kia Stinger Forum"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-08",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Kia",
+        "model": "Stinger",
+        "years": [
+          2018,
+          2019,
+          2020,
+          2021
+        ],
+        "trims": [
+          "GT",
+          "GT1",
+          "GT2"
+        ],
+        "engines": [
+          "3.3L twin-turbo Lambda II V6 (T-GDI)"
+        ],
+        "category": "electrical",
+        "title": "ABS Hydraulic Electronic Control Unit (HECU) Engine-Bay Fire Risk (Recall SC196)",
+        "description": "NHTSA recall 20V518000 (Kia SC196) covers certain 2018-2021 Stinger vehicles. An electrical short within the Hydraulic Electronic Control Unit can cause excessive current and an engine-compartment fire while the vehicle is parked or driving.",
+        "solution": "Check the VIN for recall 20V518000/SC196. Until repaired, park outside and away from structures. A Kia dealer installs a new fuse kit in the electrical junction box free of charge. This is a VIN-specific safety recall, not a retail ABS-module repair.",
+        "severity": "critical",
+        "confidence": "high",
+        "symptoms": [
+          "Burning or melting odor from the engine compartment",
+          "Smoke or fire while driving or parked"
+        ],
+        "affectedSystems": [
+          "Hydraulic Electronic Control Unit electrical circuit and junction-box fuse protection"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "NHTSA Campaign 20V518000 - Stinger HECU Fire Risk",
+            "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=20V518000"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-08",
+        "contentUpdatedOn": "2026-08-08",
+        "contentUpdateSummary": "Official-source same-identity rewrite: 20V518/SC196 exactly supports the frozen 2018-2021 HECU fire-risk identity and dealer-installed fuse-kit remedy; secondary citations and unsupported warning-light claims are removed.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "kia-stinger-carbon-buildup-gdi",
+      "model": "Stinger",
+      "action": "targeted_safety_cleanup_pending_source",
+      "reason": "No exact Stinger primary package among 137 communications or seven campaigns establishes all-engine carbon buildup, a 40,000-80,000-mile onset, preventive walnut blasting, chemical treatment or catch-can fitment. Missing-URL forum citations and search commerce cannot support those prescriptions.",
+      "identityRule": "Preserve every indexed Stinger ID, title, category, year set, trim set, engine set and publication state while correcting false source scope, false transmission type, false DTCs, unsafe advice and unsupported replacement or commerce claims.",
+      "commerceDecision": "no-commerce-pending-engine-specific-diagnosis-and-exact-fitment",
+      "changedFields": [
+        "description",
+        "solution",
+        "confidence",
+        "symptoms",
+        "affectedSystems",
+        "dtcCodes",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "typicalMileageLow",
+        "typicalMileageHigh",
+        "citations",
+        "communityRecommendations",
+        "humanApproved",
+        "reportCount",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary",
+        "relatedIssueIds"
+      ],
+      "evidence": [
+        {
+          "kind": "complete-official-inventory",
+          "manufacturerCommunicationCount": 137,
+          "recallRowCount": 30,
+          "campaignCount": 7,
+          "verifiedOn": "2026-08-08",
+          "observation": "The frozen, hash-bound Stinger manufacturer-communication and recall inventories were scanned completely before adjudication."
+        },
+        {
+          "kind": "citation-commerce-relation-review",
+          "removedCitationCount": 2,
+          "removedCommerceCount": 2,
+          "removedRelatedIssueCount": 2,
+          "verifiedOn": "2026-08-08",
+          "observation": "Secondary, missing-URL, wrong-model and search-style material is not carried into the proposal. Exact official sources are retained only where vehicle and remedy scope match; no retail link is invented without exact part-number and fitment proof."
+        }
+      ],
+      "beforeSha256": "6d16fb7fde7a7f7fd33425f1c06f09189337fed5f7ab30cc78562c7a481ad87e",
+      "proposalSha256": "d6d1dd98c6ebcf9e2534718db6cfe824c97fe5c9712e30a24779bc2433765009",
+      "before": {
+        "make": "Kia",
+        "model": "Stinger",
+        "years": [
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [
+          "GT-Line"
+        ],
+        "engines": [
+          "3.3L Twin-Turbo V6",
+          "2.5L Turbo",
+          "2.0L Turbo"
+        ],
+        "category": "engine",
+        "title": "Intake Valve Carbon Buildup (GDI Engines)",
+        "description": "All turbocharged GDI engines in the Stinger (3.3T, 2.5T, 2.0T) develop carbon deposits on the intake valves over time because GDI fuel injection sprays fuel directly into the combustion chamber rather than onto the valve stems. Without port injection washing the valves, carbon accumulates and restricts airflow, causing rough idle, misfires, and power loss. This typically becomes noticeable between 40,000-80,000 miles.",
+        "solution": "Walnut shell blasting of intake valves is the most effective treatment ($400-700 at a shop). CRC GDI IVD Intake Valve Cleaner (#05319) can slow buildup between cleanings. Some owners use catch cans (Mishimoto part #MMBCC-KS-18 for Stinger) to reduce oil vapor reaching the intake. Preventive walnut blasting every 40,000-50,000 miles is recommended.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Rough idle that worsens over time",
+          "Hesitation during acceleration",
+          "Misfires and check engine light (P0300-P0306)",
+          "Decreased fuel economy",
+          "Loss of power compared to when new"
+        ],
+        "affectedSystems": [
+          "Engine"
+        ],
+        "dtcCodes": [
+          "P0171",
+          "P0174",
+          "P0300",
+          "P0301",
+          "P0302",
+          "P0303",
+          "P0304"
+        ],
+        "estimatedCostLow": 400,
+        "estimatedCostHigh": 800,
+        "typicalMileageLow": 40000,
+        "typicalMileageHigh": 80000,
+        "citations": [
+          {
+            "type": "forum",
+            "title": "StingerForums.com - Carbon buildup prevention and walnut blast guide"
+          },
+          {
+            "type": "forum",
+            "title": "Reddit r/StingerGT - GDI carbon buildup at 50k miles"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Mishimoto oil catch can designed specifically for the Stinger helps reduce intake carbon buildup from PCV oil vapors",
+            "upvotes": 0,
+            "partName": "Baffled Oil Catch Can",
+            "partBrand": "Mishimoto",
+            "partNumber": "MMBCC-KS-18",
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=Mishimoto%20MMBCC-KS-18&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "CRC GDI IVD Intake Valve and Turbo Cleaner used every oil change helps slow carbon buildup between walnut blastings",
+            "upvotes": 0,
+            "partName": "GDI IVD Intake Valve Cleaner",
+            "partBrand": "CRC",
+            "partNumber": "05319",
+            "needsReview": false,
+            "affiliateUrl": "https://www.amazon.com/s?k=CRC%2005319&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 345,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-01-20",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "hyundai-genesis-gdi-carbon-2012",
+          "vw-gti-carbon-buildup-2006"
+        ]
+      },
+      "proposal": {
+        "make": "Kia",
+        "model": "Stinger",
+        "years": [
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [
+          "GT-Line"
+        ],
+        "engines": [
+          "3.3L Twin-Turbo V6",
+          "2.5L Turbo",
+          "2.0L Turbo"
+        ],
+        "category": "engine",
+        "title": "Intake Valve Carbon Buildup (GDI Engines)",
+        "description": "The frozen page assigns one intake-valve carbon-buildup pattern to every Stinger turbo engine, but the complete official inventory reviewed here contains no exact Kia package establishing that all-engine population, mileage range or preventive-cleaning interval. Rough idle and misfire can also arise from ignition, fueling, air leaks, compression or control faults.",
+        "solution": "Confirm the exact engine and retrieve codes and freeze-frame data, then test ignition, fuel delivery, intake leaks and compression before inspecting intake-valve deposits. Use an engine-specific Kia procedure if deposits are verified. Do not prescribe walnut blasting on a fixed interval, spray cleaner or a catch can from this page without exact evidence and fitment.",
+        "severity": "medium",
+        "confidence": "low",
+        "symptoms": [
+          "Rough idle, hesitation, misfire or power loss requiring engine-specific diagnosis"
+        ],
+        "affectedSystems": [
+          "air induction, fuel delivery, ignition, compression and intake valves"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "2025-01-20",
+        "reviewedOn": "2026-08-08",
+        "contentUpdatedOn": "2026-08-08",
+        "contentUpdateSummary": "Targeted accuracy and safety cleanup: No exact Stinger primary package among 137 communications or seven campaigns establishes all-engine carbon buildup, a 40,000-80,000-mile onset, preventive walnut blasting, chemical treatment or catch-can fitment. Missing-URL forum citations and search commerce cannot support those prescriptions.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "kia-stinger-dct-shift-harshness",
+      "model": "Stinger",
+      "action": "targeted_safety_cleanup_pending_source",
+      "reason": "The frozen page falsely calls the Stinger transmission an 8-speed DCT. Kia TRA077 explicitly identifies an 8AT and covers only some 2018 vehicles with an improper static-shift engagement condition, not 2018-2023 harshness, clutch wear, a 30,000-mile DCT-fluid interval or the frozen DTC package.",
+      "identityRule": "Preserve every indexed Stinger ID, title, category, year set, trim set, engine set and publication state while correcting false source scope, false transmission type, false DTCs, unsafe advice and unsupported replacement or commerce claims.",
+      "commerceDecision": "dealer-only-no-retail-part-pending-8at-diagnosis-and-production-scope",
+      "changedFields": [
+        "description",
+        "solution",
+        "confidence",
+        "symptoms",
+        "affectedSystems",
+        "dtcCodes",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "typicalMileageLow",
+        "typicalMileageHigh",
+        "citations",
+        "communityRecommendations",
+        "humanApproved",
+        "reportCount",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary",
+        "relatedIssueIds"
+      ],
+      "evidence": [
+        {
+          "kind": "complete-official-inventory",
+          "manufacturerCommunicationCount": 137,
+          "recallRowCount": 30,
+          "campaignCount": 7,
+          "verifiedOn": "2026-08-08",
+          "observation": "The frozen, hash-bound Stinger manufacturer-communication and recall inventories were scanned completely before adjudication."
+        },
+        {
+          "kind": "official-pdf-review",
+          "documentKeys": [
+            "tra077"
+          ],
+          "sources": {
+            "tra077": {
+              "url": "https://static.nhtsa.gov/odi/tsbs/2018/MC-10144236-9999.pdf",
+              "sha256": "ab8a37b6fb2eab2ae8b0b99a3b1dea4a40e15c118387c73a4caa9fc0825b8e8f",
+              "bytes": 876455,
+              "pages": 7,
+              "title": "Kia TSB TRA077 / SA341 - 2018 Stinger 8AT Static Shift Logic",
+              "markers": [
+                "2018MY Stinger (CK)",
+                "8AT",
+                "Upgrade Event #367",
+                "Upgrade Event #373"
+              ],
+              "visuallyInspectedPages": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7
+              ]
+            }
+          },
+          "allPagesRenderedAndVisuallyInspected": true,
+          "verifiedOn": "2026-08-08",
+          "observation": "The frozen page falsely calls the Stinger transmission an 8-speed DCT. Kia TRA077 explicitly identifies an 8AT and covers only some 2018 vehicles with an improper static-shift engagement condition, not 2018-2023 harshness, clutch wear, a 30,000-mile DCT-fluid interval or the frozen DTC package."
+        },
+        {
+          "kind": "citation-commerce-relation-review",
+          "removedCitationCount": 2,
+          "removedCommerceCount": 4,
+          "removedRelatedIssueCount": 1,
+          "verifiedOn": "2026-08-08",
+          "observation": "Secondary, missing-URL, wrong-model and search-style material is not carried into the proposal. Exact official sources are retained only where vehicle and remedy scope match; no retail link is invented without exact part-number and fitment proof."
+        }
+      ],
+      "beforeSha256": "3e6ece28abd1b6d344664cf1325a60ba04e905b9f21d90cded9b8f9ceb0c4286",
+      "proposalSha256": "be7dc9ff23c9b04ba4a3284d109101f82ef3009bdf12e8180d64fa652e2b3729",
+      "before": {
+        "make": "Kia",
+        "model": "Stinger",
+        "years": [
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "transmission",
+        "title": "8-Speed DCT Harsh Shifting and Delayed Response",
+        "description": "The 8-speed wet dual-clutch transmission in the Stinger exhibits harsh low-speed shifts, delayed response when pulling away from stops, and occasional gear hunting on hills. The DCT clutch pack adapts over time but the adaptive learning can drift, leading to rough shifts. TCU software updates have improved shift quality. In rare cases, clutch pack replacement is needed.",
+        "solution": "Have dealer perform TCU software update with latest calibration. A TCU reset (battery disconnect for 30 minutes, then re-learn drive) can recalibrate shift points. DCT fluid change at 30,000-mile intervals with Kia DCT fluid. For severe cases, clutch pack replacement under warranty ($2,000-4,000).",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Jerky or harsh shifts at low speeds (1st to 2nd, 2nd to 3rd)",
+          "Delayed engagement when pulling away from a stop",
+          "Transmission gear hunting on inclines",
+          "Shudder during low-speed creeping in traffic",
+          "High RPMs before upshift during normal driving"
+        ],
+        "affectedSystems": [
+          "Transmission"
+        ],
+        "dtcCodes": [
+          "P0700",
+          "P0730",
+          "P0741",
+          "P0920"
+        ],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 4000,
+        "typicalMileageLow": 24000,
+        "typicalMileageHigh": 36000,
+        "citations": [
+          {
+            "type": "forum",
+            "title": "StingerForum.org - DCT shift quality issues and fixes (500+ posts)"
+          },
+          {
+            "type": "forum",
+            "title": "KBB.com - 2018 Stinger Common Problems"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "After a TCU update, the transmission needs 200-300 miles of mixed driving to fully re-learn your driving style. Give it time before judging the results",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Change DCT fluid every 30,000 miles. Many owners report noticeably smoother shifts after a fluid change with fresh Kia DCT fluid",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "Replacement shift solenoid to restore proper gear engagement",
+            "partName": "Transmission Shift Solenoid",
+            "partBrand": "Dorman",
+            "affiliateUrl": "https://www.amazon.com/s?k=Dorman%20shift%20solenoid%20Kia%20Stinger&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Transmission filter kit with gasket for fluid service after solenoid replacement",
+            "partName": "Transmission Filter Kit",
+            "partBrand": "ATP",
+            "affiliateUrl": "https://www.amazon.com/s?k=Kia%20Stinger%20transmission%20filter%20kit%20with%20gasket&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 456,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2024-12-05",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "hyundai-palisade-transmission-shift-quality"
+        ]
+      },
+      "proposal": {
+        "make": "Kia",
+        "model": "Stinger",
+        "years": [
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "transmission",
+        "title": "8-Speed DCT Harsh Shifting and Delayed Response",
+        "description": "The Stinger uses an eight-speed automatic transmission (8AT), not the wet dual-clutch transmission claimed by the frozen page. Kia TRA077/SA341 addresses only certain 2018 2.0T and 3.3T vehicles in listed production ranges that can improperly engage first gear when the shifter is moved rapidly from Park to Sport Mode. It does not establish one 2018-2023 harsh-shift or clutch-pack defect.",
+        "solution": "Confirm the VIN, engine, production date, transmission hardware, fluid condition and exact shift event. For a TRA077-eligible vehicle, a Kia dealer applies TCU Event 367 for the 2.0T or Event 373 for the 3.3T. Diagnose other shift concerns separately. Do not disconnect the battery as a repair, invent a scheduled dual-clutch-fluid service, or buy generic solenoids, filters or clutch parts from this page.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Improper first-gear engagement during a rapid Park-to-Sport-mode shift on an eligible 2018 vehicle",
+          "Harsh, delayed or hunting shifts requiring exact 8AT diagnosis"
+        ],
+        "affectedSystems": [
+          "eight-speed automatic transmission, shift-by-cable system and TCU logic"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "Kia TSB TRA077 / SA341 - 2018 Stinger 8AT Static Shift Logic",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2018/MC-10144236-9999.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "2024-12-05",
+        "reviewedOn": "2026-08-08",
+        "contentUpdatedOn": "2026-08-08",
+        "contentUpdateSummary": "Targeted accuracy and safety cleanup: The frozen page falsely calls the Stinger transmission an 8-speed DCT. Kia TRA077 explicitly identifies an 8AT and covers only some 2018 vehicles with an improper static-shift engagement condition, not 2018-2023 harshness, clutch wear, a 30,000-mile DCT-fluid interval or the frozen DTC package.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "kia-stinger-front-brake-rotor-pulsation-premature-brake-wear",
+      "model": "Stinger",
+      "action": "targeted_safety_cleanup_pending_source",
+      "reason": "No exact Stinger Kia communication or campaign establishes one 2018-2023 pad-deposit defect, universal pads-and-rotors remedy, warranty entitlement or Hawk-pad fitment. Forum reports alone do not justify a parts prescription.",
+      "identityRule": "Preserve every indexed Stinger ID, title, category, year set, trim set, engine set and publication state while correcting false source scope, false transmission type, false DTCs, unsafe advice and unsupported replacement or commerce claims.",
+      "commerceDecision": "no-commerce-pending-runout-thickness-and-chassis-diagnosis",
+      "changedFields": [
+        "description",
+        "solution",
+        "confidence",
+        "symptoms",
+        "affectedSystems",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "humanApproved",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
+      "evidence": [
+        {
+          "kind": "complete-official-inventory",
+          "manufacturerCommunicationCount": 137,
+          "recallRowCount": 30,
+          "campaignCount": 7,
+          "verifiedOn": "2026-08-08",
+          "observation": "The frozen, hash-bound Stinger manufacturer-communication and recall inventories were scanned completely before adjudication."
+        },
+        {
+          "kind": "citation-commerce-relation-review",
+          "removedCitationCount": 3,
+          "removedCommerceCount": 0,
+          "removedRelatedIssueCount": 0,
+          "verifiedOn": "2026-08-08",
+          "observation": "Secondary, missing-URL, wrong-model and search-style material is not carried into the proposal. Exact official sources are retained only where vehicle and remedy scope match; no retail link is invented without exact part-number and fitment proof."
+        }
+      ],
+      "beforeSha256": "43cac62fe05f76c1be4697f9fc1db525f455708b54bf171e27a8d96aed93bd00",
+      "proposalSha256": "6ac7eba526c753b89c2fdba473f3e5e7805a03bc18e02672b11a93116738697a",
+      "before": {
+        "make": "Kia",
+        "model": "Stinger",
+        "years": [
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [
+          "GT",
+          "GT1",
+          "GT2",
+          "2.0T",
+          "GT-Line"
+        ],
+        "engines": [
+          "3.3L twin-turbo Lambda II V6 (T-GDI)",
+          "2.0L Theta II turbo I4 (T-GDI)"
+        ],
+        "category": "brakes",
+        "title": "Front Brake Rotor Pulsation and Premature Brake Wear",
+        "description": "Owners widely report brake-pedal and steering-wheel pulsation under braking, especially on GT (3.3T) cars. The root cause is usually uneven pad-material transfer (friction deposits) from the soft OEM pads glazing onto the rotors when hot, rather than true warping. Resurfacing/replacing rotors without changing pads brings the problem back.",
+        "solution": "Replace front rotors AND pads together (Kia has covered this under the 12-month/12,000-mile brake warranty for some owners). Many owners permanently resolve it by re-bedding the brakes or switching to higher-quality aftermarket pads (e.g. Hawk) with a proper bedding-in procedure.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Pulsation/vibration through brake pedal when stopping",
+          "Steering-wheel shimmy under braking",
+          "Vibration felt at highway-speed braking",
+          "Rapid pad/rotor wear"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 436,
+        "estimatedCostHigh": 900,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://stingerforum.org/threads/faq-vibration-under-braking-warped-rotors-no.9761/",
+            "type": "forum",
+            "title": "FAQ: Vibration under braking: warped rotors? NO! - Kia Stinger Forum"
+          },
+          {
+            "url": "https://www.kiastinger.org/threads/attention-brake-rotors-and-warranty.2000/",
+            "type": "forum",
+            "title": "ATTENTION: Brake rotors and warranty - Kia Stinger Forum"
+          },
+          {
+            "url": "https://stingerforum.org/threads/dreaded-warped-rotors.14157/",
+            "type": "forum",
+            "title": "Dreaded Warped Rotors - Kia Stinger Forum"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-08",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Kia",
+        "model": "Stinger",
+        "years": [
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [
+          "GT",
+          "GT1",
+          "GT2",
+          "2.0T",
+          "GT-Line"
+        ],
+        "engines": [
+          "3.3L twin-turbo Lambda II V6 (T-GDI)",
+          "2.0L Theta II turbo I4 (T-GDI)"
+        ],
+        "category": "brakes",
+        "title": "Front Brake Rotor Pulsation and Premature Brake Wear",
+        "description": "The frozen page attributes Stinger brake pulsation to uneven pad-material transfer across all indexed years and trims, but the complete official inventory contains no exact Kia package establishing that cause or a universal repair. Similar vibration can result from rotor thickness variation, lateral runout, pad deposits, hub corrosion, caliper drag, tire or suspension conditions.",
+        "solution": "Measure rotor thickness variation and lateral runout and inspect pads, calipers, hubs, tires and suspension before ordering parts. Correct the verified cause and use the current Kia parts catalog for the VIN. Do not promise warranty coverage or prescribe rotors, pads, Hawk products or a bedding procedure from this page alone.",
+        "severity": "medium",
+        "confidence": "low",
+        "symptoms": [
+          "Brake-pedal pulsation or steering-wheel vibration while braking",
+          "Abnormal brake wear requiring measurement"
+        ],
+        "affectedSystems": [
+          "brake pads, rotors, hubs, calipers, tires and suspension"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-08",
+        "contentUpdatedOn": "2026-08-08",
+        "contentUpdateSummary": "Targeted accuracy and safety cleanup: No exact Stinger Kia communication or campaign establishes one 2018-2023 pad-deposit defect, universal pads-and-rotors remedy, warranty entitlement or Hawk-pad fitment. Forum reports alone do not justify a parts prescription.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "kia-stinger-front-wiring-harness-chafe-short-circuit-fire-risk",
+      "model": "Stinger",
+      "action": "rewrite_same_identity",
+      "reason": "18V754/SC170 exactly supports the frozen 2018 front-harness chafe identity and its inspection, cover and conditional harness-replacement remedy.",
+      "identityRule": "Preserve every indexed Stinger ID, title, category, year set, trim set, engine set and publication state while correcting false source scope, false transmission type, false DTCs, unsafe advice and unsupported replacement or commerce claims.",
+      "commerceDecision": "dealer-only-no-retail-part-safety-recall",
+      "changedFields": [
+        "description",
+        "solution",
+        "severity",
+        "symptoms",
+        "affectedSystems",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "humanApproved",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
+      "evidence": [
+        {
+          "kind": "complete-official-inventory",
+          "manufacturerCommunicationCount": 137,
+          "recallRowCount": 30,
+          "campaignCount": 7,
+          "verifiedOn": "2026-08-08",
+          "observation": "The frozen, hash-bound Stinger manufacturer-communication and recall inventories were scanned completely before adjudication."
+        },
+        {
+          "kind": "official-nhtsa-campaign",
+          "key": "harness",
+          "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=18V754000",
+          "expected": {
+            "years": [
+              2018
+            ],
+            "rows": 1,
+            "markers": [
+              "front wiring harness",
+              "burr on the left fender",
+              "cover will be installed",
+              "SC170"
+            ]
+          },
+          "verifiedOn": "2026-08-08",
+          "observation": "18V754/SC170 exactly supports the frozen 2018 front-harness chafe identity and its inspection, cover and conditional harness-replacement remedy."
+        },
+        {
+          "kind": "citation-commerce-relation-review",
+          "removedCitationCount": 3,
+          "removedCommerceCount": 0,
+          "removedRelatedIssueCount": 0,
+          "verifiedOn": "2026-08-08",
+          "observation": "Secondary, missing-URL, wrong-model and search-style material is not carried into the proposal. Exact official sources are retained only where vehicle and remedy scope match; no retail link is invented without exact part-number and fitment proof."
+        }
+      ],
+      "beforeSha256": "07a38015d08f1dcaac93d9c11225977f7283015cd6af03665448dc054b994aa1",
+      "proposalSha256": "72f3028d11a5f109632897c6e7d94575183006ed894ad8dca2502fa76b04ddd2",
+      "before": {
+        "make": "Kia",
+        "model": "Stinger",
+        "years": [
+          2018
+        ],
+        "trims": [
+          "2.0T",
+          "GT-Line",
+          "GT",
+          "GT1",
+          "GT2"
+        ],
+        "engines": [
+          "2.0L Theta II turbo I4 (T-GDI)",
+          "3.3L twin-turbo Lambda II V6 (T-GDI)"
+        ],
+        "category": "electrical",
+        "title": "Front Wiring Harness Chafe / Short-Circuit Fire Risk (Recall SC170)",
+        "description": "The front wiring harness routed through the engine and passenger compartments can contact a sharp burr on the left fender body panel, wearing through the insulation and short-circuiting. This creates a fire hazard. NHTSA campaign 18V-754 / Kia SC170 covers approximately 16,011 model-year 2018 Stingers.",
+        "solution": "Dealers inspect the harness: if undamaged they install a protective cover over the burr area; if the harness is already chafed they repair/replace it and add the cover, free of charge under recall. Recall began December 20, 2018.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Blown fuses / intermittent electrical faults",
+          "Burning smell",
+          "Smoke or fire in engine/passenger compartment",
+          "Warning lights"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 0,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://static.nhtsa.gov/odi/rcl/2018/RMISC-18V754-7132.pdf",
+            "type": "recall",
+            "title": "Front wiring harness inspection/replacement - NHTSA 18V-754 report"
+          },
+          {
+            "url": "https://www.consumerreports.org/car-recalls-defects/kia-stinger-recalled-over-fire-risk/",
+            "type": "article",
+            "title": "Kia Stinger Recall: Fire Risk Due to Faulty Wiring Harness - Consumer Reports"
+          },
+          {
+            "url": "https://www.motorsafety.org/kia-recalls-more-than-16000-stinger-vehicles-for-wiring-harness-issue/",
+            "type": "article",
+            "title": "Kia Recalls More Than 16,000 Stinger Vehicles for Wiring Harness Issue - MotorSafety.org"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-08",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Kia",
+        "model": "Stinger",
+        "years": [
+          2018
+        ],
+        "trims": [
+          "2.0T",
+          "GT-Line",
+          "GT",
+          "GT1",
+          "GT2"
+        ],
+        "engines": [
+          "2.0L Theta II turbo I4 (T-GDI)",
+          "3.3L twin-turbo Lambda II V6 (T-GDI)"
+        ],
+        "category": "electrical",
+        "title": "Front Wiring Harness Chafe / Short-Circuit Fire Risk (Recall SC170)",
+        "description": "NHTSA recall 18V754000 (Kia SC170) covers certain 2018 Stinger vehicles. The front wiring harness can contact a burr on the left fender, damage its insulation and short, increasing fire risk.",
+        "solution": "Check the VIN for recall 18V754000/SC170. A Kia dealer inspects the front harness; if it is undamaged, the dealer installs a protective cover over the burr area, and if it is damaged, the dealer replaces the harness and installs the cover. The recall remedy is free and VIN-specific, so no retail harness is recommended.",
+        "severity": "critical",
+        "confidence": "high",
+        "symptoms": [
+          "Electrical short, smoke or burning odor",
+          "Engine- or passenger-compartment fire risk"
+        ],
+        "affectedSystems": [
+          "front wiring harness and left-fender contact point"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "NHTSA Campaign 18V754000 - Stinger Front Wiring-Harness Chafe",
+            "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=18V754000"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-08",
+        "contentUpdatedOn": "2026-08-08",
+        "contentUpdateSummary": "Official-source same-identity rewrite: 18V754/SC170 exactly supports the frozen 2018 front-harness chafe identity and its inspection, cover and conditional harness-replacement remedy.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "kia-stinger-inaccurate-fuel-gauge-from-instrument-cluster-software-error",
+      "model": "Stinger",
+      "action": "rewrite_same_identity",
+      "reason": "21V862/SC219 exactly supports the frozen 2020-2021 inaccurate-fuel-gauge identity and instrument-cluster software update.",
+      "identityRule": "Preserve every indexed Stinger ID, title, category, year set, trim set, engine set and publication state while correcting false source scope, false transmission type, false DTCs, unsafe advice and unsupported replacement or commerce claims.",
+      "commerceDecision": "dealer-only-no-retail-part-software-recall",
+      "changedFields": [
+        "description",
+        "solution",
+        "severity",
+        "symptoms",
+        "affectedSystems",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "humanApproved",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
+      "evidence": [
+        {
+          "kind": "complete-official-inventory",
+          "manufacturerCommunicationCount": 137,
+          "recallRowCount": 30,
+          "campaignCount": 7,
+          "verifiedOn": "2026-08-08",
+          "observation": "The frozen, hash-bound Stinger manufacturer-communication and recall inventories were scanned completely before adjudication."
+        },
+        {
+          "kind": "official-nhtsa-campaign",
+          "key": "gauge",
+          "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=21V862000",
+          "expected": {
+            "years": [
+              2020,
+              2021
+            ],
+            "rows": 2,
+            "markers": [
+              "software error in the instrument cluster",
+              "inaccurate fuel gauge",
+              "update the software",
+              "SC219"
+            ]
+          },
+          "verifiedOn": "2026-08-08",
+          "observation": "21V862/SC219 exactly supports the frozen 2020-2021 inaccurate-fuel-gauge identity and instrument-cluster software update."
+        },
+        {
+          "kind": "citation-commerce-relation-review",
+          "removedCitationCount": 2,
+          "removedCommerceCount": 0,
+          "removedRelatedIssueCount": 0,
+          "verifiedOn": "2026-08-08",
+          "observation": "Secondary, missing-URL, wrong-model and search-style material is not carried into the proposal. Exact official sources are retained only where vehicle and remedy scope match; no retail link is invented without exact part-number and fitment proof."
+        }
+      ],
+      "beforeSha256": "cb3c6f62125d45f03953acfdaed0792a3c96c81dc9bc5ca5305c217b894d2049",
+      "proposalSha256": "7a4e7bd3e638e0d290a08e20cdd18dd1ecd18d59d9c57eecb890232fdb05aaf7",
+      "before": {
+        "make": "Kia",
+        "model": "Stinger",
+        "years": [
+          2020,
+          2021
+        ],
+        "trims": [
+          "GT-Line",
+          "GT1",
+          "GT2"
+        ],
+        "engines": [
+          "2.0L Theta II turbo I4 (T-GDI)",
+          "3.3L twin-turbo Lambda II V6 (T-GDI)"
+        ],
+        "category": "electrical",
+        "title": "Inaccurate Fuel Gauge From Instrument-Cluster Software Error (Recall SC219)",
+        "description": "A software logic/calibration error in the instrument cluster (from the cluster supplier) causes the fuel gauge to under-report fuel consumed, so the gauge can read higher than actual and the car can unexpectedly run out of fuel and stall. NHTSA campaign 21V-862 / Kia SC219 covers a narrow build window of about 53 model-year 2020-2021 Stingers manufactured March 20, 2020 through December 28, 2020.",
+        "solution": "Dealers reflash/update the instrument-cluster software free of charge under the recall; no hardware replacement is required. Owner notification letters mailed December 10, 2021.",
+        "severity": "low",
+        "confidence": "high",
+        "symptoms": [
+          "Fuel gauge reads inaccurately/too high",
+          "Running out of fuel with fuel still indicated",
+          "Unexpected stall"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 0,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://kia.oemdtc.com/640/2020-2021-kia-stinger-recall-sc219-inaccurate-fuel-gauge-instrument-cluster-display",
+            "type": "recall",
+            "title": "Recall SC219 - Inaccurate Fuel Gauge Instrument Cluster Display (2020-2021 Stinger)"
+          },
+          {
+            "url": "https://repairpal.com/recall/21V862000",
+            "type": "recall",
+            "title": "Kia Stinger Recall: Fuel Gauge Reading Is Not Accurate (21V-862) - RepairPal"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-08",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Kia",
+        "model": "Stinger",
+        "years": [
+          2020,
+          2021
+        ],
+        "trims": [
+          "GT-Line",
+          "GT1",
+          "GT2"
+        ],
+        "engines": [
+          "2.0L Theta II turbo I4 (T-GDI)",
+          "3.3L twin-turbo Lambda II V6 (T-GDI)"
+        ],
+        "category": "electrical",
+        "title": "Inaccurate Fuel Gauge From Instrument-Cluster Software Error (Recall SC219)",
+        "description": "NHTSA recall 21V862000 (Kia SC219) covers certain 2020-2021 Stinger vehicles. A software error in the instrument cluster can display an inaccurate fuel level, allowing the vehicle to run out of fuel and stall unexpectedly.",
+        "solution": "Check the VIN for recall 21V862000/SC219. Until repaired, monitor fuel use conservatively rather than relying only on the gauge. A Kia dealer updates the instrument-cluster software free of charge; the official remedy does not call for a retail fuel sender or cluster replacement.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Fuel gauge indicates more fuel than is actually present",
+          "Unexpected fuel exhaustion and engine stall"
+        ],
+        "affectedSystems": [
+          "instrument-cluster fuel-level software"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "NHTSA Campaign 21V862000 - Stinger Inaccurate Fuel Gauge",
+            "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=21V862000"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-08",
+        "contentUpdatedOn": "2026-08-08",
+        "contentUpdateSummary": "Official-source same-identity rewrite: 21V862/SC219 exactly supports the frozen 2020-2021 inaccurate-fuel-gauge identity and instrument-cluster software update.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "kia-stinger-interior-rattles",
+      "model": "Stinger",
+      "action": "targeted_safety_cleanup_pending_source",
+      "reason": "BOD317 supports only a narrow 2022 headliner-noise condition and tape procedure; it does not establish the frozen 2018-2023 dashboard, A-pillar, door and parcel-shelf aggregation or unrelated dashboard-cover commerce.",
+      "identityRule": "Preserve every indexed Stinger ID, title, category, year set, trim set, engine set and publication state while correcting false source scope, false transmission type, false DTCs, unsafe advice and unsupported replacement or commerce claims.",
+      "commerceDecision": "no-commerce-pending-location-and-production-date-diagnosis",
+      "changedFields": [
+        "description",
+        "solution",
+        "confidence",
+        "symptoms",
+        "affectedSystems",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "communityRecommendations",
+        "humanApproved",
+        "reportCount",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
+      "evidence": [
+        {
+          "kind": "complete-official-inventory",
+          "manufacturerCommunicationCount": 137,
+          "recallRowCount": 30,
+          "campaignCount": 7,
+          "verifiedOn": "2026-08-08",
+          "observation": "The frozen, hash-bound Stinger manufacturer-communication and recall inventories were scanned completely before adjudication."
+        },
+        {
+          "kind": "official-pdf-review",
+          "documentKeys": [
+            "bod317"
+          ],
+          "sources": {
+            "bod317": {
+              "url": "https://static.nhtsa.gov/odi/tsbs/2023/MC-10237608-0001.pdf",
+              "sha256": "fccc6b6c311d123c2faab0b490aae8d02a02076bc660caae2067ebd8224b4f72",
+              "bytes": 1307037,
+              "pages": 9,
+              "title": "Kia TSB BOD317 - 2022 Stinger Headliner Noise",
+              "markers": [
+                "2022MY Stinger (CK)",
+                "headliner noise",
+                "normal body flex",
+                "Tesa Tape"
+              ],
+              "visuallyInspectedPages": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9
+              ]
+            }
+          },
+          "allPagesRenderedAndVisuallyInspected": true,
+          "verifiedOn": "2026-08-08",
+          "observation": "BOD317 supports only a narrow 2022 headliner-noise condition and tape procedure; it does not establish the frozen 2018-2023 dashboard, A-pillar, door and parcel-shelf aggregation or unrelated dashboard-cover commerce."
+        },
+        {
+          "kind": "citation-commerce-relation-review",
+          "removedCitationCount": 2,
+          "removedCommerceCount": 3,
+          "removedRelatedIssueCount": 0,
+          "verifiedOn": "2026-08-08",
+          "observation": "Secondary, missing-URL, wrong-model and search-style material is not carried into the proposal. Exact official sources are retained only where vehicle and remedy scope match; no retail link is invented without exact part-number and fitment proof."
+        }
+      ],
+      "beforeSha256": "e775d8ab14fb96677c94eb3a64b4b3069ba9931b842281b626273e24617ca342",
+      "proposalSha256": "1d182cd5755abdae937a847112e8b3887c455dd8f48497f3fcbb08e2b9b4912d",
+      "before": {
+        "make": "Kia",
+        "model": "Stinger",
+        "years": [
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "interior",
+        "title": "Dashboard and Interior Trim Rattles",
+        "description": "The Stinger is widely reported to develop interior rattles, particularly from the dashboard, A-pillar trims, and door panels. The rattles originate from plastic clips losing tension and trim panels not being adequately secured from the factory. The issue is more noticeable in cold weather when plastic contracts. While not a safety issue, it is a common quality complaint for a premium sports sedan.",
+        "solution": "Identify rattle source by pressing on trim panels while driving (have a passenger do this). Apply felt tape or foam strips behind loose trim clips ($10-30 DIY). Dealer may apply Kia anti-squeak tape under warranty. A-pillar rattle: remove trim, add foam padding behind clip points. Dashboard rattle: often the center speaker grille or instrument hood. Parcel shelf: add felt strips at contact points.",
+        "severity": "low",
+        "confidence": "high",
+        "symptoms": [
+          "Buzzing or rattling from dashboard on rough roads",
+          "A-pillar trim rattles over bumps",
+          "Door panel creaking",
+          "Rear deck/parcel shelf rattle",
+          "Rattles worse in cold weather"
+        ],
+        "affectedSystems": [
+          "Interior"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 300,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "forum",
+            "title": "StingerForums.com - Interior rattle fix guide with photos"
+          },
+          {
+            "type": "forum",
+            "title": "Reddit r/StingerGT - Comprehensive rattle elimination thread"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "3M felt tape (part #08612) applied behind trim clips eliminates most dashboard and A-pillar rattles. Inexpensive and easy DIY fix",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "DashMat dash cover — protects and covers cracked dashboards",
+            "partName": "Dashboard Cover",
+            "partBrand": "DashMat",
+            "affiliateUrl": "https://www.amazon.com/s?k=DashMat%20dashboard%20cover&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Coverlay dash cover — custom-molded replacement overlay",
+            "partName": "Dashboard Cover",
+            "partBrand": "Coverlay",
+            "affiliateUrl": "https://www.amazon.com/s?k=Coverlay%20dashboard%20cover&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 567,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-01-10",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Kia",
+        "model": "Stinger",
+        "years": [
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "interior",
+        "title": "Dashboard and Interior Trim Rattles",
+        "description": "Kia TSB BOD317 documents an intermittent headliner noise on certain 2022 Stinger vehicles equipped with a sunroof, caused by normal body flex on uneven roads. It provides a specific tape-and-clip procedure. That bulletin does not establish the frozen 2018-2023 dashboard, A-pillar, door-panel and rear-deck aggregation or prove that cold-weather clip tension is a shared cause.",
+        "solution": "Have a passenger or technician localize the noise safely, then verify model year, production date and whether BOD317 applies before removing trim. Follow the exact Kia procedure for a confirmed headliner condition. Do not order dashboard covers or broadly add foam behind air-bag-adjacent A-pillar trim from this page.",
+        "severity": "low",
+        "confidence": "medium",
+        "symptoms": [
+          "Interior or headliner noise over uneven roads requiring source localization"
+        ],
+        "affectedSystems": [
+          "headliner, assist-handle brackets, trim clips and adjacent body contact points"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "Kia TSB BOD317 - 2022 Stinger Headliner Noise",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2023/MC-10237608-0001.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "2025-01-10",
+        "reviewedOn": "2026-08-08",
+        "contentUpdatedOn": "2026-08-08",
+        "contentUpdateSummary": "Targeted accuracy and safety cleanup: BOD317 supports only a narrow 2022 headliner-noise condition and tape procedure; it does not establish the frozen 2018-2023 dashboard, A-pillar, door and parcel-shelf aggregation or unrelated dashboard-cover commerce.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "kia-stinger-oil-pressure-switch-leak-oil-pressure-warning-light",
+      "model": "Stinger",
+      "action": "targeted_safety_cleanup_pending_source",
+      "reason": "The frozen official citation is false for Stinger: ENG237 lists Sorento, Cadenza and Sedona only. It does not support a 2018-2023 Stinger switch defect, P0521 certainty, intake-removal package or replacement advice.",
+      "identityRule": "Preserve every indexed Stinger ID, title, category, year set, trim set, engine set and publication state while correcting false source scope, false transmission type, false DTCs, unsafe advice and unsupported replacement or commerce claims.",
+      "commerceDecision": "no-commerce-pending-mechanical-oil-pressure-and-leak-diagnosis",
+      "changedFields": [
+        "description",
+        "solution",
+        "severity",
+        "confidence",
+        "symptoms",
+        "affectedSystems",
+        "dtcCodes",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "humanApproved",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
+      "evidence": [
+        {
+          "kind": "complete-official-inventory",
+          "manufacturerCommunicationCount": 137,
+          "recallRowCount": 30,
+          "campaignCount": 7,
+          "verifiedOn": "2026-08-08",
+          "observation": "The frozen, hash-bound Stinger manufacturer-communication and recall inventories were scanned completely before adjudication."
+        },
+        {
+          "kind": "official-pdf-review",
+          "documentKeys": [
+            "eng237WrongModel"
+          ],
+          "sources": {
+            "eng237WrongModel": {
+              "url": "https://static.nhtsa.gov/odi/tsbs/2022/MC-10216912-0001.pdf",
+              "sha256": "50005402eaaf91aa843c48d843d7962f1d61418d4f7048f5c6779aa3de31ad53",
+              "bytes": 368866,
+              "pages": 4,
+              "title": "Kia TSB ENG237 - Oil-Pressure Switch Replacement (Stinger Excluded)",
+              "markers": [
+                "2014-2015MY Sorento",
+                "2016-2018MY Sorento",
+                "2014-2016MY Cadenza",
+                "2015-2018MY Sedona"
+              ],
+              "forbiddenMarkers": [
+                "Stinger (CK)"
+              ],
+              "visuallyInspectedPages": [
+                1,
+                2,
+                3,
+                4
+              ]
+            }
+          },
+          "allPagesRenderedAndVisuallyInspected": true,
+          "verifiedOn": "2026-08-08",
+          "observation": "The frozen official citation is false for Stinger: ENG237 lists Sorento, Cadenza and Sedona only. It does not support a 2018-2023 Stinger switch defect, P0521 certainty, intake-removal package or replacement advice."
+        },
+        {
+          "kind": "citation-commerce-relation-review",
+          "removedCitationCount": 3,
+          "removedCommerceCount": 0,
+          "removedRelatedIssueCount": 0,
+          "verifiedOn": "2026-08-08",
+          "observation": "Secondary, missing-URL, wrong-model and search-style material is not carried into the proposal. Exact official sources are retained only where vehicle and remedy scope match; no retail link is invented without exact part-number and fitment proof."
+        }
+      ],
+      "beforeSha256": "5311737ab2984049187a2091c6324aebbaba57de446a4569073f7ac1409ed2aa",
+      "proposalSha256": "a9904123f4df6b2960e490c644f03637f3efdd751d95b6024b5b19cdaa3ced69",
+      "before": {
+        "make": "Kia",
+        "model": "Stinger",
+        "years": [
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [
+          "GT",
+          "GT1",
+          "GT2"
+        ],
+        "engines": [
+          "3.3L twin-turbo Lambda II V6 (T-GDI)"
+        ],
+        "category": "engine",
+        "title": "Oil Pressure Switch (Sensor) Leak and Oil Pressure Warning Light",
+        "description": "The engine oil pressure switch on the Lambda II 3.3T is prone to seeping/leaking. Owners commonly see the oil-pressure warning light flicker at a warm idle and go out when RPM rises (classic bad-switch behavior, not a failing pump), and leaking oil onto hot components can cause a burning oil smell. It commonly sets DTC P0521. The switch sits deep in the engine valley under the intake manifold, so replacing this cheap part is labor-intensive.",
+        "solution": "Replace the oil pressure switch. Because the upper intake manifold must come off for access, shops typically renew the intake/surge-tank gaskets and injector seals at the same time; the part is inexpensive but 3-4+ hours of labor drives the cost. A Kia TSB (ENG237-family) covers the leaking-switch failure mode on Lambda V6 engines.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Oil-pressure warning light flickers at warm idle, clears when revved",
+          "Burning oil smell",
+          "Oil seepage near the intake valley"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0521"
+        ],
+        "estimatedCostLow": 300,
+        "estimatedCostHigh": 1100,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://static.nhtsa.gov/odi/tsbs/2022/MC-10216912-0001.pdf",
+            "type": "tsb",
+            "title": "Oil Pressure Switch (OPS) Replacement - Kia TSB (NHTSA MC-10216912)"
+          },
+          {
+            "url": "https://www.go-parts.com/garage/obd-p0521-kia-stinger-2018-2023-lambda-ii-3",
+            "type": "article",
+            "title": "P0521 on 2018-2023 Kia Stinger 3.3T: Oil Pressure Sensor Causes and Fixes - Go-Parts"
+          },
+          {
+            "url": "https://stingerforum.org/threads/oil-pressure-light-comes-on-only-when-car-is-stopped.26545/",
+            "type": "forum",
+            "title": "Oil pressure light comes on only when car is stopped - Kia Stinger Forum"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-08",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Kia",
+        "model": "Stinger",
+        "years": [
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [
+          "GT",
+          "GT1",
+          "GT2"
+        ],
+        "engines": [
+          "3.3L twin-turbo Lambda II V6 (T-GDI)"
+        ],
+        "category": "engine",
+        "title": "Oil Pressure Switch (Sensor) Leak and Oil Pressure Warning Light",
+        "description": "Kia TSB ENG237 does not include the Stinger; its applicability table lists specified Sorento, Cadenza and Sedona vehicles. It therefore cannot support the frozen claim that 2018-2023 Stinger 3.3T vehicles share the bulletin’s oil-pressure-switch failure, P0521 pattern or repair package. An oil-pressure warning can also indicate dangerously low actual pressure.",
+        "solution": "If the oil-pressure warning remains on, stop the engine as soon as it is safe and check the oil level without continuing to drive. A qualified technician should verify actual pressure with the appropriate mechanical test and locate any leak before replacing a switch or opening the intake. Do not assume the pump is healthy, infer P0521 or order switch, gasket or injector-seal parts from ENG237 for a Stinger.",
+        "severity": "high",
+        "confidence": "low",
+        "symptoms": [
+          "Oil-pressure warning light",
+          "Burning-oil odor or oil leakage requiring immediate diagnosis"
+        ],
+        "affectedSystems": [
+          "engine lubrication system, oil-pressure measurement circuit and leak sources"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "Kia TSB ENG237 - Oil-Pressure Switch Replacement (Stinger Excluded)",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2022/MC-10216912-0001.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-08",
+        "contentUpdatedOn": "2026-08-08",
+        "contentUpdateSummary": "Targeted accuracy and safety cleanup: The frozen official citation is false for Stinger: ENG237 lists Sorento, Cadenza and Sedona only. It does not support a 2018-2023 Stinger switch defect, P0521 certainty, intake-removal package or replacement advice.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "kia-stinger-panoramic-sunroof-popping-creaking-rattle",
+      "model": "Stinger",
+      "action": "targeted_safety_cleanup_pending_source",
+      "reason": "BOD309 covers an inoperative sunroof from rear-sled separation and BOD317 covers narrow 2022 headliner noise. Neither establishes the frozen 2018-2023 metal-on-metal rail protrusion, thermal-cycle mechanism or Krytox/felt repair.",
+      "identityRule": "Preserve every indexed Stinger ID, title, category, year set, trim set, engine set and publication state while correcting false source scope, false transmission type, false DTCs, unsafe advice and unsupported replacement or commerce claims.",
+      "commerceDecision": "no-commerce-pending-exact-roof-noise-mechanism-and-production-scope",
+      "changedFields": [
+        "description",
+        "solution",
+        "confidence",
+        "symptoms",
+        "affectedSystems",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "humanApproved",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
+      "evidence": [
+        {
+          "kind": "complete-official-inventory",
+          "manufacturerCommunicationCount": 137,
+          "recallRowCount": 30,
+          "campaignCount": 7,
+          "verifiedOn": "2026-08-08",
+          "observation": "The frozen, hash-bound Stinger manufacturer-communication and recall inventories were scanned completely before adjudication."
+        },
+        {
+          "kind": "official-pdf-review",
+          "documentKeys": [
+            "bod309",
+            "bod317"
+          ],
+          "sources": {
+            "bod309": {
+              "url": "https://static.nhtsa.gov/odi/tsbs/2022/MC-10225558-0001.pdf",
+              "sha256": "ef59414716b2a114d2f526b4bf4f038d5681631c75e342c10cbcdf6f9824906f",
+              "bytes": 1562898,
+              "pages": 8,
+              "title": "Kia TSB BOD309 - Stinger Inoperative Sunroof From Rear-Sled Separation",
+              "markers": [
+                "2018-2023MY Stinger (CK)",
+                "sunroof is inoperative",
+                "rear sled",
+                "guide and sled kit"
+              ],
+              "visuallyInspectedPages": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8
+              ]
+            },
+            "bod317": {
+              "url": "https://static.nhtsa.gov/odi/tsbs/2023/MC-10237608-0001.pdf",
+              "sha256": "fccc6b6c311d123c2faab0b490aae8d02a02076bc660caae2067ebd8224b4f72",
+              "bytes": 1307037,
+              "pages": 9,
+              "title": "Kia TSB BOD317 - 2022 Stinger Headliner Noise",
+              "markers": [
+                "2022MY Stinger (CK)",
+                "headliner noise",
+                "normal body flex",
+                "Tesa Tape"
+              ],
+              "visuallyInspectedPages": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9
+              ]
+            }
+          },
+          "allPagesRenderedAndVisuallyInspected": true,
+          "verifiedOn": "2026-08-08",
+          "observation": "BOD309 covers an inoperative sunroof from rear-sled separation and BOD317 covers narrow 2022 headliner noise. Neither establishes the frozen 2018-2023 metal-on-metal rail protrusion, thermal-cycle mechanism or Krytox/felt repair."
+        },
+        {
+          "kind": "citation-commerce-relation-review",
+          "removedCitationCount": 2,
+          "removedCommerceCount": 0,
+          "removedRelatedIssueCount": 0,
+          "verifiedOn": "2026-08-08",
+          "observation": "Secondary, missing-URL, wrong-model and search-style material is not carried into the proposal. Exact official sources are retained only where vehicle and remedy scope match; no retail link is invented without exact part-number and fitment proof."
+        }
+      ],
+      "beforeSha256": "59601ba3303dd9f7072a67a2f149922c023210f918ab517834e3ffb19dc0b059",
+      "proposalSha256": "f000da253e00021a5f61ee95fde489535bdc25bbcf4386918b5ab0e8d928023f",
+      "before": {
+        "make": "Kia",
+        "model": "Stinger",
+        "years": [
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [
+          "GT1",
+          "GT2",
+          "2.0T",
+          "GT-Line"
+        ],
+        "engines": [
+          "3.3L twin-turbo Lambda II V6 (T-GDI)",
+          "2.0L Theta II turbo I4 (T-GDI)"
+        ],
+        "category": "interior",
+        "title": "Panoramic Sunroof Popping / Creaking / Rattle",
+        "description": "A very widely reported complaint (a single forum thread runs 45+ pages) is a popping, creaking, or rattling noise from the panoramic sunroof area. The mechanism is metal-on-metal contact where a protrusion on the glass rail bumps the sunroof housing; the noise is worst after heat-soak followed by A/C cooling because of expansion/contraction. Dealers often cannot permanently fix it, and the same design affects related Kia/Genesis models.",
+        "solution": "Apply foam/felt padding between the rail protrusion and housing, or lubricate the seals with Krytox-type grease (documented DIY fixes); pressing the headliner where it meets the opening resolves a plastic-crinkle variant. Dealer attempts (shimming/adjusting the glass) have mixed success; one owner needed a full sunroof replacement. No formal recall exists.",
+        "severity": "low",
+        "confidence": "high",
+        "symptoms": [
+          "Popping/creaking from roof over bumps",
+          "Rattle worse after sun heat-soak then A/C",
+          "Metal-on-metal tick near sunroof"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 250,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://stingerforum.org/threads/concerns-popping-creaking-noise-from-sunroof.801/",
+            "type": "forum",
+            "title": "Concerns - Popping/Creaking Noise from Sunroof - Kia Stinger Forum"
+          },
+          {
+            "url": "https://stingerforum.org/threads/sunroof-rattle-fix.14701/",
+            "type": "forum",
+            "title": "Sunroof Rattle Fix - Kia Stinger Forum"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-08",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Kia",
+        "model": "Stinger",
+        "years": [
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [
+          "GT1",
+          "GT2",
+          "2.0T",
+          "GT-Line"
+        ],
+        "engines": [
+          "3.3L twin-turbo Lambda II V6 (T-GDI)",
+          "2.0L Theta II turbo I4 (T-GDI)"
+        ],
+        "category": "interior",
+        "title": "Panoramic Sunroof Popping / Creaking / Rattle",
+        "description": "The complete official inventory contains two different Stinger roof-area packages: BOD309 addresses an inoperative sunroof caused by rear-sled separation, while BOD317 addresses intermittent headliner noise on certain 2022 vehicles. Neither bulletin establishes the frozen all-year rail-protrusion and thermal-expansion mechanism for popping or creaking.",
+        "solution": "Document whether the roof operates normally and when the noise occurs, then have the roof assembly and headliner inspected against the VIN, production date and exact symptom. Use BOD309 only for confirmed inoperative-roof sled separation and BOD317 only for its eligible headliner condition. Do not insert felt, foam or lubricant into the roof assembly from this page.",
+        "severity": "low",
+        "confidence": "low",
+        "symptoms": [
+          "Popping, creaking or rattling near the panoramic roof requiring source localization"
+        ],
+        "affectedSystems": [
+          "panoramic roof assembly, guide and sled hardware, headliner and body contact points"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "Kia TSB BOD309 - Stinger Inoperative Sunroof From Rear-Sled Separation",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2022/MC-10225558-0001.pdf"
+          },
+          {
+            "type": "tsb",
+            "title": "Kia TSB BOD317 - 2022 Stinger Headliner Noise",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2023/MC-10237608-0001.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-08",
+        "contentUpdatedOn": "2026-08-08",
+        "contentUpdateSummary": "Targeted accuracy and safety cleanup: BOD309 covers an inoperative sunroof from rear-sled separation and BOD317 covers narrow 2022 headliner noise. Neither establishes the frozen 2018-2023 metal-on-metal rail protrusion, thermal-cycle mechanism or Krytox/felt repair.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "kia-stinger-turbo-oil-feed-pipe-leak",
+      "model": "Stinger",
+      "action": "rewrite_same_identity",
+      "reason": "24V169/SC300 exactly supports the frozen 2018-2023 3.3T left-turbo oil-feed-pipe leak and dealer replacement. False boost DTCs, speculative turbo damage and generic gasket/gauge commerce are removed.",
+      "identityRule": "Preserve every indexed Stinger ID, title, category, year set, trim set, engine set and publication state while correcting false source scope, false transmission type, false DTCs, unsafe advice and unsupported replacement or commerce claims.",
+      "commerceDecision": "dealer-only-no-retail-part-safety-recall",
+      "changedFields": [
+        "description",
+        "solution",
+        "severity",
+        "symptoms",
+        "affectedSystems",
+        "dtcCodes",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "communityRecommendations",
+        "humanApproved",
+        "reportCount",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
+      "evidence": [
+        {
+          "kind": "complete-official-inventory",
+          "manufacturerCommunicationCount": 137,
+          "recallRowCount": 30,
+          "campaignCount": 7,
+          "verifiedOn": "2026-08-08",
+          "observation": "The frozen, hash-bound Stinger manufacturer-communication and recall inventories were scanned completely before adjudication."
+        },
+        {
+          "kind": "official-nhtsa-campaign",
+          "key": "turbo",
+          "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=24V169000",
+          "expected": {
+            "years": [
+              2018,
+              2019,
+              2020,
+              2021,
+              2022,
+              2023
+            ],
+            "rows": 6,
+            "markers": [
+              "left turbocharger oil feed pipe and hose assembly",
+              "leak oil",
+              "replace the left turbocharger oil feed pipe",
+              "SC300"
+            ]
+          },
+          "verifiedOn": "2026-08-08",
+          "observation": "24V169/SC300 exactly supports the frozen 2018-2023 3.3T left-turbo oil-feed-pipe leak and dealer replacement. False boost DTCs, speculative turbo damage and generic gasket/gauge commerce are removed."
+        },
+        {
+          "kind": "citation-commerce-relation-review",
+          "removedCitationCount": 3,
+          "removedCommerceCount": 3,
+          "removedRelatedIssueCount": 0,
+          "verifiedOn": "2026-08-08",
+          "observation": "Secondary, missing-URL, wrong-model and search-style material is not carried into the proposal. Exact official sources are retained only where vehicle and remedy scope match; no retail link is invented without exact part-number and fitment proof."
+        }
+      ],
+      "beforeSha256": "94ce8c136caeb9708be16810cda9533b5328ab81e7a6d0a343a519a6d35ebf95",
+      "proposalSha256": "fbc36674b41dcc774fa89b98820f7ae0bf69180cc117db2bfbf18c4bad13c470",
+      "before": {
+        "make": "Kia",
+        "model": "Stinger",
+        "years": [
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [
+          "GT",
+          "GT1",
+          "GT2",
+          "Scorpion"
+        ],
+        "engines": [
+          "3.3L Twin-Turbo V6"
+        ],
+        "category": "engine",
+        "title": "Left Turbocharger Oil Feed Pipe Leak / Fire Risk",
+        "description": "The left turbocharger oil feed pipe and hose assembly on the 3.3L twin-turbo V6 can deteriorate and leak oil onto hot engine components, creating a fire risk. NHTSA recall covers 2018-2023 Stinger GT models. The oil feed pipe material degrades over time from heat cycling. Kia replaces the left turbocharger oil feed pipe and hose assembly with an improved part.",
+        "solution": "Check VIN for recall. Dealer replaces the left turbocharger oil feed pipe and hose assembly with an updated design free of charge. Inspect for oil contamination on surrounding components. If turbo bearing damage from oil starvation, turbocharger replacement may be needed ($1,500-3,000 per side).",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Oil smell from engine bay after driving",
+          "Visible oil leak near left turbocharger",
+          "Oil dripping on exhaust manifold (smoke)",
+          "Low oil level between changes",
+          "Turbo whine or loss of boost (if oil starved)"
+        ],
+        "affectedSystems": [
+          "Engine"
+        ],
+        "dtcCodes": [
+          "P0234",
+          "P0299"
+        ],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 3000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://static.nhtsa.gov/odi/rcl/2024/RCRIT-24V169-4793.pdf",
+            "type": "nhtsa",
+            "title": "NHTSA Safety Recall 24V169 Left-Hand Oil Feed Pipe"
+          },
+          {
+            "url": "https://www.consumerreports.org/cars/car-recalls-defects/kia-k900-and-stinger-sedans-recalled-due-to-fire-risk-a1053769348/",
+            "type": "media",
+            "title": "Kia K900 and Stinger Sedans Recalled Fire Risk - Consumer Reports"
+          },
+          {
+            "url": "https://stingerforum.org/threads/3-3t-turbo-oil-feed-line-recall-2024.29077/",
+            "type": "forum",
+            "title": "3.3T Turbo Oil Feed Line Recall 2024 - Kia Stinger Forum"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "warning",
+            "content": "If you smell burning oil after spirited driving, check under the hood for oil residue near the left turbo. Do not ignore this - fire risk is real",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "Turbo gasket kit prevents boost leaks and oil seepage at the turbo flanges",
+            "partName": "Turbocharger Gasket Kit",
+            "partBrand": "Dorman",
+            "affiliateUrl": "https://www.amazon.com/s?k=Kia%20Stinger%20Dorman%20Turbocharger%20Gasket%20Kit&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Boost gauge helps monitor turbo performance and catch problems early",
+            "partName": "Mechanical Boost Gauge",
+            "partBrand": "AutoMeter",
+            "affiliateUrl": "https://www.amazon.com/s?k=Kia%20Stinger%20AutoMeter%20Mechanical%20Boost%20Gauge&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 234,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2024-08-15",
+        "reviewedOn": "2026-02-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Kia",
+        "model": "Stinger",
+        "years": [
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [
+          "GT",
+          "GT1",
+          "GT2",
+          "Scorpion"
+        ],
+        "engines": [
+          "3.3L Twin-Turbo V6"
+        ],
+        "category": "engine",
+        "title": "Left Turbocharger Oil Feed Pipe Leak / Fire Risk",
+        "description": "NHTSA recall 24V169000 (Kia SC300) covers certain 2018-2023 Stinger vehicles with the 3.3L turbocharged engine. The left turbocharger oil-feed pipe and hose assembly can deteriorate and leak oil onto hot exhaust components, increasing fire risk.",
+        "solution": "Check the VIN for recall 24V169000/SC300. If burning oil, smoke or active leakage appears, stop safely and arrange service. A Kia dealer replaces the left turbocharger oil-feed pipe and hose assembly free of charge. Do not infer P0234/P0299, turbocharger damage or a need for generic gaskets or a boost gauge from this recall.",
+        "severity": "critical",
+        "confidence": "high",
+        "symptoms": [
+          "Burning-oil odor or smoke from the engine compartment",
+          "Visible oil leakage near the left turbocharger"
+        ],
+        "affectedSystems": [
+          "left turbocharger oil-feed pipe and hose assembly"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "NHTSA Campaign 24V169000 - Stinger Left Turbo Oil-Feed Pipe Leak",
+            "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=24V169000"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "2024-08-15",
+        "reviewedOn": "2026-08-08",
+        "contentUpdatedOn": "2026-08-08",
+        "contentUpdateSummary": "Official-source same-identity rewrite: 24V169/SC300 exactly supports the frozen 2018-2023 3.3T left-turbo oil-feed-pipe leak and dealer replacement. False boost DTCs, speculative turbo damage and generic gasket/gauge commerce are removed.",
+        "relatedIssueIds": []
+      }
+    }
+  ]
+}
