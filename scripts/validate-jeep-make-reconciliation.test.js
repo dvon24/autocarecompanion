@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-require-imports */
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
+const path = require('node:path');
 const test = require('node:test');
 const { PACKET, SNAPSHOT, validatePacket } = require('./validate-jeep-make-reconciliation');
 
@@ -28,3 +29,13 @@ test('reconciliation contains no destructive or identity-changing action', () =>
   assert.equal(packet.safetyTotals.identityChanges, 0);
 });
 
+test('every proposal uses the catalog severity and confidence enum', () => {
+  const allowed = new Set(['high', 'medium', 'low']);
+  for (const entry of packet.modelPackets) {
+    const modelPacket = JSON.parse(fs.readFileSync(path.resolve(__dirname, '..', entry.file), 'utf8'));
+    for (const row of modelPacket.rows) {
+      assert.ok(allowed.has(row.proposal.severity), `${row.id}: invalid severity ${row.proposal.severity}`);
+      assert.ok(allowed.has(row.proposal.confidence), `${row.id}: invalid confidence ${row.proposal.confidence}`);
+    }
+  }
+});

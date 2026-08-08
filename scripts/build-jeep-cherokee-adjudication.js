@@ -117,14 +117,14 @@ const REWRITE_CARDS = {
   [IDS.liftgate]: {
     description: 'NHTSA campaign 23V338000 covers certain 2014-2016 Jeep Cherokee vehicles equipped with a power liftgate. An electrical short in the power liftgate module may cause a vehicle fire whether the ignition is on or off.',
     solution: 'Check VIN eligibility. Until the recall repair is complete, park outside and away from structures. Dealers relocate the power liftgate module, add a water shield, inspect for corrosion, and replace the module and electrical connectors when necessary, free of charge. Vehicles repaired under superseded campaigns 15V393 and 15V826 still require the new remedy.',
-    severity: 'critical', confidence: 'high', symptoms: [], affectedSystems: ['power liftgate module', 'rear liftgate wiring'],
+    severity: 'high', confidence: 'high', symptoms: [], affectedSystems: ['power liftgate module', 'rear liftgate wiring'],
     citations: [{ type: 'recall', title: 'NHTSA Campaign 23V338000 - Power Liftgate Module Fire Risk', url: RECALL_URLS.liftgate }],
     summary: 'Updated the same power-liftgate fire identity to the completed NHTSA 23V338 remedy and removed unsupported commerce, costs and warning symptoms.',
   },
   [IDS.ptu]: {
     description: 'NHTSA campaign 20V343000 covers certain 2014-2017 Jeep Cherokee vehicles equipped with a two-speed Power Transfer Unit. Relative movement between the differential input splines and transmission output shaft may wear away input-spline teeth, causing loss of drive while moving and loss of Park while stationary.',
     solution: 'Check VIN eligibility. Dealers perform a software update that engages rear-wheel drive to maintain propulsion and activates the electronic parking brake to prevent rollaway if an input-spline failure occurs. The campaign does not state that dealers replace the PTU.',
-    severity: 'critical', confidence: 'high', symptoms: [], affectedSystems: ['two-speed power transfer unit', 'input splines', 'driveline'],
+    severity: 'high', confidence: 'high', symptoms: [], affectedSystems: ['two-speed power transfer unit', 'input splines', 'driveline'],
     citations: [{ type: 'recall', title: 'NHTSA Campaign 20V343000 - PTU Input-Spline Failure', url: RECALL_URLS.ptu }],
     summary: 'Bounded the same PTU-failure identity to NHTSA campaign 20V343 and removed the unsupported retail part, fluid intervals, costs, mileage and replacement promise.',
   },
