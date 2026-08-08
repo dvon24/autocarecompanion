@@ -1,0 +1,2303 @@
+{
+  "schemaVersion": 1,
+  "status": "proposal-only",
+  "auditStage": "model-primary-source-adjudication",
+  "requiresIndependentApproval": true,
+  "generatedOn": "2026-08-08",
+  "make": "Land Rover",
+  "model": "Range Rover Sport",
+  "completionStatement": "All eleven frozen Range Rover Sport records receive complete primary-inventory adjudication: four supported identities receive bounded rewrites and seven unsupported or overbroad identities remain corrective holds while every indexed page identity stays published and unchanged.",
+  "applicationGate": {
+    "status": "blocked",
+    "blockerRecordIds": [
+      "land-rover-range-rover-sport-crankshaft-sensor-2005",
+      "land-rover-range-rover-sport-dpf-regen-2014",
+      "land-rover-range-rover-sport-rear-diff-leak-2005",
+      "land-rover-range-rover-sport-transfer-case-2005",
+      "land-rover-range-rover-sport-zf-valve-body-2014",
+      "landrover-rangeroversport-pivi-pro-infotainment-freezing-2023",
+      "landrover-rangeroversport-water-intrusion-from-tailgate-2023"
+    ],
+    "reason": "Seven rows lack exact primary support for the frozen part, cause or year scope. Independent review is also required for all four bounded rewrites before application."
+  },
+  "safetyContract": [
+    "No production write, deployment, archive, redirect, slug change, title change, category change, indexed-year change, trim change, engine change or new issue is authorized.",
+    "All eleven IDs, titles, categories, indexed year sets, trim sets, engine sets and publication states remain unchanged.",
+    "No part is linked without exact component, generation and recall/fitment support; every proposal explicitly states why no universal retail part is offered.",
+    "All 3,273 manufacturer-communication rows and all 550 recall rows / 52 campaigns are accounted for; only 24V678 and 26V248 map to frozen identities and the other 50 remain deferred."
+  ],
+  "source": {
+    "snapshotFile": "data/_land-rover-deeplink-snapshot-2026-08-08.json",
+    "snapshotSha256": "e95e033f348cc218e87d1faf0f19d0cbe67274d51739f3dd77e5e7b47ece3bbf",
+    "snapshotGeneratedAt": "2026-08-08T14:25:43.008Z",
+    "snapshotHash": "3f13700b582e6864d62580851752656db123b4bdb6b24a30e3ffbb9deaa4b9c8",
+    "modelRecordCount": 11
+  },
+  "observations": [
+    {
+      "code": "sport-four-identities-bounded",
+      "severity": "exact-rewrite",
+      "recordIds": [
+        "land-rover-range-rover-sport-air-suspension-2005",
+        "land-rover-range-rover-sport-epb-actuator-2014",
+        "landrover-rangeroversport-48v-mild-hybrid-battery--2023",
+        "landrover-rangeroversport-rearview-camera-360-degree-2023"
+      ],
+      "detail": "Air-suspension, EPB, 48V/DC-DC and 2024 surround-camera identities have enough primary support for bounded same-title rewrites."
+    },
+    {
+      "code": "sport-seven-identities-held",
+      "severity": "critical-correction",
+      "recordIds": [
+        "land-rover-range-rover-sport-crankshaft-sensor-2005",
+        "land-rover-range-rover-sport-dpf-regen-2014",
+        "land-rover-range-rover-sport-rear-diff-leak-2005",
+        "land-rover-range-rover-sport-transfer-case-2005",
+        "land-rover-range-rover-sport-zf-valve-body-2014",
+        "landrover-rangeroversport-pivi-pro-infotainment-freezing-2023",
+        "landrover-rangeroversport-water-intrusion-from-tailgate-2023"
+      ],
+      "detail": "Crank sensor, short-trip DPF, broad rear-differential, transfer-chain/actuator, valve-body/mechatronic, Pivi aggregation and tailgate water-path claims lack exact frozen-scope support."
+    },
+    {
+      "code": "sport-dpf-regeneration-claim-corrected",
+      "severity": "safety-correction",
+      "recordIds": [
+        "land-rover-range-rover-sport-dpf-regen-2014"
+      ],
+      "detail": "JLR says P2002 is usually not paired with unsuccessful-regeneration warnings; weekly-drive and additive prescriptions are removed."
+    },
+    {
+      "code": "sport-two-campaign-identities-mapped",
+      "severity": "primary-recall-evidence",
+      "recordIds": [
+        "landrover-rangeroversport-rearview-camera-360-degree-2023",
+        "landrover-rangeroversport-48v-mild-hybrid-battery--2023"
+      ],
+      "campaignNumbers": [
+        "24V678000",
+        "26V248000"
+      ],
+      "detail": "24V678 maps to the 2024 NFSM/camera condition and 26V248 maps to the MHEV DC-DC condition."
+    },
+    {
+      "code": "sport-fifty-campaign-identities-deferred",
+      "severity": "new-issues-deferred",
+      "recordIds": [],
+      "campaignNumbers": [
+        "05V501000",
+        "05V502000",
+        "06V131000",
+        "06V135000",
+        "07E047000",
+        "08V248000",
+        "14V618000",
+        "15V042000",
+        "15V069000",
+        "15V092000",
+        "15V093000",
+        "15V385000",
+        "15V571000",
+        "15V600000",
+        "16V941000",
+        "16V942000",
+        "17V154000",
+        "17V679000",
+        "18V337000",
+        "18V625000",
+        "19V040000",
+        "19V350000",
+        "19V390000",
+        "19V392000",
+        "19V603000",
+        "20V325000",
+        "20V387000",
+        "20V585000",
+        "20V586000",
+        "20V623000",
+        "21V117000",
+        "21V635000",
+        "21V668000",
+        "22V219000",
+        "22V523000",
+        "23V044000",
+        "23V251000",
+        "23V324000",
+        "23V871000",
+        "23V872000",
+        "24V023000",
+        "24V364000",
+        "24V380000",
+        "24V450000",
+        "25V155000",
+        "25V514000",
+        "25V705000",
+        "26V005000",
+        "26V097000",
+        "26V297000"
+      ],
+      "detail": "Fifty separate recall identities remain deferred until the remaining-make audit is complete."
+    },
+    {
+      "code": "sport-no-unverified-commerce",
+      "severity": "commerce-safety",
+      "recordIds": [
+        "land-rover-range-rover-sport-air-suspension-2005",
+        "land-rover-range-rover-sport-crankshaft-sensor-2005",
+        "land-rover-range-rover-sport-dpf-regen-2014",
+        "land-rover-range-rover-sport-epb-actuator-2014",
+        "land-rover-range-rover-sport-rear-diff-leak-2005",
+        "land-rover-range-rover-sport-transfer-case-2005",
+        "land-rover-range-rover-sport-zf-valve-body-2014",
+        "landrover-rangeroversport-48v-mild-hybrid-battery--2023",
+        "landrover-rangeroversport-pivi-pro-infotainment-freezing-2023",
+        "landrover-rangeroversport-rearview-camera-360-degree-2023",
+        "landrover-rangeroversport-water-intrusion-from-tailgate-2023"
+      ],
+      "detail": "All guessed parts, brands, fluids, kits and conversion recommendations are removed; no search or guessed deep link is introduced."
+    },
+    {
+      "code": "all-range-rover-sport-pages-preserved",
+      "severity": "seo-safety",
+      "recordIds": [
+        "land-rover-range-rover-sport-air-suspension-2005",
+        "land-rover-range-rover-sport-crankshaft-sensor-2005",
+        "land-rover-range-rover-sport-dpf-regen-2014",
+        "land-rover-range-rover-sport-epb-actuator-2014",
+        "land-rover-range-rover-sport-rear-diff-leak-2005",
+        "land-rover-range-rover-sport-transfer-case-2005",
+        "land-rover-range-rover-sport-zf-valve-body-2014",
+        "landrover-rangeroversport-48v-mild-hybrid-battery--2023",
+        "landrover-rangeroversport-pivi-pro-infotainment-freezing-2023",
+        "landrover-rangeroversport-rearview-camera-360-degree-2023",
+        "landrover-rangeroversport-water-intrusion-from-tailgate-2023"
+      ],
+      "detail": "Every Range Rover Sport ID, title, category, indexed year set, trim set, engine set and publication state remains preserved."
+    }
+  ],
+  "pdfSources": {
+    "airCompressor": {
+      "url": "https://static.nhtsa.gov/odi/tsbs/2017/MC-10116218-9999.pdf",
+      "nhtsaDocumentId": "10116218",
+      "sha256": "a5b2d17ceba068f088386b804f46dfea5ed8f34ac4e9f1161adb6b7c8f771fff",
+      "bytes": 65857
+    },
+    "dpf": {
+      "url": "https://static.nhtsa.gov/odi/tsbs/2019/MC-10158993-9999.pdf",
+      "nhtsaDocumentId": "10158993",
+      "sha256": "503cf8c1cb5498c627421ffe546b23ae082a79827c775cbccf85204dbdabcb49",
+      "bytes": 61793
+    },
+    "hybridRecall": {
+      "url": "https://static.nhtsa.gov/odi/rcl/2026/RCLRPT-26V248-5125.pdf",
+      "campaign": "26V248000",
+      "sha256": "c9214169c2ee1fe4a61bd8c050859862a1e5a3ccd5be2f5549e5ae7cd0f440f8",
+      "bytes": 649628
+    },
+    "water": {
+      "url": "https://static.nhtsa.gov/odi/tsbs/2023/MC-10231451-0001.pdf",
+      "nhtsaDocumentId": "10231451",
+      "sha256": "b9a58110a60775168ae322894a0ca8d94d622fc40d0a351fde2cb27e8ec69c68",
+      "bytes": 49066
+    }
+  },
+  "manufacturerCommunications": {
+    "source": "https://www.nhtsa.gov/nhtsa-datasets-and-apis#manufacturer-communications",
+    "modelAliases": [
+      "RANGE ROVER SPORT"
+    ],
+    "periodCounts": {
+      "1995-1999": 0,
+      "2000-2004": 0,
+      "2005-2009": 14,
+      "2010-2014": 64,
+      "2015-2019": 1676,
+      "2020-2024": 1109,
+      "2025-2026": 410
+    },
+    "totalRows": 3273,
+    "candidateDocumentCounts": {
+      "air": 59,
+      "crankExact": 0,
+      "dpf": 3,
+      "epbFrozen": 9,
+      "rearDifferentialPinion": 3,
+      "transferActuatorOrChainExact": 0,
+      "valveBodyOrMechatronicExact": 0,
+      "hybrid48v": 76,
+      "piviNewGeneration": 27,
+      "camera": 18,
+      "water": 30
+    },
+    "sourceFiles": [
+      {
+        "period": "1995-1999",
+        "length": 3443097,
+        "sha256": "409a86bb7bb37a6313eae9212fb90a5ab45029fdcf2a69d0c0378eab080503db"
+      },
+      {
+        "period": "2000-2004",
+        "length": 8952754,
+        "sha256": "5c755be52d35e060626402ebe6dfcccdf350ae379df5c06b49c71d08497e2264"
+      },
+      {
+        "period": "2005-2009",
+        "length": 5457880,
+        "sha256": "04f72a7bf95530d116b1500c976a9e4d365e1c9a8b0433f58d60dbb36a58679b"
+      },
+      {
+        "period": "2010-2014",
+        "length": 17332775,
+        "sha256": "41e66a9d81a859d469d51c6cdcbc107fc6284c64ed24065ccaf1fe02a52e4387"
+      },
+      {
+        "period": "2015-2019",
+        "length": 144450847,
+        "sha256": "d6c2ff16880cc7b31cfebad94bda08c3e8b3b2c3f28d56d5b1bb810c8b878a2e"
+      },
+      {
+        "period": "2020-2024",
+        "length": 125521629,
+        "sha256": "3b3ca3d690e33386d1d315a0f966285ae8cccb99c45c2386ada164c5e925c3cf"
+      },
+      {
+        "period": "2025-2026",
+        "length": 77786229,
+        "sha256": "419ebda2f1c1bf22e2b0862858d61699c25e61d73842f9031e796f1fafefba4c"
+      }
+    ]
+  },
+  "recallInventory": {
+    "source": "https://www.nhtsa.gov/nhtsa-datasets-and-apis#recalls",
+    "modelAliases": [
+      "RANGE ROVER SPORT"
+    ],
+    "totalRows": 550,
+    "uniqueCampaignYearModelRows": 98,
+    "campaignCount": 52,
+    "campaigns": [
+      "05V501000",
+      "05V502000",
+      "06V131000",
+      "06V135000",
+      "07E047000",
+      "08V248000",
+      "14V618000",
+      "15V042000",
+      "15V069000",
+      "15V092000",
+      "15V093000",
+      "15V385000",
+      "15V571000",
+      "15V600000",
+      "16V941000",
+      "16V942000",
+      "17V154000",
+      "17V679000",
+      "18V337000",
+      "18V625000",
+      "19V040000",
+      "19V350000",
+      "19V390000",
+      "19V392000",
+      "19V603000",
+      "20V325000",
+      "20V387000",
+      "20V585000",
+      "20V586000",
+      "20V623000",
+      "21V117000",
+      "21V635000",
+      "21V668000",
+      "22V219000",
+      "22V523000",
+      "23V044000",
+      "23V251000",
+      "23V324000",
+      "23V871000",
+      "23V872000",
+      "24V023000",
+      "24V364000",
+      "24V380000",
+      "24V450000",
+      "24V678000",
+      "25V155000",
+      "25V514000",
+      "25V705000",
+      "26V005000",
+      "26V097000",
+      "26V248000",
+      "26V297000"
+    ],
+    "mappedCampaigns": [
+      {
+        "campaignNumber": "24V678000",
+        "recordId": "landrover-rangeroversport-rearview-camera-360-degree-2023",
+        "scope": "certain 2024 Range Rover Sport vehicles; overheating NFSM may suppress 3D surround/rearview images"
+      },
+      {
+        "campaignNumber": "26V248000",
+        "recordId": "landrover-rangeroversport-48v-mild-hybrid-battery--2023",
+        "scope": "certain 2019-2024 Range Rover Sport MHEVs; DC-DC converter internal fault may cause loss of 12V charging and drive power"
+      }
+    ],
+    "deferredCampaigns": [
+      "05V501000",
+      "05V502000",
+      "06V131000",
+      "06V135000",
+      "07E047000",
+      "08V248000",
+      "14V618000",
+      "15V042000",
+      "15V069000",
+      "15V092000",
+      "15V093000",
+      "15V385000",
+      "15V571000",
+      "15V600000",
+      "16V941000",
+      "16V942000",
+      "17V154000",
+      "17V679000",
+      "18V337000",
+      "18V625000",
+      "19V040000",
+      "19V350000",
+      "19V390000",
+      "19V392000",
+      "19V603000",
+      "20V325000",
+      "20V387000",
+      "20V585000",
+      "20V586000",
+      "20V623000",
+      "21V117000",
+      "21V635000",
+      "21V668000",
+      "22V219000",
+      "22V523000",
+      "23V044000",
+      "23V251000",
+      "23V324000",
+      "23V871000",
+      "23V872000",
+      "24V023000",
+      "24V364000",
+      "24V380000",
+      "24V450000",
+      "25V155000",
+      "25V514000",
+      "25V705000",
+      "26V005000",
+      "26V097000",
+      "26V297000"
+    ],
+    "sourceFiles": [
+      {
+        "period": "pre",
+        "rows": 9,
+        "length": 83786245,
+        "sha256": "71e6e325e2d69d204776fb32d83dad4fd95436a2f7890da54d49622d77a36232"
+      },
+      {
+        "period": "post",
+        "rows": 541,
+        "length": 309278972,
+        "sha256": "4803a7f298f1d850736fe55830f4d31b004577424cb6429988c5864786f76a70"
+      }
+    ]
+  },
+  "documentIds": {
+    "air": [
+      "10034985",
+      "10037628",
+      "10043560",
+      "10101224",
+      "10102127",
+      "10105736",
+      "10116218",
+      "10160439",
+      "10162652"
+    ],
+    "crank": [],
+    "dpf": [
+      "10138760",
+      "10158993",
+      "10168946"
+    ],
+    "epb": [
+      "10032667",
+      "10145926",
+      "10146366",
+      "10147490",
+      "10147488",
+      "10147482",
+      "10149107",
+      "10167318",
+      "10182165"
+    ],
+    "rearDiff": [
+      "10106163",
+      "10106347",
+      "10203408"
+    ],
+    "transfer": [
+      "10101141",
+      "10101282",
+      "10106254",
+      "10116942",
+      "10185313",
+      "10191297",
+      "10214051",
+      "10224529"
+    ],
+    "transmission": [
+      "10236697",
+      "10103145",
+      "10104521",
+      "10142563",
+      "10169923",
+      "10171140",
+      "10177159",
+      "10200772",
+      "10210108"
+    ],
+    "hybrid": [
+      "10219236",
+      "10251549",
+      "10252754",
+      "11006133",
+      "11007423",
+      "11012408",
+      "11028601",
+      "11029576",
+      "11029598",
+      "11029600"
+    ],
+    "pivi": [
+      "10239013",
+      "10240206",
+      "11006064",
+      "11008611",
+      "11015288",
+      "11017945",
+      "11029853",
+      "11033428",
+      "11034887"
+    ],
+    "camera": [
+      "10248645"
+    ],
+    "water": [
+      "10229591",
+      "10229592",
+      "10231451",
+      "10231452",
+      "10231453"
+    ]
+  },
+  "mappedCampaigns": [
+    {
+      "campaignNumber": "24V678000",
+      "recordId": "landrover-rangeroversport-rearview-camera-360-degree-2023",
+      "scope": "certain 2024 Range Rover Sport vehicles; overheating NFSM may suppress 3D surround/rearview images"
+    },
+    {
+      "campaignNumber": "26V248000",
+      "recordId": "landrover-rangeroversport-48v-mild-hybrid-battery--2023",
+      "scope": "certain 2019-2024 Range Rover Sport MHEVs; DC-DC converter internal fault may cause loss of 12V charging and drive power"
+    }
+  ],
+  "deferredCampaigns": [
+    "05V501000",
+    "05V502000",
+    "06V131000",
+    "06V135000",
+    "07E047000",
+    "08V248000",
+    "14V618000",
+    "15V042000",
+    "15V069000",
+    "15V092000",
+    "15V093000",
+    "15V385000",
+    "15V571000",
+    "15V600000",
+    "16V941000",
+    "16V942000",
+    "17V154000",
+    "17V679000",
+    "18V337000",
+    "18V625000",
+    "19V040000",
+    "19V350000",
+    "19V390000",
+    "19V392000",
+    "19V603000",
+    "20V325000",
+    "20V387000",
+    "20V585000",
+    "20V586000",
+    "20V623000",
+    "21V117000",
+    "21V635000",
+    "21V668000",
+    "22V219000",
+    "22V523000",
+    "23V044000",
+    "23V251000",
+    "23V324000",
+    "23V871000",
+    "23V872000",
+    "24V023000",
+    "24V364000",
+    "24V380000",
+    "24V450000",
+    "25V155000",
+    "25V514000",
+    "25V705000",
+    "26V005000",
+    "26V097000",
+    "26V297000"
+  ],
+  "summary": {
+    "rewrite_same_identity": 4,
+    "targeted_safety_cleanup_pending_source": 7,
+    "total": 11
+  },
+  "rows": [
+    {
+      "id": "land-rover-range-rover-sport-air-suspension-2005",
+      "action": "rewrite_same_identity",
+      "commerceDecision": "diagnostic-or-recall-remedy-no-universal-retail-part",
+      "evidence": [
+        "Complete inventory: 3273 Range Rover Sport manufacturer-communication rows and 550 recall rows were searched.",
+        "Fifty-nine air-suspension candidates were reviewed; representative exact documents are 10034985, 10037628, 10043560, 10101224, 10102127, 10105736, 10116218, 10160439, 10162652.",
+        "The records support component-specific compressor and valve conditions, not the frozen universal cause or conversion advice."
+      ],
+      "before": {
+        "make": "Land Rover",
+        "model": "Range Rover Sport",
+        "years": [
+          2005,
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022
+        ],
+        "trims": [],
+        "engines": [
+          "4.4L V8",
+          "5.0L V8 Supercharged",
+          "3.0L TDV6",
+          "3.0L SDV6"
+        ],
+        "category": "suspension",
+        "title": "Air Suspension Compressor and Valve Block Failure",
+        "description": "The Range Rover Sport shares the same air suspension system as the Range Rover and suffers identical compressor and valve block failures. The compressor overworks due to air spring leaks and the valve block solenoids stick or leak internally. The Sport's lower ride height and sportier driving style can accelerate wear on the air suspension components.",
+        "solution": "Replace the air suspension compressor and inspect the valve block. Replace any leaking air springs. Consider an AMK compressor upgrade which has improved thermal management. Some owners convert to coil springs using a conversion kit, eliminating the air suspension entirely.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Vehicle drops to bump stops overnight",
+          "Suspension fault warning",
+          "Compressor runs for extended periods",
+          "Uneven ride height",
+          "Clunking from rear suspension"
+        ],
+        "affectedSystems": [
+          "Suspension",
+          "Air Suspension"
+        ],
+        "dtcCodes": [
+          "C1A20",
+          "C1A13"
+        ],
+        "estimatedCostLow": 1200,
+        "estimatedCostHigh": 3500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.rangerovers.net/threads/air-suspension-rip-off.359271/",
+            "type": "forum",
+            "title": "RangeRovers.net: Air suspension rip off"
+          },
+          {
+            "url": "https://www.rangerovers.net/threads/l405-air-suspension-diagnostics.364567/",
+            "type": "forum",
+            "title": "RangeRovers.net: L405 Air Suspension Diagnostics"
+          },
+          {
+            "url": "https://vigorairride.com/blogs/news/reset-range-rover-air-suspension",
+            "type": "manufacturer",
+            "title": "Vigor Air Ride: Range Rover Air Suspension Fix Problems and Reset Guide"
+          },
+          {
+            "url": "https://www.landroverworld.org/threads/l322-air-suspension-fault.28962/page-2",
+            "type": "forum",
+            "title": "Land Rover World: L322 AIR SUSPENSION FAULT"
+          },
+          {
+            "url": "https://rangeroverl322.wordpress.com/air-suspension-issues/",
+            "type": "forum",
+            "title": "Range Rover L322 Blog: Air Suspension Issues?"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "source": "LandRoverForums.com",
+            "content": "AMK compressor upgrade for L494 Sport — runs cooler and quieter than the original Hitachi. Direct fit with no modifications needed.",
+            "upvotes": 189,
+            "partName": "Air Suspension Compressor",
+            "partBrand": "AMK",
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 3100,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-02-20",
+        "reviewedOn": "2026-03-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "land-rover-range-rover-air-suspension-compressor-2003",
+          "land-rover-range-rover-air-spring-leak-2003",
+          "land-rover-discovery-air-suspension-compressor-2005",
+          "jaguar-xj-air-suspension-compressor-2004"
+        ]
+      },
+      "beforeSha256": "421ad71e6cdaa845c7a5ea359b303a1d026b6e94cbf384fc168096d1252d0a56",
+      "proposal": {
+        "make": "Land Rover",
+        "model": "Range Rover Sport",
+        "years": [
+          2005,
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022
+        ],
+        "trims": [],
+        "engines": [
+          "4.4L V8",
+          "5.0L V8 Supercharged",
+          "3.0L TDV6",
+          "3.0L SDV6"
+        ],
+        "category": "suspension",
+        "title": "Air Suspension Compressor and Valve Block Failure",
+        "description": "JLR communications document multiple air-suspension conditions across L320 and L494 Range Rover Sport vehicles, including compressor delivery or exhaust-valve faults, compressor campaigns and valve-block diagnostics. They do not support the frozen blanket claim that air-spring leaks, lower ride height or sportier driving causes every compressor and valve-block failure across 2005-2022.",
+        "solution": "Record the warning, ride-height behavior and DTCs, then follow the current VIN-specific JLR diagnostic path for leaks, compressor output, delivery or exhaust valves and the applicable valve block. Do not replace a compressor, valve block or air spring, install an AMK conversion, or convert to coils from this page; the documented causes and hardware vary, so no universal retail part is linked.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "JLR Service Action Q590 — air-suspension compressor",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2017/MC-10116218-9999.pdf"
+          },
+          {
+            "type": "nhtsa",
+            "title": "NHTSA Manufacturer Communications — Range Rover Sport air-suspension inventory",
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis#manufacturer-communications"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-08",
+        "contentUpdatedOn": "2026-08-08",
+        "contentUpdateSummary": "Bounded the air-suspension identity to documented JLR conditions and removed the unproven driving-style cause, blanket parts and coil-conversion advice.",
+        "relatedIssueIds": []
+      },
+      "proposalSha256": "d334772235b3fc321c25f3382e81069de8ceee3a8f8fd350384279670686d96f",
+      "changedFields": [
+        "description",
+        "solution",
+        "symptoms",
+        "affectedSystems",
+        "dtcCodes",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "communityRecommendations",
+        "reportCount",
+        "source",
+        "lastReportedByOwners",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary",
+        "relatedIssueIds"
+      ]
+    },
+    {
+      "id": "land-rover-range-rover-sport-crankshaft-sensor-2005",
+      "action": "targeted_safety_cleanup_pending_source",
+      "commerceDecision": "diagnostic-or-recall-remedy-no-universal-retail-part",
+      "evidence": [
+        "Complete inventory: 3273 Range Rover Sport manufacturer-communication rows and 550 recall rows were searched.",
+        "Zero exact crankshaft-position-sensor records were found for the frozen identity.",
+        "Other stall records identify different conditions, so symptom overlap cannot establish the sensor diagnosis."
+      ],
+      "before": {
+        "make": "Land Rover",
+        "model": "Range Rover Sport",
+        "years": [
+          2005,
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013
+        ],
+        "trims": [],
+        "engines": [
+          "4.4L V8",
+          "4.2L V8 Supercharged"
+        ],
+        "category": "engine",
+        "title": "Crankshaft Position Sensor Failure Causing Stalling",
+        "description": "The crankshaft position sensor on the L320 Range Rover Sport is prone to intermittent failure, especially in hot weather. The sensor loses signal as it heats up, causing random stalling at idle or while driving. The failure is often intermittent, making diagnosis difficult as the vehicle may restart after cooling down.",
+        "solution": "Replace the crankshaft position sensor with a genuine JLR or Bosch unit. Avoid cheap aftermarket sensors as they fail quickly. The sensor is located on the lower front of the engine block and is relatively accessible. Also inspect and clean the wiring connector for corrosion.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "Random stalling while driving",
+          "No-start condition that resolves after cooling",
+          "Engine cuts out at idle",
+          "Check engine light with P0335/P0336",
+          "Intermittent tachometer dropout to zero"
+        ],
+        "affectedSystems": [
+          "Engine",
+          "Ignition"
+        ],
+        "dtcCodes": [
+          "P0335",
+          "P0336"
+        ],
+        "estimatedCostLow": 200,
+        "estimatedCostHigh": 500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.rangerovers.net/threads/crankshaft-position-sensor.329162/",
+            "type": "forum",
+            "title": "RangeRovers.net: Crankshaft Position Sensor"
+          },
+          {
+            "url": "https://www.rangerovers.net/threads/crank-position-sensor.26190/",
+            "type": "forum",
+            "title": "RangeRovers.net: Crank Position Sensor"
+          },
+          {
+            "url": "https://www.landroversonly.com/threads/crankshaft-position-sensor-questions.87729/",
+            "type": "forum",
+            "title": "Land Rovers Only: Crankshaft position sensor questions"
+          },
+          {
+            "url": "https://a1diesel.net/range-rover-sport-sensor-failure-causes-fixes/",
+            "type": "manufacturer",
+            "title": "A1 Diesel: Range Rover Sport Sensor Failure Causes & Fixes"
+          },
+          {
+            "url": "https://rangeroverfanatic.com/troubleshooting/range-rover-crankshaft-failure/",
+            "type": "media",
+            "title": "Range Rover Fanatic: Range Rover Crankshaft Failure"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "source": "LandRoverForums.com",
+            "content": "Always use a Bosch or genuine JLR sensor. The cheap aftermarket ones from eBay are known to fail within months.",
+            "upvotes": 134,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 920,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-10-05",
+        "reviewedOn": "2026-03-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "beforeSha256": "e2c161f81616d68a04da64dc4fe6affc34c190279d6be17bdcb55ab5151672cf",
+      "proposal": {
+        "make": "Land Rover",
+        "model": "Range Rover Sport",
+        "years": [
+          2005,
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013
+        ],
+        "trims": [],
+        "engines": [
+          "4.4L V8",
+          "4.2L V8 Supercharged"
+        ],
+        "category": "engine",
+        "title": "Crankshaft Position Sensor Failure Causing Stalling",
+        "description": "The complete JLR communication and recall inventory contains no Range Rover Sport record that identifies a crankshaft-position sensor as the cause of the frozen 2005-2013 hot-stall pattern. Other JLR records document stalling from different causes. Those symptoms cannot be reassigned to this sensor without a matching primary source.",
+        "solution": "Treat an engine stall as a safety concern and record the conditions, DTCs, RPM signal and restart behavior for a qualified diagnostic inspection. Do not replace a crankshaft-position sensor or select a Bosch/JLR part from this page; the retrieved primary inventory does not identify one verified retail part for this frozen identity.",
+        "severity": "high",
+        "confidence": "low",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "nhtsa",
+            "title": "NHTSA Manufacturer Communications — complete Range Rover Sport inventory; no exact crankshaft-position-sensor record",
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis#manufacturer-communications"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-08",
+        "contentUpdatedOn": "2026-08-08",
+        "contentUpdateSummary": "Removed the unsupported hot-failure mechanism, sensor prescription, brand recommendation and location claim.",
+        "relatedIssueIds": []
+      },
+      "proposalSha256": "842317b21050203a9b099a68f21c0b396b801fc49343e5b28c477324285f264a",
+      "changedFields": [
+        "description",
+        "solution",
+        "confidence",
+        "symptoms",
+        "affectedSystems",
+        "dtcCodes",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "communityRecommendations",
+        "reportCount",
+        "source",
+        "lastReportedByOwners",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ]
+    },
+    {
+      "id": "land-rover-range-rover-sport-dpf-regen-2014",
+      "action": "targeted_safety_cleanup_pending_source",
+      "commerceDecision": "diagnostic-or-recall-remedy-no-universal-retail-part",
+      "evidence": [
+        "Complete inventory: 3273 Range Rover Sport manufacturer-communication rows and 550 recall rows were searched.",
+        "Three DPF records were found: 10138760, 10158993, 10168946.",
+        "The primary bulletin says P2002 is usually not paired with unsuccessful-regeneration warnings and does not validate the short-trip cause."
+      ],
+      "before": {
+        "make": "Land Rover",
+        "model": "Range Rover Sport",
+        "years": [
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022
+        ],
+        "trims": [],
+        "engines": [
+          "3.0L TDV6",
+          "3.0L SDV6"
+        ],
+        "category": "engine",
+        "title": "Diesel DPF Regeneration Failure in Short-Trip Driving",
+        "description": "The diesel Range Rover Sport suffers from DPF clogging when used predominantly for short trips. The DPF regeneration cycle requires sustained exhaust temperatures that are not achieved in city driving. The vehicle may attempt regeneration frequently, increasing fuel consumption and causing a diesel smell. If regeneration fails repeatedly, the DPF becomes permanently blocked.",
+        "solution": "Take the vehicle for a 30+ minute highway drive weekly to allow passive DPF regeneration. If the DPF warning light is on, a dealer can perform a forced regeneration. For severely blocked DPFs, professional cleaning or replacement is needed. Consider fuel additives that lower the soot ignition temperature.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "DPF warning light",
+          "Increased fuel consumption",
+          "Diesel smell from exhaust",
+          "Reduced engine power",
+          "Engine fan running at high speed during regen",
+          "Limp mode"
+        ],
+        "affectedSystems": [
+          "Engine",
+          "Exhaust",
+          "Emissions"
+        ],
+        "dtcCodes": [
+          "P2463",
+          "P2002"
+        ],
+        "estimatedCostLow": 200,
+        "estimatedCostHigh": 3500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "JLR TSB — DPF management and regeneration guidance for diesel models"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "warning",
+            "source": "RangeRovers.net",
+            "content": "A diesel Range Rover Sport is the wrong choice if your daily commute is under 10 miles. The DPF will clog within a year.",
+            "upvotes": 178,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 1300,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-01-08",
+        "reviewedOn": "2026-03-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "land-rover-discovery-dpf-regen-2010",
+          "jaguar-xf-diesel-dpf-regen-2009"
+        ]
+      },
+      "beforeSha256": "df336a819d564819105ca962c7a72cd2209357fb6e118a0947e374509d8fc88b",
+      "proposal": {
+        "make": "Land Rover",
+        "model": "Range Rover Sport",
+        "years": [
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022
+        ],
+        "trims": [],
+        "engines": [
+          "3.0L TDV6",
+          "3.0L SDV6"
+        ],
+        "category": "engine",
+        "title": "Diesel DPF Regeneration Failure in Short-Trip Driving",
+        "description": "JLR records document P2002-00 DPF-efficiency concerns on specified 2016-2019 3.0L diesel Range Rover Sport vehicles. The 2017-2019 bulletin says the code is usually not paired with warnings for unsuccessful regeneration and directs leak and related-code diagnosis. It does not establish short-trip driving as the cause across 2014-2022.",
+        "solution": "Record the warning and all exhaust or pressure-sensor DTCs, then follow the VIN-specific JLR diagnostic path, including leak checks, before any forced regeneration or DPF replacement. Do not prescribe weekly highway drives, fuel additives or a replacement DPF from this page; no universal retail part is supported for the frozen identity.",
+        "severity": "medium",
+        "confidence": "low",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "JLR latest vehicle concern fix — P2002 DPF efficiency below threshold",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2019/MC-10158993-9999.pdf"
+          },
+          {
+            "type": "nhtsa",
+            "title": "NHTSA Manufacturer Communications — Range Rover Sport DPF records 10138760, 10158993 and 10168946",
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis#manufacturer-communications"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-08",
+        "contentUpdatedOn": "2026-08-08",
+        "contentUpdateSummary": "Corrected the unsupported short-trip/regeneration cause and removed highway-drive, additive and premature replacement prescriptions.",
+        "relatedIssueIds": []
+      },
+      "proposalSha256": "9569a59d995b8b3d9c065d1fc6b1bb2534a812ac7d5a554c7f733836f233f055",
+      "changedFields": [
+        "description",
+        "solution",
+        "confidence",
+        "symptoms",
+        "affectedSystems",
+        "dtcCodes",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "communityRecommendations",
+        "reportCount",
+        "source",
+        "lastReportedByOwners",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary",
+        "relatedIssueIds"
+      ]
+    },
+    {
+      "id": "land-rover-range-rover-sport-epb-actuator-2014",
+      "action": "rewrite_same_identity",
+      "commerceDecision": "diagnostic-or-recall-remedy-no-universal-retail-part",
+      "evidence": [
+        "Complete inventory: 3273 Range Rover Sport manufacturer-communication rows and 550 recall rows were searched.",
+        "Nine frozen-scope EPB records were reviewed: 10032667, 10145926, 10146366, 10147490, 10147488, 10147482, 10149107, 10167318, 10182165.",
+        "The JLR records support exact stuck-actuator DTCs and release/calibration symptoms, not the frozen corrosion and blanket motor diagnosis."
+      ],
+      "before": {
+        "make": "Land Rover",
+        "model": "Range Rover Sport",
+        "years": [
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "brakes",
+        "title": "Electric Parking Brake Actuator Failure",
+        "description": "The electric parking brake (EPB) actuator motors on the L494 Range Rover Sport fail prematurely, leaving the parking brake either stuck engaged or unable to hold the vehicle. The actuator motors are exposed to road salt and moisture, causing internal corrosion and motor burnout. The EPB system also integrates with the auto-hold hill start feature, so failures affect drivability.",
+        "solution": "Replace the failed EPB actuator motor(s) — one per rear caliper. The caliper itself is often fine and does not need replacement. Calibrate the new actuator using JLR SDD/Pathfinder diagnostic software. Apply anti-seize and dielectric grease to the electrical connectors to prevent future corrosion.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Parking brake fault warning on dashboard",
+          "Parking brake stuck on or not engaging",
+          "Auto-hold feature stops working",
+          "Grinding noise when applying parking brake",
+          "Red brake warning light"
+        ],
+        "affectedSystems": [
+          "Brakes",
+          "Electrical"
+        ],
+        "dtcCodes": [
+          "C0044",
+          "C0055"
+        ],
+        "estimatedCostLow": 600,
+        "estimatedCostHigh": 1800,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "nhtsa",
+            "title": "NHTSA complaints — Range Rover Sport electric parking brake failures 2014-2022"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "warning",
+            "source": "LandRoverForums.com",
+            "content": "If the EPB warning light comes on, do not ignore it. A stuck parking brake can overheat and damage the rear brake calipers and rotors.",
+            "upvotes": 98,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 850,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-01-15",
+        "reviewedOn": "2026-03-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "beforeSha256": "92f4b0806cbc1ea5963616abc55859cad07f2b58389592c35305e671d15cbac6",
+      "proposal": {
+        "make": "Land Rover",
+        "model": "Range Rover Sport",
+        "years": [
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "brakes",
+        "title": "Electric Parking Brake Actuator Failure",
+        "description": "JLR communications for specified 2014-2020 Range Rover Sport vehicles document a Park Brake Needs Calibration warning, temporary failure to release, EPB warnings and actuator-stuck DTCs C2005-71, C2006-71, C2007-72 and C2008-72. They do not establish road salt, connector corrosion, motor burnout, auto-hold impact or a universal one-motor-per-caliper failure across 2014-2022.",
+        "solution": "Secure the vehicle if the parking brake will not apply or release, record the warning and DTCs, and follow the current VIN-specific JLR EPB diagnostic and calibration procedure. Do not replace an actuator motor or caliper or apply grease from this page; the fault must be isolated first and no universal retail part is linked.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "nhtsa",
+            "title": "NHTSA Manufacturer Communications — Range Rover Sport EPB records 10145926, 10147482, 10147490 and 10182165",
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis#manufacturer-communications"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-08",
+        "contentUpdatedOn": "2026-08-08",
+        "contentUpdateSummary": "Bounded the EPB identity to exact JLR warnings and DTCs and removed unsupported corrosion, auto-hold and blanket motor-replacement claims.",
+        "relatedIssueIds": []
+      },
+      "proposalSha256": "42aab17d4030724fc2caa30ad26b7a8ad728d53f90c74c749dd87c9ee1d8bab0",
+      "changedFields": [
+        "description",
+        "solution",
+        "symptoms",
+        "affectedSystems",
+        "dtcCodes",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "communityRecommendations",
+        "reportCount",
+        "source",
+        "lastReportedByOwners",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ]
+    },
+    {
+      "id": "land-rover-range-rover-sport-rear-diff-leak-2005",
+      "action": "targeted_safety_cleanup_pending_source",
+      "commerceDecision": "diagnostic-or-recall-remedy-no-universal-retail-part",
+      "evidence": [
+        "Complete inventory: 3273 Range Rover Sport manufacturer-communication rows and 550 recall rows were searched.",
+        "Three pinion-seal records were found: 10106163, 10106347, 10203408.",
+        "The records apply to specified 2014-2016 vehicles and do not validate the full 2005-2022 cause and service prescription."
+      ],
+      "before": {
+        "make": "Land Rover",
+        "model": "Range Rover Sport",
+        "years": [
+          2005,
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "drivetrain",
+        "title": "Rear Differential Oil Leak from Pinion Seal",
+        "description": "The rear differential on the Range Rover Sport is prone to developing oil leaks from the pinion seal. The seal deteriorates from heat cycling and driveshaft vibration, allowing gear oil to seep out and coat the rear axle housing. If the fluid level drops too low, the differential gears and bearings can be damaged.",
+        "solution": "Replace the rear differential pinion seal. This requires removing the driveshaft and pinion flange. Check the pinion bearing preload during reassembly. Refill with the correct differential fluid (75W-90 GL5 for open diff, or JLR-specific fluid for electronic locking diff). Inspect the driveshaft center bearing and U-joints while accessible.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Oil drip or wet spot from rear differential",
+          "Whining noise from rear axle at highway speed",
+          "Gear oil smell from underneath vehicle",
+          "Low differential fluid level"
+        ],
+        "affectedSystems": [
+          "Drivetrain",
+          "Rear Differential"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 400,
+        "estimatedCostHigh": 1200,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "forum",
+            "title": "LandRoverForums.com — rear differential pinion seal replacement how-to L320/L494"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "source": "LandRoverForums.com",
+            "content": "Check rear diff fluid level every oil change. A small leak can go unnoticed for months and destroy the differential.",
+            "upvotes": 112,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 1100,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-11-20",
+        "reviewedOn": "2026-03-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "land-rover-freelander-2-rear-diff-leak-2007"
+        ]
+      },
+      "beforeSha256": "b7801759fdcefb72e08c1f1203b0828da1c177734979cf114340b3ffdfa2c9da",
+      "proposal": {
+        "make": "Land Rover",
+        "model": "Range Rover Sport",
+        "years": [
+          2005,
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "drivetrain",
+        "title": "Rear Differential Oil Leak from Pinion Seal",
+        "description": "JLR communications identify differential pinion-oil-seal leaks and newly available seal kits on specified 2014-2016 Range Rover Sport vehicles. They do not establish a rear pinion-seal failure across every 2005-2022 vehicle, or the frozen heat-cycle and driveshaft-vibration cause.",
+        "solution": "Identify the exact leak source and differential type, verify the VIN range and follow current JLR seal-replacement, preload and fluid procedures. Do not remove the driveshaft, set preload or select 75W-90 or another fluid from this page; the retrieved records do not identify one universal retail part or specification for the frozen scope.",
+        "severity": "medium",
+        "confidence": "low",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "nhtsa",
+            "title": "NHTSA Manufacturer Communications — differential pinion-seal records 10106163, 10106347 and 10203408",
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis#manufacturer-communications"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-08",
+        "contentUpdatedOn": "2026-08-08",
+        "contentUpdateSummary": "Limited the evidence to specified 2014-2016 pinion-seal records and removed the broad cause, procedure and generic fluid prescription.",
+        "relatedIssueIds": []
+      },
+      "proposalSha256": "0d9d22673b0bff92a1b3a4c3efead3e491dbdcf39d1fe5a05946730cb85713f9",
+      "changedFields": [
+        "description",
+        "solution",
+        "confidence",
+        "symptoms",
+        "affectedSystems",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "communityRecommendations",
+        "reportCount",
+        "source",
+        "lastReportedByOwners",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary",
+        "relatedIssueIds"
+      ]
+    },
+    {
+      "id": "land-rover-range-rover-sport-transfer-case-2005",
+      "action": "targeted_safety_cleanup_pending_source",
+      "commerceDecision": "diagnostic-or-recall-remedy-no-universal-retail-part",
+      "evidence": [
+        "Complete inventory: 3273 Range Rover Sport manufacturer-communication rows and 550 recall rows were searched.",
+        "Transfer-case candidate records included 10101141, 10101282, 10106254, 10116942, 10185313, 10191297, 10214051, 10224529.",
+        "No exact JLR record in the complete inventory identifies the frozen actuator-motor plus stretched-chain aggregation."
+      ],
+      "before": {
+        "make": "Land Rover",
+        "model": "Range Rover Sport",
+        "years": [
+          2005,
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013
+        ],
+        "trims": [],
+        "engines": [
+          "4.4L V8",
+          "4.2L V8 Supercharged",
+          "5.0L V8 Supercharged"
+        ],
+        "category": "drivetrain",
+        "title": "Transfer Case Actuator Motor and Chain Failure",
+        "description": "The BorgWarner transfer case on the L320 Range Rover Sport suffers from actuator motor failures that prevent the vehicle from shifting between high and low range. The transfer case chain also stretches over time, causing a whining or grinding noise. In severe cases, the chain can skip, damaging the internal gears and requiring a complete transfer case rebuild.",
+        "solution": "Replace the transfer case actuator motor if range selection fails. For chain noise, the transfer case must be removed and the chain replaced. Use Genuine JLR fluid (IYK500010) and replace every 60,000 miles. A full rebuild with new chain, bearings, and seals costs less than a replacement unit.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "HDC/terrain response fault messages",
+          "Unable to shift into low range",
+          "Whining noise from center tunnel area",
+          "Grinding noise when accelerating",
+          "Vibration at highway speed"
+        ],
+        "affectedSystems": [
+          "Drivetrain",
+          "Transfer Case"
+        ],
+        "dtcCodes": [
+          "P1889",
+          "U0102"
+        ],
+        "estimatedCostLow": 1500,
+        "estimatedCostHigh": 4500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://rangerovers.net/forum/6-range-rover-mark-iii-l322/272945-trans-failsafe-transfer-case-motor-noise-actuator-signal.html",
+            "type": "forum",
+            "title": "RangeRovers.net: Trans Failsafe Transfer case motor? Noise on actuator signal"
+          },
+          {
+            "url": "https://rangerovers.net/forum/6-range-rover-mark-iii-l322/23386-has-anyone-had-replaced-their-transfer-case-motor.html",
+            "type": "forum",
+            "title": "RangeRovers.net: Has anyone had to replaced their Transfer Case Motor?"
+          },
+          {
+            "url": "https://www.kmotors.co.uk/common-faults/range-rover-sport/",
+            "type": "manufacturer",
+            "title": "KMotors: Common Problems & Fixes - Range Rover Sport L320"
+          },
+          {
+            "url": "https://www.roverparts.eu/blogs/news-land-rover-parts/land-rover-epb-failure-discovery-4",
+            "type": "manufacturer",
+            "title": "Rover Parts: Land Rover EPB Fault Discovery 4 and Range Rover Sport L320"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "warning",
+            "source": "LandRoverForums.com",
+            "content": "Change transfer case fluid every 60,000 miles WITHOUT exception. Most chain failures are caused by degraded fluid. Use only JLR-specified fluid.",
+            "upvotes": 145,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 1400,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-12-15",
+        "reviewedOn": "2026-03-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "kia-borrego-transfer-case-noise-2009"
+        ]
+      },
+      "beforeSha256": "044a459349f96615a3bd380bd0357abc91552748cc746e7373a40a5b8ec74027",
+      "proposal": {
+        "make": "Land Rover",
+        "model": "Range Rover Sport",
+        "years": [
+          2005,
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013
+        ],
+        "trims": [],
+        "engines": [
+          "4.4L V8",
+          "4.2L V8 Supercharged",
+          "5.0L V8 Supercharged"
+        ],
+        "category": "drivetrain",
+        "title": "Transfer Case Actuator Motor and Chain Failure",
+        "description": "The complete JLR inventory documents transfer-case output-flange leaks, judder and high-speed whine on parts of the frozen L320 range, but no record identifies the combined actuator-motor and stretched-chain failure claimed by this page. Later-generation transfer-case pump, clutch and flange records are separate identities.",
+        "solution": "Record the exact range-selection fault, DTCs, leak location and noise conditions, then follow the current VIN-specific JLR transfer-case diagnostic path. Do not replace an actuator motor or chain, use IYK500010 fluid on a blanket interval, or order rebuild parts from this page; no verified retail part supports the frozen identity.",
+        "severity": "high",
+        "confidence": "low",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "nhtsa",
+            "title": "NHTSA Manufacturer Communications — Range Rover Sport transfer-case inventory, including 10214051 and 10224529",
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis#manufacturer-communications"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-08",
+        "contentUpdatedOn": "2026-08-08",
+        "contentUpdateSummary": "Removed the unsupported actuator/chain aggregation, damage progression, fluid interval and rebuild recommendation.",
+        "relatedIssueIds": []
+      },
+      "proposalSha256": "32122c3210abd626e5e3986ebdbac7b3118c9a33bbb9a7514315ab5b1c4f6b56",
+      "changedFields": [
+        "description",
+        "solution",
+        "confidence",
+        "symptoms",
+        "affectedSystems",
+        "dtcCodes",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "communityRecommendations",
+        "reportCount",
+        "source",
+        "lastReportedByOwners",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary",
+        "relatedIssueIds"
+      ]
+    },
+    {
+      "id": "land-rover-range-rover-sport-zf-valve-body-2014",
+      "action": "targeted_safety_cleanup_pending_source",
+      "commerceDecision": "diagnostic-or-recall-remedy-no-universal-retail-part",
+      "evidence": [
+        "Complete inventory: 3273 Range Rover Sport manufacturer-communication rows and 550 recall rows were searched.",
+        "Transmission candidates included 10236697, 10103145, 10104521, 10142563, 10169923, 10171140, 10177159, 10200772, 10210108.",
+        "No exact JLR record identifies frozen ZF 8HP70 valve-body/mechatronic-solenoid wear; documented causes differ."
+      ],
+      "before": {
+        "make": "Land Rover",
+        "model": "Range Rover Sport",
+        "years": [
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022
+        ],
+        "trims": [],
+        "engines": [
+          "3.0L V6 Supercharged",
+          "5.0L V8 Supercharged",
+          "3.0L TDV6"
+        ],
+        "category": "transmission",
+        "title": "ZF 8HP70 Transmission Valve Body and Mechatronic Issues",
+        "description": "The ZF 8HP70 eight-speed automatic transmission used in the L494 Range Rover Sport develops valve body and mechatronic unit faults. Symptoms include harsh shifts, delayed engagement, and occasional limp mode. The solenoids in the valve body wear and cause improper fluid routing. The transmission adapts by increasing line pressure, which accelerates wear on the clutch packs.",
+        "solution": "Replace or rebuild the valve body and mechatronic unit. Perform a transmission fluid and filter change using only ZF-approved fluid (ZF Lifeguard 8). Reset the transmission adaptation values after repair. Some specialists offer a rebuilt valve body with upgraded solenoids.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Harsh or jerky shifts especially 2-3 and 5-6",
+          "Delayed engagement from Park to Drive",
+          "Transmission fault warning",
+          "Limp mode (stuck in one gear)",
+          "Shudder during light acceleration"
+        ],
+        "affectedSystems": [
+          "Transmission"
+        ],
+        "dtcCodes": [
+          "P0730",
+          "P0741",
+          "P2714"
+        ],
+        "estimatedCostLow": 2000,
+        "estimatedCostHigh": 5000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "JLR TSB LTB00589 — ZF 8HP transmission shift quality improvement procedure"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "source": "LandRoverForums.com",
+            "content": "Change ZF 8HP fluid every 60,000 miles despite the \"lifetime fill\" claim. Use ZF Lifeguard Fluid 8 and a genuine ZF filter kit. This dramatically extends valve body life.",
+            "upvotes": 234,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 1700,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-02-10",
+        "reviewedOn": "2026-03-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "jaguar-f-pace-zf-8hp-valve-body-2017",
+          "land-rover-discovery-sport-9-speed-trans-2015",
+          "jaguar-f-type-zf-8hp-valve-body-2014",
+          "jaguar-xf-zf-8hp-mechatronic-2016",
+          "jaguar-s-type-transmission-valve-body-2000"
+        ]
+      },
+      "beforeSha256": "87a100021ff16ec29375e6fc0b308b6c79296f17f64e9d6a155882afeb08b833",
+      "proposal": {
+        "make": "Land Rover",
+        "model": "Range Rover Sport",
+        "years": [
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022
+        ],
+        "trims": [],
+        "engines": [
+          "3.0L V6 Supercharged",
+          "5.0L V8 Supercharged",
+          "3.0L TDV6"
+        ],
+        "category": "transmission",
+        "title": "ZF 8HP70 Transmission Valve Body and Mechatronic Issues",
+        "description": "JLR records document harsh shifting and transmission faults from detached filters, software, sensors, leaks and coolant-contaminated fluid on specified Range Rover Sport vehicles. The complete inventory does not identify a ZF 8HP70 valve-body or mechatronic-solenoid wear condition matching the frozen 2014-2022 identity.",
+        "solution": "Record the exact shift symptom, DTCs, fluid condition and installed transmission, then use the current VIN-specific JLR diagnostic path. Do not replace or rebuild a valve body, mechatronic unit or solenoid, reset adaptations, or select ZF fluid from this page; the documented causes differ and no verified retail part supports the frozen identity.",
+        "severity": "medium",
+        "confidence": "low",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "nhtsa",
+            "title": "NHTSA Manufacturer Communications — Range Rover Sport transmission records 10236697, 10104521, 10142563, 10200772 and 10210108",
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis#manufacturer-communications"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-08",
+        "contentUpdatedOn": "2026-08-08",
+        "contentUpdateSummary": "Removed the unsupported valve-body/mechatronic diagnosis, solenoid-wear progression, fluid and rebuilt-part prescription.",
+        "relatedIssueIds": []
+      },
+      "proposalSha256": "b9f3b7a5c9ab380e162915989bcd359e20cb0e886391a12338a8eb4ccffd3478",
+      "changedFields": [
+        "description",
+        "solution",
+        "confidence",
+        "symptoms",
+        "affectedSystems",
+        "dtcCodes",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "communityRecommendations",
+        "reportCount",
+        "source",
+        "lastReportedByOwners",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary",
+        "relatedIssueIds"
+      ]
+    },
+    {
+      "id": "landrover-rangeroversport-48v-mild-hybrid-battery--2023",
+      "action": "rewrite_same_identity",
+      "commerceDecision": "diagnostic-or-recall-remedy-no-universal-retail-part",
+      "evidence": [
+        "Complete inventory: 3273 Range Rover Sport manufacturer-communication rows and 550 recall rows were searched.",
+        "Seventy-six MHEV/48V candidates were reviewed; representative documents are 10219236, 10251549, 10252754, 11006133, 11007423, 11012408, 11028601, 11029576, 11029598, 11029600.",
+        "Recall 26V248 exactly supports DC-DC internal failure and loss-of-drive risk on certain 2019-2024 Range Rover Sport MHEVs."
+      ],
+      "before": {
+        "make": "Land Rover",
+        "model": "Range Rover Sport",
+        "years": [
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "48V Mild-Hybrid Battery / DC-DC Converter Fault Causing No-Start, Warning Messages, and Limp Mode",
+        "description": "Multiple owners of the L461 Range Rover Sport have reported repeated 48V system faults, often accompanied by 'Electrical system fault', 'Stop safely', charging warnings, or sudden no-start conditions. The issue appears tied to the 48V lithium-ion battery, battery energy control module, or DC-DC converter behavior in the new MLA-Flex electrical architecture, and in some cases the vehicle enters restricted performance mode or becomes immobilized. This is well documented in owner complaints and service actions affecting 2023-2024 vehicles and continues to appear in owner discussions for later builds.",
+        "solution": "Diagnosis typically starts with a full battery support charge, scan of the 12V and 48V energy management modules, and checking for software updates or service campaigns. Repairs reported include replacing the 48V battery pack, DC-DC converter, battery monitoring components, or updating control module software and recalibrating the charging system. Because low-voltage instability can trigger many secondary faults, technicians usually need to verify both 12V and 48V system health before replacing parts.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "No-start or intermittent start failure",
+          "Electrical system fault warning",
+          "12V battery low warning",
+          "Restricted performance or limp mode",
+          "Multiple warning lights appearing at once",
+          "Vehicle may shut down after parking"
+        ],
+        "affectedSystems": [
+          "48V mild hybrid system",
+          "12V charging system",
+          "DC-DC converter",
+          "Battery energy control module",
+          "Power management"
+        ],
+        "dtcCodes": [
+          "P0A94",
+          "P1AEE",
+          "U3000",
+          "B11DB"
+        ],
+        "estimatedCostLow": 800,
+        "estimatedCostHigh": 4500,
+        "typicalMileageLow": 500,
+        "typicalMileageHigh": 20000,
+        "citations": [],
+        "communityRecommendations": [
+          {
+            "content": "Keep the 12V battery fully supported during diagnostics; many owners report secondary faults when voltage drops during software updates or repeated short trips.",
+            "searchQuery": "automotive battery maintainer AGM lithium compatible"
+          },
+          {
+            "content": "Ask the dealer to check for the latest power management and battery control software before authorizing major parts replacement."
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "beforeSha256": "0e5bc722a7f3209ede582cd9b4684adc86b7ce39483c719d27991ecbaf75ac23",
+      "proposal": {
+        "make": "Land Rover",
+        "model": "Range Rover Sport",
+        "years": [
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "48V Mild-Hybrid Battery / DC-DC Converter Fault Causing No-Start, Warning Messages, and Limp Mode",
+        "description": "NHTSA recall 26V248 identifies an internal DC-DC-converter boost-control microchip fault on certain 2019-2024 Range Rover Sport MHEVs that can stop 12V charging and lead to loss of drive power and exterior lighting. JLR communications also document 2023-2024 DC-DC warnings and 48V charging concerns. The primary evidence does not extend that recall population to 2025 or make the 48V battery, BECM and converter interchangeable causes.",
+        "solution": "Check the VIN for recall D126/H575 and current JLR campaigns. If a Stop Safely warning, charging loss, lighting loss or reduced drive occurs, stop in a safe place and contact an authorized repairer. Do not replace a 48V battery, DC-DC converter or control module from this page; the recall remedy is VIN-specific and no universal retail part is linked.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "NHTSA Part 573 report — campaign 26V248 / JLR D126 and H575",
+            "url": "https://static.nhtsa.gov/odi/rcl/2026/RCLRPT-26V248-5125.pdf"
+          },
+          {
+            "type": "recall",
+            "title": "NHTSA campaign API — 26V248000",
+            "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=26V248000"
+          },
+          {
+            "type": "nhtsa",
+            "title": "NHTSA Manufacturer Communications — Range Rover Sport 48V/MHEV inventory",
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis#manufacturer-communications"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-08",
+        "contentUpdatedOn": "2026-08-08",
+        "contentUpdateSummary": "Bounded the 48V identity to the official DC-DC recall and JLR charging records, added stop-safely guidance and removed indiscriminate component replacement.",
+        "relatedIssueIds": []
+      },
+      "proposalSha256": "53f2adf0e70d63b68d7212bbe5e63ff98ac77484978b1384577eb3d6fed640c7",
+      "changedFields": [
+        "description",
+        "solution",
+        "symptoms",
+        "affectedSystems",
+        "dtcCodes",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "typicalMileageLow",
+        "typicalMileageHigh",
+        "citations",
+        "communityRecommendations",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ]
+    },
+    {
+      "id": "landrover-rangeroversport-pivi-pro-infotainment-freezing-2023",
+      "action": "targeted_safety_cleanup_pending_source",
+      "commerceDecision": "diagnostic-or-recall-remedy-no-universal-retail-part",
+      "evidence": [
+        "Complete inventory: 3273 Range Rover Sport manufacturer-communication rows and 550 recall rows were searched.",
+        "Twenty-seven new-generation Pivi candidates were reviewed; representative records are 10239013, 10240206, 11006064, 11008611, 11015288, 11017945, 11029853, 11033428, 11034887.",
+        "They support specific Pivi software conditions, not the frozen freeze/black-screen/camera/HVAC aggregation."
+      ],
+      "before": {
+        "make": "Land Rover",
+        "model": "Range Rover Sport",
+        "years": [
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "interior",
+        "title": "Pivi Pro Infotainment Freezing, Black Screen, and Camera System Dropout",
+        "description": "Owners of 2023-2025 Range Rover Sport models frequently report the curved Pivi Pro center display freezing, rebooting, going black, or losing audio/navigation/climate control responsiveness. Because many vehicle functions are integrated into the touchscreen, these failures can also disable surround-view cameras, parking graphics, Bluetooth, and HVAC controls until the system reboots. The issue is widely discussed on owner forums and reflected in complaints involving software instability on the new-generation infotainment platform.",
+        "solution": "The first step is checking for infotainment software updates and applying the latest over-the-air or dealer-installed package. If the problem persists, dealers typically inspect the infotainment control module, display connections, camera module communication, and network faults on the vehicle's Ethernet/CAN architecture. In some cases, module replacement or reprogramming is required if repeated hard resets do not resolve the issue.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Center screen freezes",
+          "Display goes black",
+          "Backup camera unavailable",
+          "Surround camera image missing",
+          "Bluetooth disconnects",
+          "Navigation or audio stops working",
+          "Climate controls unavailable on screen"
+        ],
+        "affectedSystems": [
+          "Pivi Pro infotainment",
+          "Center display",
+          "Camera system",
+          "Bluetooth",
+          "Navigation",
+          "HVAC user interface"
+        ],
+        "dtcCodes": [
+          "U0001",
+          "U0155",
+          "B1A6A"
+        ],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 2200,
+        "typicalMileageLow": 0,
+        "typicalMileageHigh": 30000,
+        "citations": [],
+        "communityRecommendations": [
+          {
+            "content": "Before a dealer visit, document the failure with photos/video because intermittent screen resets often leave no permanent fault history.",
+            "searchQuery": "OBD2 scanner with Jaguar Land Rover enhanced diagnostics"
+          },
+          {
+            "content": "Install all OTA updates promptly; owners often report improved camera and screen stability after software revisions."
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "beforeSha256": "b38ffbd1f9763fc191ddac8d0102e2c31f2ceb4e387907743d7f62bb77497f7a",
+      "proposal": {
+        "make": "Land Rover",
+        "model": "Range Rover Sport",
+        "years": [
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "interior",
+        "title": "Pivi Pro Infotainment Freezing, Black Screen, and Camera System Dropout",
+        "description": "JLR communications for 2023-2025 Range Rover Sport vehicles document specific Pivi update, GPS/clock, app, login, wireless-projection and satellite-radio conditions. They do not establish the frozen aggregation of frequent freezing, black screens, camera dropout, HVAC loss and aging hardware. The 2024 rear-camera recall is a separate NFSM identity.",
+        "solution": "Record the exact Pivi symptom, installed software level and any camera or network DTCs, then follow the current VIN-specific JLR software and module workflow. Do not perform repeated hard resets or replace a display, infotainment controller or camera module from this page; no universal retail part is supported for the frozen identity.",
+        "severity": "medium",
+        "confidence": "low",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "nhtsa",
+            "title": "NHTSA Manufacturer Communications — 27 new-generation Range Rover Sport Pivi candidates, including 11006064 and 11008611",
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis#manufacturer-communications"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-08",
+        "contentUpdatedOn": "2026-08-08",
+        "contentUpdateSummary": "Separated documented Pivi software conditions from the unsupported freeze/black-screen/camera/HVAC aggregation and removed blanket module replacement.",
+        "relatedIssueIds": []
+      },
+      "proposalSha256": "a529884eb9a2bd578f2d3e68912bac1e92449e4a636b0b6f75ffab5fdd31bc4d",
+      "changedFields": [
+        "description",
+        "solution",
+        "confidence",
+        "symptoms",
+        "affectedSystems",
+        "dtcCodes",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "typicalMileageLow",
+        "typicalMileageHigh",
+        "citations",
+        "communityRecommendations",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ]
+    },
+    {
+      "id": "landrover-rangeroversport-rearview-camera-360-degree-2023",
+      "action": "rewrite_same_identity",
+      "commerceDecision": "diagnostic-or-recall-remedy-no-universal-retail-part",
+      "evidence": [
+        "Complete inventory: 3273 Range Rover Sport manufacturer-communication rows and 550 recall rows were searched.",
+        "Eighteen camera candidates were reviewed; representative communication 10248645 supplements recall 24V678.",
+        "Recall 24V678 exactly supports missing 3D/rearview images on certain 2024 vehicles from NFSM overheating."
+      ],
+      "before": {
+        "make": "Land Rover",
+        "model": "Range Rover Sport",
+        "years": [
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "safety",
+        "title": "Rearview Camera / 360-Degree Surround View Failure and Delayed Image Display",
+        "description": "The current Range Rover Sport has documented complaints and recall-related visibility concerns involving the rearview camera image not displaying, displaying late, or becoming unavailable. Because the vehicle relies heavily on camera systems for rear visibility and parking assistance, loss of image can create a safety hazard during reversing. Owners also report intermittent camera blue/black screens and unavailable parking assist messages tied to software or camera module communication faults.",
+        "solution": "Dealers typically verify whether the vehicle is covered by a rear camera software recall or service action, then update the infotainment/camera control software and test image display timing. If software does not resolve the issue, technicians inspect camera connectors, tailgate harness routing, and the image processing module for communication faults. Persistent failures may require camera or module replacement followed by calibration.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Rear camera image does not appear",
+          "Camera image appears after delay",
+          "Blue or black camera screen",
+          "Surround camera unavailable message",
+          "Parking assist unavailable"
+        ],
+        "affectedSystems": [
+          "Rearview camera",
+          "Surround view camera system",
+          "Parking assist",
+          "Infotainment display"
+        ],
+        "dtcCodes": [
+          "U0238",
+          "B1277",
+          "U3000"
+        ],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 1800,
+        "typicalMileageLow": 0,
+        "typicalMileageHigh": 30000,
+        "citations": [
+          {
+            "url": "https://www.nhtsa.gov/recalls",
+            "type": "recall",
+            "title": "NHTSA safety recall search - rearview camera image/display issues affecting newer JLR vehicles including Range Rover Sport"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "content": "Check VIN for open camera/software recalls before paying for diagnosis; many image-delay faults are software-related and covered.",
+            "searchQuery": "Land Rover VIN recall check"
+          },
+          {
+            "content": "If the issue is intermittent, record startup and reverse engagement on video to show the exact delay behavior to the dealer."
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "beforeSha256": "87a1645026c26518969c0e708b2794ddee92cd9f449f1d4a3d565a6cdedc355d",
+      "proposal": {
+        "make": "Land Rover",
+        "model": "Range Rover Sport",
+        "years": [
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "safety",
+        "title": "Rearview Camera / 360-Degree Surround View Failure and Delayed Image Display",
+        "description": "NHTSA recall 24V678 covers certain 2024 Range Rover Sport vehicles whose Near Field Sensing Module may overheat and suppress 3D surround-camera images, including the rearview image. The retrieved primary record does not establish the same cause for every 2023 or 2025 vehicle, or a universal delayed-image, harness or tailgate-connector failure.",
+        "solution": "Check the VIN for JLR recall N927. If the rearview image is unavailable, use direct visual checks and do not rely on the surround-view display until repaired. The recall remedy is dealer replacement of the NFSM on affected vehicles; do not order a camera or module from this page, because no universal retail part is linked.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "NHTSA campaign API — 24V678000 / JLR N927",
+            "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=24V678000"
+          },
+          {
+            "type": "nhtsa",
+            "title": "NHTSA Manufacturer Communications — Range Rover Sport camera inventory",
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis#manufacturer-communications"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-08",
+        "contentUpdatedOn": "2026-08-08",
+        "contentUpdateSummary": "Anchored the camera identity to recall 24V678/N927 and removed unsupported years, delayed-image and generic harness/module prescriptions.",
+        "relatedIssueIds": []
+      },
+      "proposalSha256": "55d8945a6b2fc06fa6be8903b27ddde99c3c2297e31572e9c0a02c68f77ef8ba",
+      "changedFields": [
+        "description",
+        "solution",
+        "symptoms",
+        "affectedSystems",
+        "dtcCodes",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "typicalMileageLow",
+        "typicalMileageHigh",
+        "citations",
+        "communityRecommendations",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ]
+    },
+    {
+      "id": "landrover-rangeroversport-water-intrusion-from-tailgate-2023",
+      "action": "targeted_safety_cleanup_pending_source",
+      "commerceDecision": "diagnostic-or-recall-remedy-no-universal-retail-part",
+      "evidence": [
+        "Complete inventory: 3273 Range Rover Sport manufacturer-communication rows and 550 recall rows were searched.",
+        "Thirty water candidates were reviewed; exact 2023 roof/cabin records are 10229591, 10229592, 10231451, 10231452, 10231453.",
+        "The documented roof-area leak path does not validate the frozen tailgate/rear-body-seal identity."
+      ],
+      "before": {
+        "make": "Land Rover",
+        "model": "Range Rover Sport",
+        "years": [
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "body",
+        "title": "Water Intrusion from Tailgate / Rear Body Seals Causing Damp Cargo Area and Electrical Faults",
+        "description": "Owners of the redesigned Range Rover Sport have reported water leaks into the cargo area and rear body sections, often after rain or washing. The leak path is commonly suspected around tailgate seals, rear lamp/body interfaces, roof or upper tailgate trim areas, and can lead to damp carpeting, condensation, musty odor, or intermittent electrical faults in rear-mounted modules. Because several control units and connectors are located in the rear of the vehicle, prolonged moisture exposure can become expensive if not addressed early.",
+        "solution": "Diagnosis requires removing rear trim panels, performing a controlled water test, and checking tailgate weatherstrips, body seam sealing, lamp seals, and harness grommets. Repairs may include resealing body joints, replacing distorted seals, adjusting tailgate alignment, and drying/cleaning affected connectors or modules. If corrosion has started, damaged connectors or control units may need replacement.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Wet cargo floor or side trim",
+          "Condensation inside rear glass or lamps",
+          "Musty smell in cabin",
+          "Intermittent rear electrical faults",
+          "Water visible after rain or car wash"
+        ],
+        "affectedSystems": [
+          "Tailgate seals",
+          "Rear body sealing",
+          "Cargo area trim",
+          "Rear electrical connectors",
+          "Lighting harness"
+        ],
+        "dtcCodes": [
+          "U0140",
+          "B1DXX"
+        ],
+        "estimatedCostLow": 200,
+        "estimatedCostHigh": 2500,
+        "typicalMileageLow": 0,
+        "typicalMileageHigh": 25000,
+        "citations": [],
+        "communityRecommendations": [
+          {
+            "content": "Address any dampness immediately; owners recommend pulling up the cargo floor and drying the area before rear module connectors corrode.",
+            "searchQuery": "automotive trim removal tools moisture absorber"
+          },
+          {
+            "content": "Use a hose test with one section at a time to isolate whether the leak starts at the upper tailgate, lamp seal, or side body seam."
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "beforeSha256": "59ddaadf8bd2867982a9b6730895f05881bed2252c26dc4619af39be4df3f085",
+      "proposal": {
+        "make": "Land Rover",
+        "model": "Range Rover Sport",
+        "years": [
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "body",
+        "title": "Water Intrusion from Tailgate / Rear Body Seals Causing Damp Cargo Area and Electrical Faults",
+        "description": "JLR communications for 2023 Range Rover Sport vehicles document water entry around the roof-rail attachment area and roof-panel sealant that can wet the headlining, grab handles or carpet. They do not identify the frozen tailgate/rear-body-seal path or rear-mounted-module damage across 2023-2025. Tailgate-lamp moisture recall 23V871 is a separate exterior-light identity.",
+        "solution": "Document where moisture first appears and have the vehicle water-tested using the current VIN-specific JLR body-sealing procedure. Do not replace tailgate weatherstrips, lamp seals, grommets or modules from this page; the retrieved primary record points to a different leak path and identifies no universal retail part.",
+        "severity": "medium",
+        "confidence": "low",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "JLR SSM75903 — water leak in cabin/headlining, grab handles or carpet",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2023/MC-10231451-0001.pdf"
+          },
+          {
+            "type": "nhtsa",
+            "title": "NHTSA Manufacturer Communications — Range Rover Sport water records 10229591-10229592 and 10231451-10231453",
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis#manufacturer-communications"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-08",
+        "contentUpdatedOn": "2026-08-08",
+        "contentUpdateSummary": "Corrected the unsupported tailgate/rear-body leak path to the documented roof-area evidence and removed generic seals and module replacement.",
+        "relatedIssueIds": []
+      },
+      "proposalSha256": "50e010f400a9b1ea79e35b167cecd35d8e864f07a1fbe2f22538985c76639031",
+      "changedFields": [
+        "description",
+        "solution",
+        "confidence",
+        "symptoms",
+        "affectedSystems",
+        "dtcCodes",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "typicalMileageLow",
+        "typicalMileageHigh",
+        "citations",
+        "communityRecommendations",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ]
+    }
+  ]
+}
