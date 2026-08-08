@@ -1,0 +1,10 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
+const assert = require('node:assert/strict'); const fs = require('node:fs'); const test = require('node:test');
+const { CLEANUP_IDS, IDS } = require('./build-kia-sephia-adjudication');
+const { EXPECTED_SUMMARY, PACKET, SNAPSHOT, validatePacket } = require('./validate-kia-sephia-adjudication');
+const packet = JSON.parse(fs.readFileSync(PACKET, 'utf8')); const snapshot = JSON.parse(fs.readFileSync(SNAPSHOT, 'utf8')); const byId = new Map(packet.rows.map((row) => [row.id, row]));
+test('Sephia packet passes its blocked proposal-only safety contract', () => { assert.deepEqual(validatePacket(packet, snapshot), []); assert.deepEqual(packet.summary, EXPECTED_SUMMARY); assert.deepEqual(packet.applicationGate.blockerRecordIds, CLEANUP_IDS.slice().sort()); });
+test('all four unavailable video citations and search links are removed', () => { for (const row of packet.rows) { assert.equal(row.evidence[1].oembedStatus, 404); assert.deepEqual(row.proposal.citations, []); assert.deepEqual(row.proposal.communityRecommendations, []); assert.deepEqual(row.proposal.fixParts, []); } });
+test('timing codes and universal maintenance claims are removed', () => { const row = byId.get(IDS.timingBelt); assert.deepEqual(row.proposal.dtcCodes, []); assert.match(row.proposal.description, /does not source P0016 or P0017/i); assert.match(row.proposal.solution, /Do not infer valve damage/i); });
+test('head-gasket cross-model relation and parts bundle are removed', () => { const row = byId.get(IDS.headGasket); assert.deepEqual(row.proposal.relatedIssueIds, []); assert.match(row.proposal.solution, /Do not automatically order a timing kit/i); });
+test('all indexed Sephia identity fields and publication states remain preserved', () => { for (const row of packet.rows) { for (const field of ['make', 'model', 'years', 'trims', 'engines', 'category', 'title', 'status']) assert.deepEqual(row.proposal[field], row.before[field]); assert.equal(row.action, 'targeted_safety_cleanup_pending_source'); assert.equal(row.proposal.humanApproved, false); } });
