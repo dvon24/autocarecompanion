@@ -1,0 +1,108 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
+const crypto = require('node:crypto');
+const fs = require('node:fs');
+const readline = require('node:readline');
+const { parseCsvLine } = require('./verify-kia-stinger-nhtsa-coverage');
+const {
+  EXPECTED_COMPLETE_RECALL_INVENTORY, EXPECTED_FLAT_RECALL_INVENTORY,
+  EXPECTED_PRE_2010_RECALL_INVENTORY, FLAT_RECALL_SOURCE, MFR_COMMUNICATIONS_SOURCE,
+} = require('./build-kia-telluride-adjudication');
+
+function normalizedInventory(map) {
+  return Object.fromEntries([...map.entries()].sort().map(([campaign, years]) => [campaign, [...years].sort((a, b) => a - b)]));
+}
+async function inspectCsv(file, expected) {
+  const hash = crypto.createHash('sha256');
+  const input = fs.createReadStream(file);
+  input.on('data', (chunk) => hash.update(chunk));
+  const rl = readline.createInterface({ input, crlfDelay: Infinity });
+  let headers;
+  let tellurideRows = 0;
+  let lines = 0;
+  const documentIds = new Set();
+  const modelNames = new Map();
+  for await (const line of rl) {
+    lines += 1;
+    const fields = parseCsvLine(line);
+    if (!headers) { headers = fields; continue; }
+    const row = Object.fromEntries(headers.map((header, index) => [header, fields[index] || '']));
+    if (row.Make === 'KIA' && row.Model === 'TELLURIDE') {
+      tellurideRows += 1;
+      documentIds.add(row['TSB/Document ID']);
+      modelNames.set(row.Model, (modelNames.get(row.Model) || 0) + 1);
+    }
+  }
+  const sha256 = hash.digest('hex');
+  return {
+    file, lines, sha256, expectedSha256: expected.sha256,
+    tellurideRows, expectedTellurideRows: expected.expectedTellurideRows,
+    documentIds: [...documentIds].sort(), modelNames: Object.fromEntries(modelNames),
+    passed: sha256 === expected.sha256 && tellurideRows === expected.expectedTellurideRows,
+  };
+}
+async function inspectFlat(file, expected, expectedInventory) {
+  const hash = crypto.createHash('sha256');
+  const input = fs.createReadStream(file);
+  input.on('data', (chunk) => hash.update(chunk));
+  const rl = readline.createInterface({ input, crlfDelay: Infinity });
+  let lines = 0;
+  let tellurideRows = 0;
+  const campaigns = new Map();
+  for await (const line of rl) {
+    lines += 1;
+    const c = line.split('\t');
+    if ((c[2] || '').toUpperCase() !== 'KIA' || (c[3] || '').toUpperCase() !== 'TELLURIDE') continue;
+    tellurideRows += 1;
+    const years = campaigns.get(c[1]) || new Set();
+    years.add(Number(c[4]));
+    campaigns.set(c[1], years);
+  }
+  const sha256 = hash.digest('hex');
+  const inventory = normalizedInventory(campaigns);
+  return {
+    file, lines, sha256, expectedSha256: expected.sha256,
+    tellurideRows, expectedTellurideRows: expected.expectedTellurideRows,
+    inventory, expectedInventory,
+    passed: sha256 === expected.sha256 && tellurideRows === expected.expectedTellurideRows && JSON.stringify(inventory) === JSON.stringify(expectedInventory),
+  };
+}
+async function main() {
+  const args = new Map(process.argv.slice(2).map((value) => {
+    const index = value.indexOf('=');
+    return [value.slice(2, index), value.slice(index + 1)];
+  }));
+  const csv = [];
+  for (const [key, expected] of Object.entries(MFR_COMMUNICATIONS_SOURCE.files)) {
+    const file = args.get(key);
+    if (!file) throw new Error('missing --' + key + '=path');
+    csv.push(await inspectCsv(file, expected));
+  }
+  const preFile = args.get('pre-flat');
+  const postFile = args.get('post-flat');
+  if (!preFile || !postFile) throw new Error('missing flat recall paths');
+  const pre = await inspectFlat(preFile, FLAT_RECALL_SOURCE.pre2010, EXPECTED_PRE_2010_RECALL_INVENTORY);
+  const post = await inspectFlat(postFile, FLAT_RECALL_SOURCE.post2010, EXPECTED_FLAT_RECALL_INVENTORY);
+  const totalTellurideRows = csv.reduce((sum, item) => sum + item.tellurideRows, 0);
+  const modelNameCounts = {};
+  for (const item of csv) for (const [name, count] of Object.entries(item.modelNames)) modelNameCounts[name] = (modelNameCounts[name] || 0) + count;
+  const documentIds = new Set(csv.flatMap((item) => item.documentIds));
+  const missingRequiredDocumentIds = MFR_COMMUNICATIONS_SOURCE.requiredDocumentIds.filter((id) => !documentIds.has(id));
+  const complete = Object.fromEntries(Object.entries({ ...pre.inventory, ...post.inventory }).sort());
+  const completePassed = JSON.stringify(complete) === JSON.stringify(EXPECTED_COMPLETE_RECALL_INVENTORY);
+  const passed = csv.every((item) => item.passed) && pre.passed && post.passed
+    && totalTellurideRows === MFR_COMMUNICATIONS_SOURCE.totalExpectedTellurideRows
+    && JSON.stringify(modelNameCounts) === JSON.stringify(MFR_COMMUNICATIONS_SOURCE.modelNameCounts)
+    && missingRequiredDocumentIds.length === 0 && completePassed;
+  console.log(JSON.stringify({
+    passed, checkedOn: '2026-08-08', totalTellurideRows,
+    expectedTotalTellurideRows: MFR_COMMUNICATIONS_SOURCE.totalExpectedTellurideRows,
+    modelNameCounts, expectedModelNameCounts: MFR_COMMUNICATIONS_SOURCE.modelNameCounts,
+    missingRequiredDocumentIds,
+    manufacturerCommunications: csv.map(({ documentIds: ids, ...item }) => ({ ...item, documentIdCount: ids.length })),
+    pre2010Recall: pre, post2010Recall: post,
+    completeRecall: { inventory: complete, expectedInventory: EXPECTED_COMPLETE_RECALL_INVENTORY, campaignCount: Object.keys(complete).length, passed: completePassed },
+  }, null, 2));
+  if (!passed) process.exitCode = 1;
+}
+if (require.main === module) main().catch((error) => { console.error(error); process.exitCode = 1; });
+module.exports = { inspectCsv, inspectFlat, normalizedInventory };
