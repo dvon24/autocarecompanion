@@ -1,0 +1,1536 @@
+{
+  "schemaVersion": 1,
+  "status": "proposal-only",
+  "auditStage": "model-primary-source-adjudication",
+  "requiresIndependentApproval": true,
+  "generatedOn": "2026-08-08",
+  "make": "Land Rover",
+  "model": "Discovery",
+  "completionStatement": "All six frozen Discovery records receive primary-source adjudication and targeted safety cleanup while every indexed identity remains published and unchanged.",
+  "applicationGate": {
+    "status": "blocked",
+    "blockerRecordIds": [
+      "land-rover-discovery-air-suspension-compressor-2005",
+      "land-rover-discovery-dpf-regen-2010",
+      "land-rover-discovery-egr-cooler-2010",
+      "land-rover-discovery-l462-air-suspension-2017",
+      "land-rover-discovery-sunroof-drain-2005",
+      "land-rover-discovery-terrain-response-fault-2005"
+    ],
+    "reason": "All six Discovery identities are overbroad, unsupported or contradicted by retrieved JLR material for part of their frozen title/year scope. Independent review is required before any application."
+  },
+  "safetyContract": [
+    "No production database write, cache purge, deployment, archive, redirect, slug change, title change, category change, indexed-year change, trim change, engine change, new issue or public-page change is authorized.",
+    "All six Discovery IDs, titles, categories, indexed year sets, trim sets, engine sets and publication states remain unchanged.",
+    "A blocker cannot conceal a false source association, false DTC, unsafe instruction, unsupported part or service specification, search commerce or unverified relation; targeted cleanup removes those claims while preserving the page.",
+    "All 2,741 Discovery-alias manufacturer-communication rows and all 465 recall rows / 122 unique campaign-year-model rows / 47 campaigns in the complete frozen inventories are accounted for; all separate campaign identities remain deferred until the remaining-make audit is complete."
+  ],
+  "source": {
+    "snapshotFile": "data/_land-rover-deeplink-snapshot-2026-08-08.json",
+    "snapshotSha256": "e95e033f348cc218e87d1faf0f19d0cbe67274d51739f3dd77e5e7b47ece3bbf",
+    "snapshotGeneratedAt": "2026-08-08T14:25:43.008Z",
+    "snapshotHash": "3f13700b582e6864d62580851752656db123b4bdb6b24a30e3ffbb9deaa4b9c8",
+    "modelRecordCount": 6
+  },
+  "observations": [
+    {
+      "code": "discovery-two-false-jlr-bulletin-associations-removed",
+      "severity": "critical-correction",
+      "recordIds": [
+        "land-rover-discovery-dpf-regen-2010",
+        "land-rover-discovery-egr-cooler-2010"
+      ],
+      "detail": "LTB00445 concerns low turbocharger boost rather than DPF regeneration, and LTB00498NAS1 concerns transfer-case whine rather than an EGR cooler."
+    },
+    {
+      "code": "discovery-air-compressor-scope-bounded",
+      "severity": "critical-correction",
+      "recordIds": [
+        "land-rover-discovery-air-suspension-compressor-2005"
+      ],
+      "detail": "LTB00420NAS3 supports a specified LR3/LR4 compressor condition but not the frozen universal cause, 2005-2016 scope or related-component replacement package."
+    },
+    {
+      "code": "discovery-dpf-regeneration-prescriptions-removed",
+      "severity": "safety-correction",
+      "recordIds": [
+        "land-rover-discovery-dpf-regen-2010"
+      ],
+      "detail": "Forced regeneration, chemical cleaning and generic highway-driving advice are removed because the retrieved exact source does not prescribe them."
+    },
+    {
+      "code": "discovery-egr-emissions-modification-advice-removed",
+      "severity": "safety-correction",
+      "recordIds": [
+        "land-rover-discovery-egr-cooler-2010"
+      ],
+      "detail": "Unsupported emissions-system modification advice, DTC attribution and labor estimates are removed."
+    },
+    {
+      "code": "discovery-height-sensor-replacement-contradicted",
+      "severity": "critical-correction",
+      "recordIds": [
+        "land-rover-discovery-l462-air-suspension-2017"
+      ],
+      "detail": "JLR warns against sensor replacement without a confirming sensor DTC and documents an expansion-chamber leak as an alternate cause for a specified 2017 condition."
+    },
+    {
+      "code": "discovery-water-ingress-universal-diy-advice-removed",
+      "severity": "safety-correction",
+      "recordIds": [
+        "land-rover-discovery-sunroof-drain-2005"
+      ],
+      "detail": "The universal sunroof-drain diagnosis and indiscriminate clearing, drilling, extension and module-cover prescriptions are removed."
+    },
+    {
+      "code": "discovery-terrain-response-parts-not-proven",
+      "severity": "critical-correction",
+      "recordIds": [
+        "land-rover-discovery-terrain-response-fault-2005"
+      ],
+      "detail": "The retrieved 2017 software bulletin is outside the page years and requires no parts, so it cannot support selector, transfer-motor or controller replacement on the frozen page."
+    },
+    {
+      "code": "discovery-forty-seven-new-campaign-identities-deferred",
+      "severity": "new-issues-deferred",
+      "recordIds": [],
+      "campaignNumbers": [
+        "00V036000",
+        "00V142000",
+        "00V142001",
+        "00V377000",
+        "00V423000",
+        "01V229001",
+        "02V022000",
+        "02V028000",
+        "03V133000",
+        "04V005000",
+        "04V006000",
+        "04V203000",
+        "05V376000",
+        "05V501000",
+        "05V502000",
+        "06V131000",
+        "07E047000",
+        "07V011000",
+        "08V248000",
+        "12E010000",
+        "14V618000",
+        "15V069000",
+        "15V092000",
+        "15V214000",
+        "15V386000",
+        "16V444000",
+        "18V337000",
+        "18V625000",
+        "19V040000",
+        "20V053000",
+        "20V143000",
+        "20V694000",
+        "21V117000",
+        "21V457000",
+        "21V635000",
+        "21V668000",
+        "22V523000",
+        "23V044000",
+        "23V393000",
+        "24V450000",
+        "26V248000",
+        "26V389000",
+        "26V458000",
+        "95V099000",
+        "96V247000",
+        "98V040000",
+        "99V237000"
+      ],
+      "detail": "Forty-seven recall/equipment identities remain deferred until the remaining-make audit is complete."
+    },
+    {
+      "code": "all-discovery-pages-preserved",
+      "severity": "seo-safety",
+      "recordIds": [
+        "land-rover-discovery-air-suspension-compressor-2005",
+        "land-rover-discovery-dpf-regen-2010",
+        "land-rover-discovery-egr-cooler-2010",
+        "land-rover-discovery-l462-air-suspension-2017",
+        "land-rover-discovery-sunroof-drain-2005",
+        "land-rover-discovery-terrain-response-fault-2005"
+      ],
+      "detail": "Every Discovery ID, title, category, indexed year set, trim set, engine set and publication state remains preserved."
+    }
+  ],
+  "pdfSources": {
+    "airCompressor": {
+      "url": "https://static.nhtsa.gov/odi/tsbs/2014/SB-10102127-9340.pdf",
+      "nhtsaDocumentId": "10102127",
+      "jlrReference": "LTB00420NAS3",
+      "pages": 21,
+      "sha256": "87dbe34363530e9a11f926ea556ee0a9db78a46c70ccb4c7b869bbe9eb51e213",
+      "visualInspection": "all 21 pages rendered and inspected"
+    },
+    "dpfP2002": {
+      "url": "https://static.nhtsa.gov/odi/tsbs/2019/MC-10158993-9999.pdf",
+      "nhtsaDocumentId": "10158993",
+      "jlrReference": "P2002-00 DPF diagnostic communication",
+      "pages": 1,
+      "sha256": "503cf8c1cb5498c627421ffe546b23ae082a79827c775cbccf85204dbdabcb49",
+      "visualInspection": "the single page rendered and inspected"
+    },
+    "heightSensor": {
+      "url": "https://static.nhtsa.gov/odi/tsbs/2015/SB-10106023-9340.pdf",
+      "nhtsaDocumentId": "10106023",
+      "jlrReference": "SSM 45714",
+      "pages": 1,
+      "sha256": "a183c2f5b071780a30b00c0b7b237b989c99464a4c6bb4a65bc13a60dfd9689d",
+      "visualInspection": "the single page rendered and inspected"
+    },
+    "expansionChamber": {
+      "url": "https://static.nhtsa.gov/odi/tsbs/2017/MC-10125265-9999.pdf",
+      "nhtsaDocumentId": "10125265",
+      "jlrReference": "SSM 73563",
+      "pages": 1,
+      "sha256": "61c51e088ad5a5bba9d6dc0c24cb8547c452d3adbdc343e76c10774d97a5a7e4",
+      "visualInspection": "the single page rendered and inspected"
+    },
+    "ltb00498Correction": {
+      "url": "https://static.nhtsa.gov/odi/tsbs/2013/MC-10214051-9999.pdf",
+      "nhtsaDocumentId": "10214051",
+      "jlrReference": "LTB00498NAS1",
+      "pages": 2,
+      "sha256": "f79f5575b28fb23c07881f3e24d0f34f684467dc4cd6ba98ea6907ba0bd95df5",
+      "visualInspection": "both pages rendered and inspected"
+    },
+    "terrainResponseAuto": {
+      "url": "https://static.nhtsa.gov/odi/tsbs/2017/MC-10127509-9999.pdf",
+      "nhtsaDocumentId": "10127509",
+      "jlrReference": "LTB01185NAS1",
+      "pages": 7,
+      "sha256": "8aaf1e81a3df888bd17ac9bca3d0f1c10481411ea296eb12daebdd64c7f3421d",
+      "visualInspection": "all 7 pages rendered and inspected"
+    }
+  },
+  "manufacturerCommunications": {
+    "source": "https://www.nhtsa.gov/nhtsa-datasets-and-apis#manufacturer-communications",
+    "modelAliases": [
+      "DISCOVERY",
+      "DISCOVERY I",
+      "DISCOVERY II",
+      "LR3",
+      "LR4"
+    ],
+    "rawDiscoveryRows": 2741,
+    "periodCounts": {
+      "1995-1999": 115,
+      "2000-2004": 115,
+      "2005-2009": 25,
+      "2010-2014": 74,
+      "2015-2019": 1380,
+      "2020-2024": 825,
+      "2025-2026": 207
+    },
+    "sourceFiles": [
+      {
+        "name": "MFR_COMMS_RECEIVED_1995-1999.csv",
+        "length": 3443097,
+        "sha256": "409a86bb7bb37a6313eae9212fb90a5ab45029fdcf2a69d0c0378eab080503db"
+      },
+      {
+        "name": "MFR_COMMS_RECEIVED_2000-2004.csv",
+        "length": 8952754,
+        "sha256": "5c755be52d35e060626402ebe6dfcccdf350ae379df5c06b49c71d08497e2264"
+      },
+      {
+        "name": "MFR_COMMS_RECEIVED_2005-2009.csv",
+        "length": 5457880,
+        "sha256": "04f72a7bf95530d116b1500c976a9e4d365e1c9a8b0433f58d60dbb36a58679b"
+      },
+      {
+        "name": "MFR_COMMS_RECEIVED_2010-2014.csv",
+        "length": 17332775,
+        "sha256": "41e66a9d81a859d469d51c6cdcbc107fc6284c64ed24065ccaf1fe02a52e4387"
+      },
+      {
+        "name": "MFR_COMMS_RECEIVED_2015-2019.csv",
+        "length": 144450847,
+        "sha256": "d6c2ff16880cc7b31cfebad94bda08c3e8b3b2c3f28d56d5b1bb810c8b878a2e"
+      },
+      {
+        "name": "MFR_COMMS_RECEIVED_2020-2024.csv",
+        "length": 125521629,
+        "sha256": "3b3ca3d690e33386d1d315a0f966285ae8cccb99c45c2386ada164c5e925c3cf"
+      },
+      {
+        "name": "MFR_COMMS_RECEIVED_2025-2026.csv",
+        "length": 77786229,
+        "sha256": "419ebda2f1c1bf22e2b0862858d61699c25e61d73842f9031e796f1fafefba4c"
+      }
+    ],
+    "exactFindings": {
+      "airCompressor": "LTB00420NAS3 supports a bounded LR3/LR4 compressor condition and procedure, not the full frozen cause and year scope.",
+      "dpf": "The complete inventory contains no LTB00445 DPF-regeneration bulletin; LTB00445 concerns low turbocharger boost pressure.",
+      "egr": "LTB00498NAS1 concerns transfer-case whine and chain replacement, not an EGR cooler.",
+      "waterIngress": "The inventory contains model/VIN-specific water-ingress material, but no public source proves the frozen 2005-2024 universal diagnosis and repair package."
+    }
+  },
+  "recallInventory": {
+    "source": "https://www.nhtsa.gov/nhtsa-datasets-and-apis#recalls",
+    "modelAliases": [
+      "DISCOVERY",
+      "DISCOVERY I",
+      "DISCOVERY II",
+      "LR3",
+      "LR4"
+    ],
+    "rawDiscoveryRows": 465,
+    "uniqueCampaignYearModelRows": 122,
+    "campaignCount": 47,
+    "campaigns": [
+      "00V036000",
+      "00V142000",
+      "00V142001",
+      "00V377000",
+      "00V423000",
+      "01V229001",
+      "02V022000",
+      "02V028000",
+      "03V133000",
+      "04V005000",
+      "04V006000",
+      "04V203000",
+      "05V376000",
+      "05V501000",
+      "05V502000",
+      "06V131000",
+      "07E047000",
+      "07V011000",
+      "08V248000",
+      "12E010000",
+      "14V618000",
+      "15V069000",
+      "15V092000",
+      "15V214000",
+      "15V386000",
+      "16V444000",
+      "18V337000",
+      "18V625000",
+      "19V040000",
+      "20V053000",
+      "20V143000",
+      "20V694000",
+      "21V117000",
+      "21V457000",
+      "21V635000",
+      "21V668000",
+      "22V523000",
+      "23V044000",
+      "23V393000",
+      "24V450000",
+      "26V248000",
+      "26V389000",
+      "26V458000",
+      "95V099000",
+      "96V247000",
+      "98V040000",
+      "99V237000"
+    ],
+    "mappedCampaigns": [],
+    "deferredCampaigns": [
+      "00V036000",
+      "00V142000",
+      "00V142001",
+      "00V377000",
+      "00V423000",
+      "01V229001",
+      "02V022000",
+      "02V028000",
+      "03V133000",
+      "04V005000",
+      "04V006000",
+      "04V203000",
+      "05V376000",
+      "05V501000",
+      "05V502000",
+      "06V131000",
+      "07E047000",
+      "07V011000",
+      "08V248000",
+      "12E010000",
+      "14V618000",
+      "15V069000",
+      "15V092000",
+      "15V214000",
+      "15V386000",
+      "16V444000",
+      "18V337000",
+      "18V625000",
+      "19V040000",
+      "20V053000",
+      "20V143000",
+      "20V694000",
+      "21V117000",
+      "21V457000",
+      "21V635000",
+      "21V668000",
+      "22V523000",
+      "23V044000",
+      "23V393000",
+      "24V450000",
+      "26V248000",
+      "26V389000",
+      "26V458000",
+      "95V099000",
+      "96V247000",
+      "98V040000",
+      "99V237000"
+    ],
+    "sourceFiles": [
+      {
+        "name": "FLAT_RCL_PRE_2010.txt",
+        "discoveryRows": 61,
+        "length": 83786245,
+        "sha256": "71e6e325e2d69d204776fb32d83dad4fd95436a2f7890da54d49622d77a36232"
+      },
+      {
+        "name": "FLAT_RCL_POST_2010.txt",
+        "discoveryRows": 404,
+        "length": 309278972,
+        "sha256": "4803a7f298f1d850736fe55830f4d31b004577424cb6429988c5864786f76a70"
+      }
+    ]
+  },
+  "mappedCampaigns": [],
+  "deferredCampaigns": [
+    "00V036000",
+    "00V142000",
+    "00V142001",
+    "00V377000",
+    "00V423000",
+    "01V229001",
+    "02V022000",
+    "02V028000",
+    "03V133000",
+    "04V005000",
+    "04V006000",
+    "04V203000",
+    "05V376000",
+    "05V501000",
+    "05V502000",
+    "06V131000",
+    "07E047000",
+    "07V011000",
+    "08V248000",
+    "12E010000",
+    "14V618000",
+    "15V069000",
+    "15V092000",
+    "15V214000",
+    "15V386000",
+    "16V444000",
+    "18V337000",
+    "18V625000",
+    "19V040000",
+    "20V053000",
+    "20V143000",
+    "20V694000",
+    "21V117000",
+    "21V457000",
+    "21V635000",
+    "21V668000",
+    "22V523000",
+    "23V044000",
+    "23V393000",
+    "24V450000",
+    "26V248000",
+    "26V389000",
+    "26V458000",
+    "95V099000",
+    "96V247000",
+    "98V040000",
+    "99V237000"
+  ],
+  "summary": {
+    "targeted_safety_cleanup_pending_source": 6,
+    "total": 6
+  },
+  "rows": [
+    {
+      "id": "land-rover-discovery-air-suspension-compressor-2005",
+      "action": "targeted_safety_cleanup_pending_source",
+      "reason": "The complete official inventory does not prove the full frozen claim; false source associations and unsafe or unverified prescriptions are removed while the indexed identity remains intact.",
+      "commerceDecision": "dealer-only-vin-and-compressor-design-specific-no-retail-link",
+      "evidence": [
+        {
+          "type": "frozen-record",
+          "snapshotHash": "3f13700b582e6864d62580851752656db123b4bdb6b24a30e3ffbb9deaa4b9c8",
+          "id": "land-rover-discovery-air-suspension-compressor-2005"
+        },
+        {
+          "type": "complete-official-inventory",
+          "manufacturerCommunicationRows": 2741,
+          "recallRows": 465,
+          "uniqueRecallRows": 122,
+          "campaigns": 47,
+          "finding": "No exact public primary package proves the full frozen title/year diagnosis and repair scope."
+        },
+        {
+          "url": "https://static.nhtsa.gov/odi/tsbs/2014/SB-10102127-9340.pdf",
+          "nhtsaDocumentId": "10102127",
+          "jlrReference": "LTB00420NAS3",
+          "pages": 21,
+          "sha256": "87dbe34363530e9a11f926ea556ee0a9db78a46c70ccb4c7b869bbe9eb51e213",
+          "visualInspection": "all 21 pages rendered and inspected",
+          "finding": "Supports a bounded LR3/LR4 compressor condition but not the full frozen cause and year scope."
+        }
+      ],
+      "before": {
+        "make": "Land Rover",
+        "model": "Discovery",
+        "years": [
+          2005,
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016
+        ],
+        "trims": [],
+        "engines": [
+          "4.0L V6",
+          "4.4L V8",
+          "3.0L TDV6",
+          "5.0L V8"
+        ],
+        "category": "suspension",
+        "title": "Air Suspension Compressor Overheating and Failure",
+        "description": "The LR3/LR4 Discovery uses an air suspension system with a Hitachi compressor that overheats and fails. The compressor is mounted in a location prone to road spray and debris, accelerating corrosion. When air springs leak, the compressor runs continuously until its thermal fuse blows. This is considered the most common and predictable failure on the LR3/LR4.",
+        "solution": "Replace the air suspension compressor. Install an aftermarket filter and relocate it away from road spray if possible. Replace all leaking air springs at the same time. Consider the AMK compressor upgrade for improved reliability.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Vehicle drops to bump stops overnight",
+          "Suspension fault message",
+          "Compressor runs but vehicle does not rise",
+          "No noise from compressor at all (burned out)",
+          "Vehicle sits level but low"
+        ],
+        "affectedSystems": [
+          "Suspension",
+          "Air Suspension"
+        ],
+        "dtcCodes": [
+          "C1A20"
+        ],
+        "estimatedCostLow": 1000,
+        "estimatedCostHigh": 3000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "forum",
+            "title": "disco3.co.uk — definitive LR3/LR4 air suspension compressor replacement guide"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "source": "disco3.co.uk",
+            "content": "Arnott P-2618 remanufactured compressor for LR3/LR4 — comes with new relay, filter, and mounting hardware. Better value than OEM with comparable quality.",
+            "upvotes": 234,
+            "partName": "Air Suspension Compressor",
+            "partBrand": "Arnott",
+            "partNumber": "P-2618",
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 4500,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-03-05",
+        "reviewedOn": "2026-03-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "land-rover-range-rover-air-suspension-compressor-2003",
+          "audi-a4-allroad-air-suspension-2013",
+          "jaguar-xj-air-suspension-compressor-2004"
+        ]
+      },
+      "beforeSha256": "502a32aa4d657a62b1efc4b494b6b892eb7e076c658b4dda1863da5f67332ad8",
+      "proposal": {
+        "make": "Land Rover",
+        "model": "Discovery",
+        "years": [
+          2005,
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016
+        ],
+        "trims": [],
+        "engines": [
+          "4.0L V6",
+          "4.4L V8",
+          "3.0L TDV6",
+          "5.0L V8"
+        ],
+        "category": "suspension",
+        "title": "Air Suspension Compressor Overheating and Failure",
+        "description": "JLR LTB00420NAS3 documents a narrower condition on specified 2005-2009 LR3 and 2010-2012 LR4 vehicles: the suspension warning may appear, the vehicle may not raise, C1A20-64 may be stored, and the installed Hitachi or earlier AMK compressor determines the applicable procedure. The bulletin does not establish one universal cause or repair for every 2005-2016 Discovery represented by this indexed page.",
+        "solution": "A trained technician should confirm the VIN, compressor design and stored fault before following the applicable JLR procedure and current parts catalog. Do not replace every air spring, relocate intake hardware or order an aftermarket compressor from this generic page; leaks and other suspension faults require their own diagnosis.",
+        "severity": "high",
+        "confidence": "low",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "JLR LTB00420NAS3 - Air Suspension Warning / Vehicle Will Not Raise / C1A20-64",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2014/SB-10102127-9340.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-08",
+        "contentUpdatedOn": "2026-08-08",
+        "contentUpdateSummary": "Bounded the compressor condition to LTB00420NAS3 and removed unsupported universal causation, all-year scope, related-component replacement and unverified commerce.",
+        "relatedIssueIds": []
+      },
+      "proposalSha256": "ba9e4c0c398145a7a9d30cc3e1c4b9b8002043b70b836dc47f90b59145e81929",
+      "changedFields": [
+        "description",
+        "solution",
+        "confidence",
+        "symptoms",
+        "affectedSystems",
+        "dtcCodes",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "communityRecommendations",
+        "reportCount",
+        "source",
+        "lastReportedByOwners",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary",
+        "relatedIssueIds"
+      ]
+    },
+    {
+      "id": "land-rover-discovery-dpf-regen-2010",
+      "action": "targeted_safety_cleanup_pending_source",
+      "reason": "The complete official inventory does not prove the full frozen claim; false source associations and unsafe or unverified prescriptions are removed while the indexed identity remains intact.",
+      "commerceDecision": "dealer-only-diagnostic-remedy-no-retail-part",
+      "evidence": [
+        {
+          "type": "frozen-record",
+          "snapshotHash": "3f13700b582e6864d62580851752656db123b4bdb6b24a30e3ffbb9deaa4b9c8",
+          "id": "land-rover-discovery-dpf-regen-2010"
+        },
+        {
+          "type": "complete-official-inventory",
+          "manufacturerCommunicationRows": 2741,
+          "recallRows": 465,
+          "uniqueRecallRows": 122,
+          "campaigns": 47,
+          "finding": "No exact public primary package proves the full frozen title/year diagnosis and repair scope."
+        },
+        {
+          "url": "https://static.nhtsa.gov/odi/tsbs/2019/MC-10158993-9999.pdf",
+          "nhtsaDocumentId": "10158993",
+          "jlrReference": "P2002-00 DPF diagnostic communication",
+          "pages": 1,
+          "sha256": "503cf8c1cb5498c627421ffe546b23ae082a79827c775cbccf85204dbdabcb49",
+          "visualInspection": "the single page rendered and inspected",
+          "finding": "Supports a narrower 2017-2019 P2002-00 diagnostic condition, not the former LTB00445 association or generic regeneration prescription."
+        }
+      ],
+      "before": {
+        "make": "Land Rover",
+        "model": "Discovery",
+        "years": [
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020
+        ],
+        "trims": [],
+        "engines": [
+          "3.0L TDV6",
+          "3.0L SDV6"
+        ],
+        "category": "engine",
+        "title": "Diesel Particulate Filter (DPF) Regeneration Issues",
+        "description": "Diesel Discovery models suffer from DPF regeneration problems, especially when used for short journeys. The DPF becomes overloaded with soot and the active regeneration cycle cannot complete, leading to a blocked filter. Warning lights illuminate and the engine enters limp mode. Repeated failed regenerations cause the DPF to become permanently blocked, requiring expensive replacement.",
+        "solution": "Perform a forced DPF regeneration using JLR diagnostic equipment. If the DPF is heavily loaded but not damaged, a professional chemical clean can restore it. Replace the DPF if it is beyond cleaning. Prevent future issues by taking the vehicle on regular extended highway drives to allow passive regeneration.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "DPF warning light on dashboard",
+          "Reduced engine power / limp mode",
+          "Increased fuel consumption during regen attempt",
+          "Hot exhaust smell",
+          "Engine fan running at high speed",
+          "Rough idle"
+        ],
+        "affectedSystems": [
+          "Engine",
+          "Exhaust",
+          "Emissions"
+        ],
+        "dtcCodes": [
+          "P2463",
+          "P2002",
+          "P244B"
+        ],
+        "estimatedCostLow": 300,
+        "estimatedCostHigh": 3500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "JLR TSB LTB00445 — DPF regeneration strategy update for TDV6/SDV6"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "warning",
+            "source": "disco3.co.uk",
+            "content": "If you only do short trips, a diesel Discovery is the wrong vehicle. The DPF needs at least 20 minutes of highway driving weekly to stay clean.",
+            "upvotes": 234,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 2100,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-01-30",
+        "reviewedOn": "2026-03-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "jaguar-xf-diesel-dpf-regen-2009",
+          "land-rover-range-rover-sport-dpf-regen-2014"
+        ]
+      },
+      "beforeSha256": "018b571b340261c191b4f9694f36b53b8214df5d5a565f6bb2944af381530393",
+      "proposal": {
+        "make": "Land Rover",
+        "model": "Discovery",
+        "years": [
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020
+        ],
+        "trims": [],
+        "engines": [
+          "3.0L TDV6",
+          "3.0L SDV6"
+        ],
+        "category": "engine",
+        "title": "Diesel Particulate Filter (DPF) Regeneration Issues",
+        "description": "The former LTB00445 citation does not document a DPF regeneration strategy; that bulletin concerns low turbocharger boost pressure. A separate JLR communication covers P2002-00 on specified 2017-2019 All New Discovery 3.0 TDV6 vehicles and says the condition is usually not paired with the red or amber unsuccessful-regeneration warnings. That narrower evidence does not prove the frozen 2010-2020 TDV6/SDV6 diagnosis.",
+        "solution": "Have the exact fault codes, exhaust system and related symptoms diagnosed using the VIN-applicable TOPIx workflow. Do not initiate a forced regeneration, chemical treatment or highway-driving regimen from this page; the retrieved JLR document calls for diagnosis while JLR investigates the P2002-00 condition.",
+        "severity": "medium",
+        "confidence": "low",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "JLR P2002-00 Diagnostic Communication - 2017-2019 All New Discovery 3.0 TDV6",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2019/MC-10158993-9999.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-08",
+        "contentUpdatedOn": "2026-08-08",
+        "contentUpdateSummary": "Removed the false LTB00445 DPF association and unsupported forced-regeneration, chemical-cleaning and generic driving prescriptions.",
+        "relatedIssueIds": []
+      },
+      "proposalSha256": "d03084dac7457f74c8be873797409ced5b8c87df4d5f5858c146e76e1b7885d8",
+      "changedFields": [
+        "description",
+        "solution",
+        "confidence",
+        "symptoms",
+        "affectedSystems",
+        "dtcCodes",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "communityRecommendations",
+        "reportCount",
+        "source",
+        "lastReportedByOwners",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary",
+        "relatedIssueIds"
+      ]
+    },
+    {
+      "id": "land-rover-discovery-egr-cooler-2010",
+      "action": "targeted_safety_cleanup_pending_source",
+      "reason": "The complete official inventory does not prove the full frozen claim; false source associations and unsafe or unverified prescriptions are removed while the indexed identity remains intact.",
+      "commerceDecision": "no-part-until-exact-primary-source-and-fitment-are-verified",
+      "evidence": [
+        {
+          "type": "frozen-record",
+          "snapshotHash": "3f13700b582e6864d62580851752656db123b4bdb6b24a30e3ffbb9deaa4b9c8",
+          "id": "land-rover-discovery-egr-cooler-2010"
+        },
+        {
+          "type": "complete-official-inventory",
+          "manufacturerCommunicationRows": 2741,
+          "recallRows": 465,
+          "uniqueRecallRows": 122,
+          "campaigns": 47,
+          "finding": "No exact public primary package proves the full frozen title/year diagnosis and repair scope."
+        },
+        {
+          "url": "https://static.nhtsa.gov/odi/tsbs/2013/MC-10214051-9999.pdf",
+          "nhtsaDocumentId": "10214051",
+          "jlrReference": "LTB00498NAS1",
+          "pages": 2,
+          "sha256": "f79f5575b28fb23c07881f3e24d0f34f684467dc4cd6ba98ea6907ba0bd95df5",
+          "visualInspection": "both pages rendered and inspected",
+          "finding": "Proves LTB00498NAS1 concerns transfer-case whine rather than an EGR cooler."
+        }
+      ],
+      "before": {
+        "make": "Land Rover",
+        "model": "Discovery",
+        "years": [
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018
+        ],
+        "trims": [],
+        "engines": [
+          "3.0L TDV6",
+          "3.0L SDV6"
+        ],
+        "category": "engine",
+        "title": "EGR Cooler Failure and Coolant Leak (TDV6/SDV6)",
+        "description": "The EGR cooler on the 3.0L TDV6 and SDV6 diesel engines develops internal cracks that allow coolant to leak into the exhaust system. This causes white smoke from the exhaust, gradual coolant loss, and can contaminate the DPF. In the worst case, coolant enters the combustion chambers and causes hydrolock. This is considered one of the most serious diesel Discovery failures.",
+        "solution": "Replace the EGR cooler with the updated JLR design. Flush the cooling system and check for coolant contamination in the intake and exhaust. Inspect the DPF for coolant damage. Some owners delete the EGR system entirely (off-road use only). Budget for 8-12 hours labor.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "White smoke from exhaust",
+          "Gradual coolant loss with no external leak",
+          "Sweet smell from exhaust",
+          "Rough running or misfires",
+          "Overheating",
+          "Milky residue in coolant overflow"
+        ],
+        "affectedSystems": [
+          "Engine",
+          "Cooling System",
+          "Emissions",
+          "Exhaust"
+        ],
+        "dtcCodes": [
+          "P0401",
+          "P0402",
+          "P2BAD"
+        ],
+        "estimatedCostLow": 2000,
+        "estimatedCostHigh": 5000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "JLR TSB LTB00498 — TDV6/SDV6 EGR cooler replacement with improved design"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "warning",
+            "source": "disco3.co.uk",
+            "content": "Monitor coolant level weekly on TDV6/SDV6 models. Any unexplained coolant loss should be investigated immediately — EGR cooler failure can destroy the engine.",
+            "upvotes": 198,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 1500,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-12-18",
+        "reviewedOn": "2026-03-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "beforeSha256": "30a1145723e90a444898393df6f400f107a313624755abe141f33ba6d5ccad1c",
+      "proposal": {
+        "make": "Land Rover",
+        "model": "Discovery",
+        "years": [
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018
+        ],
+        "trims": [],
+        "engines": [
+          "3.0L TDV6",
+          "3.0L SDV6"
+        ],
+        "category": "engine",
+        "title": "EGR Cooler Failure and Coolant Leak (TDV6/SDV6)",
+        "description": "JLR LTB00498NAS1 is a transfer-case whine bulletin for specified 2011-2012 LR4 vehicles; it does not concern an EGR cooler. The complete official communications inventory did not provide an exact public primary source that proves the frozen 2010-2018 EGR-cooler cause, code set or repair scope.",
+        "solution": "If coolant is being lost, exhaust smoke appears, the engine misfires or overheating is possible, stop when safe and arrange professional cooling, exhaust and engine diagnosis. Do not modify emissions equipment or order an EGR cooler from this page until the exact failed component and VIN-specific fitment are verified.",
+        "severity": "high",
+        "confidence": "low",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb-correction",
+            "title": "JLR LTB00498NAS1 - Whine Noise From Transfer Case at High Speeds (not an EGR-cooler bulletin)",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2013/MC-10214051-9999.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-08",
+        "contentUpdatedOn": "2026-08-08",
+        "contentUpdateSummary": "Corrected the false LTB00498 EGR association and removed unsupported DTCs, labor estimate, emissions modification and unverified part prescription.",
+        "relatedIssueIds": []
+      },
+      "proposalSha256": "c49a7c11dc28070de2e422cfd47b0b723d6c470209c33fce9fb0bf4109cd6f93",
+      "changedFields": [
+        "description",
+        "solution",
+        "confidence",
+        "symptoms",
+        "affectedSystems",
+        "dtcCodes",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "communityRecommendations",
+        "reportCount",
+        "source",
+        "lastReportedByOwners",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ]
+    },
+    {
+      "id": "land-rover-discovery-l462-air-suspension-2017",
+      "action": "targeted_safety_cleanup_pending_source",
+      "reason": "The complete official inventory does not prove the full frozen claim; false source associations and unsafe or unverified prescriptions are removed while the indexed identity remains intact.",
+      "commerceDecision": "no-height-sensor-link-until-dtc-and-root-cause-are-verified",
+      "evidence": [
+        {
+          "type": "frozen-record",
+          "snapshotHash": "3f13700b582e6864d62580851752656db123b4bdb6b24a30e3ffbb9deaa4b9c8",
+          "id": "land-rover-discovery-l462-air-suspension-2017"
+        },
+        {
+          "type": "complete-official-inventory",
+          "manufacturerCommunicationRows": 2741,
+          "recallRows": 465,
+          "uniqueRecallRows": 122,
+          "campaigns": 47,
+          "finding": "No exact public primary package proves the full frozen title/year diagnosis and repair scope."
+        },
+        {
+          "url": "https://static.nhtsa.gov/odi/tsbs/2015/SB-10106023-9340.pdf",
+          "nhtsaDocumentId": "10106023",
+          "jlrReference": "SSM 45714",
+          "pages": 1,
+          "sha256": "a183c2f5b071780a30b00c0b7b237b989c99464a4c6bb4a65bc13a60dfd9689d",
+          "visualInspection": "the single page rendered and inspected",
+          "finding": "Warns against unnecessary height-sensor replacement."
+        },
+        {
+          "url": "https://static.nhtsa.gov/odi/tsbs/2017/MC-10125265-9999.pdf",
+          "nhtsaDocumentId": "10125265",
+          "jlrReference": "SSM 73563",
+          "pages": 1,
+          "sha256": "61c51e088ad5a5bba9d6dc0c24cb8547c452d3adbdc343e76c10774d97a5a7e4",
+          "visualInspection": "the single page rendered and inspected",
+          "finding": "Documents an alternate expansion-chamber leak cause on a specified 2017 Discovery condition."
+        }
+      ],
+      "before": {
+        "make": "Land Rover",
+        "model": "Discovery",
+        "years": [
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [
+          "2.0L Ingenium Turbo",
+          "3.0L I6 Mild Hybrid",
+          "3.0L V6 Supercharged"
+        ],
+        "category": "suspension",
+        "title": "L462 Discovery Air Suspension Height Sensor Failure",
+        "description": "The current-generation L462 Discovery continues the air suspension tradition with its own set of issues. The ride height sensors are particularly prone to failure, giving incorrect height readings that cause the vehicle to sit at uneven heights. The sensors are located at each corner and exposed to road debris. Failure of one sensor affects the entire system's ability to level the vehicle.",
+        "solution": "Replace the faulty ride height sensor(s). These are accessible at each wheel without lifting the vehicle significantly. Recalibrate the air suspension system using JLR Pathfinder diagnostics after sensor replacement.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Vehicle sitting at different heights side to side",
+          "Suspension fault warning",
+          "Ride height adjustment not working",
+          "Vehicle leans to one side",
+          "Harsh ride quality"
+        ],
+        "affectedSystems": [
+          "Suspension",
+          "Air Suspension",
+          "Electrical"
+        ],
+        "dtcCodes": [
+          "C1A20",
+          "C1A23"
+        ],
+        "estimatedCostLow": 300,
+        "estimatedCostHigh": 800,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "forum",
+            "title": "LandRoverForums.com — L462 Discovery air suspension height sensor replacement"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "source": "LandRoverForums.com",
+            "content": "The height sensor links are cheap plastic and break easily. Keep a spare in the glovebox — a broken link gives the same symptoms as a bad sensor.",
+            "upvotes": 87,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 680,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-02-18",
+        "reviewedOn": "2026-03-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "beforeSha256": "a88a85833f29dc0b723d4ece4c462289aabd74668a09fd68c845c1ec891a76d3",
+      "proposal": {
+        "make": "Land Rover",
+        "model": "Discovery",
+        "years": [
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [
+          "2.0L Ingenium Turbo",
+          "3.0L I6 Mild Hybrid",
+          "3.0L V6 Supercharged"
+        ],
+        "category": "suspension",
+        "title": "L462 Discovery Air Suspension Height Sensor Failure",
+        "description": "The retrieved JLR documents do not establish one universal 2017-2025 Discovery height-sensor failure. SSM 45714 warns against replacing a height sensor when no height-sensor DTC is present, while SSM 73563 attributes a specified 2017 Discovery normal-height-only condition with C1A20-64/C1131-92 to an air-supply-unit expansion-chamber leak.",
+        "solution": "Use the stored DTCs, ride-height behavior and VIN-applicable JLR workflow to identify the actual fault. Do not replace height sensors, linkage pieces or other suspension parts before confirming the root cause and current VIN-specific part number.",
+        "severity": "medium",
+        "confidence": "low",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "JLR SSM 45714 - Avoid Unnecessary Height-Sensor Replacement",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2015/SB-10106023-9340.pdf"
+          },
+          {
+            "type": "tsb",
+            "title": "JLR SSM 73563 - Normal Height Only / Air-Supply Expansion-Chamber Leak",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2017/MC-10125265-9999.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-08",
+        "contentUpdatedOn": "2026-08-08",
+        "contentUpdateSummary": "Removed the universal height-sensor diagnosis and unverified replacement-link advice; added JLR evidence showing diagnosis-dependent alternate causes.",
+        "relatedIssueIds": []
+      },
+      "proposalSha256": "253adc0b32f4c4e614fe6871ccb369cbd97b070c2cc06a523b6ee29f26e7241f",
+      "changedFields": [
+        "description",
+        "solution",
+        "confidence",
+        "symptoms",
+        "affectedSystems",
+        "dtcCodes",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "communityRecommendations",
+        "reportCount",
+        "source",
+        "lastReportedByOwners",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ]
+    },
+    {
+      "id": "land-rover-discovery-sunroof-drain-2005",
+      "action": "targeted_safety_cleanup_pending_source",
+      "reason": "The complete official inventory does not prove the full frozen claim; false source associations and unsafe or unverified prescriptions are removed while the indexed identity remains intact.",
+      "commerceDecision": "diagnostic-or-body-sealing-procedure-no-universal-retail-part",
+      "evidence": [
+        {
+          "type": "frozen-record",
+          "snapshotHash": "3f13700b582e6864d62580851752656db123b4bdb6b24a30e3ffbb9deaa4b9c8",
+          "id": "land-rover-discovery-sunroof-drain-2005"
+        },
+        {
+          "type": "complete-official-inventory",
+          "manufacturerCommunicationRows": 2741,
+          "recallRows": 465,
+          "uniqueRecallRows": 122,
+          "campaigns": 47,
+          "finding": "No exact public primary package proves the full frozen title/year diagnosis and repair scope."
+        }
+      ],
+      "before": {
+        "make": "Land Rover",
+        "model": "Discovery",
+        "years": [
+          2005,
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "body",
+        "title": "Sunroof and A-Pillar Water Leaks",
+        "description": "The Discovery is notorious for water leaks through blocked sunroof drains and deteriorated A-pillar seals. Water enters the cabin through the headliner and runs down the A-pillars, pooling in the front footwells. On LR3/LR4 models, this can damage the BECM (body electronics control module) located under the driver seat. The twin sunroof design with extra-long drain tubes is particularly prone to blockage.",
+        "solution": "Clear all four sunroof drain tubes with compressed air. Replace the A-pillar seals if worn. Apply butyl sealant around the sunroof frame. For severe cases, inspect and protect the BECM with a waterproof cover. Some owners install drain tube extensions to route water further from the body.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Water dripping from headliner or A-pillars",
+          "Wet carpets in footwells after rain",
+          "Musty smell in cabin",
+          "Electrical faults from wet BECM",
+          "Water stains on headliner"
+        ],
+        "affectedSystems": [
+          "Body",
+          "Interior",
+          "Electrical"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 100,
+        "estimatedCostHigh": 1200,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "forum",
+            "title": "disco3.co.uk — LR3/LR4/L462 water leak diagnosis and prevention guide"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "source": "disco3.co.uk",
+            "content": "Clear the sunroof drains every spring and fall. It takes 10 minutes with compressed air and prevents thousands of dollars in water damage.",
+            "upvotes": 267,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 3200,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-02-12",
+        "reviewedOn": "2026-03-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "land-rover-discovery-sport-panoramic-roof-leak-2015",
+          "land-rover-range-rover-sunroof-drain-2003"
+        ]
+      },
+      "beforeSha256": "ae5a6d0d49b3ef22db447ea26424f017a4e4f735609aab6ea1f91cd71b259486",
+      "proposal": {
+        "make": "Land Rover",
+        "model": "Discovery",
+        "years": [
+          2005,
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "body",
+        "title": "Sunroof and A-Pillar Water Leaks",
+        "description": "Land Rover communications document multiple model-, build- and location-specific water-ingress conditions, but the complete official inventory did not provide one public primary source proving that every 2005-2024 Discovery leak represented by this page originates at the sunroof drains or A-pillars.",
+        "solution": "Have the entry point traced with controlled leak testing before disturbing trim, drains, glass or electrical modules. Avoid indiscriminate high-pressure drain clearing, drilling, generic drain extensions or improvised electronic-module covers; use the VIN- and leak-location-specific body repair procedure.",
+        "severity": "medium",
+        "confidence": "low",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-08",
+        "contentUpdatedOn": "2026-08-08",
+        "contentUpdateSummary": "Removed the universal sunroof/A-pillar diagnosis and unsupported drain-clearing, sealant, extension and module-waterproofing prescriptions pending an exact source.",
+        "relatedIssueIds": []
+      },
+      "proposalSha256": "37601d673d4285f3e1df28d614ee86ecb02cab564e84f67a7d463186edc5b2cc",
+      "changedFields": [
+        "description",
+        "solution",
+        "confidence",
+        "symptoms",
+        "affectedSystems",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "communityRecommendations",
+        "reportCount",
+        "source",
+        "lastReportedByOwners",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary",
+        "relatedIssueIds"
+      ]
+    },
+    {
+      "id": "land-rover-discovery-terrain-response-fault-2005",
+      "action": "targeted_safety_cleanup_pending_source",
+      "reason": "The complete official inventory does not prove the full frozen claim; false source associations and unsafe or unverified prescriptions are removed while the indexed identity remains intact.",
+      "commerceDecision": "software-or-diagnostic-remedy-no-retail-part",
+      "evidence": [
+        {
+          "type": "frozen-record",
+          "snapshotHash": "3f13700b582e6864d62580851752656db123b4bdb6b24a30e3ffbb9deaa4b9c8",
+          "id": "land-rover-discovery-terrain-response-fault-2005"
+        },
+        {
+          "type": "complete-official-inventory",
+          "manufacturerCommunicationRows": 2741,
+          "recallRows": 465,
+          "uniqueRecallRows": 122,
+          "campaigns": 47,
+          "finding": "No exact public primary package proves the full frozen title/year diagnosis and repair scope."
+        },
+        {
+          "url": "https://static.nhtsa.gov/odi/tsbs/2017/MC-10127509-9999.pdf",
+          "nhtsaDocumentId": "10127509",
+          "jlrReference": "LTB01185NAS1",
+          "pages": 7,
+          "sha256": "8aaf1e81a3df888bd17ac9bca3d0f1c10481411ea296eb12daebdd64c7f3421d",
+          "visualInspection": "all 7 pages rendered and inspected",
+          "finding": "Documents a software condition on 2017 Discovery, outside the frozen 2005-2016 scope, with no parts required."
+        }
+      ],
+      "before": {
+        "make": "Land Rover",
+        "model": "Discovery",
+        "years": [
+          2005,
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "drivetrain",
+        "title": "Terrain Response System Faults and Mode Selection Failure",
+        "description": "The Terrain Response system on the LR3/LR4 develops faults where mode selection fails or the system defaults to General mode only. The rotary selector switch wears out internally, and the shift motor on the transfer case can fail. Corroded connectors at the transfer case are a common root cause. The vehicle remains drivable in General mode but loses off-road capability.",
+        "solution": "Clean and inspect the Terrain Response selector switch and connectors. Replace the shift motor on the transfer case if faulty. Check the transfer case wiring harness for corrosion — a common failure point is the connector near the exhaust. Update the transfer case ECU software at a dealer.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Terrain Response fault on dashboard",
+          "Unable to change terrain modes",
+          "Stuck in General/Normal mode",
+          "HDC (Hill Descent Control) fault",
+          "Low range not engaging"
+        ],
+        "affectedSystems": [
+          "Drivetrain",
+          "Transfer Case",
+          "Electrical"
+        ],
+        "dtcCodes": [
+          "P1889",
+          "U0102",
+          "C1A00"
+        ],
+        "estimatedCostLow": 300,
+        "estimatedCostHigh": 1800,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "forum",
+            "title": "disco3.co.uk — Terrain Response fault diagnosis flowchart LR3/LR4"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "source": "disco3.co.uk",
+            "content": "Before replacing expensive parts, clean all the connectors at the transfer case with electrical contact cleaner. Corrosion here causes 70% of Terrain Response faults.",
+            "upvotes": 178,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 1600,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-12-10",
+        "reviewedOn": "2026-03-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "beforeSha256": "c02966bfa37a4c867965e9a6bdcdf9faa3d2a2b22cf3f716298ed2d030e11c33",
+      "proposal": {
+        "make": "Land Rover",
+        "model": "Discovery",
+        "years": [
+          2005,
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "drivetrain",
+        "title": "Terrain Response System Faults and Mode Selection Failure",
+        "description": "A retrieved JLR bulletin documents a software-related Terrain Response Auto-mode condition on specified 2017 Discovery vehicles and says no parts are required. That vehicle year is outside this page's frozen 2005-2016 scope, and the document does not prove universal selector, shift-motor, connector-corrosion or control-module causes for the indexed identity.",
+        "solution": "Record the exact warning, selected mode and stored DTCs, then use the VIN-applicable JLR diagnostic workflow. Do not order a selector, transfer-case motor or control module from this page; some Terrain Response conditions require software or diagnosis rather than parts.",
+        "severity": "medium",
+        "confidence": "low",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb-correction",
+            "title": "JLR LTB01185NAS1 - 2017 Discovery Terrain Response Auto Mode Software Condition",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2017/MC-10127509-9999.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-08",
+        "contentUpdatedOn": "2026-08-08",
+        "contentUpdateSummary": "Removed unsupported failure-rate, DTC and parts prescriptions and separated an out-of-scope 2017 software condition from the frozen 2005-2016 page.",
+        "relatedIssueIds": []
+      },
+      "proposalSha256": "2568f118f4fff288854b532edfcb8377c4612256bb3e589462e0ebbea2f0afc6",
+      "changedFields": [
+        "description",
+        "solution",
+        "confidence",
+        "symptoms",
+        "affectedSystems",
+        "dtcCodes",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "communityRecommendations",
+        "reportCount",
+        "source",
+        "lastReportedByOwners",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ]
+    }
+  ]
+}
