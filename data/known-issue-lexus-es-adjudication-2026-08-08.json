@@ -1,0 +1,983 @@
+{
+  "schemaVersion": 1,
+  "status": "proposal-only",
+  "auditStage": "model-primary-source-adjudication",
+  "requiresIndependentApproval": true,
+  "generatedOn": "2026-08-08",
+  "make": "Lexus",
+  "model": "ES",
+  "completionStatement": "All four frozen ES pages preserve indexed identity: the dashboard page receives a bounded ZLD/ZLZ rewrite, while the false brake, 2GR-oil and hybrid-battery claims remain corrective holds.",
+  "applicationGate": {
+    "status": "blocked",
+    "blockerRecordIds": [
+      "lexus-es-brake-actuator-noise-2019",
+      "lexus-es-oil-consumption-2gr-2007",
+      "lexus-es300h-hybrid-battery-degradation-2013"
+    ],
+    "reason": "Three titles remain unsupported by exact primary evidence. The one supported dashboard rewrite also requires independent review before any body-copy application."
+  },
+  "safetyContract": [
+    "No production write, deployment, archive, redirect, slug change, title change, category change, indexed-year change, trim change, engine change or new issue is authorized.",
+    "All four IDs, titles, categories, indexed year sets, trim sets, engine sets, allowed severities and publication states remain unchanged.",
+    "No ECU flash, piston/ring job, battery, brake part or dashboard part is approved without exact VIN/application support.",
+    "All 1,727 exact manufacturer-communication rows and 520 exact recall rows / 20 campaigns were replayed; all separate recall identities remain deferred."
+  ],
+  "source": {
+    "snapshotFile": "data/_lexus-deeplink-snapshot-2026-08-08.json",
+    "snapshotSha256": "36e9efb61ab76fb184e7d9c5f92fcea5a8ee565555c2f58043d8a74c97c2c4ef",
+    "snapshotGeneratedAt": "2026-08-08T19:11:50.211Z",
+    "snapshotHash": "03786eddba9c1e071682262552ea8f8c95e93924f357e4bf6f2962777fe37e8c",
+    "modelRecordCount": 4
+  },
+  "observations": [
+    {
+      "code": "es-brake-citation-wrong-model",
+      "severity": "critical-correction",
+      "recordIds": [
+        "lexus-es-brake-actuator-noise-2019"
+      ],
+      "detail": "L-SB-0025-20 is RX pre-delivery service and contains no ES brake-actuator noise update."
+    },
+    {
+      "code": "es-dashboard-programs-bounded",
+      "severity": "exact-rewrite",
+      "recordIds": [
+        "lexus-es-dashboard-melt-2007"
+      ],
+      "detail": "ZLD and ZLZ together support VIN-specific 2007-2012 ES 350 cracked/sticky dashboards, but not current guaranteed coverage, dangerous glare or 2,000+ complaints."
+    },
+    {
+      "code": "es-oil-citation-wrong-engine",
+      "severity": "critical-correction",
+      "recordIds": [
+        "lexus-es-oil-consumption-2gr-2007"
+      ],
+      "detail": "T-SB-0094-11 applies to Toyota 2AZ engines, while exact ES 2GR records concern external leaks rather than piston-ring consumption."
+    },
+    {
+      "code": "es-battery-claim-bounded",
+      "severity": "critical-correction",
+      "recordIds": [
+        "lexus-es300h-hybrid-battery-degradation-2013"
+      ],
+      "detail": "L-SB-0028-20 supports cooling maintenance, not universal pack degradation, replacement timing, brands or prices."
+    },
+    {
+      "code": "es-no-unverified-commerce",
+      "severity": "commerce-safety",
+      "recordIds": [
+        "lexus-es-brake-actuator-noise-2019",
+        "lexus-es-dashboard-melt-2007",
+        "lexus-es-oil-consumption-2gr-2007",
+        "lexus-es300h-hybrid-battery-degradation-2013"
+      ],
+      "detail": "All guessed parts, brands, prices and replacement procedures are removed; no search or guessed deep link is introduced."
+    },
+    {
+      "code": "es-twenty-campaign-identities-deferred",
+      "severity": "new-issues-deferred",
+      "recordIds": [],
+      "campaignNumbers": [
+        "07E082000",
+        "09E012000",
+        "09V388000",
+        "10E002000",
+        "15V728000",
+        "16V198000",
+        "16V340000",
+        "17V006000",
+        "17V415000",
+        "18V024000",
+        "19V005000",
+        "19V288000",
+        "19V544000",
+        "19V741000",
+        "20V012000",
+        "20V064000",
+        "20V682000",
+        "23V865000",
+        "24V124000",
+        "25V744000"
+      ],
+      "detail": "Twenty separate recall identities remain deferred until the remaining-make audit is complete."
+    },
+    {
+      "code": "all-es-pages-preserved",
+      "severity": "seo-safety",
+      "recordIds": [
+        "lexus-es-brake-actuator-noise-2019",
+        "lexus-es-dashboard-melt-2007",
+        "lexus-es-oil-consumption-2gr-2007",
+        "lexus-es300h-hybrid-battery-degradation-2013"
+      ],
+      "detail": "Every ES ID, title, category, indexed year set, trim set, engine set, allowed severity and publication state remains preserved."
+    }
+  ],
+  "pdfSources": {
+    "falseBrakeCitation": {
+      "title": "L-SB-0025-20 — 2021 RX 350/RX 450h Pre-Delivery Service",
+      "url": "https://static.nhtsa.gov/odi/tsbs/2020/MC-10178541-9999.pdf",
+      "nhtsaDocumentId": "10178541",
+      "pages": 10,
+      "bytes": 724549,
+      "sha256": "d812a6796c9243394a042c2b86debf2d7eff48d26afd16bbfb573f28e1e259d0"
+    },
+    "dashboardZld": {
+      "title": "Warranty Enhancement Program ZLD — 2007-2008 ES 350 dashboard",
+      "url": "https://static.nhtsa.gov/odi/tsbs/2015/MC-10134493-9999.pdf",
+      "nhtsaDocumentId": "10134493",
+      "pages": 12,
+      "bytes": 442197,
+      "sha256": "8a98f49ec7adb876ba142f4f196b853a946b35ac86cbd5ad90b940278a063310"
+    },
+    "dashboardZlz": {
+      "title": "Customer Support Program ZLZ — 2008-2012 ES 350 dashboard",
+      "url": "https://static.nhtsa.gov/odi/tsbs/2018/MC-10145765-9999.pdf",
+      "nhtsaDocumentId": "10145765",
+      "pages": 8,
+      "bytes": 693138,
+      "sha256": "c6e639612047a1f162e442b919154c557e65c080fb7db21649ecbb66f93126a4"
+    },
+    "falseOilCitation": {
+      "title": "T-SB-0094-11 — 2AZ-FE Engine Oil Consumption",
+      "url": "https://static.nhtsa.gov/odi/tsbs/2015/MC-10111356-9999.pdf",
+      "nhtsaDocumentId": "10111356",
+      "pages": 24,
+      "bytes": 646116,
+      "sha256": "b044fc3d03f23127b24467c8c5253d00d9e64727276dfcf0a718aa12dd3a9473"
+    },
+    "batteryCooling": {
+      "title": "L-SB-0028-20 — HV Battery Cooling System Maintenance",
+      "url": "https://static.nhtsa.gov/odi/tsbs/2020/MC-10179595-9999.pdf",
+      "nhtsaDocumentId": "10179595",
+      "pages": 9,
+      "bytes": 555259,
+      "sha256": "4b9ca0f7c627bad91da5190c5e6398b5f1d98efb8bd6d5b983e45d8d71727998"
+    }
+  },
+  "manufacturerCommunications": {
+    "source": "https://www.nhtsa.gov/nhtsa-datasets-and-apis#manufacturer-communications",
+    "modelAliases": [
+      "ES",
+      "ES 250",
+      "ES250",
+      "ES 300H",
+      "ES300H",
+      "ES 350",
+      "ES350",
+      "ES HYBRID"
+    ],
+    "periodCounts": {
+      "1995-1999": 1,
+      "2000-2004": 2,
+      "2005-2009": 18,
+      "2010-2014": 26,
+      "2015-2019": 856,
+      "2020-2024": 721,
+      "2025-2026": 103
+    },
+    "totalRows": 1727,
+    "dashboardDocumentIds": [
+      "10057809",
+      "10058268",
+      "10134493",
+      "10145765"
+    ],
+    "batteryCoolingDocumentIds": [
+      "10131925",
+      "10179595",
+      "10179691"
+    ],
+    "nonSupporting2grDocumentIds": [
+      "10021549",
+      "10032465",
+      "10109593",
+      "10109599"
+    ],
+    "sourceFiles": [
+      {
+        "period": "1995-1999",
+        "length": 3443097,
+        "sha256": "409a86bb7bb37a6313eae9212fb90a5ab45029fdcf2a69d0c0378eab080503db"
+      },
+      {
+        "period": "2000-2004",
+        "length": 8952754,
+        "sha256": "5c755be52d35e060626402ebe6dfcccdf350ae379df5c06b49c71d08497e2264"
+      },
+      {
+        "period": "2005-2009",
+        "length": 5457880,
+        "sha256": "04f72a7bf95530d116b1500c976a9e4d365e1c9a8b0433f58d60dbb36a58679b"
+      },
+      {
+        "period": "2010-2014",
+        "length": 17332775,
+        "sha256": "41e66a9d81a859d469d51c6cdcbc107fc6284c64ed24065ccaf1fe02a52e4387"
+      },
+      {
+        "period": "2015-2019",
+        "length": 144450847,
+        "sha256": "d6c2ff16880cc7b31cfebad94bda08c3e8b3b2c3f28d56d5b1bb810c8b878a2e"
+      },
+      {
+        "period": "2020-2024",
+        "length": 125521629,
+        "sha256": "3b3ca3d690e33386d1d315a0f966285ae8cccb99c45c2386ada164c5e925c3cf"
+      },
+      {
+        "period": "2025-2026",
+        "length": 77786229,
+        "sha256": "419ebda2f1c1bf22e2b0862858d61699c25e61d73842f9031e796f1fafefba4c"
+      }
+    ]
+  },
+  "recallInventory": {
+    "source": "https://www.nhtsa.gov/nhtsa-datasets-and-apis#recalls",
+    "modelAliases": [
+      "ES",
+      "ES 250",
+      "ES250",
+      "ES 300H",
+      "ES300H",
+      "ES 350",
+      "ES350",
+      "ES HYBRID"
+    ],
+    "periodCounts": {
+      "pre": 9,
+      "post": 511
+    },
+    "totalRows": 520,
+    "campaignCount": 20,
+    "campaigns": [
+      "07E082000",
+      "09E012000",
+      "09V388000",
+      "10E002000",
+      "15V728000",
+      "16V198000",
+      "16V340000",
+      "17V006000",
+      "17V415000",
+      "18V024000",
+      "19V005000",
+      "19V288000",
+      "19V544000",
+      "19V741000",
+      "20V012000",
+      "20V064000",
+      "20V682000",
+      "23V865000",
+      "24V124000",
+      "25V744000"
+    ],
+    "mappedCampaigns": [],
+    "deferredCampaigns": [
+      "07E082000",
+      "09E012000",
+      "09V388000",
+      "10E002000",
+      "15V728000",
+      "16V198000",
+      "16V340000",
+      "17V006000",
+      "17V415000",
+      "18V024000",
+      "19V005000",
+      "19V288000",
+      "19V544000",
+      "19V741000",
+      "20V012000",
+      "20V064000",
+      "20V682000",
+      "23V865000",
+      "24V124000",
+      "25V744000"
+    ],
+    "sourceFiles": [
+      {
+        "period": "pre",
+        "length": 83786245,
+        "sha256": "71e6e325e2d69d204776fb32d83dad4fd95436a2f7890da54d49622d77a36232"
+      },
+      {
+        "period": "post",
+        "length": 309278972,
+        "sha256": "4803a7f298f1d850736fe55830f4d31b004577424cb6429988c5864786f76a70"
+      }
+    ]
+  },
+  "mappedCampaigns": [],
+  "deferredCampaigns": [
+    "07E082000",
+    "09E012000",
+    "09V388000",
+    "10E002000",
+    "15V728000",
+    "16V198000",
+    "16V340000",
+    "17V006000",
+    "17V415000",
+    "18V024000",
+    "19V005000",
+    "19V288000",
+    "19V544000",
+    "19V741000",
+    "20V012000",
+    "20V064000",
+    "20V682000",
+    "23V865000",
+    "24V124000",
+    "25V744000"
+  ],
+  "summary": {
+    "rewrite_same_identity": 1,
+    "targeted_safety_cleanup_pending_source": 2,
+    "remove_false_citation_and_targeted_safety_cleanup_pending_source": 1,
+    "total": 4
+  },
+  "rows": [
+    {
+      "id": "lexus-es-brake-actuator-noise-2019",
+      "action": "targeted_safety_cleanup_pending_source",
+      "commerceDecision": "blocked-no-exact-fitment-no-retail-part",
+      "evidence": [
+        "Complete inventory: 1727 exact ES-family manufacturer-communication rows and 520 exact recall rows / 20 campaigns were replayed.",
+        "The cited L-SB-0025-20 is visually verified as a 2021 RX 350/RX 450h pre-delivery bulletin, not an ES brake-noise update.",
+        "No exact ES communication contains a brake-actuator/hold buzzing or grinding software remedy."
+      ],
+      "before": {
+        "make": "Lexus",
+        "model": "ES",
+        "years": [
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [
+          "ES250",
+          "ES350",
+          "ES300h"
+        ],
+        "engines": [
+          "2.5L A25A-FKS",
+          "3.5L 2GR-FKS",
+          "2.5L A25A-FXS Hybrid"
+        ],
+        "category": "brakes",
+        "title": "Brake Actuator Buzzing and Grinding Noise",
+        "description": "The electronic brake actuator on the 2019+ ES produces a noticeable buzzing or grinding noise during low-speed braking and when the brake hold function is engaged. The noise comes from the ABS actuator cycling at low speeds and is a design characteristic of the brake-by-wire system. While not a safety concern, the noise is prominent enough to be heard in the cabin.",
+        "solution": "Lexus released a software update (TSB) to modify the brake actuator operation and reduce noise. Visit the dealer for the ECU reflash. Some noise may persist at very low speeds as this is inherent to the brake-by-wire design. Adding sound deadening material around the actuator can further reduce cabin intrusion.",
+        "severity": "low",
+        "confidence": "high",
+        "symptoms": [
+          "Buzzing or grinding noise when braking at low speed",
+          "Vibration felt through brake pedal during light braking",
+          "Noise when brake hold function activates",
+          "Groaning sound from engine bay area when releasing brakes"
+        ],
+        "affectedSystems": [
+          "Brakes",
+          "ABS System"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": 200,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": 50000,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "Lexus TSB L-SB-0025-20 — brake actuator noise reduction software update for ES/UX/NX"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "source": "LexusOwnersClub.com",
+            "content": "The TSB software update significantly reduces the noise but may not eliminate it completely. This is a known characteristic of Toyota/Lexus brake-by-wire systems across their TNGA platform.",
+            "upvotes": 87,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 2800,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-02-28",
+        "reviewedOn": "2026-03-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "beforeSha256": "0b51c66f28b8a71c58de00845797a7b39b65f8fc918f2aed16f598a81be7c3a3",
+      "proposal": {
+        "make": "Lexus",
+        "model": "ES",
+        "years": [
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [
+          "ES250",
+          "ES350",
+          "ES300h"
+        ],
+        "engines": [
+          "2.5L A25A-FKS",
+          "3.5L 2GR-FKS",
+          "2.5L A25A-FXS Hybrid"
+        ],
+        "category": "brakes",
+        "title": "Brake Actuator Buzzing and Grinding Noise",
+        "description": "The cited L-SB-0025-20 is a 2021 RX 350/RX 450h pre-delivery bulletin and contains no ES brake-actuator noise update. The complete ES federal communication inventory contains no exact record supporting a 2019-2025 ES actuator buzzing/grinding condition, an ECU reflash for that condition, or a conclusion that the sound is harmless across ES 250, ES 350 and ES 300h variants.",
+        "solution": "Do not reflash a brake ECU or add sound-deadening around a brake actuator from this page. Record when the sound occurs, whether brake-hold is active, all brake/ABS warnings and DTCs, and have the exact VIN and brake system diagnosed under current Lexus service information. Treat any change in pedal feel, braking performance or warning lamp as safety-critical. No universal retail part or dealer-only remedy is asserted.",
+        "severity": "low",
+        "confidence": "low",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "nhtsa",
+            "title": "NHTSA Manufacturer Communications datasets",
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis#manufacturer-communications"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-08",
+        "contentUpdatedOn": "2026-08-08",
+        "contentUpdateSummary": "Removed the wrong-model L-SB-0025-20 claim, unsupported harmlessness conclusion, ECU-reflash instruction and sound-deadening advice; held the page for exact ES evidence.",
+        "relatedIssueIds": []
+      },
+      "proposalSha256": "21ed8328ab8ea3f9925148e5c0126bb18062fbe77b546098ba80a4c5fe838901",
+      "changedFields": [
+        "description",
+        "solution",
+        "confidence",
+        "symptoms",
+        "affectedSystems",
+        "estimatedCostHigh",
+        "typicalMileageHigh",
+        "citations",
+        "communityRecommendations",
+        "reportCount",
+        "source",
+        "lastReportedByOwners",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ]
+    },
+    {
+      "id": "lexus-es-dashboard-melt-2007",
+      "action": "rewrite_same_identity",
+      "commerceDecision": "vin-specific-dealer-remedy-no-retail-part",
+      "evidence": [
+        "Complete inventory: 1727 exact ES-family manufacturer-communication rows and 520 exact recall rows / 20 campaigns were replayed.",
+        "ZLD visually verifies certain 2007-2008 ES 350 vehicles; ZLZ visually verifies certain 2008-2012 ES 350 vehicles.",
+        "The records support cracked/sticky heat-humidity-light damage and historical VIN-specific coverage, not current guaranteed coverage or a dangerous-glare claim."
+      ],
+      "before": {
+        "make": "Lexus",
+        "model": "ES",
+        "years": [
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012
+        ],
+        "trims": [
+          "ES350"
+        ],
+        "engines": [
+          "3.5L 2GR-FE"
+        ],
+        "category": "interior",
+        "title": "Dashboard Melting and Sticky Surface",
+        "description": "The dashboard on 2007-2012 ES350 models develops a melting, sticky surface that becomes shiny and reflective in sunlight. This is caused by a chemical breakdown of the dashboard material in high-heat climates and creates dangerous glare on the windshield. Lexus issued an extended warranty campaign to address this defect.",
+        "solution": "Replace the dashboard assembly under Lexus Customer Support Program ZE7 (extended warranty). If out of warranty, aftermarket dash covers or professional dashboard replacement are the options. Lexus dealers replace the entire dashboard and associated trim panels.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Dashboard surface becomes sticky to the touch",
+          "Shiny reflective glare on windshield from dashboard",
+          "Dashboard material cracking or peeling",
+          "Strong chemical odor from dashboard in hot weather"
+        ],
+        "affectedSystems": [
+          "Interior",
+          "Dashboard"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": 3000,
+        "typicalMileageLow": 30000,
+        "typicalMileageHigh": 120000,
+        "citations": [
+          {
+            "type": "nhtsa",
+            "title": "NHTSA complaints — Lexus ES dashboard melting defect (2,000+ complaints filed)"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "source": "ClubLexus.com",
+            "content": "Contact Lexus customer support directly — many owners have received goodwill dashboard replacements even outside the official warranty extension period. Document the condition with photos before visiting the dealer.",
+            "upvotes": 312,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 4500,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-08-15",
+        "reviewedOn": "2026-03-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "lexus-gs-dashboard-melt-2006",
+          "lexus-is-dashboard-melt-2006",
+          "lexus-rx-dashboard-melt-2007",
+          "lexus-sc-dashboard-melt-2002",
+          "toyota-avalon-dashboard-melting-2005"
+        ]
+      },
+      "beforeSha256": "210224975837b72d2cb2bb04c17847ff7082ef0943515d7d7ae3dd1eda62d7f0",
+      "proposal": {
+        "make": "Lexus",
+        "model": "ES",
+        "years": [
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012
+        ],
+        "trims": [
+          "ES350"
+        ],
+        "engines": [
+          "3.5L 2GR-FE"
+        ],
+        "category": "interior",
+        "title": "Dashboard Melting and Sticky Surface",
+        "description": "Lexus programs ZLD and ZLZ document cracked and/or sticky dashboard surfaces caused over time by heat, humidity and, in ZLZ, light intensity on covered ES 350 vehicles. ZLD covers certain 2007-2008 vehicles and ZLZ covers certain 2008-2012 vehicles, preserving the page’s 2007-2012 identity. The primary records describe a cosmetic condition; they do not support the page’s “dangerous glare” or “2,000+ complaints” claims.",
+        "solution": "Have a Lexus dealer verify the VIN and inspect the dashboard condition. The published ZLD and ZLZ coverage periods were time-limited, so this page does not promise a free repair in 2026; ask Lexus whether any current assistance applies before authorizing dashboard replacement. Avoid solvent or coating experiments that could worsen the surface. No universal retail part or dealer-only remedy is asserted.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "program",
+            "title": "Warranty Enhancement Program ZLD — 2007-2008 ES 350 dashboard",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2015/MC-10134493-9999.pdf"
+          },
+          {
+            "type": "program",
+            "title": "Customer Support Program ZLZ — 2008-2012 ES 350 dashboard",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2018/MC-10145765-9999.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-08",
+        "contentUpdatedOn": "2026-08-08",
+        "contentUpdateSummary": "Corrected the program names to ZLD/ZLZ, bounded coverage to VIN verification and historical terms, and removed the unsupported safety-glare and complaint-count claims.",
+        "relatedIssueIds": []
+      },
+      "proposalSha256": "e85aabfe419b3eaab530a03728654424390048dbc5ca2d3ac2731b8d6f20ef81",
+      "changedFields": [
+        "description",
+        "solution",
+        "symptoms",
+        "affectedSystems",
+        "estimatedCostHigh",
+        "typicalMileageLow",
+        "typicalMileageHigh",
+        "citations",
+        "communityRecommendations",
+        "reportCount",
+        "source",
+        "lastReportedByOwners",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary",
+        "relatedIssueIds"
+      ]
+    },
+    {
+      "id": "lexus-es-oil-consumption-2gr-2007",
+      "action": "remove_false_citation_and_targeted_safety_cleanup_pending_source",
+      "commerceDecision": "blocked-no-exact-fitment-no-retail-part",
+      "evidence": [
+        "Complete inventory: 1727 exact ES-family manufacturer-communication rows and 520 exact recall rows / 20 campaigns were replayed.",
+        "The cited T-SB-0094-11 is visually verified as a 2AZ Toyota bulletin and does not list Lexus or any 2GR engine.",
+        "Exact ES 2GR records 10021549, 10032465, 10109593 and 10109599 concern external oil leaks, not piston-ring consumption."
+      ],
+      "before": {
+        "make": "Lexus",
+        "model": "ES",
+        "years": [
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017
+        ],
+        "trims": [
+          "ES350"
+        ],
+        "engines": [
+          "3.5L 2GR-FE",
+          "3.5L 2GR-FKS",
+          "2GR-FE"
+        ],
+        "category": "engine",
+        "title": "Excessive Oil Consumption 2GR-FE Engine",
+        "description": "The 3.5L 2GR-FE V6 in the ES350 consumes excessive oil between changes, often burning 1 quart every 1,500-2,500 miles. The root cause is typically worn piston rings that allow oil past the ring lands into the combustion chamber. Toyota/Lexus issued a TSB acknowledging the issue and revised the piston ring design in later production runs.",
+        "solution": "Perform an oil consumption test at the dealer to document the rate. If consuming more than 1 quart per 1,200 miles, the repair involves replacing piston rings and possibly pistons. Use 0W-20 synthetic oil and check levels every 1,000 miles. Some owners switch to 5W-30 for reduced consumption.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Oil level drops significantly between oil changes",
+          "Blue smoke from exhaust on startup",
+          "Low oil pressure warning light",
+          "Need to add oil every 1,000-2,000 miles"
+        ],
+        "affectedSystems": [
+          "Engine",
+          "Lubrication System"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 300,
+        "estimatedCostHigh": 4000,
+        "typicalMileageLow": 60000,
+        "typicalMileageHigh": 150000,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "Toyota TSB 0094-14 — 2GR-FE oil consumption inspection and piston ring replacement procedure"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "source": "ClubLexus.com",
+            "content": "Keep meticulous oil top-off records with dated receipts — this documentation is essential for warranty claims and proves the consumption rate to the dealer.",
+            "upvotes": 198,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 3200,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-11-20",
+        "reviewedOn": "2026-03-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "lexus-rx-oil-consumption-2gr-2007",
+          "toyota-sienna-oil-consumption-2007",
+          "toyota-highlander-oil-consumption-2008",
+          "toyota-celica-oil-consumption-2000",
+          "toyota-rav4-2az-fe-excessive-oil-consumption-2006"
+        ]
+      },
+      "beforeSha256": "d79911343acbcdb254f526d3ef0f62b45d230e12bda6404acd2765cb8d684136",
+      "proposal": {
+        "make": "Lexus",
+        "model": "ES",
+        "years": [
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017
+        ],
+        "trims": [
+          "ES350"
+        ],
+        "engines": [
+          "3.5L 2GR-FE",
+          "3.5L 2GR-FKS",
+          "2GR-FE"
+        ],
+        "category": "engine",
+        "title": "Excessive Oil Consumption 2GR-FE Engine",
+        "description": "The cited Toyota T-SB-0094-11 applies to 2AZ four-cylinder engines in Toyota models, not the ES 350 2GR-FE/2GR-FKS V6. Across 1,727 exact ES-family manufacturer-communication rows, the 2GR records found concern a timing-cover oil leak and a VVT-i oil-hose leak; none supports the page’s piston-ring oil-consumption rate, all-year scope or revised-ring claim.",
+        "solution": "Do not replace pistons or rings, apply the cited 2AZ test threshold, or change oil viscosity from this page. Measure oil level on a consistent schedule, document verified consumption and inspect for external leaks, smoke, fouling and DTCs under the VIN-specific Lexus procedure. Use only the viscosity and specification listed for the vehicle unless Lexus service information directs otherwise. No universal retail part or dealer-only remedy is asserted.",
+        "severity": "medium",
+        "confidence": "low",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "T-SB-0094-11 — 2AZ-FE Engine Oil Consumption",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2015/MC-10111356-9999.pdf"
+          },
+          {
+            "type": "nhtsa",
+            "title": "NHTSA Manufacturer Communications datasets",
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis#manufacturer-communications"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-08",
+        "contentUpdatedOn": "2026-08-08",
+        "contentUpdateSummary": "Removed the wrong-engine T-SB-0094 citation, invented consumption threshold/ring diagnosis and viscosity advice; held the page for exact 2GR evidence.",
+        "relatedIssueIds": []
+      },
+      "proposalSha256": "06a39d887ff5aea22ee9693fc2c48c70f467cc27d924995911a4c5638744b41f",
+      "changedFields": [
+        "description",
+        "solution",
+        "confidence",
+        "symptoms",
+        "affectedSystems",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "typicalMileageLow",
+        "typicalMileageHigh",
+        "citations",
+        "communityRecommendations",
+        "reportCount",
+        "source",
+        "lastReportedByOwners",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary",
+        "relatedIssueIds"
+      ]
+    },
+    {
+      "id": "lexus-es300h-hybrid-battery-degradation-2013",
+      "action": "targeted_safety_cleanup_pending_source",
+      "commerceDecision": "blocked-no-exact-fitment-no-retail-part",
+      "evidence": [
+        "Complete inventory: 1727 exact ES-family manufacturer-communication rows and 520 exact recall rows / 20 campaigns were replayed.",
+        "L-SB-0028-20 supports ES 300h cooling-fan/filter maintenance, not universal pack degradation or replacement fitment.",
+        "The frozen forum recommendation supplies unverified brand, price and cell-replacement claims without an exact Lexus service part."
+      ],
+      "before": {
+        "make": "Lexus",
+        "model": "ES",
+        "years": [
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019
+        ],
+        "trims": [
+          "ES300h"
+        ],
+        "engines": [
+          "2.5L 2AR-FXE Hybrid"
+        ],
+        "category": "electrical",
+        "title": "Hybrid Battery Pack Degradation",
+        "description": "The ES300h hybrid battery pack experiences capacity degradation over time, particularly in hot climates where thermal cycling accelerates cell deterioration. Owners report reduced fuel economy, inability to maintain EV mode, and eventually a hybrid system warning light. The NiMH battery pack typically begins showing degradation between 8-12 years of age.",
+        "solution": "Replace the hybrid battery pack with a new or refurbished unit. Lexus dealers charge $3,000-$5,000 for a new pack. Aftermarket refurbished packs from companies like Green Bean Battery or Dorman cost $1,500-$2,500 installed. Individual cell replacement is also possible for partial degradation.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "Decreased fuel economy by 5-10 MPG",
+          "Hybrid system warning light on dashboard",
+          "Unable to enter or maintain EV mode",
+          "Reduced acceleration performance",
+          "Battery charge gauge drops rapidly"
+        ],
+        "affectedSystems": [
+          "Electrical",
+          "Hybrid System",
+          "Battery"
+        ],
+        "dtcCodes": [
+          "P0A80",
+          "P3000"
+        ],
+        "estimatedCostLow": 1500,
+        "estimatedCostHigh": 5000,
+        "typicalMileageLow": 100000,
+        "typicalMileageHigh": 180000,
+        "citations": [
+          {
+            "type": "forum",
+            "title": "ClubLexus.com — ES300h hybrid battery replacement options and cost comparison thread"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "source": "ClubLexus.com",
+            "content": "Green Bean Battery refurbished hybrid battery pack with lifetime warranty — significantly cheaper than dealer replacement and includes professional installation.",
+            "upvotes": 145,
+            "partName": "ES300h Hybrid Battery Pack",
+            "partBrand": "Green Bean Battery",
+            "partNumber": "GBB-ES300H",
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 1200,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-01-10",
+        "reviewedOn": "2026-03-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "lexus-ct-hybrid-battery-degradation-2011",
+          "toyota-prius-c-hybrid-battery-degradation-2012",
+          "toyota-sienna-hybrid-battery-degradation-2021"
+        ]
+      },
+      "beforeSha256": "0efa2acc90d61ff1dd3714cce87e0dddf7a739c99cd265348121a909bf0fc1ab",
+      "proposal": {
+        "make": "Lexus",
+        "model": "ES",
+        "years": [
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019
+        ],
+        "trims": [
+          "ES300h"
+        ],
+        "engines": [
+          "2.5L 2AR-FXE Hybrid"
+        ],
+        "category": "electrical",
+        "title": "Hybrid Battery Pack Degradation",
+        "description": "Lexus communications for the ES 300h document HV-battery cooling-fan/filter debris and maintenance, including L-SB-0028-20. They do not establish traction-battery capacity degradation across every 2013-2019 ES 300h, an 8-12 year failure window, hot-climate prevalence, or the advertised replacement brands and prices.",
+        "solution": "Do not purchase a traction-battery pack or replace individual cells from this page. Record hybrid warnings and DTCs, inspect the HV-battery cooling intake/fan under L-SB-0028-20, and have state-of-charge and block-voltage data evaluated under the VIN-specific Lexus repair procedure. High-voltage battery service requires qualified hybrid-system personnel. No universal retail part or dealer-only remedy is asserted.",
+        "severity": "high",
+        "confidence": "low",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "L-SB-0028-20 — HV Battery Cooling System Maintenance",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2020/MC-10179595-9999.pdf"
+          },
+          {
+            "type": "nhtsa",
+            "title": "NHTSA Manufacturer Communications datasets",
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis#manufacturer-communications"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-08",
+        "contentUpdatedOn": "2026-08-08",
+        "contentUpdateSummary": "Replaced unsupported degradation timing, price, brand and cell-replacement claims with a source-bounded diagnostic hold and exact Lexus cooling-maintenance evidence.",
+        "relatedIssueIds": []
+      },
+      "proposalSha256": "b6400e02758f375f474b1102a1a6561ec69e0c7dd482bf18485b16794738bf44",
+      "changedFields": [
+        "description",
+        "solution",
+        "confidence",
+        "symptoms",
+        "affectedSystems",
+        "dtcCodes",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "typicalMileageLow",
+        "typicalMileageHigh",
+        "citations",
+        "communityRecommendations",
+        "reportCount",
+        "source",
+        "lastReportedByOwners",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary",
+        "relatedIssueIds"
+      ]
+    }
+  ]
+}
