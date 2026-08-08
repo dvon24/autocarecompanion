@@ -1,0 +1,714 @@
+{
+  "schemaVersion": 1,
+  "status": "proposal-only",
+  "auditStage": "model-primary-source-recall-adjudication",
+  "requiresIndependentApproval": true,
+  "generatedOn": "2026-08-09",
+  "make": "Lincoln",
+  "model": "Corsair",
+  "completionStatement": "All four frozen Corsair pages are accounted for and receive bounded recall-source corrections without changing indexed identity.",
+  "applicationGate": {
+    "status": "blocked",
+    "blockerRecordIds": [
+      "lincoln-corsair-egr-valve-failure-causing-sudden-loss-drive-power",
+      "lincoln-corsair-rear-seat-belt-retractor-bolts-not-properly-tightened",
+      "lincoln-corsair-rear-tail-light-water-intrusion",
+      "lincoln-corsair-windshield-air-bubbles-obscure-driver-visibility"
+    ],
+    "reason": "All four rows contain material source or content defects and require independent review before any catalog write."
+  },
+  "safetyContract": [
+    "No production write, deployment, archive, redirect, slug change, title change, category change, indexed-year change, trim change, engine change, severity change, related-link change or new issue is authorized.",
+    "All four IDs, titles, categories, indexed year sets, trim sets, engine sets, related issue links, canonical severities and publication states remain unchanged.",
+    "The 2.3-liter EGR metadata conflict is exposed but not silently altered; body copy excludes it from 26V122.",
+    "Every recall remains VIN-scoped and every remedy is stated only as the official filing describes it.",
+    "Every row has an explicit free-recall/no-retail-commerce boundary.",
+    "Unknown owner totals remain zero and the production UI hides them rather than presenting fake social proof."
+  ],
+  "source": {
+    "snapshotFile": "data/_lincoln-deeplink-snapshot-2026-08-09.json",
+    "snapshotSha256": "aba95b475d8d6495dead9363f7d2945efc85fbf84d72c0d4983cb5257a1f2088",
+    "snapshotGeneratedAt": "2026-08-08T23:09:50.434Z",
+    "snapshotHash": "8d9a8063d25a32ff037e9e10ac56037af1fb26acfbfda1dc71a90ebeb1601e9e",
+    "modelRecordCount": 4
+  },
+  "observations": [
+    {
+      "code": "corsair-egr-engine-metadata-conflict",
+      "severity": "metadata-hold",
+      "recordIds": [
+        "lincoln-corsair-egr-valve-failure-causing-sudden-loss-drive-power"
+      ],
+      "detail": "The frozen row includes 2.3L, while 26V122 limits the Corsair population to suspect valves on 2.0L engines."
+    },
+    {
+      "code": "corsair-egr-remedy-date-invented",
+      "severity": "critical-correction",
+      "recordIds": [
+        "lincoln-corsair-egr-valve-failure-causing-sudden-loss-drive-power"
+      ],
+      "detail": "The filing says remedy under development and does not state September 2026 or promise loaner/mobile diagnosis."
+    },
+    {
+      "code": "corsair-seat-belt-advice-overstated",
+      "severity": "safety-correction",
+      "recordIds": [
+        "lincoln-corsair-rear-seat-belt-retractor-bolts-not-properly-tightened"
+      ],
+      "detail": "The official acknowledgment does not support rattle/binding symptoms, a child-seat warning or whole-retractor replacement."
+    },
+    {
+      "code": "corsair-windshield-description-was-editor-note",
+      "severity": "content-critical",
+      "recordIds": [
+        "lincoln-corsair-windshield-air-bubbles-obscure-driver-visibility"
+      ],
+      "detail": "The live description was an internal date-change instruction, not issue content."
+    },
+    {
+      "code": "all-corsair-pages-preserved",
+      "severity": "seo-safety",
+      "recordIds": [
+        "lincoln-corsair-egr-valve-failure-causing-sudden-loss-drive-power",
+        "lincoln-corsair-rear-seat-belt-retractor-bolts-not-properly-tightened",
+        "lincoln-corsair-rear-tail-light-water-intrusion",
+        "lincoln-corsair-windshield-air-bubbles-obscure-driver-visibility"
+      ],
+      "detail": "No Corsair page is removed, redirected or allowed to lose its indexed identity or vehicle scope."
+    }
+  ],
+  "pdfSources": {
+    "egr": {
+      "title": "NHTSA Part 573 Report 26V122 / Ford 26S10: Corsair EGR Valve",
+      "type": "recall",
+      "url": "https://static.nhtsa.gov/odi/rcl/2026/RCLRPT-26V122-5530.pdf",
+      "pages": 8,
+      "bytes": 714096,
+      "sha256": "19d6b8a909fb627549ac169f7458aa619238373b58a482f92620db4651ead90c"
+    },
+    "belt": {
+      "title": "NHTSA Recall Acknowledgment 25V862 / Ford 25C68: Rear Seat-Belt Retractors",
+      "type": "recall",
+      "url": "https://static.nhtsa.gov/odi/rcl/2025/RCAK-25V862-1028.pdf",
+      "pages": 2,
+      "bytes": 120127,
+      "sha256": "56d8bd21ddf59bfe7e00373e70a45fed6d0e28ca7e04ee07814ecc5585937a24"
+    },
+    "lamp": {
+      "title": "NHTSA Part 573 Report 25V688 / Ford 25C53: Rear Combination Lamps",
+      "type": "recall",
+      "url": "https://static.nhtsa.gov/odi/rcl/2025/RCLRPT-25V688-4136.pdf",
+      "pages": 4,
+      "bytes": 389127,
+      "sha256": "9a1d7b3e96e3774835ccd7d64fc7864efcd3ee48b2c684849dac57a2495198b2"
+    },
+    "glass": {
+      "title": "NHTSA Part 573 Report 25V730 / Ford 25C60: Windshield Air Bubbles",
+      "type": "recall",
+      "url": "https://static.nhtsa.gov/odi/rcl/2025/RCLRPT-25V730-0685.pdf",
+      "pages": 6,
+      "bytes": 576846,
+      "sha256": "ef3dc20658dd60afd2912670338591ab91ed23c3e91d85e014d75550d1ef0afa"
+    }
+  },
+  "manufacturerCommunications": {
+    "source": "https://www.nhtsa.gov/nhtsa-datasets-and-apis",
+    "modelAliases": [
+      "CORSAIR"
+    ],
+    "periodCounts": {
+      "1995-1999": 0,
+      "2000-2004": 0,
+      "2005-2009": 0,
+      "2010-2014": 0,
+      "2015-2019": 1,
+      "2020-2024": 259,
+      "2025-2026": 101
+    },
+    "totalRows": 361,
+    "sourceFiles": [
+      {
+        "period": "1995-1999",
+        "length": 3443097,
+        "sha256": "409a86bb7bb37a6313eae9212fb90a5ab45029fdcf2a69d0c0378eab080503db"
+      },
+      {
+        "period": "2000-2004",
+        "length": 8952754,
+        "sha256": "5c755be52d35e060626402ebe6dfcccdf350ae379df5c06b49c71d08497e2264"
+      },
+      {
+        "period": "2005-2009",
+        "length": 5457880,
+        "sha256": "04f72a7bf95530d116b1500c976a9e4d365e1c9a8b0433f58d60dbb36a58679b"
+      },
+      {
+        "period": "2010-2014",
+        "length": 17332775,
+        "sha256": "41e66a9d81a859d469d51c6cdcbc107fc6284c64ed24065ccaf1fe02a52e4387"
+      },
+      {
+        "period": "2015-2019",
+        "length": 144450847,
+        "sha256": "d6c2ff16880cc7b31cfebad94bda08c3e8b3b2c3f28d56d5b1bb810c8b878a2e"
+      },
+      {
+        "period": "2020-2024",
+        "length": 125521629,
+        "sha256": "3b3ca3d690e33386d1d315a0f966285ae8cccb99c45c2386ada164c5e925c3cf"
+      },
+      {
+        "period": "2025-2026",
+        "length": 77786229,
+        "sha256": "419ebda2f1c1bf22e2b0862858d61699c25e61d73842f9031e796f1fafefba4c"
+      }
+    ]
+  },
+  "recallInventory": {
+    "source": "https://www.nhtsa.gov/nhtsa-datasets-and-apis",
+    "modelAliases": [
+      "CORSAIR"
+    ],
+    "periodCounts": {
+      "pre": 0,
+      "post": 269
+    },
+    "totalRows": 269,
+    "campaignCount": 36,
+    "sourceFiles": [
+      {
+        "period": "pre",
+        "length": 83786245,
+        "sha256": "71e6e325e2d69d204776fb32d83dad4fd95436a2f7890da54d49622d77a36232"
+      },
+      {
+        "period": "post",
+        "length": 309278972,
+        "sha256": "4803a7f298f1d850736fe55830f4d31b004577424cb6429988c5864786f76a70"
+      }
+    ]
+  },
+  "summary": {
+    "retain_indexed_identity_and_targeted_accuracy_cleanup_pending_source": 4,
+    "total": 4
+  },
+  "rows": [
+    {
+      "id": "lincoln-corsair-egr-valve-failure-causing-sudden-loss-drive-power",
+      "action": "retain_indexed_identity_and_targeted_accuracy_cleanup_pending_source",
+      "commerceDecision": "free-vin-scoped-recall-remedy-no-retail-part",
+      "evidence": [
+        "Complete model inventory: 361 exact Corsair communications and 269 exact recall rows across 36 campaigns were replayed.",
+        "Visual review of 26V122 proves 1,200 Corsairs, the exact build dates, 2.0-liter-only scope, low-speed risk, warnings and under-development remedy.",
+        "The frozen 2.3-liter metadata is explicitly excluded; the former September remedy date and loaner/mobile promises are absent from the filing.",
+        "No universal retail part or search-style commerce link is introduced."
+      ],
+      "before": {
+        "make": "Lincoln",
+        "model": "Corsair",
+        "years": [
+          2025
+        ],
+        "trims": [],
+        "engines": [
+          "2.0L EcoBoost I4 turbo",
+          "2.3L EcoBoost I4 turbo"
+        ],
+        "category": "engine",
+        "title": "EGR valve failure causing sudden loss of drive power (Recall 26S10)",
+        "description": "Exhaust gas recirculation valve can fail on 2.0L EcoBoost-equipped Corsairs built Nov 14 2024 - Apr 2 2025, producing an unexpected loss of drive power while moving. NHTSA recall 26S10; Ford mailed interim letters March 20 2026 with the final remedy not anticipated until September 2026, leaving owners exposed in the meantime.",
+        "solution": "Recall 26S10 fix is FREE at any Lincoln dealer once parts are released (Sept 2026 expected). Per NHTSA, failure is most likely at low speeds (~15 mph or below) and may present as weak acceleration, engine vibration, no-start, or loss of motive power, with check engine light. If symptoms appear before the remedy, contact Ford at 1-866-436-7332 to request loaner/mobile diagnosis; do not ignore the warning light.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "Weak acceleration at low speed (~15 mph or below)",
+          "Sudden loss of motive power",
+          "Engine vibration",
+          "No-start condition",
+          "Check engine light"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 0,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.off-road.com/blog/ford-recalls-nearly-48-000-vehicles-including-the-2025-bronco-and-ranger-over-egr-valve-defect-that-can-kill-drive-power/",
+            "type": "recall",
+            "title": "Ford Recalls Nearly 48,000 Vehicles Including the 2025 Bronco and Ranger Over EGR Valve Defect"
+          },
+          {
+            "url": "https://fordauthority.com/2026/03/48k-2025-ford-lincoln-vehicles-recalled-over-egr-valve-failures/",
+            "type": "article",
+            "title": "48K 2025 Ford, Lincoln Vehicles Recalled Over EGR Valve Failures (Ford Authority)"
+          },
+          {
+            "url": "https://static.nhtsa.gov/odi/rcl/2026/RCAK-26V122-9462.pdf",
+            "type": "nhtsa",
+            "title": "NHTSA recall 26V122 PDF (Ford 26S10)"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-02",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "beforeSha256": "fecc81005d51dd0345e3ad15cf7b97207c5cc2db35038a74e6359ec3e2398b12",
+      "proposal": {
+        "make": "Lincoln",
+        "model": "Corsair",
+        "years": [
+          2025
+        ],
+        "trims": [],
+        "engines": [
+          "2.0L EcoBoost I4 turbo",
+          "2.3L EcoBoost I4 turbo"
+        ],
+        "category": "engine",
+        "title": "EGR valve failure causing sudden loss of drive power (Recall 26S10)",
+        "description": "Ford safety recall 26S10/NHTSA 26V122 covers 1,200 certain 2025 Corsairs built November 14, 2024 through April 2, 2025 with suspect EGR valves installed in 2.0-liter engines. Inconsistent laser-weld penetration can allow the EGR-valve poppet head to detach, causing excessive EGR flow and possible loss of motive power, most likely at 20 km/h (about 12 mph) or below. Initial warnings may include weak acceleration, engine vibration, a no-start condition or a check-engine light. The frozen 2.3-liter engine metadata on this page is outside the cited Corsair population.",
+        "solution": "Check the VIN for 26S10/26V122. In the March 3, 2026 Part 573 filing, Ford stated that the remedy was still under development, the free dealer service would follow when available, and interim owner letters were planned for March 16-20; the filing does not promise a September remedy date, a loaner or mobile diagnosis. If weak acceleration or loss of power occurs, move out of traffic as safely as possible and contact Lincoln or roadside assistance. Do not buy an EGR valve or other part from this page because recall eligibility and remedy are VIN-scoped and dealer-administered.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://static.nhtsa.gov/odi/rcl/2026/RCLRPT-26V122-5530.pdf",
+            "type": "recall",
+            "title": "NHTSA Part 573 Report 26V122 / Ford 26S10: Corsair EGR Valve"
+          },
+          {
+            "url": "https://www.nhtsa.gov/recalls",
+            "type": "nhtsa",
+            "title": "NHTSA VIN-Specific Recall Lookup"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-09",
+        "contentUpdatedOn": "2026-08-09",
+        "contentUpdateSummary": "Corrected the campaign number, exact 2.0-liter Corsair scope, defect, warnings and remedy status; removed the invented September date and loaner promise.",
+        "relatedIssueIds": []
+      },
+      "proposalSha256": "408cf153e619caab118f3c6193dc09a8a036bf68501f386e23304afe6a7c3391",
+      "changedFields": [
+        "description",
+        "solution",
+        "confidence",
+        "symptoms",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "humanApproved",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ]
+    },
+    {
+      "id": "lincoln-corsair-rear-seat-belt-retractor-bolts-not-properly-tightened",
+      "action": "retain_indexed_identity_and_targeted_accuracy_cleanup_pending_source",
+      "commerceDecision": "free-vin-scoped-recall-remedy-no-retail-part",
+      "evidence": [
+        "Complete model inventory: 361 exact Corsair communications and 269 exact recall rows across 36 campaigns were replayed.",
+        "Visual review of 25V862 proves insecure rear retractors and a free inspect/secure-or-replace-bolts remedy.",
+        "The source does not state rattle, binding, non-retraction, a child-seat advisory or whole-retractor replacement.",
+        "No universal retail part or search-style commerce link is introduced."
+      ],
+      "before": {
+        "make": "Lincoln",
+        "model": "Corsair",
+        "years": [
+          2025,
+          2026
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "interior",
+        "title": "Rear seat belt retractor bolts not properly tightened (Recall 25C68)",
+        "description": "On 2025-2026 Corsairs built Nov 25 2024 - Nov 3 2025, the bolts securing the left and right rear-passenger seat belt retractors may not have been torqued during assembly. Owners may hear a rattle from the rear pillar area or find a belt that binds or won't retract. In a crash an unsecured retractor may not restrain the occupant.",
+        "solution": "Free dealer inspection and re-torque (or retractor replacement) under recall 25C68. Until repaired, avoid placing children in the affected outboard rear seats — Ford's own recall notice specifically warns parents. Contact Ford 1-866-436-7332.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Rattle from rear C-pillar / cargo area",
+          "Rear seat belt won't extend or retract",
+          "Belt binds when buckling",
+          "Loose-feeling retractor"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 300,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://fordauthority.com/2025/12/ford-escape-lincoln-corsair-recalled-over-seat-belt-issue/",
+            "type": "recall",
+            "title": "Ford Escape, Lincoln Corsair Recalled Over Seat Belt Issue (Ford Authority)"
+          },
+          {
+            "url": "https://www.autoblog.com/news/recall-2025-26-ford-escape-lincoln-corsair-seat-belt-retractors",
+            "type": "article",
+            "title": "What Parents Should Know About Ford's Latest Escape/Corsair Recall (Autoblog)"
+          },
+          {
+            "url": "https://www.kbb.com/car-news/ford-escape-lincoln-corsair-recalled-over-seat-belt-issue/",
+            "type": "article",
+            "title": "Ford Escape, Lincoln Corsair Recalled Over Seat Belt Issue (Kelley Blue Book)"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-02",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "beforeSha256": "fb9f44765a3e05cca14e3dff235ab7a9caa9d446b5593381795d4b30ba531346",
+      "proposal": {
+        "make": "Lincoln",
+        "model": "Corsair",
+        "years": [
+          2025,
+          2026
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "interior",
+        "title": "Rear seat belt retractor bolts not properly tightened (Recall 25C68)",
+        "description": "Ford safety recall 25C68/NHTSA 25V862 covers certain 2025-2026 Corsair and Escape vehicles. The left and right rear-passenger seat-belt retractors may not be securely fastened, so an affected retractor may not restrain an occupant as intended and can increase injury risk in a crash. The official acknowledgment does not state that owners should expect rattles, binding or failure to retract, and it does not issue a child-seat or do-not-use advisory.",
+        "solution": "Check the VIN for 25C68/25V862. The free dealer remedy is to inspect the rear retractor bolts and secure or replace those bolts as necessary. The official source does not prescribe replacing the entire retractor or avoiding an otherwise functioning seat before inspection. Do not buy retractor bolts, a retractor or another restraint part from this page because this is a VIN-scoped no-charge safety-recall remedy.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://static.nhtsa.gov/odi/rcl/2025/RCAK-25V862-1028.pdf",
+            "type": "recall",
+            "title": "NHTSA Recall Acknowledgment 25V862 / Ford 25C68: Rear Seat-Belt Retractors"
+          },
+          {
+            "url": "https://www.nhtsa.gov/recalls",
+            "type": "nhtsa",
+            "title": "NHTSA VIN-Specific Recall Lookup"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-09",
+        "contentUpdatedOn": "2026-08-09",
+        "contentUpdateSummary": "Replaced unsupported rattle, binding, child-seat and whole-retractor claims with the exact 25V862 defect and bolt remedy.",
+        "relatedIssueIds": []
+      },
+      "proposalSha256": "b5a0cf2065b7dbabb0bd2c0bccab14448edb81a945d37576fd6259e80e7455ef",
+      "changedFields": [
+        "description",
+        "solution",
+        "symptoms",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "humanApproved",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ]
+    },
+    {
+      "id": "lincoln-corsair-rear-tail-light-water-intrusion",
+      "action": "retain_indexed_identity_and_targeted_accuracy_cleanup_pending_source",
+      "commerceDecision": "free-vin-scoped-recall-remedy-no-retail-part",
+      "evidence": [
+        "Complete model inventory: 361 exact Corsair communications and 269 exact recall rows across 36 campaigns were replayed.",
+        "Visual review of 25V688 proves the 84-vehicle/20-percent population, plant-repair damage, water path, lamp functions, warning and remedy.",
+        "No search-style commerce is needed for a no-charge VIN-scoped inspection.",
+        "No universal retail part or search-style commerce link is introduced."
+      ],
+      "before": {
+        "make": "Lincoln",
+        "model": "Corsair",
+        "years": [
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Rear tail light water intrusion (Recall 25C53)",
+        "description": "Water can leak into the left and right rear combination light housings on 2024-2025 Corsairs built Dec 15 2023 - Aug 15 2025. Root cause is improper factory repair of the liftgate center applique, which damaged the tail light seals. Result: lost reverse, brake, turn signal, or tail light functions — a visibility/safety failure of FMVSS 108.",
+        "solution": "Free tail light assembly inspection and replacement under Ford recall 25C53 / NHTSA 25V688. If a bulb-out warning, condensation, or non-functioning tail/brake/turn lamp appears, document with photos and request priority service.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Condensation/water visible inside tail light",
+          "Brake light or turn signal out",
+          "Reverse light intermittent",
+          "Bulb-out warning in cluster"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 800,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://fordauthority.com/2025/10/2024-2025-lincoln-corsair-recalled-over-rear-light-assembly-issue/",
+            "type": "recall",
+            "title": "2024-2025 Lincoln Corsair Recalled Over Rear Light Assembly Issue (Ford Authority)"
+          },
+          {
+            "url": "https://www.autoevolution.com/news/ford-announces-lincoln-corsair-recall-for-rear-combination-light-issue-259762.html",
+            "type": "article",
+            "title": "Ford Announces Lincoln Corsair Recall for Rear Combination Light Issue (autoevolution)"
+          },
+          {
+            "url": "https://www.kbb.com/car-news/lincoln-recalls-corsair-over-leaky-lights/",
+            "type": "article",
+            "title": "Lincoln Recalls Corsair Over Leaky Lights (Kelley Blue Book)"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-02",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "beforeSha256": "fed0847ed3886c2ce2ce7ea49ed85b74244b6cbaa27aae2fd95dbf6cae331b44",
+      "proposal": {
+        "make": "Lincoln",
+        "model": "Corsair",
+        "years": [
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Rear tail light water intrusion (Recall 25C53)",
+        "description": "Ford safety recall 25C53/NHTSA 25V688 covers 84 certain 2024-2025 Corsairs built December 15, 2023 through August 15, 2025. Rear combination lamps may have been damaged during an internal plant repair; the resulting leak path can admit water and cause an internal short circuit. Backup, stop, tail or rear turn-signal functions may become inoperative, reducing visibility and increasing crash risk. A failed rear turn signal can produce a fast-flashing turn indicator. Ford estimated that 20 percent of the 84-vehicle population had the defect.",
+        "solution": "Check the VIN for 25C53/25V688. The free dealer remedy inspects both rear combination lamps and replaces a lamp if necessary; when a lamp is replaced, the center-applique lamp is replaced as well. Treat a fast turn-indicator flash or an inoperative rear lamp as a service prompt. Do not buy a rear lamp, center-applique lamp or other part from this page because the remedy and part selection are VIN- and inspection-specific.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://static.nhtsa.gov/odi/rcl/2025/RCLRPT-25V688-4136.pdf",
+            "type": "recall",
+            "title": "NHTSA Part 573 Report 25V688 / Ford 25C53: Rear Combination Lamps"
+          },
+          {
+            "url": "https://www.nhtsa.gov/recalls",
+            "type": "nhtsa",
+            "title": "NHTSA VIN-Specific Recall Lookup"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-09",
+        "contentUpdatedOn": "2026-08-09",
+        "contentUpdateSummary": "Bound the lamp page to the 84-vehicle recall population, exact failure modes, warning and free inspect/replace remedy.",
+        "relatedIssueIds": []
+      },
+      "proposalSha256": "0db4405b035478e4750bfe3917e1f968138ad964174c0f9d121e4adbe8ff45e9",
+      "changedFields": [
+        "description",
+        "solution",
+        "symptoms",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "humanApproved",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ]
+    },
+    {
+      "id": "lincoln-corsair-windshield-air-bubbles-obscure-driver-visibility",
+      "action": "retain_indexed_identity_and_targeted_accuracy_cleanup_pending_source",
+      "commerceDecision": "free-vin-scoped-recall-remedy-no-retail-part",
+      "evidence": [
+        "Complete model inventory: 361 exact Corsair communications and 269 exact recall rows across 36 campaigns were replayed.",
+        "Visual review of 25V730 proves 5,255 Corsairs, residual lamination air, visibility/FMVS 205 risk, parts availability and free inspect/replace remedy.",
+        "The previous description was an editing note and not valid page content.",
+        "No universal retail part or search-style commerce link is introduced."
+      ],
+      "before": {
+        "make": "Lincoln",
+        "model": "Corsair",
+        "years": [
+          2025,
+          2026
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "exterior",
+        "title": "Windshield air bubbles obscure driver visibility (Recall 25C60)",
+        "description": "Change 'Owner letters mailed Nov 6 2025' to 'Owner letters mailed Nov 7 2025' per NHTSA Part 573 report and Cars.com coverage.",
+        "solution": "Free windshield inspection and replacement at any Lincoln dealer under recall 25C60 / NHTSA 25V730. Don't accept a 'we'll watch it' answer — FMVSS 205 is the relevant standard and bubbles in the wiper sweep area qualify for replacement.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Visible air bubbles or pockets in windshield glass",
+          "Distortion in driver's line of sight",
+          "Bubbles concentrated near edges or in laminate layer"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 1500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.cars.com/articles/nearly-57000-ford-lincoln-suvs-recalled-for-windshield-air-bubbles-518033/",
+            "type": "recall",
+            "title": "Nearly 57,000 Ford, Lincoln SUVs Recalled for Windshield Air Bubbles (Cars.com)"
+          },
+          {
+            "url": "https://fordauthority.com/2025/10/56k-ford-lincoln-vehicles-recalled-over-windshield-air-bubbles/",
+            "type": "article",
+            "title": "56K Ford, Lincoln Vehicles Recalled Over Windshield Air Bubbles (Ford Authority)"
+          },
+          {
+            "url": "https://static.nhtsa.gov/odi/rcl/2025/RCLRPT-25V730-0685.pdf",
+            "type": "nhtsa",
+            "title": "NHTSA 25V730 Part 573 Recall Report (PDF)"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-02",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "beforeSha256": "72c6119bce73140b3dbae7840eba14b1ea23921f449c064900ac8dfe2370ca55",
+      "proposal": {
+        "make": "Lincoln",
+        "model": "Corsair",
+        "years": [
+          2025,
+          2026
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "exterior",
+        "title": "Windshield air bubbles obscure driver visibility (Recall 25C60)",
+        "description": "Ford safety recall 25C60/NHTSA 25V730 covers 5,255 certain 2025-2026 Corsairs built July 7 through September 5, 2025. Excess residual air trapped during windshield lamination can form visible bubbles. Depending on their position and size, the bubbles can violate FMVSS 205 luminous-transmittance and defect-location requirements, impair driver visibility and increase crash risk. This replaces the former description, which was an editing instruction rather than consumer-facing issue content.",
+        "solution": "Check the VIN for 25C60/25V730. The free dealer remedy visually inspects the windshield and replaces it under the Workshop Manual procedure when the air-bubble condition is present. The Part 573 report says parts were available and lists November 7, 2025 as the planned remedy-owner-notification date. Do not buy a windshield, molding, sensor or other part from this page because glass configuration and the no-charge remedy are VIN- and inspection-specific.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://static.nhtsa.gov/odi/rcl/2025/RCLRPT-25V730-0685.pdf",
+            "type": "recall",
+            "title": "NHTSA Part 573 Report 25V730 / Ford 25C60: Windshield Air Bubbles"
+          },
+          {
+            "url": "https://www.nhtsa.gov/recalls",
+            "type": "nhtsa",
+            "title": "NHTSA VIN-Specific Recall Lookup"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-09",
+        "contentUpdatedOn": "2026-08-09",
+        "contentUpdateSummary": "Replaced an accidental editing instruction and pushy advice with the exact defect, population, safety boundary and inspect/replace recall remedy.",
+        "relatedIssueIds": []
+      },
+      "proposalSha256": "a94798adb7e27ac51371d3bcafae3eaa4a2ba6f81408bc88b7755a242f7ef5b6",
+      "changedFields": [
+        "description",
+        "solution",
+        "symptoms",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "humanApproved",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ]
+    }
+  ]
+}
