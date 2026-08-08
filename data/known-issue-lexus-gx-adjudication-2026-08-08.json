@@ -1,0 +1,778 @@
+{
+  "schemaVersion": 1,
+  "status": "proposal-only",
+  "auditStage": "model-primary-source-adjudication",
+  "requiresIndependentApproval": true,
+  "generatedOn": "2026-08-08",
+  "make": "Lexus",
+  "model": "GX",
+  "completionStatement": "All three frozen GX pages retain their indexed identities, but each receives a corrective hold because exact Lexus evidence conflicts with or does not establish the current system, model-year or repair claims.",
+  "applicationGate": {
+    "status": "blocked",
+    "blockerRecordIds": [
+      "lexus-gx-ahc-suspension-leak-2010",
+      "lexus-gx-center-diff-actuator-2003",
+      "lexus-gx-secondary-air-pump-2003"
+    ],
+    "reason": "One page conflates AHC and KDSS, one lacks exact primary evidence, and one imports a GX 460 program into a GX 470 identity. Independent review is required before any body-copy write."
+  },
+  "safetyContract": [
+    "No production write, deployment, archive, redirect, slug change, title change, category change, indexed-year change, trim change, engine change, severity change or new issue is authorized.",
+    "All three IDs, titles, categories, indexed year sets, trim sets, engine sets, allowed severities and publication states remain unchanged.",
+    "An official bulletin for a right-side lean cannot establish a hydraulic leak, and an official GX 460 program cannot establish the same identity on GX 470.",
+    "No hydraulic-system opening, transfer-case actuator replacement, emissions bypass or retail part is approved without exact VIN/application support.",
+    "All 995 exact manufacturer-communication rows and 200 exact recall rows / 18 campaigns were replayed; separate recall identities remain deferred."
+  ],
+  "source": {
+    "snapshotFile": "data/_lexus-deeplink-snapshot-2026-08-08.json",
+    "snapshotSha256": "36e9efb61ab76fb184e7d9c5f92fcea5a8ee565555c2f58043d8a74c97c2c4ef",
+    "snapshotGeneratedAt": "2026-08-08T19:11:50.211Z",
+    "snapshotHash": "03786eddba9c1e071682262552ea8f8c95e93924f357e4bf6f2962777fe37e8c",
+    "modelRecordCount": 3
+  },
+  "observations": [
+    {
+      "code": "gx-ahc-kdss-identity-conflict",
+      "severity": "critical-correction",
+      "recordIds": [
+        "lexus-gx-ahc-suspension-leak-2010"
+      ],
+      "detail": "The title says AHC, the body says KDSS, and the exact Lexus bulletin supports only a right-side lean corrected with a front-left coil spring."
+    },
+    {
+      "code": "gx-center-differential-source-gap",
+      "severity": "critical-correction",
+      "recordIds": [
+        "lexus-gx-center-diff-actuator-2003"
+      ],
+      "detail": "The complete GX 470 federal inventory contains no exact actuator-failure record; the unlinked forum label cannot support the repair advice."
+    },
+    {
+      "code": "gx-secondary-air-generation-conflict",
+      "severity": "critical-correction",
+      "recordIds": [
+        "lexus-gx-secondary-air-pump-2003"
+      ],
+      "detail": "Program ZLH applies to certain 2010-2013 GX 460 vehicles, not the frozen 2003-2009 GX 470 page."
+    },
+    {
+      "code": "gx-no-unverified-commerce",
+      "severity": "commerce-safety",
+      "recordIds": [
+        "lexus-gx-ahc-suspension-leak-2010",
+        "lexus-gx-center-diff-actuator-2003",
+        "lexus-gx-secondary-air-pump-2003"
+      ],
+      "detail": "No guessed actuator, pump, valve, sway-bar or search-style commerce link is introduced; every proposal carries an explicit VIN-specific service/no-retail marker."
+    },
+    {
+      "code": "gx-eighteen-campaign-identities-deferred",
+      "severity": "new-issues-deferred",
+      "recordIds": [],
+      "campaignNumbers": [
+        "03V031000",
+        "03V088000",
+        "09V234000",
+        "10V159000",
+        "16V065000",
+        "16V340000",
+        "16V937000",
+        "17V006000",
+        "17V831000",
+        "18V024000",
+        "19V005000",
+        "19V741000",
+        "20V012000",
+        "20V682000",
+        "25V744000",
+        "25V767000",
+        "26V179000",
+        "26V341000"
+      ],
+      "detail": "Eighteen separate recall identities remain deferred until the remaining-make audit is complete."
+    },
+    {
+      "code": "all-gx-pages-preserved",
+      "severity": "seo-safety",
+      "recordIds": [
+        "lexus-gx-ahc-suspension-leak-2010",
+        "lexus-gx-center-diff-actuator-2003",
+        "lexus-gx-secondary-air-pump-2003"
+      ],
+      "detail": "Every GX ID, title, category, indexed year set, trim set, engine set, allowed severity and publication state remains preserved."
+    }
+  ],
+  "pdfSources": {
+    "kdssLean": {
+      "title": "L-SB-0015-21 Rev1 — Vehicle Equipped With KDSS Leans to the Right",
+      "url": "https://static.nhtsa.gov/odi/tsbs/2022/MC-10220210-9999.pdf",
+      "nhtsaDocumentId": "10220210",
+      "pages": 3,
+      "bytes": 329544,
+      "sha256": "49bc62e92d2b8c33f5319d99415d52cbd852be1418d2b269da75107843d6c1ca"
+    },
+    "secondaryAirProgram": {
+      "title": "POL17-01 — Warranty Enhancement Program ZLH",
+      "url": "https://static.nhtsa.gov/odi/tsbs/2018/MC-10143917-9999.pdf",
+      "nhtsaDocumentId": "10143917",
+      "pages": 3,
+      "bytes": 43316,
+      "sha256": "396730366c2bfd22a2b1dc5d8d17d3a97e090189aab25dd0b61b2e9b488c2593"
+    }
+  },
+  "manufacturerCommunications": {
+    "source": "https://www.nhtsa.gov/nhtsa-datasets-and-apis#manufacturer-communications",
+    "modelAliases": [
+      "GX",
+      "GX 460",
+      "GX460",
+      "GX 470",
+      "GX470",
+      "GX 550",
+      "GX550"
+    ],
+    "periodCounts": {
+      "1995-1999": 0,
+      "2000-2004": 41,
+      "2005-2009": 47,
+      "2010-2014": 25,
+      "2015-2019": 495,
+      "2020-2024": 324,
+      "2025-2026": 63
+    },
+    "totalRows": 995,
+    "exactKdssDocumentIds": [
+      "10109568",
+      "10150000",
+      "10174926",
+      "10201347",
+      "10220210"
+    ],
+    "exactCenterDifferentialDocumentIds": [],
+    "exactGx470SecondaryAirDocumentIds": [],
+    "sourceFiles": [
+      {
+        "period": "1995-1999",
+        "length": 3443097,
+        "sha256": "409a86bb7bb37a6313eae9212fb90a5ab45029fdcf2a69d0c0378eab080503db"
+      },
+      {
+        "period": "2000-2004",
+        "length": 8952754,
+        "sha256": "5c755be52d35e060626402ebe6dfcccdf350ae379df5c06b49c71d08497e2264"
+      },
+      {
+        "period": "2005-2009",
+        "length": 5457880,
+        "sha256": "04f72a7bf95530d116b1500c976a9e4d365e1c9a8b0433f58d60dbb36a58679b"
+      },
+      {
+        "period": "2010-2014",
+        "length": 17332775,
+        "sha256": "41e66a9d81a859d469d51c6cdcbc107fc6284c64ed24065ccaf1fe02a52e4387"
+      },
+      {
+        "period": "2015-2019",
+        "length": 144450847,
+        "sha256": "d6c2ff16880cc7b31cfebad94bda08c3e8b3b2c3f28d56d5b1bb810c8b878a2e"
+      },
+      {
+        "period": "2020-2024",
+        "length": 125521629,
+        "sha256": "3b3ca3d690e33386d1d315a0f966285ae8cccb99c45c2386ada164c5e925c3cf"
+      },
+      {
+        "period": "2025-2026",
+        "length": 77786229,
+        "sha256": "419ebda2f1c1bf22e2b0862858d61699c25e61d73842f9031e796f1fafefba4c"
+      }
+    ]
+  },
+  "recallInventory": {
+    "source": "https://www.nhtsa.gov/nhtsa-datasets-and-apis#recalls",
+    "modelAliases": [
+      "GX",
+      "GX 460",
+      "GX460",
+      "GX 470",
+      "GX470",
+      "GX 550",
+      "GX550"
+    ],
+    "periodCounts": {
+      "pre": 3,
+      "post": 197
+    },
+    "totalRows": 200,
+    "campaignCount": 18,
+    "campaigns": [
+      "03V031000",
+      "03V088000",
+      "09V234000",
+      "10V159000",
+      "16V065000",
+      "16V340000",
+      "16V937000",
+      "17V006000",
+      "17V831000",
+      "18V024000",
+      "19V005000",
+      "19V741000",
+      "20V012000",
+      "20V682000",
+      "25V744000",
+      "25V767000",
+      "26V179000",
+      "26V341000"
+    ],
+    "mappedCampaigns": [],
+    "deferredCampaigns": [
+      "03V031000",
+      "03V088000",
+      "09V234000",
+      "10V159000",
+      "16V065000",
+      "16V340000",
+      "16V937000",
+      "17V006000",
+      "17V831000",
+      "18V024000",
+      "19V005000",
+      "19V741000",
+      "20V012000",
+      "20V682000",
+      "25V744000",
+      "25V767000",
+      "26V179000",
+      "26V341000"
+    ],
+    "sourceFiles": [
+      {
+        "period": "pre",
+        "length": 83786245,
+        "sha256": "71e6e325e2d69d204776fb32d83dad4fd95436a2f7890da54d49622d77a36232"
+      },
+      {
+        "period": "post",
+        "length": 309278972,
+        "sha256": "4803a7f298f1d850736fe55830f4d31b004577424cb6429988c5864786f76a70"
+      }
+    ]
+  },
+  "mappedCampaigns": [],
+  "deferredCampaigns": [
+    "03V031000",
+    "03V088000",
+    "09V234000",
+    "10V159000",
+    "16V065000",
+    "16V340000",
+    "16V937000",
+    "17V006000",
+    "17V831000",
+    "18V024000",
+    "19V005000",
+    "19V741000",
+    "20V012000",
+    "20V682000",
+    "25V744000",
+    "25V767000",
+    "26V179000",
+    "26V341000"
+  ],
+  "summary": {
+    "remove_false_citation_and_targeted_safety_cleanup_pending_source": 3,
+    "total": 3
+  },
+  "rows": [
+    {
+      "id": "lexus-gx-ahc-suspension-leak-2010",
+      "action": "remove_false_citation_and_targeted_safety_cleanup_pending_source",
+      "commerceDecision": "blocked-no-exact-fitment-no-retail-part",
+      "evidence": [
+        "Complete inventory: 995 exact GX-family manufacturer-communication rows and 200 exact recall rows / 18 campaigns were replayed.",
+        "Visual review of L-SB-0015-21 Rev1 shows a 2010-2023 GX 460 right-side lean condition and a front-left coil-spring repair, not an AHC/KDSS hydraulic leak.",
+        "No exact communication supports actuator/line leakage, C1435/C1436, front-actuator prevalence, pump damage, bleeding or KDSS removal across the frozen scope."
+      ],
+      "before": {
+        "make": "Lexus",
+        "model": "GX",
+        "years": [
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [
+          "GX460"
+        ],
+        "engines": [
+          "4.6L 1UR-FE"
+        ],
+        "category": "suspension",
+        "title": "AHC (Adaptive Hydraulic) Suspension Leak",
+        "description": "The Kinetic Dynamic Suspension System (KDSS) on the GX460 develops hydraulic fluid leaks from the stabilizer bar actuators and hydraulic lines. Leaks cause the KDSS warning light to illuminate and the system to become inoperative, resulting in increased body roll and a less controlled ride. The front actuators are the most common failure point.",
+        "solution": "Replace the leaking KDSS actuator(s) and hydraulic lines. Refill and bleed the system with the correct Toyota KDSS fluid. Both front and rear actuators should be inspected even if only one is leaking. Some owners disconnect the KDSS system and install conventional sway bars.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "KDSS warning light on dashboard",
+          "Hydraulic fluid leak under vehicle",
+          "Increased body roll in corners",
+          "Clunking noise from suspension over bumps",
+          "Visible fluid on stabilizer bar actuators"
+        ],
+        "affectedSystems": [
+          "Suspension",
+          "KDSS System"
+        ],
+        "dtcCodes": [
+          "C1435",
+          "C1436"
+        ],
+        "estimatedCostLow": 1000,
+        "estimatedCostHigh": 3500,
+        "typicalMileageLow": 60000,
+        "typicalMileageHigh": 130000,
+        "citations": [
+          {
+            "type": "forum",
+            "title": "ClubLexus.com — GX460 KDSS leak diagnosis and replacement procedure"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "source": "ClubLexus.com",
+            "content": "Check KDSS actuators during every oil change by looking for fluid residue on the front and rear stabilizer bars. Catching a leak early prevents damage to the hydraulic pump.",
+            "upvotes": 145,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 1500,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-02-12",
+        "reviewedOn": "2026-03-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "lexus-lx-ahc-suspension-failure-2008",
+          "toyota-land-cruiser-ahc-suspension-leak-1998",
+          "toyota-4runner-kdss-leak-2010"
+        ]
+      },
+      "beforeSha256": "6b63ec12928669fc293024635a702707c254916926b569d0e0411339754846a4",
+      "proposal": {
+        "make": "Lexus",
+        "model": "GX",
+        "years": [
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [
+          "GX460"
+        ],
+        "engines": [
+          "4.6L 1UR-FE"
+        ],
+        "category": "suspension",
+        "title": "AHC (Adaptive Hydraulic) Suspension Leak",
+        "description": "The page title identifies Adaptive Height Control (AHC), while its body describes the separate Kinetic Dynamic Suspension System (KDSS). Lexus L-SB-0015-21 Rev1 applies to 2010-2023 KDSS-equipped GX 460 vehicles that lean more than 20 mm from left to right and specifies a front-left coil-spring repair. It does not establish recurring KDSS actuator or hydraulic-line leaks, C1435/C1436, front-actuator prevalence, pump damage, or an inoperative-system/body-roll pattern.",
+        "solution": "Do not refill or bleed KDSS, replace hydraulic actuators or lines, disconnect KDSS, or install conventional sway bars from this page. Measure any left-to-right lean on level ground and have a qualified Lexus technician identify the installed suspension system and follow current VIN-specific service information. L-SB-0015-21 must not be generalized from its lean condition to a hydraulic leak. This is a VIN-specific dealer/service remedy; no universal retail part is asserted.",
+        "severity": "medium",
+        "confidence": "low",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "L-SB-0015-21 Rev1 — Vehicle Equipped With KDSS Leans to the Right",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2022/MC-10220210-9999.pdf"
+          },
+          {
+            "type": "nhtsa",
+            "title": "NHTSA Manufacturer Communications datasets",
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis#manufacturer-communications"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-08",
+        "contentUpdatedOn": "2026-08-08",
+        "contentUpdateSummary": "Documented the AHC/KDSS identity conflict, bounded the only exact Lexus bulletin to a right-side lean and front-left coil-spring repair, and removed unsupported leak, DTC, pump-damage, actuator and system-delete advice.",
+        "relatedIssueIds": []
+      },
+      "proposalSha256": "2d33de6d07c41096f8e11df076efce41830fe6e9caaed6368df43510c16d7a13",
+      "changedFields": [
+        "description",
+        "solution",
+        "confidence",
+        "symptoms",
+        "affectedSystems",
+        "dtcCodes",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "typicalMileageLow",
+        "typicalMileageHigh",
+        "citations",
+        "communityRecommendations",
+        "reportCount",
+        "source",
+        "lastReportedByOwners",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary",
+        "relatedIssueIds"
+      ]
+    },
+    {
+      "id": "lexus-gx-center-diff-actuator-2003",
+      "action": "remove_false_citation_and_targeted_safety_cleanup_pending_source",
+      "commerceDecision": "blocked-no-exact-fitment-no-retail-part",
+      "evidence": [
+        "Complete inventory: 995 exact GX-family manufacturer-communication rows and 200 exact recall rows / 18 campaigns were replayed.",
+        "No exact GX 470 communication matches center differential, differential-lock actuator, transfer-case actuator or the claimed failure mechanism.",
+        "The sole citation is an unlinked owner-forum label and cannot establish replacement, exposure or monthly-exercise advice."
+      ],
+      "before": {
+        "make": "Lexus",
+        "model": "GX",
+        "years": [
+          2003,
+          2004,
+          2005,
+          2006,
+          2007,
+          2008,
+          2009
+        ],
+        "trims": [
+          "GX470"
+        ],
+        "engines": [
+          "4.7L 2UZ-FE"
+        ],
+        "category": "drivetrain",
+        "title": "Center Differential Lock Actuator Failure",
+        "description": "The center differential lock actuator on the GX470 fails due to internal motor wear and electrical contact corrosion. When the actuator fails, the center diff lock cannot be engaged for low-range off-road use. The actuator is mounted on the transfer case and is exposed to road debris and moisture.",
+        "solution": "Replace the center differential lock actuator motor. The actuator is accessible from under the vehicle on the transfer case. Use the OEM Toyota actuator for reliability. After replacement, verify engagement by testing in a straight line at low speed on a loose surface.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Center diff lock indicator flashes but does not engage",
+          "Center diff lock switch has no effect",
+          "Clicking sound from transfer case when trying to engage",
+          "AWD warning light on dashboard"
+        ],
+        "affectedSystems": [
+          "Drivetrain",
+          "Transfer Case",
+          "4WD System"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 400,
+        "estimatedCostHigh": 1000,
+        "typicalMileageLow": 80000,
+        "typicalMileageHigh": 160000,
+        "citations": [
+          {
+            "type": "forum",
+            "title": "ClubLexus.com — GX470 center diff lock actuator troubleshooting and replacement"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "source": "ClubLexus.com",
+            "content": "Exercise the center diff lock monthly by engaging and disengaging it for 30 seconds. This prevents internal corrosion from seizing the actuator motor contacts.",
+            "upvotes": 112,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 900,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-06-15",
+        "reviewedOn": "2026-03-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "lexus-lx-center-diff-lock-actuator-2008",
+          "toyota-land-cruiser-center-diff-lock-1998"
+        ]
+      },
+      "beforeSha256": "56ba0e4ff5bb0a247d99195e5839fab209c0ca799caf61ef16ecc6f12e42a540",
+      "proposal": {
+        "make": "Lexus",
+        "model": "GX",
+        "years": [
+          2003,
+          2004,
+          2005,
+          2006,
+          2007,
+          2008,
+          2009
+        ],
+        "trims": [
+          "GX470"
+        ],
+        "engines": [
+          "4.7L 2UZ-FE"
+        ],
+        "category": "drivetrain",
+        "title": "Center Differential Lock Actuator Failure",
+        "description": "The complete federal communication inventory for GX 470 contains no exact record establishing a recurring center-differential lock actuator motor/contact failure, moisture or debris mechanism, flashing-indicator pattern, or monthly exercise remedy for the frozen 2003-2009 scope. The current page relies only on an unlinked owner-forum citation and supplies no verifiable OEM document or part identity.",
+        "solution": "Do not order an actuator or attempt under-vehicle replacement from this page. Record the warning indicators and whether high/low range or the differential lock actually engages, then have the transfer case and four-wheel-drive controls diagnosed under the exact model-year Lexus procedure before any part is replaced. Do not exercise the lock on a schedule as a corrosion-prevention treatment without model-specific Lexus guidance. This is a VIN-specific diagnostic/service remedy; no universal retail part is asserted.",
+        "severity": "medium",
+        "confidence": "low",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "nhtsa",
+            "title": "NHTSA Manufacturer Communications datasets",
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis#manufacturer-communications"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-08",
+        "contentUpdatedOn": "2026-08-08",
+        "contentUpdateSummary": "Removed the unsupported actuator mechanism, replacement and monthly-exercise advice; held the indexed identity because the complete GX 470 federal inventory contains no exact primary source.",
+        "relatedIssueIds": []
+      },
+      "proposalSha256": "993b690c64d5508411224267fe0db79ccbbd3592644dfe9e90020f3498173ec8",
+      "changedFields": [
+        "description",
+        "solution",
+        "confidence",
+        "symptoms",
+        "affectedSystems",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "typicalMileageLow",
+        "typicalMileageHigh",
+        "citations",
+        "communityRecommendations",
+        "reportCount",
+        "source",
+        "lastReportedByOwners",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary",
+        "relatedIssueIds"
+      ]
+    },
+    {
+      "id": "lexus-gx-secondary-air-pump-2003",
+      "action": "remove_false_citation_and_targeted_safety_cleanup_pending_source",
+      "commerceDecision": "blocked-no-exact-fitment-no-retail-part",
+      "evidence": [
+        "Complete inventory: 995 exact GX-family manufacturer-communication rows and 200 exact recall rows / 18 campaigns were replayed.",
+        "Visual review of Program ZLH limits its air-pump/air-switching-valve moisture condition to certain 2010-2013 GX 460 vehicles.",
+        "No exact GX 470 communication supports the frozen 2003-2009 identity, and the proposed copy explicitly removes the emissions-bypass instruction."
+      ],
+      "before": {
+        "make": "Lexus",
+        "model": "GX",
+        "years": [
+          2003,
+          2004,
+          2005,
+          2006,
+          2007,
+          2008,
+          2009
+        ],
+        "trims": [
+          "GX470"
+        ],
+        "engines": [
+          "4.7L 2UZ-FE"
+        ],
+        "category": "emissions",
+        "title": "Secondary Air Injection Pump Failure",
+        "description": "The secondary air injection (SAI) system pump and switching valves fail due to moisture intrusion and corrosion. The SAI pump introduces fresh air into the exhaust during cold starts to reduce emissions, but the pump motor corrodes internally and the switching valves stick. This triggers a check engine light with SAI-related codes.",
+        "solution": "Replace the secondary air injection pump and switching valves. Clean or replace the air injection check valves. Clear codes and verify operation. Some owners in non-emissions-testing states choose to bypass the system entirely with a tune.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Check engine light with P2440/P2441/P2442 codes",
+          "Rough idle on cold start",
+          "Failed emissions inspection",
+          "Whirring noise from passenger side of engine on cold start"
+        ],
+        "affectedSystems": [
+          "Emissions",
+          "Exhaust"
+        ],
+        "dtcCodes": [
+          "P2440",
+          "P2441",
+          "P2442"
+        ],
+        "estimatedCostLow": 800,
+        "estimatedCostHigh": 2000,
+        "typicalMileageLow": 80000,
+        "typicalMileageHigh": 150000,
+        "citations": [
+          {
+            "type": "forum",
+            "title": "ClubLexus.com — GX470 secondary air injection system failure guide with part numbers"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "source": "ClubLexus.com",
+            "content": "Replace both the pump AND the switching valves at the same time — if one has failed, the other is likely close behind. The valves are $150 each but save a second repair.",
+            "upvotes": 167,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 2200,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-08-30",
+        "reviewedOn": "2026-03-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "toyota-sequoia-air-injection-2001",
+          "toyota-sequoia-air-injection-pump-2001",
+          "toyota-land-cruiser-air-pump-2008",
+          "toyota-tundra-secondary-air-injection-pump-2005",
+          "toyota-land-cruiser-air-injection-failure-1998"
+        ]
+      },
+      "beforeSha256": "ea537eb4e14305d8502479e6723d7c0954afb77709aa06f107ed03e26d64f9e1",
+      "proposal": {
+        "make": "Lexus",
+        "model": "GX",
+        "years": [
+          2003,
+          2004,
+          2005,
+          2006,
+          2007,
+          2008,
+          2009
+        ],
+        "trims": [
+          "GX470"
+        ],
+        "engines": [
+          "4.7L 2UZ-FE"
+        ],
+        "category": "emissions",
+        "title": "Secondary Air Injection Pump Failure",
+        "description": "Lexus Warranty Enhancement Program ZLH documents moisture or water in air-injection pumps and/or air-switching valves on certain 2010-2013 GX 460 vehicles. It does not apply to the frozen 2003-2009 GX 470 scope. The complete GX 470 communication inventory contains no exact source establishing this page’s moisture/corrosion mechanism, P2440/P2441/P2442 set, mileage range, failure rate, or replace-every-component recommendation.",
+        "solution": "Do not bypass or disable the emissions system with a tune, and do not order a pump, switching valves or check valves from this page. Record all diagnostic codes and cold-start symptoms, verify the exact model-year emissions configuration, and diagnose it under current Lexus service information before replacing parts. Program ZLH must not be used to promise coverage for a GX 470. This is a VIN-specific dealer/emissions-service remedy; no universal retail part is asserted.",
+        "severity": "medium",
+        "confidence": "low",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "program",
+            "title": "POL17-01 — Warranty Enhancement Program ZLH",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2018/MC-10143917-9999.pdf"
+          },
+          {
+            "type": "nhtsa",
+            "title": "NHTSA Manufacturer Communications datasets",
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis#manufacturer-communications"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-08",
+        "contentUpdatedOn": "2026-08-08",
+        "contentUpdateSummary": "Removed the wrong-generation ZLH implication, unsupported DTC/mileage/parts claims and emissions-bypass advice; held the GX 470 identity for exact primary evidence.",
+        "relatedIssueIds": []
+      },
+      "proposalSha256": "6b90803871562668826dc5d99952c7d5d1e206f43596ef7796162ff88e6de24a",
+      "changedFields": [
+        "description",
+        "solution",
+        "confidence",
+        "symptoms",
+        "affectedSystems",
+        "dtcCodes",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "typicalMileageLow",
+        "typicalMileageHigh",
+        "citations",
+        "communityRecommendations",
+        "reportCount",
+        "source",
+        "lastReportedByOwners",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary",
+        "relatedIssueIds"
+      ]
+    }
+  ]
+}
