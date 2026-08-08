@@ -1,0 +1,753 @@
+{
+  "schemaVersion": 1,
+  "status": "proposal-only",
+  "auditStage": "model-primary-source-adjudication",
+  "requiresIndependentApproval": true,
+  "generatedOn": "2026-08-08",
+  "make": "Land Rover",
+  "model": "Range Rover Velar",
+  "completionStatement": "All three frozen Velar records receive complete primary-inventory adjudication: DEF and touchscreen identities receive bounded rewrites, while the overstated deployable-door-handle identity remains a corrective hold and every indexed page identity stays published and unchanged.",
+  "applicationGate": {
+    "status": "blocked",
+    "blockerRecordIds": [
+      "land-rover-range-rover-velar-door-handle-2018"
+    ],
+    "reason": "The door-handle title overstates a documented freezing-condition cosmetic retraction concern as mechanism failure. Independent review is also required for both bounded rewrites before application."
+  },
+  "safetyContract": [
+    "No production write, deployment, archive, redirect, slug change, title change, category change, indexed-year change, trim change, engine change or new issue is authorized.",
+    "All three IDs, titles, categories, indexed year sets, trim sets, engine sets and publication states remain unchanged.",
+    "No part is linked without exact component and fitment support; every proposal explicitly states why no universal retail part is offered.",
+    "All 1,138 manufacturer-communication rows and all 502 recall rows / 12 campaigns are accounted for; all recall identities remain deferred."
+  ],
+  "source": {
+    "snapshotFile": "data/_land-rover-deeplink-snapshot-2026-08-08.json",
+    "snapshotSha256": "e95e033f348cc218e87d1faf0f19d0cbe67274d51739f3dd77e5e7b47ece3bbf",
+    "snapshotGeneratedAt": "2026-08-08T14:25:43.008Z",
+    "snapshotHash": "3f13700b582e6864d62580851752656db123b4bdb6b24a30e3ffbb9deaa4b9c8",
+    "modelRecordCount": 3
+  },
+  "observations": [
+    {
+      "code": "velar-def-identity-bounded",
+      "severity": "exact-rewrite",
+      "recordIds": [
+        "land-rover-range-rover-velar-adblue-system-2018"
+      ],
+      "detail": "JLR supports DEF warnings, DTCs and an injector-crusting inspection but not blanket injector/heater/sensor failure."
+    },
+    {
+      "code": "velar-door-handle-safety-overstatement-removed",
+      "severity": "critical-correction",
+      "recordIds": [
+        "land-rover-range-rover-velar-door-handle-2018"
+      ],
+      "detail": "JLR calls the freezing retraction concern cosmetic and says primary handle, lock and security operation remain unaffected."
+    },
+    {
+      "code": "velar-touchscreen-identity-bounded",
+      "severity": "exact-rewrite",
+      "recordIds": [
+        "land-rover-range-rover-velar-touchscreen-failure-2018"
+      ],
+      "detail": "JLR supports specified 2018-2020 blank/flickering and lower-screen conditions without universal hardware failure."
+    },
+    {
+      "code": "velar-no-unverified-commerce",
+      "severity": "commerce-safety",
+      "recordIds": [
+        "land-rover-range-rover-velar-adblue-system-2018",
+        "land-rover-range-rover-velar-door-handle-2018",
+        "land-rover-range-rover-velar-touchscreen-failure-2018"
+      ],
+      "detail": "All guessed modules, handles, injectors, heaters and fluids are removed; no search or guessed deep link is introduced."
+    },
+    {
+      "code": "velar-twelve-campaign-identities-deferred",
+      "severity": "new-issues-deferred",
+      "recordIds": [],
+      "campaignNumbers": [
+        "18V087000",
+        "18V139000",
+        "19V040000",
+        "21V117000",
+        "21V668000",
+        "22V523000",
+        "22V581000",
+        "23V044000",
+        "24V450000",
+        "24V678000",
+        "26V248000",
+        "26V297000"
+      ],
+      "detail": "Twelve separate recall identities remain deferred until the remaining-make audit is complete."
+    },
+    {
+      "code": "all-velar-pages-preserved",
+      "severity": "seo-safety",
+      "recordIds": [
+        "land-rover-range-rover-velar-adblue-system-2018",
+        "land-rover-range-rover-velar-door-handle-2018",
+        "land-rover-range-rover-velar-touchscreen-failure-2018"
+      ],
+      "detail": "Every Velar ID, title, category, indexed year set, trim set, engine set and publication state remains preserved."
+    }
+  ],
+  "pdfSources": {
+    "def": {
+      "url": "https://static.nhtsa.gov/odi/tsbs/2018/MC-10142589-9999.pdf",
+      "nhtsaDocumentId": "10142589",
+      "bytes": 650770,
+      "sha256": "8107668f32af8bdf1c9531a7c705c87db1d9d6eb1afdffb56d76359a60faa4bb"
+    },
+    "door2018": {
+      "url": "https://static.nhtsa.gov/odi/tsbs/2018/MC-10142565-9999.pdf",
+      "nhtsaDocumentId": "10142565",
+      "bytes": 465433,
+      "sha256": "72b6a06b7b496755aab34913541c3d8f7ed034bb95b1f5f67af348665ba72fcf"
+    },
+    "door2021": {
+      "url": "https://static.nhtsa.gov/odi/tsbs/2021/MC-10199082-0001.pdf",
+      "nhtsaDocumentId": "10199082",
+      "bytes": 84003,
+      "sha256": "eeafbc06bfa10b1c64cc397ad22cb9de6c30d0a52d2c63d85ee631f1c7193967"
+    },
+    "touch": {
+      "url": "https://static.nhtsa.gov/odi/tsbs/2020/MC-10171122-0001.pdf",
+      "nhtsaDocumentId": "10171122",
+      "bytes": 331345,
+      "sha256": "1449081ac5a43f992e1a098e457c2fc5eaa1ac7ced01f4d43670ef5bfac35914"
+    }
+  },
+  "manufacturerCommunications": {
+    "source": "https://www.nhtsa.gov/nhtsa-datasets-and-apis#manufacturer-communications",
+    "modelAliases": [
+      "RANGE ROVER VELAR"
+    ],
+    "periodCounts": {
+      "1995-1999": 0,
+      "2000-2004": 0,
+      "2005-2009": 0,
+      "2010-2014": 0,
+      "2015-2019": 447,
+      "2020-2024": 538,
+      "2025-2026": 153
+    },
+    "totalRows": 1138,
+    "relevantDocumentCounts": {
+      "def": 12,
+      "door": 8,
+      "touch": 58
+    },
+    "sourceFiles": [
+      {
+        "period": "1995-1999",
+        "length": 3443097,
+        "sha256": "409a86bb7bb37a6313eae9212fb90a5ab45029fdcf2a69d0c0378eab080503db"
+      },
+      {
+        "period": "2000-2004",
+        "length": 8952754,
+        "sha256": "5c755be52d35e060626402ebe6dfcccdf350ae379df5c06b49c71d08497e2264"
+      },
+      {
+        "period": "2005-2009",
+        "length": 5457880,
+        "sha256": "04f72a7bf95530d116b1500c976a9e4d365e1c9a8b0433f58d60dbb36a58679b"
+      },
+      {
+        "period": "2010-2014",
+        "length": 17332775,
+        "sha256": "41e66a9d81a859d469d51c6cdcbc107fc6284c64ed24065ccaf1fe02a52e4387"
+      },
+      {
+        "period": "2015-2019",
+        "length": 144450847,
+        "sha256": "d6c2ff16880cc7b31cfebad94bda08c3e8b3b2c3f28d56d5b1bb810c8b878a2e"
+      },
+      {
+        "period": "2020-2024",
+        "length": 125521629,
+        "sha256": "3b3ca3d690e33386d1d315a0f966285ae8cccb99c45c2386ada164c5e925c3cf"
+      },
+      {
+        "period": "2025-2026",
+        "length": 77786229,
+        "sha256": "419ebda2f1c1bf22e2b0862858d61699c25e61d73842f9031e796f1fafefba4c"
+      }
+    ]
+  },
+  "recallInventory": {
+    "source": "https://www.nhtsa.gov/nhtsa-datasets-and-apis#recalls",
+    "modelAliases": [
+      "RANGE ROVER VELAR"
+    ],
+    "totalRows": 502,
+    "uniqueCampaignYearModelRows": 18,
+    "campaignCount": 12,
+    "campaigns": [
+      "18V087000",
+      "18V139000",
+      "19V040000",
+      "21V117000",
+      "21V668000",
+      "22V523000",
+      "22V581000",
+      "23V044000",
+      "24V450000",
+      "24V678000",
+      "26V248000",
+      "26V297000"
+    ],
+    "mappedCampaigns": [],
+    "deferredCampaigns": [
+      "18V087000",
+      "18V139000",
+      "19V040000",
+      "21V117000",
+      "21V668000",
+      "22V523000",
+      "22V581000",
+      "23V044000",
+      "24V450000",
+      "24V678000",
+      "26V248000",
+      "26V297000"
+    ],
+    "sourceFiles": [
+      {
+        "period": "pre",
+        "rows": 0,
+        "length": 83786245,
+        "sha256": "71e6e325e2d69d204776fb32d83dad4fd95436a2f7890da54d49622d77a36232"
+      },
+      {
+        "period": "post",
+        "rows": 502,
+        "length": 309278972,
+        "sha256": "4803a7f298f1d850736fe55830f4d31b004577424cb6429988c5864786f76a70"
+      }
+    ]
+  },
+  "documentIds": {
+    "def": [
+      "10142589",
+      "10147477",
+      "10147462",
+      "10149101",
+      "10153047",
+      "10161421",
+      "10162656",
+      "10163956",
+      "10164547",
+      "10165199",
+      "10165188",
+      "10171164"
+    ],
+    "door": [
+      "10138660",
+      "10142565",
+      "10145935",
+      "10146375",
+      "10177113",
+      "10185242",
+      "10189734",
+      "10199082"
+    ],
+    "touch": [
+      "10136680",
+      "10147478",
+      "10147480",
+      "10147487",
+      "10155606",
+      "10155615",
+      "10157135",
+      "10157144",
+      "10160453",
+      "10163947",
+      "10171122",
+      "11015276",
+      "11015312",
+      "11016645"
+    ]
+  },
+  "mappedCampaigns": [],
+  "deferredCampaigns": [
+    "18V087000",
+    "18V139000",
+    "19V040000",
+    "21V117000",
+    "21V668000",
+    "22V523000",
+    "22V581000",
+    "23V044000",
+    "24V450000",
+    "24V678000",
+    "26V248000",
+    "26V297000"
+  ],
+  "summary": {
+    "rewrite_same_identity": 2,
+    "targeted_safety_cleanup_pending_source": 1,
+    "total": 3
+  },
+  "rows": [
+    {
+      "id": "land-rover-range-rover-velar-adblue-system-2018",
+      "action": "rewrite_same_identity",
+      "commerceDecision": "diagnostic-remedy-no-universal-retail-part",
+      "evidence": [
+        "Complete inventory: 1138 Velar manufacturer-communication rows and 502 recall rows were searched.",
+        "Twelve DEF records were reviewed: 10142589, 10147477, 10147462, 10149101, 10153047, 10161421, 10162656, 10163956, 10164547, 10165199, 10165188, 10171164.",
+        "They support warnings, DTCs and an injector-crusting inspection, not universal injector/heater/sensor replacement."
+      ],
+      "before": {
+        "make": "Land Rover",
+        "model": "Range Rover Velar",
+        "years": [
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [
+          "2.0L Ingenium Diesel",
+          "3.0L V6 Diesel"
+        ],
+        "category": "fuel",
+        "title": "AdBlue/DEF System Faults and Injector Crystallization",
+        "description": "The diesel Velar models are prone to AdBlue (DEF) system faults caused by the AdBlue injector crystallizing. Crystallized AdBlue blocks the injector and prevents proper urea injection into the exhaust, triggering a countdown to engine restart lockout. The AdBlue heater and level sensor also fail, giving false empty readings even with a full tank.",
+        "solution": "Replace the AdBlue injector and clean the injector mounting area of crystallization. Replace the AdBlue heater element if faulty. Use only ISO 22241-compliant AdBlue fluid. If the restart countdown has begun, a dealer must reset it with diagnostic equipment before the vehicle locks out.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "AdBlue system fault warning",
+          "Engine restart in X miles countdown message",
+          "AdBlue level reads empty when full",
+          "Reduced engine power in limp mode",
+          "Check engine light with NOx sensor codes"
+        ],
+        "affectedSystems": [
+          "Fuel System",
+          "Emissions",
+          "Exhaust"
+        ],
+        "dtcCodes": [
+          "P20EE",
+          "P2BAC",
+          "P207F"
+        ],
+        "estimatedCostLow": 500,
+        "estimatedCostHigh": 2000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "JLR TSB LTB00561 — AdBlue system crystallization diagnosis and repair"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "warning",
+            "source": "disco3.co.uk",
+            "content": "Do NOT ignore the AdBlue countdown. Once it reaches zero, the engine will not restart until a dealer resets it. This can happen far from home.",
+            "upvotes": 167,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 780,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-01-25",
+        "reviewedOn": "2026-03-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "beforeSha256": "ff2491dbd58c3ced9d180bf9df56320c96b74784cb4c27b4527ce9111310f858",
+      "proposal": {
+        "make": "Land Rover",
+        "model": "Range Rover Velar",
+        "years": [
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [
+          "2.0L Ingenium Diesel",
+          "3.0L V6 Diesel"
+        ],
+        "category": "fuel",
+        "title": "AdBlue/DEF System Faults and Injector Crystallization",
+        "description": "JLR records for 2018-2020 diesel Velar vehicles document DEF dosing or quality warnings, restart countdowns and DTCs including P203B-31, P208A-13 and P208C-11. One primary record directs technicians to check DEF quality and inspect the injector for crusting or leaks, but treats the condition as under investigation. The evidence does not establish injector, heater and level-sensor failure across 2018-2024.",
+        "solution": "Record the exact warning, remaining restart distance, DTCs, DEF level and fluid quality, then follow the current VIN-specific JLR primary and secondary diagnostic path. Do not replace the injector, heater, level sensor or tank or clear a countdown from this page; crusting is a diagnostic finding, not a universal cause, and no verified retail part is linked.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "JLR technical concern — Velar DEF dosing malfunction and injector crusting check",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2018/MC-10142589-9999.pdf"
+          },
+          {
+            "type": "nhtsa",
+            "title": "NHTSA Manufacturer Communications — 12 Velar DEF records",
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis#manufacturer-communications"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-08",
+        "contentUpdatedOn": "2026-08-08",
+        "contentUpdateSummary": "Bounded the DEF identity to exact JLR warnings and DTCs and removed blanket injector/heater replacement and reset claims.",
+        "relatedIssueIds": []
+      },
+      "proposalSha256": "be9a0dae72072aeee8b473665e975b2f0f40f613ab3830ed16172495f7d156d8",
+      "changedFields": [
+        "description",
+        "solution",
+        "confidence",
+        "symptoms",
+        "affectedSystems",
+        "dtcCodes",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "communityRecommendations",
+        "reportCount",
+        "source",
+        "lastReportedByOwners",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ]
+    },
+    {
+      "id": "land-rover-range-rover-velar-door-handle-2018",
+      "action": "targeted_safety_cleanup_pending_source",
+      "commerceDecision": "diagnostic-remedy-no-universal-retail-part",
+      "evidence": [
+        "Complete inventory: 1138 Velar manufacturer-communication rows and 502 recall rows were searched.",
+        "Eight deployable-handle records were reviewed: 10138660, 10142565, 10145935, 10146375, 10177113, 10185242, 10189734, 10199082.",
+        "JLR explicitly calls the freezing retraction condition cosmetic and says primary handle/lock/security operation remains unaffected."
+      ],
+      "before": {
+        "make": "Land Rover",
+        "model": "Range Rover Velar",
+        "years": [
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "exterior",
+        "title": "Deployable Door Handle Mechanism Failure",
+        "description": "The Velar features flush-mounted deployable door handles that extend outward when the vehicle is unlocked. The electric motors and gear mechanisms inside the handles fail, leaving the handle stuck flush or stuck in the extended position. Cold weather and water ingress accelerate the failure. A stuck handle can trap occupants inside or prevent entry.",
+        "solution": "Replace the door handle actuator motor and mechanism. JLR has revised the design on newer production vehicles. Apply silicone spray to the handle mechanisms seasonally to prevent water intrusion. In an emergency, the door can be opened from the inside using the manual release.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Door handle does not deploy when vehicle is unlocked",
+          "Door handle deploys but does not retract",
+          "Grinding noise from door handle area",
+          "Handle stuck in freezing conditions",
+          "Door handle warning message on dashboard"
+        ],
+        "affectedSystems": [
+          "Exterior",
+          "Body",
+          "Electrical"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 500,
+        "estimatedCostHigh": 1200,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "nhtsa",
+            "title": "NHTSA complaints — Velar door handle failures and entry/exit safety concerns"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "source": "LandRoverForums.com",
+            "content": "Spray silicone lubricant into the door handle recesses before winter. Water ingress is the primary cause of handle motor failure.",
+            "upvotes": 145,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 890,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-01-20",
+        "reviewedOn": "2026-03-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "land-rover-range-rover-evoque-door-handle-2012"
+        ]
+      },
+      "beforeSha256": "82c1e0dc1ab8e5276ae4cbf22446fa34524b1016782cf0d5a8f0131770cce640",
+      "proposal": {
+        "make": "Land Rover",
+        "model": "Range Rover Velar",
+        "years": [
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "exterior",
+        "title": "Deployable Door Handle Mechanism Failure",
+        "description": "JLR records document deployable exterior handles that may not fully retract in freezing conditions. The 2018 guidance says this is cosmetic, does not affect the primary handle, lock or security functions, and tells technicians not to replace components when operation returns after warming. Later guidance uses a guided diagnostic flow and limited replacement criteria. That does not support motor/gear failure, occupant entrapment or broad water-ingress claims.",
+        "solution": "If a handle does not fully retract in freezing conditions, avoid forcing it, allow all ice to melt and confirm handle and latch operation. Follow the current VIN-specific JLR guided diagnostic flow if the condition remains. Do not replace an actuator, motor or complete handle or apply silicone from this page; no universal retail part is supported.",
+        "severity": "medium",
+        "confidence": "low",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "JLR SSM73851 — deployable door-handle operation in freezing conditions",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2018/MC-10142565-9999.pdf"
+          },
+          {
+            "type": "tsb",
+            "title": "JLR shop-foreman guidance — 2021 deployable door handles",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2021/MC-10199082-0001.pdf"
+          },
+          {
+            "type": "nhtsa",
+            "title": "NHTSA Manufacturer Communications — eight Velar deployable-handle records",
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis#manufacturer-communications"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-08",
+        "contentUpdatedOn": "2026-08-08",
+        "contentUpdateSummary": "Removed the false occupant-entrapment, motor/gear, water-ingress and blanket replacement claims; retained the documented freezing-condition symptom as a hold.",
+        "relatedIssueIds": []
+      },
+      "proposalSha256": "22f2072290eca5fcb8d9bbe62cac13ce307689ba014d2021fa609e935555fabe",
+      "changedFields": [
+        "description",
+        "solution",
+        "confidence",
+        "symptoms",
+        "affectedSystems",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "communityRecommendations",
+        "reportCount",
+        "source",
+        "lastReportedByOwners",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary",
+        "relatedIssueIds"
+      ]
+    },
+    {
+      "id": "land-rover-range-rover-velar-touchscreen-failure-2018",
+      "action": "rewrite_same_identity",
+      "commerceDecision": "diagnostic-remedy-no-universal-retail-part",
+      "evidence": [
+        "Complete inventory: 1138 Velar manufacturer-communication rows and 502 recall rows were searched.",
+        "Fifty-eight touchscreen/infotainment candidates were reviewed; representative exact records are 10136680, 10147478, 10147480, 10147487, 10155606, 10155615, 10157135, 10157144, 10160453, 10163947, 10171122, 11015276, 11015312, 11016645.",
+        "The evidence supports bounded 2018-2020 display/software conditions but not a universal dual-screen hardware failure across 2018-2024."
+      ],
+      "before": {
+        "make": "Land Rover",
+        "model": "Range Rover Velar",
+        "years": [
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [
+          "2.0L Ingenium Turbo",
+          "3.0L V6 Supercharged",
+          "5.0L V8 Supercharged"
+        ],
+        "category": "electrical",
+        "title": "Dual Touchscreen Climate and Infotainment Failure",
+        "description": "The Velar's innovative dual-touchscreen interface (Touch Pro Duo) is prone to failures where one or both screens go black, freeze, or become unresponsive. Since all vehicle controls including climate, seat heating, and driving modes are controlled through these screens, a failure leaves the driver without access to essential functions. The lower screen is particularly prone to failure as it controls HVAC.",
+        "solution": "Perform a system reboot by holding both screen power buttons simultaneously. Visit a JLR dealer for software updates. In severe cases, the screen modules need replacement. The lower HVAC screen can be replaced independently of the upper navigation screen.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "One or both touchscreens go black",
+          "Screens freeze and do not respond to touch",
+          "Cannot adjust climate control",
+          "Cannot change driving modes",
+          "Screens restart repeatedly in a loop"
+        ],
+        "affectedSystems": [
+          "Electrical",
+          "Infotainment",
+          "Climate Control"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": 3000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "nhtsa",
+            "title": "NHTSA complaints — Range Rover Velar touchscreen failures 2018-2023 (150+ complaints)"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "warning",
+            "source": "LandRoverForums.com",
+            "content": "The Velar relies entirely on touchscreens — there are no physical HVAC controls. A screen failure in extreme heat or cold is a safety concern. Keep the software updated.",
+            "upvotes": 213,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 1100,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-02-05",
+        "reviewedOn": "2026-03-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "land-rover-range-rover-pivi-pro-bugs-2022"
+        ]
+      },
+      "beforeSha256": "b6357473d6e282447c3bddc6b7f15fff6567c35df3aa1941726b9661d0a6da0e",
+      "proposal": {
+        "make": "Land Rover",
+        "model": "Range Rover Velar",
+        "years": [
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [
+          "2.0L Ingenium Turbo",
+          "3.0L V6 Supercharged",
+          "5.0L V8 Supercharged"
+        ],
+        "category": "electrical",
+        "title": "Dual Touchscreen Climate and Infotainment Failure",
+        "description": "JLR communications document Touch Pro Duo and Interactive Control Display Module conditions on specified 2018-2020 Velar vehicles, including blank or flickering displays, involuntary lower-screen inputs, startup failures and software-update problems. They do not establish that both displays fail across every 2018-2024 vehicle, that essential controls are universally lost, or that 2021-2024 Pivi conditions share the same hardware cause.",
+        "solution": "Record which display and functions are affected, the installed software level and any IMC, ISC, ICDM or IDMA DTCs, then follow the current VIN-specific JLR software and module workflow. Do not rely on a button-reset sequence or replace either screen or infotainment module from this page; the documented causes differ and no universal retail part is linked.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "JLR concern fix — ICDM blank or flickering",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2020/MC-10171122-0001.pdf"
+          },
+          {
+            "type": "nhtsa",
+            "title": "NHTSA Manufacturer Communications — 58 Velar touchscreen/infotainment candidates",
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis#manufacturer-communications"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-08",
+        "contentUpdatedOn": "2026-08-08",
+        "contentUpdateSummary": "Bounded the dual-screen identity to exact 2018-2020 JLR display and software conditions and removed universal-control-loss, reboot and module-replacement advice.",
+        "relatedIssueIds": []
+      },
+      "proposalSha256": "e7b5ec430cfa7206a942eb5246abca1fb5bab8ca9afa53637a951b0b5fd980e5",
+      "changedFields": [
+        "description",
+        "solution",
+        "symptoms",
+        "affectedSystems",
+        "estimatedCostHigh",
+        "citations",
+        "communityRecommendations",
+        "reportCount",
+        "source",
+        "lastReportedByOwners",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary",
+        "relatedIssueIds"
+      ]
+    }
+  ]
+}
