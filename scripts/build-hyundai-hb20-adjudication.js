@@ -32,7 +32,7 @@ const KEEP_REASONS = {
 const OIL_PUMP_CARD = {
   years: [2023, 2024],
   category: 'transmission',
-  severity: 'critical',
+  severity: 'high',
   confidence: 'high',
   title: 'Recall: Automatic-Transmission Electric Oil-Pump Control Module Short Circuit',
   description: 'Hyundai Motor Brasil recalled 2023-2024 HB20 and HB20S vehicles manufactured from December 20, 2022 through September 27, 2023. Hyundai says a nonconformity in the automatic transmission electric oil-pump control module can cause an internal short circuit. In an extreme case, that can cause a fire and property damage or serious or fatal injury to occupants or other people.',

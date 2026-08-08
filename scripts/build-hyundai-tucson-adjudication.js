@@ -133,7 +133,7 @@ const CARDS = {
   },
   [IDS.oilPump]: {
     years: [2023],
-    severity: 'critical',
+    severity: 'high',
     confidence: 'high',
     description:
       'NHTSA recall 23V-526 covers certain model-year 2023 Hyundai Tucson vehicles. The Idle Stop & Go transmission electric oil-pump controller may contain a printed circuit board damaged during manufacturing. A damaged capacitor can affect operation and cause heat damage to the pump circuit board, connector and wiring harness, increasing the risk of a vehicle fire and potentially disrupting controller-area-network communication. Warning signs can include underbody smoke, a burning or melting odor, or warning-lamp illumination.',
@@ -161,7 +161,7 @@ const CARDS = {
   },
   [IDS.towHarness]: {
     years: [2022, 2023, 2024],
-    severity: 'critical',
+    severity: 'high',
     confidence: 'high',
     description:
       'NHTSA recall 25V-893 covers certain model-year 2022-2024 Hyundai Tucson vehicles equipped with an optional OEM trailer wiring harness installed as a port-installed or dealer-installed option. The harness control module was installed in a location susceptible to water ingress and has insufficient sealing. Water inside the module can make trailer or vehicle stop lamps inoperative or, in rare cases, cause a short that can overheat, melt or ignite, increasing crash and fire risk. Intermittent or inoperative parking, turn-signal, or stop lamps on the vehicle or trailer may provide warning.',
