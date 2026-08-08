@@ -9,13 +9,13 @@ const snapshot = JSON.parse(fs.readFileSync(SNAPSHOT, 'utf8'));
 
 test('Jaguar make reconciliation covers every frozen row exactly once', () => {
   assert.deepEqual(validateReconciliation(packet, snapshot), []);
-  assert.deepEqual(packet.summary, { rewrite_same_identity: 2, keep_published_pending_source: 61, total: 63 });
+  assert.deepEqual(packet.summary, { rewrite_same_identity: 3, keep_published_pending_source: 60, total: 63 });
   assert.deepEqual(packet.models, EXPECTED_MODELS);
 });
 
-test('only the two source-exact Jaguar recall identities are rewrites', () => {
+test('only the two source-exact recalls and one safety correction are rewrites', () => {
   assert.deepEqual(packet.rewriteIds, EXPECTED_REWRITE_IDS);
-  assert.equal(new Set(packet.rewriteIds).size, 2);
+  assert.equal(new Set(packet.rewriteIds).size, 3);
 });
 
 test('make-wide outcome preserves every indexed page identity', () => {

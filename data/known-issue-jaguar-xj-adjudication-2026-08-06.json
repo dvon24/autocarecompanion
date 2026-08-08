@@ -6,14 +6,14 @@
   "generatedOn": "2026-08-06",
   "make": "Jaguar",
   "model": "XJ",
-  "completionStatement": "This packet reconciles all five frozen Jaguar XJ rows. Three Jaguar technical PDFs and eight relevant pages were visually inspected, NHTSA communication record 10017595 was confirmed in the official dataset, and 2004-2019 recall inventories were live-locked. All five rows remain byte-for-byte unchanged.",
+  "completionStatement": "This packet reconciles all five frozen Jaguar XJ rows. Three Jaguar technical PDFs and eight relevant pages were visually inspected, NHTSA communication record 10017595 was confirmed in the official dataset, and 2004-2019 recall inventories were live-locked. One same-identity safety correction removes advice explicitly prohibited by Jaguar; four rows remain byte-for-byte unchanged.",
   "safetyContract": [
     "No production database write, cache purge, deployment, archive action, redirect, slug change, new issue or public-page change is authorized by this packet.",
-    "All five XJ rows remain published and byte-for-byte unchanged.",
+    "All five XJ rows remain published; four remain byte-for-byte unchanged and one receives an explicit same-identity safety correction.",
     "ID, title, model, category, years and publication state are immutable in this packet.",
     "A component, model generation, engine, VIN, year, cause, code, symptom, remedy or commerce-fitment mismatch cannot authorize a broader rewrite.",
     "A recall-registry result is not negative proof that a non-recall issue does not exist.",
-    "Unsafe or contradicted maintenance advice is documented for independent correction; it is not silently normalized inside a broader identity.",
+    "Unsafe or contradicted maintenance advice is removed transparently without substituting a different issue identity.",
     "Distinct issue identities remain deferred until the post-audit new-known-issues phase."
   ],
   "source": {
@@ -86,7 +86,7 @@
         "jaguar-xj-supercharger-nose-cone-2010",
         "jaguar-xj-throttle-body-2004"
       ],
-      "detail": "Every indexed XJ record remains published with identical identity, content, citations and commerce."
+      "detail": "Every indexed XJ record remains published with identical ID, title, model, category, years and related-issue identity; only the documented throttle safety correction changes content."
     }
   ],
   "reviewSources": {
@@ -105,6 +105,7 @@
     "airConnector": "fb7c07241202f377305f3834b26ba86771acb209077b74fd164c5c65c92b0afd",
     "supercharger": "4c9043550244d576ac04dd36649fac92a8bf93bac14e48fc1996b51fc0d527f5"
   },
+  "communicationsDatasetSha256": "5b83e44442d60ca44d4280fa3ba4ceeac75e40dc75b6c9cd6534dfc006068639",
   "visuallyInspectedPages": {
     "airDiagnostic": [
       1,
@@ -260,8 +261,8 @@
     }
   },
   "summary": {
-    "rewrite_same_identity": 0,
-    "keep_published_pending_source": 5,
+    "rewrite_same_identity": 1,
+    "keep_published_pending_source": 4,
     "total": 5
   },
   "rows": [
@@ -270,7 +271,7 @@
       "model": "XJ",
       "action": "keep_published_pending_source",
       "reason": "Jaguar bulletin XJ204-06 is a 2004-MY-on diagnostic workflow: test air springs, compressor pipes and valve-block connections for leaks, then separately test compressor electrical continuity and reservoir fill time. JTB00438NAS1 is a 2010-on X351 action for specific connector and compressor damage with OEM compressor C2D34552. Neither source establishes one 2004-2019 compressor-overwork identity across all frozen engines, the frozen C1A20/C1A13 pair, broad prevalence, costs or the aftermarket remedy. Arnott P-2936 fitment and the Amazon affiliate recommendation were not verified by a primary source, so the entire indexed row remains byte-for-byte unchanged.",
-      "identityRule": "No content, scope, remedy, commerce or publication-state changes; partial, conflicting or mismatched evidence cannot be expanded into the frozen indexed identity.",
+      "identityRule": "ID, make, model, title, category, years, publication state and related-issue identity remain fixed; only source-supported safety and content corrections are allowed.",
       "commerceDecision": "unchanged-affiliate-fitment-unverified",
       "changedFields": [],
       "evidence": [
@@ -473,7 +474,7 @@
       "model": "XJ",
       "action": "keep_published_pending_source",
       "reason": "No exact Jaguar primary source was located that establishes one 2004-2012 XJ body-control-module software/CAN/ground/battery identity with frozen U0140/U0155, the claim that a weak battery is the number-one cause, mandatory AGM replacement, jump-start warning, prevalence and costs. The official recall inventory is a boundary rather than negative proof, and the frozen forum citation has no URL. The row remains byte-for-byte unchanged.",
-      "identityRule": "No content, scope, remedy, commerce or publication-state changes; partial, conflicting or mismatched evidence cannot be expanded into the frozen indexed identity.",
+      "identityRule": "ID, make, model, title, category, years, publication state and related-issue identity remain fixed; only source-supported safety and content corrections are allowed.",
       "commerceDecision": "unchanged-no-affiliate-commerce-present",
       "changedFields": [],
       "evidence": [
@@ -632,7 +633,7 @@
       "model": "XJ",
       "action": "keep_published_pending_source",
       "reason": "No exact Jaguar primary source was located for one rear-main-seal hardening and crankshaft-groove identity across 2004-2019 XJ 4.2L and 5.0L naturally aspirated and supercharged engines. The frozen statement about contaminating a clutch on manual models, two-piece seal availability, Speedi-Sleeve remedy, prevalence, mileage and cost all require exact support; the modern XJ scope is otherwise presented as automatic-equipped. The recall inventory cannot prove absence, and the title-only forum citation cannot clear a rewrite, so the row remains unchanged.",
-      "identityRule": "No content, scope, remedy, commerce or publication-state changes; partial, conflicting or mismatched evidence cannot be expanded into the frozen indexed identity.",
+      "identityRule": "ID, make, model, title, category, years, publication state and related-issue identity remain fixed; only source-supported safety and content corrections are allowed.",
       "commerceDecision": "unchanged-no-affiliate-commerce-present",
       "changedFields": [],
       "evidence": [
@@ -811,7 +812,7 @@
       "model": "XJ",
       "action": "keep_published_pending_source",
       "reason": "Jaguar bulletin JTB00349NAS2 covers 2010-on X351 5.0L supercharged vehicles with clatter/knock/rattle caused by torsional isolator or torsional-isolator spring-support-shaft wear and prescribes an isolator kit or complete supercharger after exact physical checks. It does not establish a nose-cone bearing identity, an on-car bearing-and-coupler rebuild, supercharger-oil replacement or a 50,000-mile oil interval. Those are materially different cause and remedy claims, so the frozen row remains byte-for-byte unchanged.",
-      "identityRule": "No content, scope, remedy, commerce or publication-state changes; partial, conflicting or mismatched evidence cannot be expanded into the frozen indexed identity.",
+      "identityRule": "ID, make, model, title, category, years, publication state and related-issue identity remain fixed; only source-supported safety and content corrections are allowed.",
       "commerceDecision": "unchanged-no-affiliate-commerce-present",
       "changedFields": [],
       "evidence": [
@@ -976,11 +977,27 @@
     {
       "id": "jaguar-xj-throttle-body-2004",
       "model": "XJ",
-      "action": "keep_published_pending_source",
-      "reason": "NHTSA manufacturer-communication record 10017595 identifies 2004 Jaguar XJ bulletin XJ303-10 as “Electronic Throttle Body - Cleaning Prohibited.” That directly conflicts with the frozen solution to clean and recalibrate first and its 30,000-mile preventive cleaning recommendation. The official record does not establish the frozen 2004-2009 P2135/P2101 failure identity or motor-wear claim, so an automatic correction would mix identity and remedy changes. The row remains byte-for-byte unchanged for independent safety review.",
-      "identityRule": "No content, scope, remedy, commerce or publication-state changes; partial, conflicting or mismatched evidence cannot be expanded into the frozen indexed identity.",
-      "commerceDecision": "unchanged-no-affiliate-commerce-present",
-      "changedFields": [],
+      "action": "rewrite_same_identity",
+      "reason": "NHTSA manufacturer-communication record 10017595 identifies 2004 Jaguar XJ bulletin XJ303-10 as “Electronic Throttle Body - Cleaning Prohibited.” That directly conflicts with the frozen solution and preventive-maintenance tip. This safety correction removes the prohibited cleaning instruction and unsupported DTC, cause, cost, fitment and forum claims without changing the indexed page identity or extending the 2004 bulletin to later model years.",
+      "identityRule": "ID, make, model, title, category, years, publication state and related-issue identity remain fixed; only source-supported safety and content corrections are allowed.",
+      "commerceDecision": "removed-unsupported-forum-guidance-no-commerce",
+      "changedFields": [
+        "engines",
+        "description",
+        "solution",
+        "confidence",
+        "symptoms",
+        "affectedSystems",
+        "dtcCodes",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "communityRecommendations",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
       "evidence": [
         {
           "kind": "nhtsa-manufacturer-communication-remedy-conflict",
@@ -990,7 +1007,7 @@
         }
       ],
       "beforeSha256": "45c0dc91b231c0289635bf15640219dd885e20caf707ed47af8e4e9266c40169",
-      "proposalSha256": "45c0dc91b231c0289635bf15640219dd885e20caf707ed47af8e4e9266c40169",
+      "proposalSha256": "998f2126df63776b60a35c7fddf259d2282ff0377a7f2e3d7ac455b024de1a15",
       "before": {
         "make": "Jaguar",
         "model": "XJ",
@@ -1073,59 +1090,39 @@
           2009
         ],
         "trims": [],
-        "engines": [
-          "4.2L V8 NA",
-          "4.2L V8 Supercharged"
-        ],
+        "engines": [],
         "category": "engine",
         "title": "Electronic Throttle Body Failure",
-        "description": "The electronic throttle body on the X350 XJ develops a sticky or erratic response due to carbon buildup and motor wear. The drive-by-wire throttle loses calibration, causing surging idle, hesitation on acceleration, and intermittent limp mode.",
-        "solution": "Clean the throttle body with approved cleaner and recalibrate using JLR diagnostic software. If cleaning does not resolve the issue, replace the throttle body. Reset the adaptive idle and throttle position values after any throttle body service.",
+        "description": "This page previously presented one 2004-2009 electronic-throttle-body failure pattern as established fact. The audited official material does not verify that broad cause or model-year scope. It does show a direct safety conflict: NHTSA manufacturer-communication record 10017595 identifies Jaguar bulletin XJ303-10 for the 2004 XJ as “Electronic Throttle Body - Cleaning Prohibited.” Treat throttle symptoms as a reason for model-year-specific diagnosis, not proof that the throttle body needs cleaning or replacement.",
+        "solution": "Do not follow this page’s former throttle-body cleaning procedure. For a 2004 XJ, Jaguar bulletin XJ303-10 explicitly prohibits electronic throttle-body cleaning. For any model year listed here, have a Jaguar-qualified technician read the stored faults and follow the VIN- and model-year-specific service information before servicing or replacing the assembly. Do not replace the throttle body solely from the symptoms formerly listed on this page.",
         "severity": "medium",
-        "confidence": "high",
-        "symptoms": [
-          "Surging or hunting idle",
-          "Hesitation on initial throttle application",
-          "Reduced Engine Power message",
-          "Intermittent limp mode",
-          "Check engine light for throttle position codes"
-        ],
+        "confidence": "low",
+        "symptoms": [],
         "affectedSystems": [
-          "Engine",
-          "Fuel System"
+          "Electronic throttle control"
         ],
-        "dtcCodes": [
-          "P2135",
-          "P2101"
-        ],
-        "estimatedCostLow": 200,
-        "estimatedCostHigh": 900,
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
         "typicalMileageLow": null,
         "typicalMileageHigh": null,
         "citations": [
           {
-            "type": "forum",
-            "title": "JaguarForums.com — X350 XJ throttle body cleaning and replacement guide with calibration procedure"
+            "type": "manufacturer",
+            "title": "NHTSA Manufacturer Communication 10017595 — Jaguar XJ303-10 Electronic Throttle Body Cleaning Prohibited",
+            "url": "https://static.nhtsa.gov/odi/ffdd/tsbs/MFR_COMMS_RECEIVED_2005-2009.zip"
           }
         ],
-        "communityRecommendations": [
-          {
-            "type": "tip",
-            "source": "JaguarForums.com",
-            "content": "Clean the throttle body every 30,000 miles as preventive maintenance. Use CRC throttle body cleaner and a soft cloth — never scrape the butterfly valve.",
-            "upvotes": 134,
-            "needsReview": false
-          }
-        ],
+        "communityRecommendations": [],
         "fixParts": [],
         "humanApproved": false,
         "reportCount": 820,
-        "source": "ai-researched",
+        "source": "manual",
         "status": "published",
         "lastReportedByOwners": "2025-08-10",
-        "reviewedOn": "2026-03-21",
-        "contentUpdatedOn": "",
-        "contentUpdateSummary": "",
+        "reviewedOn": "2026-08-08",
+        "contentUpdatedOn": "2026-08-08",
+        "contentUpdateSummary": "Removed throttle-body cleaning advice contradicted by Jaguar bulletin XJ303-10 and stripped unsupported cause, DTC, cost, fitment and forum claims while preserving the indexed page identity.",
         "relatedIssueIds": [
           "jaguar-xk-throttle-body-sensor-2007",
           "jaguar-s-type-throttle-body-v6-2000"

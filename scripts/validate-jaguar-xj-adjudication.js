@@ -2,7 +2,7 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const { FULL_RECORD_FIELDS, fullRecord, hashValue, normalizedFileHash, stableValue } = require('./jaguar-adjudication-utils');
-const { DATASET_MARKERS, EXPECTED_RECALLS, IDS, KEEP_REASONS, NHTSA_COMMUNICATION_RECORD, PDF_SHA256, PDF_SOURCES, RECALL_QUERIES, SOURCES, VISUALLY_INSPECTED_PAGES, evidenceFor } = require('./build-jaguar-xj-adjudication');
+const { DATASET_MARKERS, DATASET_SHA256, EXPECTED_RECALLS, IDS, KEEP_REASONS, NHTSA_COMMUNICATION_RECORD, PDF_SHA256, PDF_SOURCES, RECALL_QUERIES, SOURCES, VISUALLY_INSPECTED_PAGES, evidenceFor, throttleCorrection } = require('./build-jaguar-xj-adjudication');
 const PACKET = path.resolve(__dirname, '..', 'data', 'known-issue-jaguar-xj-adjudication-2026-08-06.json');
 const SNAPSHOT = path.resolve(__dirname, '..', 'data', '_jaguar-deeplink-snapshot-2026-08-06.json');
 function equal(left, right) { return JSON.stringify(stableValue(left)) === JSON.stringify(stableValue(right)); }
@@ -21,15 +21,17 @@ function validatePacket(packet, snapshot, expectedSnapshotSha256 = normalizedFil
     const frozen = frozenById.get(row.id);
     if (!frozen) { errors.push(`unknown XJ ID: ${row.id}`); continue; }
     const before = fullRecord(frozen);
-    if (row.action !== 'keep_published_pending_source' || row.reason !== KEEP_REASONS[row.id]) errors.push(`${row.id}: decision mismatch`);
-    if (!equal(row.before, before) || !equal(row.proposal, before)) errors.push(`${row.id}: proposal drift`);
-    if (row.beforeSha256 !== hashValue(before) || row.proposalSha256 !== hashValue(before) || row.proposalSha256 !== row.beforeSha256 || !equal(row.changedFields, [])) errors.push(`${row.id}: hash/change mismatch`);
+    const expectedProposal = row.id === IDS.throttle ? throttleCorrection(before) : before;
+    const expectedAction = row.id === IDS.throttle ? 'rewrite_same_identity' : 'keep_published_pending_source';
+    if (row.action !== expectedAction || row.reason !== KEEP_REASONS[row.id]) errors.push(`${row.id}: decision mismatch`);
+    if (!equal(row.before, before) || !equal(row.proposal, expectedProposal)) errors.push(`${row.id}: proposal drift`);
+    if (row.beforeSha256 !== hashValue(before) || row.proposalSha256 !== hashValue(expectedProposal) || !equal(row.changedFields, FULL_RECORD_FIELDS.filter((field) => hashValue(before[field]) !== hashValue(expectedProposal[field])))) errors.push(`${row.id}: hash/change mismatch`);
     if (row.proposal.make !== 'Jaguar' || row.proposal.model !== 'XJ' || row.proposal.title !== before.title || row.proposal.category !== before.category || !equal(row.proposal.years, before.years) || row.proposal.status !== 'published' || /^Archived\s*-/i.test(row.proposal.title)) errors.push(`${row.id}: identity/status drift`);
     if (!equal(row.evidence, evidenceFor(row.id))) errors.push(`${row.id}: evidence drift`);
     for (const field of FULL_RECORD_FIELDS) if (!Object.prototype.hasOwnProperty.call(row.before, field) || !Object.prototype.hasOwnProperty.call(row.proposal, field)) errors.push(`${row.id}: missing ${field}`);
   }
-  if (!equal(packet.summary, { rewrite_same_identity: 0, keep_published_pending_source: 5, total: 5 })) errors.push('summary mismatch');
-  if (!equal(packet.reviewSources, SOURCES) || !equal(packet.pdfSources, PDF_SOURCES) || !equal(packet.sourceArtifactSha256, PDF_SHA256) || !equal(packet.visuallyInspectedPages, VISUALLY_INSPECTED_PAGES) || !equal(packet.nhtsaCommunicationRecord, NHTSA_COMMUNICATION_RECORD) || !equal(packet.datasetMarkers, DATASET_MARKERS)) errors.push('review source map mismatch');
+  if (!equal(packet.summary, { rewrite_same_identity: 1, keep_published_pending_source: 4, total: 5 })) errors.push('summary mismatch');
+  if (!equal(packet.reviewSources, SOURCES) || !equal(packet.pdfSources, PDF_SOURCES) || !equal(packet.sourceArtifactSha256, PDF_SHA256) || packet.communicationsDatasetSha256 !== DATASET_SHA256 || !equal(packet.visuallyInspectedPages, VISUALLY_INSPECTED_PAGES) || !equal(packet.nhtsaCommunicationRecord, NHTSA_COMMUNICATION_RECORD) || !equal(packet.datasetMarkers, DATASET_MARKERS)) errors.push('review source map mismatch');
   if (!equal(packet.mismatchSources, { recallQueries: RECALL_QUERIES, expected: EXPECTED_RECALLS })) errors.push('mismatch source map mismatch');
   for (const code of ['xj-air-diagnostic-and-component-scope-mismatch', 'xj-bcm-primary-source-gap', 'xj-rear-main-primary-source-and-equipment-gap', 'xj-supercharger-cause-remedy-identity-mismatch', 'xj-throttle-official-cleaning-prohibition-conflict', 'xj-existing-citations-missing-urls', 'all-xj-pages-preserved']) if (!packet.observations?.some((item) => item.code === code)) errors.push(`missing observation ${code}`);
   if (!equal(Object.values(IDS).sort(), [...frozenById.keys()].sort())) errors.push('ID constant mismatch');

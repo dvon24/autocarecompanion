@@ -31,11 +31,11 @@ function buildReconciliation() {
   return {
     schemaVersion: 1, status: 'proposal-only', auditStage: 'make-wide-reconciliation', requiresIndependentApproval: true,
     generatedOn: '2026-08-06', make: 'Jaguar',
-    completionStatement: 'All 10 Jaguar model packets reconcile to all 63 frozen published rows exactly once. Two exact NHTSA recall rewrites are proposed; the other 61 rows remain byte-for-byte holds.',
+    completionStatement: 'All 10 Jaguar model packets reconcile to all 63 frozen published rows exactly once. Two exact NHTSA recall rewrites and one same-identity safety correction are proposed; the other 60 rows remain byte-for-byte holds.',
     safetyContract: [
       'No production database write, cache purge, deployment, archive action, redirect, slug change, new issue or public-page change is authorized by this packet.',
       'Every frozen Jaguar ID remains published with the same make, model, years, title, category and related-issue identity.',
-      'Only the two explicitly listed NHTSA recall identities may be rewritten after independent approval.',
+      'Only the three explicitly listed same-identity corrections may be rewritten after independent approval.',
       'Newly discovered issue identities remain deferred until the existing-catalog make audit is complete.',
     ],
     source: { snapshotFile: `data/${SNAPSHOT_FILE}`, snapshotSha256: normalizedFileHash(snapshotPath), snapshotHash: snapshot.snapshotHash, snapshotRecordCount: snapshot.records.length },

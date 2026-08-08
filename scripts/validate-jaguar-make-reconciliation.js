@@ -10,6 +10,7 @@ const PACKET = path.join(DATA, OUTPUT_FILE);
 const SNAPSHOT = path.join(DATA, SNAPSHOT_FILE);
 const EXPECTED_MODELS = MODELS;
 const EXPECTED_REWRITE_IDS = [
+  'jaguar-xj-throttle-body-2004',
   'jaguar-xk-headlamp-adjustment-mechanism-compliance-setup-issue',
   'jaguar-xk-unintended-acceleration-during-braking',
 ];
@@ -67,7 +68,7 @@ function validateReconciliation(packet, snapshot) {
   if (!equal(packet.rewriteIds, EXPECTED_REWRITE_IDS)) errors.push('packet rewrite list mismatch');
   if (!equal(packet.modelPackets, modelPackets)) errors.push('model packet manifest mismatch');
   if (!equal(packet.decisions, decisions)) errors.push('decision manifest mismatch');
-  if (!equal(packet.summary, { rewrite_same_identity: 2, keep_published_pending_source: 61, total: 63 })) errors.push('summary mismatch');
+  if (!equal(packet.summary, { rewrite_same_identity: 3, keep_published_pending_source: 60, total: 63 })) errors.push('summary mismatch');
   if (!equal(packet.invariants, { missingIds: 0, extraIds: 0, duplicateIds: 0, identityDrift: 0, statusDrift: 0, changedHolds: 0, archiveDeleteRedirectOrNewIssue: 0 })) errors.push('invariant summary mismatch');
   return errors;
 }
