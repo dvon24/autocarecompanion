@@ -1,0 +1,1158 @@
+{
+  "schemaVersion": 1,
+  "status": "proposal-only",
+  "auditStage": "model-primary-source-adjudication",
+  "requiresIndependentApproval": true,
+  "generatedOn": "2026-08-08",
+  "make": "Lexus",
+  "model": "LS",
+  "completionStatement": "All five frozen LS pages retain their indexed identities. Two recall pages are corrected to exact equipment/VIN scopes, one infotainment page is corrected to exact software and touchscreen timelines, and two unsupported prior-generation identities remain held for independent review.",
+  "applicationGate": {
+    "status": "blocked",
+    "blockerRecordIds": [
+      "lexus-ls-air-suspension-failure-2007",
+      "lexus-ls-headlight-self-leveling-2007",
+      "lexus-ls-noncompliant-aftermarket-corner-bumper-lamp-assemblies",
+      "lexus-ls-side-curtain-knee-airbag-inflator-defect",
+      "lexus-ls500-infotainment-lag-2018"
+    ],
+    "reason": "The packet corrects two recall scopes, a false touchscreen timeline and three unsafe or unsupported parts prescriptions. Independent review is required before any body-copy write."
+  },
+  "safetyContract": [
+    "No production write, deployment, archive, redirect, slug change, title change, category change, indexed-year change, trim change, engine change, severity change or new issue is authorized.",
+    "All five LS IDs, titles, categories, indexed year sets, trim sets, engine sets, allowed severities and publication states remain unchanged.",
+    "Recall 09E-012 is bounded to listed SaberSport aftermarket equipment; recall 06V-096/6LB is bounded to VIN and airbag serial records.",
+    "No suspension conversion, guessed sensor, generic bulb, battery, airbag inflator, head unit or other retail part is approved.",
+    "All 704 exact manufacturer-communication rows and 679 exact recall rows / 15 campaigns were replayed; only 06V-096 and 09E-012 map to existing LS pages."
+  ],
+  "source": {
+    "snapshotFile": "data/_lexus-deeplink-snapshot-2026-08-08.json",
+    "snapshotSha256": "36e9efb61ab76fb184e7d9c5f92fcea5a8ee565555c2f58043d8a74c97c2c4ef",
+    "snapshotGeneratedAt": "2026-08-08T19:11:50.211Z",
+    "snapshotHash": "03786eddba9c1e071682262552ea8f8c95e93924f357e4bf6f2962777fe37e8c",
+    "modelRecordCount": 5
+  },
+  "observations": [
+    {
+      "code": "ls-recall-scopes-corrected",
+      "severity": "critical-correction",
+      "recordIds": [
+        "lexus-ls-noncompliant-aftermarket-corner-bumper-lamp-assemblies",
+        "lexus-ls-side-curtain-knee-airbag-inflator-defect"
+      ],
+      "campaignNumbers": [
+        "06V096000",
+        "09E012000"
+      ],
+      "detail": "The two recall pages are bounded to exact OEM VIN/serial or aftermarket equipment applicability and direct official campaign documents."
+    },
+    {
+      "code": "ls-touchscreen-timeline-corrected",
+      "severity": "critical-correction",
+      "recordIds": [
+        "lexus-ls500-infotainment-lag-2018"
+      ],
+      "detail": "Official Lexus material establishes the LS touchscreen for 2021, not 2022; later voice-interface advice is not extrapolated backward."
+    },
+    {
+      "code": "ls-prior-generation-source-gaps",
+      "severity": "critical-correction",
+      "recordIds": [
+        "lexus-ls-air-suspension-failure-2007",
+        "lexus-ls-headlight-self-leveling-2007"
+      ],
+      "detail": "The only exact air-strut and height-sensor documents concern 2018 LS vehicles and cannot establish the frozen 2007-2017 identities."
+    },
+    {
+      "code": "ls-no-unverified-commerce",
+      "severity": "commerce-safety",
+      "recordIds": [
+        "lexus-ls-air-suspension-failure-2007",
+        "lexus-ls-headlight-self-leveling-2007",
+        "lexus-ls-noncompliant-aftermarket-corner-bumper-lamp-assemblies",
+        "lexus-ls-side-curtain-knee-airbag-inflator-defect",
+        "lexus-ls500-infotainment-lag-2018"
+      ],
+      "detail": "Every prescription has an explicit equipment/VIN/dealer diagnostic boundary and no guessed retail link or search URL."
+    },
+    {
+      "code": "ls-thirteen-campaign-identities-deferred",
+      "severity": "new-issues-deferred",
+      "recordIds": [],
+      "campaignNumbers": [
+        "04V295000",
+        "04V317000",
+        "06E056000",
+        "09V020000",
+        "19V134000",
+        "19V544000",
+        "20V012000",
+        "20V682000",
+        "22V239000",
+        "24V124000",
+        "24V275000",
+        "25V595000",
+        "25V744000"
+      ],
+      "detail": "Thirteen separate campaign identities remain deferred until the remaining-make audit is complete."
+    },
+    {
+      "code": "all-ls-pages-preserved",
+      "severity": "seo-safety",
+      "recordIds": [
+        "lexus-ls-air-suspension-failure-2007",
+        "lexus-ls-headlight-self-leveling-2007",
+        "lexus-ls-noncompliant-aftermarket-corner-bumper-lamp-assemblies",
+        "lexus-ls-side-curtain-knee-airbag-inflator-defect",
+        "lexus-ls500-infotainment-lag-2018"
+      ],
+      "detail": "All five IDs, titles, categories, indexed year sets, trim sets, engine sets, allowed severities and publication states remain preserved."
+    }
+  ],
+  "pressroomSource": {
+    "title": "2021 Lexus LS 500, 500h Add Layers of Flagship Refinement",
+    "url": "https://pressroom.lexus.com/2021-lexus-ls-500-500h-add-layers-of-flagship-refinement/",
+    "pdfUrl": "https://pressroom.lexus.com/?generate_pdf=60319",
+    "assertedBoundary": "New 12.3-inch multimedia touchscreen added for all 2021 LS models."
+  },
+  "pdfSources": {
+    "airSuspension2018": {
+      "title": "L-SB-0025-18 - Front Suspension Height Low Due to Air Strut Leak",
+      "url": "https://static.nhtsa.gov/odi/tsbs/2018/MC-10143930-9999.pdf",
+      "nhtsaDocumentId": "10143930",
+      "pages": 8,
+      "bytes": 407355,
+      "sha256": "974c0c9bdd274d6e1160b35092beeb518af00f94da40198c21d33b6fda2b4299"
+    },
+    "heightSensor2018": {
+      "title": "L-TT-0234-17 - 2018 LC/LS Shipping Company Precaution",
+      "url": "https://static.nhtsa.gov/odi/tsbs/2018/MC-10129945-9999.pdf",
+      "nhtsaDocumentId": "10129945",
+      "pages": 1,
+      "bytes": 146159,
+      "sha256": "548f7d8c5b2ab2dffc72cf2ce950781835817c9e274bc8edc326755860062b5f"
+    },
+    "carPlay2018": {
+      "title": "L-SB-0028-19 - Multimedia System Enhancements Phase 3 (Panasonic)",
+      "url": "https://static.nhtsa.gov/odi/tsbs/2019/MC-10162736-9999.pdf",
+      "nhtsaDocumentId": "10162736",
+      "pages": 8,
+      "bytes": 570205,
+      "sha256": "51d882329338c0b631a245e704fa0c0ecc407245693ad5a350bcb784fcdc8eeb"
+    },
+    "update2019": {
+      "title": "L-SB-0022-19 - Navigation Update Phase 3 (Panasonic)",
+      "url": "https://static.nhtsa.gov/odi/tsbs/2019/MC-10159733-9999.pdf",
+      "nhtsaDocumentId": "10159733",
+      "pages": 6,
+      "bytes": 660188,
+      "sha256": "a46de3365a4feaca764c3cef381f429357860e48b52636d7618d1670a254ae83"
+    },
+    "update2020to2021": {
+      "title": "L-SB-0043-19 Rev2 - Navigation System Software Update (Panasonic)",
+      "url": "https://static.nhtsa.gov/odi/tsbs/2021/MC-10202451-9999.pdf",
+      "nhtsaDocumentId": "10202451",
+      "pages": 7,
+      "bytes": 578739,
+      "sha256": "d06b4fa035016ea563c3ecaf5c2e6bac84c888839c60839d47b79d6c7be49bed"
+    },
+    "pressKit2021": {
+      "title": "2021 Lexus LS 500, 500h Add Layers of Flagship Refinement",
+      "url": "https://pressroom.lexus.com/?generate_pdf=60319",
+      "nhtsaDocumentId": "lexus-pressroom-60319",
+      "pages": 11,
+      "bytes": 15703,
+      "sha256": "b3ff32f44b98f11ed777e2b38a181240f7a88b0cdeef029d9b9f9f667592c6d6"
+    },
+    "lampOwnerNotice": {
+      "title": "NHTSA 09E-012 - SaberSport Owner Notification and Affected Lamp List",
+      "url": "https://static.nhtsa.gov/odi/rcl/2009/RCONL-09E012-9446.pdf",
+      "nhtsaDocumentId": "09E012",
+      "pages": 4,
+      "bytes": 223984,
+      "sha256": "aab4708af0143cec30a5602439f295ae618b8e7a2fc158dd32c91a5f0f72a6bb"
+    },
+    "airbagDefect": {
+      "title": "NHTSA 06V-096 - Toyota Part 573 Defect Information Report",
+      "url": "https://static.nhtsa.gov/odi/rcl/2006/RCDNN-06V096-2980.PDF",
+      "nhtsaDocumentId": "06V096",
+      "pages": 4,
+      "bytes": 111975,
+      "sha256": "16509b39c2de64e01db971b024b67c6afe66b599102a1533d7486413bc4d4fd6"
+    },
+    "airbagOwnerNotice": {
+      "title": "Lexus SSC 6LB - Supplemental Restraint System Airbag Replacement Notice",
+      "url": "https://static.nhtsa.gov/odi/rcl/2006/RCONL-06V096-3339.PDF",
+      "nhtsaDocumentId": "06V096",
+      "pages": 1,
+      "bytes": 52524,
+      "sha256": "0a5d24dca63902855491db22c5a75d60c9e43a4ca5abe4d104256d7bbf6de878"
+    }
+  },
+  "manufacturerCommunications": {
+    "source": "https://www.nhtsa.gov/nhtsa-datasets-and-apis#manufacturer-communications",
+    "modelAliases": [
+      "LS",
+      "LS 430",
+      "LS 460",
+      "LS HYBRID"
+    ],
+    "periodCounts": {
+      "1995-1999": 0,
+      "2000-2004": 12,
+      "2005-2009": 25,
+      "2010-2014": 20,
+      "2015-2019": 252,
+      "2020-2024": 321,
+      "2025-2026": 74
+    },
+    "totalRows": 704,
+    "exactSourceDocumentIds": [
+      "10129945",
+      "10143930",
+      "10159733",
+      "10162736",
+      "10202451"
+    ],
+    "sourceFiles": [
+      {
+        "period": "1995-1999",
+        "length": 3443097,
+        "sha256": "409a86bb7bb37a6313eae9212fb90a5ab45029fdcf2a69d0c0378eab080503db"
+      },
+      {
+        "period": "2000-2004",
+        "length": 8952754,
+        "sha256": "5c755be52d35e060626402ebe6dfcccdf350ae379df5c06b49c71d08497e2264"
+      },
+      {
+        "period": "2005-2009",
+        "length": 5457880,
+        "sha256": "04f72a7bf95530d116b1500c976a9e4d365e1c9a8b0433f58d60dbb36a58679b"
+      },
+      {
+        "period": "2010-2014",
+        "length": 17332775,
+        "sha256": "41e66a9d81a859d469d51c6cdcbc107fc6284c64ed24065ccaf1fe02a52e4387"
+      },
+      {
+        "period": "2015-2019",
+        "length": 144450847,
+        "sha256": "d6c2ff16880cc7b31cfebad94bda08c3e8b3b2c3f28d56d5b1bb810c8b878a2e"
+      },
+      {
+        "period": "2020-2024",
+        "length": 125521629,
+        "sha256": "3b3ca3d690e33386d1d315a0f966285ae8cccb99c45c2386ada164c5e925c3cf"
+      },
+      {
+        "period": "2025-2026",
+        "length": 77786229,
+        "sha256": "419ebda2f1c1bf22e2b0862858d61699c25e61d73842f9031e796f1fafefba4c"
+      }
+    ]
+  },
+  "recallInventory": {
+    "source": "https://www.nhtsa.gov/nhtsa-datasets-and-apis#recalls",
+    "modelAliases": [
+      "LS",
+      "LS 430",
+      "LS 460",
+      "LS HYBRID"
+    ],
+    "periodCounts": {
+      "pre": 18,
+      "post": 661
+    },
+    "totalRows": 679,
+    "campaignCount": 15,
+    "campaigns": [
+      "04V295000",
+      "04V317000",
+      "06E056000",
+      "06V096000",
+      "09E012000",
+      "09V020000",
+      "19V134000",
+      "19V544000",
+      "20V012000",
+      "20V682000",
+      "22V239000",
+      "24V124000",
+      "24V275000",
+      "25V595000",
+      "25V744000"
+    ],
+    "mappedCampaigns": [
+      "06V096000",
+      "09E012000"
+    ],
+    "deferredCampaigns": [
+      "04V295000",
+      "04V317000",
+      "06E056000",
+      "09V020000",
+      "19V134000",
+      "19V544000",
+      "20V012000",
+      "20V682000",
+      "22V239000",
+      "24V124000",
+      "24V275000",
+      "25V595000",
+      "25V744000"
+    ],
+    "sourceFiles": [
+      {
+        "period": "pre",
+        "length": 83786245,
+        "sha256": "71e6e325e2d69d204776fb32d83dad4fd95436a2f7890da54d49622d77a36232"
+      },
+      {
+        "period": "post",
+        "length": 309278972,
+        "sha256": "4803a7f298f1d850736fe55830f4d31b004577424cb6429988c5864786f76a70"
+      }
+    ]
+  },
+  "mappedCampaigns": [
+    "06V096000",
+    "09E012000"
+  ],
+  "deferredCampaigns": [
+    "04V295000",
+    "04V317000",
+    "06E056000",
+    "09V020000",
+    "19V134000",
+    "19V544000",
+    "20V012000",
+    "20V682000",
+    "22V239000",
+    "24V124000",
+    "24V275000",
+    "25V595000",
+    "25V744000"
+  ],
+  "summary": {
+    "remove_false_citation_and_targeted_safety_cleanup_pending_source": 3,
+    "replace_incomplete_citation_and_targeted_safety_cleanup_pending_source": 2,
+    "total": 5
+  },
+  "rows": [
+    {
+      "id": "lexus-ls-air-suspension-failure-2007",
+      "action": "remove_false_citation_and_targeted_safety_cleanup_pending_source",
+      "commerceDecision": "blocked-no-exact-fitment-no-retail-part",
+      "evidence": [
+        "Complete inventory: 704 exact LS-family manufacturer-communication rows and 679 exact recall rows / 15 campaigns were replayed.",
+        "Visual review of L-SB-0025-18 limits the verified seal-leak condition to production-defined 2018 LS 500/LS 500h vehicles equipped with air suspension.",
+        "No exact 2007-2017 source supports compressor burnout, universal air-strut failure, SM-LS460 fitment or a coil-conversion prescription."
+      ],
+      "before": {
+        "make": "Lexus",
+        "model": "LS",
+        "years": [
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017
+        ],
+        "trims": [
+          "LS460",
+          "LS460L",
+          "LS600h",
+          "LS600hL"
+        ],
+        "engines": [
+          "4.6L 1UR-FSE",
+          "5.0L 2UR-FSE Hybrid"
+        ],
+        "category": "suspension",
+        "title": "Air Suspension Strut and Compressor Failure",
+        "description": "The pneumatic air suspension system on the LS460 and LS600h develops leaks in the air springs, causing the vehicle to sag overnight or drop on one corner. The air compressor runs excessively to compensate for leaks and eventually burns out. Complete air suspension failure leaves the car sitting on the bump stops.",
+        "solution": "Replace failed air struts with new OEM or aftermarket units from Arnott or Suncore. Replace the compressor if it no longer maintains pressure. For a permanent fix, some owners convert to conventional coilover suspension using kits from Strutmasters or BC Racing, which eliminates future air suspension issues.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Vehicle sags on one corner overnight",
+          "Compressor runs constantly or excessively",
+          "Suspension warning light on dashboard",
+          "Rough ride quality with bottoming out",
+          "Vehicle sits noticeably lower than normal"
+        ],
+        "affectedSystems": [
+          "Suspension",
+          "Air Suspension",
+          "Compressor"
+        ],
+        "dtcCodes": [
+          "C1714",
+          "C1715",
+          "C1760"
+        ],
+        "estimatedCostLow": 1500,
+        "estimatedCostHigh": 5000,
+        "typicalMileageLow": 60000,
+        "typicalMileageHigh": 130000,
+        "citations": [
+          {
+            "type": "forum",
+            "title": "ClubLexus.com — LS460 air suspension troubleshooting and conversion guide"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "source": "ClubLexus.com",
+            "content": "Strutmasters LS460 coil spring conversion kit — eliminates the troublesome air suspension entirely with conventional springs and struts. Huge cost savings over repeatedly replacing air components.",
+            "upvotes": 234,
+            "partName": "LS460 Air Suspension Conversion Kit",
+            "partBrand": "Strutmasters",
+            "partNumber": "SM-LS460",
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 2800,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-01-25",
+        "reviewedOn": "2026-03-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "genesis-g90-air-suspension-failure"
+        ]
+      },
+      "beforeSha256": "a378cfb017fd3dbfa6c0263cdc388550461a2f9c67efa6ea762131468121d0ed",
+      "proposal": {
+        "make": "Lexus",
+        "model": "LS",
+        "years": [
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017
+        ],
+        "trims": [
+          "LS460",
+          "LS460L",
+          "LS600h",
+          "LS600hL"
+        ],
+        "engines": [
+          "4.6L 1UR-FSE",
+          "5.0L 2UR-FSE Hybrid"
+        ],
+        "category": "suspension",
+        "title": "Air Suspension Strut and Compressor Failure",
+        "description": "The complete federal LS-family communication inventory contains no exact source establishing a recurring 2007-2017 air-strut and compressor failure across every LS 460, LS 460L, LS 600h and LS 600hL listed on this page. Lexus L-SB-0025-18 documents an air leak at a shock-absorber seal only on certain production-defined 2018 LS 500 and LS 500h vehicles equipped with air suspension; it does not extend backward to this page or support the claimed compressor-burnout pattern, mileage range or universal conversion remedy.",
+        "solution": "Confirm that the exact vehicle is equipped with air suspension, measure ride height under the model-year procedure, and isolate any pneumatic leak, sensor/bracket fault, electrical fault or compressor-control condition before replacing a component. Do not order an Arnott, Suncore, Strutmasters, BC Racing or SM-LS460 product, and do not convert the suspension, from this page. This is a vehicle-specific diagnostic/service remedy; no universal retail part is asserted.",
+        "severity": "high",
+        "confidence": "low",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "L-SB-0025-18 - Front Suspension Height Low Due to Air Strut Leak",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2018/MC-10143930-9999.pdf"
+          },
+          {
+            "type": "nhtsa",
+            "title": "NHTSA Manufacturer Communications datasets",
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis#manufacturer-communications"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-08",
+        "contentUpdatedOn": "2026-08-08",
+        "contentUpdateSummary": "Separated a verified 2018 LS 500/500h air-strut bulletin from the unsupported 2007-2017 identity and removed the unverified compressor, conversion-kit and aftermarket-brand prescriptions.",
+        "relatedIssueIds": []
+      },
+      "proposalSha256": "1b42cde28e0665cb3acfe43b7af5cad6c100700e42a2878d396b5c921b6c5634",
+      "changedFields": [
+        "description",
+        "solution",
+        "confidence",
+        "symptoms",
+        "affectedSystems",
+        "dtcCodes",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "typicalMileageLow",
+        "typicalMileageHigh",
+        "citations",
+        "communityRecommendations",
+        "reportCount",
+        "source",
+        "lastReportedByOwners",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary",
+        "relatedIssueIds"
+      ]
+    },
+    {
+      "id": "lexus-ls-headlight-self-leveling-2007",
+      "action": "remove_false_citation_and_targeted_safety_cleanup_pending_source",
+      "commerceDecision": "blocked-no-exact-fitment-no-retail-part",
+      "evidence": [
+        "Complete inventory: 704 exact LS-family manufacturer-communication rows and 679 exact recall rows / 15 campaigns were replayed.",
+        "Visual review of L-TT-0234-17 limits the exact height-sensor condition to a bent bracket caused by incorrect towing of 2018 two-wheel-drive LS/LC vehicles.",
+        "No exact 2007-2017 source supports deterioration, moisture failure, three-to-four sensor counts, B1601/B1602 or automatic sensor replacement."
+      ],
+      "before": {
+        "make": "Lexus",
+        "model": "LS",
+        "years": [
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017
+        ],
+        "trims": [
+          "LS460",
+          "LS460L",
+          "LS600h",
+          "LS600hL"
+        ],
+        "engines": [
+          "4.6L 1UR-FSE",
+          "5.0L 2UR-FSE Hybrid"
+        ],
+        "category": "electrical",
+        "title": "Self-Leveling Headlight System Failure",
+        "description": "The adaptive self-leveling HID headlight system fails due to deterioration of the headlight level sensors mounted at the front and rear suspension. The sensors develop internal failures from exposure to road debris and moisture, causing the headlights to aim incorrectly or trigger warning lights. Replacement sensors are expensive OEM-only parts.",
+        "solution": "Replace the failed headlight leveling sensor(s). There are typically 3-4 sensors on the LS — two front and one or two rear. Use OEM sensors as aftermarket alternatives have poor fitment. Recalibrate the headlight system with a Lexus diagnostic scan tool after replacement.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Headlight leveling warning message on dashboard",
+          "Headlights pointing too high or too low",
+          "Headlights not adjusting when vehicle is loaded",
+          "AFS (Adaptive Front-lighting System) warning light"
+        ],
+        "affectedSystems": [
+          "Electrical",
+          "Lighting",
+          "Headlights"
+        ],
+        "dtcCodes": [
+          "B1601",
+          "B1602"
+        ],
+        "estimatedCostLow": 400,
+        "estimatedCostHigh": 1500,
+        "typicalMileageLow": 50000,
+        "typicalMileageHigh": 120000,
+        "citations": [
+          {
+            "type": "forum",
+            "title": "ClubLexus.com — LS460 AFS headlight leveling sensor replacement and calibration procedure"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "source": "ClubLexus.com",
+            "content": "Before replacing sensors, check the sensor link rods first — they are plastic and break easily. A broken link rod is a $20 fix versus $300+ for a sensor.",
+            "upvotes": 143,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 1600,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-11-30",
+        "reviewedOn": "2026-03-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "beforeSha256": "336397bedae25a27a8c9dd63195d6208784a67b4ce29e628aa67a3090820c053",
+      "proposal": {
+        "make": "Lexus",
+        "model": "LS",
+        "years": [
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017
+        ],
+        "trims": [
+          "LS460",
+          "LS460L",
+          "LS600h",
+          "LS600hL"
+        ],
+        "engines": [
+          "4.6L 1UR-FSE",
+          "5.0L 2UR-FSE Hybrid"
+        ],
+        "category": "electrical",
+        "title": "Self-Leveling Headlight System Failure",
+        "description": "The complete federal LS-family inventory contains no exact 2007-2017 source establishing recurring deterioration or moisture failure of three or four headlight-level sensors, the listed B1601/B1602 codes, or an OEM-only sensor pattern. Lexus L-TT-0234-17 instead covers 2018 two-wheel-drive LS 500/LS 500h vehicles whose front height-sensor bracket can be bent by incorrect towing; that later, damage-specific condition cannot support this page across the prior generation.",
+        "solution": "Verify the warning and aiming complaint with the exact model-year lighting diagnostic procedure. Inspect wiring, linkage, mounting and any evidence of collision, road or towing damage before replacing or calibrating a sensor. Do not assume a sensor count, fault code, failed side or replacement part from this page. This is a vehicle-specific diagnostic/service remedy; no universal retail part is asserted.",
+        "severity": "medium",
+        "confidence": "low",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tech-tip",
+            "title": "L-TT-0234-17 - 2018 LC/LS Shipping Company Precaution",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2018/MC-10129945-9999.pdf"
+          },
+          {
+            "type": "nhtsa",
+            "title": "NHTSA Manufacturer Communications datasets",
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis#manufacturer-communications"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-08",
+        "contentUpdatedOn": "2026-08-08",
+        "contentUpdateSummary": "Removed the unsupported sensor-count, moisture, DTC and automatic-replacement claims and bounded the only exact height-sensor source to incorrect towing of 2018 LS vehicles.",
+        "relatedIssueIds": []
+      },
+      "proposalSha256": "f39706e6ab52b19aa13c7b4af1ef348f5f8b82e848fec65aaa61d2999a30a397",
+      "changedFields": [
+        "description",
+        "solution",
+        "confidence",
+        "symptoms",
+        "affectedSystems",
+        "dtcCodes",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "typicalMileageLow",
+        "typicalMileageHigh",
+        "citations",
+        "communityRecommendations",
+        "reportCount",
+        "source",
+        "lastReportedByOwners",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ]
+    },
+    {
+      "id": "lexus-ls-noncompliant-aftermarket-corner-bumper-lamp-assemblies",
+      "action": "replace_incomplete_citation_and_targeted_safety_cleanup_pending_source",
+      "commerceDecision": "campaign-specific-refund-or-compliant-replacement-no-retail-part",
+      "evidence": [
+        "Complete inventory: 704 exact LS-family manufacturer-communication rows and 679 exact recall rows / 15 campaigns were replayed.",
+        "The corrected recall parser reads the official defect, consequence, remedy and notes columns; 09E-012 is aftermarket-only and unrelated to Lexus OEM equipment.",
+        "Visual review of the owner-notice list identifies TY727-J0WW2 as a side-marker application for 1998-2005 Lexus GS/IS/LS and offers compliant replacement or refund."
+      ],
+      "before": {
+        "make": "Lexus",
+        "model": "LS",
+        "years": [
+          2001
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "exterior",
+        "title": "Noncompliant Aftermarket Corner/Bumper Lamp Assemblies",
+        "description": "Some aftermarket combination corner and bumper lamp assemblies sold for 2001 applications were recalled because they failed to conform to federal lighting requirements. Poorly made lamp assemblies can reduce visibility, create fitment issues, and make the vehicle less conspicuous to other drivers.",
+        "solution": "Inspect the vehicle for non-OEM or aftermarket front corner/bumper lamp assemblies, especially SaberSport units covered by the recall. Replace recalled or poor-quality lamps with OEM-equivalent assemblies, confirm bulb seating and aiming, and check for water intrusion or melted sockets. Costs vary depending on whether only the lamp housing or also bulbs and connectors need replacement.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Dim or noncompliant front marker lighting",
+          "Poor lamp fitment",
+          "Moisture inside lamp housing",
+          "Reduced visibility to other drivers"
+        ],
+        "affectedSystems": [
+          "Exterior lighting",
+          "Corner lamp assemblies",
+          "Bumper lamp assemblies"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 120,
+        "estimatedCostHigh": 500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "",
+            "type": "recall",
+            "title": "NHTSA Recall Campaign 09E012000: EXTERIOR LIGHTING — SaberSport aftermarket combination corner and bumper lamp assemblies fail to conform"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "If the car has aftermarket front lighting, verify brand and part number before troubleshooting dim or odd-looking marker lamps.",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "Quality replacement bulbs help restore brightness once compliant lamp housings are installed.",
+            "upvotes": 0,
+            "partName": "Exterior Lighting Bulb",
+            "partBrand": "Bosch"
+          },
+          {
+            "type": "tip",
+            "content": "Avoid bargain lamp housings that have poor sealing, since moisture intrusion quickly damages reflectors and sockets.",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "nhtsa-verified",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "beforeSha256": "7e1d7cb7129b16dc3740cf5676342b7121306fbeab229beaf787b49216346747",
+      "proposal": {
+        "make": "Lexus",
+        "model": "LS",
+        "years": [
+          2001
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "exterior",
+        "title": "Noncompliant Aftermarket Corner/Bumper Lamp Assemblies",
+        "description": "NHTSA campaign 09E-012 covers SaberSport aftermarket replacement lamps, not original Lexus equipment. The visually verified owner-notice list identifies part TY727-J0WW2 as a side-marker application for 1998-2005 Lexus GS/IS/LS vehicles. The lamps lacked the required amber side reflex reflector under FMVSS 108. A 2001 LS is within that catalog range only when that exact SaberSport aftermarket part is installed; the campaign does not establish a defect in every 2001 LS lamp.",
+        "solution": "Inspect the installed aftermarket lamp for the manufacturer and part number. For TY727-J0WW2 or another part expressly listed in 09E-012, use the campaign documents to confirm the historical free compliant replacement or refund process; replace a noncompliant lamp assembly with a compliant application. A generic bulb does not correct a missing side reflector. This is an equipment-specific recall remedy; no universal retail part is asserted.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "NHTSA 09E-012 - SaberSport Owner Notification and Affected Lamp List",
+            "url": "https://static.nhtsa.gov/odi/rcl/2009/RCONL-09E012-9446.pdf"
+          },
+          {
+            "type": "nhtsa",
+            "title": "NHTSA Recall datasets",
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis#recalls"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-08",
+        "contentUpdatedOn": "2026-08-08",
+        "contentUpdateSummary": "Added the exact NHTSA owner notice and TY727-J0WW2 application, separated aftermarket equipment from OEM lamps, and removed the unrelated Bosch-bulb recommendation.",
+        "relatedIssueIds": []
+      },
+      "proposalSha256": "43d587e215e63172b5469644aa42f29111c85d78c3ab5b355fb87f90549d46b3",
+      "changedFields": [
+        "description",
+        "solution",
+        "confidence",
+        "symptoms",
+        "affectedSystems",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "communityRecommendations",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ]
+    },
+    {
+      "id": "lexus-ls-side-curtain-knee-airbag-inflator-defect",
+      "action": "replace_incomplete_citation_and_targeted_safety_cleanup_pending_source",
+      "commerceDecision": "dealer-recall-vin-and-airbag-serial-specific-no-retail-part",
+      "evidence": [
+        "Complete inventory: 704 exact LS-family manufacturer-communication rows and 679 exact recall rows / 15 campaigns were replayed.",
+        "Visual review of the Part 573 report identifies 2004-2006 LS production, VINs and the insufficient-heating-agent defect; only 133 vehicles across all listed models were potentially affected.",
+        "Visual review of the Lexus 6LB notice makes remedy eligibility VIN/airbag-serial-specific and states that the dealer replaces the specific SRS airbag at no charge."
+      ],
+      "before": {
+        "make": "Lexus",
+        "model": "LS",
+        "years": [
+          2004
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "safety",
+        "title": "Side/Curtain/Knee Airbag Inflator Defect",
+        "description": "A documented safety issue exists on some 2004 Lexus LS vehicles involving improperly assembled air bag inflators used in the side air bag, curtain shield air bag, and knee air bag assemblies. The recall indicates inflators may have been produced with an assembly defect that could affect proper deployment performance in a crash.",
+        "solution": "Verify recall completion for campaign 06V096000 through Lexus or NHTSA using the VIN. If incomplete, the remedy is replacement of the affected air bag inflator/module assemblies by a dealer at no charge; out-of-pocket repair outside recall can be expensive because it may involve side, curtain, or knee airbag modules and related trim removal. If the airbag warning light is on, scan the SRS system before replacing parts to confirm whether the recalled inflator or another component is at fault.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "Air bag warning light illuminated",
+          "Concern about side or curtain air bag deployment",
+          "Potential improper air bag inflator assembly",
+          "SRS fault indication"
+        ],
+        "affectedSystems": [
+          "SRS airbag system",
+          "Side air bags",
+          "Curtain shield air bags",
+          "Knee air bag assemblies"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": 2500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "",
+            "type": "recall",
+            "title": "NHTSA Recall Campaign 06V096000: AIR BAGS — improper assembly of side, curtain shield, and knee air bag inflators"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Check VIN recall status before diagnosing an SRS warning light, since recall completion may resolve the issue at no cost.",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "Do not ignore an airbag light; the system can disable affected restraints until the fault is repaired.",
+            "upvotes": 0
+          },
+          {
+            "type": "part",
+            "content": "If non-recall SRS diagnosis points to a weak battery causing low-voltage faults, a quality replacement battery can help stabilize system voltage before deeper diagnosis.",
+            "upvotes": 0,
+            "partName": "Automotive Battery",
+            "partBrand": "Bosch"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "nhtsa-verified",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "lexus-lx-front-occupant-classification--2022"
+        ]
+      },
+      "beforeSha256": "98dce25a3b374c7e58aacb865864df52c02eb07488b7d23c34681e62c4911d46",
+      "proposal": {
+        "make": "Lexus",
+        "model": "LS",
+        "years": [
+          2004
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "safety",
+        "title": "Side/Curtain/Knee Airbag Inflator Defect",
+        "description": "NHTSA campaign 06V-096 and Lexus campaign 6LB cover certain 2004-2006 LS vehicles identified by production records, VIN and airbag serial number. The Part 573 report identifies LS production from October 4, 2003 through December 2, 2005 and explains that some side, curtain-shield or knee-airbag inflators had insufficient heating agent, which could produce insufficient inflation in a crash. The indexed 2004 year is supported, but the recall does not apply to every 2004 LS and an airbag warning light is not the eligibility test.",
+        "solution": "Check the full VIN and Lexus campaign-completion history for 6LB/NHTSA 06V-096. If the campaign is open, an authorized Lexus dealer replaces the specific SRS airbag identified for that vehicle at no charge. Do not use a battery replacement or generic SRS code scan to decide recall eligibility, and do not buy an inflator from this page. This is a VIN-and-airbag-serial-specific dealer recall remedy; no universal retail part is asserted.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "NHTSA 06V-096 - Toyota Part 573 Defect Information Report",
+            "url": "https://static.nhtsa.gov/odi/rcl/2006/RCDNN-06V096-2980.PDF"
+          },
+          {
+            "type": "recall",
+            "title": "Lexus SSC 6LB - Supplemental Restraint System Airbag Replacement Notice",
+            "url": "https://static.nhtsa.gov/odi/rcl/2006/RCONL-06V096-3339.PDF"
+          },
+          {
+            "type": "nhtsa",
+            "title": "NHTSA Recall datasets",
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis#recalls"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-08",
+        "contentUpdatedOn": "2026-08-08",
+        "contentUpdateSummary": "Added the exact Part 573 report and Lexus owner notice, bounded applicability to VIN/airbag-serial records, and removed the unrelated battery recommendation and warning-light eligibility inference.",
+        "relatedIssueIds": []
+      },
+      "proposalSha256": "513da9e3cc1a08ad4bf4e0a754fa6061606678571a622661febaf7abb980a6d0",
+      "changedFields": [
+        "description",
+        "solution",
+        "confidence",
+        "symptoms",
+        "affectedSystems",
+        "estimatedCostHigh",
+        "citations",
+        "communityRecommendations",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary",
+        "relatedIssueIds"
+      ]
+    },
+    {
+      "id": "lexus-ls500-infotainment-lag-2018",
+      "action": "remove_false_citation_and_targeted_safety_cleanup_pending_source",
+      "commerceDecision": "dealer-software-version-specific-no-retail-part",
+      "evidence": [
+        "Complete inventory: 704 exact LS-family manufacturer-communication rows and 679 exact recall rows / 15 campaigns were replayed.",
+        "Visual review of three Lexus bulletins supports exact 2018, 2019 and 2020-2021 Panasonic update boundaries and warns against applying the wrong head-unit software.",
+        "The official 2021 Lexus LS release says the 12.3-inch multimedia touchscreen was added for 2021, disproving the page's 2022 timeline; no source establishes a universal touchpad hardware defect."
+      ],
+      "before": {
+        "make": "Lexus",
+        "model": "LS",
+        "years": [
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [
+          "LS500",
+          "LS500h"
+        ],
+        "engines": [
+          "3.5L V35A-FTS Twin-Turbo",
+          "3.5L 8GR-FXS Hybrid"
+        ],
+        "category": "electrical",
+        "title": "Infotainment System Lag and Touchpad Frustration",
+        "description": "The LS500 infotainment system suffers from significant input lag and an unintuitive touchpad controller that makes basic navigation tasks difficult while driving. The Remote Touch Interface trackpad requires excessive concentration to use accurately, and the system frequently freezes or responds slowly to inputs. This has been a consistent complaint since launch.",
+        "solution": "Update to the latest infotainment software at the dealer, which improves responsiveness somewhat. Lexus has released multiple software updates since 2018. The 2022+ models received a touchscreen that partially addresses the issue. For older models, using voice commands or Apple CarPlay/Android Auto bypasses the native interface.",
+        "severity": "low",
+        "confidence": "high",
+        "symptoms": [
+          "Multi-second delay between input and screen response",
+          "Touchpad overshoots or misselects menu items",
+          "System freezes requiring vehicle restart",
+          "Navigation destination entry takes excessive time",
+          "Bluetooth audio connection drops intermittently"
+        ],
+        "affectedSystems": [
+          "Electrical",
+          "Infotainment",
+          "Navigation"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": 500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": 50000,
+        "citations": [
+          {
+            "type": "forum",
+            "title": "LexusEnthusiast.com — LS500 infotainment usability issues and software update history"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "source": "ClubLexus.com",
+            "content": "Use voice commands for navigation and phone calls — it is significantly faster and safer than trying to use the touchpad while driving. Say \"Hey Lexus\" to activate.",
+            "upvotes": 176,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 3500,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-03-10",
+        "reviewedOn": "2026-03-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "lexus-nx-infotainment-lag-2015",
+          "lexus-ux-infotainment-lag-2019",
+          "lexus-lc-infotainment-lag-2018"
+        ]
+      },
+      "beforeSha256": "aca82a6acd3dccaecafe614a774683041aa05322593e98b68e5c5e54ba3dd08b",
+      "proposal": {
+        "make": "Lexus",
+        "model": "LS",
+        "years": [
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [
+          "LS500",
+          "LS500h"
+        ],
+        "engines": [
+          "3.5L V35A-FTS Twin-Turbo",
+          "3.5L 8GR-FXS Hybrid"
+        ],
+        "category": "electrical",
+        "title": "Infotainment System Lag and Touchpad Frustration",
+        "description": "Exact Lexus documents support defined model-year, head-unit and software-version conditions rather than a universal touchpad defect. L-SB-0028-19 added Apple CarPlay and Amazon Alexa to applicable 2018 LS 500/LS 500h Panasonic systems; L-SB-0022-19 addressed defined 2019 symptoms including a frozen display and lost Bluetooth connection; and L-SB-0043-19 Rev2 covered defined Panasonic faults on 2020-2021 LS models. Lexus introduced the 12.3-inch multimedia touchscreen for the 2021 LS, not 2022. The prior broad input-lag, overshoot and frustration claims are subjective and do not establish a hardware failure across 2018-2025.",
+        "solution": "Identify the model year, installed multimedia generation, audio/navigation version and reproducible symptom, then use the exact applicable Lexus bulletin to determine whether a software update is available. Do not apply an update intended for another head unit, and do not tell every 2018-2025 owner to use the later \"Hey Lexus\" interface. This is a VIN/head-unit-specific dealer software remedy; no universal retail part is asserted.",
+        "severity": "low",
+        "confidence": "high",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "L-SB-0028-19 - Multimedia System Enhancements Phase 3 (Panasonic)",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2019/MC-10162736-9999.pdf"
+          },
+          {
+            "type": "tsb",
+            "title": "L-SB-0022-19 - Navigation Update Phase 3 (Panasonic)",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2019/MC-10159733-9999.pdf"
+          },
+          {
+            "type": "tsb",
+            "title": "L-SB-0043-19 Rev2 - Navigation System Software Update (Panasonic)",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2021/MC-10202451-9999.pdf"
+          },
+          {
+            "type": "oem",
+            "title": "2021 Lexus LS 500, 500h Add Layers of Flagship Refinement",
+            "url": "https://pressroom.lexus.com/?generate_pdf=60319"
+          },
+          {
+            "type": "nhtsa",
+            "title": "NHTSA Manufacturer Communications datasets",
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis#manufacturer-communications"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-08",
+        "contentUpdatedOn": "2026-08-08",
+        "contentUpdateSummary": "Replaced subjective interface claims with three visually verified software boundaries, corrected the touchscreen introduction from 2022 to 2021, and removed the all-years \"Hey Lexus\" advice.",
+        "relatedIssueIds": []
+      },
+      "proposalSha256": "515dd0a6b14ff6ca4530b2dddc70f9c817cf88994e2e81b025168522c7e3caea",
+      "changedFields": [
+        "description",
+        "solution",
+        "symptoms",
+        "affectedSystems",
+        "estimatedCostHigh",
+        "typicalMileageHigh",
+        "citations",
+        "communityRecommendations",
+        "reportCount",
+        "source",
+        "lastReportedByOwners",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary",
+        "relatedIssueIds"
+      ]
+    }
+  ]
+}

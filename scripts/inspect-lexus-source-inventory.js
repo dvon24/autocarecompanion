@@ -32,7 +32,17 @@ async function inspect({ aliases, terms = [] }) {
       const fields = line.split('\t');
       if (fields[2] !== 'LEXUS' || !modelAliases.has(fields[3])) return;
       count += 1;
-      recallRows.push({ period: source.period, campaign: fields[1], model: fields[3], year: fields[4], component: fields[6], summary: fields[20], consequence: fields[21], remedy: fields[22] });
+      recallRows.push({
+        period: source.period,
+        campaign: fields[1],
+        model: fields[3],
+        year: fields[4],
+        component: fields[6],
+        summary: fields[19],
+        consequence: fields[20],
+        remedy: fields[21],
+        notes: fields[22],
+      });
     });
     recallCounts[source.period] = count;
   }
