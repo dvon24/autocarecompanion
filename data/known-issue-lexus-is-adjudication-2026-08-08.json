@@ -1,0 +1,2034 @@
+{
+  "schemaVersion": 1,
+  "status": "proposal-only",
+  "auditStage": "model-primary-source-adjudication",
+  "requiresIndependentApproval": true,
+  "generatedOn": "2026-08-08",
+  "make": "Lexus",
+  "model": "IS",
+  "completionStatement": "All 11 frozen IS pages retain their indexed identities. Two are bounded to exact historical programs/recalls and nine receive corrective holds because exact primary evidence does not establish their current scope or prescription.",
+  "applicationGate": {
+    "status": "blocked",
+    "blockerRecordIds": [
+      "lexus-is-alternator-failure-from-age-2001",
+      "lexus-is-carbon-buildup-turbo-2016",
+      "lexus-is-dashboard-melt-2006",
+      "lexus-is-front-door-trim--2023",
+      "lexus-is-fuel-pump-recall-2018",
+      "lexus-is-lcd-climate-control-and-2001",
+      "lexus-is-lexus-safety-system-false-2023",
+      "lexus-is-lower-ball-joint-wear-2001",
+      "lexus-is-premature-front-brake-squeal-2023",
+      "lexus-is-transmission-harsh-shift-2014",
+      "lexus-is-valve-cover-gasket-leaks-2001"
+    ],
+    "reason": "The packet corrects two wrong program/campaign identities and removes unsupported repairs from nine source-deficient pages. Independent review is required before any body-copy write."
+  },
+  "safetyContract": [
+    "No production write, deployment, archive, redirect, slug change, title change, category change, indexed-year change, trim change, engine change, severity change or new issue is authorized.",
+    "All 11 IDs, titles, categories, indexed year sets, trim sets, engine sets, allowed severities and publication states remain unchanged.",
+    "Historical program and recall scope is bounded to visually verified model years and VIN eligibility; no present-day coverage is promised without an open VIN result.",
+    "No fluid interval, walnut-blasting schedule, sensor replacement, trim disassembly, transmission reflash, component bundle or retail part is approved without exact application support.",
+    "All 2,945 exact manufacturer-communication rows and 258 exact recall rows / 23 campaigns were replayed; only 20V-012 and 20V-682 map to the existing fuel-pump page."
+  ],
+  "source": {
+    "snapshotFile": "data/_lexus-deeplink-snapshot-2026-08-08.json",
+    "snapshotSha256": "36e9efb61ab76fb184e7d9c5f92fcea5a8ee565555c2f58043d8a74c97c2c4ef",
+    "snapshotGeneratedAt": "2026-08-08T19:11:50.211Z",
+    "snapshotHash": "03786eddba9c1e071682262552ea8f8c95e93924f357e4bf6f2962777fe37e8c",
+    "modelRecordCount": 11
+  },
+  "observations": [
+    {
+      "code": "is-dashboard-program-identity-corrected",
+      "severity": "critical-correction",
+      "recordIds": [
+        "lexus-is-dashboard-melt-2006"
+      ],
+      "detail": "ZE7 is replaced with the visually verified ZLD/ZLZ scopes and their historical time limits."
+    },
+    {
+      "code": "is-fuel-recall-identity-corrected",
+      "severity": "critical-correction",
+      "recordIds": [
+        "lexus-is-fuel-pump-recall-2018"
+      ],
+      "campaignNumbers": [
+        "20V012000",
+        "20V682000"
+      ],
+      "detail": "20V-863 is replaced with 20V-012/20V-682 and blanket 2020 eligibility is removed."
+    },
+    {
+      "code": "is-current-generation-source-gaps",
+      "severity": "critical-correction",
+      "recordIds": [
+        "lexus-is-front-door-trim--2023",
+        "lexus-is-lexus-safety-system-false-2023",
+        "lexus-is-premature-front-brake-squeal-2023"
+      ],
+      "detail": "No exact 2023-2025 source establishes the ADAS, front-brake or door-trim failure identities; an older calibration aid and rear-brake campaign are explicitly separated."
+    },
+    {
+      "code": "is-first-generation-source-gaps",
+      "severity": "critical-correction",
+      "recordIds": [
+        "lexus-is-alternator-failure-from-age-2001",
+        "lexus-is-lcd-climate-control-and-2001",
+        "lexus-is-lower-ball-joint-wear-2001",
+        "lexus-is-valve-cover-gasket-leaks-2001"
+      ],
+      "detail": "The sole ball-joint record is an inspection method through 2003; the other three identities have no exact federal support."
+    },
+    {
+      "code": "is-carbon-source-gap",
+      "severity": "critical-correction",
+      "recordIds": [
+        "lexus-is-carbon-buildup-turbo-2016"
+      ],
+      "detail": "No exact Lexus record supports the recurring carbon identity, walnut-blasting interval or catch-can recommendation."
+    },
+    {
+      "code": "is-transmission-bulletin-gap",
+      "severity": "critical-correction",
+      "recordIds": [
+        "lexus-is-transmission-harsh-shift-2014"
+      ],
+      "detail": "The claimed L-SB-0087-18 shift bulletin and third-generation harsh-shift correction are absent from the complete exact inventory."
+    },
+    {
+      "code": "is-no-unverified-commerce",
+      "severity": "commerce-safety",
+      "recordIds": [
+        "lexus-is-alternator-failure-from-age-2001",
+        "lexus-is-carbon-buildup-turbo-2016",
+        "lexus-is-dashboard-melt-2006",
+        "lexus-is-front-door-trim--2023",
+        "lexus-is-fuel-pump-recall-2018",
+        "lexus-is-lcd-climate-control-and-2001",
+        "lexus-is-lexus-safety-system-false-2023",
+        "lexus-is-lower-ball-joint-wear-2001",
+        "lexus-is-premature-front-brake-squeal-2023",
+        "lexus-is-transmission-harsh-shift-2014",
+        "lexus-is-valve-cover-gasket-leaks-2001"
+      ],
+      "detail": "No guessed alternator, pump, gasket, brake, sensor, transmission, dashboard or trim part is introduced; every proposal has a service/review marker."
+    },
+    {
+      "code": "is-twenty-one-campaign-identities-deferred",
+      "severity": "new-issues-deferred",
+      "recordIds": [],
+      "campaignNumbers": [
+        "05V565000",
+        "06E026000",
+        "06V096000",
+        "06V121000",
+        "07V545000",
+        "09E012000",
+        "09V020000",
+        "09V388000",
+        "10V309000",
+        "10V499000",
+        "11V029000",
+        "13V030000",
+        "13V395000",
+        "14V647000",
+        "16V340000",
+        "17V006000",
+        "18V024000",
+        "18V432000",
+        "19V005000",
+        "19V741000",
+        "26V222000"
+      ],
+      "detail": "Twenty-one separate recall identities remain deferred until the remaining-make audit is complete."
+    },
+    {
+      "code": "all-is-pages-preserved",
+      "severity": "seo-safety",
+      "recordIds": [
+        "lexus-is-alternator-failure-from-age-2001",
+        "lexus-is-carbon-buildup-turbo-2016",
+        "lexus-is-dashboard-melt-2006",
+        "lexus-is-front-door-trim--2023",
+        "lexus-is-fuel-pump-recall-2018",
+        "lexus-is-lcd-climate-control-and-2001",
+        "lexus-is-lexus-safety-system-false-2023",
+        "lexus-is-lower-ball-joint-wear-2001",
+        "lexus-is-premature-front-brake-squeal-2023",
+        "lexus-is-transmission-harsh-shift-2014",
+        "lexus-is-valve-cover-gasket-leaks-2001"
+      ],
+      "detail": "Every IS ID, title, category, indexed year set, trim set, engine set, allowed severity and publication state remains preserved."
+    }
+  ],
+  "pdfSources": {
+    "dashboardZld": {
+      "title": "Warranty Enhancement Program ZLD — 2006–2008 IS 250/350",
+      "url": "https://static.nhtsa.gov/odi/tsbs/2016/MC-10132886-9999.pdf",
+      "nhtsaDocumentId": "10132886",
+      "pages": 8,
+      "bytes": 133237,
+      "sha256": "ba3139902f74361de8f014b144377c890ada2d95958fffea2f6c2f4a95675ee9"
+    },
+    "dashboardZlz": {
+      "title": "Customer Support Program ZLZ — IS F dashboard coverage",
+      "url": "https://static.nhtsa.gov/odi/tsbs/2018/MC-10152186-9999.pdf",
+      "nhtsaDocumentId": "10152186",
+      "pages": 9,
+      "bytes": 979159,
+      "sha256": "d16017d172fbd6b51b941ebbb717f3401e79a302bd1fd593eba4380711b8e35e"
+    },
+    "fuelOriginal": {
+      "title": "NHTSA Recall 20V-012 — Amended Defect Information Report",
+      "url": "https://static.nhtsa.gov/odi/rcl/2020/RMISC-20V012-9970.pdf",
+      "nhtsaDocumentId": "20V012",
+      "pages": 11,
+      "bytes": 224739,
+      "sha256": "aa4583fdef27ed23d115e071430f48c3212080cb6257e37921ee481b8e7b88d4"
+    },
+    "fuelExpansion": {
+      "title": "Lexus Safety Recall 20LA01 — NHTSA 20V-012 & 20V-682",
+      "url": "https://static.nhtsa.gov/odi/rcl/2020/RCMN-20V682-7883.pdf",
+      "nhtsaDocumentId": "20V682",
+      "pages": 43,
+      "bytes": 1451114,
+      "sha256": "563e29dded32ae5b40925ab6f2ef510bd8bf8ed0671f917ea5c51bced57d1df9"
+    },
+    "adasCalibration": {
+      "title": "L-TT-0303-21 — Target Placement for LSS and BSM Calibration",
+      "url": "https://static.nhtsa.gov/odi/tsbs/2021/MC-10202453-9999.pdf",
+      "nhtsaDocumentId": "10202453",
+      "pages": 13,
+      "bytes": 1097433,
+      "sha256": "78311fda6cda42493298386e0618d96f112e8ea296346d79431a4a8e6582f65f"
+    }
+  },
+  "manufacturerCommunications": {
+    "source": "https://www.nhtsa.gov/nhtsa-datasets-and-apis#manufacturer-communications",
+    "modelAliases": [
+      "IS",
+      "IS 250",
+      "IS 250C",
+      "IS 300",
+      "IS 350",
+      "IS 350C",
+      "IS 500",
+      "IS F"
+    ],
+    "periodCounts": {
+      "1995-1999": 0,
+      "2000-2004": 27,
+      "2005-2009": 37,
+      "2010-2014": 45,
+      "2015-2019": 1913,
+      "2020-2024": 882,
+      "2025-2026": 41
+    },
+    "totalRows": 2945,
+    "exactDashboardDocumentIds": [
+      "10091863",
+      "10091983",
+      "10096735",
+      "10096769",
+      "10106567",
+      "10111457",
+      "10131834",
+      "10132525",
+      "10132886",
+      "10152186"
+    ],
+    "exactFuelDocumentIds": [
+      "10235219",
+      "10235220"
+    ],
+    "exactAdasCalibrationDocumentIds": [
+      "10149198",
+      "10149997",
+      "10173987",
+      "10202453",
+      "10204556"
+    ],
+    "exactBallJointDocumentIds": [
+      "10000251"
+    ],
+    "exactEarlierRearBrakeDocumentIds": [
+      "10028044",
+      "10042884"
+    ],
+    "sourceFiles": [
+      {
+        "period": "1995-1999",
+        "length": 3443097,
+        "sha256": "409a86bb7bb37a6313eae9212fb90a5ab45029fdcf2a69d0c0378eab080503db"
+      },
+      {
+        "period": "2000-2004",
+        "length": 8952754,
+        "sha256": "5c755be52d35e060626402ebe6dfcccdf350ae379df5c06b49c71d08497e2264"
+      },
+      {
+        "period": "2005-2009",
+        "length": 5457880,
+        "sha256": "04f72a7bf95530d116b1500c976a9e4d365e1c9a8b0433f58d60dbb36a58679b"
+      },
+      {
+        "period": "2010-2014",
+        "length": 17332775,
+        "sha256": "41e66a9d81a859d469d51c6cdcbc107fc6284c64ed24065ccaf1fe02a52e4387"
+      },
+      {
+        "period": "2015-2019",
+        "length": 144450847,
+        "sha256": "d6c2ff16880cc7b31cfebad94bda08c3e8b3b2c3f28d56d5b1bb810c8b878a2e"
+      },
+      {
+        "period": "2020-2024",
+        "length": 125521629,
+        "sha256": "3b3ca3d690e33386d1d315a0f966285ae8cccb99c45c2386ada164c5e925c3cf"
+      },
+      {
+        "period": "2025-2026",
+        "length": 77786229,
+        "sha256": "419ebda2f1c1bf22e2b0862858d61699c25e61d73842f9031e796f1fafefba4c"
+      }
+    ]
+  },
+  "recallInventory": {
+    "source": "https://www.nhtsa.gov/nhtsa-datasets-and-apis#recalls",
+    "modelAliases": [
+      "IS",
+      "IS 250",
+      "IS 250C",
+      "IS 300",
+      "IS 350",
+      "IS 350C",
+      "IS 500",
+      "IS F"
+    ],
+    "periodCounts": {
+      "pre": 21,
+      "post": 237
+    },
+    "totalRows": 258,
+    "campaignCount": 23,
+    "campaigns": [
+      "05V565000",
+      "06E026000",
+      "06V096000",
+      "06V121000",
+      "07V545000",
+      "09E012000",
+      "09V020000",
+      "09V388000",
+      "10V309000",
+      "10V499000",
+      "11V029000",
+      "13V030000",
+      "13V395000",
+      "14V647000",
+      "16V340000",
+      "17V006000",
+      "18V024000",
+      "18V432000",
+      "19V005000",
+      "19V741000",
+      "20V012000",
+      "20V682000",
+      "26V222000"
+    ],
+    "mappedCampaigns": [
+      "20V012000",
+      "20V682000"
+    ],
+    "deferredCampaigns": [
+      "05V565000",
+      "06E026000",
+      "06V096000",
+      "06V121000",
+      "07V545000",
+      "09E012000",
+      "09V020000",
+      "09V388000",
+      "10V309000",
+      "10V499000",
+      "11V029000",
+      "13V030000",
+      "13V395000",
+      "14V647000",
+      "16V340000",
+      "17V006000",
+      "18V024000",
+      "18V432000",
+      "19V005000",
+      "19V741000",
+      "26V222000"
+    ],
+    "sourceFiles": [
+      {
+        "period": "pre",
+        "length": 83786245,
+        "sha256": "71e6e325e2d69d204776fb32d83dad4fd95436a2f7890da54d49622d77a36232"
+      },
+      {
+        "period": "post",
+        "length": 309278972,
+        "sha256": "4803a7f298f1d850736fe55830f4d31b004577424cb6429988c5864786f76a70"
+      }
+    ]
+  },
+  "mappedCampaigns": [
+    "20V012000",
+    "20V682000"
+  ],
+  "deferredCampaigns": [
+    "05V565000",
+    "06E026000",
+    "06V096000",
+    "06V121000",
+    "07V545000",
+    "09E012000",
+    "09V020000",
+    "09V388000",
+    "10V309000",
+    "10V499000",
+    "11V029000",
+    "13V030000",
+    "13V395000",
+    "14V647000",
+    "16V340000",
+    "17V006000",
+    "18V024000",
+    "18V432000",
+    "19V005000",
+    "19V741000",
+    "26V222000"
+  ],
+  "summary": {
+    "targeted_safety_cleanup_pending_source": 5,
+    "remove_false_citations_and_targeted_safety_cleanup_pending_source": 6,
+    "total": 11
+  },
+  "rows": [
+    {
+      "id": "lexus-is-alternator-failure-from-age-2001",
+      "action": "targeted_safety_cleanup_pending_source",
+      "commerceDecision": "blocked-no-exact-fitment-no-retail-part",
+      "evidence": [
+        "Complete inventory: 2945 exact IS-family manufacturer-communication rows and 258 exact recall rows / 23 campaigns were replayed.",
+        "No exact first-generation record mentions alternator, charging-system failure or oil contamination.",
+        "No citation or verified fitment supports automatic Denso replacement."
+      ],
+      "before": {
+        "make": "Lexus",
+        "model": "IS",
+        "years": [
+          2001,
+          2002,
+          2003,
+          2004,
+          2005
+        ],
+        "trims": [],
+        "engines": [
+          "3.0L 2JZ-GE"
+        ],
+        "category": "electrical",
+        "title": "Alternator Failure from Age and Oil Contamination Leading to Charging Loss",
+        "description": "First-generation IS300s commonly experience alternator failure as mileage climbs, sometimes accelerated by nearby oil leaks contaminating the unit. Owners report battery warning lights, dimming lights, low system voltage, and stalling after the battery discharges. Because the car may continue running briefly on battery power, the problem is sometimes mistaken for a bad battery alone.",
+        "solution": "Test charging voltage at idle and under load, and inspect for oil leakage from the valve cover or power steering area that may have reached the alternator. Replace the alternator with a quality OEM or Denso unit and correct any fluid leaks that contributed to failure. The battery should be load-tested afterward because repeated deep discharge can damage it.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "battery light on",
+          "dimming headlights",
+          "slow cranking",
+          "electrical accessories weakening",
+          "stalling after battery drains",
+          "low charging voltage"
+        ],
+        "affectedSystems": [
+          "charging system",
+          "battery",
+          "engine electrical"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 350,
+        "estimatedCostHigh": 900,
+        "typicalMileageLow": 100000,
+        "typicalMileageHigh": 220000,
+        "citations": [],
+        "communityRecommendations": [
+          {
+            "content": "Owners frequently recommend Denso/OEM alternators over low-cost reman units because cheaper replacements often have short service life."
+          },
+          {
+            "type": "tip",
+            "content": "Fix valve cover leaks before installing a new alternator so the replacement is not contaminated.",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "beforeSha256": "78fd3e166491c5ff63f084a75c6b8dd4ee9467175bbce5031fbc2b5ce5b287d9",
+      "proposal": {
+        "make": "Lexus",
+        "model": "IS",
+        "years": [
+          2001,
+          2002,
+          2003,
+          2004,
+          2005
+        ],
+        "trims": [],
+        "engines": [
+          "3.0L 2JZ-GE"
+        ],
+        "category": "electrical",
+        "title": "Alternator Failure from Age and Oil Contamination Leading to Charging Loss",
+        "description": "The complete federal communication inventory for the 2001-2005 IS 300 contains no exact record establishing a recurring alternator failure pattern, oil-contamination mechanism, common mileage range, or confusion with battery failure. The page currently provides no citation, measured field population, diagnostic threshold, or verified Denso application.",
+        "solution": "Treat a battery warning lamp, low voltage or stalling as a charging-system diagnosis, not automatic proof of an alternator failure. A qualified technician should test battery condition, charging output, cable voltage drop and any fluid leak before replacing a component. This is a vehicle-specific diagnostic/service remedy; no universal retail part is asserted.",
+        "severity": "medium",
+        "confidence": "low",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "nhtsa",
+            "title": "NHTSA Manufacturer Communications datasets",
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis#manufacturer-communications"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-08",
+        "contentUpdatedOn": "2026-08-08",
+        "contentUpdateSummary": "Removed the unsupported common-failure, oil-contamination and Denso-replacement claims; held the indexed identity for exact first-generation evidence.",
+        "relatedIssueIds": []
+      },
+      "proposalSha256": "bf85e15fadb72dc88a5bd522f138dd69e65805f62b36f03e4b36686bc8f7bbc2",
+      "changedFields": [
+        "description",
+        "solution",
+        "confidence",
+        "symptoms",
+        "affectedSystems",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "typicalMileageLow",
+        "typicalMileageHigh",
+        "citations",
+        "communityRecommendations",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ]
+    },
+    {
+      "id": "lexus-is-carbon-buildup-turbo-2016",
+      "action": "remove_false_citations_and_targeted_safety_cleanup_pending_source",
+      "commerceDecision": "blocked-no-exact-fitment-no-retail-part",
+      "evidence": [
+        "Complete inventory: 2945 exact IS-family manufacturer-communication rows and 258 exact recall rows / 23 campaigns were replayed.",
+        "No exact IS record establishes recurring intake-valve carbon, walnut blasting, a mileage interval or catch-can use.",
+        "The unlinked forum label is removed and no retail cleaning product is introduced."
+      ],
+      "before": {
+        "make": "Lexus",
+        "model": "IS",
+        "years": [
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022
+        ],
+        "trims": [
+          "IS200t",
+          "IS300"
+        ],
+        "engines": [
+          "2.0L 8AR-FTS Turbo"
+        ],
+        "category": "engine",
+        "title": "Carbon Buildup on Intake Valves (2.0T)",
+        "description": "The direct-injected 2.0L turbo four-cylinder in the IS200t/IS300 accumulates heavy carbon deposits on the intake valves since fuel is not sprayed over the valves to clean them. This leads to rough idle, hesitation under acceleration, and reduced power output typically between 40,000-80,000 miles.",
+        "solution": "Perform a walnut shell blasting of the intake valves to remove carbon deposits. This requires removing the intake manifold and using specialized media blasting equipment. Plan to repeat every 40,000-60,000 miles. Using a quality catch can helps slow the buildup rate.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Rough idle or engine vibration",
+          "Hesitation on acceleration from stop",
+          "Reduced power and sluggish throttle response",
+          "Slight misfire feel at low RPM",
+          "Decreased fuel economy"
+        ],
+        "affectedSystems": [
+          "Engine",
+          "Intake System",
+          "Fuel System"
+        ],
+        "dtcCodes": [
+          "P0300",
+          "P0301",
+          "P0302",
+          "P0303",
+          "P0304"
+        ],
+        "estimatedCostLow": 400,
+        "estimatedCostHigh": 800,
+        "typicalMileageLow": 40000,
+        "typicalMileageHigh": 80000,
+        "citations": [
+          {
+            "type": "forum",
+            "title": "ClubLexus.com — IS200t/IS300 carbon buildup walnut blasting guide and interval recommendations"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "source": "ClubLexus.com",
+            "content": "JLT Performance oil catch can — catches oil vapor before it reaches the intake valves, significantly reducing carbon buildup between walnut blasting services.",
+            "upvotes": 134,
+            "partName": "Oil Catch Can",
+            "partBrand": "JLT Performance",
+            "partNumber": "JLT-3012P",
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 1800,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-01-15",
+        "reviewedOn": "2026-03-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "lexus-rc-carbon-buildup-turbo-2016"
+        ]
+      },
+      "beforeSha256": "6a4551e022c450ea269901d41c7cc4a7b787c98de8f49ab974fda29393f2d468",
+      "proposal": {
+        "make": "Lexus",
+        "model": "IS",
+        "years": [
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022
+        ],
+        "trims": [
+          "IS200t",
+          "IS300"
+        ],
+        "engines": [
+          "2.0L 8AR-FTS Turbo"
+        ],
+        "category": "engine",
+        "title": "Carbon Buildup on Intake Valves (2.0T)",
+        "description": "The complete IS-family communication inventory contains no exact Lexus record establishing heavy intake-valve carbon as a recurring 2016-2022 8AR-FTS defect, a 40,000-80,000-mile onset, or a repeat service interval. The unlinked forum label does not validate walnut blasting, a 40,000-60,000-mile schedule, or a catch-can recommendation.",
+        "solution": "Do not schedule walnut blasting or install a catch can from this page. Diagnose rough idle, hesitation or reduced power with codes, fuel trims, ignition checks and model-specific Lexus procedures before inspecting intake deposits or authorizing cleaning. This is a vehicle-specific diagnostic/service remedy; no universal retail part is asserted.",
+        "severity": "medium",
+        "confidence": "low",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "nhtsa",
+            "title": "NHTSA Manufacturer Communications datasets",
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis#manufacturer-communications"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-08",
+        "contentUpdatedOn": "2026-08-08",
+        "contentUpdateSummary": "Removed the unsupported carbon-failure prevalence, mileage, repeat walnut-blasting interval and catch-can advice; held the identity for exact Lexus evidence.",
+        "relatedIssueIds": []
+      },
+      "proposalSha256": "25cf1b12736e60caf072b51c82d64ee48fa2a75d2912c7c5342235691b0a2ebf",
+      "changedFields": [
+        "description",
+        "solution",
+        "confidence",
+        "symptoms",
+        "affectedSystems",
+        "dtcCodes",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "typicalMileageLow",
+        "typicalMileageHigh",
+        "citations",
+        "communityRecommendations",
+        "reportCount",
+        "source",
+        "lastReportedByOwners",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary",
+        "relatedIssueIds"
+      ]
+    },
+    {
+      "id": "lexus-is-dashboard-melt-2006",
+      "action": "remove_false_citations_and_targeted_safety_cleanup_pending_source",
+      "commerceDecision": "historical-dealer-program-vin-only-no-retail-part",
+      "evidence": [
+        "Complete inventory: 2945 exact IS-family manufacturer-communication rows and 258 exact recall rows / 23 campaigns were replayed.",
+        "Visual review of ZLD limits IS 250/350 to 2006-2008 and shows primary coverage ended May 31, 2017 with secondary coverage limited to 10 years from first use.",
+        "Visual review of ZLZ covers 2008-2014 IS F and identifies its own time limits; neither program is ZE7."
+      ],
+      "before": {
+        "make": "Lexus",
+        "model": "IS",
+        "years": [
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013
+        ],
+        "trims": [
+          "IS250",
+          "IS350",
+          "IS F"
+        ],
+        "engines": [
+          "2.5L 4GR-FSE",
+          "3.5L 2GR-FSE",
+          "5.0L 2UR-GSE"
+        ],
+        "category": "interior",
+        "title": "Dashboard Melting and Sticky Surface",
+        "description": "The IS dashboard develops a sticky, melting surface identical to the ES and GS models of the same era. The dashboard material breaks down chemically in heat and sun exposure, creating a reflective glare on the windshield and a tacky feel. Lexus extended warranty coverage through Customer Support Program ZE7.",
+        "solution": "Obtain dashboard replacement under the Lexus Customer Support Program ZE7 extended warranty. If coverage has expired, request goodwill assistance from Lexus corporate. Aftermarket dash covers provide a temporary cosmetic fix but do not resolve the underlying material breakdown.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Dashboard surface becomes sticky and tacky",
+          "Shiny reflective glare on windshield",
+          "Dashboard material cracks and peels",
+          "Chemical odor from dashboard in heat"
+        ],
+        "affectedSystems": [
+          "Interior",
+          "Dashboard"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": 3000,
+        "typicalMileageLow": 20000,
+        "typicalMileageHigh": 100000,
+        "citations": [
+          {
+            "type": "nhtsa",
+            "title": "NHTSA complaint cluster — Lexus IS dashboard melting defect affecting 2006-2013 models"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "source": "ClubLexus.com",
+            "content": "Even if you are past the official warranty extension, Lexus customer support has authorized free dashboard replacements on a case-by-case basis. Call 1-800-255-3987 and be persistent.",
+            "upvotes": 267,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 3800,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-09-12",
+        "reviewedOn": "2026-03-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "lexus-gs-dashboard-melt-2006",
+          "lexus-es-dashboard-melt-2007",
+          "lexus-sc-dashboard-melt-2002",
+          "lexus-rx-dashboard-melt-2007",
+          "lexus-rc-dashboard-melt-2015"
+        ]
+      },
+      "beforeSha256": "540dba93a38ba0cd22b1d281725de3bf0bf76269a9878a7eb398c1cdd4de3b5f",
+      "proposal": {
+        "make": "Lexus",
+        "model": "IS",
+        "years": [
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013
+        ],
+        "trims": [
+          "IS250",
+          "IS350",
+          "IS F"
+        ],
+        "engines": [
+          "2.5L 4GR-FSE",
+          "3.5L 2GR-FSE",
+          "5.0L 2UR-GSE"
+        ],
+        "category": "interior",
+        "title": "Dashboard Melting and Sticky Surface",
+        "description": "Lexus primary documents support cracked or sticky dashboards on certain 2006-2008 IS 250/350 vehicles under Warranty Enhancement Program ZLD and on certain 2008-2014 IS F vehicles under Customer Support Program ZLZ. They do not support the page’s ZE7 program name or blanket 2006-2013 coverage across every listed trim. Both historical programs were time-limited and do not establish present-day free replacement.",
+        "solution": "Do not promise ZE7 coverage, a free dashboard, or goodwill assistance from this page. Have a Lexus dealer identify the VIN, production period and any historical ZLD/ZLZ record, then obtain a current paid-repair estimate if no open coverage remains. Avoid solvents or coatings that may further damage the surface. This is a VIN-specific dealer/service remedy; no universal retail part is asserted.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "program",
+            "title": "Warranty Enhancement Program ZLD — 2006–2008 IS 250/350",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2016/MC-10132886-9999.pdf"
+          },
+          {
+            "type": "program",
+            "title": "Customer Support Program ZLZ — IS F dashboard coverage",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2018/MC-10152186-9999.pdf"
+          },
+          {
+            "type": "nhtsa",
+            "title": "NHTSA Manufacturer Communications datasets",
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis#manufacturer-communications"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-08",
+        "contentUpdatedOn": "2026-08-08",
+        "contentUpdateSummary": "Replaced the incorrect ZE7 citation with visually verified ZLD/ZLZ scope and expiration boundaries; preserved the page while removing a current free-replacement promise.",
+        "relatedIssueIds": []
+      },
+      "proposalSha256": "0d481162594d3a0957f13d6eb53345caad8f859630a51359999220508425a735",
+      "changedFields": [
+        "description",
+        "solution",
+        "confidence",
+        "symptoms",
+        "affectedSystems",
+        "estimatedCostHigh",
+        "typicalMileageLow",
+        "typicalMileageHigh",
+        "citations",
+        "communityRecommendations",
+        "reportCount",
+        "source",
+        "lastReportedByOwners",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary",
+        "relatedIssueIds"
+      ]
+    },
+    {
+      "id": "lexus-is-front-door-trim--2023",
+      "action": "targeted_safety_cleanup_pending_source",
+      "commerceDecision": "blocked-no-exact-fitment-no-retail-part",
+      "evidence": [
+        "Complete inventory: 2945 exact IS-family manufacturer-communication rows and 258 exact recall rows / 23 campaigns were replayed.",
+        "No exact 2023-2025 record supports the claimed door-trim/speaker rattle or dealer guidance.",
+        "No clip, insulator, felt or foam application is verified for the frozen scope."
+      ],
+      "before": {
+        "make": "Lexus",
+        "model": "IS",
+        "years": [
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "interior",
+        "title": "Front Door Trim / Inner Garnish Rattle at Speaker Area",
+        "description": "Multiple owners of current-generation Lexus IS models report a persistent rattle or buzzing from the front door panel area, often near the speaker grille or inner garnish, especially on rough pavement or with bass-heavy audio. Lexus issued service guidance for door trim noise on this generation, indicating the condition is known at the dealer level. Owners typically describe the noise as intermittent at first, then easier to reproduce as clips, felt interfaces, or trim contact points loosen slightly.",
+        "solution": "Technicians usually road-test the vehicle to isolate the exact door and trim contact point, then remove the affected door panel and apply anti-rattle felt, foam tape, or updated insulators at the speaker grille, garnish, or clip interfaces. Broken or loose retaining clips should be replaced, and the panel should be reinstalled with proper torque and alignment. If the noise is audio-induced, verify the speaker fasteners and harness routing before reassembly.",
+        "severity": "low",
+        "confidence": "high",
+        "symptoms": [
+          "Buzzing or rattling from front door panel",
+          "Noise over bumps or rough roads",
+          "Rattle worsens with music bass",
+          "Intermittent trim noise near speaker grille"
+        ],
+        "affectedSystems": [
+          "front door trim",
+          "interior panels",
+          "audio speaker mounting"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 300,
+        "typicalMileageLow": 500,
+        "typicalMileageHigh": 30000,
+        "citations": [],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Before dealer visit, reproduce the noise with bass-heavy audio and note which door and road surface triggers it most consistently.",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "If DIY-inspecting, check door panel clips and speaker fasteners first; loose clips are a common source of intermittent buzzes.",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "beforeSha256": "c79299f41fd6579e1edb0af335ab05c2c0e30104b05174b25a796b8b21cabcc5",
+      "proposal": {
+        "make": "Lexus",
+        "model": "IS",
+        "years": [
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "interior",
+        "title": "Front Door Trim / Inner Garnish Rattle at Speaker Area",
+        "description": "The complete IS-family communication inventory contains no exact 2023-2025 record establishing a recurring front-door speaker/garnish rattle, loosened clips or the claimed Lexus service guidance. No source identifies a production range, failed interface, updated insulator, retaining clip or repair procedure for this page’s scope.",
+        "solution": "Have the noise reproduced and isolated before any panel is removed. Verify whether it follows road input or audio output, then inspect fasteners, harness contact and trim interfaces under the exact model-year repair procedure; do not add foam, felt or replacement clips from this page. This is a vehicle-specific diagnostic/service remedy; no universal retail part is asserted.",
+        "severity": "low",
+        "confidence": "low",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "nhtsa",
+            "title": "NHTSA Manufacturer Communications datasets",
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis#manufacturer-communications"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-08",
+        "contentUpdatedOn": "2026-08-08",
+        "contentUpdateSummary": "Removed the unsupported dealer-guidance, failure-mechanism and trim-removal prescription; held the 2023-2025 identity for an exact Lexus source.",
+        "relatedIssueIds": []
+      },
+      "proposalSha256": "248cf70a8886b7102455bbd1ce2512066a38a0b091e3cda51240073fb2fd2609",
+      "changedFields": [
+        "description",
+        "solution",
+        "confidence",
+        "symptoms",
+        "affectedSystems",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "typicalMileageLow",
+        "typicalMileageHigh",
+        "citations",
+        "communityRecommendations",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ]
+    },
+    {
+      "id": "lexus-is-fuel-pump-recall-2018",
+      "action": "remove_false_citations_and_targeted_safety_cleanup_pending_source",
+      "commerceDecision": "dealer-recall-vin-only-no-retail-part",
+      "evidence": [
+        "Complete inventory: 2945 exact IS-family manufacturer-communication rows and 258 exact recall rows / 23 campaigns were replayed.",
+        "Visual review of 20V-012 lists 2017 IS 200t, 2018-2019 IS 300 and 2014-2015/2018-2019 IS 350, not a universal 2018-2020 IS population.",
+        "Visual review of the Lexus 20LA01 notice names NHTSA 20V-012 and 20V-682; 20V-863 is not this campaign."
+      ],
+      "before": {
+        "make": "Lexus",
+        "model": "IS",
+        "years": [
+          2018,
+          2019,
+          2020
+        ],
+        "trims": [
+          "IS300",
+          "IS350"
+        ],
+        "engines": [
+          "2.0L 8AR-FTS Turbo",
+          "3.5L 2GR-FKS"
+        ],
+        "category": "engine",
+        "title": "Fuel Pump Impeller Failure (Recall)",
+        "description": "The low-pressure fuel pump impeller can deform due to excessive fuel absorption, causing the fuel pump to become inoperative. This results in engine stalling while driving or inability to start, creating a serious safety hazard. Toyota/Lexus issued a massive recall (20V-863) affecting over 1.8 million vehicles across multiple models.",
+        "solution": "Replace the fuel pump assembly at any Lexus dealer free of charge under recall 20V-863. The dealer replaces the entire fuel pump with an updated unit that uses a redesigned impeller. If you have not received a recall notice, contact your dealer with your VIN to verify eligibility.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Engine stalls while driving without warning",
+          "Difficulty starting or no-start condition",
+          "Engine runs rough or sputters at speed",
+          "Fuel pressure warning codes"
+        ],
+        "affectedSystems": [
+          "Engine",
+          "Fuel System"
+        ],
+        "dtcCodes": [
+          "P0087",
+          "P0230"
+        ],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": 80000,
+        "citations": [
+          {
+            "url": "https://static.nhtsa.gov/odi/rcl/2020/RMISC-20V012-9970.pdf",
+            "type": "nhtsa",
+            "title": "NHTSA: Toyota Motor North America 20V-012 Denso Fuel Pump Recall"
+          },
+          {
+            "url": "https://www.classaction.org/news/class-action-says-jan.-2020-toyota-lexus-denso-fuel-pump-recall-left-out-affected-2018-2019-vehicles",
+            "type": "media",
+            "title": "ClassAction.org: Jan. 2020 Toyota, Lexus Denso Fuel Pump Recall Left Out 2018-2019 Vehicles"
+          },
+          {
+            "url": "https://www.toyotanation.com/threads/toyotas-fuel-pump-recall-list-thus-far.1687811/",
+            "type": "forum",
+            "title": "ToyotaNation: Toyotas fuel pump recall list thus far"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "warning",
+            "source": "LexusEnthusiast.com",
+            "content": "This is a safety recall — do not delay getting the fuel pump replaced. Engine stalling at highway speed has caused multiple accidents. Check NHTSA.gov with your VIN for recall status.",
+            "upvotes": 356,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 5000,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-06-20",
+        "reviewedOn": "2026-03-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "toyota-rav4-fuel-pump-2018",
+          "toyota-camry-fuel-pump-2018",
+          "toyota-corolla-fuel-pump-failure",
+          "toyota-rav4-fuel-pump-failure-2019"
+        ]
+      },
+      "beforeSha256": "8bde9950c94a49181d34ed3e041338bc4bbf595e9ffa983d26cf4f857a479d01",
+      "proposal": {
+        "make": "Lexus",
+        "model": "IS",
+        "years": [
+          2018,
+          2019,
+          2020
+        ],
+        "trims": [
+          "IS300",
+          "IS350"
+        ],
+        "engines": [
+          "2.0L 8AR-FTS Turbo",
+          "3.5L 2GR-FKS"
+        ],
+        "category": "engine",
+        "title": "Fuel Pump Impeller Failure (Recall)",
+        "description": "Toyota’s amended 20V-012 report and Lexus 20LA01 notice document low-pressure fuel pumps whose impellers may deform after fuel absorption and stop operating, creating rough running, no-start or stall risk. The exact Lexus IS applicability shown in the primary records is 2017 IS 200t, 2018-2019 IS 300, and 2014-2015/2018-2019 IS 350, with 20V-682 expanding the population. The page’s 20V-863 number and universal 2018-2020 IS 300/350 scope are incorrect; only VIN-listed vehicles are included.",
+        "solution": "Check the full VIN in the official Lexus/NHTSA recall lookup for campaign 20LA01 (NHTSA 20V-012 or 20V-682). An authorized Lexus dealer replaces the low-pressure fuel pump with the recall remedy at no charge when the VIN has an open campaign. Do not buy a pump from a model-year list alone. This is a VIN-specific dealer recall remedy; no universal retail part is asserted.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "NHTSA Recall 20V-012 — Amended Defect Information Report",
+            "url": "https://static.nhtsa.gov/odi/rcl/2020/RMISC-20V012-9970.pdf"
+          },
+          {
+            "type": "recall",
+            "title": "Lexus Safety Recall 20LA01 — NHTSA 20V-012 & 20V-682",
+            "url": "https://static.nhtsa.gov/odi/rcl/2020/RCMN-20V682-7883.pdf"
+          },
+          {
+            "type": "nhtsa",
+            "title": "NHTSA Recall datasets",
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis#recalls"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-08",
+        "contentUpdatedOn": "2026-08-08",
+        "contentUpdateSummary": "Corrected 20V-863 to 20V-012/20V-682, bounded the model-year population to the visually verified reports, and replaced blanket eligibility with VIN-specific recall guidance.",
+        "relatedIssueIds": []
+      },
+      "proposalSha256": "f5cfcc8dcb071eaffe64209892f3b7b437b7736a264d475adbae48ed753ad4ea",
+      "changedFields": [
+        "description",
+        "solution",
+        "symptoms",
+        "affectedSystems",
+        "dtcCodes",
+        "typicalMileageHigh",
+        "citations",
+        "communityRecommendations",
+        "reportCount",
+        "source",
+        "lastReportedByOwners",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary",
+        "relatedIssueIds"
+      ]
+    },
+    {
+      "id": "lexus-is-lcd-climate-control-and-2001",
+      "action": "remove_false_citations_and_targeted_safety_cleanup_pending_source",
+      "commerceDecision": "blocked-no-exact-fitment-no-retail-part",
+      "evidence": [
+        "Complete inventory: 2945 exact IS-family manufacturer-communication rows and 258 exact recall rows / 23 campaigns were replayed.",
+        "No exact first-generation record mentions LCD/pixel failure, climate/radio display loss or a rebuilt-unit remedy.",
+        "The forum-home-page citation does not resolve to the claimed evidence."
+      ],
+      "before": {
+        "make": "Lexus",
+        "model": "IS",
+        "years": [
+          2001,
+          2002,
+          2003,
+          2004,
+          2005
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "interior",
+        "title": "LCD Climate Control and Radio Display Pixel Failure",
+        "description": "The factory climate/audio display in the first-gen IS is known for dimming, losing pixels, or becoming unreadable with age. Owners report missing segments, blank screens, and difficulty adjusting HVAC settings at night or in bright daylight. This is a very common age-related electronics issue on 2001-2005 cars.",
+        "solution": "Verify the issue is in the display unit rather than a fuse or backlighting power supply. Repair options include sending the unit to a specialist for LCD/pixel repair, replacing the display assembly with a known-good unit, or converting to an aftermarket audio/HVAC solution where applicable. Used units can fail the same way, so rebuilt parts are often preferred.",
+        "severity": "low",
+        "confidence": "high",
+        "symptoms": [
+          "dim radio display",
+          "missing LCD pixels",
+          "blank climate control screen",
+          "hard to read temperature settings",
+          "intermittent display operation"
+        ],
+        "affectedSystems": [
+          "HVAC controls",
+          "audio head unit",
+          "interior electronics"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 150,
+        "estimatedCostHigh": 600,
+        "typicalMileageLow": 60000,
+        "typicalMileageHigh": 200000,
+        "citations": [
+          {
+            "url": "https://www.my.is/",
+            "type": "forum",
+            "title": "My.IS and ClubLexus threads documenting IS300 climate/radio display pixel failures"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "content": "Owners often prefer specialist rebuild services over salvage-yard replacements because rebuilt units typically address the underlying display failure."
+          },
+          {
+            "type": "tip",
+            "content": "Take photos of connector positions before removing the center stack to avoid reassembly mistakes.",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "beforeSha256": "631ebc1d8d2145d4b2383b5d30308fb81d005841cc6aa80307e17a8f63ce8d87",
+      "proposal": {
+        "make": "Lexus",
+        "model": "IS",
+        "years": [
+          2001,
+          2002,
+          2003,
+          2004,
+          2005
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "interior",
+        "title": "LCD Climate Control and Radio Display Pixel Failure",
+        "description": "The complete first-generation IS communication inventory contains no exact record establishing a common climate/audio LCD pixel failure, affected display assembly, nighttime-control impact or rebuilt-unit preference for 2001-2005. The current citation points only to a forum home page and does not resolve to the claimed evidence.",
+        "solution": "Confirm whether the fault affects the display, backlighting, power supply or communication before removing the unit. Use the exact model-year wiring and service information to choose repair or replacement; a used or rebuilt unit must be verified for compatibility before installation. This is a vehicle-specific diagnostic/service remedy; no universal retail part is asserted.",
+        "severity": "low",
+        "confidence": "low",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "nhtsa",
+            "title": "NHTSA Manufacturer Communications datasets",
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis#manufacturer-communications"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-08",
+        "contentUpdatedOn": "2026-08-08",
+        "contentUpdateSummary": "Removed the forum-home-page citation and unsupported prevalence/rebuilt-unit claims; held the indexed identity for exact primary evidence.",
+        "relatedIssueIds": []
+      },
+      "proposalSha256": "a93515f9b0a534732b34e51ca7542a16055bc0f1dfc0aae4d5bf8a5b504fcff4",
+      "changedFields": [
+        "description",
+        "solution",
+        "confidence",
+        "symptoms",
+        "affectedSystems",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "typicalMileageLow",
+        "typicalMileageHigh",
+        "citations",
+        "communityRecommendations",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ]
+    },
+    {
+      "id": "lexus-is-lexus-safety-system-false-2023",
+      "action": "targeted_safety_cleanup_pending_source",
+      "commerceDecision": "blocked-no-exact-fitment-no-retail-part",
+      "evidence": [
+        "Complete inventory: 2945 exact IS-family manufacturer-communication rows and 258 exact recall rows / 23 campaigns were replayed.",
+        "Visual review of L-TT-0303-21 shows calibration applicability through 2022, not a 2023-2025 false-warning identity.",
+        "No exact current-generation record establishes dirt, rain or calibration drift as the recurring defect claimed."
+      ],
+      "before": {
+        "make": "Lexus",
+        "model": "IS",
+        "years": [
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "safety",
+        "title": "Lexus Safety System+ False Forward Collision / PCS Warnings from Dirty or Misaligned Sensors",
+        "description": "Some owners report intermittent pre-collision system, radar cruise, or lane-support warnings on 2023-2025 Lexus IS models, often after heavy rain, road grime buildup, windshield contamination, or minor front-end impacts. The system may temporarily disable with a message indicating the camera or radar is unavailable, even though no permanent hardware failure exists. In other cases, sensor alignment or calibration drift after windshield or bumper work can trigger recurring warnings.",
+        "solution": "Inspect and clean the front radar emblem area and windshield camera zone first, then scan for stored ADAS-related codes. If warnings persist, perform radar/camera aiming and calibration, especially after windshield replacement, bumper repair, or alignment work. Replace the affected sensor only after confirming power, communication, and calibration status.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Pre-Collision System unavailable warning",
+          "Radar cruise temporarily disabled",
+          "Lane assist warning messages",
+          "ADAS warnings in rain or after car wash",
+          "Intermittent master warning light"
+        ],
+        "affectedSystems": [
+          "pre-collision system",
+          "millimeter-wave radar",
+          "forward recognition camera",
+          "lane keeping assist"
+        ],
+        "dtcCodes": [
+          "C1A10",
+          "C1A11",
+          "C1A47",
+          "C1AA0"
+        ],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 1200,
+        "typicalMileageLow": 0,
+        "typicalMileageHigh": 50000,
+        "citations": [],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Clean the radar emblem and the windshield area in front of the camera before assuming a failed sensor.",
+            "upvotes": 0
+          },
+          {
+            "content": "After windshield replacement, insist on proper camera calibration; many intermittent warnings trace back to skipped ADAS setup."
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "lexus-rx-front-camera-millimeter-wave-2023",
+          "toyota-landcruiser-driver-assistance-false-alerts-2024"
+        ]
+      },
+      "beforeSha256": "f04e12b5f1ec0622178db82b134c9d8b164773e5318db6388d03c466f72958cf",
+      "proposal": {
+        "make": "Lexus",
+        "model": "IS",
+        "years": [
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "safety",
+        "title": "Lexus Safety System+ False Forward Collision / PCS Warnings from Dirty or Misaligned Sensors",
+        "description": "Lexus L-TT-0303-21 documents target placement for LSS/BSM calibration on IS 300 through 2022 and IS 350 through 2022. It is a calibration aid, not evidence of recurring false forward-collision warnings, dirty-sensor failures or calibration drift on 2023-2025 IS vehicles. The complete inventory contains no exact record for the page’s later model-year identity.",
+        "solution": "Follow the owner warning message and current model-year repair information. Clean only externally accessible sensor/camera viewing areas as the owner manual permits, record codes and recent windshield/body/alignment work, and have required aiming performed with the specified targets and level-surface procedure. Do not replace a sensor from this page. This is a VIN-specific diagnostic/service remedy; no universal retail part is asserted.",
+        "severity": "medium",
+        "confidence": "low",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tech-tip",
+            "title": "L-TT-0303-21 — Target Placement for LSS and BSM Calibration",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2021/MC-10202453-9999.pdf"
+          },
+          {
+            "type": "nhtsa",
+            "title": "NHTSA Manufacturer Communications datasets",
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis#manufacturer-communications"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-08",
+        "contentUpdatedOn": "2026-08-08",
+        "contentUpdateSummary": "Bounded the calibration source to IS through 2022 and removed the unsupported 2023-2025 failure identity and sensor-replacement inference.",
+        "relatedIssueIds": []
+      },
+      "proposalSha256": "74409bb8893bebe544414829dd5ad7949aa7c6d663288663141c52ba36ad4be8",
+      "changedFields": [
+        "description",
+        "solution",
+        "confidence",
+        "symptoms",
+        "affectedSystems",
+        "dtcCodes",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "typicalMileageLow",
+        "typicalMileageHigh",
+        "citations",
+        "communityRecommendations",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary",
+        "relatedIssueIds"
+      ]
+    },
+    {
+      "id": "lexus-is-lower-ball-joint-wear-2001",
+      "action": "targeted_safety_cleanup_pending_source",
+      "commerceDecision": "blocked-no-exact-fitment-no-retail-part",
+      "evidence": [
+        "Complete inventory: 2945 exact IS-family manufacturer-communication rows and 258 exact recall rows / 23 campaigns were replayed.",
+        "Document 10000251 is an inspection method for 2001-2003 IS 300, not proof of a recurring separation defect through 2005.",
+        "No exact record supports the shared-weakness, symptom-frequency or loss-of-control population claims."
+      ],
+      "before": {
+        "make": "Lexus",
+        "model": "IS",
+        "years": [
+          2001,
+          2002,
+          2003,
+          2004,
+          2005
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "suspension",
+        "title": "Lower Ball Joint Wear or Separation Risk in Front Suspension",
+        "description": "The first-generation IS shares a known Toyota/Lexus weakness involving front lower ball joints that can develop excessive play with age and mileage. Owners report clunking, wandering steering, uneven tire wear, and in severe cases joint separation that can cause loss of control. This is a heavily documented maintenance and safety concern in the IS300 community.",
+        "solution": "Inspect front lower ball joints for play during any suspension or brake service, especially on higher-mileage cars or vehicles with unknown history. Replace worn joints promptly with OEM-quality parts and inspect adjacent components such as tie rods, control arm bushings, and front tires for secondary damage. An alignment should follow replacement.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "front end clunk",
+          "loose or wandering steering",
+          "uneven front tire wear",
+          "steering vibration",
+          "suspension play",
+          "sudden wheel angle change if joint fails"
+        ],
+        "affectedSystems": [
+          "front suspension",
+          "steering",
+          "front wheel hub support"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 400,
+        "estimatedCostHigh": 1200,
+        "typicalMileageLow": 90000,
+        "typicalMileageHigh": 200000,
+        "citations": [],
+        "communityRecommendations": [
+          {
+            "content": "Owners strongly recommend genuine Toyota/Lexus lower ball joints rather than cheap aftermarket units because failure consequences are severe."
+          },
+          {
+            "type": "tip",
+            "content": "If buying a used IS300, inspect lower ball joints immediately and budget for replacement if service history is unknown.",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "toyota-4runner-lower-ball-joint-wearseparation-2000",
+          "toyota-tacoma-lower-ball-joint-wearseparation-2001",
+          "toyota-tundra-lower-ball-joint-2004"
+        ]
+      },
+      "beforeSha256": "17bcd567452f11e6c4ab8ebecd470d5728a3c690b370dec4d2738a568f07684d",
+      "proposal": {
+        "make": "Lexus",
+        "model": "IS",
+        "years": [
+          2001,
+          2002,
+          2003,
+          2004,
+          2005
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "suspension",
+        "title": "Lower Ball Joint Wear or Separation Risk in Front Suspension",
+        "description": "NHTSA document 10000251 records a Lexus suspension ball-joint inspection method for 2001-2003 IS 300. It does not establish a recurring 2001-2005 lower-ball-joint wear/separation defect, a shared Toyota/Lexus weakness, owner symptom pattern, or population-wide loss-of-control risk. No exact source extends this identity through 2005.",
+        "solution": "Any looseness, steering wander or clunk requires prompt inspection under the exact model-year Lexus procedure, including measured joint play and adjacent steering/suspension checks. Replace only components that fail the specified inspection and complete any required alignment; do not select parts from this page. This is a vehicle-specific diagnostic/service remedy; no universal retail part is asserted.",
+        "severity": "high",
+        "confidence": "low",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "nhtsa",
+            "title": "NHTSA Manufacturer Communications datasets",
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis#manufacturer-communications"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-08",
+        "contentUpdatedOn": "2026-08-08",
+        "contentUpdateSummary": "Bounded the sole primary record to a 2001-2003 inspection method and removed unsupported prevalence, separation and universal replacement claims.",
+        "relatedIssueIds": []
+      },
+      "proposalSha256": "5f53a92898ad2bfdc9dddab197f47e117292f2dba3aadc063c2088974e178a1e",
+      "changedFields": [
+        "description",
+        "solution",
+        "confidence",
+        "symptoms",
+        "affectedSystems",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "typicalMileageLow",
+        "typicalMileageHigh",
+        "citations",
+        "communityRecommendations",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary",
+        "relatedIssueIds"
+      ]
+    },
+    {
+      "id": "lexus-is-premature-front-brake-squeal-2023",
+      "action": "targeted_safety_cleanup_pending_source",
+      "commerceDecision": "blocked-no-exact-fitment-no-retail-part",
+      "evidence": [
+        "Complete inventory: 2945 exact IS-family manufacturer-communication rows and 258 exact recall rows / 23 campaigns were replayed.",
+        "No exact 2023-2025 record supports front brake squeal/groan or revised front pads/shims.",
+        "Documents 10028044 and 10042884 concern rear-caliper slide pins on 2006-2007 IS 250/350 and are not promoted."
+      ],
+      "before": {
+        "make": "Lexus",
+        "model": "IS",
+        "years": [
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "brakes",
+        "title": "Premature Front Brake Squeal / Groan at Low Speed",
+        "description": "A number of owners report front brake squeal, chirp, or groaning noises during light stops, especially when cold, damp, or after the vehicle sits overnight. This is commonly tied to pad material characteristics, rotor surface condition, or insufficient lubrication at pad contact points rather than outright brake failure. The complaint is more of a refinement issue, but it is frequent enough on owner forums and dealer visits to be considered a known nuisance.",
+        "solution": "Inspect pad thickness, rotor finish, and hardware condition first. Dealers or independent shops typically clean and lubricate pad ears/shims, resurface or replace rotors if glazing is present, and install revised pads or shims if available. If the vehicle has F SPORT brakes, verify correct pad compound and bedding procedure after service.",
+        "severity": "low",
+        "confidence": "medium",
+        "symptoms": [
+          "Squeal during light braking",
+          "Groan when stopping at parking lot speeds",
+          "Noise worse when brakes are cold or damp",
+          "Brake noise without noticeable loss of stopping power"
+        ],
+        "affectedSystems": [
+          "front brake pads",
+          "rotors",
+          "brake shims",
+          "caliper hardware"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 150,
+        "estimatedCostHigh": 900,
+        "typicalMileageLow": 1000,
+        "typicalMileageHigh": 30000,
+        "citations": [],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Ask for pad/rotor inspection before replacing parts; many cases improve with proper shim lubrication and pad bedding.",
+            "upvotes": 0
+          },
+          {
+            "content": "If replacing pads, use OEM or a known low-noise ceramic compound to preserve Lexus-level refinement."
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "landrover-rangeroversport-front-brake-squeal-judder-2023"
+        ]
+      },
+      "beforeSha256": "8dde6041ea44c0669f1c9a5e074e3ccd1aa1dc2aa2bc5304d133304d66cc5cf1",
+      "proposal": {
+        "make": "Lexus",
+        "model": "IS",
+        "years": [
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "brakes",
+        "title": "Premature Front Brake Squeal / Groan at Low Speed",
+        "description": "The complete IS-family inventory contains no exact 2023-2025 communication establishing recurring front brake squeal/groan, pad-material causation or revised front pads/shims. The only exact IS brake-noise campaign records concern rear-caliper slide pins on certain 2006-2007 IS 250/350 vehicles and cannot support this current-generation page.",
+        "solution": "Have the brakes inspected for lining thickness, rotor condition, hardware, contamination and any safety fault before treating the noise as a refinement issue. Use only the exact model-year Lexus procedure and VIN-specific parts information; do not resurface rotors, change pad compounds or add lubricants from this page. This is a vehicle-specific diagnostic/service remedy; no universal retail part is asserted.",
+        "severity": "low",
+        "confidence": "low",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "nhtsa",
+            "title": "NHTSA Manufacturer Communications datasets",
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis#manufacturer-communications"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-08",
+        "contentUpdatedOn": "2026-08-08",
+        "contentUpdateSummary": "Separated the unrelated 2006-2007 rear-brake campaign and removed unsupported 2023-2025 pad, shim, resurfacing and lubrication prescriptions.",
+        "relatedIssueIds": []
+      },
+      "proposalSha256": "b22c333871a1790c8f3b165972b5c08145e30f1e608722b07b191de33a7eef0d",
+      "changedFields": [
+        "description",
+        "solution",
+        "confidence",
+        "symptoms",
+        "affectedSystems",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "typicalMileageLow",
+        "typicalMileageHigh",
+        "citations",
+        "communityRecommendations",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary",
+        "relatedIssueIds"
+      ]
+    },
+    {
+      "id": "lexus-is-transmission-harsh-shift-2014",
+      "action": "remove_false_citations_and_targeted_safety_cleanup_pending_source",
+      "commerceDecision": "blocked-no-exact-fitment-no-retail-part",
+      "evidence": [
+        "Complete inventory: 2945 exact IS-family manufacturer-communication rows and 258 exact recall rows / 23 campaigns were replayed.",
+        "No exact third-generation record supports harsh 1-2/2-3 shifts, fuel-economy programming or the claimed L-SB-0087-18 correction.",
+        "Generic flash instructions cannot justify a fluid interval, reflash or valve-body replacement."
+      ],
+      "before": {
+        "make": "Lexus",
+        "model": "IS",
+        "years": [
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020
+        ],
+        "trims": [
+          "IS200t",
+          "IS300",
+          "IS350"
+        ],
+        "engines": [
+          "2.0L 8AR-FTS Turbo",
+          "3.5L 2GR-FKS",
+          "3.5L 2GR-FSE"
+        ],
+        "category": "transmission",
+        "title": "8-Speed Automatic Harsh Shifting",
+        "description": "The Aisin 8-speed automatic transmission in the third-generation IS exhibits harsh or jerky shifts, particularly during low-speed 1-2 and 2-3 upshifts and when downshifting for deceleration. The transmission control module programming prioritizes fuel economy over smoothness, leading to abrupt gear changes that are felt prominently in the cabin.",
+        "solution": "Visit the dealer for a transmission ECU reprogramming that smooths shift points and torque converter lockup behavior. Perform a transmission fluid drain-and-fill with Toyota WS fluid every 40,000 miles. If harsh shifting persists after the reflash, the valve body may need replacement.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Hard jerk during 1-2 upshift at low speed",
+          "Harsh downshift when decelerating",
+          "Clunking sensation during gear changes",
+          "Transmission hesitation when accelerating from a stop"
+        ],
+        "affectedSystems": [
+          "Transmission",
+          "Drivetrain"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": 2500,
+        "typicalMileageLow": 20000,
+        "typicalMileageHigh": 80000,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "Lexus TSB L-SB-0087-18 — IS transmission shift quality improvement reprogramming"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "source": "ClubLexus.com",
+            "content": "A fluid drain-and-fill with genuine Toyota WS ATF makes a noticeable difference in shift quality. Do not flush — just drain and refill 4-5 quarts.",
+            "upvotes": 156,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 2100,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-12-05",
+        "reviewedOn": "2026-03-23",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "lexus-rx-transmission-shudder-2016",
+          "toyota-tacoma-transmission-2016"
+        ]
+      },
+      "beforeSha256": "73b3d0c083c6e6bfb5b43e1834dbc5a6bd5c3d5f0a39e6a8f1a380971d8165e0",
+      "proposal": {
+        "make": "Lexus",
+        "model": "IS",
+        "years": [
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020
+        ],
+        "trims": [
+          "IS200t",
+          "IS300",
+          "IS350"
+        ],
+        "engines": [
+          "2.0L 8AR-FTS Turbo",
+          "3.5L 2GR-FKS",
+          "3.5L 2GR-FSE"
+        ],
+        "category": "transmission",
+        "title": "8-Speed Automatic Harsh Shifting",
+        "description": "The complete IS-family communication inventory contains no exact third-generation record supporting a recurring 2014-2020 8-speed harsh-shift pattern, fuel-economy programming cause, valve-body replacement, or the claimed L-SB-0087-18 shift-quality bulletin. Generic ECU-flash instructions do not establish a model-specific transmission correction.",
+        "solution": "Record temperature, speed, selected drive mode, shift event and diagnostic codes, then verify the installed transmission and current VIN-specific calibrations before authorizing service. Do not perform a 40,000-mile fluid schedule, reflash or replace a valve body from this page. This is a VIN-specific diagnostic/service remedy; no universal retail part is asserted.",
+        "severity": "medium",
+        "confidence": "low",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "nhtsa",
+            "title": "NHTSA Manufacturer Communications datasets",
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis#manufacturer-communications"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-08",
+        "contentUpdatedOn": "2026-08-08",
+        "contentUpdateSummary": "Removed the unsupported bulletin, 8-speed failure pattern, programming cause, 40,000-mile fluid interval and valve-body prescription; held the identity for exact Lexus evidence.",
+        "relatedIssueIds": []
+      },
+      "proposalSha256": "95a779e768a13d2b705274249c0cd4f6ced6e56776e25ead97c233b525969e18",
+      "changedFields": [
+        "description",
+        "solution",
+        "confidence",
+        "symptoms",
+        "affectedSystems",
+        "estimatedCostHigh",
+        "typicalMileageLow",
+        "typicalMileageHigh",
+        "citations",
+        "communityRecommendations",
+        "reportCount",
+        "source",
+        "lastReportedByOwners",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary",
+        "relatedIssueIds"
+      ]
+    },
+    {
+      "id": "lexus-is-valve-cover-gasket-leaks-2001",
+      "action": "remove_false_citations_and_targeted_safety_cleanup_pending_source",
+      "commerceDecision": "blocked-no-exact-fitment-no-retail-part",
+      "evidence": [
+        "Complete inventory: 2945 exact IS-family manufacturer-communication rows and 258 exact recall rows / 23 campaigns were replayed.",
+        "No exact first-generation record mentions valve-cover-gasket leakage, spark-plug-well contamination or bundled PCV service.",
+        "The forum-home-page citation is removed and no gasket or ignition part is promoted."
+      ],
+      "before": {
+        "make": "Lexus",
+        "model": "IS",
+        "years": [
+          2001,
+          2002,
+          2003,
+          2004,
+          2005
+        ],
+        "trims": [],
+        "engines": [
+          "3.0L 2JZ-GE"
+        ],
+        "category": "engine",
+        "title": "Valve Cover Gasket Leaks Causing Oil Smell and Misfire Risk",
+        "description": "Aging valve cover gaskets on the 2JZ-GE commonly harden and leak, allowing oil to seep onto the cylinder head, spark plug tube seals, and exhaust side of the engine. Owners often notice a burnt-oil smell, visible oil around the valve covers, and occasional misfires if oil contaminates ignition components. This is one of the most common age-related engine leaks on the first-gen IS300.",
+        "solution": "Confirm the leak source by cleaning the engine and inspecting around the valve cover perimeter and spark plug wells. Replace both valve cover gaskets, spark plug tube seals, and related grommets; many owners also replace the PCV valve at the same time to reduce crankcase pressure. If misfires are present, inspect and replace oil-soaked coil boots or plugs.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "burning oil smell",
+          "oil on valve cover edges",
+          "oil in spark plug wells",
+          "light smoke from engine bay",
+          "misfire under load",
+          "oil spots on driveway"
+        ],
+        "affectedSystems": [
+          "engine sealing",
+          "ignition system",
+          "crankcase ventilation"
+        ],
+        "dtcCodes": [
+          "P0300",
+          "P0301",
+          "P0302",
+          "P0303",
+          "P0304",
+          "P0305",
+          "P0306"
+        ],
+        "estimatedCostLow": 250,
+        "estimatedCostHigh": 900,
+        "typicalMileageLow": 70000,
+        "typicalMileageHigh": 180000,
+        "citations": [
+          {
+            "url": "https://www.my.is/",
+            "type": "forum",
+            "title": "My.IS and ClubLexus threads on IS300 valve cover gasket oil leaks"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "content": "Use OEM valve cover gasket sets and replace spark plug tube seals and grommets at the same time to avoid repeat labor."
+          },
+          {
+            "type": "tip",
+            "content": "A PCV valve replacement is cheap preventive maintenance when doing this job.",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "toyota-echo-oil-leak-valve-cover-2000",
+          "toyota-venza-oil-leak-valve-cover-2009"
+        ]
+      },
+      "beforeSha256": "2e79b5edd624384caa90dea1e1492fe65be8d5730315780b682894f2c588cb9b",
+      "proposal": {
+        "make": "Lexus",
+        "model": "IS",
+        "years": [
+          2001,
+          2002,
+          2003,
+          2004,
+          2005
+        ],
+        "trims": [],
+        "engines": [
+          "3.0L 2JZ-GE"
+        ],
+        "category": "engine",
+        "title": "Valve Cover Gasket Leaks Causing Oil Smell and Misfire Risk",
+        "description": "The complete 2001-2005 IS 300 communication inventory contains no exact record establishing a common 2JZ-GE valve-cover-gasket leak, spark-plug-well contamination pattern, misfire risk or bundled PCV/ignition service. The current citation points only to a forum home page and does not resolve to the claimed evidence.",
+        "solution": "Clean and trace the oil source before removing components, then inspect the exact leak path and any ignition contamination under model-specific Lexus service information. Replace only confirmed leaking seals or damaged ignition components; do not bundle a PCV valve, plugs or coil boots from this page. This is a vehicle-specific diagnostic/service remedy; no universal retail part is asserted.",
+        "severity": "medium",
+        "confidence": "low",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "nhtsa",
+            "title": "NHTSA Manufacturer Communications datasets",
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis#manufacturer-communications"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-08",
+        "contentUpdatedOn": "2026-08-08",
+        "contentUpdateSummary": "Removed the forum-home-page citation and unsupported common-failure, misfire and bundled-parts claims; held the indexed identity for exact primary evidence.",
+        "relatedIssueIds": []
+      },
+      "proposalSha256": "6d0d78aa032aee59ec277594aa0d13eaf770d5302ac49110a76a38a652ab2950",
+      "changedFields": [
+        "description",
+        "solution",
+        "confidence",
+        "symptoms",
+        "affectedSystems",
+        "dtcCodes",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "typicalMileageLow",
+        "typicalMileageHigh",
+        "citations",
+        "communityRecommendations",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary",
+        "relatedIssueIds"
+      ]
+    }
+  ]
+}
