@@ -1,0 +1,1131 @@
+{
+  "schemaVersion": 1,
+  "status": "proposal-only",
+  "auditStage": "model-primary-source-adjudication",
+  "requiresIndependentApproval": true,
+  "generatedOn": "2026-08-08",
+  "make": "Kia",
+  "model": "Spectra",
+  "completionStatement": "All five frozen Spectra records receive targeted accuracy and safety cleanup. Unsupported all-year claims, unavailable citations, search commerce, false or ungrounded codes and batch-replacement advice are removed while every indexed identity remains published and unchanged.",
+  "applicationGate": {
+    "status": "blocked",
+    "blockerRecordIds": [
+      "kia-spectra-alternator-failure-2000",
+      "kia-spectra-catalytic-converter-2000",
+      "kia-spectra-engine-mount-2000",
+      "kia-spectra-ignition-coil-2000",
+      "kia-spectra-timing-belt-2000"
+    ],
+    "reason": "No exact primary package supports any of the five broad decade-wide Spectra identities. Independent review is required before any application."
+  },
+  "safetyContract": [
+    "No production database write, cache purge, deployment, archive, redirect, slug change, title change, category change, indexed-year change, trim change, engine change, new issue or public-page change is authorized.",
+    "All five Spectra IDs, titles, categories, indexed year sets, trim sets, engine sets and publication states remain unchanged.",
+    "Unavailable citations, unsupported DTCs, generic search commerce, price claims and unverified replacement instructions cannot hide in a blocker; targeted cleanup removes them while preserving each page.",
+    "All 73 manufacturer communications and all seven recall rows/three campaigns across Spectra model-name variants in the complete frozen inventories are accounted for; separate recall identities remain deferred until the remaining-make audit is complete."
+  ],
+  "source": {
+    "snapshotFile": "data/_kia-deeplink-snapshot-2026-08-06.json",
+    "snapshotSha256": "f0aa4c5c8ca72321ed9a0b54aa9455e84056b445cb31049545ea07a48748c76b",
+    "snapshotGeneratedAt": "2026-08-07T19:13:14.080Z",
+    "snapshotHash": "f8b4d0e206ea16a5a28546ef1db29b0c885b1a839069b486f07fb1a1759310bf",
+    "modelRecordCount": 5
+  },
+  "observations": [
+    {
+      "code": "spectra-two-dead-video-citations-removed",
+      "severity": "critical",
+      "recordIds": [
+        "kia-spectra-alternator-failure-2000",
+        "kia-spectra-engine-mount-2000"
+      ],
+      "detail": "Both named YouTube citations return 404 through the publisher oEmbed endpoint."
+    },
+    {
+      "code": "spectra-false-and-unsupported-dtcs-bounded",
+      "severity": "critical",
+      "recordIds": [
+        "kia-spectra-catalytic-converter-2000",
+        "kia-spectra-timing-belt-2000"
+      ],
+      "detail": "P0430 is removed from the four-cylinder catalytic page; unsupported P0016/P0017 are removed from the timing-belt page."
+    },
+    {
+      "code": "spectra-batch-replacement-advice-removed",
+      "severity": "critical",
+      "recordIds": [
+        "kia-spectra-engine-mount-2000",
+        "kia-spectra-ignition-coil-2000",
+        "kia-spectra-timing-belt-2000"
+      ],
+      "detail": "Replace-all-mounts, replace-all-four-coils/plugs and mandatory timing-service bundles are replaced with diagnosis- and fitment-first guidance."
+    },
+    {
+      "code": "spectra-search-commerce-and-costs-removed",
+      "severity": "critical",
+      "recordIds": [
+        "kia-spectra-alternator-failure-2000",
+        "kia-spectra-catalytic-converter-2000",
+        "kia-spectra-engine-mount-2000",
+        "kia-spectra-ignition-coil-2000",
+        "kia-spectra-timing-belt-2000"
+      ],
+      "detail": "All 15 generic Amazon search recommendations and unsupported repair-price ranges are removed."
+    },
+    {
+      "code": "spectra-three-new-recall-identities-deferred",
+      "severity": "methodology",
+      "recordIds": [],
+      "campaignNumbers": [
+        "05V183000",
+        "05V431000",
+        "11V256000"
+      ],
+      "detail": "Every complete-inventory campaign is a separate identity and remains proposal-deferred until the remaining-make audit is complete."
+    },
+    {
+      "code": "all-spectra-pages-preserved",
+      "severity": "seo-safety",
+      "recordIds": [
+        "kia-spectra-alternator-failure-2000",
+        "kia-spectra-catalytic-converter-2000",
+        "kia-spectra-engine-mount-2000",
+        "kia-spectra-ignition-coil-2000",
+        "kia-spectra-timing-belt-2000"
+      ],
+      "detail": "Every Spectra ID, title, category, indexed year set, trim set, engine set and publication state remains preserved."
+    }
+  ],
+  "youtubeCitationChecks": {
+    "kia-spectra-alternator-failure-2000": {
+      "videoId": "Zq5vQ1xqQ6k",
+      "expectedOembedStatus": 404
+    },
+    "kia-spectra-engine-mount-2000": {
+      "videoId": "6X6r6hV7k6g",
+      "expectedOembedStatus": 404
+    }
+  },
+  "manufacturerCommunications": {
+    "files": {
+      "1995-1999": {
+        "name": "MFR_COMMS_RECEIVED_1995-1999.csv",
+        "sha256": "409a86bb7bb37a6313eae9212fb90a5ab45029fdcf2a69d0c0378eab080503db",
+        "expectedSpectraRows": 0
+      },
+      "2000-2004": {
+        "name": "MFR_COMMS_RECEIVED_2000-2004.csv",
+        "sha256": "5c755be52d35e060626402ebe6dfcccdf350ae379df5c06b49c71d08497e2264",
+        "expectedSpectraRows": 21
+      },
+      "2005-2009": {
+        "name": "MFR_COMMS_RECEIVED_2005-2009.csv",
+        "sha256": "04f72a7bf95530d116b1500c976a9e4d365e1c9a8b0433f58d60dbb36a58679b",
+        "expectedSpectraRows": 21
+      },
+      "2010-2014": {
+        "name": "MFR_COMMS_RECEIVED_2010-2014.csv",
+        "sha256": "41e66a9d81a859d469d51c6cdcbc107fc6284c64ed24065ccaf1fe02a52e4387",
+        "expectedSpectraRows": 6
+      },
+      "2015-2019": {
+        "name": "MFR_COMMS_RECEIVED_2015-2019.csv",
+        "sha256": "d6c2ff16880cc7b31cfebad94bda08c3e8b3b2c3f28d56d5b1bb810c8b878a2e",
+        "expectedSpectraRows": 21
+      },
+      "2020-2024": {
+        "name": "MFR_COMMS_RECEIVED_2020-2024.csv",
+        "sha256": "3b3ca3d690e33386d1d315a0f966285ae8cccb99c45c2386ada164c5e925c3cf",
+        "expectedSpectraRows": 4
+      },
+      "2025-2026": {
+        "name": "MFR_COMMS_RECEIVED_2025-2026.csv",
+        "sha256": "419ebda2f1c1bf22e2b0862858d61699c25e61d73842f9031e796f1fafefba4c",
+        "expectedSpectraRows": 0
+      }
+    },
+    "totalExpectedSpectraRows": 73,
+    "modelNameCounts": {
+      "SPECTRA": 67,
+      "LD SPECTRA": 4,
+      "SPECTRA5": 2
+    },
+    "modelMatchRule": "KIA rows whose Model field contains SPECTRA",
+    "nearMatchDocumentIds": [
+      "10030365"
+    ]
+  },
+  "flatRecallSource": {
+    "pre2010": {
+      "name": "FLAT_RCL_PRE_2010.txt",
+      "sha256": "71e6e325e2d69d204776fb32d83dad4fd95436a2f7890da54d49622d77a36232",
+      "expectedSpectraRows": 3
+    },
+    "post2010": {
+      "name": "FLAT_RCL_POST_2010.txt",
+      "sha256": "4803a7f298f1d850736fe55830f4d31b004577424cb6429988c5864786f76a70",
+      "expectedSpectraRows": 4
+    }
+  },
+  "expectedPre2010RecallInventory": {
+    "05V183000": [
+      2005
+    ],
+    "05V431000": [
+      2004,
+      2005
+    ]
+  },
+  "expectedFlatRecallInventory": {
+    "11V256000": [
+      2004,
+      2005,
+      2006,
+      2007
+    ]
+  },
+  "expectedCompleteRecallInventory": {
+    "05V183000": [
+      2005
+    ],
+    "05V431000": [
+      2004,
+      2005
+    ],
+    "11V256000": [
+      2004,
+      2005,
+      2006,
+      2007
+    ]
+  },
+  "deferredCampaigns": [
+    {
+      "campaignNumber": "05V183000",
+      "reason": "Complete Spectra inventory campaign is a separate issue identity not represented by any frozen page; proposal-only collection remains deferred until the remaining-make audit is complete."
+    },
+    {
+      "campaignNumber": "05V431000",
+      "reason": "Complete Spectra inventory campaign is a separate issue identity not represented by any frozen page; proposal-only collection remains deferred until the remaining-make audit is complete."
+    },
+    {
+      "campaignNumber": "11V256000",
+      "reason": "Complete Spectra inventory campaign is a separate issue identity not represented by any frozen page; proposal-only collection remains deferred until the remaining-make audit is complete."
+    }
+  ],
+  "summary": {
+    "targeted_safety_cleanup_pending_source": 5,
+    "total": 5
+  },
+  "rows": [
+    {
+      "id": "kia-spectra-alternator-failure-2000",
+      "model": "Spectra",
+      "action": "targeted_safety_cleanup_pending_source",
+      "reason": "No exact Kia package supports a 2000-2009 premature-alternator population, 60,000-100,000-mile range, regulator/rectifier prevalence or repeated remanufactured-unit claim. The named video returns 404 and eight unrelated search products are removed.",
+      "identityRule": "Preserve every indexed Spectra ID, title, category, year set, trim set, engine set and publication state while removing unavailable citations, search commerce, unsupported codes, costs and batch-replacement advice.",
+      "commerceDecision": "no-commerce-pending-electrical-test-and-exact-alternator-fitment",
+      "changedFields": [
+        "description",
+        "solution",
+        "confidence",
+        "symptoms",
+        "affectedSystems",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "typicalMileageLow",
+        "typicalMileageHigh",
+        "citations",
+        "communityRecommendations",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
+      "evidence": [
+        {
+          "kind": "complete-official-inventory-no-exact-primary-package",
+          "manufacturerCommunicationCount": 73,
+          "recallRowCount": 7,
+          "campaignCount": 3,
+          "modelNames": {
+            "SPECTRA": 67,
+            "LD SPECTRA": 4,
+            "SPECTRA5": 2
+          },
+          "verifiedOn": "2026-08-08",
+          "observation": "No exact Kia communication or recall in the complete frozen Spectra inventories supports this broad all-year page identity and its prescriptive claims."
+        },
+        {
+          "kind": "publisher-citation-unavailable",
+          "url": "https://www.youtube.com/watch?v=Zq5vQ1xqQ6k",
+          "oembedStatus": 404,
+          "verifiedOn": "2026-08-08",
+          "observation": "The frozen named YouTube citation is unavailable through YouTube oEmbed and cannot support the article."
+        },
+        {
+          "kind": "citation-commerce-relation-review",
+          "removedCitationCount": 1,
+          "removedCommerceCount": 8,
+          "removedRelatedIssueCount": 0,
+          "verifiedOn": "2026-08-08",
+          "observation": "Unavailable, secondary, search-style and cross-model material is removed; no replacement part is prescribed without exact diagnosis and fitment."
+        }
+      ],
+      "beforeSha256": "732ab8a9e2fdf8df634b863099ab0cbb59832dbf530af71127ab7443037a03d6",
+      "proposalSha256": "83f317a051c9a9684192dcfaf871378893ba787c91cda6dd239efec933a247ce",
+      "before": {
+        "make": "Kia",
+        "model": "Spectra",
+        "years": [
+          2000,
+          2001,
+          2002,
+          2003,
+          2004,
+          2005,
+          2006,
+          2007,
+          2008,
+          2009
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Alternator Premature Failure",
+        "description": "The alternator in the Kia Spectra has a higher-than-average failure rate, typically failing between 60,000-100,000 miles. The internal voltage regulator and rectifier are the common failure points, causing undercharging or overcharging of the battery. Symptoms include dimming lights, battery warning light, and eventual no-start condition. Some owners have experienced multiple alternator replacements. Remanufactured units from auto parts stores have mixed reliability.",
+        "solution": "",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Battery warning light on dashboard",
+          "Dimming headlights at idle",
+          "Battery not holding charge",
+          "Electrical accessories cutting out",
+          "Dead battery after short parking period"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 200,
+        "estimatedCostHigh": 500,
+        "typicalMileageLow": 60000,
+        "typicalMileageHigh": 100000,
+        "citations": [
+          {
+            "url": "https://www.youtube.com/watch?v=Zq5vQ1xqQ6k",
+            "type": "video",
+            "title": "YouTube - How to Replace Alternator on Kia Spectra (Known Channel)"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "High-performance AGM battery with excellent cold cranking amps and deep cycle capability",
+            "partName": "RedTop AGM Battery",
+            "partBrand": "Optima",
+            "affiliateUrl": "https://www.amazon.com/s?k=Optima%20RedTop%20AGM%20Battery%20Kia%20Spectra&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "OEM-quality replacement battery with reliable performance",
+            "partName": "Professional AGM Battery",
+            "partBrand": "ACDelco",
+            "affiliateUrl": "https://www.amazon.com/s?k=ACDelco%20Professional%20AGM%20Battery%20Kia%20Spectra&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Automatic battery maintainer to prevent parasitic drain issues during storage",
+            "partName": "Junior 12V Battery Charger Maintainer",
+            "partBrand": "Battery Tender",
+            "affiliateUrl": "https://www.amazon.com/s?k=Battery%20Tender%20Junior%2012V%20Battery%20Charger%20Maintainer%20Kia%20Spectra&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "OEM-quality remanufactured alternator with high output for reliable charging",
+            "partName": "Remanufactured Alternator",
+            "partBrand": "Denso",
+            "affiliateUrl": "https://www.amazon.com/s?k=Denso%20Remanufactured%20Alternator%20Kia%20Spectra&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Premium rebuilt alternator backed by extensive warranty coverage",
+            "partName": "Premium Remanufactured Alternator",
+            "partBrand": "Remy",
+            "affiliateUrl": "https://www.amazon.com/s?k=Remy%20Premium%20Remanufactured%20Alternator%20Kia%20Spectra&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "OEM-quality starter motor for reliable engine cranking",
+            "partName": "Starter Motor",
+            "partBrand": "Denso",
+            "affiliateUrl": "https://www.amazon.com/s?k=Denso%20Starter%20Motor%20Kia%20Spectra&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Remanufactured starter with gear reduction for improved cranking performance",
+            "partName": "Remanufactured Starter Motor",
+            "partBrand": "Remy",
+            "affiliateUrl": "https://www.amazon.com/s?k=Remy%20Remanufactured%20Starter%20Motor%20Kia%20Spectra&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Direct-fit window regulator assembly with motor for easy installation",
+            "partName": "Power Window Regulator and Motor Assembly",
+            "partBrand": "Dorman",
+            "affiliateUrl": "https://www.amazon.com/s?k=Dorman%20Power%20Window%20Regulator%20and%20Motor%20Assembly%20Kia%20Spectra&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Kia",
+        "model": "Spectra",
+        "years": [
+          2000,
+          2001,
+          2002,
+          2003,
+          2004,
+          2005,
+          2006,
+          2007,
+          2008,
+          2009
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Alternator Premature Failure",
+        "description": "The frozen page labels alternator failure as unusually common across every 2000-2009 Spectra and assigns a 60,000-100,000-mile range, but no exact Kia package in the 73 manufacturer communications or three campaigns establishes that population, rate or internal failure hierarchy. Its sole named repair video is unavailable through YouTube oEmbed.",
+        "solution": "Test battery state of charge and condition, terminal integrity, belt drive, charging voltage, loaded alternator output, AC ripple and circuit voltage drop before replacing anything. Confirm the exact engine, connector and amperage fitment for any verified alternator fault. Do not replace the battery, starter, window regulator or multiple charging parts from the generic product searches on this page.",
+        "severity": "medium",
+        "confidence": "low",
+        "symptoms": [
+          "Battery or charging warning light",
+          "Dimming electrical loads or a no-start condition"
+        ],
+        "affectedSystems": [
+          "battery, charging cables, drive belt and alternator"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-08",
+        "contentUpdatedOn": "2026-08-08",
+        "contentUpdateSummary": "Targeted accuracy and safety cleanup: No exact Kia package supports a 2000-2009 premature-alternator population, 60,000-100,000-mile range, regulator/rectifier prevalence or repeated remanufactured-unit claim. The named video returns 404 and eight unrelated search products are removed.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "kia-spectra-catalytic-converter-2000",
+      "model": "Spectra",
+      "action": "targeted_safety_cleanup_pending_source",
+      "reason": "No exact Kia package supports a decade-wide premature-converter rate, valve-seal cause, mileage threshold or cost range. P0430 is a Bank-2 code and generic converter/O2-sensor search commerce is not verified fitment.",
+      "identityRule": "Preserve every indexed Spectra ID, title, category, year set, trim set, engine set and publication state while removing unavailable citations, search commerce, unsupported codes, costs and batch-replacement advice.",
+      "commerceDecision": "no-commerce-pending-emissions-diagnosis-regulatory-fitment-and-vin",
+      "changedFields": [
+        "description",
+        "solution",
+        "confidence",
+        "symptoms",
+        "affectedSystems",
+        "dtcCodes",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "typicalMileageLow",
+        "typicalMileageHigh",
+        "communityRecommendations",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
+      "evidence": [
+        {
+          "kind": "complete-official-inventory-no-exact-primary-package",
+          "manufacturerCommunicationCount": 73,
+          "recallRowCount": 7,
+          "campaignCount": 3,
+          "modelNames": {
+            "SPECTRA": 67,
+            "LD SPECTRA": 4,
+            "SPECTRA5": 2
+          },
+          "verifiedOn": "2026-08-08",
+          "observation": "No exact Kia communication or recall in the complete frozen Spectra inventories supports this broad all-year page identity and its prescriptive claims."
+        },
+        {
+          "kind": "citation-commerce-relation-review",
+          "removedCitationCount": 0,
+          "removedCommerceCount": 2,
+          "removedRelatedIssueCount": 0,
+          "verifiedOn": "2026-08-08",
+          "observation": "Unavailable, secondary, search-style and cross-model material is removed; no replacement part is prescribed without exact diagnosis and fitment."
+        }
+      ],
+      "beforeSha256": "12e0aaba7820cbfc23d9fb56dcbbc8313c085014ebe2620576fd61b59fa39431",
+      "proposalSha256": "604c61b9cc655cd50277d11d74d4475cd6f5e39a7c12cc66ac57e4c459efc032",
+      "before": {
+        "make": "Kia",
+        "model": "Spectra",
+        "years": [
+          2000,
+          2001,
+          2002,
+          2003,
+          2004,
+          2005,
+          2006,
+          2007,
+          2008,
+          2009
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "engine",
+        "title": "Catalytic Converter Premature Failure",
+        "description": "The catalytic converter on the Spectra can fail prematurely, often before 100,000 miles. The catalyst substrate deteriorates or becomes clogged, causing reduced engine performance and increased emissions. Oil burning from worn valve seals can contaminate the catalyst, accelerating failure. The Spectra was covered under the federal emissions warranty (8 years/80,000 miles) for catalytic converter failure, but many vehicles are now beyond this coverage.",
+        "solution": "Confirm converter failure by scanning for catalyst-efficiency codes such as P0420, then inspect for root causes that can ruin a new converter, including oil consumption from worn valve stem seals, misfires, rich fuel trim, or exhaust leaks ahead of the catalyst. If the converter is restricted or the substrate is damaged, replace the catalytic converter assembly with a quality OE-equivalent unit, clear codes, and verify downstream O2 sensor readings and fuel trims after repair; if oil burning or misfire issues are present, repair those first or the replacement converter may fail again. Typical repair cost is about $700-$1,800 depending on whether an aftermarket or OEM converter is used, with additional cost if valve seal, ignition, or fuel-control repairs are needed.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Check engine light with catalyst efficiency code",
+          "Sulfur (rotten egg) smell from exhaust",
+          "Reduced engine power",
+          "Poor fuel economy",
+          "Failed emissions test"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0420",
+          "P0430"
+        ],
+        "estimatedCostLow": 400,
+        "estimatedCostHigh": 1200,
+        "typicalMileageLow": 30000,
+        "typicalMileageHigh": 100000,
+        "citations": [],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Direct-fit catalytic converter meets federal emissions standards",
+            "partName": "Catalytic Converter",
+            "partBrand": "MagnaFlow",
+            "affiliateUrl": "https://www.amazon.com/s?k=Kia%20Spectra%20MagnaFlow%20Catalytic%20Converter&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Upstream O2 sensor should be replaced with the catalytic converter",
+            "partName": "Oxygen Sensor",
+            "partBrand": "Denso",
+            "affiliateUrl": "https://www.amazon.com/s?k=Kia%20Spectra%20Denso%20Oxygen%20Sensor&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Kia",
+        "model": "Spectra",
+        "years": [
+          2000,
+          2001,
+          2002,
+          2003,
+          2004,
+          2005,
+          2006,
+          2007,
+          2008,
+          2009
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "engine",
+        "title": "Catalytic Converter Premature Failure",
+        "description": "The frozen page asserts premature catalytic-converter failure across every 2000-2009 Spectra, but the complete official inventory contains no exact Kia package establishing that all-year prevalence, a before-100,000-mile threshold or valve-seal mechanism. P0430 denotes a Bank-2 catalyst code and is not carried into this four-cylinder page.",
+        "solution": "Diagnose P0420 before ordering emissions hardware. Check for exhaust leaks, misfire, fuel-control faults, oil or coolant consumption and oxygen-sensor behavior, then confirm that the converter itself is inefficient or restricted. Repair the upstream cause first and verify VIN-, engine-, emissions-label- and jurisdiction-specific converter fitment. Do not automatically replace an oxygen sensor or buy a generic MagnaFlow listing from this page.",
+        "severity": "medium",
+        "confidence": "low",
+        "symptoms": [
+          "Check-engine light with P0420",
+          "Loss of power or failed emissions test requiring diagnosis"
+        ],
+        "affectedSystems": [
+          "engine combustion, exhaust leaks, oxygen sensing and catalytic converter"
+        ],
+        "dtcCodes": [
+          "P0420"
+        ],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-08",
+        "contentUpdatedOn": "2026-08-08",
+        "contentUpdateSummary": "Targeted accuracy and safety cleanup: No exact Kia package supports a decade-wide premature-converter rate, valve-seal cause, mileage threshold or cost range. P0430 is a Bank-2 code and generic converter/O2-sensor search commerce is not verified fitment.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "kia-spectra-engine-mount-2000",
+      "model": "Spectra",
+      "action": "targeted_safety_cleanup_pending_source",
+      "reason": "No exact Kia package supports one hydraulic front-mount defect across both Spectra generations, a rupture mechanism or replace-all-mounts advice. The named video returns 404 and the Anchor search link is unverified.",
+      "identityRule": "Preserve every indexed Spectra ID, title, category, year set, trim set, engine set and publication state while removing unavailable citations, search commerce, unsupported codes, costs and batch-replacement advice.",
+      "commerceDecision": "no-commerce-pending-mount-location-engine-and-transmission-fitment",
+      "changedFields": [
+        "description",
+        "solution",
+        "confidence",
+        "symptoms",
+        "affectedSystems",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "communityRecommendations",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
+      "evidence": [
+        {
+          "kind": "complete-official-inventory-no-exact-primary-package",
+          "manufacturerCommunicationCount": 73,
+          "recallRowCount": 7,
+          "campaignCount": 3,
+          "modelNames": {
+            "SPECTRA": 67,
+            "LD SPECTRA": 4,
+            "SPECTRA5": 2
+          },
+          "verifiedOn": "2026-08-08",
+          "observation": "No exact Kia communication or recall in the complete frozen Spectra inventories supports this broad all-year page identity and its prescriptive claims."
+        },
+        {
+          "kind": "publisher-citation-unavailable",
+          "url": "https://www.youtube.com/watch?v=6X6r6hV7k6g",
+          "oembedStatus": 404,
+          "verifiedOn": "2026-08-08",
+          "observation": "The frozen named YouTube citation is unavailable through YouTube oEmbed and cannot support the article."
+        },
+        {
+          "kind": "citation-commerce-relation-review",
+          "removedCitationCount": 1,
+          "removedCommerceCount": 1,
+          "removedRelatedIssueCount": 0,
+          "verifiedOn": "2026-08-08",
+          "observation": "Unavailable, secondary, search-style and cross-model material is removed; no replacement part is prescribed without exact diagnosis and fitment."
+        }
+      ],
+      "beforeSha256": "c5f9e73bdd88f183438c3b436487bde1bac405c530c2ba0f6831fe210777a5eb",
+      "proposalSha256": "ba6278ea60912a6c92103af6203e386826bfdd2e74f0457491c01eaf7c7dfcc3",
+      "before": {
+        "make": "Kia",
+        "model": "Spectra",
+        "years": [
+          2000,
+          2001,
+          2002,
+          2003,
+          2004,
+          2005,
+          2006,
+          2007,
+          2008,
+          2009
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "engine",
+        "title": "Front Engine Mount Hydraulic Failure",
+        "description": "The hydraulic-filled front engine mount ruptures, leaking fluid and allowing excessive engine movement. Causes vibration at idle, clunking when shifting between drive and reverse, and increased NVH.",
+        "solution": "Replace front engine mount. Inspect transmission mount and rear torque strut mount at the same time — they often wear together. Use OEM or quality aftermarket hydraulic mount (not solid rubber). Support engine with jack during replacement.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Excessive vibration at idle",
+          "Clunk shifting into gear",
+          "Engine rocks visibly",
+          "Vibration felt through steering wheel",
+          "Thud during acceleration"
+        ],
+        "affectedSystems": [
+          "Engine mounts",
+          "Drivetrain"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 120,
+        "estimatedCostHigh": 300,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.youtube.com/watch?v=6X6r6hV7k6g",
+            "type": "video",
+            "title": "How to Replace Front Engine Mount on Kia Spectra - EricTheCarGuy"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Hydraulic engine mount reduces vibration and restores smooth operation",
+            "partName": "Engine Mount",
+            "partBrand": "Anchor",
+            "affiliateUrl": "https://www.amazon.com/s?k=Kia%20Spectra%20Anchor%20Engine%20Mount&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Kia",
+        "model": "Spectra",
+        "years": [
+          2000,
+          2001,
+          2002,
+          2003,
+          2004,
+          2005,
+          2006,
+          2007,
+          2008,
+          2009
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "engine",
+        "title": "Front Engine Mount Hydraulic Failure",
+        "description": "The frozen page labels the front mount as a hydraulic unit that ruptures across every 2000-2009 Spectra, but no exact Kia package in the complete inventory establishes one mount design, failure mechanism or prevalence across both generations. Its sole named repair video is unavailable through YouTube oEmbed.",
+        "solution": "Confirm the exact engine, transmission and mount location, then inspect for collapsed rubber, separated brackets, fluid leakage where applicable, loose hardware and excessive powertrain movement while also ruling out engine roughness and exhaust contact. Replace only the verified failed mount with exact fitment and service information. Do not automatically replace every mount, rely on a generic Anchor search result or use unsupported lifting instructions from this page.",
+        "severity": "medium",
+        "confidence": "low",
+        "symptoms": [
+          "Excessive vibration at idle",
+          "Clunk during load change requiring mount and driveline inspection"
+        ],
+        "affectedSystems": [
+          "engine and transmission mounts, torque struts and adjacent driveline"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-08",
+        "contentUpdatedOn": "2026-08-08",
+        "contentUpdateSummary": "Targeted accuracy and safety cleanup: No exact Kia package supports one hydraulic front-mount defect across both Spectra generations, a rupture mechanism or replace-all-mounts advice. The named video returns 404 and the Anchor search link is unverified.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "kia-spectra-ignition-coil-2000",
+      "model": "Spectra",
+      "action": "targeted_safety_cleanup_pending_source",
+      "reason": "No exact Kia package supports one 2000-2009 coil-failure population, heat-cycling cause or replace-all-four recommendation; the complete inventory instead warns technicians to test a suspected OCV before replacement when misfire codes appear.",
+      "identityRule": "Preserve every indexed Spectra ID, title, category, year set, trim set, engine set and publication state while removing unavailable citations, search commerce, unsupported codes, costs and batch-replacement advice.",
+      "commerceDecision": "no-commerce-pending-cylinder-specific-misfire-diagnosis-and-ignition-fitment",
+      "changedFields": [
+        "description",
+        "solution",
+        "confidence",
+        "symptoms",
+        "affectedSystems",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "communityRecommendations",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
+      "evidence": [
+        {
+          "kind": "complete-official-inventory-no-exact-primary-package",
+          "manufacturerCommunicationCount": 73,
+          "recallRowCount": 7,
+          "campaignCount": 3,
+          "modelNames": {
+            "SPECTRA": 67,
+            "LD SPECTRA": 4,
+            "SPECTRA5": 2
+          },
+          "verifiedOn": "2026-08-08",
+          "observation": "No exact Kia communication or recall in the complete frozen Spectra inventories supports this broad all-year page identity and its prescriptive claims."
+        },
+        {
+          "kind": "citation-commerce-relation-review",
+          "removedCitationCount": 0,
+          "removedCommerceCount": 2,
+          "removedRelatedIssueCount": 0,
+          "verifiedOn": "2026-08-08",
+          "observation": "Unavailable, secondary, search-style and cross-model material is removed; no replacement part is prescribed without exact diagnosis and fitment."
+        }
+      ],
+      "beforeSha256": "04c4b7fa4ce9ad86263572703f571745463103ec0c0f12f102faba917b05fdd7",
+      "proposalSha256": "f6e261760890a18b285ffc1261116a46f01fce9b51a750263e3729c6aed357bf",
+      "before": {
+        "make": "Kia",
+        "model": "Spectra",
+        "years": [
+          2000,
+          2001,
+          2002,
+          2003,
+          2004,
+          2005,
+          2006,
+          2007,
+          2008,
+          2009
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "engine",
+        "title": "Ignition Coil Pack Failure Causing Misfire",
+        "description": "Ignition coil packs (coil-on-plug design on later models, distributor coil on earlier) fail causing engine misfires, rough running, and poor fuel economy. Heat cycling weakens the coil insulation leading to internal shorts.",
+        "solution": "Replace failed ignition coil(s). Replace spark plugs at the same time. For 2004+ models, consider replacing all four coil-on-plug units as they tend to fail in sequence. Use NGK or Denso quality replacements.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Engine misfire",
+          "Rough idle",
+          "Check engine light flashing",
+          "Loss of power",
+          "Poor fuel economy"
+        ],
+        "affectedSystems": [
+          "Ignition system",
+          "Engine management"
+        ],
+        "dtcCodes": [
+          "P0300",
+          "P0301",
+          "P0302",
+          "P0303",
+          "P0304"
+        ],
+        "estimatedCostLow": 80,
+        "estimatedCostHigh": 300,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "OE-quality ignition coils restore reliable spark and eliminate misfires",
+            "partName": "Ignition Coil",
+            "partBrand": "Denso",
+            "affiliateUrl": "https://www.amazon.com/s?k=Kia%20Spectra%20Denso%20Ignition%20Coil&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "Replace spark plugs alongside coils for best results",
+            "partName": "Iridium Spark Plugs",
+            "partBrand": "NGK",
+            "affiliateUrl": "https://www.amazon.com/s?k=Kia%20Spectra%20NGK%20Iridium%20Spark%20Plugs&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Kia",
+        "model": "Spectra",
+        "years": [
+          2000,
+          2001,
+          2002,
+          2003,
+          2004,
+          2005,
+          2006,
+          2007,
+          2008,
+          2009
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "engine",
+        "title": "Ignition Coil Pack Failure Causing Misfire",
+        "description": "The frozen page treats every 2000-2009 Spectra misfire as a recurring ignition-coil problem even though ignition hardware varies across the indexed years. No exact Kia package establishes that prevalence or the stated heat-cycling cause. Kia communication 10030365 instead warns that a suspected oil-control valve should be inspected before replacement when rough idle, poor acceleration or misfire-related codes occur on applicable CVVT vehicles.",
+        "solution": "Read freeze-frame and misfire counters, identify the exact engine and ignition architecture, inspect plugs and wiring, and test spark, fuel delivery and compression. On applicable CVVT vehicles, follow Kia’s OCV inspection when its symptoms and codes fit. Replace only a verified failed coil or plug with exact fitment. Do not replace all four coils or all spark plugs merely because one cylinder reports a misfire.",
+        "severity": "medium",
+        "confidence": "low",
+        "symptoms": [
+          "Rough running or flashing MIL with a verified misfire code",
+          "Poor acceleration requiring cylinder-specific diagnosis"
+        ],
+        "affectedSystems": [
+          "ignition, fuel delivery, compression, wiring and CVVT controls where equipped"
+        ],
+        "dtcCodes": [
+          "P0300",
+          "P0301",
+          "P0302",
+          "P0303",
+          "P0304"
+        ],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-08",
+        "contentUpdatedOn": "2026-08-08",
+        "contentUpdateSummary": "Targeted accuracy and safety cleanup: No exact Kia package supports one 2000-2009 coil-failure population, heat-cycling cause or replace-all-four recommendation; the complete inventory instead warns technicians to test a suspected OCV before replacement when misfire codes appear.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "kia-spectra-timing-belt-2000",
+      "model": "Spectra",
+      "action": "targeted_safety_cleanup_pending_source",
+      "reason": "No exact Kia package verifies one 60,000-mile interval, universal interference-engine damage, premature tensioner wear, mandatory water-pump bundling or the frozen cost ranges across 2000-2009. P0016/P0017 and the cross-model Sephia relation are removed.",
+      "identityRule": "Preserve every indexed Spectra ID, title, category, year set, trim set, engine set and publication state while removing unavailable citations, search commerce, unsupported codes, costs and batch-replacement advice.",
+      "commerceDecision": "no-commerce-pending-exact-engine-maintenance-source-and-timing-fitment",
+      "changedFields": [
+        "description",
+        "solution",
+        "severity",
+        "confidence",
+        "symptoms",
+        "affectedSystems",
+        "dtcCodes",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "typicalMileageLow",
+        "typicalMileageHigh",
+        "citations",
+        "communityRecommendations",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary",
+        "relatedIssueIds"
+      ],
+      "evidence": [
+        {
+          "kind": "complete-official-inventory-no-exact-primary-package",
+          "manufacturerCommunicationCount": 73,
+          "recallRowCount": 7,
+          "campaignCount": 3,
+          "modelNames": {
+            "SPECTRA": 67,
+            "LD SPECTRA": 4,
+            "SPECTRA5": 2
+          },
+          "verifiedOn": "2026-08-08",
+          "observation": "No exact Kia communication or recall in the complete frozen Spectra inventories supports this broad all-year page identity and its prescriptive claims."
+        },
+        {
+          "kind": "citation-commerce-relation-review",
+          "removedCitationCount": 1,
+          "removedCommerceCount": 2,
+          "removedRelatedIssueCount": 1,
+          "verifiedOn": "2026-08-08",
+          "observation": "Unavailable, secondary, search-style and cross-model material is removed; no replacement part is prescribed without exact diagnosis and fitment."
+        }
+      ],
+      "beforeSha256": "fa669d7d8816c3ba07453412213cddbfaec287a079234155ad3c3c994976b5b8",
+      "proposalSha256": "fcfee39769fd440b3e3b14f0c7d0ed9d698340bfedd86708f01958c6ec297355",
+      "before": {
+        "make": "Kia",
+        "model": "Spectra",
+        "years": [
+          2000,
+          2001,
+          2002,
+          2003,
+          2004,
+          2005,
+          2006,
+          2007,
+          2008,
+          2009
+        ],
+        "trims": [],
+        "engines": [
+          "1.8L DOHC",
+          "2.0L DOHC"
+        ],
+        "category": "engine",
+        "title": "Timing Belt Premature Wear and Failure",
+        "description": "The Kia Spectra uses a 1.8L or 2.0L DOHC engine that requires timing belt replacement at 60,000-mile intervals. The timing belt tensioner and idler pulleys wear prematurely, causing belt flutter and eventual failure. These are interference engines, so a broken or jumped timing belt causes catastrophic engine damage. The timing belt is the single most critical maintenance item on the Spectra. Many engines have been destroyed by owners unaware of the replacement interval.",
+        "solution": "Inspect the timing belt system immediately if there is any chirping, ticking, front-engine noise, or unknown service history, and verify belt condition by removing the upper timing cover to check for cracking, fraying, oil contamination, slack, and pulley wobble. Repair requires a complete timing belt service: replace the timing belt, hydraulic/mechanical tensioner, idler pulleys, and strongly consider the water pump, front cam/crank seals, and accessory belts at the same time; on these interference engines, do not continue driving if belt timing is suspect. If the belt has already jumped or broken, perform a compression or leak-down test and inspect for bent valves before installing new parts, as cylinder head repair may be required. Typical preventive timing belt service runs about $500-$900 depending on parts replaced, while a failure with valve damage can raise repairs to roughly $1,500-$3,000+.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "Squealing or chirping from timing belt area",
+          "Engine vibration at idle",
+          "Engine suddenly stops running",
+          "Engine cranks but will not start",
+          "Ticking noise from front of engine"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0016",
+          "P0017"
+        ],
+        "estimatedCostLow": 300,
+        "estimatedCostHigh": 800,
+        "typicalMileageLow": 48000,
+        "typicalMileageHigh": 72000,
+        "citations": [
+          {
+            "url": "https://www.kia-forums.com/threads/timing-belt-went-is-this-an-interference-engine.29498/",
+            "type": "forum",
+            "title": "Timing Belt Went Is This An Interference Engine - Kia Forum"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Complete timing belt kit with water pump for a comprehensive replacement",
+            "partName": "Timing Belt Kit with Water Pump",
+            "partBrand": "Gates",
+            "affiliateUrl": "https://www.amazon.com/s?k=Kia%20Spectra%20Gates%20Timing%20Belt%20Kit%20with%20Water%20Pump&tag=au7o-20"
+          },
+          {
+            "type": "part",
+            "content": "High-quality engine oil is critical after timing service",
+            "partName": "Edge Full Synthetic Motor Oil",
+            "partBrand": "Castrol",
+            "affiliateUrl": "https://www.amazon.com/s?k=Kia%20Spectra%20Castrol%20Edge%20Full%20Synthetic%20Motor%20Oil&tag=au7o-20"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "kia-sephia-timing-belt-failure-1994"
+        ]
+      },
+      "proposal": {
+        "make": "Kia",
+        "model": "Spectra",
+        "years": [
+          2000,
+          2001,
+          2002,
+          2003,
+          2004,
+          2005,
+          2006,
+          2007,
+          2008,
+          2009
+        ],
+        "trims": [],
+        "engines": [
+          "1.8L DOHC",
+          "2.0L DOHC"
+        ],
+        "category": "engine",
+        "title": "Timing Belt Premature Wear and Failure",
+        "description": "The frozen page combines the 1.8L and 2.0L engines across every 2000-2009 Spectra into one timing-belt defect. The complete official inventory contains no exact Kia package establishing a universal 60,000-mile interval, premature tensioner prevalence, identical interference consequences or one repair bundle across that decade. It also does not source P0016 or P0017 for this page.",
+        "solution": "Identify the exact engine and model year, then use its owner-manual maintenance schedule and current Kia service procedure for interval, timing marks, tensioning and related components. If timing is suspect or the engine stops abruptly, avoid repeated cranking or driving until mechanical timing and compression are checked. Do not infer bent valves, replace the water pump or seals automatically, or buy a generic Gates kit without exact fitment and service evidence.",
+        "severity": "medium",
+        "confidence": "low",
+        "symptoms": [
+          "Unknown timing-belt service history",
+          "Timing-area noise or a no-start requiring mechanical-timing inspection"
+        ],
+        "affectedSystems": [
+          "engine-specific timing belt, tensioner, idlers and related seals"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-08",
+        "contentUpdatedOn": "2026-08-08",
+        "contentUpdateSummary": "Targeted accuracy and safety cleanup: No exact Kia package verifies one 60,000-mile interval, universal interference-engine damage, premature tensioner wear, mandatory water-pump bundling or the frozen cost ranges across 2000-2009. P0016/P0017 and the cross-model Sephia relation are removed.",
+        "relatedIssueIds": []
+      }
+    }
+  ]
+}
