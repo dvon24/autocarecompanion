@@ -1,0 +1,21 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
+const fs = require('node:fs');
+const test = require('node:test');
+const assert = require('node:assert/strict');
+const { BLOCKER_IDS, OUTPUT, SNAPSHOT } = require('./build-lincoln-aviator-adjudication');
+const { hashValue } = require('./lincoln-adjudication-utils');
+const { validatePacket } = require('./validate-lincoln-aviator-adjudication');
+const packet = JSON.parse(fs.readFileSync(OUTPUT, 'utf8'));
+const snapshot = JSON.parse(fs.readFileSync(SNAPSHOT, 'utf8'));
+function clone(value) { return JSON.parse(JSON.stringify(value)); }
+function rehash(row) { row.proposalSha256 = hashValue(row.proposal); }
+
+test('Aviator packet passes the complete 28-page safety contract', () => assert.deepEqual(validatePacket(packet, snapshot), []));
+test('validator rejects missing, duplicate, and unknown pages', () => { const a = clone(packet); a.rows.pop(); assert.ok(validatePacket(a, snapshot).length); const b = clone(packet); b.rows[0] = clone(b.rows[1]); assert.ok(validatePacket(b, snapshot).length); });
+test('validator rejects identity, fitment, severity, relation and archive drift', () => { for (const [field, value] of [['title', 'Changed title'], ['years', [2020]], ['engines', ['2.7L']], ['severity', 'critical'], ['relatedIssueIds', ['other']], ['status', 'archived']]) { const p = clone(packet); const row = p.rows.find((item) => BLOCKER_IDS.includes(item.id)); row.proposal[field] = value; rehash(row); assert.ok(validatePacket(p, snapshot).some((error) => error.includes(field) || error.includes('severity') || error.includes('archived'))); } });
+test('validator rejects any mutation to one of the 23 keep rows', () => { const p = clone(packet); const row = p.rows.find((item) => !BLOCKER_IDS.includes(item.id)); row.proposal.description += ' drift'; rehash(row); assert.ok(validatePacket(p, snapshot).some((error) => error.includes('keep row'))); });
+test('validator rejects the false high-voltage and PHEV recall framing', () => { const p = clone(packet); const row = p.rows.find((item) => item.id.includes('high-voltage-battery')); row.proposal.description = row.proposal.description.replace('is not a high-voltage', 'is a high-voltage').replace('outside the cited campaign', 'inside the cited campaign'); rehash(row); assert.ok(validatePacket(p, snapshot).some((error) => error.includes('battery-cable'))); });
+test('validator rejects blind compressed-air drain service and warranty promises', () => { const p = clone(packet); const row = p.rows.find((item) => item.id.includes('drain-clog')); row.proposal.solution = 'Flush all four drains with compressed air; covered under warranty.'; rehash(row); assert.ok(validatePacket(p, snapshot).some((error) => error.includes('sunroof') || error.includes('commerce'))); });
+test('validator rejects unsupported compressor parts, brands and prices', () => { const p = clone(packet); const row = p.rows.find((item) => item.id.endsWith('rear-air-suspension')); row.proposal.solution = 'Use FORScan to confirm, then replace compressor dryer for $80.'; rehash(row); assert.ok(validatePacket(p, snapshot).some((error) => error.includes('air-suspension') || error.includes('commerce'))); });
+test('validator rejects loss of exact ADAS complaint boundaries', () => { const p = clone(packet); const row = p.rows.find((item) => item.id.includes('unexpected-acceleration')); row.proposal.description = 'Aviators commonly phantom brake at overpass shadows.'; row.proposal.solution = 'Install the latest software.'; rehash(row); assert.ok(validatePacket(p, snapshot).some((error) => error.includes('ADAS') || error.includes('ODI'))); });
+test('validator rejects fake owner social proof and search-style commerce', () => { const p = clone(packet); const row = p.rows.find((item) => BLOCKER_IDS.includes(item.id)); row.proposal.reportCount = 99; row.proposal.solution += ' 99+ owners have reported this. https://example.com/search?q=part'; row.proposal.citations.push({ type: 'manual', title: 'Search', url: 'https://example.com/search?q=part' }); rehash(row); const errors = validatePacket(p, snapshot); assert.ok(errors.some((error) => error.includes('social proof'))); assert.ok(errors.some((error) => error.includes('search-style'))); });
