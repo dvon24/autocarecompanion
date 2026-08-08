@@ -1,0 +1,955 @@
+{
+  "schemaVersion": 1,
+  "status": "proposal-only",
+  "auditStage": "model-primary-source-adjudication",
+  "requiresIndependentApproval": true,
+  "generatedOn": "2026-08-08",
+  "make": "Land Rover",
+  "model": "Range Rover Evoque",
+  "completionStatement": "All four frozen Evoque records receive complete primary-inventory adjudication: two exact identities receive bounded rewrites and two cross-generation identities receive corrective holds while every indexed page identity remains published and unchanged.",
+  "applicationGate": {
+    "status": "blocked",
+    "blockerRecordIds": [
+      "land-rover-range-rover-evoque-fuel-pump-2020",
+      "land-rover-range-rover-evoque-thermostat-housing-2012"
+    ],
+    "reason": "The fuel-pump and thermostat-housing titles rely on cross-generation component associations. Independent review is required for both exact rewrites and both held cleanups before application."
+  },
+  "safetyContract": [
+    "No production write, deployment, archive, redirect, slug change, title change, category change, indexed-year change, trim change, engine change or new issue is authorized.",
+    "All four IDs, titles, categories, indexed year sets, trim sets, engine sets and publication states remain unchanged.",
+    "No part or retrofit is linked without exact component and generation fitment; every proposal explicitly states why no universal retail part is offered.",
+    "All 1,861 manufacturer-communication rows and all 68 recall rows / 26 campaigns are accounted for; separate recall identities remain deferred."
+  ],
+  "source": {
+    "snapshotFile": "data/_land-rover-deeplink-snapshot-2026-08-08.json",
+    "snapshotSha256": "e95e033f348cc218e87d1faf0f19d0cbe67274d51739f3dd77e5e7b47ece3bbf",
+    "snapshotGeneratedAt": "2026-08-08T14:25:43.008Z",
+    "snapshotHash": "3f13700b582e6864d62580851752656db123b4bdb6b24a30e3ffbb9deaa4b9c8",
+    "modelRecordCount": 4
+  },
+  "observations": [
+    {
+      "code": "evoque-fuel-pump-cross-generation-association-removed",
+      "severity": "critical-correction",
+      "recordIds": [
+        "land-rover-range-rover-evoque-fuel-pump-2020"
+      ],
+      "detail": "Older high-pressure-pump evidence and a later driver-module record do not validate the frozen 2020-2025 identity."
+    },
+    {
+      "code": "evoque-haldex-identity-bounded",
+      "severity": "exact-rewrite",
+      "recordIds": [
+        "land-rover-range-rover-evoque-haldex-clutch-2012"
+      ],
+      "detail": "JLR supports exact coupling-pump and driveline faults without the invented maintenance/controller claims."
+    },
+    {
+      "code": "evoque-incontrol-identity-bounded",
+      "severity": "exact-rewrite",
+      "recordIds": [
+        "land-rover-range-rover-evoque-incontrol-freeze-2016"
+      ],
+      "detail": "JLR directly supports frozen-scope InControl reboot, freeze and update conditions."
+    },
+    {
+      "code": "evoque-thermostat-cross-generation-association-removed",
+      "severity": "critical-correction",
+      "recordIds": [
+        "land-rover-range-rover-evoque-thermostat-housing-2012"
+      ],
+      "detail": "The exact housing-leak evidence applies to 2020-2024 vehicles, not the frozen 2012-2019 Si4 identity."
+    },
+    {
+      "code": "evoque-no-unverified-commerce",
+      "severity": "commerce-safety",
+      "recordIds": [
+        "land-rover-range-rover-evoque-fuel-pump-2020",
+        "land-rover-range-rover-evoque-haldex-clutch-2012",
+        "land-rover-range-rover-evoque-incontrol-freeze-2016",
+        "land-rover-range-rover-evoque-thermostat-housing-2012"
+      ],
+      "detail": "All guessed components and aftermarket upgrade recommendations are removed; no search or guessed deep link is introduced."
+    },
+    {
+      "code": "evoque-twenty-six-campaign-identities-deferred",
+      "severity": "new-issues-deferred",
+      "recordIds": [],
+      "campaignNumbers": [
+        "12V563000",
+        "14V155000",
+        "14V395000",
+        "16V614000",
+        "16V889000",
+        "16V941000",
+        "18V087000",
+        "18V088000",
+        "19V421000",
+        "19V840000",
+        "20E017000",
+        "20V517000",
+        "20V683000",
+        "20V751000",
+        "20V793000",
+        "20V794000",
+        "21V168000",
+        "22V080000",
+        "24V678000",
+        "25V016000",
+        "25V088000",
+        "25V089000",
+        "25V454000",
+        "25V645000",
+        "25V705000",
+        "26V248000"
+      ],
+      "detail": "Twenty-six separate recall identities remain deferred until the remaining-make audit is complete."
+    },
+    {
+      "code": "all-evoque-pages-preserved",
+      "severity": "seo-safety",
+      "recordIds": [
+        "land-rover-range-rover-evoque-fuel-pump-2020",
+        "land-rover-range-rover-evoque-haldex-clutch-2012",
+        "land-rover-range-rover-evoque-incontrol-freeze-2016",
+        "land-rover-range-rover-evoque-thermostat-housing-2012"
+      ],
+      "detail": "Every Evoque ID, title, category, indexed year set, trim set, engine set and publication state remains preserved."
+    }
+  ],
+  "pdfSources": {
+    "activeDriveline": {
+      "url": "https://static.nhtsa.gov/odi/tsbs/2016/SB-10105743-9340.pdf",
+      "nhtsaDocumentId": "10105743",
+      "jlrReference": "LTB00911NAS1",
+      "pages": 2,
+      "sha256": "2d6d72d1fd93e9b69fa722d71bf74bdc737d254a14e26d0f3ce542f02ab9492c",
+      "visualInspection": "both pages rendered and inspected during the Discovery Sport cross-model source pass"
+    }
+  },
+  "manufacturerCommunications": {
+    "source": "https://www.nhtsa.gov/nhtsa-datasets-and-apis#manufacturer-communications",
+    "modelAliases": [
+      "RANGE ROVER EVOQUE"
+    ],
+    "periodCounts": {
+      "1995-1999": 0,
+      "2000-2004": 0,
+      "2005-2009": 0,
+      "2010-2014": 31,
+      "2015-2019": 980,
+      "2020-2024": 712,
+      "2025-2026": 138
+    },
+    "totalRows": 1861,
+    "relevantDocumentCounts": {
+      "fuel": 20,
+      "haldex": 10,
+      "incontrol": 128,
+      "thermostat": 11
+    },
+    "sourceFiles": [
+      {
+        "period": "1995-1999",
+        "length": 3443097,
+        "sha256": "409a86bb7bb37a6313eae9212fb90a5ab45029fdcf2a69d0c0378eab080503db"
+      },
+      {
+        "period": "2000-2004",
+        "length": 8952754,
+        "sha256": "5c755be52d35e060626402ebe6dfcccdf350ae379df5c06b49c71d08497e2264"
+      },
+      {
+        "period": "2005-2009",
+        "length": 5457880,
+        "sha256": "04f72a7bf95530d116b1500c976a9e4d365e1c9a8b0433f58d60dbb36a58679b"
+      },
+      {
+        "period": "2010-2014",
+        "length": 17332775,
+        "sha256": "41e66a9d81a859d469d51c6cdcbc107fc6284c64ed24065ccaf1fe02a52e4387"
+      },
+      {
+        "period": "2015-2019",
+        "length": 144450847,
+        "sha256": "d6c2ff16880cc7b31cfebad94bda08c3e8b3b2c3f28d56d5b1bb810c8b878a2e"
+      },
+      {
+        "period": "2020-2024",
+        "length": 125521629,
+        "sha256": "3b3ca3d690e33386d1d315a0f966285ae8cccb99c45c2386ada164c5e925c3cf"
+      },
+      {
+        "period": "2025-2026",
+        "length": 77786229,
+        "sha256": "419ebda2f1c1bf22e2b0862858d61699c25e61d73842f9031e796f1fafefba4c"
+      }
+    ]
+  },
+  "recallInventory": {
+    "source": "https://www.nhtsa.gov/nhtsa-datasets-and-apis#recalls",
+    "modelAliases": [
+      "RANGE ROVER EVOQUE"
+    ],
+    "totalRows": 68,
+    "uniqueCampaignYearModelRows": 37,
+    "campaignCount": 26,
+    "campaigns": [
+      "12V563000",
+      "14V155000",
+      "14V395000",
+      "16V614000",
+      "16V889000",
+      "16V941000",
+      "18V087000",
+      "18V088000",
+      "19V421000",
+      "19V840000",
+      "20E017000",
+      "20V517000",
+      "20V683000",
+      "20V751000",
+      "20V793000",
+      "20V794000",
+      "21V168000",
+      "22V080000",
+      "24V678000",
+      "25V016000",
+      "25V088000",
+      "25V089000",
+      "25V454000",
+      "25V645000",
+      "25V705000",
+      "26V248000"
+    ],
+    "mappedCampaigns": [],
+    "deferredCampaigns": [
+      "12V563000",
+      "14V155000",
+      "14V395000",
+      "16V614000",
+      "16V889000",
+      "16V941000",
+      "18V087000",
+      "18V088000",
+      "19V421000",
+      "19V840000",
+      "20E017000",
+      "20V517000",
+      "20V683000",
+      "20V751000",
+      "20V793000",
+      "20V794000",
+      "21V168000",
+      "22V080000",
+      "24V678000",
+      "25V016000",
+      "25V088000",
+      "25V089000",
+      "25V454000",
+      "25V645000",
+      "25V705000",
+      "26V248000"
+    ],
+    "sourceFiles": [
+      {
+        "period": "pre",
+        "rows": 0,
+        "length": 83786245,
+        "sha256": "71e6e325e2d69d204776fb32d83dad4fd95436a2f7890da54d49622d77a36232"
+      },
+      {
+        "period": "post",
+        "rows": 68,
+        "length": 309278972,
+        "sha256": "4803a7f298f1d850736fe55830f4d31b004577424cb6429988c5864786f76a70"
+      }
+    ]
+  },
+  "documentIds": {
+    "fuel": [
+      "10056423",
+      "10056427",
+      "10101521",
+      "10101563",
+      "10101565",
+      "10103601",
+      "10105424",
+      "10144541",
+      "10155592",
+      "10156841",
+      "11010268"
+    ],
+    "haldex": [
+      "10105587",
+      "10105743",
+      "10105847",
+      "10105911",
+      "10105966",
+      "10106133",
+      "10106161",
+      "10142757",
+      "10180878",
+      "10206606"
+    ],
+    "incontrol": [
+      "10097298",
+      "10101244",
+      "10101702",
+      "10174488",
+      "10175608",
+      "10190012",
+      "10191303",
+      "10191861",
+      "10191867",
+      "11015249",
+      "11015276",
+      "11015311",
+      "11015312",
+      "11016644",
+      "11016645"
+    ],
+    "thermostat": [
+      "10103941",
+      "10218903",
+      "10225904",
+      "10249844",
+      "10249854",
+      "11011023",
+      "11015273",
+      "11015332",
+      "11015333",
+      "11015334",
+      "11015335"
+    ]
+  },
+  "mappedCampaigns": [],
+  "deferredCampaigns": [
+    "12V563000",
+    "14V155000",
+    "14V395000",
+    "16V614000",
+    "16V889000",
+    "16V941000",
+    "18V087000",
+    "18V088000",
+    "19V421000",
+    "19V840000",
+    "20E017000",
+    "20V517000",
+    "20V683000",
+    "20V751000",
+    "20V793000",
+    "20V794000",
+    "21V168000",
+    "22V080000",
+    "24V678000",
+    "25V016000",
+    "25V088000",
+    "25V089000",
+    "25V454000",
+    "25V645000",
+    "25V705000",
+    "26V248000"
+  ],
+  "summary": {
+    "rewrite_same_identity": 2,
+    "targeted_safety_cleanup_pending_source": 2,
+    "total": 4
+  },
+  "rows": [
+    {
+      "id": "land-rover-range-rover-evoque-fuel-pump-2020",
+      "action": "targeted_safety_cleanup_pending_source",
+      "commerceDecision": "diagnostic-or-software-remedy-no-universal-retail-part",
+      "evidence": [
+        "Complete inventory: 1861 Evoque manufacturer-communication rows and 68 recall rows were searched.",
+        "Nineteen fuel matches were reviewed; representative exact documents are 10056423, 10056427, 10101521, 10101563, 10101565, 10103601, 10105424, 10144541, 10155592, 10156841, 11010268.",
+        "The high-pressure-pump record belongs to older vehicles and the 2020-2024 record names a driver module, not the frozen pump/cam-follower identity."
+      ],
+      "before": {
+        "make": "Land Rover",
+        "model": "Range Rover Evoque",
+        "years": [
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [
+          "2.0L Ingenium Turbo",
+          "1.5L I3 PHEV"
+        ],
+        "category": "fuel",
+        "title": "Ingenium Engine High-Pressure Fuel Pump Failure",
+        "description": "The Ingenium 2.0L turbo engine used in the second-generation Evoque experiences high-pressure fuel pump failures that cause hard starting, rough running, and loss of power. The pump's cam follower wears prematurely, reducing fuel rail pressure below the threshold needed for direct injection. JLR has updated the pump design but early vehicles may still have the original part.",
+        "solution": "Replace the high-pressure fuel pump and cam follower with the updated design. Check the low-pressure fuel pump is delivering adequate supply pressure. Clear adaptation values after replacement.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "Hard starting especially when warm",
+          "Rough idle and misfires",
+          "Loss of power under acceleration",
+          "Check engine light with fuel rail pressure codes",
+          "Engine stalling at low speeds"
+        ],
+        "affectedSystems": [
+          "Fuel System",
+          "Engine"
+        ],
+        "dtcCodes": [
+          "P0087",
+          "P0191",
+          "P0088"
+        ],
+        "estimatedCostLow": 800,
+        "estimatedCostHigh": 2000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "JLR TSB LTB00634 — Ingenium 2.0L high-pressure fuel pump updated cam follower"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "source": "LandRoverForums.com",
+            "content": "If your Evoque has the original fuel pump, ask the dealer about the updated part during your next service. The updated cam follower is a significant improvement.",
+            "upvotes": 87,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 650,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-02-25",
+        "reviewedOn": "2026-03-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "land-rover-discovery-sport-fuel-pump-ingenium-2020",
+          "jaguar-xe-water-pump-ingenium-2017",
+          "jaguar-f-pace-water-pump-ingenium-2017",
+          "land-rover-freelander-2-fuel-pump-2007"
+        ]
+      },
+      "beforeSha256": "fcf2502582160104f004631a1667a6b9846888bf74642a6b04c2225f4f378c56",
+      "proposal": {
+        "make": "Land Rover",
+        "model": "Range Rover Evoque",
+        "years": [
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [
+          "2.0L Ingenium Turbo",
+          "1.5L I3 PHEV"
+        ],
+        "category": "fuel",
+        "title": "Ingenium Engine High-Pressure Fuel Pump Failure",
+        "description": "The complete JLR inventory does not support a 2020-2025 Ingenium high-pressure fuel-pump and cam-follower failure. The exact high-pressure-pump metering-valve evidence applies to older 2012-2014 Evoque vehicles, while the 2020-2024 communication identifies a fuel-pump driver module condition. Those are different components, and the frozen P0087/P0191/P0088 aggregation cannot be carried across generations or onto the 1.5L PHEV.",
+        "solution": "Record the exact engine, symptom, DTCs and low- and high-side fuel-pressure measurements, then use the current VIN-specific JLR diagnostic path. Do not replace a high-pressure pump, cam follower or low-pressure pump from this page; the retrieved primary records do not identify one verified retail part for the frozen 2020-2025 identity.",
+        "severity": "high",
+        "confidence": "low",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "nhtsa",
+            "title": "NHTSA Manufacturer Communications — Evoque fuel records 10105424 and 11010268 (generation/component correction)",
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis#manufacturer-communications"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-08",
+        "contentUpdatedOn": "2026-08-08",
+        "contentUpdateSummary": "Removed the false cross-generation high-pressure-pump/cam-follower association, generic DTCs and updated-part prescription.",
+        "relatedIssueIds": []
+      },
+      "proposalSha256": "1bd271560c188bdf0f4ebe9b4c66db2ad138d147db51aa3844375ef673ead825",
+      "changedFields": [
+        "description",
+        "solution",
+        "confidence",
+        "symptoms",
+        "affectedSystems",
+        "dtcCodes",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "communityRecommendations",
+        "reportCount",
+        "source",
+        "lastReportedByOwners",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary",
+        "relatedIssueIds"
+      ]
+    },
+    {
+      "id": "land-rover-range-rover-evoque-haldex-clutch-2012",
+      "action": "rewrite_same_identity",
+      "commerceDecision": "diagnostic-or-software-remedy-no-universal-retail-part",
+      "evidence": [
+        "Complete inventory: 1861 Evoque manufacturer-communication rows and 68 recall rows were searched.",
+        "Ten coupling/driveline matches were reviewed: 10105587, 10105743, 10105847, 10105911, 10105966, 10106133, 10106161, 10142757, 10180878, 10206606.",
+        "The records support exact AWD/coupling-pump conditions but not the frozen service interval, universal controller failure or DTC pair."
+      ],
+      "before": {
+        "make": "Land Rover",
+        "model": "Range Rover Evoque",
+        "years": [
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019
+        ],
+        "trims": [],
+        "engines": [
+          "2.0L Si4 Turbo",
+          "2.2L TD4 Diesel"
+        ],
+        "category": "drivetrain",
+        "title": "Haldex AWD Coupling Failure",
+        "description": "The Evoque uses a Haldex 5th generation all-wheel-drive coupling that requires regular fluid changes but is often neglected by owners. When the Haldex fluid degrades, the coupling overheats and the electronic controller fails. This results in loss of rear-wheel drive and the vehicle becoming front-wheel drive only. In severe cases, the coupling seizes.",
+        "solution": "Replace the Haldex filter and fluid every 30,000-40,000 miles. If the coupling has failed, it may need a new electronic controller or complete coupling replacement. Use only Haldex-approved fluid. This service is often overlooked as it is not prominently featured in the service schedule.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Loss of traction in slippery conditions",
+          "AWD/traction control warning lights",
+          "Vibration or shudder when coupling engages",
+          "Burning smell from rear of vehicle",
+          "Terrain Response faults"
+        ],
+        "affectedSystems": [
+          "Drivetrain",
+          "AWD System"
+        ],
+        "dtcCodes": [
+          "U0300",
+          "C1A54"
+        ],
+        "estimatedCostLow": 500,
+        "estimatedCostHigh": 2500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "forum",
+            "title": "LandRoverForums.com — Evoque Haldex coupling service and failure guide"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "warning",
+            "source": "LandRoverForums.com",
+            "content": "The Haldex fluid change is the single most overlooked service on the Evoque. Have it done every 30,000 miles or the coupling WILL fail.",
+            "upvotes": 198,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 1100,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-01-10",
+        "reviewedOn": "2026-03-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "land-rover-discovery-sport-haldex-coupling-2015"
+        ]
+      },
+      "beforeSha256": "81850be7c3ece2a785b208cfc04cc54cdcb0f7319580781f1095aea14b34f617",
+      "proposal": {
+        "make": "Land Rover",
+        "model": "Range Rover Evoque",
+        "years": [
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019
+        ],
+        "trims": [],
+        "engines": [
+          "2.0L Si4 Turbo",
+          "2.2L TD4 Diesel"
+        ],
+        "category": "drivetrain",
+        "title": "Haldex AWD Coupling Failure",
+        "description": "JLR communications document loss of AWD or a two-wheel-drive-only warning on specified 2012-2016 Evoque vehicles from coupling-oil-pump brush faults, control-module configuration damage or other Active Driveline causes. Later guidance addresses low-speed noise or judder. The records support the coupling-failure identity, but not a universal fluid interval, degraded-fluid cause, controller failure, seizure or the frozen U0300/C1A54 attribution.",
+        "solution": "Record the exact warning and DTCs, confirm whether the vehicle has Efficient Driveline or Active Driveline, verify matching tires and follow the current VIN-specific JLR pinpoint test. Do not replace a controller, pump or complete coupling or prescribe fluid service from this page; the documented causes differ and there is no universal retail part for the frozen scope.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "JLR LTB00911NAS1 — Active Driveline DTC diagnostics",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2016/SB-10105743-9340.pdf"
+          },
+          {
+            "type": "nhtsa",
+            "title": "NHTSA Manufacturer Communications — Evoque coupling records 10105587, 10105847, 10105966 and 10180878",
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis#manufacturer-communications"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-08",
+        "contentUpdatedOn": "2026-08-08",
+        "contentUpdateSummary": "Bounded the coupling identity to exact JLR drivetrain conditions and removed the invented service interval, controller, seizure and DTC claims.",
+        "relatedIssueIds": []
+      },
+      "proposalSha256": "f79fb06aea59a2ac65ab6c2f0714a23e0b8d6b1e2803c903527bac1842895049",
+      "changedFields": [
+        "description",
+        "solution",
+        "confidence",
+        "symptoms",
+        "affectedSystems",
+        "dtcCodes",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "communityRecommendations",
+        "reportCount",
+        "source",
+        "lastReportedByOwners",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary",
+        "relatedIssueIds"
+      ]
+    },
+    {
+      "id": "land-rover-range-rover-evoque-incontrol-freeze-2016",
+      "action": "rewrite_same_identity",
+      "commerceDecision": "diagnostic-or-software-remedy-no-universal-retail-part",
+      "evidence": [
+        "Complete inventory: 1861 Evoque manufacturer-communication rows and 68 recall rows were searched.",
+        "One hundred thirty-two infotainment matches were reviewed; exact frozen-scope records include 10097298, 10101244, 10101702, 10174488, 10175608, 10190012, 10191303, 10191861, 10191867, 11015249, 11015276, 11015311, 11015312, 11016644, 11016645.",
+        "Reboot, freeze, update and IMC support records allow a bounded same-identity rewrite without aftermarket hardware claims."
+      ],
+      "before": {
+        "make": "Land Rover",
+        "model": "Range Rover Evoque",
+        "years": [
+          2016,
+          2017,
+          2018,
+          2019
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "InControl Touch Pro Infotainment Freezing and Lag",
+        "description": "The InControl Touch Pro infotainment system in the facelift L538 Evoque is plagued by slow response times, freezing, and random reboots. The navigation is particularly affected, with long delays in route calculations and map rendering. Bluetooth audio streaming frequently disconnects. JLR has issued multiple software updates but the aging hardware struggles with the software demands.",
+        "solution": "Update to the latest infotainment software at a JLR dealer. Perform a master reset if freezing persists. Reduce the number of stored Bluetooth devices. Some owners report improved performance after replacing the SSD media unit. Consider an aftermarket CarPlay retrofit for reliable phone integration.",
+        "severity": "low",
+        "confidence": "high",
+        "symptoms": [
+          "Infotainment screen freezes and is unresponsive",
+          "Very slow response to touch inputs",
+          "Bluetooth audio drops out",
+          "Navigation takes 30+ seconds to calculate routes",
+          "System reboots randomly"
+        ],
+        "affectedSystems": [
+          "Electrical",
+          "Infotainment"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": 1500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "nhtsa",
+            "title": "NHTSA complaints — Evoque infotainment failures and safety concerns 2016-2019"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "source": "LandRoverForums.com",
+            "content": "A CarPlay retrofit kit costs about $400-600 and gives you a modern, responsive interface. Best upgrade for the Evoque.",
+            "upvotes": 156,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 980,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-09-20",
+        "reviewedOn": "2026-03-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "jaguar-f-pace-incontrol-freeze-2017",
+          "jaguar-e-pace-incontrol-freeze-2018",
+          "jaguar-xe-infotainment-freeze-2017",
+          "land-rover-range-rover-pivi-pro-bugs-2022"
+        ]
+      },
+      "beforeSha256": "4ed5a399bdad71aee274c90ac75437833dbd82174a8440408ed0c1734623399e",
+      "proposal": {
+        "make": "Land Rover",
+        "model": "Range Rover Evoque",
+        "years": [
+          2016,
+          2017,
+          2018,
+          2019
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "InControl Touch Pro Infotainment Freezing and Lag",
+        "description": "JLR communications directly document InControl Touch or Touch Pro symptoms across the frozen 2016-2019 Evoque scope, including reboot loops, navigation initialization freezes, audio or media faults and software-update conditions. Later JLR programs provided a wired IMC update and time-limited IMC warranty support. The evidence supports the infotainment identity but not the claim that aging hardware universally causes it or that Bluetooth storage explains the failures.",
+        "solution": "Record the exact symptom and installed software level, then follow the current VIN-specific JLR infotainment workflow. Apply a wired or over-the-air update only when directed, and diagnose the IMC before replacement. This is primarily a software/diagnostic remedy; no SSD, CarPlay retrofit or universal retail part is linked.",
+        "severity": "low",
+        "confidence": "high",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "nhtsa",
+            "title": "NHTSA Manufacturer Communications — Evoque InControl records 10097298, 10101244, 10191303, 11015249, 11015311 and 11016645",
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis#manufacturer-communications"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-08",
+        "contentUpdatedOn": "2026-08-08",
+        "contentUpdateSummary": "Bounded InControl freezing/lag to exact JLR software evidence and removed master-reset, Bluetooth, SSD and aftermarket-retrofit prescriptions.",
+        "relatedIssueIds": []
+      },
+      "proposalSha256": "0636a73131cf73dbed1dbf186a12a8072ede77418ef68d399d3a995a9a724dd8",
+      "changedFields": [
+        "description",
+        "solution",
+        "symptoms",
+        "affectedSystems",
+        "estimatedCostHigh",
+        "citations",
+        "communityRecommendations",
+        "reportCount",
+        "source",
+        "lastReportedByOwners",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary",
+        "relatedIssueIds"
+      ]
+    },
+    {
+      "id": "land-rover-range-rover-evoque-thermostat-housing-2012",
+      "action": "targeted_safety_cleanup_pending_source",
+      "commerceDecision": "diagnostic-or-software-remedy-no-universal-retail-part",
+      "evidence": [
+        "Complete inventory: 1861 Evoque manufacturer-communication rows and 68 recall rows were searched.",
+        "Eleven cooling/thermostat matches were reviewed: 10103941, 10218903, 10225904, 10249844, 10249854, 11011023, 11015273, 11015332, 11015333, 11015334, 11015335.",
+        "The exact housing-leak records are for 2020-2024 vehicles and cannot validate the frozen first-generation Si4 housing claim."
+      ],
+      "before": {
+        "make": "Land Rover",
+        "model": "Range Rover Evoque",
+        "years": [
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019
+        ],
+        "trims": [],
+        "engines": [
+          "2.0L Si4 Turbo",
+          "2.0L Si4"
+        ],
+        "category": "cooling",
+        "title": "Plastic Thermostat Housing Crack and Coolant Leak",
+        "description": "The plastic thermostat housing on the 2.0L Si4 turbocharged engine in the first-generation Evoque is prone to cracking. The housing fails due to heat cycling and coolant pressure, causing a significant coolant leak from the front of the engine. The leak can be sudden and severe, leading to rapid overheating if not caught immediately.",
+        "solution": "Replace the thermostat housing assembly with the updated design. Some aftermarket manufacturers offer aluminum replacements that eliminate the cracking issue. Replace the thermostat at the same time. Refill with JLR OAT coolant and bleed the cooling system properly.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Coolant leak from front of engine",
+          "Low coolant warning",
+          "Overheating",
+          "Sweet coolant smell from engine bay",
+          "Steam from engine compartment"
+        ],
+        "affectedSystems": [
+          "Cooling System",
+          "Engine"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 400,
+        "estimatedCostHigh": 1000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "tsb",
+            "title": "JLR TSB LTB00512 — Evoque/Freelander 2.0L thermostat housing replacement with updated part"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "source": "LandRoverForums.com",
+            "content": "Replace with an aluminum thermostat housing if available. The plastic OEM replacement will eventually crack again.",
+            "upvotes": 178,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 1600,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2025-12-20",
+        "reviewedOn": "2026-03-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "land-rover-discovery-sport-thermostat-housing-2015"
+        ]
+      },
+      "beforeSha256": "3571191c0967286445258833e0fd2acd641f43f7782fa7355478c7c3ebdde76e",
+      "proposal": {
+        "make": "Land Rover",
+        "model": "Range Rover Evoque",
+        "years": [
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019
+        ],
+        "trims": [],
+        "engines": [
+          "2.0L Si4 Turbo",
+          "2.0L Si4"
+        ],
+        "category": "cooling",
+        "title": "Plastic Thermostat Housing Crack and Coolant Leak",
+        "description": "The complete JLR inventory does not establish a cracked plastic thermostat housing on the frozen 2012-2019 2.0L Si4 scope. It documents a 2012-2015 coolant-pump weep, replacement-thermostat concerns, and a separate 2020-2024 thermostat-housing coolant leak on the later-generation Evoque. The later housing record cannot validate the first-generation heat-cycle, pressure or sudden-leak claims.",
+        "solution": "Pressure-test the cooling system and identify the exact leak source before replacing a thermostat, housing or pump. Do not install an aluminum housing or generic updated assembly from this page; the primary evidence separates pump, replacement-thermostat and later-generation housing conditions and identifies no verified retail part for the frozen identity.",
+        "severity": "high",
+        "confidence": "low",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "nhtsa",
+            "title": "NHTSA Manufacturer Communications — Evoque cooling records 10103941, 10249844, 10249854 and 11015332-11015335 (generation correction)",
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis#manufacturer-communications"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-08",
+        "contentUpdatedOn": "2026-08-08",
+        "contentUpdateSummary": "Removed the false later-generation thermostat-housing association, unproven crack cause and aluminum-upgrade prescription.",
+        "relatedIssueIds": []
+      },
+      "proposalSha256": "03022e0fb110ea8517127ae73dc18e36a4214a60efa518c221dbd9999b3df932",
+      "changedFields": [
+        "description",
+        "solution",
+        "confidence",
+        "symptoms",
+        "affectedSystems",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "communityRecommendations",
+        "reportCount",
+        "source",
+        "lastReportedByOwners",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary",
+        "relatedIssueIds"
+      ]
+    }
+  ]
+}
