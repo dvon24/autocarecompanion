@@ -11,7 +11,7 @@ import { triggerHaptic } from '@/hooks/useHaptic';
 import { IssueFix } from '@/hooks/useIssueFixes';
 import { trackAffiliateClick } from '@/lib/analytics';
 import { getKnownIssueCommerce, hasKnownIssueCommerce, knownIssueAffiliateUrl } from '@/lib/known-issue-commerce';
-import { partFitsVehicle, describeFitment, isNarrowerThanArticle } from '@/lib/known-issue-part-fitment';
+import { partIsEligibleForVehicle, describeFitment, isNarrowerThanArticle } from '@/lib/known-issue-part-fitment';
 
 /**
  * Strip the verification worker's INTERNAL reasoning log out of a fixPart note
@@ -186,8 +186,8 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
   // it". Parts with no declared fitment are untouched — that is every part in
   // the catalog today, so this only takes effect once a part is scoped.
   const fitmentVehicle = { year: vehicleInfo?.year ?? null, trim: vehicleInfo?.trim ?? null };
-  const fixParts = gatedParts.filter((part) => partFitsVehicle(part.fitment, fitmentVehicle) !== 'excluded');
-  const excludedPartCount = gatedParts.length - fixParts.length;
+  const fixParts = gatedParts.filter((part) => partIsEligibleForVehicle(part.fitment, fitmentVehicle));
+  const hiddenPartCount = gatedParts.length - fixParts.length;
   const hasPartRecommendations = hasKnownIssueCommerce(fixParts);
   const contentUpdateDate = formatContentUpdatedOn(issue.contentUpdatedOn);
   const contentUpdateSummary = issue.contentUpdateSummary?.trim();
@@ -520,9 +520,9 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
               </h4>
               <p className="mb-3 text-xs leading-relaxed text-[#475569]">
                 Only diagnosis- and fitment-reviewed repair parts are linked here.
-                {excludedPartCount > 0 && vehicleInfo && (
+                {hiddenPartCount > 0 && vehicleInfo && (
                   <span className="mt-1 block text-[#64748B]">
-                    {excludedPartCount === 1 ? '1 part is' : `${excludedPartCount} parts are`} hidden — {excludedPartCount === 1 ? 'it does' : 'they do'} not fit your {vehicleInfo.year} {vehicleInfo.model}.
+                    {hiddenPartCount === 1 ? '1 part is' : `${hiddenPartCount} parts are`} hidden because fitment could not be confirmed for your {vehicleInfo.year} {vehicleInfo.model}.
                   </span>
                 )}
               </p>

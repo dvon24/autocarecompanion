@@ -153,8 +153,12 @@ export function getKnownIssueCommerce(
   ownerGuidance: OwnerGuidance[];
   suppressedCommunityPartCount: number;
 } {
-  const verifiedParts = (issue.fixParts || []).filter((part) => part.verified === true);
-  const recallFirst = verifiedParts.some((part) => part.recallFirst);
+  const allParts = issue.fixParts || [];
+  const verifiedParts = allParts.filter((part) => part.verified === true);
+  // Recall coverage is an issue-level safety gate, not a reward for completing
+  // commerce verification. Even an otherwise unverified recall marker must
+  // suppress every retail link until the owner checks the VIN.
+  const recallFirst = allParts.some((part) => part.recallFirst);
   const fixParts = verifiedParts
     .map((part) => {
       const seen = new Set<string>();

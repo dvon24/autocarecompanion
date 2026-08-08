@@ -85,12 +85,34 @@ export function partFitsVehicle(fitment: PartFitment | undefined, vehicle: Fitme
   if (fitment.years && fitment.years.length > 0) {
     checks.push(vehicle.year == null ? null : fitment.years.includes(vehicle.year));
   }
-  checks.push(listMatches(fitment.engines, vehicle.engine));
-  checks.push(listMatches(fitment.trims, vehicle.trim));
+  if (fitment.engines && fitment.engines.length > 0) {
+    checks.push(listMatches(fitment.engines, vehicle.engine));
+  }
+  if (fitment.trims && fitment.trims.length > 0) {
+    checks.push(listMatches(fitment.trims, vehicle.trim));
+  }
 
-  const tested = checks.filter((c): c is boolean => c !== null);
-  if (tested.length === 0) return 'unscoped';
-  return tested.every(Boolean) ? 'fits' : 'excluded';
+  if (checks.length === 0) return 'unscoped';
+  if (checks.some((check) => check === false)) return 'excluded';
+  // A year match cannot prove an engine- or trim-scoped part fits when that
+  // dimension is missing from the vehicle. Keep the verdict unknown until
+  // every declared dimension can be tested.
+  if (checks.some((check) => check === null)) return 'unscoped';
+  return 'fits';
+}
+
+/**
+ * Preserve legacy unscoped parts, but require every deliberately scoped part
+ * to be positively confirmed before it reaches a purchase surface.
+ */
+export function partIsEligibleForVehicle(
+  fitment: PartFitment | undefined,
+  vehicle: FitmentVehicle,
+): boolean {
+  const hasDeclaredScope = Boolean(
+    fitment?.years?.length || fitment?.engines?.length || fitment?.trims?.length,
+  );
+  return !hasDeclaredScope || partFitsVehicle(fitment, vehicle) === 'fits';
 }
 
 /**
@@ -99,8 +121,8 @@ export function partFitsVehicle(fitment: PartFitment | undefined, vehicle: Fitme
  * `14310-RZA-003` for 2007-09 and `14310-R40-A02` for 2010-11 and a single PN
  * is wrong for half its readers.
  *
- * Returns the base part number when no variant claims the vehicle, so an
- * unscoped record behaves exactly as it does today.
+ * Unscoped legacy records retain the base part number. Once any machine-readable
+ * scope is declared, an unmatched vehicle receives no part number.
  */
 export function resolvePartNumber(
   part: {
@@ -110,10 +132,27 @@ export function resolvePartNumber(
   },
   vehicle: FitmentVehicle,
 ): { partNumber: string | null; scope: string | null; matched: boolean } {
-  for (const variant of part.variants || []) {
+  const variants = part.variants || [];
+  for (const variant of variants) {
     if (partFitsVehicle(variant.fitment, vehicle) === 'fits') {
       return { partNumber: variant.oemPartNumber, scope: variant.scope || null, matched: true };
     }
+  }
+
+  const hasScopedVariant = variants.some((variant) => Boolean(
+    variant.fitment?.years?.length || variant.fitment?.engines?.length || variant.fitment?.trims?.length,
+  ));
+  const hasScopedBase = Boolean(
+    part.fitment?.years?.length || part.fitment?.engines?.length || part.fitment?.trims?.length,
+  );
+  if (hasScopedBase && partFitsVehicle(part.fitment, vehicle) === 'fits') {
+    return { partNumber: part.oemPartNumber || null, scope: describeFitment(part.fitment) || null, matched: true };
+  }
+  // Once any PN is deliberately scoped, an unmatched vehicle must not inherit
+  // the legacy base number. That fallback is exactly how a correct PN for one
+  // year range gets sold to the rest of the article's readers.
+  if (hasScopedVariant || hasScopedBase) {
+    return { partNumber: null, scope: null, matched: false };
   }
   return { partNumber: part.oemPartNumber || null, scope: null, matched: false };
 }

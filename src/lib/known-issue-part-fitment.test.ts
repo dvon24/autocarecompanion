@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import {
   partFitsVehicle,
+  partIsEligibleForVehicle,
   resolvePartNumber,
   formatYearRange,
   describeFitment,
@@ -27,6 +28,19 @@ test('right year but wrong engine is still the wrong part', () => {
   const fitment = { years: [2009, 2010], engines: ['3.6L V6'] };
   assert.equal(partFitsVehicle(fitment, { year: 2009, engine: '3.6L V6' }), 'fits');
   assert.equal(partFitsVehicle(fitment, { year: 2009, engine: '3.0L V6' }), 'excluded');
+});
+
+test('a matching year cannot prove fitment when a declared engine is unknown', () => {
+  const fitment = { years: [2009], engines: ['3.6L V6'] };
+  assert.equal(partFitsVehicle(fitment, { year: 2009, engine: null }), 'unscoped');
+  assert.equal(partIsEligibleForVehicle(fitment, { year: 2009, engine: null }), false);
+});
+
+test('legacy unscoped parts remain eligible while scoped exclusions stay hidden', () => {
+  assert.equal(partIsEligibleForVehicle(undefined, { year: 2015 }), true);
+  assert.equal(partIsEligibleForVehicle({}, { year: 2015 }), true);
+  assert.equal(partIsEligibleForVehicle({ years: [2014] }, { year: 2015 }), false);
+  assert.equal(partIsEligibleForVehicle({ years: [2015] }, { year: 2015 }), true);
 });
 
 // The Genesis G90 case: 5.0 V8 pump listed on a page that never qualifies the
@@ -59,10 +73,20 @@ test('resolvePartNumber picks the variant that claims the vehicle', () => {
   assert.equal(resolvePartNumber(part, { year: 2008 }).partNumber, '14310-RZA-003');
 });
 
-test('resolvePartNumber falls back to the base number when no variant claims the vehicle', () => {
+test('resolvePartNumber refuses the base number when scoped variants exclude the vehicle', () => {
   const part = {
     oemPartNumber: '14310-RZA-003',
     variants: [{ oemPartNumber: '14310-R40-A02', scope: '2010-2011', fitment: { years: [2010, 2011] } }],
+  };
+  assert.deepEqual(resolvePartNumber(part, { year: 2005 }), {
+    partNumber: null, scope: null, matched: false,
+  });
+});
+
+test('resolvePartNumber keeps the legacy base fallback when variants are unscoped', () => {
+  const part = {
+    oemPartNumber: '14310-RZA-003',
+    variants: [{ oemPartNumber: '14310-R40-A02', scope: 'confirm by VIN' }],
   };
   assert.deepEqual(resolvePartNumber(part, { year: 2005 }), {
     partNumber: '14310-RZA-003', scope: null, matched: false,

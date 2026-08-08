@@ -13,7 +13,7 @@ import { ebayEnabled, resolveEbay } from '@/lib/ebay-resolver';
 import { buildUpgradeOptions } from '@/lib/aftermarket-tier';
 import { ebayAffiliate } from '@/lib/ebay-affiliate';
 import { getKnownIssueCommerce } from '@/lib/known-issue-commerce';
-import { partFitsVehicle } from '@/lib/known-issue-part-fitment';
+import { partIsEligibleForVehicle } from '@/lib/known-issue-part-fitment';
 import type { IdentifiedPart, PartCategory, IssuePart } from '@/types/vision';
 import Anthropic from '@anthropic-ai/sdk';
 import sharp from 'sharp';
@@ -236,7 +236,7 @@ export async function POST(request: NextRequest) {
         // is standing at the car about to buy.
         fixPartsById.set(
           it.id,
-          fixParts.filter((p) => partFitsVehicle(p.fitment, { year: vehicle.year, trim: vehicle.trim ?? null }) !== 'excluded'),
+          fixParts.filter((p) => partIsEligibleForVehicle(p.fitment, { year: vehicle.year, trim: vehicle.trim ?? null })),
         );
       }
 

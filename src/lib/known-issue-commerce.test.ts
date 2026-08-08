@@ -66,6 +66,17 @@ test('empties buy links on every part when any part is recall-first', () => {
   for (const part of fixParts) assert.deepEqual(part.buyLinks, []);
 });
 
+test('an unverified recall marker still suppresses verified commerce', () => {
+  const { fixParts } = getKnownIssueCommerce(
+    issue([
+      { component: 'Recall repair', recallFirst: true },
+      { component: 'Verified retail part', verified: true, buyLinks: [productLink] },
+    ]),
+  );
+  assert.equal(fixParts.length, 1);
+  assert.deepEqual(fixParts[0]!.buyLinks, []);
+});
+
 test('rejects a link whose vendor label does not match the destination host', () => {
   const { fixParts } = getKnownIssueCommerce(
     issue([{
