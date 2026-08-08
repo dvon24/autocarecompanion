@@ -1,0 +1,76 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
+const crypto = require('node:crypto');
+const fs = require('node:fs');
+const readline = require('node:readline');
+const { NHTSA_SOURCE } = require('./build-kia-morning-adjudication');
+
+function parseCsvLine(line) {
+  const fields = [];
+  let field = '';
+  let quoted = false;
+  for (let index = 0; index < line.length; index += 1) {
+    const char = line[index];
+    if (quoted) {
+      if (char === '"') { if (line[index + 1] === '"') { field += '"'; index += 1; } else quoted = false; }
+      else field += char;
+    } else if (char === ',') { fields.push(field); field = ''; }
+    else if (char === '"') quoted = true;
+    else field += char;
+  }
+  fields.push(field);
+  return fields;
+}
+
+async function inspectCsv(file, expected) {
+  const hash = crypto.createHash('sha256');
+  const input = fs.createReadStream(file);
+  input.on('data', (chunk) => hash.update(chunk));
+  const rl = readline.createInterface({ input, crlfDelay: Infinity });
+  let headers;
+  let morningRows = 0;
+  let lines = 0;
+  for await (const line of rl) {
+    lines += 1;
+    const fields = parseCsvLine(line);
+    if (!headers) { headers = fields; continue; }
+    const row = Object.fromEntries(headers.map((header, index) => [header, fields[index] || '']));
+    if (row.Make === 'KIA' && row.Model === 'MORNING') morningRows += 1;
+  }
+  const sha256 = hash.digest('hex');
+  return { file, lines, sha256, expectedSha256: expected.sha256, morningRows, expectedMorningRows: expected.expectedMorningRows, passed: sha256 === expected.sha256 && morningRows === expected.expectedMorningRows };
+}
+
+async function inspectFlat(file, expected) {
+  const hash = crypto.createHash('sha256');
+  const input = fs.createReadStream(file);
+  input.on('data', (chunk) => hash.update(chunk));
+  const rl = readline.createInterface({ input, crlfDelay: Infinity });
+  let lines = 0;
+  let morningRows = 0;
+  for await (const line of rl) {
+    lines += 1;
+    const columns = line.split('\t');
+    if ((columns[2] || '').toUpperCase() === 'KIA' && (columns[3] || '').toUpperCase() === 'MORNING') morningRows += 1;
+  }
+  const sha256 = hash.digest('hex');
+  return { file, lines, sha256, expectedSha256: expected.sha256, morningRows, expectedMorningRows: expected.expectedMorningRows, passed: sha256 === expected.sha256 && morningRows === expected.expectedMorningRows };
+}
+
+async function main() {
+  const args = new Map(process.argv.slice(2).map((value) => { const index = value.indexOf('='); return [value.slice(2, index), value.slice(index + 1)]; }));
+  const csv = [];
+  for (const [key, expected] of Object.entries(NHTSA_SOURCE.manufacturerCommunicationsFiles)) {
+    const file = args.get(key);
+    if (!file) throw new Error(`missing --${key}=C:\\path\\file.csv`);
+    csv.push(await inspectCsv(file, expected));
+  }
+  const flatFile = args.get('flat');
+  if (!flatFile) throw new Error('missing --flat=C:\\path\\FLAT_RCL_POST_2010.txt');
+  const flat = await inspectFlat(flatFile, NHTSA_SOURCE.flatRecallFile);
+  const passed = csv.every((item) => item.passed) && flat.passed;
+  console.log(JSON.stringify({ passed, checkedOn: '2026-08-08', interpretation: NHTSA_SOURCE.interpretation, manufacturerCommunications: csv, flatRecall: flat }, null, 2));
+  if (!passed) process.exitCode = 1;
+}
+
+if (require.main === module) main().catch((error) => { console.error(error); process.exitCode = 1; });
+module.exports = { inspectCsv, inspectFlat, parseCsvLine };

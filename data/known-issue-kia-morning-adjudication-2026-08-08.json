@@ -1,0 +1,1063 @@
+{
+  "schemaVersion": 1,
+  "status": "proposal-only",
+  "auditStage": "model-primary-source-adjudication",
+  "requiresIndependentApproval": true,
+  "generatedOn": "2026-08-08",
+  "make": "Kia",
+  "model": "Morning",
+  "completionStatement": "All six frozen Kia Morning records are adjudicated using the correct Korean-market source route. One PCV recall identity receives a bounded dealer-only rewrite; five cross-market, year-conflicted or secondary-only rows remain byte-for-byte holds.",
+  "applicationGate": {
+    "status": "blocked",
+    "blockerRecordIds": [
+      "kia-morning-cold-start-delay-no-start-after-overnight-parking",
+      "kia-morning-crankshaft-rear-main-seal-oil-leak-between-engine-transmissi",
+      "kia-morning-drive-belt-cricket-squeal-from-solid-alternator-pulley",
+      "kia-morning-fuel-leveling-hose-cracking-fuel-leak-fire-risk",
+      "kia-morning-manual-transmission-clutch-judder-rapid-clutch-flywheel-wear"
+    ],
+    "reason": "Five Morning pages remain source-, market-, generation- or year-conflicted. Independent correction and approval are required before any proposal is applied."
+  },
+  "safetyContract": [
+    "No production database write, cache purge, deployment, archive action, redirect, slug change, new issue or public-page change is authorized by this packet.",
+    "All six Morning IDs, titles, categories, indexed years and publication states remain unchanged.",
+    "Zero NHTSA rows are expected because Morning is the Korean-market model name; absence from U.S. data is not treated as disproof.",
+    "Only an exact Korean government source may authorize a Korean-market rewrite; secondary or cross-market evidence remains blocked.",
+    "The PCV recall is explicitly dealer-only with no retail part; no search-result commerce is introduced.",
+    "New issue identities remain deferred until the remaining-make audit is complete."
+  ],
+  "source": {
+    "snapshotFile": "data/_kia-deeplink-snapshot-2026-08-06.json",
+    "snapshotSha256": "f0aa4c5c8ca72321ed9a0b54aa9455e84056b445cb31049545ea07a48748c76b",
+    "snapshotGeneratedAt": "2026-08-07T19:13:14.080Z",
+    "snapshotHash": "f8b4d0e206ea16a5a28546ef1db29b0c885b1a839069b486f07fb1a1759310bf",
+    "modelRecordCount": 6
+  },
+  "observations": [
+    {
+      "code": "morning-korean-market-source-route",
+      "severity": "methodology",
+      "recordIds": [
+        "kia-morning-cold-start-delay-no-start-after-overnight-parking",
+        "kia-morning-crankshaft-rear-main-seal-oil-leak-between-engine-transmissi",
+        "kia-morning-drive-belt-cricket-squeal-from-solid-alternator-pulley",
+        "kia-morning-fuel-leveling-hose-cracking-fuel-leak-fire-risk",
+        "kia-morning-manual-transmission-clutch-judder-rapid-clutch-flywheel-wear",
+        "kia-morning-pcv-valve-plastic-needle-wear-oil-ingestion-white-exhaust-sm"
+      ],
+      "detail": "All three NHTSA communication files and the U.S. flat recall file contain zero Morning rows. Affirmative corrections therefore require exact Korean primary sources."
+    },
+    {
+      "code": "morning-pcv-official-recall-bounded",
+      "severity": "content-correction",
+      "recordIds": [
+        "kia-morning-pcv-valve-plastic-needle-wear-oil-ingestion-white-exhaust-sm"
+      ],
+      "detail": "The Ministry of Environment page exactly supports the PCV plastic-needle wear, oil-ingestion, white-smoke and free steel-needle replacement identity for the complete frozen 2011-2012 year set."
+    },
+    {
+      "code": "morning-fuel-hose-2013-boundary-conflict",
+      "severity": "critical",
+      "recordIds": [
+        "kia-morning-fuel-leveling-hose-cracking-fuel-leak-fire-risk"
+      ],
+      "detail": "The visually inspected government table ends production on June 30, 2012, while the frozen indexed year set includes 2013; the record is held rather than silently changing SEO scope."
+    },
+    {
+      "code": "morning-cold-start-primary-source-missing",
+      "severity": "critical",
+      "recordIds": [
+        "kia-morning-cold-start-delay-no-start-after-overnight-parking"
+      ],
+      "detail": "The claimed campaign page was unreachable and no Kia or Korean government primary notice was found; an owner-reported 2015 fuel-pump repair cannot validate the broader ECU campaign."
+    },
+    {
+      "code": "morning-rear-seal-generation-conflict",
+      "severity": "critical",
+      "recordIds": [
+        "kia-morning-crankshaft-rear-main-seal-oil-leak-between-engine-transmissi"
+      ],
+      "detail": "The claimed free-repair citation is for the earlier SA generation, not the frozen TA scope."
+    },
+    {
+      "code": "morning-oap-and-clutch-secondary-only",
+      "severity": "critical",
+      "recordIds": [
+        "kia-morning-drive-belt-cricket-squeal-from-solid-alternator-pulley",
+        "kia-morning-manual-transmission-clutch-judder-rapid-clutch-flywheel-wear"
+      ],
+      "detail": "Neither the OAP conversion nor the multi-generation clutch aggregation has exact Kia primary evidence and neither is stretched into validation."
+    },
+    {
+      "code": "all-morning-pages-preserved",
+      "severity": "seo-safety",
+      "recordIds": [
+        "kia-morning-cold-start-delay-no-start-after-overnight-parking",
+        "kia-morning-crankshaft-rear-main-seal-oil-leak-between-engine-transmissi",
+        "kia-morning-drive-belt-cricket-squeal-from-solid-alternator-pulley",
+        "kia-morning-fuel-leveling-hose-cracking-fuel-leak-fire-risk",
+        "kia-morning-manual-transmission-clutch-judder-rapid-clutch-flywheel-wear",
+        "kia-morning-pcv-valve-plastic-needle-wear-oil-ingestion-white-exhaust-sm"
+      ],
+      "detail": "Every Morning ID, title, category, indexed year set and publication state remains preserved; no redirect, archive, deletion or new public page is proposed."
+    }
+  ],
+  "webSources": {
+    "pcv": {
+      "url": "https://me.go.kr/home/web/board/read.do?boardCategoryId=39&boardId=343514&boardMasterId=1&decorator=&maxIndexPages=10&maxPageItems=10&menuId=&orgCd=&pagerOffset=10050&searchKey=&searchValue=",
+      "verifiedOn": "2026-08-08",
+      "markers": [
+        "196,950",
+        "2011년 1월 17일",
+        "2012년 7월 16일",
+        "플라스틱에서 스틸로 무상 교체"
+      ]
+    },
+    "fuelHosePage": {
+      "url": "https://m.korea.kr/news/pressReleaseView.do?newsId=156266495",
+      "verifiedOn": "2026-08-08",
+      "markers": [
+        "모닝(TA)",
+        "190,562",
+        "연료 및 레벨링 호스",
+        "개선부품 교체"
+      ]
+    }
+  },
+  "pdfSources": {
+    "fuelHose": {
+      "url": "https://www.korea.kr/common/download.do?fileId=191964074&tblKey=GMN",
+      "sha256": "740918bc2f6d4220fb59a75520532c40da23e879b17ed64c81ce793dd699ea7f",
+      "visuallyInspectedPages": [
+        1,
+        4
+      ],
+      "markers": [
+        "구형 모닝(TA)",
+        "연료 호스 및 레벨링 호스",
+        "10.11.09.~12.06.30.",
+        "158,175"
+      ]
+    }
+  },
+  "nhtsaCoverage": {
+    "manufacturerCommunicationsFiles": {
+      "2015-2019": {
+        "name": "MFR_COMMS_RECEIVED_2015-2019.csv",
+        "sha256": "d6c2ff16880cc7b31cfebad94bda08c3e8b3b2c3f28d56d5b1bb810c8b878a2e",
+        "expectedMorningRows": 0
+      },
+      "2020-2024": {
+        "name": "MFR_COMMS_RECEIVED_2020-2024.csv",
+        "sha256": "3b3ca3d690e33386d1d315a0f966285ae8cccb99c45c2386ada164c5e925c3cf",
+        "expectedMorningRows": 0
+      },
+      "2025-2026": {
+        "name": "MFR_COMMS_RECEIVED_2025-2026.csv",
+        "sha256": "419ebda2f1c1bf22e2b0862858d61699c25e61d73842f9031e796f1fafefba4c",
+        "expectedMorningRows": 0
+      }
+    },
+    "flatRecallFile": {
+      "name": "FLAT_RCL_POST_2010.txt",
+      "sha256": "4803a7f298f1d850736fe55830f4d31b004577424cb6429988c5864786f76a70",
+      "expectedMorningRows": 0
+    },
+    "interpretation": "Morning is the Korean-market name; zero U.S. NHTSA rows are expected and do not disprove Korean-market identities. Korean government sources are required for affirmative corrections."
+  },
+  "summary": {
+    "rewrite_same_identity": 1,
+    "keep_published_pending_source": 5,
+    "total": 6
+  },
+  "rows": [
+    {
+      "id": "kia-morning-cold-start-delay-no-start-after-overnight-parking",
+      "model": "Morning",
+      "action": "keep_published_pending_source",
+      "reason": "The claimed Korean free-repair campaign is supported only by the Nolewa recall board, which was unreachable in live verification, plus owner forums. No Kia or Korean government primary notice was located for the frozen 2011-2015 cold-start/fuel-pump aggregation, and the later fuel-pump mechanism is sourced to a single 2015 owner report rather than the claimed ECU campaign. The row remains byte-for-byte frozen and blocks application.",
+      "identityRule": "No source may change an indexed page identity. Cross-market evidence, a different generation, an unsupported year or a different failure mechanism requires a byte-for-byte hold.",
+      "commerceDecision": "unchanged-no-commerce-or-source-pending-exact-primary-evidence",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "secondary-source-only-no-exact-primary-package",
+          "verifiedOn": "2026-08-08",
+          "observation": "The claimed Korean free-repair campaign is supported only by the Nolewa recall board, which was unreachable in live verification, plus owner forums. No Kia or Korean government primary notice was located for the frozen 2011-2015 cold-start/fuel-pump aggregation, and the later fuel-pump mechanism is sourced to a single 2015 owner report rather than the claimed ECU campaign. The row remains byte-for-byte frozen and blocks application."
+        }
+      ],
+      "beforeSha256": "46a6e11f6f4bd91b96d7cdd4e7acaaed3ceb201744c4bad40c7e7c5aa1cd9ee4",
+      "proposalSha256": "46a6e11f6f4bd91b96d7cdd4e7acaaed3ceb201744c4bad40c7e7c5aa1cd9ee4",
+      "before": {
+        "make": "Kia",
+        "model": "Morning",
+        "years": [
+          2011,
+          2012,
+          2013,
+          2014,
+          2015
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "engine",
+        "title": "Cold-Start Delay or No-Start After Overnight Parking (Excessive Cold-Start Fuel Injection — ECU Service Campaign)",
+        "description": "Early TA Morning vehicles built between January 15, 2011 and March 28, 2012 suffer intermittent hard starting after a long cold soak (typically winter mornings): the engine cranks, almost catches, then dies or refuses to start. Kia identified the cause as excessive fuel-injection quantity at cold start producing unstable combustion, and issued a free-repair campaign (무상수리) consisting of an ECU software upgrade. Korean owner forums also document residual cold-start delay on later TA cars (e.g., 2015 models) that was ultimately resolved by replacing the fuel pump assembly when the ECU update alone did not cure it.",
+        "solution": "Have a Kia service center apply the cold-start ECU calibration update (free under the campaign for cars built Jan 2011-Mar 2012). If delayed cold starts persist after the update, test fuel-rail pressure hold-down; a leaking check valve in the in-tank fuel pump assembly is the documented follow-up fix. Rule out a weak battery first in sub-zero weather.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Long cranking on cold mornings after overnight parking",
+          "Engine almost starts then dies, needs several attempts",
+          "Problem appears mainly in winter or after long cold soak",
+          "Rough running for the first seconds after a cold start",
+          "Starts normally once the engine is warm"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 350,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.clien.net/service/board/cm_car/17931809",
+            "type": "forum",
+            "title": "냉간 시 시동지연 현상 드디어 고쳤습니다(15년식 모닝) — Clien (live, fetched; 2015 Morning cold-start delay fixed by fuel pump assembly)"
+          },
+          {
+            "url": "https://nolewa.com/index.php?document_srl=52660418&mid=recall_k_no&order_type=desc&page=2&sort_index=readed_count",
+            "type": "recall",
+            "title": "기아 - 올 뉴 모닝 연료 분사량 과다로 냉간 방치시 시동지연 및 불가 발생 무상수리 — Nolewa recall board (geo-blocked from US; content verified via search index: builds 2011-01-15~2012-03-28, 120,106 units, ECU upgrade, campaign 2012-07-09~2013-07-08)"
+          },
+          {
+            "url": "https://www.kiaownersclub.co.uk/threads/cold-start-problems.9266/",
+            "type": "forum",
+            "title": "Cold Start Problems — Kia Owners Club UK (Picanto TA twin; 2012MY TA 1.0L ECM control-logic software upgrade for hard starting at -1 to +10 C; live for humans, bot-paywalled)"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-14",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Kia",
+        "model": "Morning",
+        "years": [
+          2011,
+          2012,
+          2013,
+          2014,
+          2015
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "engine",
+        "title": "Cold-Start Delay or No-Start After Overnight Parking (Excessive Cold-Start Fuel Injection — ECU Service Campaign)",
+        "description": "Early TA Morning vehicles built between January 15, 2011 and March 28, 2012 suffer intermittent hard starting after a long cold soak (typically winter mornings): the engine cranks, almost catches, then dies or refuses to start. Kia identified the cause as excessive fuel-injection quantity at cold start producing unstable combustion, and issued a free-repair campaign (무상수리) consisting of an ECU software upgrade. Korean owner forums also document residual cold-start delay on later TA cars (e.g., 2015 models) that was ultimately resolved by replacing the fuel pump assembly when the ECU update alone did not cure it.",
+        "solution": "Have a Kia service center apply the cold-start ECU calibration update (free under the campaign for cars built Jan 2011-Mar 2012). If delayed cold starts persist after the update, test fuel-rail pressure hold-down; a leaking check valve in the in-tank fuel pump assembly is the documented follow-up fix. Rule out a weak battery first in sub-zero weather.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Long cranking on cold mornings after overnight parking",
+          "Engine almost starts then dies, needs several attempts",
+          "Problem appears mainly in winter or after long cold soak",
+          "Rough running for the first seconds after a cold start",
+          "Starts normally once the engine is warm"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 350,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.clien.net/service/board/cm_car/17931809",
+            "type": "forum",
+            "title": "냉간 시 시동지연 현상 드디어 고쳤습니다(15년식 모닝) — Clien (live, fetched; 2015 Morning cold-start delay fixed by fuel pump assembly)"
+          },
+          {
+            "url": "https://nolewa.com/index.php?document_srl=52660418&mid=recall_k_no&order_type=desc&page=2&sort_index=readed_count",
+            "type": "recall",
+            "title": "기아 - 올 뉴 모닝 연료 분사량 과다로 냉간 방치시 시동지연 및 불가 발생 무상수리 — Nolewa recall board (geo-blocked from US; content verified via search index: builds 2011-01-15~2012-03-28, 120,106 units, ECU upgrade, campaign 2012-07-09~2013-07-08)"
+          },
+          {
+            "url": "https://www.kiaownersclub.co.uk/threads/cold-start-problems.9266/",
+            "type": "forum",
+            "title": "Cold Start Problems — Kia Owners Club UK (Picanto TA twin; 2012MY TA 1.0L ECM control-logic software upgrade for hard starting at -1 to +10 C; live for humans, bot-paywalled)"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-14",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "kia-morning-crankshaft-rear-main-seal-oil-leak-between-engine-transmissi",
+      "model": "Morning",
+      "action": "keep_published_pending_source",
+      "reason": "The frozen page combines TA-generation rear-main-seal leakage, a claimed one-time Kia free repair and manual-clutch contamination across 2011-2015. Its free-repair citation explicitly discusses the earlier 2007-2010 SA generation, while the remaining sources are shop cases and secondary articles. No exact primary campaign was found, so the row remains byte-for-byte frozen.",
+      "identityRule": "No source may change an indexed page identity. Cross-market evidence, a different generation, an unsupported year or a different failure mechanism requires a byte-for-byte hold.",
+      "commerceDecision": "unchanged-no-commerce-or-source-pending-exact-primary-evidence",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "secondary-source-only-no-exact-primary-package",
+          "verifiedOn": "2026-08-08",
+          "observation": "The frozen page combines TA-generation rear-main-seal leakage, a claimed one-time Kia free repair and manual-clutch contamination across 2011-2015. Its free-repair citation explicitly discusses the earlier 2007-2010 SA generation, while the remaining sources are shop cases and secondary articles. No exact primary campaign was found, so the row remains byte-for-byte frozen."
+        }
+      ],
+      "beforeSha256": "aee5a9babccd7eead49083064ac03290f8c9472918963c9709d5017a327a4eed",
+      "proposalSha256": "aee5a9babccd7eead49083064ac03290f8c9472918963c9709d5017a327a4eed",
+      "before": {
+        "make": "Kia",
+        "model": "Morning",
+        "years": [
+          2011,
+          2012,
+          2013,
+          2014,
+          2015
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "engine",
+        "title": "Crankshaft Rear Main Seal (Retainer) Oil Leak Between Engine and Transmission",
+        "description": "A widely reported chronic problem on the TA Morning: the crankshaft rear oil seal (크랭크 리데나/리테이너) loses tension or walks out of position, letting engine oil leak at the junction between the engine and transmission. Korean repair shops document this as a recurring Morning failure, and owner communities report that Kia quietly issued a one-time free-repair directive to its Auto Q service network for this leak, though application was inconsistent between service centers. Because the seal sits behind the transmission, the gearbox must be removed to replace a cheap part, making the repair disproportionately expensive — roughly 300,000-350,000 KRW out of pocket. On manual cars, leaking oil can contaminate the clutch and cause slip.",
+        "solution": "Replace the crankshaft rear oil seal/retainer; transmission removal is required, so combine with clutch service on manual cars if the clutch is oil-contaminated. Ask a Kia Auto Q service center whether the one-time free repair (무상수리) for the crank retainer leak applies to the vehicle before paying out of pocket — coverage reports vary by center.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Oil drips or wetness where engine meets transmission",
+          "Oil spots under the middle of the car",
+          "Engine oil level slowly dropping",
+          "Burning oil smell after driving",
+          "Clutch slip or shudder on manual cars (oil-contaminated clutch)"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 200,
+        "estimatedCostHigh": 300,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://carssen.com/kcartech/31716",
+            "type": "forum",
+            "title": "카쎈닷컴 — 모닝 후크랑크 리데나 누유발생 (Morning rear crank seal leak repair case)"
+          },
+          {
+            "url": "https://www.clien.net/service/board/cm_car/10170774",
+            "type": "forum",
+            "title": "클리앙 — 모닝 리테이너 무상 수리 (retainer free-repair discussion; covers 2007-2010 SA gen)"
+          },
+          {
+            "url": "http://jinsungmotors.com/%EB%AA%A8%EB%8B%9D-%EC%97%94%EC%A7%84%EC%98%A4%EC%9D%BC-%EB%88%84%EC%9C%A0-%EC%88%98%EB%A6%AC-%ED%81%AC%EB%9E%AD%ED%81%AC-%EB%A6%AC%ED%85%8C%EC%9D%B4%EB%84%88-%EA%B5%90%ED%99%98-%EB%B0%8B%EC%85%98/",
+            "type": "article",
+            "title": "진성모터스 — 모닝 엔진오일 누유 수리, 크랭크 리테이너 교환 (trans removed, rear retainer replaced)"
+          },
+          {
+            "url": "https://www.heydealer.com/blog/%EA%B8%B0%EC%95%84-%EB%AA%A8%EB%8B%9D-%EC%A4%91%EA%B3%A0-%EA%B5%AC%EB%A7%A4-%EC%A0%84-%EB%B4%90%EC%95%BC%ED%95%A0-%EA%B3%A0%EC%A7%88%EB%B3%91-5%EA%B0%80%EC%A7%80/",
+            "type": "article",
+            "title": "헤이딜러 — 기아 모닝 중고 구매 전 봐야할 고질병 5가지 (crank seal leak listed as #1 chronic problem, incl. All New Morning/TA)"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-14",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Kia",
+        "model": "Morning",
+        "years": [
+          2011,
+          2012,
+          2013,
+          2014,
+          2015
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "engine",
+        "title": "Crankshaft Rear Main Seal (Retainer) Oil Leak Between Engine and Transmission",
+        "description": "A widely reported chronic problem on the TA Morning: the crankshaft rear oil seal (크랭크 리데나/리테이너) loses tension or walks out of position, letting engine oil leak at the junction between the engine and transmission. Korean repair shops document this as a recurring Morning failure, and owner communities report that Kia quietly issued a one-time free-repair directive to its Auto Q service network for this leak, though application was inconsistent between service centers. Because the seal sits behind the transmission, the gearbox must be removed to replace a cheap part, making the repair disproportionately expensive — roughly 300,000-350,000 KRW out of pocket. On manual cars, leaking oil can contaminate the clutch and cause slip.",
+        "solution": "Replace the crankshaft rear oil seal/retainer; transmission removal is required, so combine with clutch service on manual cars if the clutch is oil-contaminated. Ask a Kia Auto Q service center whether the one-time free repair (무상수리) for the crank retainer leak applies to the vehicle before paying out of pocket — coverage reports vary by center.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Oil drips or wetness where engine meets transmission",
+          "Oil spots under the middle of the car",
+          "Engine oil level slowly dropping",
+          "Burning oil smell after driving",
+          "Clutch slip or shudder on manual cars (oil-contaminated clutch)"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 200,
+        "estimatedCostHigh": 300,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://carssen.com/kcartech/31716",
+            "type": "forum",
+            "title": "카쎈닷컴 — 모닝 후크랑크 리데나 누유발생 (Morning rear crank seal leak repair case)"
+          },
+          {
+            "url": "https://www.clien.net/service/board/cm_car/10170774",
+            "type": "forum",
+            "title": "클리앙 — 모닝 리테이너 무상 수리 (retainer free-repair discussion; covers 2007-2010 SA gen)"
+          },
+          {
+            "url": "http://jinsungmotors.com/%EB%AA%A8%EB%8B%9D-%EC%97%94%EC%A7%84%EC%98%A4%EC%9D%BC-%EB%88%84%EC%9C%A0-%EC%88%98%EB%A6%AC-%ED%81%AC%EB%9E%AD%ED%81%AC-%EB%A6%AC%ED%85%8C%EC%9D%B4%EB%84%88-%EA%B5%90%ED%99%98-%EB%B0%8B%EC%85%98/",
+            "type": "article",
+            "title": "진성모터스 — 모닝 엔진오일 누유 수리, 크랭크 리테이너 교환 (trans removed, rear retainer replaced)"
+          },
+          {
+            "url": "https://www.heydealer.com/blog/%EA%B8%B0%EC%95%84-%EB%AA%A8%EB%8B%9D-%EC%A4%91%EA%B3%A0-%EA%B5%AC%EB%A7%A4-%EC%A0%84-%EB%B4%90%EC%95%BC%ED%95%A0-%EA%B3%A0%EC%A7%88%EB%B3%91-5%EA%B0%80%EC%A7%80/",
+            "type": "article",
+            "title": "헤이딜러 — 기아 모닝 중고 구매 전 봐야할 고질병 5가지 (crank seal leak listed as #1 chronic problem, incl. All New Morning/TA)"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-14",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "kia-morning-drive-belt-cricket-squeal-from-solid-alternator-pulley",
+      "model": "Morning",
+      "action": "keep_published_pending_source",
+      "reason": "The solid-pulley/OAP mechanism, 2013 production change, 5-to-6-rib conversion and permanent-fix claims rely on a secondary blog, shop page, video and wiki. No Kia engineering bulletin or exact part-number/fitment source was located for the 2011-2013 Morning scope. The row remains byte-for-byte frozen.",
+      "identityRule": "No source may change an indexed page identity. Cross-market evidence, a different generation, an unsupported year or a different failure mechanism requires a byte-for-byte hold.",
+      "commerceDecision": "unchanged-no-commerce-or-source-pending-exact-primary-evidence",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "secondary-source-only-no-exact-primary-package",
+          "verifiedOn": "2026-08-08",
+          "observation": "The solid-pulley/OAP mechanism, 2013 production change, 5-to-6-rib conversion and permanent-fix claims rely on a secondary blog, shop page, video and wiki. No Kia engineering bulletin or exact part-number/fitment source was located for the 2011-2013 Morning scope. The row remains byte-for-byte frozen."
+        }
+      ],
+      "beforeSha256": "91e0d64145606b2d4584df99137c5e447684c98412903d4880d57d6aa84b581e",
+      "proposalSha256": "91e0d64145606b2d4584df99137c5e447684c98412903d4880d57d6aa84b581e",
+      "before": {
+        "make": "Kia",
+        "model": "Morning",
+        "years": [
+          2011,
+          2012,
+          2013
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "engine",
+        "title": "Drive-Belt 'Cricket' Squeal from Solid Alternator Pulley (Early Kappa 1.0)",
+        "description": "2011 to late-2012 production Morning (TA) and Ray cars with the early 1.0 Kappa engine are notorious in Korea for a chirping/squealing 'cricket noise' (귀뚜라미 소리) from the accessory belt, worst on cold mornings and when the A/C compressor engages. The root cause is the solid (fixed) alternator pulley, which cannot absorb rapid crankshaft speed fluctuations of the 3-cylinder engine, so the belt repeatedly slips. Kia revised production from the 2013 model year, fitting an OAP (overrunning alternator pulley) and changing the belt from 5 to 6 ribs; replacing the solid pulley with the OAP type is the accepted permanent fix. Simply replacing the belt does not cure it — the noise returns.",
+        "solution": "Replace the solid alternator pulley with the revised OAP (overrunning alternator pulley) and fit the updated 6-rib drive belt per the 2013 production change. Belt dressing or belt replacement alone gives only temporary relief. Parts plus labor typically run 150,000-300,000 KRW at independent shops in Korea.",
+        "severity": "low",
+        "confidence": "high",
+        "symptoms": [
+          "Chirping/squealing 'cricket' noise at cold start",
+          "Noise appears when the A/C is switched on",
+          "Worse in winter or damp weather",
+          "Noise returns soon after a new belt is fitted",
+          "Noise varies with engine RPM"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 100,
+        "estimatedCostHigh": 250,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.heydealer.com/blog/%EA%B8%B0%EC%95%84-%EB%AA%A8%EB%8B%9D-%EC%A4%91%EA%B3%A0-%EA%B5%AC%EB%A7%A4-%EC%A0%84-%EB%B4%90%EC%95%BC%ED%95%A0-%EA%B3%A0%EC%A7%88%EB%B3%91-5%EA%B0%80%EC%A7%80/",
+            "type": "article",
+            "title": "HeyDealer blog — 기아 모닝 중고 구매 전 봐야할 고질병 5가지 (OAP pulley cricket-noise listed as chronic issue)"
+          },
+          {
+            "url": "https://m.oh-car.co.kr/goods/goods_view.php?goodsNo=1000706524",
+            "type": "article",
+            "title": "오늘의카 shop work log — 올뉴모닝 귀뚜라미 소리 해결 / OAP(오버러닝 알터네이터 풀리) 교체 (confirms 11-12 solid pulley root cause, 13+ factory OAP)"
+          },
+          {
+            "url": "https://www.youtube.com/watch?v=o1YJGx9o31A",
+            "type": "article",
+            "title": "YouTube — 기아 모닝/레이 귀뚜라미소리 OAP풀리 교체 (repair video)"
+          },
+          {
+            "url": "https://namu.wiki/w/%EA%B8%B0%EC%95%84%20%EB%AA%A8%EB%8B%9D",
+            "type": "article",
+            "title": "나무위키 — 기아 모닝 (documents 11-12 올뉴모닝 early-Kappa belt-slip cricket noise, solid pulley cause, MY2013 OAP / MY2015 improved OAP)"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-14",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Kia",
+        "model": "Morning",
+        "years": [
+          2011,
+          2012,
+          2013
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "engine",
+        "title": "Drive-Belt 'Cricket' Squeal from Solid Alternator Pulley (Early Kappa 1.0)",
+        "description": "2011 to late-2012 production Morning (TA) and Ray cars with the early 1.0 Kappa engine are notorious in Korea for a chirping/squealing 'cricket noise' (귀뚜라미 소리) from the accessory belt, worst on cold mornings and when the A/C compressor engages. The root cause is the solid (fixed) alternator pulley, which cannot absorb rapid crankshaft speed fluctuations of the 3-cylinder engine, so the belt repeatedly slips. Kia revised production from the 2013 model year, fitting an OAP (overrunning alternator pulley) and changing the belt from 5 to 6 ribs; replacing the solid pulley with the OAP type is the accepted permanent fix. Simply replacing the belt does not cure it — the noise returns.",
+        "solution": "Replace the solid alternator pulley with the revised OAP (overrunning alternator pulley) and fit the updated 6-rib drive belt per the 2013 production change. Belt dressing or belt replacement alone gives only temporary relief. Parts plus labor typically run 150,000-300,000 KRW at independent shops in Korea.",
+        "severity": "low",
+        "confidence": "high",
+        "symptoms": [
+          "Chirping/squealing 'cricket' noise at cold start",
+          "Noise appears when the A/C is switched on",
+          "Worse in winter or damp weather",
+          "Noise returns soon after a new belt is fitted",
+          "Noise varies with engine RPM"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 100,
+        "estimatedCostHigh": 250,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.heydealer.com/blog/%EA%B8%B0%EC%95%84-%EB%AA%A8%EB%8B%9D-%EC%A4%91%EA%B3%A0-%EA%B5%AC%EB%A7%A4-%EC%A0%84-%EB%B4%90%EC%95%BC%ED%95%A0-%EA%B3%A0%EC%A7%88%EB%B3%91-5%EA%B0%80%EC%A7%80/",
+            "type": "article",
+            "title": "HeyDealer blog — 기아 모닝 중고 구매 전 봐야할 고질병 5가지 (OAP pulley cricket-noise listed as chronic issue)"
+          },
+          {
+            "url": "https://m.oh-car.co.kr/goods/goods_view.php?goodsNo=1000706524",
+            "type": "article",
+            "title": "오늘의카 shop work log — 올뉴모닝 귀뚜라미 소리 해결 / OAP(오버러닝 알터네이터 풀리) 교체 (confirms 11-12 solid pulley root cause, 13+ factory OAP)"
+          },
+          {
+            "url": "https://www.youtube.com/watch?v=o1YJGx9o31A",
+            "type": "article",
+            "title": "YouTube — 기아 모닝/레이 귀뚜라미소리 OAP풀리 교체 (repair video)"
+          },
+          {
+            "url": "https://namu.wiki/w/%EA%B8%B0%EC%95%84%20%EB%AA%A8%EB%8B%9D",
+            "type": "article",
+            "title": "나무위키 — 기아 모닝 (documents 11-12 올뉴모닝 early-Kappa belt-slip cricket noise, solid pulley cause, MY2013 OAP / MY2015 improved OAP)"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-14",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "kia-morning-fuel-leveling-hose-cracking-fuel-leak-fire-risk",
+      "model": "Morning",
+      "action": "keep_published_pending_source",
+      "reason": "The official Korean government PDF exactly establishes the Morning TA fuel/leveling-hose material defect, leak/fire risk and improved-part dealer remedy, but its vehicle table covers production from November 9, 2010 through June 30, 2012. The frozen indexed years include 2013, which the source does not support. Because indexed-year changes are prohibited in this audit, the row remains byte-for-byte frozen and blocks application.",
+      "identityRule": "No source may change an indexed page identity. Cross-market evidence, a different generation, an unsupported year or a different failure mechanism requires a byte-for-byte hold.",
+      "commerceDecision": "unchanged-no-commerce-or-source-pending-exact-primary-evidence",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "official-korean-safety-recall-year-boundary-conflict",
+          "urls": [
+            "https://m.korea.kr/news/pressReleaseView.do?newsId=156266495",
+            "https://www.korea.kr/common/download.do?fileId=191964074&tblKey=GMN"
+          ],
+          "sha256": "740918bc2f6d4220fb59a75520532c40da23e879b17ed64c81ce793dd699ea7f",
+          "visuallyInspectedPages": [
+            1,
+            4
+          ],
+          "verifiedOn": "2026-08-08",
+          "observation": "The official Korean government PDF exactly establishes the Morning TA fuel/leveling-hose material defect, leak/fire risk and improved-part dealer remedy, but its vehicle table covers production from November 9, 2010 through June 30, 2012. The frozen indexed years include 2013, which the source does not support. Because indexed-year changes are prohibited in this audit, the row remains byte-for-byte frozen and blocks application."
+        }
+      ],
+      "beforeSha256": "450f2dacd9cf14b38f42349dafd57e2b83ee08d7470cad618d5cbc189d4a6e11",
+      "proposalSha256": "450f2dacd9cf14b38f42349dafd57e2b83ee08d7470cad618d5cbc189d4a6e11",
+      "before": {
+        "make": "Kia",
+        "model": "Morning",
+        "years": [
+          2011,
+          2012,
+          2013
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "fuel",
+        "title": "Fuel and Leveling Hose Cracking — Fuel Leak and Fire Risk (Official Korean Recall)",
+        "description": "In April 2018, Korea's Ministry of Land, Infrastructure and Transport (MOLIT) recalled 190,562 Kia Morning (TA) and Ray (TAM) vehicles because the fuel hose and fuel-tank leveling hose were made from a defective material that cracks over time. Cracked hoses allow fuel (gasoline or LPG vapor on Bi-Fuel models) to leak, creating a fire hazard. The recall population corresponds to early TA-generation production; affected VINs can be checked on Korea's official recall portal (car.go.kr). This recall applies to the Korea-market Morning; the related Picanto sold in other markets had separate campaigns.",
+        "solution": "Covered free of charge under the official recall: Kia service centers inspect the fuel and leveling hoses and replace them with hoses made of corrected material. Owners who paid for this repair before the recall announcement could claim reimbursement from Kia. Check recall applicability by VIN at car.go.kr; if a fuel smell or visible leak is present, stop driving and have the car towed to a service center.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Gasoline smell inside or around the car",
+          "Fuel stains or wet spots under the rear of the vehicle",
+          "Visible cracking on fuel hoses",
+          "Dropping fuel level without corresponding mileage",
+          "Fuel-vapor smell when refueling (Bi-Fuel/LPI cars)"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 0,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.korea.kr/news/pressReleaseView.do?newsId=156266495",
+            "type": "recall",
+            "title": "국토교통부 보도자료: 기아, 현대, 랜드로버, 폭스바겐 리콜실시(총 10개 차종 231,013대) — official MOLIT press release (page confirmed live via search index; blocks automated fetch)"
+          },
+          {
+            "url": "https://www.namdonews.com/news/articleView.html?idxno=471932",
+            "type": "article",
+            "title": "남도일보: 모닝 리콜, 기아자동차 모닝·레이·니로 하이브리드 등 리콜 (190,562대, 연료·레벨링 호스 균열 화재 위험)"
+          },
+          {
+            "url": "https://kbench.com/?q=node/187374",
+            "type": "article",
+            "title": "케이벤치: 화재 위험 '모닝·아이오닉·니로 하이브리드' 23만1천여대 리콜 (모닝 TA 등 2개 차종 190,562대)"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-14",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Kia",
+        "model": "Morning",
+        "years": [
+          2011,
+          2012,
+          2013
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "fuel",
+        "title": "Fuel and Leveling Hose Cracking — Fuel Leak and Fire Risk (Official Korean Recall)",
+        "description": "In April 2018, Korea's Ministry of Land, Infrastructure and Transport (MOLIT) recalled 190,562 Kia Morning (TA) and Ray (TAM) vehicles because the fuel hose and fuel-tank leveling hose were made from a defective material that cracks over time. Cracked hoses allow fuel (gasoline or LPG vapor on Bi-Fuel models) to leak, creating a fire hazard. The recall population corresponds to early TA-generation production; affected VINs can be checked on Korea's official recall portal (car.go.kr). This recall applies to the Korea-market Morning; the related Picanto sold in other markets had separate campaigns.",
+        "solution": "Covered free of charge under the official recall: Kia service centers inspect the fuel and leveling hoses and replace them with hoses made of corrected material. Owners who paid for this repair before the recall announcement could claim reimbursement from Kia. Check recall applicability by VIN at car.go.kr; if a fuel smell or visible leak is present, stop driving and have the car towed to a service center.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Gasoline smell inside or around the car",
+          "Fuel stains or wet spots under the rear of the vehicle",
+          "Visible cracking on fuel hoses",
+          "Dropping fuel level without corresponding mileage",
+          "Fuel-vapor smell when refueling (Bi-Fuel/LPI cars)"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 0,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.korea.kr/news/pressReleaseView.do?newsId=156266495",
+            "type": "recall",
+            "title": "국토교통부 보도자료: 기아, 현대, 랜드로버, 폭스바겐 리콜실시(총 10개 차종 231,013대) — official MOLIT press release (page confirmed live via search index; blocks automated fetch)"
+          },
+          {
+            "url": "https://www.namdonews.com/news/articleView.html?idxno=471932",
+            "type": "article",
+            "title": "남도일보: 모닝 리콜, 기아자동차 모닝·레이·니로 하이브리드 등 리콜 (190,562대, 연료·레벨링 호스 균열 화재 위험)"
+          },
+          {
+            "url": "https://kbench.com/?q=node/187374",
+            "type": "article",
+            "title": "케이벤치: 화재 위험 '모닝·아이오닉·니로 하이브리드' 23만1천여대 리콜 (모닝 TA 등 2개 차종 190,562대)"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-14",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "kia-morning-manual-transmission-clutch-judder-rapid-clutch-flywheel-wear",
+      "model": "Morning",
+      "action": "keep_published_pending_source",
+      "reason": "The frozen 2011-2018 identity combines Korean Morning clutch/flywheel durability claims with damp-weather judder reports from several EU-market Picanto generations and engines. No Kia primary bulletin establishes one revised clutch/flywheel remedy across that scope. The cross-market, year and mechanism aggregation remains byte-for-byte frozen.",
+      "identityRule": "No source may change an indexed page identity. Cross-market evidence, a different generation, an unsupported year or a different failure mechanism requires a byte-for-byte hold.",
+      "commerceDecision": "unchanged-no-commerce-or-source-pending-exact-primary-evidence",
+      "changedFields": [],
+      "evidence": [
+        {
+          "kind": "secondary-source-only-no-exact-primary-package",
+          "verifiedOn": "2026-08-08",
+          "observation": "The frozen 2011-2018 identity combines Korean Morning clutch/flywheel durability claims with damp-weather judder reports from several EU-market Picanto generations and engines. No Kia primary bulletin establishes one revised clutch/flywheel remedy across that scope. The cross-market, year and mechanism aggregation remains byte-for-byte frozen."
+        }
+      ],
+      "beforeSha256": "996d581787a42802e3ba069fd0a8c6198c74f3bd8b0b0b615663b1cc99f4881f",
+      "proposalSha256": "996d581787a42802e3ba069fd0a8c6198c74f3bd8b0b0b615663b1cc99f4881f",
+      "before": {
+        "make": "Kia",
+        "model": "Morning",
+        "years": [
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "transmission",
+        "title": "Manual Transmission Clutch Judder and Rapid Clutch/Flywheel Wear",
+        "description": "Manual-gearbox Morning/Picanto cars show two related, well-documented clutch complaints. First, cold/damp-morning clutch judder: a pronounced shudder when pulling away in 1st or 2nd gear that fades after a few miles, attributed to condensation on the friction surfaces and addressed by revised clutch part numbers — repeatedly discussed across Kia Owners Club threads for the Picanto (the Morning's twin, same platform and drivetrain family). Second, Korean owner communities document low durability of the clutch and flywheel on the TA Morning: habitual half-clutch driving can glaze or burn the friction plate in remarkably low mileage, and uneven flywheel wear then perpetuates judder even after a new clutch. Korea-market evidence is the Morning TA; the judder threads are from the EU-market Picanto with shared running gear.",
+        "solution": "For persistent judder, replace the clutch kit (disc, pressure plate, release bearing) with the latest revised parts and resurface or replace the flywheel — fitting a new clutch against a worn flywheel commonly brings the judder back. Under warranty, dealers handled judder cases with updated clutch components. Adjust driving habits to minimize riding the clutch; on cars that only judder damp-cold and clear within a mile, monitor before paying for repairs.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Shudder/vibration when pulling away, worst on cold or damp mornings",
+          "Judder fades after a few minutes of driving",
+          "Clutch slip — revs rise without acceleration",
+          "Burning smell after hill starts or stop-and-go traffic",
+          "High or inconsistent clutch bite point at low mileage"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 350,
+        "estimatedCostHigh": 700,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.kiaownersclub.co.uk/threads/clutch-judder-on-brand-new-1-25l-picanto-gt-line.57868/",
+            "type": "forum",
+            "title": "Clutch judder on brand new 1.25l Picanto GT Line — Kia Owners Club Forum"
+          },
+          {
+            "url": "https://www.kiaownersclub.co.uk/threads/picanto-clutch-problem.70948/",
+            "type": "forum",
+            "title": "Picanto clutch problem — Kia Owners Club Forum"
+          },
+          {
+            "url": "https://namu.wiki/w/%EA%B8%B0%EC%95%84%20%EB%AA%A8%EB%8B%9D/2%EC%84%B8%EB%8C%80",
+            "type": "article",
+            "title": "기아 모닝/2세대 (Kia Morning 2nd gen TA) — Namu Wiki, manual clutch/flywheel durability section"
+          },
+          {
+            "url": "https://www.kiaownersclub.co.uk/threads/morning-clutch.52997/",
+            "type": "forum",
+            "title": "morning clutch (damp-morning judder on Picanto) — Kia Owners Club Forum"
+          },
+          {
+            "url": "https://www.kiaownersclub.co.uk/threads/clutch-judder-1-25-isg.35293/",
+            "type": "forum",
+            "title": "Clutch judder 1.25 isg (TA-era Picanto) — Kia Owners Club Forum"
+          },
+          {
+            "url": "https://www.clien.net/service/board/cm_car/8900329",
+            "type": "forum",
+            "title": "모닝 클러치 교체 (Morning manual clutch + flywheel replacement) — Clien"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-14",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Kia",
+        "model": "Morning",
+        "years": [
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "transmission",
+        "title": "Manual Transmission Clutch Judder and Rapid Clutch/Flywheel Wear",
+        "description": "Manual-gearbox Morning/Picanto cars show two related, well-documented clutch complaints. First, cold/damp-morning clutch judder: a pronounced shudder when pulling away in 1st or 2nd gear that fades after a few miles, attributed to condensation on the friction surfaces and addressed by revised clutch part numbers — repeatedly discussed across Kia Owners Club threads for the Picanto (the Morning's twin, same platform and drivetrain family). Second, Korean owner communities document low durability of the clutch and flywheel on the TA Morning: habitual half-clutch driving can glaze or burn the friction plate in remarkably low mileage, and uneven flywheel wear then perpetuates judder even after a new clutch. Korea-market evidence is the Morning TA; the judder threads are from the EU-market Picanto with shared running gear.",
+        "solution": "For persistent judder, replace the clutch kit (disc, pressure plate, release bearing) with the latest revised parts and resurface or replace the flywheel — fitting a new clutch against a worn flywheel commonly brings the judder back. Under warranty, dealers handled judder cases with updated clutch components. Adjust driving habits to minimize riding the clutch; on cars that only judder damp-cold and clear within a mile, monitor before paying for repairs.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Shudder/vibration when pulling away, worst on cold or damp mornings",
+          "Judder fades after a few minutes of driving",
+          "Clutch slip — revs rise without acceleration",
+          "Burning smell after hill starts or stop-and-go traffic",
+          "High or inconsistent clutch bite point at low mileage"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 350,
+        "estimatedCostHigh": 700,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.kiaownersclub.co.uk/threads/clutch-judder-on-brand-new-1-25l-picanto-gt-line.57868/",
+            "type": "forum",
+            "title": "Clutch judder on brand new 1.25l Picanto GT Line — Kia Owners Club Forum"
+          },
+          {
+            "url": "https://www.kiaownersclub.co.uk/threads/picanto-clutch-problem.70948/",
+            "type": "forum",
+            "title": "Picanto clutch problem — Kia Owners Club Forum"
+          },
+          {
+            "url": "https://namu.wiki/w/%EA%B8%B0%EC%95%84%20%EB%AA%A8%EB%8B%9D/2%EC%84%B8%EB%8C%80",
+            "type": "article",
+            "title": "기아 모닝/2세대 (Kia Morning 2nd gen TA) — Namu Wiki, manual clutch/flywheel durability section"
+          },
+          {
+            "url": "https://www.kiaownersclub.co.uk/threads/morning-clutch.52997/",
+            "type": "forum",
+            "title": "morning clutch (damp-morning judder on Picanto) — Kia Owners Club Forum"
+          },
+          {
+            "url": "https://www.kiaownersclub.co.uk/threads/clutch-judder-1-25-isg.35293/",
+            "type": "forum",
+            "title": "Clutch judder 1.25 isg (TA-era Picanto) — Kia Owners Club Forum"
+          },
+          {
+            "url": "https://www.clien.net/service/board/cm_car/8900329",
+            "type": "forum",
+            "title": "모닝 클러치 교체 (Morning manual clutch + flywheel replacement) — Clien"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-14",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "kia-morning-pcv-valve-plastic-needle-wear-oil-ingestion-white-exhaust-sm",
+      "model": "Morning",
+      "action": "rewrite_same_identity",
+      "reason": "The exact Korean government recall matches this indexed PCV-valve identity and its complete frozen year set. The proposal narrows the content to the official production range, failure mechanism and dealer remedy without changing ID, title, category, years or status.",
+      "identityRule": "No source may change an indexed page identity. Cross-market evidence, a different generation, an unsupported year or a different failure mechanism requires a byte-for-byte hold.",
+      "commerceDecision": "dealer-only-no-retail-part-korean-emissions-recall",
+      "changedFields": [
+        "description",
+        "solution",
+        "symptoms",
+        "affectedSystems",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "humanApproved",
+        "source",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ],
+      "evidence": [
+        {
+          "kind": "official-korean-emissions-recall-exact-same-identity",
+          "url": "https://me.go.kr/home/web/board/read.do?boardCategoryId=39&boardId=343514&boardMasterId=1&decorator=&maxIndexPages=10&maxPageItems=10&menuId=&orgCd=&pagerOffset=10050&searchKey=&searchValue=",
+          "verifiedOn": "2026-08-08",
+          "markers": [
+            "196,950",
+            "2011년 1월 17일",
+            "2012년 7월 16일",
+            "플라스틱에서 스틸로 무상 교체"
+          ],
+          "observation": "The Ministry of Environment page establishes the affected Morning variants, production dates, plastic-needle wear, oil entry into the intake, white smoke and free steel-needle replacement."
+        }
+      ],
+      "beforeSha256": "0c9ef58f21bbdd090d0bb98b7130b20a1e93ab61d039b2b8bb8fca994023d33d",
+      "proposalSha256": "56d70e9f8ee5a2ec5ef6b8b6049dcf422390dcf142eec35f72eb61471ddca7c7",
+      "before": {
+        "make": "Kia",
+        "model": "Morning",
+        "years": [
+          2011,
+          2012
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "engine",
+        "title": "PCV Valve Plastic Needle Wear — Oil Ingestion and White Exhaust Smoke (Government-Ordered Recall)",
+        "description": "On the 1.0L Kappa engine in Morning and Ray vehicles built between January 17, 2011 and July 16, 2012 (196,950 vehicles total), the PCV (positive crankcase ventilation) valve used a plastic needle with poor durability. As the needle wears, the valve no longer regulates blow-by gas correctly and engine oil is drawn into the intake manifold, where it burns with fuel and produces white exhaust smoke with elevated particulate emissions. Korea's Ministry of Environment ordered a corrective recall in March 2014, replacing the plastic valve with a steel one. Beyond the smoke, unaddressed valves cause gradual engine-oil consumption and intake fouling.",
+        "solution": "Free replacement of the plastic PCV valve with a steel-needle PCV valve at Kia service centers under the March 2014 campaign. Outside the campaign, replacing the PCV valve is an inexpensive repair; also check and top up engine oil, and clean the intake/throttle body if heavy oil ingestion has occurred. Owners of 2011-2012 cars showing white smoke should confirm the steel valve was fitted.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "White smoke from the exhaust, especially under acceleration",
+          "Engine oil level drops between services",
+          "Burning-oil smell",
+          "Oily residue in the intake/throttle body",
+          "Rough idle"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 100,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.waterjournal.co.kr/news/articleView.html?idxno=19371",
+            "type": "article",
+            "title": "[환경부] 기아차 레이·모닝 20만대 리콜 명령 — 워터저널 (Water Journal)"
+          },
+          {
+            "url": "https://www.motorgraph.com/news/articleView.html?idxno=1996",
+            "type": "article",
+            "title": "기아차 모닝·레이 20만대 리콜…미세먼지 등 흰색 가스 배출 — 모터그래프 (Motorgraph)"
+          },
+          {
+            "url": "https://www.mirae-biz.com/news/articleView.html?idxno=8381",
+            "type": "article",
+            "title": "레이 1.0 가솔린, PCV 밸브 결함…20만대 리콜 — 미래경제 (Mirae-biz)"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-14",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposal": {
+        "make": "Kia",
+        "model": "Morning",
+        "years": [
+          2011,
+          2012
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "engine",
+        "title": "PCV Valve Plastic Needle Wear — Oil Ingestion and White Exhaust Smoke (Government-Ordered Recall)",
+        "description": "South Korea's Ministry of Environment states that Kia recalled Morning 1.0 gasoline and Morning 1.0 Bi-Fuel vehicles produced from January 17, 2011 through July 16, 2012 because the plastic needle in the positive crankcase ventilation (PCV) valve could wear. The worn valve can allow engine oil into the intake manifold, where it burns with fuel and can produce white exhaust smoke and increased particulate emissions. The cited total of 196,950 vehicles covers four Morning and Ray variants together, not Morning alone.",
+        "solution": "Confirm campaign completion with a Kia service center. The government notice says Kia service centers and partners inspect and replace the PCV valve free of charge, changing the needle material from plastic to steel. This is a Korean-market campaign repair with vehicle-specific applicability, so no retail PCV valve is linked from this page.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "White exhaust smoke"
+        ],
+        "affectedSystems": [
+          "positive crankcase ventilation valve",
+          "intake manifold"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "South Korea Ministry of Environment - Kia Morning and Ray PCV Valve Recall",
+            "url": "https://me.go.kr/home/web/board/read.do?boardCategoryId=39&boardId=343514&boardMasterId=1&decorator=&maxIndexPages=10&maxPageItems=10&menuId=&orgCd=&pagerOffset=10050&searchKey=&searchValue="
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-08",
+        "contentUpdatedOn": "2026-08-08",
+        "contentUpdateSummary": "Bounded the same PCV-valve identity to the official Korean recall, corrected the 196,950 figure to the combined four-variant population, and removed unsupported Kappa naming, secondary citations, extra symptoms and retail-repair advice.",
+        "relatedIssueIds": []
+      }
+    }
+  ]
+}
