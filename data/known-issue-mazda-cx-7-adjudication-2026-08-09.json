@@ -1,0 +1,509 @@
+{
+  "schemaVersion": 1,
+  "status": "proposal-only",
+  "auditStage": "model-primary-source-technical-adjudication",
+  "requiresIndependentApproval": true,
+  "generatedOn": "2026-08-09",
+  "make": "Mazda",
+  "model": "CX-7",
+  "completionStatement": "Both frozen Mazda CX-7 pages are accounted for with indexed identities and vehicle scopes preserved.",
+  "applicationGate": {
+    "status": "blocked",
+    "blockerRecordIds": [
+      "mazda-cx7-turbo-failure-2007",
+      "mazda-cx7-vvt-actuator-2007"
+    ],
+    "reason": "Both rows contain material source, scope, diagnosis and remedy corrections and require independent review before any catalog write."
+  },
+  "safetyContract": [
+    "No production write, deployment, archive, redirect, slug change, title change, category change, indexed-year change, trim change, engine change, severity change, report-count change, related-link change or new issue is authorized.",
+    "Both pages remain published with their exact frozen identity, vehicle metadata, report count and canonical severity.",
+    "SSP86 and SSP87 remain VIN-, engine-, build-date- and symptom-scoped; the frozen 2011-2012 years are not presented as program coverage.",
+    "Unknown owner totals remain zero and are never rendered or written as \"0+ owners\" social proof.",
+    "The frozen nonzero report count remains data only and is never inserted into audit prose.",
+    "Every named replaceable part has an explicit no-universal-retail-part boundary.",
+    "No search-style commerce link, buy link, fixParts record or community recommendation is introduced."
+  ],
+  "source": {
+    "snapshotFile": "data/_mazda-deeplink-snapshot-2026-08-09.json",
+    "snapshotSha256": "37f6123a01ae1ac598c9571f6eb80dab6e72c0cdcbe1ecd116d4907b431b1dc2",
+    "snapshotGeneratedAt": "2026-08-08T23:09:50.434Z",
+    "snapshotHash": "773b75739422714c7e1d3eac7f3dc65f5942f73bdb54692642d799f679a1c897",
+    "modelRecordCount": 2
+  },
+  "observations": [
+    {
+      "code": "cx7-two-programs-separated",
+      "severity": "accuracy-correction",
+      "recordIds": [
+        "mazda-cx7-turbo-failure-2007"
+      ],
+      "detail": "SSP87 VVT/timing-chain noise and SSP86 turbo-oil white smoke remain separate diagnosis and remedy paths."
+    },
+    {
+      "code": "cx7-frozen-years-outside-program-scope",
+      "severity": "identity-hold",
+      "recordIds": [
+        "mazda-cx7-turbo-failure-2007",
+        "mazda-cx7-vvt-actuator-2007"
+      ],
+      "detail": "Frozen 2007-2012 indexed years remain unchanged while prose states SSP86 2007-2009 and SSP87 2007-2010 exact scope."
+    },
+    {
+      "code": "cx7-vvt-solenoid-theory-removed",
+      "severity": "accuracy-correction",
+      "recordIds": [
+        "mazda-cx7-vvt-actuator-2007"
+      ],
+      "detail": "SSP87 identifies the VVT actuator/rotor and timing chain, not a generic VVT solenoid or the frozen DTC list."
+    },
+    {
+      "code": "all-cx7-pages-preserved",
+      "severity": "seo-safety",
+      "recordIds": [
+        "mazda-cx7-turbo-failure-2007",
+        "mazda-cx7-vvt-actuator-2007"
+      ],
+      "detail": "Neither Mazda CX-7 page is removed, merged, redirected or allowed to lose indexed identity or vehicle scope."
+    }
+  ],
+  "pdfSources": {
+    "ssp86": {
+      "title": "Mazda SSP86 Heavy White Exhaust Smoke Warranty Extension Owner Letter",
+      "type": "manufacturer",
+      "url": "https://static.nhtsa.gov/odi/tsbs/2012/CSC-10043874-2940.pdf",
+      "pages": 2,
+      "visualPages": [
+        1,
+        2
+      ],
+      "bytes": 77665,
+      "sha256": "6e45741e17c5bc38164b4ad86b4deeff3e3ec26548999fccf0837027d3278ebc"
+    },
+    "ssp87": {
+      "title": "Mazda SSP87 VVT and Timing Chain Noise Warranty Extension Owner Letter",
+      "type": "manufacturer",
+      "url": "https://static.nhtsa.gov/odi/tsbs/2012/CSC-10043875-4853.pdf",
+      "pages": 2,
+      "visualPages": [
+        1,
+        2
+      ],
+      "bytes": 104998,
+      "sha256": "0af1ae24f3ca725d7b0c9ac7fd2ff118d659893a69dbd121d761b9f8f1964730"
+    }
+  },
+  "manufacturerCommunications": {
+    "source": "https://www.nhtsa.gov/nhtsa-datasets-and-apis",
+    "aliases": [
+      "CX-7",
+      "CX7"
+    ],
+    "periodCounts": {
+      "1995-1999": 0,
+      "2000-2004": 0,
+      "2005-2009": 20,
+      "2010-2014": 33,
+      "2015-2019": 163,
+      "2020-2024": 63,
+      "2025-2026": 8
+    },
+    "totalRows": 287,
+    "requiredCommunicationIds": [
+      "10034634",
+      "10039250",
+      "10039251",
+      "10043875",
+      "10044209"
+    ],
+    "sourceFiles": [
+      {
+        "period": "1995-1999",
+        "length": 3443097,
+        "sha256": "409a86bb7bb37a6313eae9212fb90a5ab45029fdcf2a69d0c0378eab080503db"
+      },
+      {
+        "period": "2000-2004",
+        "length": 8952754,
+        "sha256": "5c755be52d35e060626402ebe6dfcccdf350ae379df5c06b49c71d08497e2264"
+      },
+      {
+        "period": "2005-2009",
+        "length": 5457880,
+        "sha256": "04f72a7bf95530d116b1500c976a9e4d365e1c9a8b0433f58d60dbb36a58679b"
+      },
+      {
+        "period": "2010-2014",
+        "length": 17332775,
+        "sha256": "41e66a9d81a859d469d51c6cdcbc107fc6284c64ed24065ccaf1fe02a52e4387"
+      },
+      {
+        "period": "2015-2019",
+        "length": 144450847,
+        "sha256": "d6c2ff16880cc7b31cfebad94bda08c3e8b3b2c3f28d56d5b1bb810c8b878a2e"
+      },
+      {
+        "period": "2020-2024",
+        "length": 125521629,
+        "sha256": "3b3ca3d690e33386d1d315a0f966285ae8cccb99c45c2386ada164c5e925c3cf"
+      },
+      {
+        "period": "2025-2026",
+        "length": 77786229,
+        "sha256": "419ebda2f1c1bf22e2b0862858d61699c25e61d73842f9031e796f1fafefba4c"
+      }
+    ]
+  },
+  "recallInventory": {
+    "source": "https://www.nhtsa.gov/nhtsa-datasets-and-apis",
+    "aliases": [
+      "CX-7",
+      "CX7"
+    ],
+    "periodCounts": {
+      "pre": 3,
+      "post": 26
+    },
+    "totalRows": 29,
+    "campaignCount": 7,
+    "campaigns": [
+      "09E011000",
+      "16V593000",
+      "17V429000",
+      "17V457000",
+      "18V018000",
+      "18V717000",
+      "19V782000"
+    ],
+    "sourceFiles": [
+      {
+        "period": "pre",
+        "length": 83786245,
+        "sha256": "71e6e325e2d69d204776fb32d83dad4fd95436a2f7890da54d49622d77a36232"
+      },
+      {
+        "period": "post",
+        "length": 309278972,
+        "sha256": "4803a7f298f1d850736fe55830f4d31b004577424cb6429988c5864786f76a70"
+      }
+    ]
+  },
+  "summary": {
+    "retain_indexed_identity_and_targeted_accuracy_cleanup_pending_source": 2,
+    "total": 2
+  },
+  "rows": [
+    {
+      "id": "mazda-cx7-turbo-failure-2007",
+      "action": "retain_indexed_identity_and_targeted_accuracy_cleanup_pending_source",
+      "reason": "Separated Mazda SSP87 VVT/timing-chain noise from SSP86 turbo-oil white smoke and removed unsupported 2011-2012, DTC, oil-interval, carbon and parts claims.",
+      "evidence": {
+        "primaryEvidence": [
+          "Mazda SSP87 VVT and Timing Chain Noise Warranty Extension Owner Letter",
+          "Mazda SSP86 Heavy White Exhaust Smoke Warranty Extension Owner Letter"
+        ],
+        "limitations": "SSP86 and SSP87 are historical, build/VIN-bounded warranty extensions; frozen 2011-2012 SEO years are retained but not represented as program scope."
+      },
+      "commerceDecision": "No universal retail part; VIN, L3T engine, build date, exact noise or smoke condition and diagnosed cause must be verified before replacement (mazda-cx7-turbo-failure-2007).",
+      "before": {
+        "make": "Mazda",
+        "model": "CX-7",
+        "years": [
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012
+        ],
+        "trims": [],
+        "engines": [
+          "2.3L DISI Turbo"
+        ],
+        "category": "engine",
+        "title": "2.3L Turbo VVT Actuator and Turbocharger Failure",
+        "description": "The CX-7's 2.3L DISI turbocharged engine (shared with the Mazdaspeed3) suffers from VVT actuator failure and premature turbocharger wear. Carbon buildup on the direct-injection intake valves compounds the issue. Extended oil change intervals accelerate turbo bearing wear.",
+        "solution": "Replace the VVT actuator and timing chain if worn. For turbo failure, replace the turbocharger and oil feed/return lines. Use full synthetic 5W-20 oil and change every 5,000 miles maximum to protect the turbo bearings. Consider walnut blasting for carbon buildup.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Rattling on cold start",
+          "Loss of turbo boost",
+          "Check engine light",
+          "Rough idle",
+          "Oil consumption increasing",
+          "Blue smoke on acceleration"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0014",
+          "P0299"
+        ],
+        "estimatedCostLow": 500,
+        "estimatedCostHigh": 3000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [],
+        "communityRecommendations": [
+          {
+            "type": "warning",
+            "content": "The 2.3T turbo is oil-cooled — change oil every 5,000 miles maximum with full synthetic or the turbo bearings WILL fail"
+          },
+          {
+            "type": "part",
+            "content": "OEM turbocharger replacement",
+            "partBrand": "Mazda",
+            "partNumber": "L3K9-13-70X"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 250,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-03-13",
+        "reviewedOn": "2026-03-13",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "mazda-mazdaspeed6-turbo-oil-starvation-2006",
+          "mazda-mazdaspeed3-turbo-seal-failure-2007",
+          "mazda-speed3-vvt-timing-chain-2007",
+          "mazda-speed3-turbo-failure-2007",
+          "mazda-speed3-motor-mount-failure-2007"
+        ]
+      },
+      "beforeSha256": "e3796a2df499f2592197b69e0e0700dcc4ba81b382758373801c499959d024db",
+      "proposal": {
+        "make": "Mazda",
+        "model": "CX-7",
+        "years": [
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012
+        ],
+        "trims": [],
+        "engines": [
+          "2.3L DISI Turbo"
+        ],
+        "category": "engine",
+        "title": "2.3L Turbo VVT Actuator and Turbocharger Failure",
+        "description": "Mazda documented two separate L3T-engine programs. SSP87 covered certain 2007-2010 CX-7 vehicles for a loud cold-start VVT tick from VVT-rotor lock-pin-hole wear or VVT-case breakage, and a warm rattle below 2,000 rpm from excessive timing-chain stretch. SSP86 covered certain Federal-emissions 2007-2009 CX-7 vehicles for heavy white exhaust smoke after long idle or low-speed driving that may result from turbocharger engine-oil leakage. These programs do not establish the frozen 2011-2012 scope, universal carbon buildup, P0014/P0299, or automatic turbo failure.",
+        "solution": "Use the VIN, build date, engine and exact symptom to separate the two paths. For the SSP87 condition, Mazda directed dealer inspection and replacement of the VVT actuator or both the actuator and timing chain only when that cause was verified. For the SSP86 condition, Mazda directed inspection of the white-smoke cause, then a ventilation kit or turbocharger replacement only when turbo oil leakage was verified. The historical warranty extensions may be expired; ask Mazda about current VIN eligibility and service information. Do not buy a VVT actuator, timing kit, turbocharger, oil line or carbon-cleaning service from this page; the applicable program and failed component must be verified first.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "loud VVT ticking immediately after a cold start",
+          "warm knocking or rattle below 2,000 rpm from the timing-cover area",
+          "heavy white exhaust smoke after a long idle or low-speed driving"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "title": "Mazda SSP87 VVT and Timing Chain Noise Warranty Extension Owner Letter",
+            "type": "manufacturer",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2012/CSC-10043875-4853.pdf"
+          },
+          {
+            "title": "Mazda SSP86 Heavy White Exhaust Smoke Warranty Extension Owner Letter",
+            "type": "manufacturer",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2012/CSC-10043874-2940.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 250,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-03-13",
+        "reviewedOn": "2026-08-09",
+        "contentUpdatedOn": "2026-08-09",
+        "contentUpdateSummary": "Separated Mazda SSP87 VVT/timing-chain noise from SSP86 turbo-oil white smoke and removed unsupported 2011-2012, DTC, oil-interval, carbon and parts claims.",
+        "relatedIssueIds": [
+          "mazda-mazdaspeed6-turbo-oil-starvation-2006",
+          "mazda-mazdaspeed3-turbo-seal-failure-2007",
+          "mazda-speed3-vvt-timing-chain-2007",
+          "mazda-speed3-turbo-failure-2007",
+          "mazda-speed3-motor-mount-failure-2007"
+        ]
+      },
+      "proposalSha256": "fd0f67b9c06a756a8193a60002f0f8159c514905b3d6f39f6b7167fdc0d12a3e",
+      "changedFields": [
+        "description",
+        "solution",
+        "symptoms",
+        "dtcCodes",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "communityRecommendations",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ]
+    },
+    {
+      "id": "mazda-cx7-vvt-actuator-2007",
+      "action": "retain_indexed_identity_and_targeted_accuracy_cleanup_pending_source",
+      "reason": "Replaced an unsupported video, solenoid theory and DTC list with Mazda SSP87's exact L3T population, two noise conditions and inspection-led remedy.",
+      "evidence": {
+        "primaryEvidence": [
+          "Mazda SSP87 VVT and Timing Chain Noise Warranty Extension Owner Letter"
+        ],
+        "limitations": "SSP86 and SSP87 are historical, build/VIN-bounded warranty extensions; frozen 2011-2012 SEO years are retained but not represented as program scope."
+      },
+      "commerceDecision": "No universal retail part; VIN, L3T engine, build date, exact noise or smoke condition and diagnosed cause must be verified before replacement (mazda-cx7-vvt-actuator-2007).",
+      "before": {
+        "make": "Mazda",
+        "model": "CX-7",
+        "years": [
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012
+        ],
+        "trims": [],
+        "engines": [
+          "2.3L Turbo"
+        ],
+        "category": "engine",
+        "title": "VVT Actuator Failure",
+        "description": "The Variable Valve Timing (VVT) actuator on the 2.3L turbo engine can fail due to oil contamination, internal seal wear, or solenoid malfunction. A failed VVT actuator causes rough idle, poor performance, and check engine lights with timing-related codes. The VVT system relies on clean oil pressure to function, so oil contamination from extended oil change intervals accelerates failure. This issue often accompanies or precedes the larger turbo engine failure problem.",
+        "solution": "",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Check engine light with VVT codes",
+          "Rough idle especially when cold",
+          "Rattling noise from engine on startup",
+          "Reduced engine power",
+          "Poor fuel economy"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [
+          "P0011",
+          "P0012",
+          "P0016"
+        ],
+        "estimatedCostLow": 300,
+        "estimatedCostHigh": 1000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.youtube.com/watch?v=2QJ8kN4f9wE",
+            "type": "video",
+            "title": "EricTheCarGuy - Mazda CX-7 VVT Actuator Replacement"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "VVT solenoid restores proper variable valve timing operation",
+            "partName": "Variable Valve Timing Solenoid",
+            "partBrand": "Dorman"
+          },
+          {
+            "type": "part",
+            "content": "Fresh oil is critical for VVT system performance",
+            "partName": "Full Synthetic Motor Oil",
+            "partBrand": "Mobil 1"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "mazda-mazda6-vvt-actuator-2009",
+          "mazda-speed3-vvt-timing-chain-2007"
+        ]
+      },
+      "beforeSha256": "be9787806ee5d1a8a4b3830cd7cdf1cfb4771108e359915bfcbf29ca2f87ca24",
+      "proposal": {
+        "make": "Mazda",
+        "model": "CX-7",
+        "years": [
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012
+        ],
+        "trims": [],
+        "engines": [
+          "2.3L Turbo"
+        ],
+        "category": "engine",
+        "title": "VVT Actuator Failure",
+        "description": "Mazda SSP87 covered certain 2007-2010 CX-7 vehicles equipped with the L3T engine and produced from February 14, 2006 through February 26, 2010. Mazda describes a loud tick when first started cold from wear at the VVT-rotor lock-pin hole or VVT-case breakage, and a separate warm knock or rattle below 2,000 rpm from excessive timing-chain stretch. The source does not support the frozen 2011-2012 years, generic VVT-solenoid failure, oil-contamination causation, or the listed P0011/P0012/P0016 codes.",
+        "solution": "Have Mazda reproduce and localize the noise, verify the VIN/build date and maintenance history, and distinguish the brief cold-start VVT tick from the warm sub-2,000-rpm timing-chain rattle. SSP87 directed replacement of the VVT actuator, or the actuator plus timing chain, only after dealer inspection verified the cause. Its seven-year/70,000-mile warranty extension was historical and may be expired. Do not buy a VVT solenoid, actuator or timing-chain kit from this page; engine identity, noise source and current Mazda coverage must be verified first.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "loud ticking from the VVT area immediately after a cold start",
+          "knock or rattle from the timing-cover or cylinder-head-cover area after warm-up below 2,000 rpm"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "title": "Mazda SSP87 VVT and Timing Chain Noise Warranty Extension Owner Letter",
+            "type": "manufacturer",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2012/CSC-10043875-4853.pdf"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-09",
+        "contentUpdatedOn": "2026-08-09",
+        "contentUpdateSummary": "Replaced an unsupported video, solenoid theory and DTC list with Mazda SSP87's exact L3T population, two noise conditions and inspection-led remedy.",
+        "relatedIssueIds": [
+          "mazda-mazda6-vvt-actuator-2009",
+          "mazda-speed3-vvt-timing-chain-2007"
+        ]
+      },
+      "proposalSha256": "d555ea1e4abb92ec35176efbeb0ffd2e47f843328a43d8dbf2ba6c4eeacbea98",
+      "changedFields": [
+        "description",
+        "solution",
+        "confidence",
+        "symptoms",
+        "dtcCodes",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "communityRecommendations",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ]
+    }
+  ]
+}
