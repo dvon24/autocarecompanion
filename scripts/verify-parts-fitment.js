@@ -101,10 +101,20 @@ async function fittingParts({ year, make, model, productMatch, engineMatch, part
     `products:${year}:${makeRow.id}:${modelRow.id}`,
     { lookup: 'product', year, make: makeRow.id, model: modelRow.id }, 'product',
   );
-  const selectedProducts = productMatch
-    ? products.filter((p) => matchesAllTokens(p.data, productMatch))
-    : products;
-  if (selectedProducts.length === 0) return { covered: false, reason: `no product category matching "${productMatch}"`, parts: [] };
+  // productMatch may be a list of categories to try in order. A component can
+  // live in more than one depending on how it fails (an intake manifold's
+  // gasket is filed under gaskets, not engine components), and the category
+  // set is per-vehicle, so one that exists on one model is absent on another.
+  const wanted = Array.isArray(productMatch) ? productMatch : [productMatch];
+  let selectedProducts = [];
+  let usedCategory = '';
+  for (const candidate of wanted) {
+    const hit = candidate ? products.filter((p) => matchesAllTokens(p.data, candidate)) : products;
+    if (hit.length) { selectedProducts = hit; usedCategory = candidate; break; }
+  }
+  if (selectedProducts.length === 0) {
+    return { covered: false, reason: `no product category matching ${JSON.stringify(wanted)}`, parts: [] };
+  }
 
   const out = [];
   let rawCount = 0;
@@ -135,7 +145,7 @@ async function fittingParts({ year, make, model, productMatch, engineMatch, part
       }
     }
   }
-  return { covered: true, reason: '', parts: out, rawCount };
+  return { covered: true, reason: '', parts: out, rawCount, usedCategory };
 }
 
 async function verifyEntry(entry, yearCap) {
@@ -169,7 +179,17 @@ async function verifyEntry(entry, yearCap) {
       continue;
     }
     anyCovered = true;
-    candidatesByYear[year] = result.parts.map((p) => `${p.supplier} ${p.partNumber}`.trim());
+    // Structured, not a display string. Ranking needs partType (a supplier rule
+    // is scoped to the part types it covers) and engine (the candidate set spans
+    // every engine the model offered), and flattening to "Supplier PN" throws
+    // both away.
+    candidatesByYear[year] = result.parts.map((p) => ({
+      supplier: p.supplier,
+      partNumber: p.partNumber,
+      partType: p.partType,
+      brand: p.brand,
+      engine: p.engine,
+    }));
     if (result.parts.some((p) => normalizePn(p.partNumber) === target)) fitmentYears.push(year);
   }
 
@@ -210,24 +230,34 @@ async function verifyEntry(entry, yearCap) {
   console.log(`verifying ${entries.length} parts, up to ${yearCap} years each`);
 
   const results = [];
+  const writeReport = () => {
+    const tally = results.reduce((acc, r) => ({ ...acc, [r.verdict]: (acc[r.verdict] || 0) + 1 }), {});
+    fs.writeFileSync(path.resolve(PROJECT_ROOT, outFile), JSON.stringify({
+      checkedAt: new Date().toISOString(),
+      source: 'ShowMeTheParts subscription API',
+      guardrail: 'Catalog fitment proves the part FITS. It never proves the part REPAIRS the issue.',
+      complete: results.length === entries.length,
+      progress: `${results.length}/${entries.length}`,
+      tally,
+      results,
+    }, null, 1));
+    return tally;
+  };
+
   for (const [index, entry] of entries.entries()) {
     const result = await verifyEntry(entry, yearCap);
     results.push(result);
     saveCache();
+    // Write after every entry. A long run WILL be interrupted, and losing an
+    // hour of catalog lookups to a kill signal is avoidable.
+    writeReport();
     console.log(
       `  [${index + 1}/${entries.length}] ${result.verdict.padEnd(10)} ${entry.partNumber || '(none)'} — ${result.vehicle}` +
       (result.verdict === 'confirmed' ? ` (fits ${result.fitmentYears.join(', ')})` : ''),
     );
   }
 
-  const tally = results.reduce((acc, r) => ({ ...acc, [r.verdict]: (acc[r.verdict] || 0) + 1 }), {});
-  fs.writeFileSync(path.resolve(PROJECT_ROOT, outFile), JSON.stringify({
-    checkedAt: new Date().toISOString(),
-    source: 'ShowMeTheParts subscription API',
-    guardrail: 'Catalog fitment proves the part FITS. It never proves the part REPAIRS the issue.',
-    tally,
-    results,
-  }, null, 1));
+  const tally = writeReport();
   saveCache();
   console.log('\nTALLY:', JSON.stringify(tally));
   console.log('report:', outFile);
