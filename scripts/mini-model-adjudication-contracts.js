@@ -8,6 +8,7 @@ const gpContract = require('./mini-gp-adjudication-contract');
 const hardtop4DoorContract = require('./mini-hardtop-4-door-adjudication-contract');
 const johnCooperWorksContract = require('./mini-john-cooper-works-adjudication-contract');
 const pacemanContract = require('./mini-paceman-adjudication-contract');
+const roadsterContract = require('./mini-roadster-adjudication-contract');
 
 const NHTSA_DATASET_URL = 'https://www.nhtsa.gov/nhtsa-datasets-and-apis';
 const REVIEW_DATE = '2026-08-09';
@@ -176,6 +177,7 @@ const CONTRACTS = Object.freeze({
   'Hardtop 4 Door': hardtop4DoorContract,
   'John Cooper Works': johnCooperWorksContract,
   Paceman: pacemanContract,
+  Roadster: roadsterContract,
 });
 
 function getContract(model) {
