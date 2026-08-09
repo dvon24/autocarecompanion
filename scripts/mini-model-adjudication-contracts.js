@@ -2,6 +2,7 @@
 const { RECALL_FILES, SOURCE_FILES } = require('./known-issue-adjudication-utils');
 const cooperContract = require('./mini-cooper-adjudication-contract');
 const cooperSContract = require('./mini-cooper-s-adjudication-contract');
+const countrymanContract = require('./mini-countryman-adjudication-contract');
 
 const NHTSA_DATASET_URL = 'https://www.nhtsa.gov/nhtsa-datasets-and-apis';
 const REVIEW_DATE = '2026-08-09';
@@ -164,6 +165,7 @@ const CONTRACTS = Object.freeze({
   }),
   Cooper: cooperContract,
   'Cooper S': cooperSContract,
+  Countryman: countrymanContract,
 });
 
 function getContract(model) {
