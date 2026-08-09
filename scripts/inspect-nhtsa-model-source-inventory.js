@@ -83,6 +83,17 @@ async function main() {
   if (!makes.length) throw new Error('--makes is required');
   if (!aliases.length) throw new Error('--aliases is required');
   const result = await inspect({ makes, aliases, terms });
+  if (process.argv.includes('--relevant-only')) {
+    console.log(JSON.stringify({
+      makes: result.makes,
+      aliases: result.aliases,
+      communicationCounts: result.communicationCounts,
+      communicationTotal: result.communicationTotal,
+      relevantCommunicationCount: result.relevantCommunications.length,
+      relevantCommunications: result.relevantCommunications,
+    }, null, 2));
+    return;
+  }
   if (process.argv.includes('--compact')) {
     const campaigns = [...new Set(result.recallRows.map((row) => row.campaign))].sort();
     console.log(JSON.stringify({
