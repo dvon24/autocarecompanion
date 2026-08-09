@@ -18,7 +18,11 @@ for (const model of Object.keys(CONTRACTS)) {
   test(`${model}: frozen packet passes`, () => assert.deepEqual(validatePacket(contract, clone(frozen), snapshot), []));
   rejects('rejects title change', (packet) => { item(packet, firstId).proposal.title += ' revised'; rehash(item(packet, firstId)); }, /deterministic|immutable title/);
   rejects('rejects year change', (packet) => { item(packet, firstId).proposal.years = [1900]; rehash(item(packet, firstId)); }, /deterministic|immutable years/);
-  rejects('rejects category change', (packet) => { item(packet, firstId).proposal.category = 'engine'; rehash(item(packet, firstId)); }, /deterministic|immutable category/);
+  rejects('rejects category change', (packet) => {
+    const row = item(packet, firstId);
+    row.proposal.category = row.proposal.category === 'engine' ? 'transmission' : 'engine';
+    rehash(row);
+  }, /deterministic|immutable category/);
   rejects('rejects severity change', (packet) => { item(packet, firstId).proposal.severity = 'critical'; rehash(item(packet, firstId)); }, /deterministic|immutable severity|noncanonical/);
   rejects('rejects archive', (packet) => { item(packet, firstId).proposal.status = 'archived'; rehash(item(packet, firstId)); }, /deterministic|immutable status/);
   rejects('rejects owner-count invention', (packet) => { item(packet, countId).proposal.reportCount = 1; rehash(item(packet, countId)); }, /deterministic|owner data/);
