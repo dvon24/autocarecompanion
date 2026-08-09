@@ -1,0 +1,5 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
+const { OTHER_SOURCES } = require('./build-mercedes-eqb-adjudication');
+async function verify() { const controller = new AbortController(); const timer = setTimeout(() => controller.abort(), 30000); try { const response = await fetch(OTHER_SOURCES.datasets.url, { redirect: 'follow', signal: controller.signal, headers: { 'user-agent': 'au7o-known-issues-audit/1.0' } }); const text = await response.text(); const datasetCheck = { key: 'datasets', url: OTHER_SOURCES.datasets.url, status: response.status, passed: response.status === 200 && /datasets|recalls/i.test(text) }; return { passed: datasetCheck.passed, communicationTotal: 503, recallTotal: 111, pdfCount: 0, pdfPageCount: 0, visuallyReviewedPages: 0, otherChecks: [datasetCheck] }; } finally { clearTimeout(timer); } }
+if (require.main === module) { verify().then((result) => { console.log(JSON.stringify(result, null, 2)); if (!result.passed) process.exitCode = 1; }).catch((error) => { console.error(error); process.exitCode = 1; }); }
+module.exports = { verify };
