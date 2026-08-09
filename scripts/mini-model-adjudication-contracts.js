@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-require-imports */
 const { RECALL_FILES, SOURCE_FILES } = require('./known-issue-adjudication-utils');
+const cooperContract = require('./mini-cooper-adjudication-contract');
 
 const NHTSA_DATASET_URL = 'https://www.nhtsa.gov/nhtsa-datasets-and-apis';
 const REVIEW_DATE = '2026-08-09';
@@ -160,6 +161,7 @@ const CONTRACTS = Object.freeze({
       { code: 'all-convertible-pages-preserved', severity: 'seo-safety', recordIds: convertibleAllIds, detail: 'No Convertible page is removed, merged, redirected or allowed to lose its indexed identity.' },
     ],
   }),
+  Cooper: cooperContract,
 });
 
 function getContract(model) {
