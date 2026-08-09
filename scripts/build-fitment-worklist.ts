@@ -59,8 +59,14 @@ function prescribesAFix(solution: string): boolean {
     // Veto is tested against the WHOLE article, so a title-level veto is not
     // undone by the solution's passing mention of the same component.
     const whole = `${r.title} ${r.solution}`;
-    const mapping = mapComponent(r.title, whole) || mapComponent(r.solution, whole);
+    const fromTitle = mapComponent(r.title, whole);
+    const mapping = fromTitle || mapComponent(r.solution, whole);
     if (!mapping) { unmapped.push({ id: r.id, title: r.title }); continue; }
+    // WHERE the component was identified is the strongest confidence signal we
+    // have. A title names what the page is about; a solution mentions other
+    // components in passing ("also check the spark plugs"), and every wrong
+    // recommendation found so far came from that fallback.
+    const mappedFrom = fromTitle ? 'title' : 'solution';
 
     const displacement = (r.engines || [])
       .map((e: string) => (e.match(/\d\.\d\s*L/i) || [])[0])
@@ -76,6 +82,7 @@ function prescribesAFix(solution: string): boolean {
       partNumber: '',
       productMatch: mapping.productMatch,
       partTypeMatch: mapping.partTypeMatch,
+      mappedFrom,
       ...(mapping.engineIndependent || !displacement
         ? {}
         : { engineMatch: String(displacement).replace(/\s+/g, '') }),

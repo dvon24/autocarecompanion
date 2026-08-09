@@ -38,3 +38,22 @@ test('the more specific rule wins over the generic one', () => {
   assert.equal(mapComponent('Fuel Pump Failure')?.partTypeMatch, 'fuel pump');
   assert.equal(mapComponent('Power Steering Pump Whine')?.partTypeMatch, 'power steering pump');
 });
+
+// Real titles that produced the wrong part before the subject/disclaimer rules.
+test('a component the title says it is NOT does not get recommended', () => {
+  const m = mapComponent('4.0L Oil Filter Adapter Housing O-Ring Leak (Frequently Misdiagnosed as Rear Main Seal)');
+  assert.notEqual(m?.partTypeMatch, 'seal', 'must not propose the part the article rules out');
+});
+
+test('the leading clause wins over a parenthetical aside', () => {
+  const m = mapComponent('Front Wheel Hub/Bearing Assembly Failure (Integrated ABS Sensor) — Grinding & ABS Light');
+  // The hub is the subject; "Integrated ABS Sensor" is qualification. Either the
+  // hub or the bearing rule is a correct answer — the ABS sensor is not.
+  assert.ok(['hub', 'wheel bearing'].includes(m?.partTypeMatch || ''), `got "${m?.partTypeMatch}"`);
+  assert.notEqual(m?.partTypeMatch, 'speed sensor');
+});
+
+test('a title naming two valid components still maps to one of them', () => {
+  const m = mapComponent('2007-2013 A4 2.0T Coolant Leak at Pump or Thermostat - TSB 2061604/5');
+  assert.ok(['water pump', 'thermostat'].includes(m?.partTypeMatch || ''), 'either is defensible here');
+});

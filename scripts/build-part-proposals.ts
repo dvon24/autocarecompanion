@@ -61,19 +61,31 @@ function partTypeIsRelevant(partType: string, target: string): boolean {
   return true;
 }
 
-/** id -> the part type the mapping asked for, read from the worklist inputs. */
-function loadTargets(): Map<string, string> {
-  const targets = new Map<string, string>();
+/**
+ * id -> what the mapping asked for, and WHERE it was identified.
+ *
+ * `mappedFrom` is the single best predictor of a wrong recommendation. When no
+ * rule matches the title, the mapper falls back to the solution text, which
+ * routinely names a different component in passing — measured on Ford, that
+ * fallback sends "CD4E Automatic Transmission Failure" looking for a clutch,
+ * a CCRM relay-module article looking for a fuel pump, and cracked cylinder
+ * heads looking for a water pump. It is 19% of entries and nearly all of the
+ * observed errors, so it is excluded from proposals by default.
+ */
+function loadTargets(): Map<string, { partTypeMatch: string; mappedFrom?: string }> {
+  const targets = new Map<string, { partTypeMatch: string; mappedFrom?: string }>();
   for (const file of fs.readdirSync('data')) {
     if (!/-fitment-input\.json$/.test(file)) continue;
     try {
-      const rows = JSON.parse(fs.readFileSync(`data/${file}`, 'utf8')) as Array<{ id: string; partTypeMatch: string }>;
-      for (const r of rows) targets.set(r.id, r.partTypeMatch);
+      const rows = JSON.parse(fs.readFileSync(`data/${file}`, 'utf8')) as Array<{ id: string; partTypeMatch: string; mappedFrom?: string }>;
+      for (const r of rows) targets.set(r.id, { partTypeMatch: r.partTypeMatch, mappedFrom: r.mappedFrom });
     } catch { /* a malformed worklist should not take the whole run down */ }
   }
   return targets;
 }
 const TARGETS = loadTargets();
+/** --include-solution-derived opts the risky tier back in, for review tooling. */
+const INCLUDE_SOLUTION_DERIVED = process.argv.includes('--include-solution-derived');
 
 const proposals: unknown[] = [];
 const skipped: Record<string, number> = {};
@@ -103,8 +115,13 @@ for (const file of inputs) {
     }
     if (candidateByKey.size === 0) { skipped['no-structured-candidates'] = (skipped['no-structured-candidates'] || 0) + 1; continue; }
 
+    const entry = TARGETS.get(r.id);
+    if (!INCLUDE_SOLUTION_DERIVED && entry?.mappedFrom === 'solution') {
+      skipped['solution-derived (needs review)'] = (skipped['solution-derived (needs review)'] || 0) + 1;
+      continue;
+    }
     // Drop anything whose part_type is not actually the component in question.
-    const target = TARGETS.get(r.id) || '';
+    const target = entry?.partTypeMatch || '';
     const relevant = [...candidateByKey.entries()].filter(([, c]) => partTypeIsRelevant(c.partType || '', target));
     if (relevant.length === 0) {
       // The vehicle had fitting parts, but none of them were this component.

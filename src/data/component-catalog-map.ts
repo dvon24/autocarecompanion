@@ -191,12 +191,48 @@ export const COMPONENT_CATALOG_MAP: ComponentMapping[] = [
  * with AGM type" maps it right back to a battery. The veto has to hold across
  * both passes or it does nothing.
  */
+/**
+ * A component named as something the failure is NOT. Titles routinely carry a
+ * differential-diagnosis aside — "Oil Filter Adapter O-Ring Leak (Frequently
+ * Misdiagnosed as Rear Main Seal)" — and matching the disclaimed component
+ * recommends the exact part the article exists to rule out.
+ */
+const DISCLAIMED = /\b(?:misdiagnos\w*|mistaken|confused|not)\s+(?:as|for|with|a|an)?\s*$/i;
+
+function matchesOutsideDisclaimer(mapping: ComponentMapping, text: string): boolean {
+  const m = mapping.pattern.exec(text);
+  if (!m) return false;
+  // Look at the ~30 characters immediately before the match.
+  const before = text.slice(Math.max(0, m.index - 30), m.index);
+  return !DISCLAIMED.test(before);
+}
+
+/**
+ * `text` is what we match POSITIVELY against — the title, normally, because it
+ * names what the page is about.
+ *
+ * `vetoContext` is what the veto is tested against, and it should be the WHOLE
+ * article. A veto that only sees the title is trivially defeated: "Parasitic
+ * Battery Drain" correctly refuses to map, then the solution's "replace battery
+ * with AGM type" maps it right back. The veto has to hold across both passes.
+ *
+ * The SUBJECT of a title is its leading clause. Everything after a parenthesis
+ * or a dash is qualification, and matching it first let "Front Wheel Hub/Bearing
+ * Assembly Failure (Integrated ABS Sensor)" resolve to an ABS sensor instead of
+ * the hub. So the leading clause is tried first, and the full string only if it
+ * yields nothing.
+ */
 export function mapComponent(text: string, vetoContext?: string): ComponentMapping | null {
   const veto = vetoContext ?? text;
-  for (const mapping of COMPONENT_CATALOG_MAP) {
-    if (!mapping.pattern.test(text)) continue;
-    if (mapping.unless && mapping.unless.test(veto)) continue;
-    return mapping;
+  const lead = String(text).split(/[(—–]|\s-\s/)[0]!.trim();
+  const passes = lead && lead !== text ? [lead, text] : [text];
+
+  for (const pass of passes) {
+    for (const mapping of COMPONENT_CATALOG_MAP) {
+      if (!matchesOutsideDisclaimer(mapping, pass)) continue;
+      if (mapping.unless && mapping.unless.test(veto)) continue;
+      return mapping;
+    }
   }
   return null;
 }
