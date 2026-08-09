@@ -1,0 +1,23 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
+const assert = require('node:assert/strict'); const fs = require('node:fs'); const test = require('node:test'); const { IDS, OUTPUT, SNAPSHOT } = require('./build-mercedes-eqe-suv-adjudication'); const { hashValue } = require('./known-issue-adjudication-utils'); const { validatePacket } = require('./validate-mercedes-eqe-suv-adjudication'); const frozen = JSON.parse(fs.readFileSync(OUTPUT, 'utf8')); const snapshot = JSON.parse(fs.readFileSync(SNAPSHOT, 'utf8'));
+function clone(value) { return JSON.parse(JSON.stringify(value)); } function row(packet, id) { return packet.rows.find((item) => item.id === id); } function rehash(item) { item.proposalSha256 = hashValue(item.proposal); item.changedFields = Object.keys(item.proposal).filter((key) => hashValue(item.before[key]) !== hashValue(item.proposal[key])); } function rejects(name, mutate, pattern) { test(name, () => { const packet = clone(frozen); mutate(packet); assert.match(validatePacket(packet, snapshot).join('\n'), pattern); }); }
+test('frozen EQE SUV packet passes', () => assert.deepEqual(validatePacket(clone(frozen), snapshot), []));
+rejects('rejects title change', (packet) => { const item = row(packet, IDS.airmatic); item.proposal.title += ' revised'; rehash(item); }, /deterministic|immutable title/);
+rejects('rejects year change', (packet) => { const item = row(packet, IDS.otaBrick); item.proposal.years = [2023]; rehash(item); }, /deterministic|immutable years/);
+rejects('rejects trim change', (packet) => { const item = row(packet, IDS.airmatic); item.proposal.trims = []; rehash(item); }, /deterministic|immutable trims/);
+rejects('rejects engine change', (packet) => { const item = row(packet, IDS.otaBrick); item.proposal.engines = []; rehash(item); }, /deterministic|immutable engines/);
+rejects('rejects category change', (packet) => { const item = row(packet, IDS.airmatic); item.proposal.category = 'engine'; rehash(item); }, /deterministic|immutable category/);
+rejects('rejects archive', (packet) => { const item = row(packet, IDS.otaBrick); item.proposal.status = 'archived'; rehash(item); }, /deterministic|immutable status/);
+rejects('rejects social proof', (packet) => { const item = row(packet, IDS.airmatic); item.proposal.description += ' 180+ owners have reported it.'; rehash(item); }, /deterministic|owner social proof/);
+rejects('rejects restored owner count', (packet) => { const item = row(packet, IDS.otaBrick); item.proposal.reportCount = 95; rehash(item); }, /deterministic|zero-count/);
+rejects('rejects commerce', (packet) => { const item = row(packet, IDS.airmatic); item.proposal.fixParts.push({ partNumber: 'sensor' }); rehash(item); }, /deterministic|commerce-free/);
+rejects('rejects search citation', (packet) => { const item = row(packet, IDS.otaBrick); item.proposal.citations[0].url = 'https://example.com/search?q=ota'; rehash(item); }, /deterministic|citation/);
+rejects('rejects AIRMATIC hold converted to retain', (packet) => { const item = row(packet, IDS.airmatic); item.action = 'retain_indexed_identity_and_accuracy_cleanup'; item.identityReviewRequired = false; }, /deterministic|hold verdict/);
+rejects('rejects OTA hold converted to retain', (packet) => { const item = row(packet, IDS.otaBrick); item.action = 'retain_indexed_identity_and_accuracy_cleanup'; item.identityReviewRequired = false; }, /deterministic|hold verdict/);
+rejects('rejects blocker removal', (packet) => { packet.applicationGate.blockerRecordIds.pop(); }, /deterministic|blocker/);
+rejects('rejects calibration transfer', (packet) => { const item = row(packet, IDS.airmatic); item.proposal.description = 'LI32.35-P-079752 proves routine recalibration on every EQE SUV.'; rehash(item); }, /deterministic|AIRMATIC evidence/);
+rejects('rejects brick transfer', (packet) => { const item = row(packet, IDS.otaBrick); item.proposal.description = 'LI00.00-P-079603 proves every OTA bricks the EQE SUV.'; rehash(item); }, /deterministic|OTA brick evidence/);
+rejects('rejects related-link mutation', (packet) => { const item = row(packet, IDS.otaBrick); item.proposal.relatedIssueIds = ['unauthorized']; rehash(item); }, /deterministic|immutable relatedIssueIds/);
+rejects('rejects AIRMATIC PDF page omission', (packet) => { packet.pdfSources.airmaticBulletin.visualPages = [1, 2]; }, /deterministic|PDF evidence/);
+rejects('rejects OTA PDF page omission', (packet) => { packet.pdfSources.otaSrsBulletin.visualPages = [1]; }, /deterministic|PDF evidence/);
+rejects('rejects human approval', (packet) => { const item = row(packet, IDS.otaBrick); item.proposal.humanApproved = true; rehash(item); }, /deterministic|commerce-free/);
