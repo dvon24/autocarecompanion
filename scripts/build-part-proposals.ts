@@ -47,17 +47,41 @@ if (inputs.length === 0) {
  * article about a head gasket should get a gasket, an article about a fuel pump
  * should not.
  */
-const ACCESSORY = /\b(gasket|seal|strainer|connector|hanger|bolt|stud|cap|tube|hose|bracket|shim|clip|sensor|switch|adapter|o-ring|washer|kit|mount|cylinder|pulley|cover|line)\b/i;
+/**
+ * Relevance is decided by the HEAD NOUN — the last word of the part type.
+ *
+ * A blocklist of accessory words was the first attempt and it fails in both
+ * directions: it has to be endlessly extended, and adding `cylinder` (to stop
+ * clutch master cylinders being proposed for clutch-disc articles) also blocked
+ * the cylinder where it IS the part.
+ *
+ * The head noun says what a thing IS; everything before it qualifies. "Electric
+ * Fuel Pump" is a pump. "Fuel Pump Strainer" is a strainer. "Engine Cylinder
+ * Head Gasket" is a gasket. So a candidate is relevant when it is the same KIND
+ * of thing the article asked for — no list to maintain, and it self-corrects for
+ * accessories because an accessory's head noun is the accessory.
+ */
+function headNoun(value: string): string {
+  const words = String(value || '').toLowerCase().replace(/[^a-z0-9\s/-]/g, ' ').split(/\s+/).filter(Boolean);
+  return words[words.length - 1] || '';
+}
 
 function partTypeIsRelevant(partType: string, target: string): boolean {
   const type = String(partType || '').toLowerCase();
   const tokens = String(target || '').toLowerCase().split(/\s+/).filter(Boolean);
   if (tokens.length === 0) return true;
+  // Every word the article asked for must appear — "fuel pump" cannot match a
+  // part type that never says fuel.
   if (!tokens.every((t) => type.includes(t))) return false;
-  // "fuel pump" must not match "Fuel Pump Strainer" — but "head gasket" must
-  // still match "Engine Cylinder Head Gasket".
-  const targetIsAccessory = ACCESSORY.test(target);
-  if (!targetIsAccessory && ACCESSORY.test(type)) return false;
+  // …and the candidate must be the same kind of thing.
+  const wantHead = headNoun(target);
+  const gotHead = headNoun(partType);
+  if (wantHead && gotHead && wantHead !== gotHead) {
+    // An assembly containing the requested part still counts: "Wheel Bearing and
+    // Hub Assembly" answers "wheel bearing", and "Window Motor and Regulator
+    // Assembly" answers "window motor".
+    if (!/\b(assembly|kit|set)\b/.test(gotHead)) return false;
+  }
   return true;
 }
 
