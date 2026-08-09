@@ -1,0 +1,15 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
+const fs=require('node:fs');const test=require('node:test');const assert=require('node:assert/strict');const {ALL_IDS,BLOCKER_IDS,IDS,OUTPUT,RETAIN_IDS,SNAPSHOT,buildPacket}=require('./build-mercedes-slc-adjudication');const {validatePacket}=require('./validate-mercedes-slc-adjudication');const snapshot=JSON.parse(fs.readFileSync(SNAPSHOT,'utf8'));function packet(){return buildPacket(snapshot);}
+test('packet validates deterministically',()=>assert.deepEqual(validatePacket(packet(),snapshot),[]));
+test('all twelve frozen identities are covered once',()=>assert.deepEqual(packet().rows.map((row)=>row.id).sort(),ALL_IDS));
+test('two identities retain and ten remain held',()=>{const p=packet();assert.equal(p.rows.filter((row)=>RETAIN_IDS.includes(row.id)).length,2);assert.deepEqual(p.applicationGate.blockerRecordIds,BLOCKER_IDS);});
+test('indexed identity and vehicle metadata remain immutable',()=>{for(const row of packet().rows)for(const field of ['make','model','years','trims','engines','category','title','severity','status','lastReportedByOwners','relatedIssueIds'])assert.deepEqual(row.proposal[field],row.before[field],`${row.id}:${field}`);});
+test('all report counts remain zero without social proof',()=>{for(const row of packet().rows){assert.equal(row.before.reportCount,0);assert.equal(row.proposal.reportCount,0);assert.doesNotMatch(`${row.proposal.description} ${row.proposal.solution}`,/0\+ owners|owners have reported/i);}});
+test('packet introduces no commerce or recommendation',()=>{for(const row of packet().rows){assert.deepEqual(row.proposal.fixParts,[]);assert.deepEqual(row.proposal.communityRecommendations,[]);assert.match(row.proposal.solution,/do not buy/i);assert.match(row.commerceDecision,/no universal retail part/i);}});
+test('battery identity uses exact discharge evidence',()=>assert.match(packet().rows.find((row)=>row.id===IDS.battery).proposal.description,/10157076/));
+test('PCV identity uses exact guided-test evidence',()=>assert.match(packet().rows.find((row)=>row.id===IDS.pcv).proposal.description,/P052E71/));
+test('emissions-delete advice is explicitly prohibited',()=>assert.match(packet().rows.find((row)=>row.id===IDS.swirl).proposal.solution,/Do not delete or blank emissions hardware/i));
+test('timing-chain absence is explicit',()=>assert.match(packet().rows.find((row)=>row.id===IDS.chain).evidence.primaryEvidence.join(' '),/zero timing-chain matches/i));
+test('rear-subframe coverage remains bounded',()=>{const row=packet().rows.find((value)=>value.id===IDS.subframe);assert.match(row.proposal.description,/corrosion with perforation/i);assert.match(row.evidence.primaryEvidence.join(' '),/model year 2017/i);});
+test('committed packet matches deterministic build',()=>{if(fs.existsSync(OUTPUT))assert.deepEqual(JSON.parse(fs.readFileSync(OUTPUT,'utf8')),packet());});
+test('no PDF selected and dataset citation is direct',()=>{const p=packet();assert.deepEqual(p.pdfSources,{});for(const row of p.rows)assert.equal(row.proposal.citations[0].url,'https://www.nhtsa.gov/nhtsa-datasets-and-apis');});
