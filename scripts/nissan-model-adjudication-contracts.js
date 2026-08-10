@@ -22,6 +22,7 @@ const questContract = require('./nissan-quest-adjudication-contract');
 const rogueContract = require('./nissan-rogue-adjudication-contract');
 const rogueSportContract = require('./nissan-rogue-sport-adjudication-contract');
 const sentraContract = require('./nissan-sentra-adjudication-contract');
+const skylineContract = require('./nissan-skyline-adjudication-contract');
 
 const CONTRACTS = Object.freeze({
   '240SX': twoFortySxContract,
@@ -47,6 +48,7 @@ const CONTRACTS = Object.freeze({
   Rogue: rogueContract,
   'Rogue Sport': rogueSportContract,
   Sentra: sentraContract,
+  Skyline: skylineContract,
 });
 
 function getContract(model) {
