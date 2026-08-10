@@ -8,6 +8,7 @@ const lancerContract = require('./mitsubishi-lancer-adjudication-contract');
 const mirageContract = require('./mitsubishi-mirage-adjudication-contract');
 const monteroContract = require('./mitsubishi-montero-adjudication-contract');
 const monteroSportContract = require('./mitsubishi-montero-sport-adjudication-contract');
+const outlanderContract = require('./mitsubishi-outlander-adjudication-contract');
 
 const CONTRACTS = Object.freeze({
   '3000GT': threeThousandGtContract,
@@ -19,6 +20,7 @@ const CONTRACTS = Object.freeze({
   Mirage: mirageContract,
   Montero: monteroContract,
   'Montero Sport': monteroSportContract,
+  Outlander: outlanderContract,
 });
 
 function getContract(model) {
