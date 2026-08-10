@@ -1,10 +1,12 @@
 /* eslint-disable @typescript-eslint/no-require-imports */
 const twoFortySxContract = require('./nissan-240sx-adjudication-contract');
 const threeHundredZxContract = require('./nissan-300zx-adjudication-contract');
+const threeFiftyZContract = require('./nissan-350z-adjudication-contract');
 
 const CONTRACTS = Object.freeze({
   '240SX': twoFortySxContract,
   '300ZX': threeHundredZxContract,
+  '350Z': threeFiftyZContract,
 });
 
 function getContract(model) {
