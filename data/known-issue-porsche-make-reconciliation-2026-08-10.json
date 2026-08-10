@@ -1,0 +1,710 @@
+{
+  "schemaVersion": 1,
+  "status": "proposal-only",
+  "requiresIndependentApproval": true,
+  "generatedOn": "2026-08-10",
+  "make": "Porsche",
+  "branch": "codex/porsche-deeplink-audit",
+  "snapshot": {
+    "file": "data/_porsche-deeplink-snapshot-2026-08-10.json",
+    "normalizedSha256": "76b0f13f148b294c12b54776efa597bcc63dedc6cc6826a38da454e46b3a31e3",
+    "generatedAt": "2026-08-10T18:05:23.352Z",
+    "snapshotHash": "8afc7bf1dce372edcc5c13a5105298157cb64eee51f2babeb5d1b73eb11eeaa3",
+    "porscheRows": 96
+  },
+  "summary": {
+    "models": 9,
+    "rows": 96,
+    "retained": 10,
+    "held": 86,
+    "unsupportedOwnerCountsZeroed": 47,
+    "pagesPreservedPublished": 96
+  },
+  "crossPacketChecks": {
+    "exactModelInventory": true,
+    "exactRowInventory": true,
+    "identityDrift": 0,
+    "unpublished": 0,
+    "noncanonicalSeverity": 0,
+    "ownerDataDrift": 0,
+    "ownerSocialProof": 0,
+    "commerceDrift": 0,
+    "perPacketValidationErrors": 0
+  },
+  "applicationGate": {
+    "status": "blocked",
+    "reason": "Independent review is required for every model packet, and held identities require an approved identity policy before any catalog write."
+  },
+  "models": [
+    {
+      "model": "718 Boxster",
+      "packetFile": "data/known-issue-porsche-718-boxster-adjudication-2026-08-10.json",
+      "packetSha256": "1acbf4989ab928770d82dac886231b73bb5b1f447ad25068aca9c70562eae74d",
+      "rows": 18,
+      "retained": 1,
+      "held": 17,
+      "unsupportedOwnerCountsZeroed": 4,
+      "applicationGate": "blocked"
+    },
+    {
+      "model": "718 Cayman",
+      "packetFile": "data/known-issue-porsche-718-cayman-adjudication-2026-08-10.json",
+      "packetSha256": "d5aad75c582fc2de21cea4fc4a74f4a41b278a96be49fb3e2b0438bc773a1903",
+      "rows": 10,
+      "retained": 0,
+      "held": 10,
+      "unsupportedOwnerCountsZeroed": 3,
+      "applicationGate": "blocked"
+    },
+    {
+      "model": "911",
+      "packetFile": "data/known-issue-porsche-911-adjudication-2026-08-10.json",
+      "packetSha256": "1c96f29f0b7e378f82e5db26963ee0ec97b7bc8beb5120a15502d8a8f9455902",
+      "rows": 12,
+      "retained": 0,
+      "held": 12,
+      "unsupportedOwnerCountsZeroed": 7,
+      "applicationGate": "blocked"
+    },
+    {
+      "model": "Boxster",
+      "packetFile": "data/known-issue-porsche-boxster-adjudication-2026-08-10.json",
+      "packetSha256": "d634ca6a926039ef8ad83a5c0dba119edffe1f9cf46719bc562eb5cbe359468b",
+      "rows": 6,
+      "retained": 0,
+      "held": 6,
+      "unsupportedOwnerCountsZeroed": 6,
+      "applicationGate": "blocked"
+    },
+    {
+      "model": "Cayenne",
+      "packetFile": "data/known-issue-porsche-cayenne-adjudication-2026-08-10.json",
+      "packetSha256": "466e3db43eb23a234205ed4db328546c035e3f7affaf370df9bf95c9aa25688d",
+      "rows": 7,
+      "retained": 0,
+      "held": 7,
+      "unsupportedOwnerCountsZeroed": 7,
+      "applicationGate": "blocked"
+    },
+    {
+      "model": "Cayman",
+      "packetFile": "data/known-issue-porsche-cayman-adjudication-2026-08-10.json",
+      "packetSha256": "ec0cd6341ce279ed8af1e2984ff4e9090838da5c60a9b032613b5143bf15fa84",
+      "rows": 12,
+      "retained": 0,
+      "held": 12,
+      "unsupportedOwnerCountsZeroed": 4,
+      "applicationGate": "blocked"
+    },
+    {
+      "model": "Macan",
+      "packetFile": "data/known-issue-porsche-macan-adjudication-2026-08-10.json",
+      "packetSha256": "b6063b92c1eda22fcfcbb67ce7be1053054526aba4fa798d03afb3681dee43cc",
+      "rows": 12,
+      "retained": 2,
+      "held": 10,
+      "unsupportedOwnerCountsZeroed": 5,
+      "applicationGate": "blocked"
+    },
+    {
+      "model": "Panamera",
+      "packetFile": "data/known-issue-porsche-panamera-adjudication-2026-08-10.json",
+      "packetSha256": "447179ce9cde5bf8e0c6c383371095654b286a0df0c2d2bd6833a596bf9b419b",
+      "rows": 6,
+      "retained": 0,
+      "held": 6,
+      "unsupportedOwnerCountsZeroed": 6,
+      "applicationGate": "blocked"
+    },
+    {
+      "model": "Taycan",
+      "packetFile": "data/known-issue-porsche-taycan-adjudication-2026-08-10.json",
+      "packetSha256": "92489a5ae1bfc7fa8068fca201342a833209184aaae791747242076ad37f5a8a",
+      "rows": 13,
+      "retained": 7,
+      "held": 6,
+      "unsupportedOwnerCountsZeroed": 5,
+      "applicationGate": "blocked"
+    }
+  ],
+  "rows": [
+    {
+      "id": "porsche-718-boxster-4-0-flat-six-connecting-rod-defect-recall",
+      "model": "718 Boxster",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "6f8ac5cf12707b274f3c63634c567d70ecea1e7207c79e5dcf7d0d84c34ba8c8"
+    },
+    {
+      "id": "porsche-718-boxster-air-oil-separator-failure-causing-oil-ingestion-smoke",
+      "model": "718 Boxster",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "679008354eb4d4755eac5b4203296f3408db312f89c53f698b0deec97a6e120a"
+    },
+    {
+      "id": "porsche-718-boxster-air-oil-separator-failure-causing-smoke-misfires",
+      "model": "718 Boxster",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "1e7506b810833a4001bc9723dd02d857cebdac59fca29aba23da272f267140ef"
+    },
+    {
+      "id": "porsche-718-boxster-convertible-top-2017",
+      "model": "718 Boxster",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "10bcd999a6c6ce9160180fc6be65aa1b738d6ad16967b9c385138b981508060e"
+    },
+    {
+      "id": "porsche-718-boxster-coolant-leak-2017",
+      "model": "718 Boxster",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "441d2bd0548cb5520ab7af9ab1678bab1acecd192ab0d523f0284fa0f1617fc6"
+    },
+    {
+      "id": "porsche-718-boxster-cooling-system-changeover-bypass-valve-water-pump-failure-ca",
+      "model": "718 Boxster",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "24e20b06c547131bcfbbfe9e83deb123da13a84d1b231344837cae02fd040fd9"
+    },
+    {
+      "id": "porsche-718-boxster-fuel-collection-pipe-high-pressure-fuel-line-leak",
+      "model": "718 Boxster",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "30f7302bc701df59fc040d94788a43aefba52da1bf26773e5899e83f274be6d6"
+    },
+    {
+      "id": "porsche-718-boxster-fuel-system-leak-recalls-collection-pipe-screws-fuel-crossme",
+      "model": "718 Boxster",
+      "action": "retain_indexed_identity_and_accuracy_cleanup",
+      "proposalSha256": "c39690e3bba1cc3fb8ac52d211e4e5ba0723639c20aa3ff51f81fa6b15c8281c"
+    },
+    {
+      "id": "porsche-718-boxster-gasoline-particulate-filter-clogging-failure",
+      "model": "718 Boxster",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "6c2824d12891039d19cb6c5e536249b24f8e0ed9cd33fc269f8413c6d59474b6"
+    },
+    {
+      "id": "porsche-718-boxster-gasoline-particulate-filter-clogging-premature-failure",
+      "model": "718 Boxster",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "732bf96ca1000af1256caa4e3bd93cd5fc9285d4a4156344e99cc4f64b81365a"
+    },
+    {
+      "id": "porsche-718-boxster-manual-transmission-1st-to-2nd-gear-synchro-grind",
+      "model": "718 Boxster",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "f323c3e38bf71c4d7d53be3caf742703fa14e49c1491856b03727b6f0b278c27"
+    },
+    {
+      "id": "porsche-718-boxster-oil-leaks-from-rear-main-seal-valve-cover-spark-plug-tube-se",
+      "model": "718 Boxster",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "762637b85e58cf879fae1d109ec596b7bd26ea01d244b0c0384a6d11ed2e6614"
+    },
+    {
+      "id": "porsche-718-boxster-pcm-apple-carplay-touchscreen-freeze-connection-dropouts",
+      "model": "718 Boxster",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "b34322e1be79f65775de2ef50c989c11d7d15311e969f74c77c76cf1feb85443"
+    },
+    {
+      "id": "porsche-718-boxster-pcm-infotainment-freezing-carplay-dropouts-backup-camera-fai",
+      "model": "718 Boxster",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "9e2686a7555855333cecee2929d102e13b410979df11022666532403f15bc6ec"
+    },
+    {
+      "id": "porsche-718-boxster-pdk-mechatronic-2017",
+      "model": "718 Boxster",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "992538a76ae493d69269352e8ead188d9d5b07b571c3dc8fff069992a493b9c8"
+    },
+    {
+      "id": "porsche-718-boxster-rear-main-seal-engine-oil-seal-leaks",
+      "model": "718 Boxster",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "5694ed1d5ecec20333ff951a8e6a3a52d618faafc4a91bcbc7614e573dad76c5"
+    },
+    {
+      "id": "porsche-718-boxster-wastegate-rattle-2017",
+      "model": "718 Boxster",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "1e3bfb07d90d7389e7873c5db71e5983797714210885b20495c75a0efdd057f8"
+    },
+    {
+      "id": "porsche-718-boxster-water-pump-bearing-impeller-failure",
+      "model": "718 Boxster",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "e9660cf60b082ba5fa79fd99b9de410b46a0f7d682c5caa6a20cce339e9748f5"
+    },
+    {
+      "id": "porsche-718-cayman-2-0l-turbo-wastegate-actuator-seizure-causing-boost-collapse",
+      "model": "718 Cayman",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "dfcefd6dcad9c3deb44e5d0f2cd7d05fcd8d24863e1c0f3da6163a912fbdc5a8"
+    },
+    {
+      "id": "porsche-718-cayman-air-oil-separator-diaphragm-failure",
+      "model": "718 Cayman",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "3f85f966e709c4f30aa123827ee00f42a6bfd26f696abf032462c22837ec7810"
+    },
+    {
+      "id": "porsche-718-cayman-coolant-expansion-tank-cracking-seam-requiring-engine-out-re",
+      "model": "718 Cayman",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "8348db2a3d8835b9ee48d4c74e93752ee5c8b051f2b0129ae1e29079a1e3fb52"
+    },
+    {
+      "id": "porsche-718-cayman-direct-injection-carbon-2017",
+      "model": "718 Cayman",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "3bfbe16faa2a197f1c873a0092321cce855b8c3a84a718ed4b427f69762b4fd5"
+    },
+    {
+      "id": "porsche-718-cayman-headlight-taillight-condensation-internal-lens-coating-defec",
+      "model": "718 Cayman",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "4cbff4eedae89cca2880799827b8c0e7fb69d68f836ab3781d6db4cdf838e82f"
+    },
+    {
+      "id": "porsche-718-cayman-manual-transmission-1st-to-2nd-gear-grind-crunch",
+      "model": "718 Cayman",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "78dc115da19c2eeaa6d0bf245dfdcee1becd1bd362013c7b44c13ee0e0585e1e"
+    },
+    {
+      "id": "porsche-718-cayman-pdk-mechatronic-2017",
+      "model": "718 Cayman",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "7776a85122d2fe71a6730fba1ebc65bf4f586f8ba05b6674db95080ee4014de5"
+    },
+    {
+      "id": "porsche-718-cayman-seized-ignition-coil-bolts-during-first-spark-plug-service",
+      "model": "718 Cayman",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "0889ca95659ffec064859e7e9136d71d87a4b3b381c728ad4540e32f5f3b6a6d"
+    },
+    {
+      "id": "porsche-718-cayman-wastegate-rattle-2017",
+      "model": "718 Cayman",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "3b8e3be29d20da0daf6f1e43ecc43b99eaa87e1d6434c2cf1caffc82f7bce242"
+    },
+    {
+      "id": "porsche-718-cayman-water-pump-bearing-seal-failure-labor-intensive-exhaust-remo",
+      "model": "718 Cayman",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "88d8cfb21428d66962d4ee356f7f4bc233194667a9d5a573b1faf8223c0be915"
+    },
+    {
+      "id": "porsche-911-915-gearbox-worn-2nd-gear-synchros-rounded-dog-teeth",
+      "model": "911",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "a005060bb056a9c8904e44e2d846589d0f687c252e2f8677704df9de5300c200"
+    },
+    {
+      "id": "porsche-911-aos-failure-1999",
+      "model": "911",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "18ca852c115d5584bdc72520ad3efcedf781f3731490e5db3035dc1131ab66be"
+    },
+    {
+      "id": "porsche-911-bore-scoring-2009",
+      "model": "911",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "c2b53e3d38ffa7b3a816c2e1258cc99a61ca483f73be19cf41e09323a1299a62"
+    },
+    {
+      "id": "porsche-911-chain-tensioner-failure-2009",
+      "model": "911",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "15b056e5eb3f4bcd83cf937b288a0d650d6f2be273fe821042640fc0b76eac38"
+    },
+    {
+      "id": "porsche-911-chronic-oil-leaks-from-cooler-lines-thermostat-seal-chain-ho",
+      "model": "911",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "3006b74654a48004437d401c49029e31ab13edee6c21d448ae1df01224e997d0"
+    },
+    {
+      "id": "porsche-911-cis-airbox-blows-apart-from-intake-backfire",
+      "model": "911",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "b08f746f420a0a2f27f4aa4c1317c5f31ed8b5546fbd34bd4b50b35196bb8799"
+    },
+    {
+      "id": "porsche-911-coolant-pipe-leak-2012",
+      "model": "911",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "3b03a6709bcf265dac7869318f305334f7aeb1463118ce0b12ce6418e4b795b3"
+    },
+    {
+      "id": "porsche-911-direct-injection-carbon-2009",
+      "model": "911",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "bd9eebb6308df5f3dabdc83bde0ace857afffcc6f9403860692b85c3835f54ec"
+    },
+    {
+      "id": "porsche-911-ims-bearing-failure-1999",
+      "model": "911",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "532bd87bbb2a84135f347c2f7d5315d4f1ec23dcb5bed1fd960e41c7e88adb44"
+    },
+    {
+      "id": "porsche-911-rear-main-seal-leak-1999",
+      "model": "911",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "1d9bb1653cdaa90f737da4a67fd5871838ae1d5b866257f32631206c1bc2d4ba"
+    },
+    {
+      "id": "porsche-911-structural-rust-kidney-bowls-longitudinals-floor-pan-battery",
+      "model": "911",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "910da8faf11edc681199d710c45b9a65d69081ae9ce3b7622f921435729c0d9e"
+    },
+    {
+      "id": "porsche-911-timing-chain-tensioner-collapse-pre-1984-cars-destroys-engin",
+      "model": "911",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "15c5ff33a725b09d81a7975972a06101d9e1f0f4c5464fcb02794c55a94df44f"
+    },
+    {
+      "id": "porsche-boxster-aos-failure-1997",
+      "model": "Boxster",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "5703ed6fb2ddf6fd889e00dc03a7f3cd7be91b908468cfa962a532af637432e4"
+    },
+    {
+      "id": "porsche-boxster-bore-scoring-2005",
+      "model": "Boxster",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "5d10349b4c2b2d50adaf8934d7c714994af21632923472850a8f1971d93c94bd"
+    },
+    {
+      "id": "porsche-boxster-convertible-top-hydraulic-1997",
+      "model": "Boxster",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "36c14fab87acca78733f348f15e86b01eb9de43d6220558e7521c31e6d8b3efb"
+    },
+    {
+      "id": "porsche-boxster-ims-bearing-1997",
+      "model": "Boxster",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "33f293e3682d725b4b48eac8c0d9bf27c6102bfa38d5f25f685e84bfdad85c4a"
+    },
+    {
+      "id": "porsche-boxster-intermediate-shaft-bearing-play-2005",
+      "model": "Boxster",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "447fe65fd72e848e68d6ba36492db338cf2e881455e064793812e57cec63e037"
+    },
+    {
+      "id": "porsche-boxster-rms-oil-leak-1997",
+      "model": "Boxster",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "eb1ce579948b8fda3f1b079976ae704b3c91d97493aa53ea82c3b43a1dba471c"
+    },
+    {
+      "id": "porsche-cayenne-air-suspension-failure-2003",
+      "model": "Cayenne",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "0dafddcbf84fd5e393b4648e503940360a6bac9220559dfd68f26e3d24cd38fa"
+    },
+    {
+      "id": "porsche-cayenne-catalytic-converter-2011",
+      "model": "Cayenne",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "ddcad83e84d9f90952e8cd34506d2bd43356af82fc2d62a966b896de861b8e6c"
+    },
+    {
+      "id": "porsche-cayenne-coolant-pipe-leak-2003",
+      "model": "Cayenne",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "a964595063ae5b17b4512a9899072533a5f6a21c74c7cb52cb1553e30fbe495f"
+    },
+    {
+      "id": "porsche-cayenne-pdcc-leak-2007",
+      "model": "Cayenne",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "746e7f30af634b70c2bc05e1741b2d33ddbce3bc40bd144f32a22834fe0f43d0"
+    },
+    {
+      "id": "porsche-cayenne-timing-chain-2008",
+      "model": "Cayenne",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "19d829f79f80f54406c1c00488a3f2774de27393836248229067c382672e35e8"
+    },
+    {
+      "id": "porsche-cayenne-transfer-case-failure-2003",
+      "model": "Cayenne",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "7f1fd888f6137eef225255402880223fa74526184cf70a2bea588359f223abbc"
+    },
+    {
+      "id": "porsche-cayenne-turbo-coolant-line-2008",
+      "model": "Cayenne",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "13d9a0009efd7d4b104bf061a80ae95f7a78a96bd7d4b31dc0334af623c2658d"
+    },
+    {
+      "id": "porsche-cayman-718-cayman-early-turbo-four-high-oil-consumption",
+      "model": "Cayman",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "ac1594a311f9c171ea8147bbc239bd0fdbaad1e99bbf2b3008b8706b69b25ce8"
+    },
+    {
+      "id": "porsche-cayman-718-cayman-gasoline-particulate-filter-failure",
+      "model": "Cayman",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "1a6c2fd7641a702f2b93ae4136353becefb5d0b78d639ec3d0b1dcd94efc2d8b"
+    },
+    {
+      "id": "porsche-cayman-ac-compressor-2006",
+      "model": "Cayman",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "7f4be8449937a75213dd194ace1923a3a8a2906424c52b9889ce16dc8cc1e215"
+    },
+    {
+      "id": "porsche-cayman-aos-failure-2006",
+      "model": "Cayman",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "336579a7c3a6c6d2c76d769808f299e0e9518cfe9ba050dbd463e0f2c658c529"
+    },
+    {
+      "id": "porsche-cayman-bore-scoring-2006",
+      "model": "Cayman",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "e25a583003dba483da7c0dd5d40d1a8cf01104b401f8972c9754e8af04dfc804"
+    },
+    {
+      "id": "porsche-cayman-coolant-expansion-tank-cap-failure-cooling-system-leaks",
+      "model": "Cayman",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "0fd212060ed22e57db2f90645ddffb07351976253b074170462e9339e7f8773f"
+    },
+    {
+      "id": "porsche-cayman-front-radiator-c-condenser-corrosion-debris-trapped-leaks",
+      "model": "Cayman",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "2b47337fff13c94b1b0f8a0dd60a2b91012c9dae9fb270bfe99f73ea56313e02"
+    },
+    {
+      "id": "porsche-cayman-front-suspension-clunk-control-arms-sway-bar-bushings-drop-l",
+      "model": "Cayman",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "5ea7c15138ec16768bf36548d7ddc1a21f29af3ce94ce40538e5f1562a22e0c0"
+    },
+    {
+      "id": "porsche-cayman-ignition-switch-failure-no-start",
+      "model": "Cayman",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "c37c7673efcdbf69b6acf4f86726f6e88d7febc7c31f171e42b4076087f6ddf4"
+    },
+    {
+      "id": "porsche-cayman-ims-bearing-2006",
+      "model": "Cayman",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "5d4df8942f522ac549bc440d5c4ab6d91dc527ac89155375d57b25d132d332e3"
+    },
+    {
+      "id": "porsche-cayman-pdk-dual-clutch-mechatronic-clutch-pack-faults",
+      "model": "Cayman",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "ac26ce1f69e9b0b728397f1de6871bf16941569a7b34bcae4306400731dafd1b"
+    },
+    {
+      "id": "porsche-cayman-rear-main-seal-oil-leak",
+      "model": "Cayman",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "7810699faf974a636595eb8c8fc810ffee0e3ff268bf02afd9e202ca5c3a4482"
+    },
+    {
+      "id": "porsche-macan-adaptive-air-suspension-strut-compressor-failure",
+      "model": "Macan",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "e43efd81387cb5ad73fdd7bb84218d36b481dffb356a1eee5b7e444452df4dc2"
+    },
+    {
+      "id": "porsche-macan-diesel-3-0-v6-tdi-egr-dpf-clogging-adblue-line-splitting",
+      "model": "Macan",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "6efc39fd2458ac3aa16878525689c5a91bd4157a808eb61f9c7678982e2c1ca1"
+    },
+    {
+      "id": "porsche-macan-fuel-pump-flange-crack-fuel-leak",
+      "model": "Macan",
+      "action": "retain_indexed_identity_and_accuracy_cleanup",
+      "proposalSha256": "933a180e5358fa96e5bb0240b16b7984f7d6823ebf7c8a7bd116feb2f79835bc"
+    },
+    {
+      "id": "porsche-macan-panoramic-sunroof-drain-clogging-cabin-water-leaks",
+      "model": "Macan",
+      "action": "retain_indexed_identity_and_accuracy_cleanup",
+      "proposalSha256": "faeba00c73c53a1a0007fc84234cdd20c36fb6d349ffbba9b2784f74be19e34b"
+    },
+    {
+      "id": "porsche-macan-pcm-3-1-infotainment-failure-reboot-loop-2020-update-damage",
+      "model": "Macan",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "9e47b6e3c1a3dda55b0b84c8568bee72bc51cfa2f91323a3b0e09db1e2705a50"
+    },
+    {
+      "id": "porsche-macan-pdk-shudder-2015",
+      "model": "Macan",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "6c9b5e1746b48c6628c737585ae8741a986aa471e27c87025c4ef43466c9a075"
+    },
+    {
+      "id": "porsche-macan-premature-rear-brake-pad-rotor-wear-persistent-brake-squeal",
+      "model": "Macan",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "8186323ca4f0e8c72e6098fd8433acdd87b9da370dec5722f98c9ad52e32baa3"
+    },
+    {
+      "id": "porsche-macan-timing-chain-tensioner-2015",
+      "model": "Macan",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "19fc63b286752f710044f9122db24f1dee6829077a6cf0c1ac913fb05f748837"
+    },
+    {
+      "id": "porsche-macan-transfer-case-leak-2015",
+      "model": "Macan",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "6e1153b60fe02ef2c7a166e1e3bff5642a7ce99a14d66bc13a649c27cb9f3ad7"
+    },
+    {
+      "id": "porsche-macan-turbo-coolant-line-2015",
+      "model": "Macan",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "1033a8243e2f00d4a8b7771ce91cf93084e257d7cd5240b0e67d81480ca0765c"
+    },
+    {
+      "id": "porsche-macan-v6-coolant-transfer-vent-pipe-leak-under-intake-manifold",
+      "model": "Macan",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "e912a20014b4fd527927dd70e470999ef44266dfdd170902f0511cc17b924c43"
+    },
+    {
+      "id": "porsche-macan-water-pump-failure-2015",
+      "model": "Macan",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "313be898014e14198f2ed82d765ed710a7ce3e29d9555e59786e7ab93a8bdd10"
+    },
+    {
+      "id": "porsche-panamera-air-suspension-2010",
+      "model": "Panamera",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "cbaf92896a899f46b26a8e502b2982c8203e3f1bd3192a7ab7d8092ab5349d86"
+    },
+    {
+      "id": "porsche-panamera-battery-drain-2010",
+      "model": "Panamera",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "73f7597193e5ce833a5c4e35b56110512237322d44fffbd1bce2bcaf8fd6db82"
+    },
+    {
+      "id": "porsche-panamera-coolant-pipe-2010",
+      "model": "Panamera",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "f6d8c187b9a4254ec8ed8c976a42a6bd233cd85354a5fe6e9ae557179b5e4b78"
+    },
+    {
+      "id": "porsche-panamera-infotainment-failure-2010",
+      "model": "Panamera",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "cd7a6cd24be2a3e7b66c0bd6469ebfdc59476917d38851aa6c7af1e8bd19b063"
+    },
+    {
+      "id": "porsche-panamera-pdk-failure-2010",
+      "model": "Panamera",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "bb40ceae9c400eec593e124b4d21d6fc38d6bbdad372f4cd70cfc172304385b8"
+    },
+    {
+      "id": "porsche-panamera-timing-chain-2010",
+      "model": "Panamera",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "eb6f0496e4d0119552b992b85d50496c99da6578fdbf86033bb7991704723a3b"
+    },
+    {
+      "id": "porsche-taycan-12v-battery-drain-2020",
+      "model": "Taycan",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "22e3535132adb97b0ebd6c61eabb4f576455cc4acf1f391f4ca1df23393e1544"
+    },
+    {
+      "id": "porsche-taycan-air-suspension-strut-retaining-ring-dislodgement",
+      "model": "Taycan",
+      "action": "retain_indexed_identity_and_accuracy_cleanup",
+      "proposalSha256": "993ba91932fe3ba506f30ae65cb040da943a28cdfe5f285503c2a272635eb6c8"
+    },
+    {
+      "id": "porsche-taycan-charge-port-door-actuator-failure-cross-lock-fault",
+      "model": "Taycan",
+      "action": "retain_indexed_identity_and_accuracy_cleanup",
+      "proposalSha256": "3ba71c27c3f8ab49e0d262fa0f051478aabaa0d936219489abe0e0e68923cab0"
+    },
+    {
+      "id": "porsche-taycan-charging-issues-2020",
+      "model": "Taycan",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "923ce5a117b2d5767404127f9e5bc5e06f477e8ade739cf4ee68f570cab64c22"
+    },
+    {
+      "id": "porsche-taycan-front-brake-hose-cracking-brake-fluid-leak",
+      "model": "Taycan",
+      "action": "retain_indexed_identity_and_accuracy_cleanup",
+      "proposalSha256": "ec1af5084e9de185d2b06bbdc44ec13bdf15c20f342d697609fabf708979c19b"
+    },
+    {
+      "id": "porsche-taycan-front-passenger-airbag-deactivation",
+      "model": "Taycan",
+      "action": "retain_indexed_identity_and_accuracy_cleanup",
+      "proposalSha256": "a06e83861ab115d4796e498cbaa395646de7642fdc968b37f31a2df6f11f61a1"
+    },
+    {
+      "id": "porsche-taycan-high-voltage-battery-internal-short-circuit-fire-risk",
+      "model": "Taycan",
+      "action": "retain_indexed_identity_and_accuracy_cleanup",
+      "proposalSha256": "324eb7f81c4d54e33d75daf2471fbad26ab68d9b9f144062e1af5ff4eff3fe55"
+    },
+    {
+      "id": "porsche-taycan-onboard-ac-charger-failure-electrical-system-fault",
+      "model": "Taycan",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "e5443aeac67d4422aa9347b746ab6faccaf5ca88d3ce0f03582c223880fc17ac"
+    },
+    {
+      "id": "porsche-taycan-range-degradation-2020",
+      "model": "Taycan",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "6059013c1cb01015aec0d49818d17f71aa50f08c0ac077e9df5332268dbcde97"
+    },
+    {
+      "id": "porsche-taycan-rearview-camera-blackout-no-image-reverse",
+      "model": "Taycan",
+      "action": "retain_indexed_identity_and_accuracy_cleanup",
+      "proposalSha256": "875c1041707af14c40740ee1b602da9569094e25c9a329870f54446ed94dc6a7"
+    },
+    {
+      "id": "porsche-taycan-software-bugs-2020",
+      "model": "Taycan",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "b52a8f550068ed10008b5d7f18384e7b8598646cc29484b0952e30e118a02723"
+    },
+    {
+      "id": "porsche-taycan-sudden-powertrain-shutdown-total-loss-power-while-driving",
+      "model": "Taycan",
+      "action": "retain_indexed_identity_and_accuracy_cleanup",
+      "proposalSha256": "2620d5cb4bc31c41f70c16196b772dee4444a3d032ba78d950e3e897091de759"
+    },
+    {
+      "id": "porsche-taycan-suspension-noise-2020",
+      "model": "Taycan",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "e0dcc0e409b7e22579a47e8c266ccdcf824598ed2e8eaedb725161396ba0586b"
+    }
+  ],
+  "passed": true,
+  "errors": []
+}
