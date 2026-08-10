@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "generatedOn": "2026-08-10",
+  "status": "proposal-only-reconciled",
+  "make": "Polestar",
+  "source": {
+    "snapshotFile": "data/_polestar-deeplink-snapshot-2026-08-10.json",
+    "snapshotSha256": "d32293da9d2ba5a4192b8775fb83040db9a5b070ca9bdcafed8b8365439d6459",
+    "snapshotHash": "0844d1f96d87050ec0e4b950a221f746327b32e2f9d391c6026589bcf5a5567f"
+  },
+  "coverage": {
+    "snapshotModels": 4,
+    "packetModels": 4,
+    "snapshotRows": 10,
+    "packetRows": 10,
+    "uniquePacketRows": 10,
+    "missingIds": [],
+    "extraIds": [],
+    "duplicateIds": []
+  },
+  "safety": {
+    "immutableIdentityDriftRows": 0,
+    "nonPublishedProposalRows": 0,
+    "commerceRows": 0,
+    "ownerSocialProofRows": 0,
+    "productionWriteAuthorized": false
+  },
+  "decisions": {
+    "retain_indexed_identity_and_accuracy_cleanup": 1,
+    "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy": 9,
+    "total": 10
+  },
+  "applicationGate": {
+    "status": "blocked",
+    "reason": "9 indexed identities remain held for policy or evidence review; no production write is authorized."
+  },
+  "models": [
+    {
+      "model": "Polestar 1",
+      "rows": 1,
+      "retain": 0,
+      "hold": 1,
+      "gate": "blocked",
+      "packetFile": "data/known-issue-polestar-1-adjudication-2026-08-10.json",
+      "packetSha256": "0fc80fd5d0e20e8b4eafc068c2f89fd53cf582e20fdd8c48ab7e74092c4e66e2"
+    },
+    {
+      "model": "Polestar 2",
+      "rows": 6,
+      "retain": 0,
+      "hold": 6,
+      "gate": "blocked",
+      "packetFile": "data/known-issue-polestar-2-adjudication-2026-08-10.json",
+      "packetSha256": "11dd20d2827caedeadd6a78666e3c3be8a6534b950eace5ea16c2a94755b41a0"
+    },
+    {
+      "model": "Polestar 3",
+      "rows": 1,
+      "retain": 0,
+      "hold": 1,
+      "gate": "blocked",
+      "packetFile": "data/known-issue-polestar-3-adjudication-2026-08-10.json",
+      "packetSha256": "b98031b7a4c0ab3f41f04b830967371446919f55bac0eed54856c934ac20d0cb"
+    },
+    {
+      "model": "Polestar 4",
+      "rows": 2,
+      "retain": 1,
+      "hold": 1,
+      "gate": "blocked",
+      "packetFile": "data/known-issue-polestar-4-adjudication-2026-08-10.json",
+      "packetSha256": "0deadebfeb50a638a8436f518edd2a56638f4d021124b0aa29ea5cfcae8e0ef0"
+    }
+  ],
+  "errors": []
+}
