@@ -1,0 +1,158 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
+const { RECALL_FILES, SOURCE_FILES } = require('./known-issue-adjudication-utils');
+
+const DATASET_URL = 'https://www.nhtsa.gov/nhtsa-datasets-and-apis';
+const ids = Object.freeze({
+  limGasket: 'pontiac-montana-3-4l-lower-intake-manifold-gasket-coolant-oil-leak',
+  duplicateIntake: 'pontiac-montana-3.4l-intake-gasket',
+  transmission: 'pontiac-montana-4t65e-automatic-transmission-failure',
+  knuckleRecall: 'pontiac-montana-aftermarket-dorman-steering-knuckle-recall',
+  blower: 'pontiac-montana-blower-motor-hvac-blower-resistor-failure',
+  fuel: 'pontiac-montana-fuel-pump-fuel-system-failure-causing-stalling-no-start',
+  cluster: 'pontiac-montana-instrument-cluster-speedometer-stepper-motor-failure',
+  slidingDoor: 'pontiac-montana-power-sliding-door-can-open-while-vehicle-is-moving',
+});
+const allIds = Object.freeze(Object.values(ids).sort());
+const retainedIds = Object.freeze([ids.knuckleRecall, ids.slidingDoor].sort());
+const reportCountCleanupIds = Object.freeze([]);
+
+const content = Object.freeze({
+  [ids.limGasket]: Object.freeze({
+    description: 'Exact GM communications support a narrower lower-intake-manifold service condition. Record 634708 gives revised lower-intake installation guidance for 1999-2002 Montana/Trans Sport; records 10001282 and 10004768 identify engine oil or coolant leakage and a new lower-intake-manifold gasket for 2000-2003 and 1999-2003. They do not establish the frozen 2004-2005 scope, a nylon-carrier/silicone failure mechanism, bearing destruction, white exhaust smoke, a universal Fel-Pro/aluminum upgrade, or prevalence. A second frozen Montana page also represents this same intake-gasket identity.',
+    solution: 'Treat coolant loss, overheating or suspected coolant in oil as an inspection priority; stop driving if temperature rises or lubrication is contaminated. Pressure-test the cooling system, inspect oil and coolant, locate the leak, and distinguish lower-intake, upper-intake, head-gasket, external hose, pump and other paths before disassembly. Follow the exact engine/VIN service procedure and verify fluids and torque sequence. Do not buy an intake-gasket set, thermostat, coolant or engine parts from this page; the leak path, engine, part number and VIN fitment must be established first.',
+    symptoms: ['coolant and oil condition documented', 'cooling system pressure-tested', 'lower-intake leak separated from other engine leaks', 'engine and VIN-specific repair procedure verified'],
+    affectedSystems: ['lower intake manifold and sealing surfaces', 'engine cooling and lubrication systems', 'upper intake, cylinder-head and external leak paths'],
+    evidence: ['Record 634708 supports revised lower-intake installation for 1999-2002.', 'Records 10001282 and 10004768 support an oil/coolant leak and lower-intake gasket for no later than 2003.', 'No exact row proves the frozen 2004-2005 scope or retail-parts prescription.'],
+    conflict: 'The indexed page extends bounded 1999-2003 service evidence through 2005, adds an unsupported universal material mechanism and duplicates another indexed Montana intake-gasket identity.',
+    summary: 'Held the cross-year duplicate intake-gasket identity and restored leak-path, contamination and VIN-specific diagnosis.',
+    citations: ['montana1999', 'montana2003', 'montana2005', 'datasets'],
+    commerceDecision: 'leak path, engine, gasket design, service procedure, part number and VIN fitment remain unresolved; no universal retail part',
+  }),
+  [ids.duplicateIntake]: Object.freeze({
+    description: 'This frozen page is a second identity for the same Montana 3.4L lower-intake-gasket condition represented by pontiac-montana-3-4l-lower-intake-manifold-gasket-coolant-oil-leak. Exact records 634708, 10001282 and 10004768 support bounded lower-intake installation and oil/coolant-leak service through 2003. They do not prove that Montana behavior is the same as Grand Am in every year, that minivan load causes earlier failure, the 2004-2005 scope, the named Fel-Pro kit, a plenum repair, a coolant-brand conversion or a price range. Publishing two URLs as separate defects would preserve duplicate search identities.',
+    solution: 'Diagnose coolant loss, oil contamination, overheating and rough running as separate paths before opening the intake. Pressure-test and identify the exact sealing surface and engine/VIN service procedure. This page cannot choose which duplicate URL should be canonical; that requires an approved redirect and identity policy. Do not buy a lower- or upper-intake gasket, plenum, coolant or related part from this page; leak location, engine, part number and VIN fitment must be established first.',
+    symptoms: ['duplicate identity recognized', 'coolant and oil condition documented', 'exact leak path confirmed', 'canonical URL decision deferred to redirect policy'],
+    affectedSystems: ['lower and upper intake sealing', 'engine cooling and lubrication systems', 'catalog canonicalization and redirect routing'],
+    evidence: ['The frozen catalog contains two Montana intake-gasket URLs for the same repair identity.', 'Records 634708, 10001282 and 10004768 support bounded service through 2003.', 'No exact source proves the Grand Am equivalence, load-duty explanation or named retail kit.'],
+    conflict: 'The indexed page duplicates another Montana intake-gasket URL and adds unsupported cross-model, year, price, fluid and retail-kit assertions.',
+    summary: 'Held the duplicate intake-gasket URL pending an explicit canonical and redirect decision.',
+    citations: ['montana1999', 'montana2003', 'montana2005', 'datasets'],
+    commerceDecision: 'canonical identity, leak path, engine, part number and VIN fitment remain unresolved; no universal retail part',
+  }),
+  [ids.transmission]: Object.freeze({
+    description: 'The exact corpus documents several different 4T65-E conditions rather than one 1999-2005 transmission-failure mechanism. Record 611290 covers 1999 harsh/soft/erratic shifts and acceleration shudder; 619245 covers a burnt fourth clutch on 2000-2001; 634985 covers 1999-2002 slip, flare, harsh shift and P1811/P0748; 10020766 covers a 2001-2005 1-2 shift shudder and second-clutch repair; and 10025065 covers later valve-body diagnostics. These records do not establish one heat/city-driving cause, a de-splined fourth-gear hub across all years, universal cooler installation, or automatic rebuild.',
+    solution: 'Verify fluid level and condition using the exact procedure, scan all modules, reproduce the specific shift concern, and test line pressure, commanded versus actual slip, solenoids, wiring, valve body, torque-converter clutch, individual clutch elements, seals, cooler flow and axle leaks. Separate each DTC and operating condition before choosing service, repair or overhaul. Do not buy a cooler, solenoid, valve body, torque converter, clutch assembly or remanufactured transmission from this page; transmission code, failed path, part number and VIN fitment must be established first.',
+    symptoms: ['specific shift condition and temperature reproduced', 'fluid, DTC and line-pressure evidence collected', 'solenoid, valve-body, clutch and converter paths separated', 'leak and cooler-flow paths checked'],
+    affectedSystems: ['4T65-E hydraulic and electronic controls', 'individual clutch elements and torque converter', 'fluid, cooler, seals, wiring and axle interfaces'],
+    evidence: ['Records 611290, 619245 and 634985 describe different early-year conditions.', 'Record 10020766 identifies a bounded 1-2 shudder/second-clutch repair.', 'Record 10025065 is diagnostic guidance, not proof of one universal failure.'],
+    conflict: 'The indexed page merges distinct shift, clutch, pressure, leak and converter identities into one all-year heat-driven failure and parts remedy.',
+    summary: 'Held the bundled transmission identity and restored condition-specific 4T65-E diagnosis.',
+    citations: ['montana1999', 'montana2003', 'montana2005', 'datasets'],
+    commerceDecision: 'transmission code, DTC, hydraulic/electronic/clutch path, part number and VIN fitment remain unresolved; no universal retail part',
+  }),
+  [ids.knuckleRecall]: Object.freeze({
+    description: 'NHTSA equipment recall 09E005 identifies Dorman 697-902 and 697-903 steering knuckles, also sold under NAPA/Balkamp 7-8502 and 7-8503 and other labels, for replacement use on Pontiac Montana model years that include the frozen 2003-2005 scope. The potential material/design defect can break the aluminum knuckle in the hub area and cause loss of steering control. This is not a General Motors original-equipment recall and does not apply unless an affected aftermarket knuckle was installed.',
+    solution: 'If the installed knuckle could be an affected aftermarket unit, avoid driving until a qualified shop identifies both sides by part marking, material and repair history and checks for damage. Contact Dorman and use NHTSA recall 09E005 to confirm whether the installed part remains covered and what remedy and labor reimbursement are currently available; do not assume a 2009 hotline or no-charge remedy is unchanged today. Do not buy a generic knuckle from this page; installed-part identity, side, current replacement number and VIN fitment must be verified first.',
+    symptoms: ['aftermarket repair history and part markings checked', 'Dorman/NAPA recalled numbers distinguished from original equipment', 'both knuckles inspected before further driving', 'current recall remedy confirmed directly'],
+    affectedSystems: ['aftermarket front steering knuckle', 'hub and wheel-bearing attachment', 'steering control and front suspension'],
+    evidence: ['NHTSA campaign 09E005 names Dorman 697-902/697-903 and NAPA/Balkamp 7-8502/7-8503.', 'The campaign includes Pontiac Montana years encompassing 2003-2005.', 'The official notice states that the campaign is unrelated to GM original equipment.'],
+    conflict: null,
+    summary: 'Retained the exact aftermarket-equipment recall identity while adding installed-part and current-remedy boundaries.',
+    citations: ['dormanAck', 'montana2003', 'montana2005', 'datasets'],
+    commerceDecision: 'installed aftermarket provenance, side, current recall remedy, replacement part number and VIN fitment must be verified; no universal retail part',
+  }),
+  [ids.blower]: Object.freeze({
+    description: 'The exact Montana/Trans Sport corpus does not support the frozen 1999-2005 blower-resistor identity. Records 616375 and 616381 cover a 2001 rear-control-switch condition that removes front auxiliary temperature and blower-speed adjustment on vehicles with rear air conditioning. Record 10014965 covers rear blower-motor noise on 2005 vehicles. Neither proves a front resistor that leaves only high speed, a full-speed run-on condition, connector corrosion, no-programming repair or common failure across all seven years.',
+    solution: 'Confirm whether the complaint concerns the front or rear HVAC system and which speeds and controls fail. Test the applicable fuse, relay, control head/switch, resistor or control module, connector, power, ground and blower-motor current draw using the exact wiring diagram. Do not buy a resistor, motor, relay, connector or control switch from this page; HVAC configuration, failed circuit, part number and VIN fitment must be established first.',
+    symptoms: ['front and rear HVAC paths distinguished', 'failed speeds and control inputs documented', 'power, ground and motor current tested', 'switch, resistor/module, relay and connector separated'],
+    affectedSystems: ['front and rear HVAC blower circuits', 'control switch, resistor or electronic module', 'blower motor, relay, connector, power and ground'],
+    evidence: ['Records 616375 and 616381 identify a 2001 rear-control-switch condition.', 'Record 10014965 identifies 2005 rear blower noise.', 'No exact row establishes the frozen all-year front-resistor mechanism.'],
+    conflict: 'The indexed page combines front/rear HVAC paths and projects two bounded communications into a universal resistor/motor/connector failure.',
+    summary: 'Held the all-year blower-resistor mechanism and restored configuration-specific electrical diagnosis.',
+    citations: ['montana2001', 'montana2005', 'datasets'],
+    commerceDecision: 'front/rear HVAC configuration, failed circuit, part number and VIN fitment remain unresolved; no universal retail part',
+  }),
+  [ids.fuel]: Object.freeze({
+    description: 'Record 627671 lists hard start, no start, stall and/or fuel-gauge inoperation for 2000-2006 vehicles, but its indexed summary does not establish one in-tank-pump, filter, hot-pressure or tank-harness cause. Record 10017551 is a separate 2005 PCM/ECM product-emission recall that can affect fuel-pump control. The exact cracked fuel-pump-module-port coverage in records 10051936, 10114127 and 10114178 applies to 2008-2009 Montana SV6, outside this frozen 2000-2005 identity. No exact source supports a 30,000-mile filter interval or automatic pump-module replacement.',
+    solution: 'For a stall or no-start, preserve fault data and test battery/cranking, security authorization, spark, injector command, fuel pressure and pressure retention, pump power/ground/current, relay, PCM command, harness/connectors, filter restriction and crank/cam signals. Hot-only behavior does not identify the failed component. Do not buy a pump module, filter, relay, harness or crank sensor from this page; the failed path, tank configuration, part number and VIN fitment must be established first.',
+    symptoms: ['stall/no-start condition and fault data documented', 'fuel pressure and electrical command tested', 'security, ignition and crank-signal paths separated', 'Montana distinguished from later Montana SV6 coverage'],
+    affectedSystems: ['fuel pressure and in-tank pump circuit', 'relay, PCM command and tank harness', 'security, ignition and crank/cam signal paths'],
+    evidence: ['Record 627671 states symptoms but not the frozen universal pump/filter mechanism.', 'Record 10017551 is a distinct 2005 control-module campaign.', 'The exact pump-port special coverage is for 2008-2009 Montana SV6, not 2000-2005 Montana.'],
+    conflict: 'The indexed page assigns several no-start paths to a universal fuel-pump/filter/harness mechanism and maintenance interval without exact primary support.',
+    summary: 'Held the bundled fuel-system identity and restored pressure, electrical, security and signal diagnosis.',
+    citations: ['montana2001', 'montana2005', 'datasets'],
+    commerceDecision: 'stall/no-start path, tank configuration, failed component, part number and VIN fitment remain unresolved; no universal retail part',
+  }),
+  [ids.cluster]: Object.freeze({
+    description: 'Exact communications support different instrument-cluster conditions but not the frozen stepper-motor mechanism. Record 10005435 covers an intermittent erratic IPC sweep with possible ABS or air-bag lamp on for 2000-2004. Record 10017227 covers an intermittently inoperative IPC with possible DTCs for 2005. The corpus contains no exact Montana speedometer-stepper communication and does not establish Switec/Juken motor failure, solder-joint failure, simultaneous replacement of every motor or a universal dark odometer/display mechanism.',
+    solution: 'Document which gauge or display fails and whether the cluster sweeps, resets or loses communication. Scan all modules and test cluster power, grounds, ignition feeds, network communication, relevant sensors and connectors before opening or replacing the IPC. Preserve odometer disclosure/programming requirements. Do not buy stepper motors, a used cluster, display or repair service from this page; the failed circuit, mileage handling, part number and VIN fitment must be established first.',
+    symptoms: ['failed gauge or display documented', 'cluster sweep/reset and DTC evidence collected', 'power, ground, network and sensor paths tested', 'odometer programming and disclosure verified'],
+    affectedSystems: ['instrument panel cluster gauges and display', 'cluster power, grounds and network communication', 'vehicle sensors and odometer programming'],
+    evidence: ['Record 10005435 supports an erratic IPC sweep for 2000-2004.', 'Record 10017227 supports an intermittent 2005 IPC outage.', 'No exact row identifies a Montana speedometer stepper or named replacement motor.'],
+    conflict: 'The indexed page converts separate IPC sweep/outage records into a six-year Switec/Juken stepper-and-solder design defect and parts prescription.',
+    summary: 'Held the unsupported stepper-motor identity and restored circuit, communication and odometer diagnosis.',
+    citations: ['montana2001', 'montana2005', 'datasets'],
+    commerceDecision: 'failed gauge/display/circuit, mileage handling, part number and VIN fitment remain unresolved; no universal retail part',
+  }),
+  [ids.slidingDoor]: Object.freeze({
+    description: 'NHTSA campaigns 01V067 and 01V264 support the frozen safety identity for equipped Pontiac Montana/Trans Sport minivans within the 1997-2001 range. Campaign 01V067 covers passenger-side power sliding doors that can close without latching and then open while moving. Follow-up 01V264 covers specified vehicles previously serviced under the first campaign plus a defined 2001 production group whose actuator front welds may be inadequate. Coverage is equipment-, service-history-, production- and VIN-specific; it is not a statement that every van in each indexed year is affected.',
+    solution: 'If the passenger-side power sliding door does not positively latch, keep occupants away from it and do not drive until secured and inspected. Check the VIN and campaign-completion history for 01V067 and 01V264 with NHTSA and a GM dealer. Ask the dealer to confirm the currently available inspection/remedy and any charge; do not infer present-day no-cost service from the historical owner letter. Do not buy an actuator or latch part from this page; campaign applicability, prior repair, installed assembly, part number and VIN fitment must be verified first.',
+    symptoms: ['passenger-side power sliding door equipment verified', 'positive latch engagement checked before driving', 'VIN and prior campaign completion checked', 'current inspection and remedy confirmed with a dealer'],
+    affectedSystems: ['passenger-side power sliding door latch', 'unlatch actuator assembly and welds', 'campaign completion and VIN applicability'],
+    evidence: ['Campaign 01V067 identifies a door that may close without latching and open while moving.', 'Campaign 01V264 identifies inadequate actuator front welds in its defined follow-up population.', 'The campaign summary covers equipped Pontiac Montana/Trans Sport minivans within 1997-2001.'],
+    conflict: null,
+    summary: 'Retained the exact sliding-door recall identity while adding equipment, VIN, prior-repair and current-remedy boundaries.',
+    citations: ['montana1998', 'montana2001', 'datasets'],
+    commerceDecision: 'campaign applicability, prior repair, installed actuator/latch, current remedy, part number and VIN fitment must be verified; no universal retail part',
+  }),
+});
+
+const pdfSources = Object.freeze({
+  dormanAck: { title: 'NHTSA Recall Acknowledgement 09E005 — Dorman Steering Knuckles', type: 'nhtsa', url: 'https://static.nhtsa.gov/odi/rcl/2009/RCAK-09E005-7433.pdf' },
+});
+const otherSources = Object.freeze({
+  datasets: { title: 'NHTSA Manufacturer Communications and Recall Datasets', type: 'nhtsa', url: DATASET_URL },
+  montana1998: { title: 'NHTSA Vehicle Detail — 1998 Pontiac Montana', type: 'nhtsa', url: 'https://www.nhtsa.gov/vehicle/1998/PONTIAC/MONTANA' },
+  montana1999: { title: 'NHTSA Vehicle Detail — 1999 Pontiac Montana', type: 'nhtsa', url: 'https://www.nhtsa.gov/vehicle/1999/PONTIAC/MONTANA' },
+  montana2001: { title: 'NHTSA Vehicle Detail — 2001 Pontiac Montana', type: 'nhtsa', url: 'https://www.nhtsa.gov/vehicle/2001/PONTIAC/MONTANA' },
+  montana2003: { title: 'NHTSA Vehicle Detail — 2003 Pontiac Montana', type: 'nhtsa', url: 'https://www.nhtsa.gov/vehicle/2003/PONTIAC/MONTANA' },
+  montana2005: { title: 'NHTSA Vehicle Detail — 2005 Pontiac Montana', type: 'nhtsa', url: 'https://www.nhtsa.gov/vehicle/2005/PONTIAC/MONTANA' },
+});
+
+module.exports = Object.freeze({
+  make: 'Pontiac', model: 'Montana', slug: 'montana', reviewDate: '2026-08-10', snapshotFile: 'data/_pontiac-deeplink-snapshot-2026-08-10.json', outputFile: 'data/known-issue-pontiac-montana-adjudication-2026-08-10.json', ids, allIds, retainedIds, reportCountCleanupIds,
+  sourceMakes: ['PONTIAC'], modelAliases: ['MONTANA', 'TRANS SPORT'], searchTerms: ['intake manifold', 'coolant leak', '4T65', 'transmission', 'steering knuckle', 'Dorman', 'blower', 'resistor', 'fuel pump', 'stall', 'no start', 'instrument cluster', 'speedometer', 'gauge', 'sliding door', 'actuator', 'latch'],
+  relevantDocumentIds: ['605985', '606534', '607603', '607995', '611290', '616375', '616381', '619245', '627671', '629666', '634708', '634985', '10001282', '10004768', '10005435', '10014965', '10017227', '10017551', '10020766', '10025065', '10051936'],
+  campaigns: ['00V228003', '01V026000', '01V067000', '01V264000', '01V383000', '02V027000', '02V222000', '02V286000', '02V329000', '03V051000', '03V250000', '04V177000', '04V597000', '05V061000', '05V287000', '05V552000', '06V417000', '07E021000', '07V349000', '09E005000', '10V110000', '89V164000', '91V046000', '92V012000', '93V212000', '94V015000', '94V027000', '94V100000', '95V048000', '95V214000', '96V015000', '97V058000', '98V072000', '98V131000', '99I003000', '99V071000', '99V268000'],
+  pdfSources, otherSources,
+  bulletinInventory: { source: DATASET_URL, periodCounts: { '1995-1999': 62, '2000-2004': 273, '2005-2009': 137, '2010-2014': 26, '2015-2019': 850, '2020-2024': 258, '2025-2026': 9 }, totalRows: 1615, relevantRowCount: 262, uniqueRelevantCommunications: 213, sourceFiles: SOURCE_FILES.map(({ period, length, sha256 }) => ({ period, length, sha256 })), scopeFinding: 'The complete Montana plus predecessor-name Trans Sport corpus contains 1,615 exact communications. It supports two exact recall identities and several bounded intake, transmission, HVAC, fuel and IPC conditions, but not six frozen pages at their complete mechanism, year or identity scope.' },
+  recallInventory: { source: DATASET_URL, periodCounts: { pre: 89, post: 4 }, totalRows: 93, campaignCount: 37, sourceFiles: RECALL_FILES.map(({ period, length, sha256 }) => ({ period, length, sha256 })), scopeFinding: 'All 93 exact Montana/Trans Sport recall rows across 37 campaigns were reconciled. Campaigns 01V067 and 01V264 support the sliding-door identity; equipment campaign 09E005 supports the aftermarket-knuckle identity; the remaining campaigns are distinct conditions.' },
+  content,
+  requiredProse: [
+    { id: ids.limGasket, field: 'description', patterns: ['634708', '10004768', '2004-2005 scope', 'second frozen Montana page'] },
+    { id: ids.duplicateIntake, field: 'description', patterns: ['second identity', 'same Montana 3.4L', 'duplicate search identities'] },
+    { id: ids.transmission, field: 'description', patterns: ['611290', '619245', '10020766', 'different 4T65-E conditions'] },
+    { id: ids.knuckleRecall, field: 'description', patterns: ['09E005', '697-902', 'not a General Motors original-equipment recall'] },
+    { id: ids.blower, field: 'description', patterns: ['616375', '10014965', 'front resistor'] },
+    { id: ids.fuel, field: 'description', patterns: ['627671', '10017551', '2008-2009 Montana SV6'] },
+    { id: ids.cluster, field: 'description', patterns: ['10005435', '10017227', 'no exact Montana speedometer-stepper'] },
+    { id: ids.slidingDoor, field: 'description', patterns: ['01V067', '01V264', 'VIN-specific'] },
+  ],
+  observations: [
+    { code: 'coverage-complete', severity: 'source-integrity', recordIds: allIds, detail: 'All 8/8 frozen Montana rows are represented exactly once.' },
+    { code: 'two-identities-retained', severity: 'identity-safety', recordIds: retainedIds, detail: 'The aftermarket-knuckle and sliding-door recall identities have exact primary support after scope cleanup.' },
+    { code: 'six-identities-held', severity: 'identity-safety', recordIds: allIds.filter((id) => !retainedIds.includes(id)), detail: 'Six pages remain published and held pending independent identity review.' },
+    { code: 'predecessor-alias-searched', severity: 'source-integrity', recordIds: allIds, detail: 'Both Montana and predecessor-name Trans Sport source rows were searched to cover the frozen 1997 boundary.' },
+    { code: 'intake-duplicates-not-collapsed', severity: 'seo-safety', recordIds: [ids.limGasket, ids.duplicateIntake], detail: 'Two duplicate intake-gasket URLs remain published; no canonical, archive or redirect is applied without approval.' },
+    { code: 'transmission-identities-separated', severity: 'technical-accuracy', recordIds: [ids.transmission], detail: 'Shift, pressure, second/fourth clutch, converter, leak and valve-body conditions are not merged into one mechanism.' },
+    { code: 'aftermarket-recall-bounded', severity: 'consumer-accuracy', recordIds: [ids.knuckleRecall], detail: 'Campaign 09E005 is explicitly limited to installed recalled aftermarket equipment and current remedy confirmation.' },
+    { code: 'hvac-paths-separated', severity: 'technical-accuracy', recordIds: [ids.blower], detail: 'Rear-switch and rear-blower communications are not converted into an all-year front-resistor defect.' },
+    { code: 'later-sv6-coverage-not-inferred', severity: 'source-integrity', recordIds: [ids.fuel], detail: '2008-2009 Montana SV6 pump-port coverage is not projected onto 2000-2005 Montana.' },
+    { code: 'cluster-stepper-not-inferred', severity: 'technical-accuracy', recordIds: [ids.cluster], detail: 'IPC sweep/outage communications are not converted into a named Switec/Juken stepper mechanism.' },
+    { code: 'sliding-door-population-bounded', severity: 'consumer-accuracy', recordIds: [ids.slidingDoor], detail: 'Campaign coverage remains equipment-, production-, service-history- and VIN-specific.' },
+    { code: 'historical-free-remedy-not-promised', severity: 'consumer-accuracy', recordIds: [ids.knuckleRecall, ids.slidingDoor], detail: 'Owners are told to confirm current remedy availability and charge rather than rely on an old owner letter.' },
+    { code: 'no-commerce', severity: 'commerce-safety', recordIds: allIds, detail: 'No buy link, fixParts record or recommendation is introduced.' },
+    { code: 'no-zero-owner-text', severity: 'seo-safety', recordIds: allIds, detail: 'Unknown owner counts remain zero and never render as 0+ owners.' },
+    { code: 'identity-preserved', severity: 'seo-safety', recordIds: allIds, detail: 'Title, model, years, trims, engines, category, severity, status and routing remain frozen.' },
+  ],
+});
