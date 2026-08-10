@@ -4,8 +4,9 @@ const comboContract = require('./opel-combo-adjudication-contract');
 const corsaContract = require('./opel-corsa-adjudication-contract');
 const crosslandContract = require('./opel-crossland-adjudication-contract');
 const grandlandContract = require('./opel-grandland-adjudication-contract');
+const insigniaContract = require('./opel-insignia-adjudication-contract');
 
-const CONTRACTS = Object.freeze({ Astra: astraContract, Combo: comboContract, Corsa: corsaContract, Crossland: crosslandContract, Grandland: grandlandContract });
+const CONTRACTS = Object.freeze({ Astra: astraContract, Combo: comboContract, Corsa: corsaContract, Crossland: crosslandContract, Grandland: grandlandContract, Insignia: insigniaContract });
 
 function getContract(model) {
   const contract = CONTRACTS[model];
