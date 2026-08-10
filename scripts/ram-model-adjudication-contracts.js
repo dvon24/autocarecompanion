@@ -1,0 +1,12 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
+const contracts = Object.freeze({
+  '1500 Classic': require('./ram-1500-classic-adjudication-contract'),
+});
+
+function getContract(model) {
+  const contract = contracts[model];
+  if (!contract) throw new Error(`Unknown RAM model: ${model}`);
+  return contract;
+}
+
+module.exports = { CONTRACTS: contracts, getContract };
