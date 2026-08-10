@@ -5,6 +5,7 @@ const contracts = Object.freeze({
   Kadjar: () => require('./renault-kadjar-adjudication-contract'),
   Koleos: () => require('./renault-koleos-adjudication-contract'),
   Kwid: () => require('./renault-kwid-adjudication-contract'),
+  Megane: () => require('./renault-megane-adjudication-contract'),
 });
 
 function getContract(model) {
