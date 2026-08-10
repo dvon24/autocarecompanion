@@ -4,6 +4,7 @@ const threeHundredZxContract = require('./nissan-300zx-adjudication-contract');
 const threeFiftyZContract = require('./nissan-350z-adjudication-contract');
 const threeSeventyZContract = require('./nissan-370z-adjudication-contract');
 const altimaContract = require('./nissan-altima-adjudication-contract');
+const ariyaContract = require('./nissan-ariya-adjudication-contract');
 
 const CONTRACTS = Object.freeze({
   '240SX': twoFortySxContract,
@@ -11,6 +12,7 @@ const CONTRACTS = Object.freeze({
   '350Z': threeFiftyZContract,
   '370Z': threeSeventyZContract,
   Altima: altimaContract,
+  Ariya: ariyaContract,
 });
 
 function getContract(model) {
