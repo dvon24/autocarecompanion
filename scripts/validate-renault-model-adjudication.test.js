@@ -2,12 +2,15 @@
 const assert = require('node:assert/strict');
 const test = require('node:test');
 const { buildForModel } = require('./build-renault-model-adjudication');
+const { supportedModels } = require('./renault-model-adjudication-contracts');
 const { validatePacket } = require('./validate-renault-model-adjudication');
 
-test('Captur packet passes all frozen-identity gates', () => {
-  const { contract, snapshot, packet } = buildForModel('Captur');
-  assert.deepEqual(validatePacket(contract, packet, snapshot), []);
-});
+for (const model of supportedModels) {
+  test(`${model} packet passes all frozen-identity gates`, () => {
+    const { contract, snapshot, packet } = buildForModel(model);
+    assert.deepEqual(validatePacket(contract, packet, snapshot), []);
+  });
+}
 
 test('validator rejects a held page becoming unpublished', () => {
   const { contract, snapshot, packet } = buildForModel('Captur');

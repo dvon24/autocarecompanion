@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-require-imports */
 const contracts = Object.freeze({
   Captur: () => require('./renault-captur-adjudication-contract'),
+  Clio: () => require('./renault-clio-adjudication-contract'),
 });
 
 function getContract(model) {
