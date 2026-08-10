@@ -26,6 +26,7 @@ const skylineContract = require('./nissan-skyline-adjudication-contract');
 const stanzaContract = require('./nissan-stanza-adjudication-contract');
 const titanContract = require('./nissan-titan-adjudication-contract');
 const versaContract = require('./nissan-versa-adjudication-contract');
+const xterraContract = require('./nissan-xterra-adjudication-contract');
 
 const CONTRACTS = Object.freeze({
   '240SX': twoFortySxContract,
@@ -55,6 +56,7 @@ const CONTRACTS = Object.freeze({
   Stanza: stanzaContract,
   Titan: titanContract,
   Versa: versaContract,
+  Xterra: xterraContract,
 });
 
 function getContract(model) {
