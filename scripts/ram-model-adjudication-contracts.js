@@ -4,6 +4,7 @@ const contracts = Object.freeze({
   '2500': require('./ram-2500-adjudication-contract'),
   '3500': require('./ram-3500-adjudication-contract'),
   ProMaster: require('./ram-promaster-adjudication-contract'),
+  'ProMaster City': require('./ram-promaster-city-adjudication-contract'),
 });
 
 function getContract(model) {
