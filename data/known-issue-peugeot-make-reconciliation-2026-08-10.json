@@ -1,0 +1,130 @@
+{
+  "schemaVersion": 1,
+  "generatedOn": "2026-08-10",
+  "status": "proposal-only-reconciled",
+  "make": "Peugeot",
+  "source": {
+    "snapshotFile": "data/_peugeot-deeplink-snapshot-2026-08-10.json",
+    "snapshotSha256": "6aabedb30b4946a7f75abcdb94c725cc506dbe63cbee23564e15153e13ce624a",
+    "snapshotHash": "a8a5818b67b1900bf58882abf5e11413d0c50daf1f97a6cb9eb8d8a15679f364"
+  },
+  "coverage": {
+    "snapshotModels": 10,
+    "packetModels": 10,
+    "snapshotRows": 47,
+    "packetRows": 47,
+    "uniquePacketRows": 47,
+    "missingIds": [],
+    "extraIds": [],
+    "duplicateIds": []
+  },
+  "safety": {
+    "immutableIdentityDriftRows": 0,
+    "nonPublishedProposalRows": 0,
+    "commerceRows": 0,
+    "ownerSocialProofRows": 0,
+    "productionWriteAuthorized": false
+  },
+  "decisions": {
+    "retain_indexed_identity_and_accuracy_cleanup": 3,
+    "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy": 44,
+    "total": 47
+  },
+  "applicationGate": {
+    "status": "blocked",
+    "reason": "44 indexed identities remain held for policy or evidence review; no production write is authorized."
+  },
+  "models": [
+    {
+      "model": "2008",
+      "rows": 2,
+      "retain": 1,
+      "hold": 1,
+      "gate": "blocked",
+      "packetFile": "data/known-issue-peugeot-2008-adjudication-2026-08-10.json",
+      "packetSha256": "2b16b73ea535890b45d944b2e97687264a1dee32025ca5ce4f3e12a9a373cd70"
+    },
+    {
+      "model": "206",
+      "rows": 9,
+      "retain": 0,
+      "hold": 9,
+      "gate": "blocked",
+      "packetFile": "data/known-issue-peugeot-206-adjudication-2026-08-10.json",
+      "packetSha256": "c8ee34af95fbac93a6cfce6e33bfdec9e6b4075939c1766251dc97bddeefbb93"
+    },
+    {
+      "model": "207",
+      "rows": 3,
+      "retain": 0,
+      "hold": 3,
+      "gate": "blocked",
+      "packetFile": "data/known-issue-peugeot-207-adjudication-2026-08-10.json",
+      "packetSha256": "8e50ecb01a214e76ae80d7c4bb23e523725f86d322b3e586328a52693d6b9d08"
+    },
+    {
+      "model": "208",
+      "rows": 8,
+      "retain": 1,
+      "hold": 7,
+      "gate": "blocked",
+      "packetFile": "data/known-issue-peugeot-208-adjudication-2026-08-10.json",
+      "packetSha256": "fd1fe4e330aa81aa916c38aacb28e6329b3b6a35f2884caceb01dca5e22c4026"
+    },
+    {
+      "model": "3008",
+      "rows": 9,
+      "retain": 0,
+      "hold": 9,
+      "gate": "blocked",
+      "packetFile": "data/known-issue-peugeot-3008-adjudication-2026-08-10.json",
+      "packetSha256": "36ac65cff97fecf5532b8b543cb9dd6d9a9636fb3a2753ef699a6a082cc00448"
+    },
+    {
+      "model": "308",
+      "rows": 9,
+      "retain": 1,
+      "hold": 8,
+      "gate": "blocked",
+      "packetFile": "data/known-issue-peugeot-308-adjudication-2026-08-10.json",
+      "packetSha256": "7ffe0126d988e157decc204698a3c2daa793a5da45973ad137f41509e1654c86"
+    },
+    {
+      "model": "5008",
+      "rows": 2,
+      "retain": 0,
+      "hold": 2,
+      "gate": "blocked",
+      "packetFile": "data/known-issue-peugeot-5008-adjudication-2026-08-10.json",
+      "packetSha256": "351d66e730feada6a6e63ff32b73316ae0c204e9cb618a20600ac1246e8104ed"
+    },
+    {
+      "model": "508",
+      "rows": 1,
+      "retain": 0,
+      "hold": 1,
+      "gate": "blocked",
+      "packetFile": "data/known-issue-peugeot-508-adjudication-2026-08-10.json",
+      "packetSha256": "67c543474dd4954509e77be7b1c8a7f20e1b2f253e97ade23b735944785fafe6"
+    },
+    {
+      "model": "Partner/Rifter",
+      "rows": 2,
+      "retain": 0,
+      "hold": 2,
+      "gate": "blocked",
+      "packetFile": "data/known-issue-peugeot-partner-rifter-adjudication-2026-08-10.json",
+      "packetSha256": "df9f21f6b7799d32422cc52655720520c03996ce14478f3cbdae1b6e3720955c"
+    },
+    {
+      "model": "RCZ",
+      "rows": 2,
+      "retain": 0,
+      "hold": 2,
+      "gate": "blocked",
+      "packetFile": "data/known-issue-peugeot-rcz-adjudication-2026-08-10.json",
+      "packetSha256": "193584d13231d4d3f0b7cd6caf3a90b399450293b29ab38d938c3929d91666df"
+    }
+  ],
+  "errors": []
+}
