@@ -18,6 +18,7 @@ const muranoContract = require('./nissan-murano-adjudication-contract');
 const nvContract = require('./nissan-nv-adjudication-contract');
 const nv200Contract = require('./nissan-nv200-adjudication-contract');
 const pathfinderContract = require('./nissan-pathfinder-adjudication-contract');
+const questContract = require('./nissan-quest-adjudication-contract');
 
 const CONTRACTS = Object.freeze({
   '240SX': twoFortySxContract,
@@ -39,6 +40,7 @@ const CONTRACTS = Object.freeze({
   NV: nvContract,
   NV200: nv200Contract,
   Pathfinder: pathfinderContract,
+  Quest: questContract,
 });
 
 function getContract(model) {
