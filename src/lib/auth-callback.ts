@@ -20,10 +20,6 @@ export function safeInternalCallback(
   return value;
 }
 
-export function signupHref(callbackUrl: string): string {
-  return `/auth/signup?callbackUrl=${encodeURIComponent(safeInternalCallback(callbackUrl))}`;
-}
-
 export function signinHref(callbackUrl: string): string {
   return `/auth/signin?callbackUrl=${encodeURIComponent(safeInternalCallback(callbackUrl))}`;
 }

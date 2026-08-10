@@ -58,7 +58,7 @@ export async function POST(request: Request) {
   const session = await auth().catch(() => null);
   if (!session?.user?.id) {
     return NextResponse.json(
-      { error: 'unauthorized', message: 'Sign in to save your diagnosis.' },
+      { error: 'unauthorized', message: 'Saving is unavailable without owner access.' },
       { status: 401 }
     );
   }

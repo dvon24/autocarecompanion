@@ -3,51 +3,40 @@
 import Link from 'next/link';
 
 export interface GateInfo {
-  /** Server-provided headline message (e.g. "Sign up free to keep chatting…") */
+  /** Server-provided headline message for the exhausted quota. */
   message: string;
-  /** Where the primary action button takes the user — /auth/signup for anon, /account for authed-free */
+  /** Where the primary non-auth action takes the user. */
   ctaUrl: string;
-  /** Primary button label — "Sign up free" or "Subscribe" */
+  /** Primary button label. */
   ctaLabel: string;
-  /** Optional secondary link (e.g. "Sign in" for anon users who already have an account) */
+  /** Optional secondary link supplied by the server. */
   secondaryCtaUrl?: string;
   secondaryCtaLabel?: string;
   /** Server-provided ISO string for when the quota resets — shown as small print */
   resetAt?: string;
-  /** True when the gate is for an authed-free user (subscribe path) vs anon (signup path) — drives copy tone */
+  /** True when the gate is for an authenticated owner. */
   isAuthed?: boolean;
 }
 
 /**
  * Inline card rendered inside the conversation stream when the server
  * returns 429 with `gated: true`. Replaces the assistant's empty
- * placeholder bubble so the user sees a clear sign-up / subscribe path
+ * placeholder bubble so the user sees a clear next step
  * exactly where they expected an answer.
  *
  * Distinct from <UpgradePrompt> (modal, hardcoded copy) because:
  *  - This sits inline with the conversation, doesn't interrupt
- *  - Copy + CTAs come from the server response shape so the same
- *    component handles both anonymous (signup gate) and authed-free
- *    (subscribe gate) cases — no client-side branching needed
+ *  - Copy + CTAs come from the server response shape, with anonymous
+ *    visitors sent back to public known-issue content
  */
 export function InlineGateCard({ gate }: { gate: GateInfo }) {
   const resetText = gate.resetAt ? formatReset(gate.resetAt) : '';
-  // Visual treatment shifts by gate type — signup gate is friendlier
-  // (this is their first wall, we want them to convert), subscribe
-  // gate is more premium (they've already invested by signing up).
-  const isSignupGate = !gate.isAuthed && /sign.?up/i.test(gate.ctaLabel);
   return (
     <div className="gate-card">
       <div className="gate-icon" aria-hidden>
-        {isSignupGate ? (
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <path d="M15 14a5 5 0 0 0-6 0M9 9a3 3 0 1 0 6 0M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-        ) : (
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <path d="M12 2L4 7v6c0 5 3.5 9.5 8 11 4.5-1.5 8-6 8-11V7l-8-5z" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-        )}
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <path d="M12 2L4 7v6c0 5 3.5 9.5 8 11 4.5-1.5 8-6 8-11V7l-8-5z" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
       </div>
       <div className="gate-body">
         <p className="gate-message">{gate.message}</p>

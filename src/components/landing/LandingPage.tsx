@@ -23,7 +23,6 @@ export default function LandingPage({ stats }: Props) {
       }}
     >
       <SiteHeader
-        showSignIn={false}
         ctaLabel="Reserve my spot"
         ctaShortLabel="Reserve"
         ctaHref="#reserve"

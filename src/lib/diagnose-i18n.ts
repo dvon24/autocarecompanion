@@ -156,7 +156,7 @@ const en: DiagnoseStrings = {
     'Diagnosing without your vehicle — results are more accurate when you add your year, make & model.',
   flywheelConsent:
     'Help improve Au7o — keep the details of this diagnosis (the part identified; plates & location removed) to make future diagnoses smarter. No photo is kept. Optional.',
-  handoffPrompt: 'Want to ask Au7o follow-up questions about this? Save your diagnosis by creating a free account.',
+  handoffPrompt: 'Want to ask Au7o follow-up questions about this? Save this diagnosis to your garage.',
   saveGarage: 'Save to my garage',
   saveOpenChat: 'Save & open chat',
 };
@@ -235,7 +235,7 @@ const de: DiagnoseStrings = {
   flywheelConsent:
     'Hilf Au7o besser zu werden — die Details dieser Diagnose behalten (erkanntes Teil; Kennzeichen & Standort entfernt), um künftige Diagnosen zu verbessern. Es wird kein Foto gespeichert. Optional.',
   handoffPrompt:
-    'Willst du Au7o dazu Folgefragen stellen? Sichere deine Diagnose, indem du ein kostenloses Konto erstellst.',
+    'Möchtest du Au7o dazu Folgefragen stellen? Speichere diese Diagnose in deiner Garage.',
   saveGarage: 'In meiner Garage speichern',
   saveOpenChat: 'Speichern & Chat öffnen',
 };
@@ -314,7 +314,7 @@ const fr: DiagnoseStrings = {
   flywheelConsent:
     "Aidez à améliorer Au7o — conservez les détails de ce diagnostic (la pièce identifiée ; plaque et lieu supprimés) pour de meilleurs diagnostics futurs. Aucune photo n'est conservée. Facultatif.",
   handoffPrompt:
-    'Vous voulez poser des questions de suivi à Au7o ? Enregistrez votre diagnostic en créant un compte gratuit.',
+    'Vous voulez poser des questions de suivi à Au7o ? Enregistrez ce diagnostic dans votre garage.',
   saveGarage: 'Enregistrer dans mon garage',
   saveOpenChat: 'Enregistrer et ouvrir le chat',
 };
@@ -393,7 +393,7 @@ const es: DiagnoseStrings = {
   flywheelConsent:
     'Ayuda a mejorar Au7o — conserva los detalles de este diagnóstico (la pieza identificada; matrícula y ubicación eliminadas) para mejorar diagnósticos futuros. No se guarda ninguna foto. Opcional.',
   handoffPrompt:
-    '¿Quieres hacerle preguntas de seguimiento a Au7o? Guarda tu diagnóstico creando una cuenta gratis.',
+    '¿Quieres hacerle preguntas de seguimiento a Au7o? Guarda este diagnóstico en tu garaje.',
   saveGarage: 'Guardar en mi garaje',
   saveOpenChat: 'Guardar y abrir el chat',
 };
@@ -472,7 +472,7 @@ const pt: DiagnoseStrings = {
   flywheelConsent:
     'Ajude a melhorar o Au7o — mantenha os detalhes deste diagnóstico (a peça identificada; placa e localização removidas) para melhorar diagnósticos futuros. Nenhuma foto é guardada. Opcional.',
   handoffPrompt:
-    'Quer fazer perguntas de acompanhamento ao Au7o? Salve seu diagnóstico criando uma conta grátis.',
+    'Quer fazer perguntas de acompanhamento ao Au7o? Salve este diagnóstico na sua garagem.',
   saveGarage: 'Salvar na minha garagem',
   saveOpenChat: 'Salvar e abrir o chat',
 };

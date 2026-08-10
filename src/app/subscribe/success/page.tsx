@@ -10,35 +10,9 @@ function SuccessContent() {
   const [status, setStatus] = useState<'loading' | 'success' | 'error'>('loading');
 
   useEffect(() => {
-    async function verifyAndSignIn() {
-      if (!sessionId) {
-        setStatus('error');
-        return;
-      }
-
-      try {
-        // Auto sign in the user after checkout
-        const response = await fetch('/api/auth/checkout-signin', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ sessionId }),
-        });
-
-        if (response.ok) {
-          setStatus('success');
-        } else {
-          // Even if sign-in fails, checkout was successful
-          // User can sign in manually later
-          console.warn('Auto sign-in failed, user can sign in manually');
-          setStatus('success');
-        }
-      } catch (error) {
-        console.error('Error during auto sign-in:', error);
-        setStatus('success'); // Checkout still worked
-      }
-    }
-
-    verifyAndSignIn();
+    // Checkout now requires an already-authenticated owner session. It no
+    // longer mints an account or JWT from a checkout-session ID.
+    setStatus(sessionId ? 'success' : 'error');
   }, [sessionId]);
 
   if (status === 'loading') {

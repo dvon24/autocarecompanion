@@ -203,9 +203,9 @@ export function DiagnoseFlowClient({ isMobile = false }: { isMobile?: boolean })
 
       if ((res.status === 401 || res.status === 429) && data.gated) {
         setGate({
-          message: data.message ?? 'Sign up to keep diagnosing.',
-          ctaUrl: data.ctaUrl ?? '/auth/signup',
-          ctaLabel: data.ctaLabel ?? 'Sign up free',
+          message: data.message ?? 'Free diagnosis preview complete.',
+          ctaUrl: data.ctaUrl ?? '/known-issues',
+          ctaLabel: data.ctaLabel ?? 'Browse known issues',
           secondaryCtaUrl: data.secondaryCtaUrl,
           secondaryCtaLabel: data.secondaryCtaLabel,
         });
@@ -259,16 +259,13 @@ export function DiagnoseFlowClient({ isMobile = false }: { isMobile?: boolean })
    * "Save & open chat" handler. Snapshots the diagnosis into
    * sessionStorage and navigates the user into the claim flow.
    *
-   * - Anonymous user → /auth/signup?callbackUrl=/diagnose/claim.
-   *   The signup page renders a banner reading the snapshot back so
-   *   they see what they're saving. After signup, /diagnose/claim
-   *   POSTs to /api/diagnose/seed and routes them to their hub.
-   * - Signed-in user → /diagnose/claim directly. No signup detour.
+   * Only an authenticated owner session receives this action while public
+   * account access is closed.
    *
    * Snapshot is cleared by /diagnose/claim on successful seed.
    */
   const handleSaveAndOpenChat = () => {
-    if (!result) return;
+    if (!isSignedIn || !result) return;
     try {
       const snapshot = {
         visionResult: result,
@@ -283,12 +280,7 @@ export function DiagnoseFlowClient({ isMobile = false }: { isMobile?: boolean })
       /* sessionStorage can fail in private mode — let the navigation
          continue so the user at least sees the claim-page fallback. */
     }
-    const callback = '/diagnose/claim';
-    if (isSignedIn) {
-      window.location.href = callback;
-    } else {
-      window.location.href = `/auth/signup?callbackUrl=${encodeURIComponent(callback)}`;
-    }
+    window.location.href = '/diagnose/claim';
   };
 
   return (
@@ -824,7 +816,7 @@ export function DiagnoseFlowClient({ isMobile = false }: { isMobile?: boolean })
                 {t.handoffPrompt}
               </div>
               <div style={{ display: 'flex', gap: 8, flexShrink: 0 }}>
-                <button
+                {isSignedIn && <button
                   type="button"
                   onClick={handleSaveAndOpenChat}
                   style={{
@@ -839,8 +831,9 @@ export function DiagnoseFlowClient({ isMobile = false }: { isMobile?: boolean })
                     fontFamily: 'inherit',
                   }}
                 >
-                  {isSignedIn ? t.saveGarage : t.saveOpenChat}
+                  {t.saveGarage}
                 </button>
+                }
               </div>
             </div>
             <div style={{ textAlign: 'center' }}>

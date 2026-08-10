@@ -6,6 +6,7 @@ import { z } from 'zod';
 import bcrypt from 'bcryptjs';
 import { prisma } from './db';
 import { loginIpLimiter, loginEmailLimiter, getClientIp } from './rate-limit';
+import { isAccountAccessEmail } from './founder';
 
 /**
  * Auth Configuration
@@ -19,6 +20,11 @@ const LoginSchema = z.object({
   email: z.string().email(),
   password: z.string().min(6),
 });
+
+// Keeps rejected, non-owner attempts on roughly the same bcrypt path as an
+// incorrect owner password so the two private allowlisted addresses are not
+// exposed by a simple response-timing comparison.
+const CLOSED_ACCOUNT_PASSWORD_HASH = '$2b$12$3xCLqj58ym4T83Xrcbmm6eFG7O0H5NJYt4smBOfnzGm6elSm6VX9u';
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   adapter: PrismaAdapter(prisma),
@@ -54,6 +60,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         }
 
         const { email, password } = parsed.data;
+        const emailKey = email.trim().toLowerCase();
 
         // Abuse brake. This endpoint had none, and it is the one automated
         // traffic actually targets — every attempt costs a DB lookup, and a
@@ -67,13 +74,20 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         // Same tolerance as every other limiter here; it blunts sustained
         // hammering from one source without an external dependency.
         const ip = request instanceof Request ? getClientIp(request) : 'unknown';
-        const emailKey = email.toLowerCase();
         if (ip !== 'unknown' && !loginIpLimiter.check(ip).success) return null;
         if (!loginEmailLimiter.check(emailKey).success) return null;
 
+        // Public accounts are closed. Apply the abuse brake first, then spend
+        // the same bcrypt-shaped work as a bad owner password before returning
+        // the generic credentials failure.
+        if (!isAccountAccessEmail(emailKey)) {
+          await bcrypt.compare(password, CLOSED_ACCOUNT_PASSWORD_HASH);
+          return null;
+        }
+
         // Find user by email
         const user = await prisma.user.findUnique({
-          where: { email: email.toLowerCase() },
+          where: { email: emailKey },
           select: {
             id: true,
             email: true,
@@ -113,7 +127,17 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     error: '/auth/error',
   },
   callbacks: {
+    async signIn({ user }) {
+      // Covers OAuth as well as credentials. The credentials provider also
+      // checks before doing any password work; this is the provider-agnostic
+      // backstop.
+      return isAccountAccessEmail(user.email);
+    },
     async jwt({ token, user, trigger, session }) {
+      // JWT sessions can outlive a deployment. Returning null retires any
+      // previously issued non-owner session on its next auth refresh.
+      if (!isAccountAccessEmail(user?.email ?? token.email)) return null;
+
       // Initial sign in
       if (user) {
         token.id = user.id;

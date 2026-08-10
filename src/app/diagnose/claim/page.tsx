@@ -16,14 +16,13 @@ export const dynamic = 'force-dynamic';
  * on /diagnose just before signup), POSTs it to /api/diagnose/seed,
  * then redirects to /vehicle/{slug} with the seeded ChatSession id.
  *
- * Auth-gated server-side — if the user isn't signed in we bounce
- * through /auth/signup with this page as the callbackUrl so the
- * signup auto-signin lands them right back here.
+ * Auth-gated server-side. Anonymous visitors return to /diagnose; only an
+ * authenticated owner session can claim the saved result.
  */
 export default async function DiagnoseClaimPage() {
   const session = await auth().catch(() => null);
   if (!session?.user?.id) {
-    redirect('/auth/signup?callbackUrl=' + encodeURIComponent('/diagnose/claim'));
+    redirect('/diagnose');
   }
   return <DiagnoseClaimClient />;
 }

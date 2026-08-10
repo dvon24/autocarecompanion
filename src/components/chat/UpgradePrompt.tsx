@@ -2,7 +2,6 @@
 
 import Link from 'next/link';
 import { formatDistanceToNow } from 'date-fns';
-import { signinHref, signupHref } from '@/lib/auth-callback';
 
 interface UpgradePromptProps {
   resetDate?: Date | null;
@@ -20,7 +19,6 @@ export function UpgradePrompt({
   resetDate,
   variant = 'full',
   className = '',
-  callbackUrl = '/',
 }: UpgradePromptProps) {
   const resetText = resetDate
     ? formatDistanceToNow(resetDate, { addSuffix: true })
@@ -31,8 +29,8 @@ export function UpgradePrompt({
       <div className={`text-center py-4 ${className}`}>
         <p className="text-gray-600 text-sm mb-2">
           Free preview complete.{' '}
-          <Link href={signupHref(callbackUrl)} className="text-blue-600 hover:text-blue-700 font-medium">
-            Create a free account →
+          <Link href="/known-issues" className="text-blue-600 hover:text-blue-700 font-medium">
+            Browse known issues →
           </Link>
         </p>
         <p className="text-xs text-gray-400">
@@ -53,14 +51,14 @@ export function UpgradePrompt({
               Free preview complete
             </p>
             <p className="text-xs text-gray-500 mt-0.5">
-              Create an account to save this vehicle and keep chatting
+              Browse known issues or return when the free limit resets
             </p>
           </div>
           <Link
-            href={signupHref(callbackUrl)}
+            href="/known-issues"
             className="px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 transition-colors whitespace-nowrap"
           >
-            Create account
+            Browse issues
           </Link>
         </div>
       </div>
@@ -93,55 +91,20 @@ export function UpgradePrompt({
       </h3>
 
       <p className="text-gray-600 mb-6 max-w-md mx-auto">
-        Create a free account to keep chatting, save this vehicle, and return
-        to your conversation without entering it again.
+        Browse known issues for this vehicle, or return when the free preview
+        resets.
       </p>
 
       <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
         <Link
-          href={signupHref(callbackUrl)}
+          href="/known-issues"
           className="w-full sm:w-auto px-8 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold rounded-xl hover:from-blue-700 hover:to-indigo-700 transition-all shadow-lg shadow-blue-500/25"
         >
-          Create free account
-        </Link>
-        <Link href={signinHref(callbackUrl)} className="text-sm font-medium text-blue-700 hover:text-blue-800">
-          Already have an account? Sign in
+          Browse known issues
         </Link>
       </div>
 
       {/* Features preview — matches the pricing brief's Au7o Pro tier */}
-      <div className="mt-8 pt-6 border-t border-blue-200/50">
-        <p className="text-xs text-gray-500 uppercase tracking-wide mb-4">
-          Your free account includes
-        </p>
-        <div className="grid grid-cols-2 gap-3 max-w-sm mx-auto text-left">
-          {[
-            'Saved conversations',
-            'Your vehicle context',
-            'Known Issues in the Hub',
-            'Maintenance tracking',
-            'Recall context',
-            'No credit card',
-          ].map((feature) => (
-            <div key={feature} className="flex items-center gap-2 text-sm">
-              <svg
-                className="w-4 h-4 text-green-500 flex-shrink-0"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M5 13l4 4L19 7"
-                />
-              </svg>
-              <span className="text-gray-700">{feature}</span>
-            </div>
-          ))}
-        </div>
-      </div>
     </div>
   );
 }

@@ -182,24 +182,8 @@ export default function SignInPage() {
                 <SignInForm />
               </Suspense>
 
-              {/* Divider */}
-              <div className="relative my-6">
-                <div className="absolute inset-0 flex items-center"><div className="w-full border-t border-gray-200" /></div>
-                <div className="relative flex justify-center text-sm"><span className="px-4 bg-white text-gray-500">new here?</span></div>
-              </div>
-
-              <Link
-                href="/auth/signup"
-                className="block w-full py-3 px-4 bg-gray-900 text-white font-semibold rounded-xl hover:bg-gray-800 transition-colors text-center"
-              >
-                Create a free account
-              </Link>
-              <p className="text-xs text-gray-500 text-center mt-3">
-                or{' '}
-                <Link href="/subscribe" className="text-blue-600 hover:text-blue-700 underline">
-                  pick a plan from $14.99/mo
-                </Link>{' '}
-                to unlock unlimited diagnoses + alerts
+              <p className="text-xs text-gray-400 text-center mt-6">
+                Authorized owner access only.
               </p>
             </div>
           </div>

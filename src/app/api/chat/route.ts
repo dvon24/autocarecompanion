@@ -874,15 +874,13 @@ export async function POST(request: NextRequest) {
       // Anonymous trial is exhausted: signup is the primary next step.
       return NextResponse.json({
         error: 'login_required',
-        message: `You have used your ${DEFAULT_ANON_LIMIT} free messages. Create a free account to keep chatting — free, no card required.`,
+        message: `You have used your ${DEFAULT_ANON_LIMIT} free messages. Browse known issues or return when the free limit resets.`,
         remaining: 0,
         limit: DEFAULT_ANON_LIMIT,
         reset: dayLimit.reset,
         gated: true,
-        ctaUrl: '/auth/signup',
-        ctaLabel: 'Create free account',
-        secondaryCtaUrl: '/auth/signin',
-        secondaryCtaLabel: 'Sign in',
+        ctaUrl: '/known-issues',
+        ctaLabel: 'Browse known issues',
       }, { status: 429 });
     }
     refundDayLimit = () => { dayLimiter.refund(ip); };
@@ -952,15 +950,13 @@ export async function POST(request: NextRequest) {
         // daily IP cap fires first). Same signup pitch as daily.
         return NextResponse.json({
           error: 'login_required',
-          message: `You have used your ${DEFAULT_ANON_LIMIT} free messages. Create a free account to keep chatting — free, no card required.`,
+          message: `You have used your ${DEFAULT_ANON_LIMIT} free messages. Browse known issues or return when the free limit resets.`,
           resetAt: quota.resetAt.toISOString(),
           remaining: 0,
           limit: quotaLimit,
           gated: true,
-          ctaUrl: '/auth/signup',
-          ctaLabel: 'Create free account',
-          secondaryCtaUrl: '/auth/signin',
-          secondaryCtaLabel: 'Sign in',
+          ctaUrl: '/known-issues',
+          ctaLabel: 'Browse known issues',
         }, { status: 429 });
       }
       consumedQuotaKey = quotaKey;

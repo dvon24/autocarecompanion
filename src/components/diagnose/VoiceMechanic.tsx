@@ -203,7 +203,7 @@ export const VoiceMechanic = forwardRef<VoiceMechanicHandle, {
           startedRef.current = false;
           return;
         }
-        setErr(tok.message || (tokenRes.status === 401 ? 'Sign in to use voice.' : 'Could not start voice.'));
+        setErr(tok.message || (tokenRes.status === 401 ? 'Voice is unavailable right now.' : 'Could not start voice.'));
         setStatus('error');
         startedRef.current = false;
         return;

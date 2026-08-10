@@ -202,7 +202,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(
       {
         error: 'rate_limit_day',
-        message: `You've hit today's voice limit during the beta. Try again in ${wait}, or sign up for the subscription for unlimited use.`,
+        message: `You've hit today's voice limit during the beta. Try again in ${wait}.`,
       },
       { status: 429, headers: { 'Retry-After': String(dayCheck.reset) } },
     );

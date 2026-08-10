@@ -6,14 +6,14 @@ import Image from 'next/image';
 import { PricingTiers } from '@/components/pricing/PricingTiers';
 import { MobilePricing } from '@/components/pricing/MobilePricing';
 import type { Tier, TierId, BillingInterval } from '@/lib/pricing/tiers';
-import { regionDisplayName } from '@/lib/pricing/region';
+import { regionDisplayName } from '@/lib/pricing/region-display';
 
 /**
  * /subscribe client. Renders pricing tiers + handles checkout dispatch.
  *
  * `regionAllowed` is driven by the server component using Vercel's geo
  * header (see src/lib/pricing/region.ts). When false:
- *   - Free tier button still works (it's just "sign up")
+ *   - Free tier button opens the public known-issues catalog
  *   - Plus + Pro buttons gray out with a "US only" label
  *   - A banner up top tells the visitor what's going on so they don't
  *     bounce thinking the site is broken
@@ -58,6 +58,7 @@ function SubscribeCheckout({
   const [loadingTier, setLoadingTier] = useState<TierId | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [currentTier, setCurrentTier] = useState<TierId | null>(null);
+  const [authenticated, setAuthenticated] = useState<boolean | null>(null);
   // Annual is the default-selected interval — better deal for the user,
   // retention play for us. Monthly is one tap away. (The annual Stripe
   // prices + env vars went live 2026-06-12.)
@@ -68,19 +69,30 @@ function SubscribeCheckout({
     fetch('/api/user/tier', { credentials: 'include' })
       .then((r) => (r.ok ? r.json() : null))
       .then((data) => {
-        if (cancelled || !data?.tier) return;
+        if (cancelled) return;
+        setAuthenticated(data?.authenticated === true);
+        if (!data?.tier) return;
         setCurrentTier(data.tier as TierId);
       })
-      .catch(() => {});
+      .catch(() => {
+        if (!cancelled) setAuthenticated(false);
+      });
     return () => {
       cancelled = true;
     };
   }, []);
 
+  // Do not render pricing CTAs while auth is unresolved or for a public
+  // visitor. Public account enrollment is closed; the two owner accounts can
+  // still use the existing pricing controls after signing in directly.
+  if (authenticated !== true) {
+    return <PublicEnrollmentClosed checking={authenticated === null} />;
+  }
+
   const handleSelect = async (tier: Tier) => {
     setError(null);
     if (tier.id === 'free') {
-      window.location.href = '/auth/signup';
+      window.location.href = '/known-issues';
       return;
     }
     if (!regionAllowed) {
@@ -123,9 +135,7 @@ function SubscribeCheckout({
         fontFamily: 'var(--font-sans, system-ui, -apple-system, sans-serif)',
       }}
     >
-      {/* The global FloatingAuthButton (rendered from layout.tsx) owns
-          the top-right Sign-in pill, so this header just carries the
-          brand wordmark to avoid a duplicate sign-in link. */}
+      {/* Public auth controls are closed; this header carries only the brand. */}
       <header style={{ padding: '14px 22px' }}>
         <div style={{ maxWidth: 1080, margin: '0 auto' }}>
           <Link href="/" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, textDecoration: 'none', color: 'inherit' }}>
@@ -154,7 +164,7 @@ function SubscribeCheckout({
         >
           <strong>Paid plans aren&apos;t available in {regionDisplayName(country)} yet.</strong>{' '}
           We&apos;re launching Plus and Pro in the US first while we work through tax and
-          compliance in other regions. The free tier is fully available everywhere.
+          compliance in other regions. The public known-issues catalog remains available everywhere.
         </div>
       )}
 
@@ -162,7 +172,7 @@ function SubscribeCheckout({
         <div style={{ textAlign: 'center', marginBottom: 32 }}>
           <h1 style={{ fontSize: 36, fontWeight: 700, letterSpacing: '-0.03em', margin: 0 }}>Pick your plan</h1>
           <p style={{ fontSize: 16, color: 'var(--slate-500, #64748B)', marginTop: 10 }}>
-            Start free. Upgrade when you want the full garage, unlimited diagnoses, and alerts.
+            Choose a plan for this authorized owner account.
           </p>
         </div>
 
@@ -225,7 +235,7 @@ function SubscribeCheckout({
         <div style={{ textAlign: 'center', margin: '4px 0 18px' }}>
           <h1 style={{ fontSize: 24, fontWeight: 700, letterSpacing: '-0.025em', margin: 0 }}>Pick your plan</h1>
           <p style={{ fontSize: 13, color: 'var(--slate-700, #334155)', margin: '6px 0 0' }}>
-            Start free. Upgrade when you want the full garage.
+            Choose a plan for this authorized owner account.
           </p>
         </div>
 
@@ -291,6 +301,49 @@ function SubscribeCheckout({
           .subscribe-mobile { display: block; }
         }
       `}</style>
+    </div>
+  );
+}
+
+function PublicEnrollmentClosed({ checking }: { checking: boolean }) {
+  return (
+    <div
+      style={{
+        minHeight: '100dvh',
+        background: 'var(--paper, #F7F6F2)',
+        color: 'var(--ink, #0B1220)',
+        fontFamily: 'var(--font-sans, system-ui, -apple-system, sans-serif)',
+      }}
+    >
+      <header style={{ padding: '14px 22px' }}>
+        <div style={{ maxWidth: 760, margin: '0 auto' }}>
+          <Link href="/" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, textDecoration: 'none', color: 'inherit' }}>
+            <Image src="/og-image.png" alt="" width={28} height={28} style={{ borderRadius: 8 }} />
+            <span style={{ fontSize: 20, fontWeight: 700, letterSpacing: '-0.02em' }}>
+              Au<span style={{ color: 'var(--au7o-blue, #3B82F6)' }}>7</span>o
+            </span>
+          </Link>
+        </div>
+      </header>
+      <main style={{ maxWidth: 620, margin: '0 auto', padding: '70px 22px 100px', textAlign: 'center' }}>
+        <div style={{ background: '#fff', border: '1px solid var(--paper-line, #E3DFD4)', borderRadius: 20, padding: '36px 28px', boxShadow: 'var(--shadow-1, 0 1px 2px rgba(11,18,32,0.06))' }}>
+          <p style={{ color: 'var(--au7o-blue, #3B82F6)', fontWeight: 700, fontSize: 12, letterSpacing: '0.08em', textTransform: 'uppercase', margin: '0 0 10px' }}>
+            {checking ? 'Checking access' : 'Enrollment closed'}
+          </p>
+          <h1 style={{ fontSize: 30, lineHeight: 1.15, letterSpacing: '-0.03em', margin: 0 }}>
+            Public accounts are currently closed.
+          </h1>
+          <p style={{ color: 'var(--slate-500, #64748B)', lineHeight: 1.65, margin: '16px auto 24px', maxWidth: 480 }}>
+            You can still browse the known-issues catalog and subscribe to vehicle issue alerts without creating an account.
+          </p>
+          <Link
+            href="/known-issues"
+            style={{ display: 'inline-block', padding: '11px 18px', borderRadius: 11, background: 'var(--ink, #0B1220)', color: '#fff', textDecoration: 'none', fontWeight: 700, fontSize: 14 }}
+          >
+            Browse known issues
+          </Link>
+        </div>
+      </main>
     </div>
   );
 }
@@ -409,7 +462,7 @@ function AppSubscribeInfo() {
                 lineHeight: 1.5,
               }}
             >
-              Au7o Pro is managed on the web. Visit <strong>au7o.io</strong> in your browser and sign in to your account to upgrade — your Pro features then unlock here automatically.
+              Au7o Pro is managed on the web. Visit <strong>au7o.io</strong> in your browser to manage owner access.
             </div>
           )}
 

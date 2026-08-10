@@ -30,7 +30,6 @@ import { useAnonymousLimit } from '@/hooks/useAnonymousLimit';
 import { UpgradePrompt, RemainingChatsIndicator } from '@/components/chat/UpgradePrompt';
 import { MileageEditor } from '@/components/vehicle/MileageEditor';
 import { VehicleHero } from '@/components/vehicle/VehicleHero';
-import { signinHref, signupHref } from '@/lib/auth-callback';
 
 /**
  * Serialize a photo/video diagnosis into text the chat model can use as
@@ -215,8 +214,8 @@ interface Message {
    *  since the card itself uses inline styles. */
   issues?: AttachableIssue[];
   /** Set when the server returned 429 with `gated: true` — the
-   *  assistant bubble is replaced with an inline gate card driving
-   *  signup (anon) or subscribe (authed-free). Content is empty when
+   *  assistant bubble is replaced with an inline gate card offering
+   *  a safe next step. Content is empty when
    *  this is set; the card carries the message + CTAs. */
   gate?: GateInfo;
   /** Set when /api/vision returned a successful photo analysis — the
@@ -248,14 +247,6 @@ export function VehicleHub({
   showMaintenanceUpgradeTile,
 }: VehicleHubProps) {
   const router = useRouter();
-  const baseHubCallback = `/vehicle/${slug}`;
-  const [authCallbackUrl, setAuthCallbackUrl] = useState(baseHubCallback);
-  useEffect(() => {
-    const timer = window.setTimeout(() => {
-      setAuthCallbackUrl(`${baseHubCallback}${window.location.search}`);
-    }, 0);
-    return () => window.clearTimeout(timer);
-  }, [baseHubCallback]);
   // After a successful log POST, soft-refresh so the SSR schedule reflects
   // the new MaintenanceRecord (next-due resets, the row moves into "Recently
   // completed") WITHOUT a full-page reload — window.location.reload() caused
@@ -913,14 +904,14 @@ export function VehicleHub({
 
         // Server gated the request — render an inline gate card in the
         // assistant placeholder slot. Same code path covers both:
-        //   anon (login_required → /auth/signup)
+        //   anonymous preview exhausted
         //   authed-free (quota_exceeded → /account subscribe)
         // The InlineGateCard reads ctaUrl/ctaLabel/secondaryCta directly
         // from the response so all copy lives server-side.
         if (res.status === 429 && errBody.gated && errBody.ctaUrl && errBody.ctaLabel) {
           syncLocalAllowance(errBody.remaining ?? 0);
           const gate: GateInfo = {
-            message: errBody.message || 'Sign up free to keep chatting.',
+            message: errBody.message || 'Free preview complete.',
             ctaUrl: errBody.ctaUrl,
             ctaLabel: errBody.ctaLabel,
             secondaryCtaUrl: errBody.secondaryCtaUrl,
@@ -1151,7 +1142,6 @@ export function VehicleHub({
             <UpgradePrompt
               variant="full"
               resetDate={resetDate}
-              callbackUrl={authCallbackUrl}
             />
           </div>
         </div>
@@ -1164,7 +1154,6 @@ export function VehicleHub({
           recentThreads={recentThreads}
           maintenanceSuggestions={maintenanceSuggestions}
           user={user}
-          authCallbackUrl={authCallbackUrl}
           onSelectThread={loadSession}
         />
 
@@ -1175,14 +1164,12 @@ export function VehicleHub({
           currentMileage={currentMileage}
           recentThreads={recentThreads}
           user={user}
-          authCallbackUrl={authCallbackUrl}
           onSelectThread={loadSession}
         />
 
         <section className="hub-col">
           <TopBar vehicle={vehicle} user={user} userVehicles={userVehicles} currentSlug={slug} isAuthed={isAuthed} onOpenThreads={() => setThreadsOpen(true)} />
 
-          {!isAuthed && <AnonymousGate callbackUrl={authCallbackUrl} />}
 
           <div ref={scrollRef} className="hub-conv">
             <div className="hub-ambient">
@@ -1269,7 +1256,6 @@ export function VehicleHub({
       <MobileHub
         vehicle={vehicle}
         slug={slug}
-        authCallbackUrl={authCallbackUrl}
         userVehicles={userVehicles}
         isAuthed={isAuthed}
         currentMileage={currentMileage}
@@ -1442,7 +1428,7 @@ function MobileVehicleSwitcher({
 }
 
 function MobileHub({
-  vehicle, slug, authCallbackUrl, userVehicles = [], isAuthed, currentMileage, opener, schedule, attachableIssues, recalls = [], partsByTask = {},
+  vehicle, slug, userVehicles = [], isAuthed, currentMileage, opener, schedule, attachableIssues, recalls = [], partsByTask = {},
   maintenanceSuggestions, recentThreads, user,
   messages, input, pending, threadsOpen,
   onChangeInput, onSend, onOpenThreads, onCloseThreads, onSelectThread, onPhotoUpload, onVideoUpload,
@@ -1450,7 +1436,6 @@ function MobileHub({
 }: {
   vehicle: VehicleHubProps['vehicle'];
   slug: string;
-  authCallbackUrl: string;
   userVehicles?: NonNullable<VehicleHubProps['userVehicles']>;
   isAuthed: boolean;
   currentMileage: number | null;
@@ -1600,7 +1585,6 @@ function MobileHub({
         currentMileage={currentMileage}
         recentThreads={recentThreads}
         user={user}
-        authCallbackUrl={authCallbackUrl}
         onSelectThread={onSelectThread}
       />
 
@@ -1641,12 +1625,7 @@ function MobileHub({
             <Link href="/account" className="m-avatar" aria-label={`${user.name} — account`}>
               {userInitialsTxt}
             </Link>
-          ) : (
-            <Link href={signupHref(authCallbackUrl)} className="m-signup-cta" aria-label="Create free account">
-              <span className="m-signup-full">Create free account</span>
-              <span className="m-signup-short">Join free</span>
-            </Link>
-          )}
+          ) : null}
         </div>
       </header>
 
@@ -1923,7 +1902,7 @@ function MobileHub({
           <textarea
             ref={taRef}
             className="m-composer-input"
-            placeholder={remaining === 0 ? 'Create a free account to keep chatting…' : 'Ask Au7o anything…'}
+            placeholder={remaining === 0 ? 'Free preview complete…' : 'Ask Au7o anything…'}
             value={input}
             onChange={(e) => onChangeInput(e.target.value)}
             onKeyDown={onKey}
@@ -2048,19 +2027,6 @@ function MobileHub({
           color: #fff; display: inline-flex; align-items: center; justify-content: center;
           font-size: 11px; font-weight: 700; text-decoration: none;
         }
-        :global(.m-signup-cta) {
-          min-height: 32px; padding: 0 10px; border-radius: var(--r-pill);
-          background: var(--au7o-blue); color: #fff;
-          display: inline-flex; align-items: center; justify-content: center;
-          white-space: nowrap; font-size: 10.5px; font-weight: 700;
-          text-decoration: none;
-        }
-        :global(.m-signup-short) { display: none; }
-        @media (max-width: 430px) {
-          :global(.m-signup-full) { display: none; }
-          :global(.m-signup-short) { display: inline; }
-        }
-
         /* ─── Body / conversation surface ─── */
         .m-body {
           flex: 1; min-height: 0;
@@ -2772,7 +2738,7 @@ function MobileIssuesCard({
 
 /* ─── Vehicle rail ─── */
 function VehicleRail({
-  vehicle, currentMileage, counts, recentThreads, maintenanceSuggestions, user, authCallbackUrl, onSelectThread,
+  vehicle, currentMileage, counts, recentThreads, maintenanceSuggestions, user, onSelectThread,
 }: {
   vehicle: VehicleHubProps['vehicle'];
   currentMileage: number | null;
@@ -2780,7 +2746,6 @@ function VehicleRail({
   recentThreads: RecentThread[];
   maintenanceSuggestions: MaintenanceSuggestion[];
   user: VehicleHubProps['user'];
-  authCallbackUrl: string;
   onSelectThread?: (threadId: string) => void;
 }) {
   const v = vehicle;
@@ -2886,17 +2851,6 @@ function VehicleRail({
           </svg>
           <span>Add vehicle{user && !user.isSubscriber ? ' · upgrade' : ''}</span>
         </Link>
-        {!user && (
-          <Link
-            href={signupHref(authCallbackUrl)}
-            className="rail-action rail-action-ghost"
-          >
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden>
-              <path d="M15 3h6v18h-6M10 17l5-5-5-5M15 12H3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-            <span>Create free account</span>
-          </Link>
-        )}
       </div>
 
       <style jsx>{`
@@ -3337,7 +3291,7 @@ function VehicleSwitcher({
    panel is rendered at all viewport sizes but the wrapper is display:none
    above 900px, so it costs nothing on desktop. */
 function MobileThreadsDrawer({
-  open, onClose, vehicle, currentMileage, recentThreads, user, authCallbackUrl, onSelectThread,
+  open, onClose, vehicle, currentMileage, recentThreads, user, onSelectThread,
 }: {
   open: boolean;
   onClose: () => void;
@@ -3345,7 +3299,6 @@ function MobileThreadsDrawer({
   currentMileage: number | null;
   recentThreads: RecentThread[];
   user: VehicleHubProps['user'];
-  authCallbackUrl: string;
   onSelectThread?: (threadId: string) => void;
 }) {
   // Lock body scroll while the drawer is open and close on Escape.
@@ -3455,15 +3408,7 @@ function MobileThreadsDrawer({
             <Link href="/account" className="md-link md-link-primary" onClick={onClose}>
               {user.name} · Account
             </Link>
-          ) : (
-            <Link
-              href={signupHref(authCallbackUrl)}
-              className="md-link md-link-primary"
-              onClick={onClose}
-            >
-              Create free account
-            </Link>
-          )}
+          ) : null}
         </div>
       </aside>
 
@@ -3579,41 +3524,6 @@ function userInitials(name: string): string {
 }
 
 /* ─── Anonymous gate ─── */
-function AnonymousGate({ callbackUrl }: { callbackUrl: string }) {
-  return (
-    <div className="gate">
-      <span>
-        <strong>Create a free account to save</strong> your conversations, log maintenance, and keep this vehicle.
-      </span>
-      <div className="gate-actions">
-        <Link href={signupHref(callbackUrl)} className="gate-cta">Create free account</Link>
-        <Link href={signinHref(callbackUrl)} className="gate-signin">Sign in</Link>
-      </div>
-      <style jsx>{`
-        .gate {
-          margin: 14px 56px 0; padding: 12px 14px;
-          background: #FFF7E8; border: 1px solid #F5E5BD;
-          border-radius: 12px; font-size: 12.5px; color: #92400E;
-          display: flex; align-items: center; gap: 10px;
-        }
-        .gate-cta {
-          padding: 6px 12px; border-radius: 8px;
-          background: #0B1220; color: #fff; font-size: 12px; font-weight: 600;
-          text-decoration: none;
-        }
-        .gate-actions {
-          margin-left: auto; display: flex; align-items: center; gap: 10px;
-          flex: 0 0 auto;
-        }
-        .gate-signin {
-          color: #92400E; font-size: 12px; font-weight: 600;
-          text-decoration: underline; text-underline-offset: 2px;
-        }
-      `}</style>
-    </div>
-  );
-}
-
 /* ─── Greeting + suggested prompts ─── */
 function Greeting({
   vehicle, cta, trending, onPick,
@@ -4172,7 +4082,7 @@ const Composer = ({
         </div>
       </div>
       <div className="composer-meta">
-        <span>{isAuthed ? "Au7o knows your vehicle context" : "Create a free account to save context across sessions"} · responses may need verifying with a mechanic</span>
+        <span>{isAuthed ? "Au7o knows your vehicle context" : "Context stays on this device"} · responses may need verifying with a mechanic</span>
         <span className="keys"><span>↵ to send · ⇧↵ for new line</span></span>
       </div>
 

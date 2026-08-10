@@ -36,7 +36,7 @@ const REALTIME_VOICE = process.env.OPENAI_REALTIME_VOICE || 'verse';
 const DEMO_SECONDS = 40;
 
 type Upsell = { message: string; ctaUrl: string; ctaLabel: string };
-const ANON_UPSELL: Upsell = { message: 'Sign up free to keep talking to the mechanic.', ctaUrl: '/auth/signup', ctaLabel: 'Sign up free' };
+const ANON_UPSELL: Upsell = { message: 'Free voice preview complete. Browse known issues for your vehicle.', ctaUrl: '/known-issues', ctaLabel: 'Browse known issues' };
 const FREE_UPSELL: Upsell = { message: 'Upgrade to Plus for unlimited live voice with the mechanic.', ctaUrl: '/subscribe', ctaLabel: 'Upgrade to Plus' };
 
 interface VehicleCtx { year?: number; make?: string; model?: string; trim?: string }

@@ -207,15 +207,13 @@ export async function POST(request: NextRequest) {
     if (!userId) {
       return respond({
         error: 'login_required',
-        message: 'You\'ve used your free diagnosis. Sign up free to keep going.',
+        message: 'You\'ve used your free diagnosis. Browse known issues or try again when the free limit resets.',
         resetAt: quota.resetAt.toISOString(),
         remaining: 0,
         limit,
         gated: true,
-        ctaUrl: '/auth/signup',
-        ctaLabel: 'Sign up free',
-        secondaryCtaUrl: '/auth/signin',
-        secondaryCtaLabel: 'Sign in',
+        ctaUrl: '/known-issues',
+        ctaLabel: 'Browse known issues',
       }, { status: 401 });
     }
     return respond({

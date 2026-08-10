@@ -103,7 +103,7 @@ export default function GarageClient() {
                   <p className="text-sm text-amber-700 mt-1">
                     Your garage data is stored locally in your browser for now. Cross-device sync,
                     push notifications, and SMS maintenance reminders are still in active development —
-                    accounts work today but the premium features layered on top are landing this quarter.
+                    Public account enrollment is currently closed.
                   </p>
                 </div>
               </div>

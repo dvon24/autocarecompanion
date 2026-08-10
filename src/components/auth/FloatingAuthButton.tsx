@@ -4,13 +4,12 @@ import { useState, useRef, useEffect } from 'react';
 import { useSession, signOut } from 'next-auth/react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { signupHref } from '@/lib/auth-callback';
 
 /**
  * Floating Sign-in pill — sits in the top-right corner (rounded, blurred
  * white background, subtle border).
  *
- * Unauthed: "Sign in" pill link → /auth/signin
+ * Unauthenticated visitors see no account control.
  * Authed:   user initials avatar → dropdown with Account / Garage / Sign out
  *
  * Positioning: fixed top-3 right-3 (the Google Translate pill that
@@ -24,9 +23,8 @@ export function FloatingAuthButton() {
   const pathname = usePathname();
 
   // Don't render on:
-  //   - /auth/signin and /auth/signup — those pages are themselves
-  //     the sign-in/up forms.
-  //   - "/" — the home page nav already includes its own Sign in button.
+  //   - Auth pages, which own their access UI.
+  //   - "/" — the home page owns its reservation navigation.
   //   - Pages that ship their OWN sticky header with buttons in the
   //     top-right corner: the known-issues content surfaces ("Open Hub" /
   //     "Diagnose my car") and the locale pages ("English" + diagnose CTA).
@@ -77,29 +75,10 @@ export function FloatingAuthButton() {
     );
   }
 
-  // Unauthed: plain text "Sign in" link — no pill, matches the visual
-  // weight of normal nav text. Sits next to (left of) the Translate
-  // pill which keeps its own styling.
+  // Public account entry points are closed. Authenticated owner sessions
+  // still receive the account menu below.
   if (!session?.user) {
-    const href = onVehicleHub && pathname ? signupHref(pathname) : '/auth/signin';
-    const label = onVehicleHub ? 'Create free account' : 'Sign in';
-    return (
-      <Link
-        href={href}
-        onClick={(event) => {
-          if (!onVehicleHub || !pathname) return;
-          const callback = `${pathname}${window.location.search}`;
-          const destination = signupHref(callback);
-          if (destination === href) return;
-          event.preventDefault();
-          window.location.assign(destination);
-        }}
-        className={`fixed top-3 right-3 z-[9999] text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors rounded-full border border-gray-200 bg-white/85 backdrop-blur-sm shadow-sm px-3 py-1.5${hubResponsiveClass}`}
-        aria-label={label}
-      >
-        {label}
-      </Link>
-    );
+    return null;
   }
 
   // Authed: avatar with dropdown. Anchored at the same right offset

@@ -59,11 +59,11 @@ export async function runPreTripSafetyCheck(opts: RunOptions): Promise<SafetyRes
       items: [{
         severity: 'low',
         icon: 'lock',
-        title: 'Sign in to enable pre-trip safety',
-        detail: 'Au7o cross-checks your maintenance history + known issues for your specific car before each trip.',
-        action: { label: 'Sign in', href: '/auth/signin?callbackUrl=/drive' },
+        title: 'Pre-trip history check unavailable',
+        detail: 'Browse known issues for your vehicle before setting out.',
+        action: { label: 'Browse known issues', href: '/known-issues' },
       }],
-      summary: 'Sign in to check whether your car is ready for this trip.',
+      summary: 'Vehicle-history checks are unavailable without owner access.',
     };
   }
 

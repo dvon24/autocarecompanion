@@ -13,7 +13,7 @@ export const metadata = { robots: { index: false, follow: false } };
 export default function HeroPreviewPage() {
   return (
     <>
-      <SiteHeader showSignIn={false} ctaLabel="Reserve my spot" ctaShortLabel="Reserve" ctaHref="#reserve" />
+      <SiteHeader ctaLabel="Reserve my spot" ctaShortLabel="Reserve" ctaHref="#reserve" />
       <TwinHero stage={<TwinPlayground />} />
       <SiteFooter />
     </>

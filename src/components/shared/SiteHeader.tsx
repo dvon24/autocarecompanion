@@ -8,9 +8,8 @@ import Image from 'next/image';
  * LandingPage is deliberately NOT refactored to use this, so the live homepage
  * can't be broken by a change here.
  *
- * `showSignIn` exists for the twin demo surfaces. Those pages are the beta
- * demand test — the one action we want is "reserve your spot" — so the quiet
- * Sign in link is dropped there rather than competing with it.
+ * Public account entry points are intentionally absent. Callers may provide a
+ * non-auth primary action such as the Vehicle Twin reservation anchor.
  */
 const navLink: React.CSSProperties = {
   fontSize: 13.5,
@@ -20,12 +19,10 @@ const navLink: React.CSSProperties = {
 };
 
 export function SiteHeader({
-  showSignIn = true,
-  ctaLabel = 'Get started free',
-  ctaShortLabel = 'Sign up',
-  ctaHref = '/auth/signup',
+  ctaLabel = 'Known issues',
+  ctaShortLabel = 'Issues',
+  ctaHref = '/known-issues',
 }: {
-  showSignIn?: boolean;
   ctaLabel?: string;
   /** Shown instead of ctaLabel below 760px, where the full label overflows. */
   ctaShortLabel?: string;
@@ -62,7 +59,6 @@ export function SiteHeader({
           <Link href="/known-issues" style={navLink}>Known Issues</Link>
           <Link href="/drive" style={navLink}>Drive</Link>
           <Link href="/subscribe" style={navLink}>Pricing</Link>
-          {showSignIn && <Link href="/auth/signin" style={navLink}>Sign in</Link>}
           <Link
             href={ctaHref}
             style={{

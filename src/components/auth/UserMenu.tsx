@@ -11,7 +11,7 @@ import Link from 'next/link';
  * Story 4.2: Sign In/Sign Up UI
  *
  * Shows:
- * - Sign in button when not authenticated
+ * - Nothing when not authenticated
  * - User avatar and dropdown menu when authenticated
  */
 
@@ -41,17 +41,7 @@ export function UserMenu() {
 
   // Not authenticated
   if (!session?.user) {
-    return (
-      <Link
-        href="/auth/signin"
-        className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors"
-      >
-        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-        </svg>
-        <span className="hidden sm:inline">Sign in</span>
-      </Link>
-    );
+    return null;
   }
 
   // Authenticated - show user menu

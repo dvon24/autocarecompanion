@@ -3,7 +3,6 @@
 import { useState, useCallback } from 'react';
 import Link from 'next/link';
 import { useSession } from 'next-auth/react';
-import { isFounderEmail } from '@/lib/founder';
 import { ThreeDAnalysisOverlay } from '@/components/diagnose/ThreeDAnalysisOverlay';
 import type { IdentifiedPart, VendorLink, PartCategory } from '@/types/vision';
 
@@ -209,7 +208,9 @@ function Open3DButton({ vision }: { vision: VisionResult }) {
   const { data: session } = useSession();
   const [open, setOpen] = useState(false);
   const sub = (session?.user as { subscriptionStatus?: string } | undefined)?.subscriptionStatus;
-  const can3D = isFounderEmail(session?.user?.email) || sub === 'active';
+  // Public auth is owner-only, so any live session is an owner session. Keep
+  // the private email allowlist out of the client bundle.
+  const can3D = Boolean(session?.user) || sub === 'active';
   // 3D is parked for now (Devon, June 30) — the splat isn't photoreal enough
   // and we're moving perception to DA3 depth + SAM 3, not SAM 3D. Keep the
   // wiring intact but render nothing so the diagnosis result stays in-feature.

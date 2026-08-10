@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import type { TierId } from '@/lib/pricing/tiers';
 import { getTier } from '@/lib/pricing/tiers';
-import { regionDisplayName } from '@/lib/pricing/region';
+import { regionDisplayName } from '@/lib/pricing/region-display';
 
 /**
  * Account-page subscription panel. Surfaces the current tier and the

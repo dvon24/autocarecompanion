@@ -15,7 +15,8 @@
  *     founder + ops accounts.
  */
 
-const HARDCODED_FOUNDER_EMAILS = ['devonsroberson24@yahoo.com', 'dvoninvestllc@yahoo.com'];
+const OWNER_ACCOUNT_EMAILS = ['devonsroberson24@yahoo.com', 'dvoninvestllc@yahoo.com'];
+const OWNER_ACCOUNT_EMAIL_SET = new Set(OWNER_ACCOUNT_EMAILS.map((email) => email.toLowerCase()));
 
 let cached: Set<string> | null = null;
 
@@ -25,8 +26,19 @@ function getFounderSet(): Set<string> {
     .split(',')
     .map((s) => s.trim().toLowerCase())
     .filter(Boolean);
-  cached = new Set([...HARDCODED_FOUNDER_EMAILS.map((s) => s.toLowerCase()), ...extra]);
+  cached = new Set([...OWNER_ACCOUNT_EMAIL_SET, ...extra]);
   return cached;
+}
+
+/**
+ * Account authentication is intentionally narrower than the founder/ops
+ * bypass. Runtime bypass emails may QA regional pricing, but only Devon's two
+ * established owner identities may create an Au7o session while public
+ * accounts are closed.
+ */
+export function isAccountAccessEmail(email: string | null | undefined): boolean {
+  if (!email) return false;
+  return OWNER_ACCOUNT_EMAIL_SET.has(email.trim().toLowerCase());
 }
 
 export function isFounderEmail(email: string | null | undefined): boolean {

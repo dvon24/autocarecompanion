@@ -15,6 +15,7 @@
  */
 
 import { isFounderEmail } from '@/lib/founder';
+export { regionDisplayName } from './region-display';
 
 export const SUBSCRIPTION_ALLOWED_COUNTRIES = ['US'] as const;
 
@@ -37,19 +38,4 @@ export function isAllowedSubscriptionRegion(
   if (!process.env.VERCEL) return true;
   if (!country) return false; // fail closed if Vercel ever drops the header
   return (SUBSCRIPTION_ALLOWED_COUNTRIES as readonly string[]).includes(country);
-}
-
-/**
- * Friendly display name for a country code, with a graceful fallback.
- * Used on the /subscribe "coming soon" screen so the message reads
- * "coming to Germany soon" instead of "coming to DE soon".
- */
-export function regionDisplayName(country: string | null | undefined): string {
-  if (!country) return 'your region';
-  try {
-    const dn = new Intl.DisplayNames(['en'], { type: 'region' });
-    return dn.of(country) ?? country;
-  } catch {
-    return country;
-  }
 }

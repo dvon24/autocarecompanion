@@ -112,9 +112,9 @@ export function SnapDiagnoseClient() {
       const data = await res.json().catch(() => ({}));
       if ((res.status === 401 || res.status === 429) && data.gated) {
         setGate({
-          message: data.message ?? 'Sign up to keep diagnosing.',
-          ctaUrl: data.ctaUrl ?? '/auth/signup',
-          ctaLabel: data.ctaLabel ?? 'Sign up free',
+          message: data.message ?? 'Free diagnosis preview complete.',
+          ctaUrl: data.ctaUrl ?? '/known-issues',
+          ctaLabel: data.ctaLabel ?? 'Browse known issues',
           secondaryCtaUrl: data.secondaryCtaUrl,
           secondaryCtaLabel: data.secondaryCtaLabel,
         });

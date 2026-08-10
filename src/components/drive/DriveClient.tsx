@@ -305,8 +305,7 @@ interface DriveClientProps {
   /** Server-supplied primary vehicle for signed-in users. Anonymous users
    *  pass null and fall through to localStorage / VehiclePicker as before. */
   initialVehicle?: DriveVehicle | null;
-  /** True when an authenticated session exists. Drives the "Sign in to save"
-   *  CTA and (later) gating of premium features. */
+  /** True when an authenticated owner session exists. */
   isAuthed?: boolean;
   /** Optional destination passed via /drive?to=... — used by the hub
    *  conversation to hand off "I'll plot this in Drive" routes. When
@@ -315,7 +314,7 @@ interface DriveClientProps {
   prefillDestination?: string | null;
 }
 
-export function DriveClient({ mapboxToken, initialVehicle = null, isAuthed = false, prefillDestination = null }: DriveClientProps) {
+export function DriveClient({ mapboxToken, initialVehicle = null, prefillDestination = null }: DriveClientProps) {
   const mapContainer = useRef<HTMLDivElement>(null);
   const copilotRef = useRef<DriveCopilotHandle>(null);
   // One-shot flags for proactive copilot interjections (reset per new route).
@@ -2345,20 +2344,9 @@ export function DriveClient({ mapboxToken, initialVehicle = null, isAuthed = fal
         </div>
       )}
 
-      {/* Vehicle picker — top-left. When the user isn't signed in we show a
-          subtle "Sign in to save" pill next to it so anonymous users learn
-          the upgrade path without being walled off from /drive. */}
+      {/* Vehicle picker — top-left. */}
       <div className="absolute top-4 left-4 z-10 flex items-center gap-2">
         <VehiclePicker value={vehicle} onChange={setVehicle} />
-        {!isAuthed && (
-          <a
-            href="/auth/signin?callbackUrl=/drive"
-            className="px-2.5 py-1.5 rounded-full bg-blue-600 text-white text-[11px] font-semibold shadow-sm hover:bg-blue-700 transition"
-            title="Save your vehicle, routes, and preferences across devices"
-          >
-            Sign in to save
-          </a>
-        )}
       </div>
 
       {/* Speed-limit badge + driver speed pill. Driver speed renders as long
@@ -2655,11 +2643,6 @@ export function DriveClient({ mapboxToken, initialVehicle = null, isAuthed = fal
                     <p className={`text-xs font-bold uppercase tracking-wide ${verdictMeta.text}`}>
                       {verdictMeta.emoji} Pre-trip · {verdictMeta.label}
                     </p>
-                    {!safetyCheck.authed && (
-                      <a href="/auth/signin?callbackUrl=/drive" className="text-[10px] font-semibold text-blue-700 underline">
-                        Sign in
-                      </a>
-                    )}
                   </div>
                   <p className={`text-xs leading-snug mb-2 ${verdictMeta.text}`}>{safetyCheck.summary}</p>
                   {safetyCheck.items.length > 0 && (

@@ -5,6 +5,7 @@ import { auth } from '@/lib/auth';
 import { prisma } from '@/lib/db';
 import type { TierId, BillingInterval } from '@/lib/pricing/tiers';
 import { isAllowedSubscriptionRegion } from '@/lib/pricing/region';
+import { isAccountAccessEmail } from '@/lib/founder';
 
 /**
  * POST /api/stripe/create-checkout
@@ -22,6 +23,18 @@ import { isAllowedSubscriptionRegion } from '@/lib/pricing/region';
 export async function POST(request: Request) {
   try {
     const session = await auth();
+
+    // Paid checkout previously doubled as an anonymous account-creation
+    // route. Public accounts are closed, so checkout must begin from one of
+    // the two established owner sessions. This guard intentionally runs
+    // before parsing the request or contacting Stripe.
+    if (!session?.user?.id || !isAccountAccessEmail(session.user.email)) {
+      return NextResponse.json(
+        { error: 'accounts_closed', message: 'Public account enrollment is currently closed.' },
+        { status: 403 },
+      );
+    }
+
     const body = await request.json().catch(() => ({} as Record<string, unknown>));
     const requestedTier = (body.tierId as TierId | undefined) ?? 'plus';
     const interval: BillingInterval = body.interval === 'year' ? 'year' : 'month';
