@@ -3,12 +3,14 @@ const threeThousandGtContract = require('./mitsubishi-3000gt-adjudication-contra
 const eclipseContract = require('./mitsubishi-eclipse-adjudication-contract');
 const eclipseCrossContract = require('./mitsubishi-eclipse-cross-adjudication-contract');
 const endeavorContract = require('./mitsubishi-endeavor-adjudication-contract');
+const galantContract = require('./mitsubishi-galant-adjudication-contract');
 
 const CONTRACTS = Object.freeze({
   '3000GT': threeThousandGtContract,
   Eclipse: eclipseContract,
   'Eclipse Cross': eclipseCrossContract,
   Endeavor: endeavorContract,
+  Galant: galantContract,
 });
 
 function getContract(model) {
