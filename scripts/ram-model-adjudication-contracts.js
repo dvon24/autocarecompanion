@@ -2,6 +2,7 @@
 const contracts = Object.freeze({
   '1500 Classic': require('./ram-1500-classic-adjudication-contract'),
   '2500': require('./ram-2500-adjudication-contract'),
+  '3500': require('./ram-3500-adjudication-contract'),
 });
 
 function getContract(model) {
