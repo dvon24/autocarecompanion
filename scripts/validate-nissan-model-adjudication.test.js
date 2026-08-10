@@ -12,6 +12,7 @@ for (const model of Object.keys(CONTRACTS)) {
   const { contract, packet: frozen, snapshot } = loadModel(model);
   const firstId = contract.allIds[0];
   const countId = contract.reportCountCleanupIds[0] || firstId;
+  const verdictId = contract.allIds.find((id) => !contract.retainedIds.includes(id)) || firstId;
   function rejects(name, mutate, pattern = /deterministic/) {
     test(`${model}: ${name}`, () => { const packet = clone(frozen); mutate(packet); assert.match(validatePacket(contract, packet, snapshot).join('\n'), pattern); });
   }
@@ -25,7 +26,13 @@ for (const model of Object.keys(CONTRACTS)) {
   rejects('rejects zero social proof', (packet) => { item(packet, firstId).proposal.description += ' 0+ owners have reported this.'; rehash(item(packet, firstId)); }, /deterministic|owner social proof/);
   rejects('rejects commerce', (packet) => { item(packet, firstId).proposal.fixParts.push({ partNumber: 'fake' }); rehash(item(packet, firstId)); }, /deterministic|commerce-free/);
   rejects('rejects search citation', (packet) => { item(packet, firstId).proposal.citations[0].url = 'https://example.com/search?q=nissan'; rehash(item(packet, firstId)); }, /deterministic|citation/);
-  rejects('rejects verdict change', (packet) => { const row = item(packet, firstId); row.action = 'retain_indexed_identity_and_accuracy_cleanup'; row.identityReviewRequired = false; row.identityConflict = null; }, /deterministic|verdict/);
+  rejects('rejects verdict change', (packet) => {
+    const row = item(packet, verdictId);
+    const retained = contract.retainedIds.includes(verdictId);
+    row.action = retained ? 'hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy' : 'retain_indexed_identity_and_accuracy_cleanup';
+    row.identityReviewRequired = retained;
+    row.identityConflict = retained ? 'mutated identity conflict' : null;
+  }, /deterministic|verdict/);
   rejects('rejects blocker removal', (packet) => { packet.applicationGate.blockerRecordIds = []; }, /deterministic|blocker/);
   rejects('rejects DTC insertion', (packet) => { item(packet, firstId).proposal.dtcCodes.push('P9999'); rehash(item(packet, firstId)); }, /deterministic|DTC/);
   rejects('rejects source replacement', (packet) => {
