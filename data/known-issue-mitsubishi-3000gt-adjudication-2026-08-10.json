@@ -13,11 +13,12 @@
       "mitsubishi-3000gt-active-exhaust-valve-seizure-cable-rot",
       "mitsubishi-3000gt-ecu-electrolytic-capacitor-leakage-causing-stalling-no-start",
       "mitsubishi-3000gt-getrag-awd-manual-transmission-synchro-wear-gear-grind",
+      "mitsubishi-3000gt-hydraulic-lash-adjuster-lifter-tick-6g72-v6",
       "mitsubishi-3000gt-pop-up-headlight-motor-etacs-failures",
       "mitsubishi-3000gt-timing-belt-hydraulic-tensioner-failure-destroying-interfere",
       "mitsubishi-3000gt-vr-4-4ws-rear-steering-pump-hard-line-leaks"
     ],
-    "reason": "6 frozen identities exceed exact evidence; no production content write is authorized."
+    "reason": "7 frozen identities exceed exact evidence; no production content write is authorized."
   },
   "safetyContract": [
     "No production write, deployment, archive, redirect, slug change, title change, category change, indexed-year change, trim change, engine change, severity change, status change, related-link change or new issue is authorized.",
@@ -37,7 +38,7 @@
   },
   "observations": [
     {
-      "code": "three-identities-retained-six-held",
+      "code": "two-identities-retained-seven-held",
       "severity": "identity-safety",
       "recordIds": [
         "mitsubishi-3000gt-active-exhaust-valve-seizure-cable-rot",
@@ -50,7 +51,7 @@
         "mitsubishi-3000gt-timing-belt-hydraulic-tensioner-failure-destroying-interfere",
         "mitsubishi-3000gt-vr-4-4ws-rear-steering-pump-hard-line-leaks"
       ],
-      "detail": "Transfer-case leakage, front brake-hose cracking and lash-adjuster noise have exact support; the other six identities remain held without URL changes."
+      "detail": "Transfer-case leakage and front brake-hose cracking have exact full-scope support; the other seven identities remain held without URL changes."
     },
     {
       "code": "recall-remedies-bounded-by-vin",
@@ -263,8 +264,8 @@
     ]
   },
   "summary": {
-    "retain_indexed_identity_and_accuracy_cleanup": 3,
-    "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy": 6,
+    "retain_indexed_identity_and_accuracy_cleanup": 2,
+    "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy": 7,
     "fabricated_report_counts_proposed_zero": 0,
     "pages_preserved_published": 9,
     "total": 9
@@ -1048,10 +1049,10 @@
     },
     {
       "id": "mitsubishi-3000gt-hydraulic-lash-adjuster-lifter-tick-6g72-v6",
-      "action": "retain_indexed_identity_and_accuracy_cleanup",
-      "identityReviewRequired": false,
-      "identityConflict": null,
-      "reason": "Exact primary evidence supports the frozen indexed identity after bounded technical cleanup.",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "identityReviewRequired": true,
+      "identityConflict": "The exact communication ends with 1997 vehicles, while the frozen indexed population continues through 1999.",
+      "reason": "The frozen indexed identity materially exceeds exact manufacturer and federal evidence and remains published pending independent review.",
       "evidence": {
         "primaryEvidence": [
           "Communication 52060 explicitly covers valve-lash-adjuster noise checking and troubleshooting.",
@@ -1156,7 +1157,7 @@
         "description": "NHTSA manufacturer communication 52060 records new valve-lash-adjuster noise checking and troubleshooting procedures for 1991-1997 3000GT vehicles. That exact record supports a lash-adjuster-noise identity, but it does not establish universal varnish buildup, accelerated cam or rocker damage, a model-wide frequency, or the frozen additive and replacement claims. Noise must be localized and evaluated under the manufacturer procedure before assigning an adjuster.",
         "solution": "Record whether the noise occurs cold, hot or continuously and whether it follows engine speed. Verify oil level, condition and the exact engine oil specification, measure oil pressure when indicated, and localize the noise before following the manufacturer lash-adjuster troubleshooting procedure. Do not buy an oil additive, 24 lash adjusters, big-bore replacements or a solid-lifter conversion from this page; the noise source, engine configuration and failed component must be proven first.",
         "severity": "low",
-        "confidence": "high",
+        "confidence": "low",
         "symptoms": [
           "cold, hot and continuous noise conditions recorded",
           "oil level, specification and pressure checked",
@@ -1188,13 +1189,14 @@
         "lastReportedByOwners": "",
         "reviewedOn": "2026-08-10",
         "contentUpdatedOn": "2026-08-10",
-        "contentUpdateSummary": "Retained the manufacturer-backed lash-adjuster-noise identity while removing universal cause, additive and replacement claims.",
+        "contentUpdateSummary": "Held the overbroad lash-adjuster-noise identity while removing universal cause, additive and replacement claims.",
         "relatedIssueIds": []
       },
-      "proposalSha256": "e4b43b840c52092262d6fefd9953dfcc2b69b55152e5082b451f5eb3b3efb100",
+      "proposalSha256": "c58464cee5228817a688fba2aec9d58f91817c565411a7ed67ffaffefbbaa912",
       "changedFields": [
         "description",
         "solution",
+        "confidence",
         "symptoms",
         "affectedSystems",
         "estimatedCostLow",

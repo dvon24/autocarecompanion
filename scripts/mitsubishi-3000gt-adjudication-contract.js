@@ -14,7 +14,7 @@ const ids = Object.freeze({
   rearSteering: 'mitsubishi-3000gt-vr-4-4ws-rear-steering-pump-hard-line-leaks',
 });
 const allIds = Object.freeze(Object.values(ids).sort());
-const retainedIds = Object.freeze([ids.transferCase, ids.brakeHose, ids.lashAdjuster].sort());
+const retainedIds = Object.freeze([ids.transferCase, ids.brakeHose].sort());
 const relevantDocumentIds = Object.freeze([
   '10003757', '10152870', '52060', '52608', '54302', '6088726',
   '6088731', '615976', '634695',
@@ -107,8 +107,8 @@ const content = Object.freeze({
     symptoms: ['cold, hot and continuous noise conditions recorded', 'oil level, specification and pressure checked', 'valvetrain noise localized before component assignment'],
     affectedSystems: ['hydraulic valve lash adjusters', 'engine lubrication and oil pressure', 'rocker arms, camshafts and valvetrain'],
     evidence: ['Communication 52060 explicitly covers valve-lash-adjuster noise checking and troubleshooting.', 'The exact communication covers 1991-1997 rather than independently proving every frozen mechanism and remedy.', 'The corpus does not establish the frozen additive regimen, mandatory replacement or universal damage progression.'],
-    conflict: null,
-    summary: 'Retained the manufacturer-backed lash-adjuster-noise identity while removing universal cause, additive and replacement claims.',
+    conflict: 'The exact communication ends with 1997 vehicles, while the frozen indexed population continues through 1999.',
+    summary: 'Held the overbroad lash-adjuster-noise identity while removing universal cause, additive and replacement claims.',
     citations: ['datasets'],
   },
   [ids.popUpHeadlight]: {
@@ -180,7 +180,7 @@ module.exports = Object.freeze({
     { id: ids.rearSteering, field: 'description', patterns: ['outside the frozen 1991-1996 range', 'naturally aspirated engine'] },
   ],
   observations: [
-    { code: 'three-identities-retained-six-held', severity: 'identity-safety', recordIds: allIds, detail: 'Transfer-case leakage, front brake-hose cracking and lash-adjuster noise have exact support; the other six identities remain held without URL changes.' },
+    { code: 'two-identities-retained-seven-held', severity: 'identity-safety', recordIds: allIds, detail: 'Transfer-case leakage and front brake-hose cracking have exact full-scope support; the other seven identities remain held without URL changes.' },
     { code: 'recall-remedies-bounded-by-vin', severity: 'recall-safety', recordIds: [ids.transferCase, ids.brakeHose].sort(), detail: 'Recall inclusion, completion and exact remedy are checked by VIN rather than inferred from model year.' },
     { code: 'community-repair-prescriptions-removed', severity: 'repair-safety', recordIds: [ids.activeExhaust, ids.ecuCapacitors, ids.manualSynchro, ids.popUpHeadlight, ids.timingBelt, ids.rearSteering].sort(), detail: 'Forum mechanisms, mandatory recapping, additive regimens, automatic rebuilds and delete kits are not treated as manufacturer-backed repairs.' },
     { code: 'no-owner-social-proof', severity: 'accuracy-cleanup', recordIds: allIds, detail: 'All frozen counts are already unknown zero; no owner total or recurrence rate is introduced.' },
