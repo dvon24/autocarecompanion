@@ -1,0 +1,121 @@
+{
+  "schemaVersion": 1,
+  "generatedOn": "2026-08-10",
+  "status": "proposal-only-reconciled",
+  "make": "Opel",
+  "source": {
+    "snapshotFile": "data/_opel-deeplink-snapshot-2026-08-10.json",
+    "snapshotSha256": "f89fea54a6b7f99bca77a7471d3d10b8fdef26d9618531890d54801442c7294f",
+    "snapshotHash": "d1959d90d7a146a5bf339f0a05491a78864a98601156c9caac828279ef4ab8be"
+  },
+  "coverage": {
+    "snapshotModels": 9,
+    "packetModels": 9,
+    "snapshotRows": 63,
+    "packetRows": 63,
+    "uniquePacketRows": 63,
+    "missingIds": [],
+    "extraIds": [],
+    "duplicateIds": []
+  },
+  "safety": {
+    "immutableIdentityDriftRows": 0,
+    "nonPublishedProposalRows": 0,
+    "commerceRows": 0,
+    "ownerSocialProofRows": 0,
+    "productionWriteAuthorized": false
+  },
+  "decisions": {
+    "retain_indexed_identity_and_accuracy_cleanup": 1,
+    "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy": 62,
+    "total": 63
+  },
+  "applicationGate": {
+    "status": "blocked",
+    "reason": "62 indexed identities remain held for policy or evidence review; no production write is authorized."
+  },
+  "models": [
+    {
+      "model": "Astra",
+      "rows": 9,
+      "retain": 0,
+      "hold": 9,
+      "gate": "blocked",
+      "packetFile": "data/known-issue-opel-astra-adjudication-2026-08-10.json",
+      "packetSha256": "a9cc048eed9af6045169fa2cc165ee091b2b48f8047f495c94307ced7323dee8"
+    },
+    {
+      "model": "Combo",
+      "rows": 9,
+      "retain": 0,
+      "hold": 9,
+      "gate": "blocked",
+      "packetFile": "data/known-issue-opel-combo-adjudication-2026-08-10.json",
+      "packetSha256": "c0866b1583f5db9c60516ca9aa9672adaee988c75ac6f919063203172b52998d"
+    },
+    {
+      "model": "Corsa",
+      "rows": 9,
+      "retain": 0,
+      "hold": 9,
+      "gate": "blocked",
+      "packetFile": "data/known-issue-opel-corsa-adjudication-2026-08-10.json",
+      "packetSha256": "8b42b99e77ea02c42629f1b8f70ea2c1876ecacf6cb25b1f5d503ae57dbb8597"
+    },
+    {
+      "model": "Crossland",
+      "rows": 1,
+      "retain": 0,
+      "hold": 1,
+      "gate": "blocked",
+      "packetFile": "data/known-issue-opel-crossland-adjudication-2026-08-10.json",
+      "packetSha256": "e31ea7fb0bd883a4ac96a95a4d5ab4755e3bdc68c7bb16a8240615cde76dcf63"
+    },
+    {
+      "model": "Grandland",
+      "rows": 7,
+      "retain": 0,
+      "hold": 7,
+      "gate": "blocked",
+      "packetFile": "data/known-issue-opel-grandland-adjudication-2026-08-10.json",
+      "packetSha256": "1924783d271b3a66d98f7bdb77887afdaed49a6860f23d53c16e564e751c9e0d"
+    },
+    {
+      "model": "Insignia",
+      "rows": 8,
+      "retain": 0,
+      "hold": 8,
+      "gate": "blocked",
+      "packetFile": "data/known-issue-opel-insignia-adjudication-2026-08-10.json",
+      "packetSha256": "8449aded4f966211ce43ba49b07a82368b1150b4d3468e15706d180c4ec85c0b"
+    },
+    {
+      "model": "Mokka",
+      "rows": 10,
+      "retain": 0,
+      "hold": 10,
+      "gate": "blocked",
+      "packetFile": "data/known-issue-opel-mokka-adjudication-2026-08-10.json",
+      "packetSha256": "1d2b75e9e6338d38373e414c9b43386d756581486f5f3a005eba3a427627a2b1"
+    },
+    {
+      "model": "Vivaro",
+      "rows": 1,
+      "retain": 0,
+      "hold": 1,
+      "gate": "blocked",
+      "packetFile": "data/known-issue-opel-vivaro-adjudication-2026-08-10.json",
+      "packetSha256": "761cd77eb5680bba6bf614e4cab69583522cc75c2a38a09ec16f2501e1928bec"
+    },
+    {
+      "model": "Zafira",
+      "rows": 9,
+      "retain": 1,
+      "hold": 8,
+      "gate": "blocked",
+      "packetFile": "data/known-issue-opel-zafira-adjudication-2026-08-10.json",
+      "packetSha256": "ec2a6909c8edd10e24173173862dca555ce6031f519db715869c83e8f8cad1b6"
+    }
+  ],
+  "errors": []
+}
