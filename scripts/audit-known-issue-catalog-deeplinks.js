@@ -262,6 +262,10 @@ async function readLiveRows(connectionString, filters = {}) {
       values.push(String(filters.make).trim());
       predicates.push(`ki.make = $${values.length}`);
     }
+    if (String(filters.makeInsensitive || '').trim()) {
+      values.push(String(filters.makeInsensitive).trim());
+      predicates.push(`lower(ki.make) = lower($${values.length})`);
+    }
     if (String(filters.model || '').trim()) {
       values.push(String(filters.model).trim());
       predicates.push(`ki.model = $${values.length}`);
@@ -361,11 +365,17 @@ async function main() {
   if (args.includes('--export')) {
     require('dotenv').config({
       path: process.env.KNOWN_ISSUE_ENV_FILE || path.join(PROJECT_ROOT, '.env.local'),
+      override: true,
     });
     const connectionString = process.env.POSTGRES_PRISMA_URL || process.env.DATABASE_URL;
     if (!connectionString) throw new Error('No POSTGRES_PRISMA_URL or DATABASE_URL set.');
     snapshotFile = path.resolve(PROJECT_ROOT, argValue(args, '--output', path.relative(PROJECT_ROOT, DEFAULT_SNAPSHOT)));
-    const filters = { make: argValue(args, '--make', ''), model: argValue(args, '--model', '') };
+    const filters = {
+      make: argValue(args, '--make', ''),
+      makeInsensitive: argValue(args, '--make-ci', ''),
+      model: argValue(args, '--model', ''),
+    };
+    if (filters.make && filters.makeInsensitive) throw new Error('Use either --make or --make-ci, not both.');
     const live = await readLiveRows(connectionString, filters);
     snapshot = buildSnapshot(live.rows, live.clicks);
     writeJsonAtomic(snapshotFile, snapshot);
