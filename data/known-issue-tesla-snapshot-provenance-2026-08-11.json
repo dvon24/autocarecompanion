@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "capturedOn": "2026-08-11",
+  "status": "read-only-provenance",
+  "snapshotFile": "data/_tesla-deeplink-snapshot-2026-08-11.json",
+  "snapshotNormalizedSha256": "211fa11b1bbe86920ca655934eca2a011ee193c881ecfff124427577311cfb81",
+  "snapshotHash": "1629ca074d3017eac0158fb8c47e69085161ecca2658ca93f6d443745de8584d",
+  "snapshotGeneratedAt": "2026-08-11T20:06:18.070Z",
+  "capture": {
+    "command": "node scripts/audit-known-issue-catalog-deeplinks.js --export --make-ci Tesla --output data/_tesla-deeplink-snapshot-2026-08-11.json",
+    "filter": {
+      "status": "published",
+      "makeInsensitive": "Tesla",
+      "model": null
+    },
+    "transaction": "BEGIN ISOLATION LEVEL REPEATABLE READ READ ONLY",
+    "queries": [
+      "SELECT full KnownIssue record fields FROM KnownIssue WHERE status=published AND lower(make)=lower($1) ORDER BY id",
+      "SELECT AffiliateClick aggregates joined to the same filtered KnownIssue population ORDER BY clickedAt DESC"
+    ],
+    "environment": {
+      "envFile": "C:/Users/devon/autocarecompanion/.env.local",
+      "connectionVariable": "POSTGRES_PRISMA_URL (DATABASE_URL fallback)",
+      "secretValuesRecorded": false
+    }
+  },
+  "independentInventory": {
+    "command": "node scripts/verify-tesla-all-hold-live.js",
+    "transaction": "BEGIN ISOLATION LEVEL REPEATABLE READ READ ONLY",
+    "query": "SELECT id, make, model, status FROM KnownIssue WHERE status = 'published' ORDER BY id",
+    "derivation": "All published rows are selected without a make predicate; Unicode NFKD mark-folding is applied locally before variant and model counts are derived.",
+    "globalPublishedCount": 7642,
+    "normalizedMakeIdentity": "tesla",
+    "normalizedTeslaRows": 64,
+    "rawMakeVariants": [
+      {
+        "make": "Tesla",
+        "normalized": "tesla",
+        "codePoints": ["U+0054", "U+0065", "U+0073", "U+006C", "U+0061"],
+        "count": 64
+      }
+    ],
+    "modelCounts": {
+      "Cybertruck": 1,
+      "Model 3": 15,
+      "Model S": 16,
+      "Model X": 12,
+      "Model Y": 15,
+      "Semi": 5
+    },
+    "environment": {
+      "envFile": "C:/Users/devon/autocarecompanion/.env.local",
+      "connectionVariable": "POSTGRES_PRISMA_URL (DATABASE_URL fallback)",
+      "secretValuesRecorded": false
+    }
+  }
+}

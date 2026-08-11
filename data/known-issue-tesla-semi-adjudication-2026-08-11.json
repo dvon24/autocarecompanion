@@ -1,0 +1,784 @@
+{
+  "schemaVersion": 1,
+  "status": "proposal-only",
+  "auditStage": "model-primary-source-technical-adjudication",
+  "requiresIndependentApproval": true,
+  "generatedOn": "2026-08-11",
+  "make": "Tesla",
+  "model": "Semi",
+  "completionStatement": "All 5 frozen Tesla Semi pages are byte-identical published holds.",
+  "applicationGate": {
+    "status": "blocked",
+    "blockerRecordIds": [
+      "tesla-semi-heavy-load-range-collapse-500-mile-rating-only-light-freight",
+      "tesla-semi-lithium-ion-battery-thermal-runaway-after-crash-50-000-gallo",
+      "tesla-semi-megacharger-network-gaps-strand-trucks-off-corridor",
+      "tesla-semi-parking-brake-valve-module-fails-to-engage-rollaway-risk",
+      "tesla-semi-touchscreen-flicker-shutdown-forcing-drivers-to-pull-over"
+    ],
+    "reason": "No row has exact same-identity evidence sufficient to authorize a content write."
+  },
+  "safetyContract": [
+    "No archive, redirect, consolidation, new issue, title change, indexed vehicle-metadata change, status/severity change or commerce mutation is authorized.",
+    "Every held row is a byte-identical published no-op across every full-record field.",
+    "Identity, status, owner telemetry, commerce and related IDs remain frozen.",
+    "Unknown owner totals remain internal zero and are never converted into social proof.",
+    "Sibling-brand or platform similarity is not Tesla proof without an exact applicability path.",
+    "Routing correction candidates are reported separately and authorize no metadata write."
+  ],
+  "source": {
+    "snapshotFile": "data/_tesla-deeplink-snapshot-2026-08-11.json",
+    "snapshotSha256": "211fa11b1bbe86920ca655934eca2a011ee193c881ecfff124427577311cfb81",
+    "snapshotGeneratedAt": "2026-08-11T20:06:18.070Z",
+    "snapshotHash": "1629ca074d3017eac0158fb8c47e69085161ecca2658ca93f6d443745de8584d",
+    "modelRecordCount": 5,
+    "reviewLedgerFile": "data/known-issue-tesla-review-ledger-2026-08-11.json"
+  },
+  "observations": [
+    "Sparse production and incident claims lack newly captured exact source content; all five identities remain held."
+  ],
+  "duplicateClusters": [],
+  "evidenceInventory": {
+    "method": "Every frozen citation was inventoried as metadata only; no new external source bytes were captured or promoted to exact primary proof.",
+    "capturedSourceDocuments": 0,
+    "retainedRewriteDocuments": 0
+  },
+  "summary": {
+    "retain_indexed_identity_and_accuracy_cleanup": 0,
+    "hold_indexed_identity_byte_identical_pending_identity_policy": 5,
+    "pages_preserved_published": 5,
+    "authorized_write_candidates": 0,
+    "total": 5
+  },
+  "rows": [
+    {
+      "id": "tesla-semi-heavy-load-range-collapse-500-mile-rating-only-light-freight",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "identityReviewRequired": true,
+      "identityConflict": "The frozen citation inventory was reviewed as metadata only and no locally captured source establishes exact same-identity primary applicability for the complete scope; preserving the row unchanged is the conservative disposition.",
+      "reason": "Exact same-identity primary support was not established. The complete frozen record remains byte-identical and published.",
+      "evidence": {
+        "primaryEvidence": [],
+        "limitations": "The frozen citation inventory was reviewed as metadata only and no locally captured source establishes exact same-identity primary applicability for the complete scope; preserving the row unchanged is the conservative disposition."
+      },
+      "reviewLedger": {
+        "disposition": "Preserve the complete published record byte-identical pending separately approved identity/applicability policy.",
+        "existingSourcesInspected": [
+          {
+            "url": "https://insideevs.com/news/627284/pepsico-will-initially-use-tesla-semi-for-trips-425-100-miles/",
+            "type": "article",
+            "title": "PepsiCo Will Initially Use Tesla Semi For Trips Of 425, 100 Miles",
+            "inspection": "frozen-citation-metadata-only; source content was not inspected or promoted to exact primary proof"
+          },
+          {
+            "url": "https://insideevs.com/news/686339/pepsico-tesla-semi-545-mile-range-test/",
+            "type": "article",
+            "title": "Tesla Semi Delivers Impressive Range In First Independent Real-World Test (NACFE Run on Less)",
+            "inspection": "frozen-citation-metadata-only; source content was not inspected or promoted to exact primary proof"
+          },
+          {
+            "url": "https://www.dhl.com/global-en/delivered/responsibility/dhl-tests-tesla-semi-electric-truck.html",
+            "type": "article",
+            "title": "Tesla Semi electric truck trial at DHL Supply Chain USA",
+            "inspection": "frozen-citation-metadata-only; source content was not inspected or promoted to exact primary proof"
+          }
+        ],
+        "duplicateClusterKeys": []
+      },
+      "commerceDecision": "No audit commerce action; all frozen commerce and recommendation fields remain byte-identical.",
+      "before": {
+        "make": "Tesla",
+        "model": "Semi",
+        "years": [
+          2023,
+          2024,
+          2025,
+          2026
+        ],
+        "trims": [
+          "Long Range 500-mile"
+        ],
+        "engines": [
+          "Tri-motor BEV"
+        ],
+        "category": "drivetrain",
+        "title": "Heavy-load range collapse — 500-mile rating only on light freight",
+        "description": "Tesla advertises 500 miles at 82,000 lb GCW, but real fleet deployment tells a different story. PepsiCo runs Frito-Lay (chips, ~light) Semis on ~425-mile routes, but limits Pepsi soda runs (heavy liquid loads) to ~100 miles before recharging. NACFE 'Run on Less' (Sept 2023) recorded one Semi needing a mid-day charge after 377 mi on a 545-mi day. Energy use averaged ~1.7 kWh/mi in DHL's October 2024 trial at 75,000 lb GCW.",
+        "solution": "Route-plan around real-world ~1.7-2.0 kWh/mi consumption for heavy/dense freight, not the 500-mi marketing figure. Reserve Semis for sub-300-mi lanes that terminate at a Megacharger, and budget a mid-route 30-min charge for any run over ~350 mi at GCW.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 0,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://insideevs.com/news/627284/pepsico-will-initially-use-tesla-semi-for-trips-425-100-miles/",
+            "type": "article",
+            "title": "PepsiCo Will Initially Use Tesla Semi For Trips Of 425, 100 Miles"
+          },
+          {
+            "url": "https://insideevs.com/news/686339/pepsico-tesla-semi-545-mile-range-test/",
+            "type": "article",
+            "title": "Tesla Semi Delivers Impressive Range In First Independent Real-World Test (NACFE Run on Less)"
+          },
+          {
+            "url": "https://www.dhl.com/global-en/delivered/responsibility/dhl-tests-tesla-semi-electric-truck.html",
+            "type": "article",
+            "title": "Tesla Semi electric truck trial at DHL Supply Chain USA"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-02",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "beforeSha256": "c8c6e62d4a4b4b31d00673f129be89de2c934c35fd729a73dbb34dfb238f1a14",
+      "proposal": {
+        "make": "Tesla",
+        "model": "Semi",
+        "years": [
+          2023,
+          2024,
+          2025,
+          2026
+        ],
+        "trims": [
+          "Long Range 500-mile"
+        ],
+        "engines": [
+          "Tri-motor BEV"
+        ],
+        "category": "drivetrain",
+        "title": "Heavy-load range collapse — 500-mile rating only on light freight",
+        "description": "Tesla advertises 500 miles at 82,000 lb GCW, but real fleet deployment tells a different story. PepsiCo runs Frito-Lay (chips, ~light) Semis on ~425-mile routes, but limits Pepsi soda runs (heavy liquid loads) to ~100 miles before recharging. NACFE 'Run on Less' (Sept 2023) recorded one Semi needing a mid-day charge after 377 mi on a 545-mi day. Energy use averaged ~1.7 kWh/mi in DHL's October 2024 trial at 75,000 lb GCW.",
+        "solution": "Route-plan around real-world ~1.7-2.0 kWh/mi consumption for heavy/dense freight, not the 500-mi marketing figure. Reserve Semis for sub-300-mi lanes that terminate at a Megacharger, and budget a mid-route 30-min charge for any run over ~350 mi at GCW.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 0,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://insideevs.com/news/627284/pepsico-will-initially-use-tesla-semi-for-trips-425-100-miles/",
+            "type": "article",
+            "title": "PepsiCo Will Initially Use Tesla Semi For Trips Of 425, 100 Miles"
+          },
+          {
+            "url": "https://insideevs.com/news/686339/pepsico-tesla-semi-545-mile-range-test/",
+            "type": "article",
+            "title": "Tesla Semi Delivers Impressive Range In First Independent Real-World Test (NACFE Run on Less)"
+          },
+          {
+            "url": "https://www.dhl.com/global-en/delivered/responsibility/dhl-tests-tesla-semi-electric-truck.html",
+            "type": "article",
+            "title": "Tesla Semi electric truck trial at DHL Supply Chain USA"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-02",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposalSha256": "c8c6e62d4a4b4b31d00673f129be89de2c934c35fd729a73dbb34dfb238f1a14",
+      "changedFields": []
+    },
+    {
+      "id": "tesla-semi-lithium-ion-battery-thermal-runaway-after-crash-50-000-gallo",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "identityReviewRequired": true,
+      "identityConflict": "The frozen citation inventory was reviewed as metadata only and no locally captured source establishes exact same-identity primary applicability for the complete scope; preserving the row unchanged is the conservative disposition.",
+      "reason": "Exact same-identity primary support was not established. The complete frozen record remains byte-identical and published.",
+      "evidence": {
+        "primaryEvidence": [],
+        "limitations": "The frozen citation inventory was reviewed as metadata only and no locally captured source establishes exact same-identity primary applicability for the complete scope; preserving the row unchanged is the conservative disposition."
+      },
+      "reviewLedger": {
+        "disposition": "Preserve the complete published record byte-identical pending separately approved identity/applicability policy.",
+        "existingSourcesInspected": [
+          {
+            "url": "https://www.ntsb.gov/investigations/Pages/HWY24FH015.aspx",
+            "type": "nhtsa",
+            "title": "NTSB HWY24FH015 — Tesla Semi Crash and Lithium-Ion Battery Fire, Emigrant Gap, CA",
+            "inspection": "frozen-citation-metadata-only; source content was not inspected or promoted to exact primary proof"
+          },
+          {
+            "url": "https://www.detroitnews.com/story/business/autos/2024/09/12/it-took-50000-gallons-of-water-to-put-out-tesla-semi-fire-feds-say/75198026007/",
+            "type": "article",
+            "title": "It took 50,000 gallons of water to put out Tesla Semi fire in California, feds say",
+            "inspection": "frozen-citation-metadata-only; source content was not inspected or promoted to exact primary proof"
+          },
+          {
+            "url": "https://www.ttnews.com/articles/tesla-semi-crash-ntsb",
+            "type": "article",
+            "title": "Tesla Semi Crash, Fire Mark NTSB's First EV Truck Case",
+            "inspection": "frozen-citation-metadata-only; source content was not inspected or promoted to exact primary proof"
+          }
+        ],
+        "duplicateClusterKeys": []
+      },
+      "commerceDecision": "No audit commerce action; all frozen commerce and recommendation fields remain byte-identical.",
+      "before": {
+        "make": "Tesla",
+        "model": "Semi",
+        "years": [
+          2024
+        ],
+        "trims": [],
+        "engines": [
+          "Tri-motor BEV (~900 kWh pack, exact capacity not officially published by Tesla)"
+        ],
+        "category": "electrical",
+        "title": "Lithium-ion battery thermal runaway after crash — 50,000 gallons of water needed",
+        "description": "On Aug 19, 2024 a 2024 Tesla Semi driven by a Tesla employee left I-80 near Emigrant Gap, CA, struck a tree, and the ~900 kWh pack went into thermal runaway. Battery temperatures hit ~1,000 F, fire/toxic smoke closed both directions of I-80 for 14-15 hours, and CAL FIRE used roughly 50,000 gallons (189,000 L) of water to cool the pack. NTSB opened HWY24FH015 — its first EV truck case.",
+        "solution": "Train fleet drivers and first responders on Tesla Semi-specific emergency response (download Tesla's Semi ERG). Post-collision, do not attempt to move the unit — isolate, monitor pack temperature 24-48 hrs for reignition, and follow NTSB/NFPA Li-ion truck fire protocol.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 250000,
+        "estimatedCostHigh": 500000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.ntsb.gov/investigations/Pages/HWY24FH015.aspx",
+            "type": "nhtsa",
+            "title": "NTSB HWY24FH015 — Tesla Semi Crash and Lithium-Ion Battery Fire, Emigrant Gap, CA"
+          },
+          {
+            "url": "https://www.detroitnews.com/story/business/autos/2024/09/12/it-took-50000-gallons-of-water-to-put-out-tesla-semi-fire-feds-say/75198026007/",
+            "type": "article",
+            "title": "It took 50,000 gallons of water to put out Tesla Semi fire in California, feds say"
+          },
+          {
+            "url": "https://www.ttnews.com/articles/tesla-semi-crash-ntsb",
+            "type": "article",
+            "title": "Tesla Semi Crash, Fire Mark NTSB's First EV Truck Case"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-02",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "beforeSha256": "a926e5667e011127dd0548a6bd1861d3981dd2be7c5ef5b1f3f891652951de72",
+      "proposal": {
+        "make": "Tesla",
+        "model": "Semi",
+        "years": [
+          2024
+        ],
+        "trims": [],
+        "engines": [
+          "Tri-motor BEV (~900 kWh pack, exact capacity not officially published by Tesla)"
+        ],
+        "category": "electrical",
+        "title": "Lithium-ion battery thermal runaway after crash — 50,000 gallons of water needed",
+        "description": "On Aug 19, 2024 a 2024 Tesla Semi driven by a Tesla employee left I-80 near Emigrant Gap, CA, struck a tree, and the ~900 kWh pack went into thermal runaway. Battery temperatures hit ~1,000 F, fire/toxic smoke closed both directions of I-80 for 14-15 hours, and CAL FIRE used roughly 50,000 gallons (189,000 L) of water to cool the pack. NTSB opened HWY24FH015 — its first EV truck case.",
+        "solution": "Train fleet drivers and first responders on Tesla Semi-specific emergency response (download Tesla's Semi ERG). Post-collision, do not attempt to move the unit — isolate, monitor pack temperature 24-48 hrs for reignition, and follow NTSB/NFPA Li-ion truck fire protocol.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 250000,
+        "estimatedCostHigh": 500000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.ntsb.gov/investigations/Pages/HWY24FH015.aspx",
+            "type": "nhtsa",
+            "title": "NTSB HWY24FH015 — Tesla Semi Crash and Lithium-Ion Battery Fire, Emigrant Gap, CA"
+          },
+          {
+            "url": "https://www.detroitnews.com/story/business/autos/2024/09/12/it-took-50000-gallons-of-water-to-put-out-tesla-semi-fire-feds-say/75198026007/",
+            "type": "article",
+            "title": "It took 50,000 gallons of water to put out Tesla Semi fire in California, feds say"
+          },
+          {
+            "url": "https://www.ttnews.com/articles/tesla-semi-crash-ntsb",
+            "type": "article",
+            "title": "Tesla Semi Crash, Fire Mark NTSB's First EV Truck Case"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-02",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposalSha256": "a926e5667e011127dd0548a6bd1861d3981dd2be7c5ef5b1f3f891652951de72",
+      "changedFields": []
+    },
+    {
+      "id": "tesla-semi-megacharger-network-gaps-strand-trucks-off-corridor",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "identityReviewRequired": true,
+      "identityConflict": "The frozen citation inventory was reviewed as metadata only and no locally captured source establishes exact same-identity primary applicability for the complete scope; preserving the row unchanged is the conservative disposition.",
+      "reason": "Exact same-identity primary support was not established. The complete frozen record remains byte-identical and published.",
+      "evidence": {
+        "primaryEvidence": [],
+        "limitations": "The frozen citation inventory was reviewed as metadata only and no locally captured source establishes exact same-identity primary applicability for the complete scope; preserving the row unchanged is the conservative disposition."
+      },
+      "reviewLedger": {
+        "disposition": "Preserve the complete published record byte-identical pending separately approved identity/applicability policy.",
+        "existingSourcesInspected": [
+          {
+            "url": "https://chargedevs.com/newswire/tesla-opens-first-megacharger-station-to-semi-customers-in-california/",
+            "type": "article",
+            "title": "Tesla opens first Megacharger station to Semi customers in California",
+            "inspection": "frozen-citation-metadata-only; source content was not inspected or promoted to exact primary proof"
+          },
+          {
+            "url": "https://evchargingstations.com/chargingnews/tesla-megachargers-not-1-2-mw/",
+            "type": "article",
+            "title": "Not All Tesla Megachargers Are Rated for 1.2 MW",
+            "inspection": "frozen-citation-metadata-only; source content was not inspected or promoted to exact primary proof"
+          },
+          {
+            "url": "https://www.act-news.com/news/tesla-finalizes-semi-factory-plans-expands-megawatt-charging-network/",
+            "type": "article",
+            "title": "Tesla Finalizes Semi Factory Plans, Expands Megawatt Charging Network",
+            "inspection": "frozen-citation-metadata-only; source content was not inspected or promoted to exact primary proof"
+          }
+        ],
+        "duplicateClusterKeys": []
+      },
+      "commerceDecision": "No audit commerce action; all frozen commerce and recommendation fields remain byte-identical.",
+      "before": {
+        "make": "Tesla",
+        "model": "Semi",
+        "years": [
+          2024,
+          2025,
+          2026
+        ],
+        "trims": [],
+        "engines": [
+          "Tri-motor BEV"
+        ],
+        "category": "other",
+        "title": "Megacharger network gaps strand trucks off-corridor",
+        "description": "The Semi is designed around 750 kW - 1.2 MW charging, but as of mid-2026 only a handful of public Megachargers exist (Ontario, CA opened Mar 2026; Tesla targeting 37 sites by EOY 2026, 46 by early 2027). Fleets running outside the I-5/I-10/I-75/I-95 corridors must build private depot chargers (~$1M+ per site) or accept that the truck is operationally tethered to its home base — not a long-haul OTR tractor in practice.",
+        "solution": "Before ordering Semis, map every lane against Tesla's published Megacharger rollout and budget for an on-site DC fast charger (Tesla 750 kW Megacharger pedestal, ABB / Kempower MCS, or interim CCS1) plus the utility service upgrade — frequently the longest-lead item.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 250000,
+        "estimatedCostHigh": 1500000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://chargedevs.com/newswire/tesla-opens-first-megacharger-station-to-semi-customers-in-california/",
+            "type": "article",
+            "title": "Tesla opens first Megacharger station to Semi customers in California"
+          },
+          {
+            "url": "https://evchargingstations.com/chargingnews/tesla-megachargers-not-1-2-mw/",
+            "type": "article",
+            "title": "Not All Tesla Megachargers Are Rated for 1.2 MW"
+          },
+          {
+            "url": "https://www.act-news.com/news/tesla-finalizes-semi-factory-plans-expands-megawatt-charging-network/",
+            "type": "article",
+            "title": "Tesla Finalizes Semi Factory Plans, Expands Megawatt Charging Network"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-02",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "beforeSha256": "3e201a5370faa708357c78a770cf5b45d1ecda632ae4bacc8073989ad4569394",
+      "proposal": {
+        "make": "Tesla",
+        "model": "Semi",
+        "years": [
+          2024,
+          2025,
+          2026
+        ],
+        "trims": [],
+        "engines": [
+          "Tri-motor BEV"
+        ],
+        "category": "other",
+        "title": "Megacharger network gaps strand trucks off-corridor",
+        "description": "The Semi is designed around 750 kW - 1.2 MW charging, but as of mid-2026 only a handful of public Megachargers exist (Ontario, CA opened Mar 2026; Tesla targeting 37 sites by EOY 2026, 46 by early 2027). Fleets running outside the I-5/I-10/I-75/I-95 corridors must build private depot chargers (~$1M+ per site) or accept that the truck is operationally tethered to its home base — not a long-haul OTR tractor in practice.",
+        "solution": "Before ordering Semis, map every lane against Tesla's published Megacharger rollout and budget for an on-site DC fast charger (Tesla 750 kW Megacharger pedestal, ABB / Kempower MCS, or interim CCS1) plus the utility service upgrade — frequently the longest-lead item.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 250000,
+        "estimatedCostHigh": 1500000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://chargedevs.com/newswire/tesla-opens-first-megacharger-station-to-semi-customers-in-california/",
+            "type": "article",
+            "title": "Tesla opens first Megacharger station to Semi customers in California"
+          },
+          {
+            "url": "https://evchargingstations.com/chargingnews/tesla-megachargers-not-1-2-mw/",
+            "type": "article",
+            "title": "Not All Tesla Megachargers Are Rated for 1.2 MW"
+          },
+          {
+            "url": "https://www.act-news.com/news/tesla-finalizes-semi-factory-plans-expands-megawatt-charging-network/",
+            "type": "article",
+            "title": "Tesla Finalizes Semi Factory Plans, Expands Megawatt Charging Network"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-02",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposalSha256": "3e201a5370faa708357c78a770cf5b45d1ecda632ae4bacc8073989ad4569394",
+      "changedFields": []
+    },
+    {
+      "id": "tesla-semi-parking-brake-valve-module-fails-to-engage-rollaway-risk",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "identityReviewRequired": true,
+      "identityConflict": "The frozen citation inventory was reviewed as metadata only and no locally captured source establishes exact same-identity primary applicability for the complete scope; preserving the row unchanged is the conservative disposition.",
+      "reason": "Exact same-identity primary support was not established. The complete frozen record remains byte-identical and published.",
+      "evidence": {
+        "primaryEvidence": [],
+        "limitations": "The frozen citation inventory was reviewed as metadata only and no locally captured source establishes exact same-identity primary applicability for the complete scope; preserving the row unchanged is the conservative disposition."
+      },
+      "reviewLedger": {
+        "disposition": "Preserve the complete published record byte-identical pending separately approved identity/applicability policy.",
+        "existingSourcesInspected": [
+          {
+            "url": "https://static.nhtsa.gov/odi/rcl/2023/RCLRPT-23V205-4246.PDF",
+            "type": "recall",
+            "title": "NHTSA Recall 23V-205 — Part 573 Safety Recall Report (Tesla Semi Parking Brake Valve Module)",
+            "inspection": "frozen-citation-metadata-only; source content was not inspected or promoted to exact primary proof"
+          },
+          {
+            "url": "https://tesla.oemdtc.com/480/sb-23-33-001-parking-brake-valve-module-may-cause-rollaway-2023-tesla-semi-trucks",
+            "type": "tsb",
+            "title": "Tesla SB-23-33-001 Parking Brake Valve Module May Cause Rollaway (2023 Tesla Semi)",
+            "inspection": "frozen-citation-metadata-only; source content was not inspected or promoted to exact primary proof"
+          },
+          {
+            "url": "https://www.cnbc.com/2023/03/31/tesla-issues-recall-on-semi-over-defective-brake-module-rollaway-risk.html",
+            "type": "article",
+            "title": "Tesla issues recall on Semi over defective brake module, rollaway risk",
+            "inspection": "frozen-citation-metadata-only; source content was not inspected or promoted to exact primary proof"
+          }
+        ],
+        "duplicateClusterKeys": []
+      },
+      "commerceDecision": "No audit commerce action; all frozen commerce and recommendation fields remain byte-identical.",
+      "before": {
+        "make": "Tesla",
+        "model": "Semi",
+        "years": [
+          2023
+        ],
+        "trims": [],
+        "engines": [
+          "Tri-motor BEV"
+        ],
+        "category": "brakes",
+        "title": "Parking brake valve module fails to engage — rollaway risk (NHTSA Recall 23V-205)",
+        "description": "On 35 early-build 2023 Tesla Semi tractors, the Bendix-supplied electronic parking brake valve module (PVM) may fail to transition to the park position when the driver presses the parking brake button, due to excessive internal air leakage in the supplier's spec. If the service brake is released, the truck can roll away. No crashes reported, but a clear safety defect on a Class 8 unit.",
+        "solution": "Free recall fix: Tesla Service replaces Bendix Intellipark Towing Park Brake Module (PVM) part 1124642-00-A with revised part 1124642-00-B that has improved internals preventing air leakage. Affects 35 units produced Nov 30 2022 – Feb 28 2023. Verify Recall 23V-205 / Tesla SB-23-33-001 is closed on the VIN before putting the unit in service.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 0,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://static.nhtsa.gov/odi/rcl/2023/RCLRPT-23V205-4246.PDF",
+            "type": "recall",
+            "title": "NHTSA Recall 23V-205 — Part 573 Safety Recall Report (Tesla Semi Parking Brake Valve Module)"
+          },
+          {
+            "url": "https://tesla.oemdtc.com/480/sb-23-33-001-parking-brake-valve-module-may-cause-rollaway-2023-tesla-semi-trucks",
+            "type": "tsb",
+            "title": "Tesla SB-23-33-001 Parking Brake Valve Module May Cause Rollaway (2023 Tesla Semi)"
+          },
+          {
+            "url": "https://www.cnbc.com/2023/03/31/tesla-issues-recall-on-semi-over-defective-brake-module-rollaway-risk.html",
+            "type": "article",
+            "title": "Tesla issues recall on Semi over defective brake module, rollaway risk"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-02",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "beforeSha256": "e6f467f4faccdff4d31e32489c05e115c7c2150346df1ae6d324adaf91515e21",
+      "proposal": {
+        "make": "Tesla",
+        "model": "Semi",
+        "years": [
+          2023
+        ],
+        "trims": [],
+        "engines": [
+          "Tri-motor BEV"
+        ],
+        "category": "brakes",
+        "title": "Parking brake valve module fails to engage — rollaway risk (NHTSA Recall 23V-205)",
+        "description": "On 35 early-build 2023 Tesla Semi tractors, the Bendix-supplied electronic parking brake valve module (PVM) may fail to transition to the park position when the driver presses the parking brake button, due to excessive internal air leakage in the supplier's spec. If the service brake is released, the truck can roll away. No crashes reported, but a clear safety defect on a Class 8 unit.",
+        "solution": "Free recall fix: Tesla Service replaces Bendix Intellipark Towing Park Brake Module (PVM) part 1124642-00-A with revised part 1124642-00-B that has improved internals preventing air leakage. Affects 35 units produced Nov 30 2022 – Feb 28 2023. Verify Recall 23V-205 / Tesla SB-23-33-001 is closed on the VIN before putting the unit in service.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 0,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://static.nhtsa.gov/odi/rcl/2023/RCLRPT-23V205-4246.PDF",
+            "type": "recall",
+            "title": "NHTSA Recall 23V-205 — Part 573 Safety Recall Report (Tesla Semi Parking Brake Valve Module)"
+          },
+          {
+            "url": "https://tesla.oemdtc.com/480/sb-23-33-001-parking-brake-valve-module-may-cause-rollaway-2023-tesla-semi-trucks",
+            "type": "tsb",
+            "title": "Tesla SB-23-33-001 Parking Brake Valve Module May Cause Rollaway (2023 Tesla Semi)"
+          },
+          {
+            "url": "https://www.cnbc.com/2023/03/31/tesla-issues-recall-on-semi-over-defective-brake-module-rollaway-risk.html",
+            "type": "article",
+            "title": "Tesla issues recall on Semi over defective brake module, rollaway risk"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-02",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposalSha256": "e6f467f4faccdff4d31e32489c05e115c7c2150346df1ae6d324adaf91515e21",
+      "changedFields": []
+    },
+    {
+      "id": "tesla-semi-touchscreen-flicker-shutdown-forcing-drivers-to-pull-over",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "identityReviewRequired": true,
+      "identityConflict": "The frozen citation inventory was reviewed as metadata only and no locally captured source establishes exact same-identity primary applicability for the complete scope; preserving the row unchanged is the conservative disposition.",
+      "reason": "Exact same-identity primary support was not established. The complete frozen record remains byte-identical and published.",
+      "evidence": {
+        "primaryEvidence": [],
+        "limitations": "The frozen citation inventory was reviewed as metadata only and no locally captured source establishes exact same-identity primary applicability for the complete scope; preserving the row unchanged is the conservative disposition."
+      },
+      "reviewLedger": {
+        "disposition": "Preserve the complete published record byte-identical pending separately approved identity/applicability policy.",
+        "existingSourcesInspected": [
+          {
+            "url": "https://www.teslarati.com/tesla-semi-breakdown-software-switch-glitch/",
+            "type": "article",
+            "title": "Tesla Semi 'breakdown' caused by software switch glitch",
+            "inspection": "frozen-citation-metadata-only; source content was not inspected or promoted to exact primary proof"
+          },
+          {
+            "url": "https://insideevs.com/news/659707/tesla-semi-stranded-reported-software-issue/",
+            "type": "article",
+            "title": "Stranded Tesla Semis Reportedly The Result Of A Software Issue",
+            "inspection": "frozen-citation-metadata-only; source content was not inspected or promoted to exact primary proof"
+          },
+          {
+            "url": "https://insideevs.com/news/632350/tesla-semi-frito-lay-broken-down/",
+            "type": "article",
+            "title": "Tesla Semi With Frito Lay Livery Spotted Broken Down On Roadside",
+            "inspection": "frozen-citation-metadata-only; source content was not inspected or promoted to exact primary proof"
+          }
+        ],
+        "duplicateClusterKeys": []
+      },
+      "commerceDecision": "No audit commerce action; all frozen commerce and recommendation fields remain byte-identical.",
+      "before": {
+        "make": "Tesla",
+        "model": "Semi",
+        "years": [
+          2023
+        ],
+        "trims": [],
+        "engines": [
+          "Tri-motor BEV (long-range variant delivered to PepsiCo/Frito-Lay starting Dec 2022)"
+        ],
+        "category": "electrical",
+        "title": "Touchscreen flicker / shutdown forcing drivers to pull over",
+        "description": "Consider removing the 'I-80' reference unless a specific source documents I-80 incidents — verified reporting centers on Modesto, CA (Frito-Lay facility) with units towed to Lathrop, CA. Both are in California's Central Valley, not on I-80.",
+        "solution": "Keep the truck on the latest Tesla OTA firmware and report any flicker/blackout event to the Tesla Semi Service Program (Lathrop, CA) immediately. Tesla addresses these via software patch; mobile service can also reseat the display harness if the issue persists after an update.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.teslarati.com/tesla-semi-breakdown-software-switch-glitch/",
+            "type": "article",
+            "title": "Tesla Semi 'breakdown' caused by software switch glitch"
+          },
+          {
+            "url": "https://insideevs.com/news/659707/tesla-semi-stranded-reported-software-issue/",
+            "type": "article",
+            "title": "Stranded Tesla Semis Reportedly The Result Of A Software Issue"
+          },
+          {
+            "url": "https://insideevs.com/news/632350/tesla-semi-frito-lay-broken-down/",
+            "type": "article",
+            "title": "Tesla Semi With Frito Lay Livery Spotted Broken Down On Roadside"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-02",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "beforeSha256": "4e410c4af59919222ddd9ace2bea162043664ea6182ec8038298bceb7eb6bea1",
+      "proposal": {
+        "make": "Tesla",
+        "model": "Semi",
+        "years": [
+          2023
+        ],
+        "trims": [],
+        "engines": [
+          "Tri-motor BEV (long-range variant delivered to PepsiCo/Frito-Lay starting Dec 2022)"
+        ],
+        "category": "electrical",
+        "title": "Touchscreen flicker / shutdown forcing drivers to pull over",
+        "description": "Consider removing the 'I-80' reference unless a specific source documents I-80 incidents — verified reporting centers on Modesto, CA (Frito-Lay facility) with units towed to Lathrop, CA. Both are in California's Central Valley, not on I-80.",
+        "solution": "Keep the truck on the latest Tesla OTA firmware and report any flicker/blackout event to the Tesla Semi Service Program (Lathrop, CA) immediately. Tesla addresses these via software patch; mobile service can also reseat the display harness if the issue persists after an update.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.teslarati.com/tesla-semi-breakdown-software-switch-glitch/",
+            "type": "article",
+            "title": "Tesla Semi 'breakdown' caused by software switch glitch"
+          },
+          {
+            "url": "https://insideevs.com/news/659707/tesla-semi-stranded-reported-software-issue/",
+            "type": "article",
+            "title": "Stranded Tesla Semis Reportedly The Result Of A Software Issue"
+          },
+          {
+            "url": "https://insideevs.com/news/632350/tesla-semi-frito-lay-broken-down/",
+            "type": "article",
+            "title": "Tesla Semi With Frito Lay Livery Spotted Broken Down On Roadside"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-06-02",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposalSha256": "4e410c4af59919222ddd9ace2bea162043664ea6182ec8038298bceb7eb6bea1",
+      "changedFields": []
+    }
+  ]
+}
