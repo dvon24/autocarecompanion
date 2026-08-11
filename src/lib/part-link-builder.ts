@@ -80,8 +80,8 @@ export function acceptCandidate(candidate: LinkCandidate): BuiltLink | null {
   const vendorIdentity = vendor.toLowerCase().replace(/[^a-z0-9]/g, '');
   const hostIdentity = host.replace(/[^a-z0-9]/g, '');
   const marketplaceOk =
-    (/amazon/.test(vendorIdentity) && /amazon/.test(hostIdentity)) ||
-    (/ebay/.test(vendorIdentity) && /ebay/.test(hostIdentity));
+    ((vendorIdentity === 'amazon' || vendorIdentity === 'amazoncom') && /amazon/.test(hostIdentity)) ||
+    ((vendorIdentity === 'ebay' || vendorIdentity === 'ebaycom') && /ebay/.test(hostIdentity));
   if (!marketplaceOk && (vendorIdentity.length < 3 || !hostIdentity.includes(vendorIdentity))) return null;
 
   return {

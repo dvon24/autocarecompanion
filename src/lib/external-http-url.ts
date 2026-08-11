@@ -13,7 +13,17 @@ export function externalHttpUrl(value: unknown): string | null {
   try {
     const url = new URL(raw);
     if (!['http:', 'https:'].includes(url.protocol)) return null;
-    if (url.username || url.password || !url.hostname || url.hostname === 'localhost') return null;
+    if (url.username || url.password || !url.hostname) return null;
+    const hostname = url.hostname.toLowerCase().replace(/^\[|\]$/g, '');
+    // Citation URLs are user-facing navigation, so raw IPs, single-label hosts
+    // and local-only DNS suffixes are never valid sources. This prevents a
+    // database value from sending a reader to their own router/LAN/loopback.
+    if (
+      !hostname.includes('.')
+      || hostname.includes(':')
+      || /^\d{1,3}(?:\.\d{1,3}){3}$/.test(hostname)
+      || /\.(?:local|localhost|internal|lan|home)$/.test(hostname)
+    ) return null;
     return url.toString();
   } catch {
     return null;

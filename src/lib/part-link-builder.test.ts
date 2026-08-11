@@ -37,6 +37,7 @@ test('rejects any search-shaped URL regardless of vendor', async () => {
 
 test('rejects a link whose vendor label does not match its destination', () => {
   assert.equal(acceptCandidate({ vendor: 'FCP Euro', url: retailerUrl, via: 'test' }), null);
+  assert.equal(acceptCandidate({ vendor: 'Not Amazon', url: 'https://www.amazon.com/dp/B01G5EA74I', via: 'test' }), null);
   assert.ok(acceptCandidate({ vendor: 'BMW Parts Deal', url: retailerUrl, via: 'test' }));
 });
 

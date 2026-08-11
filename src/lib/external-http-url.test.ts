@@ -8,7 +8,11 @@ test('accepts absolute web citations', () => {
 });
 
 test('rejects sentinel, relative and non-web citation targets', () => {
-  for (const value of ['undefined', 'null', '/undefined', '/relative', 'javascript:alert(1)', 'mailto:test@example.com']) {
+  for (const value of [
+    'undefined', 'null', '/undefined', '/relative', 'javascript:alert(1)', 'mailto:test@example.com',
+    'http://127.0.0.1:3000/admin', 'https://192.168.1.10/source', 'http://router.local/source',
+    'http://intranet/source', 'http://[::1]/source',
+  ]) {
     assert.equal(externalHttpUrl(value), null, value);
   }
 });
