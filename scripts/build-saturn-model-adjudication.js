@@ -24,7 +24,7 @@ function proposalFor(contract, record) {
     confidence: contract.retainedIds.includes(record.id) ? 'high' : 'low',
     symptoms: clone(content.symptoms),
     affectedSystems: clone(content.affectedSystems),
-    dtcCodes: [],
+    dtcCodes: clone(content.dtcCodes || []),
     estimatedCostLow: null,
     estimatedCostHigh: null,
     typicalMileageLow: null,

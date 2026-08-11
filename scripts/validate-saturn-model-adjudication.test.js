@@ -17,6 +17,18 @@ test('Astra packet passes every frozen-identity gate', () => {
   });
 });
 
+test('Aura packet covers all nine pages and preserves every indexed identity', () => {
+  const { contract, packet, snapshot } = buildForModel('Aura');
+  assert.deepEqual(validatePacket(contract, packet, snapshot), []);
+  assert.deepEqual(packet.summary, {
+    retain_indexed_identity_and_accuracy_cleanup: 3,
+    hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy: 6,
+    fabricated_report_counts_proposed_zero: 0,
+    pages_preserved_published: 9,
+    total: 9,
+  });
+});
+
 test('validator rejects a held page becoming unpublished', () => {
   const { contract, packet, snapshot } = buildForModel('Astra');
   const changed = clone(packet);
