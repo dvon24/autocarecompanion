@@ -89,6 +89,18 @@ test('SL packet holds both engine identities without expanding the exact bulleti
   });
 });
 
+test('S-Series packet holds all three mismatched identities without trusting prior approval', () => {
+  const { contract, packet, snapshot } = buildForModel('S-Series');
+  assert.deepEqual(validatePacket(contract, packet, snapshot), []);
+  assert.deepEqual(packet.summary, {
+    retain_indexed_identity_and_accuracy_cleanup: 0,
+    hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy: 3,
+    fabricated_report_counts_proposed_zero: 0,
+    pages_preserved_published: 3,
+    total: 3,
+  });
+});
+
 test('validator rejects a held page becoming unpublished', () => {
   const { contract, packet, snapshot } = buildForModel('Astra');
   const changed = clone(packet);
