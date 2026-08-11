@@ -1,0 +1,13 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
+const boxster718 = require('./porsche-718-boxster-adjudication-contract');
+const cayman718 = require('./porsche-718-cayman-adjudication-contract');
+const porsche911 = require('./porsche-911-adjudication-contract');
+const boxster = require('./porsche-boxster-adjudication-contract');
+const cayenne = require('./porsche-cayenne-adjudication-contract');
+const cayman = require('./porsche-cayman-adjudication-contract');
+const macan = require('./porsche-macan-adjudication-contract');
+const panamera = require('./porsche-panamera-adjudication-contract');
+const taycan = require('./porsche-taycan-adjudication-contract');
+const CONTRACTS = Object.freeze({ '718 Boxster': boxster718, '718 Cayman': cayman718, '911': porsche911, 'Boxster': boxster, 'Cayenne': cayenne, 'Cayman': cayman, 'Macan': macan, Panamera: panamera, Taycan: taycan });
+function getContract(model) { const contract = CONTRACTS[model]; if (!contract) throw new Error(`Unknown Porsche model: ${model}`); return contract; }
+module.exports = { CONTRACTS, getContract };
