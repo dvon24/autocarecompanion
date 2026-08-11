@@ -34,6 +34,7 @@ const campaignEvidenceRequirements = Object.freeze({
   [ids.tailgateRecall]: [
     { campaign: '18V486000', patterns: ['tailgate actuator limiter tab', 'unlatch and open while driving', 'repair the vehicle'] },
     { campaign: '19V347000', patterns: ['tailgate actuator limiter tab', 'unlatch and open while driving', 'repair the tailgate latch'] },
+    { campaign: '22V904000', patterns: ['misaligned tailgate strikers', 'tailgate opening while driving', 'inspect the tailgate striker alignment'] },
   ],
   [ids.trailerTow]: [{ campaign: '26V059000', patterns: ['trailer tow module', 'trailer brakes may fail', 'replace the trailer tow module'] }],
   [ids.turnSignal]: [{ campaign: '24V729000', patterns: ['self-canceling feature', 'turn signals', 'steering column control module'] }],
@@ -196,12 +197,12 @@ content[ids.hubEncoder] = exactIssue({
 });
 
 content[ids.tailgateRecall] = exactIssue({
-  description: 'NHTSA 18V486 / FCA U74 and 19V347 / FCA V44 establish this identity for specified 2013-2018 RAM 1500 bed, build-date and power-locking-tailgate configurations. A tailgate-actuator limiter tab may fracture and allow the tailgate to unlatch while driving, creating a cargo road hazard. These campaigns do not establish the condition for the page’s later indexed years; VIN and bed configuration remain decisive.',
-  solution: 'Check the VIN for U74 / 18V486 and V44 / 19V347 and have the dealer complete the free tailgate-latch repair when open. Until repaired, verify the tailgate is latched before every trip, secure cargo independently and do not rely on the power lock alone. For vehicles outside those campaigns, inspect the latch, striker, actuator, limiter, wiring and alignment before replacement. Do not buy a latch or actuator from this page; campaign eligibility, bed configuration, failed component, current part number and VIN fitment must be established first.',
-  symptoms: ['VIN and bed configuration checked for U74 and V44', 'unlatch event and cargo condition documented', 'latch, actuator, limiter tab and striker inspected', 'campaign population separated from later indexed years'],
-  affectedSystems: ['power-locking tailgate latch', 'tailgate actuator limiter tab', 'cargo retention'],
-  evidence: ['18V486 covers specified 2015-2017 bed configurations.', '19V347 covers specified 2013-2018 bed and build populations.', 'Both identify limiter-tab fracture and possible tailgate opening while driving.'],
-  conflict: '', summary: 'Retained the exact power-tailgate recall identity and bounded it to U74/V44 bed, build and VIN populations.', citations: ['live2018', 'datasets'],
+  description: 'Three NHTSA campaigns establish two VIN-bounded mechanisms under this frozen identity. NHTSA 18V486 / FCA U74 and 19V347 / FCA V44 cover specified 2013-2018 RAM 1500 bed, build-date and power-locking-tailgate configurations in which a tailgate-actuator limiter tab may fracture and allow the tailgate to unlatch while driving. NHTSA 22V904 / FCA ZB8 separately covers affected 2019-2022 RAM 1500 trucks whose misaligned tailgate strikers may prevent proper latching and allow the tailgate to open while driving. Either condition can release unsecured cargo and create a road hazard; VIN, model year and equipment determine the applicable campaign.',
+  solution: 'Check the VIN for U74 / 18V486, V44 / 19V347 and ZB8 / 22V904. Have the dealer complete the applicable free remedy: repair the tailgate latch for the limiter-tab campaigns, or inspect tailgate-striker alignment to the box latch and adjust it if necessary for ZB8. Until campaign status and remedy completion are confirmed, verify the tailgate is latched before every trip and secure cargo independently. Outside those campaigns, inspect the latch, striker, actuator, limiter, wiring and alignment before replacement. Do not buy a latch, actuator or striker from this page; campaign eligibility, bed configuration, failed component, current part number and VIN fitment must be established first.',
+  symptoms: ['VIN, model year and bed configuration checked for U74, V44 and ZB8', 'unlatch event and cargo condition documented', 'latch, actuator limiter tab and striker alignment inspected', '2013-2018 limiter-tab campaigns separated from the 2019-2022 striker-alignment campaign'],
+  affectedSystems: ['power-locking tailgate latch', 'tailgate actuator limiter tab', 'tailgate strikers and box latch alignment', 'cargo retention'],
+  evidence: ['18V486 covers specified 2015-2017 bed configurations and identifies limiter-tab fracture.', '19V347 covers specified 2013-2018 bed and build populations and identifies the same limiter-tab failure path.', '22V904 covers affected 2019-2022 RAM 1500 trucks with misaligned tailgate strikers and specifies free striker-alignment inspection and adjustment.'],
+  conflict: '', summary: 'Retained the exact power-tailgate recall identity while separating the U74/V44 limiter-tab populations from the ZB8 striker-alignment population and remedies.', citations: ['live2018', 'tailgate2022', 'datasets'],
 });
 
 content[ids.trailerTow] = exactIssue({
@@ -227,6 +228,7 @@ const otherSources = Object.freeze({
   live2018: { title: 'NHTSA Live RAM 1500 2018 Recall Results', type: 'recall', url: 'https://api.nhtsa.gov/recalls/recallsByVehicle?make=RAM&model=1500&modelYear=2018' },
   live2019: { title: 'NHTSA Live RAM 1500 2019 Recall Results', type: 'recall', url: 'https://api.nhtsa.gov/recalls/recallsByVehicle?make=RAM&model=1500&modelYear=2019' },
   live2022: { title: 'NHTSA Live RAM 1500 2022 Recall Results', type: 'recall', url: 'https://api.nhtsa.gov/recalls/recallsByVehicle?make=RAM&model=1500&modelYear=2022' },
+  tailgate2022: { title: 'NHTSA 22V904 / FCA ZB8 - RAM Tailgate Striker Alignment', type: 'recall', url: 'https://static.nhtsa.gov/odi/rcl/2022/RCAK-22V904-6414.pdf' },
   live2024: { title: 'NHTSA Live RAM 1500 2024 Recall Results', type: 'recall', url: 'https://api.nhtsa.gov/recalls/recallsByVehicle?make=RAM&model=1500&modelYear=2024' },
   live2025: { title: 'NHTSA Live RAM 1500 2025 Recall Results', type: 'recall', url: 'https://api.nhtsa.gov/recalls/recallsByVehicle?make=RAM&model=1500&modelYear=2025' },
   live2026: { title: 'NHTSA Live RAM 1500 2026 Recall Results', type: 'recall', url: 'https://api.nhtsa.gov/recalls/recallsByVehicle?make=RAM&model=1500&modelYear=2026' },
@@ -254,7 +256,7 @@ module.exports = Object.freeze({
   modelAliases: ['1500', 'RAM 1500', 'RAM', 'RAM PICKUP', 'BR1500', 'REDUNDANT RAM 1500'],
   searchTerms: ['uconnect', 'screen', 'battery', 'misfire', 'camshaft', 'bearing', 'coolant', 'air suspension', 'transmission', '4wd', 'exhaust manifold', 'water pump', 'abs', 'camera', 'water leak', 'rear window', 'tailgate', 'instrument cluster', 'egr', 'fuel pump', 'steering', 'etorque', 'wheel bearing', 'sunroof', 'tipm', 'trailer tow', 'turn signal'],
   relevantDocumentIds: [],
-  campaigns: ['18V486000', '19V347000', '19V757000', '22V406000', '22V767000', '24V729000', '24V794000', '25V826000', '26V059000', '26V225000'],
+  campaigns: ['18V486000', '19V347000', '19V757000', '22V406000', '22V767000', '22V904000', '24V729000', '24V794000', '25V826000', '26V059000', '26V225000'],
   pdfSources: {},
   otherSources,
   bulletinInventory: {
@@ -282,7 +284,8 @@ module.exports = Object.freeze({
     { id: ids.egr, field: 'description', patterns: ['19V757', 'EGR cooler', 'intake manifold'] },
     { id: ids.fuelPump, field: 'description', patterns: ['22V406', '22V767', 'high-pressure fuel-pump'] },
     { id: ids.hubEncoder, field: 'description', patterns: ['24V794', 'encoder rings', 'stability control'] },
-    { id: ids.tailgateRecall, field: 'description', patterns: ['18V486', '19V347', 'limiter tab'] },
+    { id: ids.tailgateRecall, field: 'description', patterns: ['18V486', '19V347', '22V904', 'limiter tab', 'misaligned tailgate strikers', '2019-2022'] },
+    { id: ids.tailgateRecall, field: 'solution', patterns: ['ZB8', 'inspect tailgate-striker alignment', 'adjust it if necessary', 'Do not buy'] },
     { id: ids.trailerTow, field: 'description', patterns: ['26V059', 'trailer-tow module', 'trailer brakes'] },
     { id: ids.turnSignal, field: 'description', patterns: ['24V729', 'self-canceling', 'FMVSS 108'] },
   ],
