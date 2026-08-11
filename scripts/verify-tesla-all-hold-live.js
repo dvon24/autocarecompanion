@@ -4,10 +4,14 @@ const path = require('node:path');
 const { resolveKnownIssueConnectionString } = require('./apply-known-issue-catalog-deeplinks');
 const { FULL_RECORD_FIELDS, fullRecord, stableValue } = require('./known-issue-adjudication-utils');
 const { codePoints, isTeslaMake, normalizeTeslaMake } = require('./tesla-audit-normalization');
+const {
+  EXPECTED_GLOBAL_PUBLISHED,
+  EXPECTED_MODEL_COUNTS: EXPECTED_MODELS,
+  EXPECTED_ROWS,
+  assertTeslaSnapshot,
+} = require('./tesla-snapshot-contract');
+const { validateReconciliation } = require('./validate-tesla-make-reconciliation');
 
-const EXPECTED_GLOBAL_PUBLISHED = 7642;
-const EXPECTED_MODELS = Object.freeze({ Cybertruck: 1, 'Model 3': 15, 'Model S': 16, 'Model X': 12, 'Model Y': 15, Semi: 5 });
-const EXPECTED_ROWS = 64;
 const RECONCILIATION_FILE = 'data/known-issue-tesla-make-reconciliation-2026-08-11.json';
 const SNAPSHOT_FILE = 'data/_tesla-deeplink-snapshot-2026-08-11.json';
 
@@ -16,14 +20,21 @@ function sortedObject(value) { return Object.fromEntries(Object.entries(value).s
 function equal(left, right) { return JSON.stringify(stableValue(left)) === JSON.stringify(stableValue(right)); }
 function selectRowsSql() { return ['id', ...FULL_RECORD_FIELDS].map((field) => `"${field}"`).join(', '); }
 
+function assertLocalPlan(reconciliation) {
+  const errors = validateReconciliation(reconciliation);
+  if (errors.length) throw new Error(`Tesla reconciliation validation failed: ${errors.join('; ')}`);
+  return reconciliation;
+}
+
 function evaluateLiveInventory(inventoryRows, liveTeslaRows, reconciliation, snapshot) {
   const published = inventoryRows.filter((row) => row.status === 'published');
+  const frozenRows = assertTeslaSnapshot(snapshot, resolveRepo(SNAPSHOT_FILE));
+  assertLocalPlan(reconciliation);
   const teslaInventory = published.filter((row) => isTeslaMake(row.make));
   const modelCounts = sortedObject(teslaInventory.reduce((counts, row) => ({ ...counts, [row.model]: (counts[row.model] || 0) + 1 }), {}));
   const makeVariants = [...teslaInventory.reduce((counts, row) => counts.set(row.make, (counts.get(row.make) || 0) + 1), new Map())]
     .sort(([left], [right]) => left.localeCompare(right))
     .map(([make, count]) => ({ make, normalized: normalizeTeslaMake(make), codePoints: codePoints(make), count }));
-  const frozenRows = Array.isArray(snapshot?.records) ? snapshot.records : [];
   const frozenById = new Map(frozenRows.map((row) => [row.id, fullRecord(row)]));
   const liveById = new Map(liveTeslaRows.map((row) => [row.id, fullRecord(row)]));
   const frozenIds = [...frozenById.keys()].sort();
@@ -52,6 +63,8 @@ function evaluateLiveInventory(inventoryRows, liveTeslaRows, reconciliation, sna
 }
 
 async function verifyTeslaAllHoldLive(pool, reconciliation, snapshot) {
+  assertTeslaSnapshot(snapshot, resolveRepo(SNAPSHOT_FILE));
+  assertLocalPlan(reconciliation);
   const client = await pool.connect();
   try {
     await client.query('BEGIN ISOLATION LEVEL REPEATABLE READ READ ONLY');
@@ -91,4 +104,4 @@ async function main() {
 
 if (require.main === module) main().catch((error) => { console.error(error instanceof Error ? error.message : error); process.exitCode = 1; });
 
-module.exports = { EXPECTED_GLOBAL_PUBLISHED, EXPECTED_MODELS, EXPECTED_ROWS, evaluateLiveInventory, verifyTeslaAllHoldLive };
+module.exports = { EXPECTED_GLOBAL_PUBLISHED, EXPECTED_MODELS, EXPECTED_ROWS, assertLocalPlan, evaluateLiveInventory, verifyTeslaAllHoldLive };

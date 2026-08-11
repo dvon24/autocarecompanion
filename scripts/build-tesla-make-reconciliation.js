@@ -151,6 +151,7 @@ function buildReconciliation() {
 
 function assertReconciliationWritable(report) {
   const failures = [];
+  if (!equal(report, buildReconciliation())) failures.push('full deterministic reconciliation mismatch');
   if (report.routing?.deterministic !== true || report.routing?.validationErrors !== 0) failures.push('routing validation failed');
   for (const [name, value] of Object.entries(report.crossPacketChecks || {})) if (name.startsWith('exact') ? value !== true : value !== 0) failures.push(`cross-packet ${name} failed`);
   if (report.summary?.retained !== 0 || report.summary?.held !== 64 || report.summary?.authorizedWriteCandidates !== 0) failures.push('all-hold totals failed');

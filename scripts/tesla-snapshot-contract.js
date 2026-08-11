@@ -48,6 +48,8 @@ function assertTeslaProvenance(provenanceOverride) {
 
 function assertTeslaSnapshot(snapshot, absoluteSnapshotFile) {
   if (normalizedFileHash(absoluteSnapshotFile) !== EXPECTED_NORMALIZED_SHA256) throw new Error('Tesla snapshot file hash drifted');
+  const pinnedSnapshot = JSON.parse(fs.readFileSync(absoluteSnapshotFile, 'utf8'));
+  if (!equal(snapshot, pinnedSnapshot)) throw new Error('Tesla snapshot object differs from the pinned snapshot file');
   if (snapshot.snapshotHash !== EXPECTED_INTERNAL_HASH) throw new Error('Tesla snapshot internal hash drifted');
   if (snapshot.schemaVersion !== 2 || snapshot.auditScope !== 'full-record' || snapshot.snapshotKind !== 'known-issues-catalog-deeplinks') throw new Error('Tesla snapshot is not a schema-v2 full-record freeze');
   if (!Array.isArray(snapshot.records)) throw new Error('Tesla snapshot records are missing');

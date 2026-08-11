@@ -67,13 +67,13 @@ test('snapshot contract rejects case variants, missing or duplicate IDs, and fie
   const { contract, snapshot } = buildForModel('Model Y');
   const caseVariant = clone(snapshot);
   caseVariant.records.push({ ...clone(snapshot.records[0]), id: 'tesla-case-variant-test', make: 'TESLA' });
-  assert.throws(() => buildPacket(contract, caseVariant), /row count|Unicode-normalized row count|make variants/);
+  assert.throws(() => buildPacket(contract, caseVariant), /pinned snapshot file|row count|Unicode-normalized row count|make variants/);
   const missing = clone(snapshot); missing.records.pop();
-  assert.throws(() => buildPacket(contract, missing), /row count/);
+  assert.throws(() => buildPacket(contract, missing), /pinned snapshot file|row count/);
   const duplicate = clone(snapshot); duplicate.records[1].id = duplicate.records[0].id;
-  assert.throws(() => buildPacket(contract, duplicate), /duplicate or missing id/);
+  assert.throws(() => buildPacket(contract, duplicate), /pinned snapshot file|duplicate or missing id/);
   const titleMutation = clone(snapshot); titleMutation.records[0].title += ' changed';
-  assert.throws(() => buildPacket(contract, titleMutation), /frozen title hash drifted/);
+  assert.throws(() => buildPacket(contract, titleMutation), /pinned snapshot file|frozen title hash drifted/);
 });
 
 function rehash(row) {
@@ -165,4 +165,22 @@ test('reconciliation refuses invalid routing before write callback', () => {
   assert.throws(() => writeValidatedReconciliation(changed, () => { writes += 1; }), /Refusing to write/);
   assert.equal(writes, 0);
   assert.throws(() => assertReconciliationWritable(changed), /routing validation failed/);
+});
+
+test('reconciliation refuses same-summary gate, provenance and row tampering before write callback', () => {
+  const mutations = [
+    (report) => { report.applicationGate.status = 'ready'; },
+    (report) => { report.sourceControl.baselineCommit = '0'.repeat(40); },
+    (report) => { report.crossPacketChecks.statusDrift = 1; },
+    (report) => { report.models[0].applicationGate = 'ready'; },
+    (report) => { report.rows[0].changedFields = ['title']; },
+    (report) => { report.rows[0].proposalSha256 = '0'.repeat(64); },
+  ];
+  for (const mutate of mutations) {
+    const changed = clone(buildReconciliation());
+    mutate(changed);
+    let writes = 0;
+    assert.throws(() => writeValidatedReconciliation(changed, () => { writes += 1; }), /full deterministic reconciliation mismatch/);
+    assert.equal(writes, 0);
+  }
 });

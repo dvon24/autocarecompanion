@@ -2,9 +2,9 @@
 title: 'Complete Tesla known-issues audit and zero-write release verification'
 type: 'chore'
 created: '2026-08-11'
-status: 'in-review'
+status: 'done'
 baseline_commit: '950c28cdec60ea49df4cdd6642ba7dbb6239641a'
-review_loop_iteration: 0
+review_loop_iteration: 1
 context: []
 ---
 
@@ -63,6 +63,7 @@ context: []
 ## Spec Change Log
 
 - 2026-08-11: Implemented the authorized local audit from the supplied immutable snapshot: pinned independent read-only provenance, produced a 64-row conservative ledger and six byte-identical all-hold packets, captured eight duplicate/overlap clusters, classified 4,798 issue/year/selectable-trim routes, and proved the live 7,642-page catalog still contains the exact 64 frozen Tesla rows. Result: zero retained rewrites, zero metadata corrections, and zero authorized writes.
+- 2026-08-11: Closed the independent review block by requiring exact parsed snapshot equality and full deterministic reconciliation validation before live connection, success, or local reconciliation write; added matched snapshot/live full-field mutations and same-summary gate, provenance, model, cross-packet, row-diff, and proposal-hash mutations.
 
 ## Design Notes
 
@@ -72,7 +73,7 @@ The routing report records 770 substring-only routes independently from 1,784 ex
 
 ## Verification
 
-**Local results (2026-08-11):** 22 JavaScript mutation/live tests and two TypeScript production-routing equivalence tests pass. All six serialized model packets, the zero-source evidence boundary, routing report, and reconciliation validate deterministically. Targeted ESLint and TypeScript no-emit pass. The read-only repeatable-read live verifier reports catalog 7,642, Tesla 64, exact model counts, exact frozen IDs, and zero stale full-record rows. No production write, push, deploy, or email was performed.
+**Local results (2026-08-11):** 25 JavaScript mutation/live tests and two TypeScript production-routing equivalence tests pass. All six serialized model packets, the zero-source evidence boundary, routing report, and reconciliation validate deterministically. Targeted ESLint and TypeScript no-emit pass. The read-only repeatable-read live verifier reports catalog 7,642, Tesla 64, exact model counts, exact frozen IDs, and zero stale full-record rows. No production write, push, deploy, or email was performed.
 
 **Commands:**
 - `node --test scripts/validate-tesla-model-adjudication.test.js scripts/verify-tesla-all-hold-live.test.js` — mutation and inventory gates pass.
