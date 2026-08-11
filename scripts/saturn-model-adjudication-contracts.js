@@ -605,6 +605,66 @@ const contracts = {
       },
     },
   },
+  SC: {
+    make: 'Saturn',
+    model: 'SC',
+    reviewDate: REVIEW_DATE,
+    snapshotFile: SNAPSHOT_FILE,
+    outputFile: 'data/known-issue-saturn-sc-adjudication-2026-08-11.json',
+    allIds: ['saturn-sc-coupe-suicide-door-sag'],
+    retainedIds: [],
+    reportCountCleanupIds: [],
+    observations: [
+      'The 2002 SC2 factory service manual confirms that the coupe rear access door has separately serviceable hinges, latch, limiter, striker, weatherstrip and adjustment procedures.',
+      'No exact Saturn campaign or service bulletin was found establishing recurring third-door hinge sag or latch wear across every frozen 1999-2002 SC1/SC2.',
+      'The frozen page prescribes hinge bushings, a pin kit and universal cost ranges without identifying measured hinge play, striker alignment, limiter, latch or body damage.',
+    ],
+    pdfSources: {},
+    otherSources: {
+      scBodyManual: {
+        url: 'https://charm.li/Saturn/2002/SC2%20L4-1.9L%20DOHC%20VIN%207/Repair%20and%20Diagnosis/',
+        type: 'manufacturer-service-manual-mirror',
+        title: '2002 Saturn SC2 factory service manual',
+        contains: ['Rear Door Hinge', 'Rear Door Latch', 'Rear Door Limiter', 'Rear Door Striker'],
+      },
+      rearDoorAdjustment: {
+        url: 'https://charm.li/Saturn/2002/SC2%20L4-1.9L%20DOHC%20VIN%207/Repair%20and%20Diagnosis/Body%20and%20Frame/Doors%2C%20Hood%20and%20Trunk/Doors/Rear%20Door/Adjustments/Rear%20Side%20Door%20Adjustment%20%28Sedan%2FWagon%29/',
+        type: 'manufacturer-service-manual-mirror',
+        title: '2002 Saturn S-Series rear side-door adjustment procedure',
+        contains: ['Note the original position of the door lock striker', 'Move the door within the door opening', 'Check the seals'],
+      },
+    },
+    bulletinInventory: {
+      method: 'Exact SC/SC1/SC2 rear-access-door hinge, latch, striker, sag and alignment searches across NHTSA and available Saturn factory service information.',
+      exactDocuments: 2,
+    },
+    recallInventory: {
+      method: 'No matching safety campaign was identified for the frozen hinge-sag/latch-wear identity.',
+      exactCampaigns: 0,
+    },
+    modelAliases: ['SC', 'SC1', 'SC2', 'three-door coupe', 'rear access door'],
+    searchTerms: ['third door hinge sag', 'rear access door latch', 'rear door striker', 'door alignment', 'weatherstrip'],
+    relevantDocumentIds: [],
+    campaigns: [],
+    requiredProse: [
+      { id: 'saturn-sc-coupe-suicide-door-sag', field: 'description', patterns: ['does not establish recurring hinge sag or latch wear'] },
+      { id: 'saturn-sc-coupe-suicide-door-sag', field: 'solution', patterns: ['Do not buy', 'no universal retail part'] },
+    ],
+    content: {
+      'saturn-sc-coupe-suicide-door-sag': {
+        description: 'The 2002 SC2 factory service manual confirms that the coupe rear access door has separately serviceable hinges, latch, limiter, striker, weatherstrip and alignment procedures. That component inventory does not establish recurring hinge sag or latch wear across every frozen 1999-2002 SC1 and SC2. The captured primary material also does not prove that door weight is the mechanism, that hinge bushings are separately replaceable on every build or that latch wear routinely follows normal use. A difficult close, wind noise or water entry can originate from hinge play, striker position, limiter, latch, weatherstrip, prior collision repair or body alignment and must be separated by inspection.',
+        solution: 'Support the door and measure vertical and lateral play at each hinge, then compare door-to-opening gaps before loosening hardware. Inspect the latch, striker, limiter, seals, fasteners and surrounding structure for wear, looseness, corrosion or prior repair. Follow the exact body-style service procedure for alignment and confirm seal engagement after adjustment. Replace only the hinge, latch, striker, limiter, seal or structural component proven defective. Do not buy hinge bushings, a pin kit, latch, striker or weatherstrip from this page; build date, measured play, alignment and inspected component condition determine the repair, with no universal retail part.',
+        symptoms: ['Rear access door requires lift or extra force to latch', 'Uneven door gaps or confirmed movement at a hinge', 'Wind noise or water entry traced to seal engagement', 'Latch, striker or limiter wear identified separately'],
+        affectedSystems: ['SC rear access-door hinges and fasteners', 'Rear access-door latch, striker and limiter', 'Door weatherstrip and body-opening alignment'],
+        dtcCodes: [],
+        citations: ['scBodyManual', 'rearDoorAdjustment'],
+        evidence: ['Factory information confirms distinct service paths for the rear access-door hardware.', 'No exact manufacturer communication establishes the frozen cross-year recurrence or one universal hinge-bushing remedy.'],
+        summary: 'Removed unsupported recurrence, weight mechanism, parts, labor and cost claims; added measured-play, alignment, seal and component-isolation gates.',
+        conflict: 'The immutable title asserts hinge sag and latch wear as one recurring identity without exact primary evidence across the frozen population.',
+        commerceDecision: 'build date, hinge play, door gaps, latch/striker/limiter condition, seal engagement and structural history determine the repair; no universal retail part',
+      },
+    },
+  },
 };
 
 const supportedModels = Object.freeze(Object.keys(contracts));
