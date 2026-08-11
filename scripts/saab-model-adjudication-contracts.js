@@ -592,6 +592,77 @@ const contracts = {
       },
     },
   },
+  '9-7X': {
+    make: 'Saab',
+    model: '9-7X',
+    reviewDate: REVIEW_DATE,
+    snapshotFile: SNAPSHOT_FILE,
+    outputFile: 'data/known-issue-saab-9-7x-adjudication-2026-08-11.json',
+    allIds: ['saab-9-7x-fuel-level-sensor-recall'],
+    retainedIds: [],
+    reportCountCleanupIds: [],
+    observations: [
+      'The frozen title describes the driver-door master-switch campaigns, but the immutable record ID says fuel-level-sensor recall; those are different defect identities.',
+      'NHTSA 12V406 initially covered specified 2006-2007 9-7X vehicles in listed states, while the later 14V404 expansion covers certain 2005-2007 9-7X vehicles.',
+      'The frozen 2005-2007 vehicle metadata incorrectly includes the Aero trim and 6.0 L LS2 engine; Saab VIN documentation places the 9-7X Aero/LS2 in 2008.',
+    ],
+    pdfSources: {
+      initialRecallReport: {
+        url: 'https://static.nhtsa.gov/odi/rcl/2012/RCDNN-12V406-6500.pdf',
+        type: 'recall',
+        title: 'GM defect filing for NHTSA campaign 12V406',
+        contains: ['2006-07', 'SAAB 9-7x'],
+      },
+      campaignBulletin: {
+        url: 'https://static.nhtsa.gov/odi/tsbs/2013/MC-10245842-9999.pdf',
+        type: 'recall',
+        title: 'GM/Saab driver-door-module safety recall bulletin',
+        contains: ['2005-2007 model year Saab 9-7X', 'driver door module'],
+      },
+      vinBreakdown: {
+        url: 'https://saabparts.com/us/wp-content/uploads/sites/10/2023/05/VIN-Breakdown-for-2005-2008-9-7X.pdf',
+        type: 'manufacturer',
+        title: 'Saab 9-7X 2005-2008 VIN breakdown',
+        contains: ['2008 Vehicle Identification Number System', '9-7X Aero SUV', 'V8 6.0L SFI'],
+      },
+    },
+    otherSources: {
+      expandedRecall: {
+        url: 'https://www.nhtsa.gov/recalls?nhtsaid=14V404000',
+        type: 'nhtsa',
+        title: 'NHTSA campaign 14V404 recall record and VIN lookup',
+        contains: ['2005-2007 SAAB 9-7x', '14V404'],
+      },
+    },
+    bulletinInventory: {
+      method: 'Exact GM/Saab driver-door-module recall bulletin plus Saab VIN-model documentation; no unrelated fuel-level-sensor campaign was found for this frozen record.',
+      exactDocuments: 2,
+    },
+    recallInventory: {
+      method: 'Exact NHTSA 12V406 defect filing and 14V404 expansion record; the initial geographic scope is not presented as the final all-VIN population.',
+      exactCampaigns: 2,
+    },
+    modelAliases: ['9-7X', '9-7x', 'GMT360 Saab'],
+    searchTerms: ['driver door master power window switch', 'door module corrosion', 'fuel level sensor recall', '12V406', '14V404'],
+    relevantDocumentIds: [],
+    campaigns: ['12V406', '14V404'],
+    requiredProse: [
+      { id: 'saab-9-7x-fuel-level-sensor-recall', field: 'description', patterns: ['record ID identifies a fuel-level-sensor recall', 'Aero and 6.0 L LS2 belong to the 2008 model-year configuration'] },
+    ],
+    content: {
+      'saab-9-7x-fuel-level-sensor-recall': {
+        description: 'NHTSA campaign 12V406 covered specified 2006-2007 Saab 9-7X vehicles in listed states, and campaign 14V404 expanded the driver-door master power-window-switch/module condition to certain 2005-2007 9-7X vehicles. Fluid intrusion can corrode and short the circuit board, causing intermittent door-lock/window operation, overheating, odor, smoke or fire, including while parked. However, this record ID identifies a fuel-level-sensor recall, not the door-switch identity in the frozen title. Its vehicle metadata also conflicts internally: Saab VIN documentation shows the Aero and 6.0 L LS2 belong to the 2008 model-year configuration, outside the frozen 2005-2007 years.',
+        solution: 'Check the VIN at NHTSA and follow the current open-campaign instructions. Until an applicable open remedy is completed, follow any parking-outside or non-operation precautions in the owner notice; if there is heat, smoke, melting or a burning odor at the driver door, do not operate the switches, move people away and contact emergency or towing assistance as conditions require. The campaign remedy may inspect/test the driver-door module, apply protective coating when permitted or replace it when required. Do not buy a window switch, door module, fuel-level sensor or wiring from this page; the record ID and vehicle metadata conflict, and recall applicability and remedy are VIN-controlled.',
+        symptoms: ['Intermittent or inoperative driver-door window or lock switch', 'Heat, melted material, odor or smoke at the driver-door module', 'Open 12V406 or 14V404 campaign shown for the VIN'],
+        affectedSystems: ['Driver-door master power-window switch and door module', 'Circuit-board corrosion from fluid intrusion', 'Fuel-level-sensor identity named by the record ID, unsupported by the title evidence'],
+        citations: ['initialRecallReport', 'campaignBulletin', 'expandedRecall', 'vinBreakdown'],
+        evidence: ['NHTSA and the GM/Saab bulletin document the door-module condition and its changing campaign scope.', 'Saab VIN material places the Aero/6.0 L LS2 configuration in 2008, proving the frozen metadata mismatch.'],
+        summary: 'Corrected campaign scope and remedy language, exposed the fuel-sensor slug versus door-switch title conflict and removed impossible 2005-2007 Aero/LS2 fitment.',
+        conflict: 'The immutable record ID names a fuel-level-sensor recall while the title and evidence concern a driver-door window-switch recall; frozen years also include 2008-only Aero/LS2 metadata.',
+        commerceDecision: 'record identity, model-year configuration, current VIN campaign status and authorized module remedy must be reconciled; no universal retail part',
+      },
+    },
+  },
 };
 
 const supportedModels = Object.freeze(Object.keys(contracts));
