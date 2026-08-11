@@ -23,7 +23,7 @@ test('builds six deterministic byte-identical published holds', () => {
 test('rejects a frozen content mutation', () => {
   const mutated = structuredClone(snapshot);
   mutated.records[0].title += ' changed';
-  assert.throws(() => assertSnapshot(config, mutated), /frozen title hash drifted/);
+  assert.throws(() => assertSnapshot(config, mutated), /differs from the pinned snapshot file|frozen title hash drifted/);
 });
 
 test('rejects status, identity, owner and commerce mutation in a held proposal', () => {

@@ -8,6 +8,7 @@ const {
   fullRecord,
   hashValue,
   normalizedFileHash,
+  normalizedTextHash,
   stableValue,
 } = require('./known-issue-adjudication-utils');
 const { filterableKnownIssueTrims, knownIssueMatchesTrim, normalizeKnownIssueTrim } = require('./known-issue-trim-routing-contract');
@@ -20,7 +21,10 @@ function sortedObject(value) { return Object.fromEntries(Object.entries(value).s
 
 function assertSnapshot(config, snapshot) {
   const absolute = resolveRepo(config.snapshotFile);
-  if (normalizedFileHash(absolute) !== config.snapshotNormalizedSha256) throw new Error(`${config.make} snapshot normalized hash drifted`);
+  const pinnedSource = fs.readFileSync(absolute, 'utf8');
+  if (normalizedTextHash(pinnedSource) !== config.snapshotNormalizedSha256) throw new Error(`${config.make} snapshot normalized hash drifted`);
+  const pinnedSnapshot = JSON.parse(pinnedSource);
+  if (!equal(snapshot, pinnedSnapshot)) throw new Error(`${config.make} snapshot object differs from the pinned snapshot file`);
   if (snapshot.snapshotHash !== config.snapshotInternalHash) throw new Error(`${config.make} snapshot internal hash drifted`);
   if (snapshot.schemaVersion !== 2 || snapshot.auditScope !== 'full-record' || !Array.isArray(snapshot.records)) throw new Error(`${config.make} snapshot is not a schema-v2 full-record freeze`);
   const rows = snapshot.records.filter((row) => normalizeMake(row.make) === config.normalizedMake).sort((a, b) => a.id.localeCompare(b.id));
@@ -208,8 +212,9 @@ function buildAudit(config) {
   };
 }
 
-function writeAudit(config, audit = buildAudit(config)) {
-  fs.writeFileSync(resolveRepo(config.outputFile), `${JSON.stringify(audit, null, 2)}\n`, 'utf8');
+function writeAudit(config, audit = buildAudit(config), writeFile = fs.writeFileSync) {
+  if (!equal(audit, buildAudit(config))) throw new Error(`${config.make} audit does not match the fresh deterministic build`);
+  writeFile(resolveRepo(config.outputFile), `${JSON.stringify(audit, null, 2)}\n`, 'utf8');
   return audit;
 }
 

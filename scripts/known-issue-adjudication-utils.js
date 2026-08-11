@@ -25,5 +25,6 @@ function clone(value) { return JSON.parse(JSON.stringify(value)); }
 function hashValue(value) { return crypto.createHash('sha256').update(JSON.stringify(stableValue(value))).digest('hex'); }
 function fullRecord(row) { return Object.fromEntries(FULL_RECORD_FIELDS.map((field) => [field, clone(row[field])])); }
 function diffFields(before, after) { return FULL_RECORD_FIELDS.filter((field) => hashValue(before[field]) !== hashValue(after[field])); }
-function normalizedFileHash(file, fileSystem = require('node:fs')) { return crypto.createHash('sha256').update(fileSystem.readFileSync(file, 'utf8').replace(/\r\n/g, '\n')).digest('hex'); }
-module.exports = { FULL_RECORD_FIELDS, RECALL_FILES, SOURCE_FILES, clone, diffFields, fullRecord, hashValue, normalizedFileHash, stableValue };
+function normalizedTextHash(value) { return crypto.createHash('sha256').update(String(value).replace(/\r\n/g, '\n')).digest('hex'); }
+function normalizedFileHash(file, fileSystem = require('node:fs')) { return normalizedTextHash(fileSystem.readFileSync(file, 'utf8')); }
+module.exports = { FULL_RECORD_FIELDS, RECALL_FILES, SOURCE_FILES, clone, diffFields, fullRecord, hashValue, normalizedFileHash, normalizedTextHash, stableValue };

@@ -30,7 +30,8 @@ This make has no catalog write manifest. Its artifacts will join the final remai
 ## Verification
 
 - Deterministic Volvo, Volkswagen, Toyota, and Triumph validators: passed.
-- Generic and Volvo mutation suite: 10/10 passed.
+- Generic, Volvo, and live-verifier mutation suite: 18/18 passed.
+- Read-only live verification: passed at 7,642 global published rows, 180 published Volvo rows, three archived Volvo rows, exact IDs/models/statuses, and zero substantive full-record drift. Eighteen rows contain only mutable `communityRecommendations[*].clickCount` telemetry drift; URLs, content, parts, and all other commerce fields remain frozen.
 - Targeted ESLint: passed.
 - TypeScript no-emit with incremental output disabled: passed.
 - `git diff --check`: passed.
@@ -41,3 +42,4 @@ This make has no catalog write manifest. Its artifacts will join the final remai
 2. `scripts/volvo-hold-audit.test.js`
 3. `data/known-issue-volvo-make-audit-2026-08-11.json`
 4. `data/_volvo-status-inventory-2026-08-11.json`
+5. `scripts/verify-volvo-all-hold-live.js`
