@@ -4,6 +4,8 @@ const test = require('node:test');
 const { buildForModel } = require('./build-saab-model-adjudication');
 const { clone } = require('./known-issue-adjudication-utils');
 const { validatePacket } = require('./validate-saab-model-adjudication');
+const { buildReconciliation } = require('./build-saab-make-reconciliation');
+const { validateReconciliation } = require('./validate-saab-make-reconciliation');
 
 test('900 packet passes all frozen-identity gates', () => {
   const { contract, packet, snapshot } = buildForModel('900');
@@ -51,4 +53,10 @@ test('validator rejects owner social proof and commerce additions', () => {
   const { contract, packet, snapshot } = buildForModel('900');
   const changed = clone(packet); changed.rows[0].proposal.description += ' 0+ owners have reported this.'; changed.rows[0].proposal.fixParts.push({ partNumber: 'fake' });
   assert.match(validatePacket(contract, changed, snapshot).join('\n'), /owner social proof|commerce-free|deterministic/);
+});
+
+test('Saab make reconciliation covers all five models and 19 pages', () => {
+  const report = buildReconciliation();
+  assert.deepEqual(validateReconciliation(report), []);
+  assert.deepEqual(report.summary, { models: 5, rows: 19, retained: 2, held: 17, unsupportedOwnerCountsZeroed: 0, pagesPreservedPublished: 19 });
 });
