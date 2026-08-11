@@ -71,7 +71,7 @@ export const COMPONENT_CATALOG_MAP: ComponentMapping[] = [
   { pattern: /\bintercooler\b/i, productMatch: 'radiators coolers related components', partTypeMatch: 'intercooler' },
 
   // ── drive belt / timing ──
-  { pattern: /\btiming chain\b/i, productMatch: 'engine components', partTypeMatch: 'timing chain' },
+  { pattern: /\btiming chain\b/i, productMatch: ['valve train components', 'engine components'], partTypeMatch: 'timing chain' },
   { pattern: /\btiming belt\b/i, productMatch: 'belts hoses tensioners', partTypeMatch: 'timing belt' },
   { pattern: /\b(tensioner|idler pulley)\b/i, productMatch: 'belts hoses tensioners', partTypeMatch: 'tensioner' },
   { pattern: /\b(serpentine belt|drive belt|accessory belt)\b/i, productMatch: 'belts hoses tensioners', partTypeMatch: 'belt' },
@@ -92,7 +92,7 @@ export const COMPONENT_CATALOG_MAP: ComponentMapping[] = [
   { pattern: /\bspark plug\b/i, productMatch: 'ignition', partTypeMatch: 'spark plug' },
   { pattern: /\bcatalytic converter\b/i, productMatch: 'catalytic converter', partTypeMatch: 'catalytic converter' },
   { pattern: /\begr\b/i, productMatch: 'egr related components', partTypeMatch: 'egr valve' },
-  { pattern: /\b(purge valve|evap)\b/i, productMatch: 'fuel injection system components', partTypeMatch: 'vapor canister purge valve' },
+  { pattern: /\b(purge valve|evap)\b/i, productMatch: ['evaporative system', 'fuel injection system components'], partTypeMatch: 'vapor canister purge valve' },
 
   // ── sensors, split by the catalog's own sensor families ──
   { pattern: /\b(oxygen sensor|o2 sensor|air.?fuel ratio sensor)\b/i, productMatch: 'sensors-exhaust', partTypeMatch: 'oxygen sensor' },
@@ -103,7 +103,16 @@ export const COMPONENT_CATALOG_MAP: ComponentMapping[] = [
 
   // ── driveline ──
   { pattern: /\b(cv axle|cv joint|half.?shaft|axle shaft)\b/i, productMatch: 'c/v axles boots', partTypeMatch: 'axle', engineIndependent: true },
-  { pattern: /\b(clutch)\b/i, productMatch: 'clutch components', partTypeMatch: 'clutch' },
+  {
+    pattern: /\b(clutch)\b/i,
+    productMatch: 'clutch components',
+    partTypeMatch: 'clutch',
+    // "A/C Compressor Clutch Failure" is an air-conditioning job. Without this
+    // veto it resolved to a TRANSMISSION clutch kit on three of the highest-
+    // traffic pages in the catalog (2,000 / 1,834 / 1,567 owner reports).
+    // A/C-compressor articles are caught by the compressor rule instead.
+    unless: /\b(a\/?c|air.?condition\w*|compressor|refrigerant|hvac)\b/i,
+  },
   { pattern: /\btransmission (solenoid|valve body)\b/i, productMatch: 'automatic trans components', partTypeMatch: 'solenoid' },
   { pattern: /\b(differential|ring and pinion)\b/i, productMatch: 'differential', partTypeMatch: 'differential', engineIndependent: true },
 
@@ -154,9 +163,15 @@ export const COMPONENT_CATALOG_MAP: ComponentMapping[] = [
   { pattern: /\b(door hinge|hinge pin)\b/i, productMatch: 'body-doors', partTypeMatch: 'hinge', engineIndependent: true },
   { pattern: /\b(motor mount|engine mount|transmission mount)\b/i, productMatch: 'engine components', partTypeMatch: 'mount' },
   { pattern: /\b(throttle body)\b/i, productMatch: 'fuel injection system components', partTypeMatch: 'throttle body' },
-  { pattern: /\b(turbocharger|turbo)\b/i, productMatch: 'engine components', partTypeMatch: 'turbocharger' },
+  { pattern: /\b(turbocharger|turbo)\b/i, productMatch: ['turbocharger supercharger ram air', 'engine components'], partTypeMatch: 'turbocharger' },
   { pattern: /\b(power steering (hose|line))\b/i, productMatch: 'power steering hoses pumps', partTypeMatch: 'hose' },
-  { pattern: /\b(steering (rack|gear))\b/i, productMatch: 'steering gear pump components', partTypeMatch: 'steering gear', engineIndependent: true },
+  // Rack-and-pinion and recirculating-ball steering are different catalog
+  // entries and one query cannot reach both. The catalog files a rack as
+  // "Rack and Pinion Assembly" — the word "steering" never appears in it — so
+  // the combined rule asked for `steering gear` and silently matched nothing on
+  // every rack article (3 observed: Chrysler 200, Dodge Intrepid, Nissan Murano).
+  { pattern: /\bsteering rack\b|\brack and pinion\b/i, productMatch: 'steering gear pump components', partTypeMatch: 'rack', engineIndependent: true },
+  { pattern: /\bsteering gear\b/i, productMatch: 'steering gear pump components', partTypeMatch: 'steering gear', engineIndependent: true },
 
   // ── added from the Chevrolet/Dodge/Chrysler coverage run (133 real misses) ──
   // GM 4WD encoder motors and blend-door actuators dominated that list.

@@ -12,6 +12,7 @@ import { config } from 'dotenv';
 import fs from 'fs';
 import { Pool } from 'pg';
 import { mapComponent } from '../src/data/component-catalog-map';
+import { extractPrescribedParts } from '../src/lib/prescription';
 
 config({ path: '.env.local' });
 
@@ -25,6 +26,22 @@ const outFile = outFlag > 0 ? process.argv[outFlag + 1] : `data/_${slug}-fitment
 // so the worklist and the gap number describe the same set of issues.
 const PART = /\b(pump|sensor|valve|module|switch|motor|actuator|solenoid|coil|belt|chain|tensioner|pulley|bearing|seal|gasket|hose|filter|thermostat|radiator|condenser|compressor|alternator|starter|battery|cable|harness|regulator|control arm|bushing|ball joint|tie rod|spring|strut|shock|mount|rotor|brake pad|caliper|cylinder|clutch|converter|manifold|injector|spark plug|housing|bracket|kit|latch|blower|core|tank|cap|pipe|shaft|differential|turbo|wastegate|intercooler|lifter|piston|oil pan)\b/i;
 const NEGATED = /\b(?:before|prior to|instead of|rather than|without|avoid|unnecessar\w*|not(?:\s+\w+){0,3}?)\s+(?:replac|install)/i;
+
+/**
+ * The component noun a phrase is ABOUT. Deliberately the LAST part noun, so
+ * "Engine Timing Belt Tensioner" is a tensioner and "head gasket" is a gasket —
+ * the trailing noun is the thing, the ones before it are modifiers.
+ */
+function partNouns(text: string): string[] {
+  return String(text || '').toLowerCase().split(/[^a-z0-9]+/)
+    .map((t) => (t.length > 3 && t.endsWith('s') && !t.endsWith('ss') ? t.slice(0, -1) : t))
+    .filter((t) => PART.test(t));
+}
+
+function headNoun(text: string): string {
+  const found = partNouns(text);
+  return found.length ? found[found.length - 1]! : '';
+}
 const PRESCRIBES = /\b(replace|replacing|replacement|install|installing)\b/i;
 const DEALER = /\b(recall|campaign|reflash|re-?program|software update|warranty extension|free of charge|no charge|dealer will|service action)\b/i;
 
@@ -59,14 +76,80 @@ function prescribesAFix(solution: string): boolean {
     // Veto is tested against the WHOLE article, so a title-level veto is not
     // undone by the solution's passing mention of the same component.
     const whole = `${r.title} ${r.solution}`;
-    const fromTitle = mapComponent(r.title, whole);
-    const mapping = fromTitle || mapComponent(r.solution, whole);
+
+    /**
+     * The PRESCRIPTION is the best signal, because it is the sentence that
+     * actually names what you buy. The title describes the failure and is often
+     * looser: "Crankshaft Position Sensor Failure" mapped to a CAMshaft sensor,
+     * while its solution says "Replace crankshaft position sensor". Same for the
+     * FPDM, the GDI injector, and the master window switch — in every observed
+     * error the solution's replace-clause was correct where the title was not.
+     *
+     * When a prescribed phrase maps to a category, the PHRASE ITSELF becomes the
+     * part-type filter, which is more precise than our generic vocabulary
+     * ("crankshaft position sensor" rather than "position sensor").
+     */
+    /**
+     * ...but the first MAPPING phrase is not automatically the right one, which
+     * is the defect this guard fixes. A repair article routinely prescribes work
+     * beyond its own subject — a head-gasket job says to do the timing belt and
+     * water pump while the engine is apart — and taking the first match made six
+     * separate "Head Gasket Failure" pages recommend an `Engine Timing Belt Kit
+     * with Water Pump`. The reader came for a head gasket and was sold a belt.
+     *
+     * So the prescription still wins, but only among phrases that are ABOUT what
+     * the page is about: prefer the first prescribed phrase whose head noun
+     * agrees with the title's. Fall back to the title's own mapping before
+     * falling back to an unrelated prescribed phrase, because a page that names
+     * its component in the title has already told us its subject.
+     */
+    const titleMapping = mapComponent(r.title, whole);
+    /**
+     * Agreement is tested against EVERY component noun in the title, not the
+     * title's last one.
+     *
+     * Requiring the last noun to match was too strict and caused its own
+     * regressions on titles that name two components: "Engine Overheating /
+     * Water Pump and Radiator Fan Failure" ends on `fan`, so a correct "water
+     * pump" prescription was judged off-subject and replaced. Measured over the
+     * catalog it turned "cabin air filter" into "evaporator", "head gasket" into
+     * "intercooler" and "serpentine belt" into "compressor" — each time
+     * discarding the right query for a component the title merely also mentions.
+     *
+     * A prescription is on-subject if the title names that component ANYWHERE.
+     * The original defect still gets caught, because a head-gasket page does not
+     * mention a pump or a belt in its title at all.
+     */
+    const titleNouns = new Set(partNouns(r.title));
+    if (titleMapping) partNouns(titleMapping.partTypeMatch).forEach((n) => titleNouns.add(n));
+
+    let mapping = null as ReturnType<typeof mapComponent>;
+    let partTypeMatch = '';
+    let mappedFrom = '';
+
+    const prescribed = extractPrescribedParts(r.solution)
+      .map((phrase) => ({ phrase, m: mapComponent(phrase, whole) }))
+      .filter((p) => p.m);
+
+    const onSubject = titleNouns.size
+      ? prescribed.find((p) => {
+        const h = headNoun(p.phrase);
+        return h && titleNouns.has(h);
+      })
+      : undefined;
+
+    if (onSubject) {
+      mapping = onSubject.m; partTypeMatch = onSubject.phrase; mappedFrom = 'prescription';
+    } else if (titleMapping) {
+      mapping = titleMapping; partTypeMatch = titleMapping.partTypeMatch; mappedFrom = 'title';
+    } else if (prescribed.length) {
+      mapping = prescribed[0]!.m; partTypeMatch = prescribed[0]!.phrase; mappedFrom = 'prescription-offsubject';
+    }
     if (!mapping) { unmapped.push({ id: r.id, title: r.title }); continue; }
     // WHERE the component was identified is the strongest confidence signal we
     // have. A title names what the page is about; a solution mentions other
     // components in passing ("also check the spark plugs"), and every wrong
     // recommendation found so far came from that fallback.
-    const mappedFrom = fromTitle ? 'title' : 'solution';
 
     const displacement = (r.engines || [])
       .map((e: string) => (e.match(/\d\.\d\s*L/i) || [])[0])
@@ -81,7 +164,7 @@ function prescribesAFix(solution: string): boolean {
       // the verifier reports as `discovered` rather than `absent`.
       partNumber: '',
       productMatch: mapping.productMatch,
-      partTypeMatch: mapping.partTypeMatch,
+      partTypeMatch,
       mappedFrom,
       ...(mapping.engineIndependent || !displacement
         ? {}

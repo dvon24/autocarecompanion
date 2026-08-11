@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { getKnownIssueCommerce, hasKnownIssueCommerce } from './known-issue-commerce';
+import { getKnownIssueCommerce, hasKnownIssueCommerce, isKnownIssueProductUrl } from './known-issue-commerce';
 
 type Commerce = Parameters<typeof getKnownIssueCommerce>[0];
 
@@ -107,4 +107,44 @@ test('drops a real retailer product URL that lacks a product-shaped path segment
     }]),
   );
   assert.deepEqual(fixParts[0]!.buyLinks, [], 'known false negative — see comment');
+});
+
+/**
+ * The named-retailer allowlist. These hosts publish real product detail pages
+ * whose paths do not carry a /product|part|item/ segment, so the generic rule
+ * rejected them: 2 of 14 parts in a link-audit run were lost this way, one of
+ * them (Denso 477-0771) with a live page on the manufacturer's own site.
+ *
+ * The pairs below matter more than the accepts: an allowlisted HOST must not
+ * become an allowlisted DOMAIN. Category and search paths on the same hosts,
+ * lookalike subdomains, and plain http all still have to fail.
+ */
+test('accepts verified-retailer product pages the generic path rule misses', () => {
+  for (const url of [
+    'https://partshawk.com/delphi-ss10867-abs-wheel-speed-sensor.html',
+    'https://www.densoproducts.com/denso-477-0771-ac-condenser',
+    'https://www.zoro.com/denso-ac-condenser-477-0771-477-0771/i/G5915145/',
+    'https://www.partcatalog.com/walker-235-1456-engine-crankshaft-position-sensor.html',
+    'https://www.summitracing.com/parts/mah-vs50109',
+    'https://www.raybestospowertrain.com/steel-clutch-packs/000601',
+  ]) {
+    assert.equal(isKnownIssueProductUrl(url), true, `should accept ${url}`);
+  }
+});
+
+test('allowlisting a host does not allowlist its category, search or lookalike URLs', () => {
+  for (const url of [
+    'https://www.summitracing.com/search/part-type/intake-manifold-gaskets',
+    'https://www.zoro.com/search?q=water+pump',
+    'https://partshawk.com/catalog/water-pumps',
+    'https://www.densoproducts.com/collections/condensers',
+    'https://www.partcatalog.com/',
+    'https://www.raybestospowertrain.com/automatic-transmission/clutch-packs',
+    // A lookalike domain must not inherit the allowlist.
+    'https://partshawk.evil.com/delphi-ss10867-abs-wheel-speed-sensor.html',
+    // http is refused on every host, allowlisted or not.
+    'http://partshawk.com/delphi-ss10867-abs-wheel-speed-sensor.html',
+  ]) {
+    assert.equal(isKnownIssueProductUrl(url), false, `should reject ${url}`);
+  }
 });

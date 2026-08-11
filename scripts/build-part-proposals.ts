@@ -19,8 +19,12 @@
  * the article's range on the assumption that untested years behave the same.
  */
 import fs from 'fs';
+import { config } from 'dotenv';
+import { Pool } from 'pg';
 import { recommendParts, type PartCandidate } from '../src/lib/part-recommendation';
 import { formatYearRange } from '../src/lib/known-issue-part-fitment';
+
+config({ path: '.env.local' });
 
 interface Verdict {
   id: string;
@@ -28,6 +32,9 @@ interface Verdict {
   verdict: string;
   yearsChecked: number[];
   candidatesByYear: Record<string, PartCandidate[] | string[]>;
+  /** Set by the fitment pass when the part-type query had to be loosened. */
+  partTypeTierUsed?: string;
+  notes?: string[];
 }
 
 const inputs = process.argv.slice(2).filter((a) => !a.startsWith('--'));
@@ -64,6 +71,39 @@ if (inputs.length === 0) {
 function headNoun(value: string): string {
   const words = String(value || '').toLowerCase().replace(/[^a-z0-9\s/-]/g, ' ').split(/\s+/).filter(Boolean);
   return words[words.length - 1] || '';
+}
+
+/**
+ * Words in a catalog part type that carry no identifying information — they
+ * appear on almost every row and would never be quoted in an article.
+ */
+const GENERIC_TYPE_WORD = new Set([
+  'engine', 'assembly', 'kit', 'set', 'system', 'auto', 'automatic', 'vehicle',
+  'front', 'rear', 'left', 'right', 'upper', 'lower', 'inner', 'outer', 'and',
+  'with', 'for', 'the', 'of', 'universal', 'epa', 'carb', 'direct', 'genuine',
+]);
+
+/**
+ * A candidate must not introduce a QUALIFIER the article never mentions.
+ *
+ * "Position sensor" is a generic target, so Camshaft, Crankshaft and THROTTLE
+ * position sensors all satisfy it on tokens alone — and a throttle position
+ * sensor was proposed for a crankshaft-sensor article. The article itself
+ * settles it: it says crankshaft and camshaft, and never says throttle.
+ *
+ * So every identifying word in the candidate's part type has to appear
+ * somewhere in the article. This is deliberately evidence-based rather than a
+ * hand-maintained list of confusable sensors.
+ */
+function qualifiersAppearInArticle(partType: string, article: string): boolean {
+  if (!article) return true; // no text to check against — do not invent a rejection
+  const haystack = article.toLowerCase();
+  return String(partType || '')
+    .toLowerCase()
+    .replace(/[^a-z0-9\s/-]/g, ' ')
+    .split(/\s+/)
+    .filter((w) => w.length > 2 && !GENERIC_TYPE_WORD.has(w))
+    .every((w) => haystack.includes(w));
 }
 
 function partTypeIsRelevant(partType: string, target: string): boolean {
@@ -111,6 +151,32 @@ const TARGETS = loadTargets();
 /** --include-solution-derived opts the risky tier back in, for review tooling. */
 const INCLUDE_SOLUTION_DERIVED = process.argv.includes('--include-solution-derived');
 
+/**
+ * id -> title + solution, the evidence a candidate's qualifiers are checked
+ * against. Loaded once up front; a failure here degrades to "no article text",
+ * which makes the qualifier check pass rather than silently reject everything.
+ */
+const ARTICLE = new Map<string, string>();
+
+async function loadArticles() {
+  const ids = new Set<string>();
+  for (const file of inputs) {
+    const doc = JSON.parse(fs.readFileSync(file, 'utf8')) as { results: Verdict[] };
+    for (const r of doc.results) ids.add(r.id);
+  }
+  const pool = new Pool({ connectionString: process.env.DATABASE_URL, max: 2 });
+  pool.on('error', () => {});
+  try {
+    const { rows } = await pool.query('select id, title, solution from "KnownIssue" where id = any($1)', [[...ids]]);
+    for (const r of rows) ARTICLE.set(r.id, `${r.title} ${r.solution}`);
+  } catch (e) {
+    console.warn('WARN could not load article text — qualifier check disabled:', (e as Error).message);
+  }
+  await pool.end();
+}
+
+async function main() {
+await loadArticles();
 const proposals: unknown[] = [];
 const skipped: Record<string, number> = {};
 let structuredMissing = 0;
@@ -146,7 +212,23 @@ for (const file of inputs) {
     }
     // Drop anything whose part_type is not actually the component in question.
     const target = entry?.partTypeMatch || '';
-    const relevant = [...candidateByKey.entries()].filter(([, c]) => partTypeIsRelevant(c.partType || '', target));
+    const articleText = ARTICLE.get(r.id) || '';
+
+    /**
+     * Some articles explicitly tell the reader NOT to buy a part from the page,
+     * because the failed component cannot be identified without diagnosis. The
+     * Mercedes ABC hydraulic rewrite is the clearest example: "Do not buy an ABC
+     * line, strut, pump, accumulator or conversion kit from this page."
+     *
+     * Attaching a buy button to such a page contradicts its own instruction, so
+     * the article's judgment wins over the catalog's.
+     */
+    if (/(do not|don'?t|never)\s+(buy|purchase|order)/i.test(articleText)) {
+      skipped['article says do not buy'] = (skipped['article says do not buy'] || 0) + 1;
+      continue;
+    }
+    const relevant = [...candidateByKey.entries()].filter(([, c]) =>
+      partTypeIsRelevant(c.partType || '', target) && qualifiersAppearInArticle(c.partType || '', articleText));
     if (relevant.length === 0) {
       // The vehicle had fitting parts, but none of them were this component.
       // Proposing the closest thing anyway is how an axle-bearing article ends
@@ -156,11 +238,50 @@ for (const file of inputs) {
     }
     for (const key of [...candidateByKey.keys()]) if (!relevant.some(([k]) => k === key)) candidateByKey.delete(key);
 
+    /**
+     * A part confirmed in only ONE sampled year, while the other sampled years
+     * returned a DIFFERENT set of parts, is not this article's part — it is the
+     * part for one end of an over-broad year span.
+     *
+     * The case that found this: "5.4L 3V Triton Spark Plug Seizure and Blowout"
+     * on a page scoped 2004+. The Expedition's 5.4 was 2-valve in 2004 and 3V
+     * from 2005, so the 2004 sample returned Bosch 6710 (a 2V plug) and the 2010
+     * sample returned NGK PZNAR6A11H (a 3V plug) — disjoint sets. Taking the
+     * earliest year proposed the wrong engine generation entirely, on the
+     * highest-traffic page in the catalog.
+     *
+     * Fitment verification cannot repair an article whose own scope is wrong, so
+     * the honest move is to detect the disagreement and decline.
+     */
+    const sampledYears = Object.keys(r.candidatesByYear || {}).length;
+    if (sampledYears > 1) {
+      const spansMultipleYears = [...candidateByKey.keys()]
+        .some((key) => (yearsByPart.get(key)?.size || 0) > 1);
+      if (!spansMultipleYears) {
+        skipped['year-sets-disagree (scope likely too broad)'] =
+          (skipped['year-sets-disagree (scope likely too broad)'] || 0) + 1;
+        continue;
+      }
+      // Keep only parts the catalog confirmed in more than one sampled year.
+      for (const [key] of [...candidateByKey.entries()]) {
+        if ((yearsByPart.get(key)?.size || 0) < 2) candidateByKey.delete(key);
+      }
+    }
+
     // Engine comes from the candidates themselves — the verifier already scoped
     // the query by engine where the article named one.
     const engine = [...candidateByKey.values()].map((c) => c.engine).find(Boolean) || null;
     const { primary, alternate, consideredCount } = recommendParts([...candidateByKey.values()], { engine });
     if (!primary) { skipped['no-primary'] = (skipped['no-primary'] || 0) + 1; continue; }
+
+    // The catalog occasionally carries a placeholder where a part number should
+    // be — "N/R" (no reference) among them. It is not orderable, not linkable,
+    // and putting it on a page states a part number that does not exist.
+    const PLACEHOLDER = /^(n\/?r|n\/?a|none|null|tbd|-+)$/i;
+    if (!primary.partNumber || PLACEHOLDER.test(primary.partNumber.trim()) || primary.partNumber.trim().length < 3) {
+      skipped['placeholder-part-number'] = (skipped['placeholder-part-number'] || 0) + 1;
+      continue;
+    }
 
     const scopeFor = (supplier: string, partNumber: string) => {
       const years = [...(yearsByPart.get(`${supplier}|${partNumber}`.toLowerCase()) || [])].sort((a, b) => a - b);
@@ -194,6 +315,20 @@ for (const file of inputs) {
       vehicle: r.vehicle,
       yearsChecked: r.yearsChecked,
       consideredCount,
+      /**
+       * How loose the catalog query had to get before it answered, carried
+       * through from the fitment pass so review can weigh it. A candidate found
+       * at the article's own wording ("electric water pump") is stronger
+       * evidence than one found after retreating to the head noun ("pump"), and
+       * an empty value here means no relaxation was needed at all.
+       *
+       * Without this the two are indistinguishable on the review sheet, which
+       * is how a weak match gets approved at the same glance as a strong one.
+       */
+      ...(r.partTypeTierUsed ? { partTypeRelaxedTo: r.partTypeTierUsed } : {}),
+      ...(r.notes?.some((n) => /model resolved by/.test(n))
+        ? { modelResolvedBy: r.notes.find((n) => /model resolved by/.test(n))?.replace(/^\d+: /, '') }
+        : {}),
       parts: [toPart(primary, 'primary'), ...(alternate ? [toPart(alternate, 'alternate')] : [])],
     });
   }
@@ -211,3 +346,6 @@ console.log(`proposals: ${proposals.length}  (with an alternate: ${withAlternate
 console.log('skipped:', JSON.stringify(skipped));
 if (structuredMissing) console.log(`NOTE: ${structuredMissing} candidate rows were display strings — re-run the verifier to get structured candidates.`);
 console.log('report: data/_part-proposals.json');
+}
+
+main().catch((e) => { console.error('ERR', e.message); process.exit(1); });

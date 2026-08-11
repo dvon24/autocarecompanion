@@ -57,3 +57,16 @@ test('a title naming two valid components still maps to one of them', () => {
   const m = mapComponent('2007-2013 A4 2.0T Coolant Leak at Pump or Thermostat - TSB 2061604/5');
   assert.ok(['water pump', 'thermostat'].includes(m?.partTypeMatch || ''), 'either is defensible here');
 });
+
+// Three of the highest-traffic pages in the catalog resolved an A/C compressor
+// clutch to a TRANSMISSION clutch kit before this veto.
+test('an A/C compressor clutch is not a transmission clutch', () => {
+  for (const t of ['A/C Compressor Clutch Failure', 'A/C Compressor and Clutch Failure',
+                   'A/C Compressor Clutch Failure (9th Gen 2012-2015)']) {
+    assert.notEqual(mapComponent(t)?.partTypeMatch, 'clutch', t);
+  }
+});
+
+test('a real clutch article still maps to a clutch', () => {
+  assert.equal(mapComponent('Manual Transmission Clutch Judder')?.partTypeMatch, 'clutch');
+});

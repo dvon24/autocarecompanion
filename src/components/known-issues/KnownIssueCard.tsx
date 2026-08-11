@@ -13,6 +13,7 @@ import { trackAffiliateClick } from '@/lib/analytics';
 import { getKnownIssueCommerce, hasKnownIssueCommerce, knownIssueAffiliateUrl } from '@/lib/known-issue-commerce';
 import { partIsEligibleForVehicle, describeFitment, isNarrowerThanArticle } from '@/lib/known-issue-part-fitment';
 import { formatOwnerReportCount } from '@/lib/owner-report-count';
+import { IssueDiagnosticTools } from './IssueDiagnosticTools';
 
 /**
  * Strip the verification worker's INTERNAL reasoning log out of a fixPart note
@@ -509,6 +510,13 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
             </h4>
             <p className="text-sm text-[#475569] leading-relaxed">{issue.solution}</p>
           </div>
+
+          {/* Issues whose fix is a PROCEDURE, not a part. Rendered alongside
+              fixParts rather than instead of them: an issue can legitimately
+              need a compression test AND a gasket, and the tool claim
+              ("the procedure needs this") is separate from the part claim
+              ("this repairs your car"). */}
+          <IssueDiagnosticTools solution={issue.solution} dtcCodes={issue.dtcCodes} />
 
           {/* Public commerce lives in this one canonical section. Search and
               category links have already been removed by getKnownIssueCommerce. */}
