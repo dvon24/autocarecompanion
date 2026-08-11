@@ -158,6 +158,9 @@ async function main() {
   const expectedTotal = Number(argValue(args, '--expected-total'));
   const expectedWrites = Number(argValue(args, '--expected-writes'));
   const reviewDate = argValue(args, '--review-date', false) || new Date().toISOString().slice(0, 10);
+  const reviewer = argValue(args, '--reviewer', false) || 'Opus';
+  const reviewNote = argValue(args, '--review-note', false)
+    || `${reviewer} independently reconciled the ${make} packet set; Devon authorized deployment after review.`;
   const { applyActions, holdActions } = actionSets(args);
 
   git(['rev-parse', '--verify', sourceRef]);
@@ -248,7 +251,7 @@ async function main() {
         {
           kind: 'independent-review',
           verifiedOn: reviewDate,
-          observation: `Opus independently reconciled the ${make} packet set; Devon authorized deployment after review. Source packet: ${row.packetFile}.`,
+          observation: `${reviewNote} Source packet: ${row.packetFile}.`,
         },
       ],
       before: { ...fullRecordHashes(current), claimIds: claimIdsForRow(current) },
@@ -268,7 +271,7 @@ async function main() {
     frozenMakeCounts,
     frozenCatalogStatus,
     approval: {
-      reviewer: 'Opus',
+      reviewer,
       owner: 'Devon',
       reviewDate,
       contract: 'same indexed identity, published status preserved, holds are no-ops, no retail commerce',
