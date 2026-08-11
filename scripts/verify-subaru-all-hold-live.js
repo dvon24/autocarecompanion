@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-require-imports */
 const fs = require('node:fs');
 const path = require('node:path');
-const { resolveKnownIssueConnectionString } = require('./apply-known-issue-catalog-deeplinks');
+const { fullRecordSnapshot, resolveKnownIssueConnectionString } = require('./apply-known-issue-catalog-deeplinks');
 const { buildReconciliation } = require('./build-subaru-make-reconciliation');
 const { ALL_STATUS_MODELS, ARCHIVED_MODELS, PUBLISHED_MODELS } = require('./enrich-subaru-snapshot-provenance');
-const { FULL_RECORD_FIELDS, diffFields, fullRecord, stableValue } = require('./known-issue-adjudication-utils');
+const { FULL_RECORD_FIELDS, diffFields, stableValue } = require('./known-issue-adjudication-utils');
 const { codePoints, isSubaruMake, normalizeSubaruMake } = require('./subaru-audit-normalization');
 const { assertSubaruSnapshot } = require('./subaru-snapshot-contract');
 const { validateReconciliation } = require('./validate-subaru-make-reconciliation');
@@ -17,6 +17,27 @@ function resolveRepo(file) { return path.resolve(__dirname, '..', file); }
 function sortedObject(value) { return Object.fromEntries(Object.entries(value).sort(([left], [right]) => left.localeCompare(right))); }
 function countModels(rows) { return sortedObject(rows.reduce((counts, row) => ({ ...counts, [row.model]: (counts[row.model] || 0) + 1 }), {})); }
 function equal(left, right) { return JSON.stringify(stableValue(left)) === JSON.stringify(stableValue(right)); }
+function recommendationClickCount(recommendation) {
+  return recommendation && typeof recommendation === 'object' && !Array.isArray(recommendation) && Object.hasOwn(recommendation, 'clickCount')
+    ? stableValue(recommendation.clickCount) : null;
+}
+
+function clickCountTelemetryDeltas(frozenById, liveById) {
+  const deltas = [];
+  for (const [id, frozen] of frozenById) {
+    const live = liveById.get(id);
+    if (!live) continue;
+    const frozenRecommendations = Array.isArray(frozen.communityRecommendations) ? frozen.communityRecommendations : [];
+    const liveRecommendations = Array.isArray(live.communityRecommendations) ? live.communityRecommendations : [];
+    const length = Math.max(frozenRecommendations.length, liveRecommendations.length);
+    for (let recommendationIndex = 0; recommendationIndex < length; recommendationIndex += 1) {
+      const frozenClickCount = recommendationClickCount(frozenRecommendations[recommendationIndex]);
+      const liveClickCount = recommendationClickCount(liveRecommendations[recommendationIndex]);
+      if (!equal(frozenClickCount, liveClickCount)) deltas.push({ id, recommendationIndex, frozenClickCount, liveClickCount });
+    }
+  }
+  return deltas;
+}
 
 function validateLocalAuditState(reconciliation, deterministicReconciliation, frozenRows) {
   const failures = validateReconciliation(reconciliation, deterministicReconciliation);
@@ -57,10 +78,11 @@ function evaluateLiveInventory(rows, reconciliation, frozenRows, liveFullRecords
   const missingFullRecordIds = [...frozenById.keys()].filter((id) => !liveFullRecordById.has(id)).sort();
   const unexpectedFullRecordIds = [...liveFullRecordById.keys()].filter((id) => !frozenById.has(id)).sort();
   const fullRecordDrift = [];
+  const clickCountDeltas = clickCountTelemetryDeltas(frozenById, liveFullRecordById);
   for (const [id, frozen] of frozenById) {
     const live = liveFullRecordById.get(id);
     if (!live) continue;
-    const fields = diffFields(fullRecord(frozen), fullRecord(live));
+    const fields = diffFields(fullRecordSnapshot(frozen), fullRecordSnapshot(live));
     if (fields.length) fullRecordDrift.push({ id, fields });
   }
   if (globalPublished.length !== EXPECTED_GLOBAL_PUBLISHED) failures.push(`global published count ${globalPublished.length}; expected ${EXPECTED_GLOBAL_PUBLISHED}`);
@@ -82,7 +104,7 @@ function evaluateLiveInventory(rows, reconciliation, frozenRows, liveFullRecords
     makeVariants,
     modelCounts,
     archivedIds,
-    fullRecordComparison: { fields: [...FULL_RECORD_FIELDS], matched: frozenRows.length - unmatchedIds.size, drift: fullRecordDrift, missingPublishedIds, unexpectedPublishedIds, missingFullRecordIds, unexpectedFullRecordIds },
+    fullRecordComparison: { fields: [...FULL_RECORD_FIELDS], matched: frozenRows.length - unmatchedIds.size, drift: fullRecordDrift, clickCountDeltas, missingPublishedIds, unexpectedPublishedIds, missingFullRecordIds, unexpectedFullRecordIds },
     localDecision: { retained: reconciliation?.summary?.retained, held: reconciliation?.summary?.held, archivedExcluded: reconciliation?.summary?.archivedExcluded, authorizedWriteCandidates: reconciliation?.summary?.authorizedWriteCandidates },
     failures,
   };

@@ -36,7 +36,7 @@ test('all-hold inventory accepts exact counts and all 205 frozen full records', 
   assert.equal(result.globalPublishedCount, 7642);
   assert.deepEqual(result.statusCounts, { published: 205, archived: 12, other: 0 });
   assert.deepEqual(result.modelCounts, { allStatuses: ALL_STATUS_MODELS, published: PUBLISHED_MODELS, archived: ARCHIVED_MODELS });
-  assert.deepEqual(result.fullRecordComparison, { fields: [...FULL_RECORD_FIELDS], matched: 205, drift: [], missingPublishedIds: [], unexpectedPublishedIds: [], missingFullRecordIds: [], unexpectedFullRecordIds: [] });
+  assert.deepEqual(result.fullRecordComparison, { fields: [...FULL_RECORD_FIELDS], matched: 205, drift: [], clickCountDeltas: [], missingPublishedIds: [], unexpectedPublishedIds: [], missingFullRecordIds: [], unexpectedFullRecordIds: [] });
 });
 
 test('Unicode-normalized Subaru variants are detected and raw-variant drift fails', () => {
@@ -83,6 +83,35 @@ for (const [field, mutate] of fullRecordMutations) {
     assert.equal(result.passed, false);
     assert.match(result.failures.join('\n'), /full-record drift/);
     assert.deepEqual(result.fullRecordComparison.drift, [{ id: target.id, fields: [field] }]);
+  });
+}
+
+test('clickCount-only recommendation telemetry passes content verification and is reported separately', () => {
+  const changed = rows();
+  const target = changed.find((row) => row.make === 'Subaru' && row.status === 'published' && row.communityRecommendations.length);
+  target.communityRecommendations[0].clickCount = 7;
+  const result = evaluateLiveInventory(changed, reconciliation(), frozenRows());
+  assert.equal(result.passed, true);
+  assert.deepEqual(result.fullRecordComparison.drift, []);
+  assert.deepEqual(result.fullRecordComparison.clickCountDeltas, [{ id: target.id, recommendationIndex: 0, frozenClickCount: null, liveClickCount: 7 }]);
+});
+
+const recommendationContentMutations = [
+  ['URL', (recommendations) => { recommendations[0].affiliateUrl = 'https://example.com/dp/direct-product'; }],
+  ['content', (recommendations) => { recommendations[0].content = `${recommendations[0].content || ''} mutated`; }],
+  ['add', (recommendations) => { recommendations.push({ type: 'tip', content: 'Added recommendation' }); }],
+  ['remove', (recommendations) => { recommendations.splice(0, 1); }],
+  ['order', (recommendations) => { recommendations.reverse(); }],
+];
+
+for (const [name, mutate] of recommendationContentMutations) {
+  test(`recommendation ${name} changes remain blocking`, () => {
+    const changed = rows();
+    const target = changed.find((row) => row.make === 'Subaru' && row.status === 'published' && row.communityRecommendations.length >= 2);
+    mutate(target.communityRecommendations);
+    const result = evaluateLiveInventory(changed, reconciliation(), frozenRows());
+    assert.equal(result.passed, false);
+    assert.deepEqual(result.fullRecordComparison.drift, [{ id: target.id, fields: ['communityRecommendations'] }]);
   });
 }
 

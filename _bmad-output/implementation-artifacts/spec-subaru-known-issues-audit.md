@@ -4,7 +4,7 @@ type: 'chore'
 created: '2026-08-11'
 status: 'in-review'
 baseline_commit: '950c28cdec60ea49df4cdd6642ba7dbb6239641a'
-review_loop_iteration: 1
+review_loop_iteration: 2
 context: []
 ---
 
@@ -67,6 +67,7 @@ context: []
 - 2026-08-11: Completed the authorized local audit without production mutation. The exact result is 0 retained rewrites, 205 byte-identical published holds, 12 archived rows excluded, and 0 authorized content or metadata writes.
 - 2026-08-11: Hardened the all-status boundary after reconciling the supplied counts: the per-model totals sum to 217, while the read-only production freeze proves 205 published plus 12 archived. Archived IDs are separately pinned and rejected by packets, routing, reconciliation, and live verification.
 - 2026-08-11: Independent review found that the live verifier checked only ID/make/model/status and trusted the committed reconciliation summary. The verifier now fails before connection unless the committed reconciliation exactly matches a fresh deterministic rebuild, selects every `FULL_RECORD_FIELDS` column, and rejects frozen title, vehicle scope, owner telemetry, prose, or commerce drift. KEEP: repeatable-read read-only execution, exact status/model/archive accounting, and the zero-write all-hold result.
+- 2026-08-11: A clean full-record live run isolated three `communityRecommendations` differences to mutable `clickCount` telemetry. The verifier now uses the production applicator's content-audit projection, reports click-count deltas separately, and still blocks recommendation URL, content, membership, or ordering drift.
 
 ## Design Notes
 
@@ -78,10 +79,12 @@ Live verification is now intentionally coupled to the entire frozen record, not 
 
 Reviewed-tree provenance uses an explicit audited-artifact allowlist. Temporary capture candidates and unrelated matching filenames cannot silently invalidate or expand the reconciliation. The production loader is regression-tested twice in succession and is forbidden from rewriting reconciliation during validation.
 
+`communityRecommendations[].clickCount` is mirrored mutable click telemetry and is excluded by the shared production full-record snapshot semantics. It is not silently ignored: live verification reports every per-record/index delta. All other recommendation fields and array structure remain hash-compared and blocking.
+
 ## Verification
 
 **Commands:**
-- `node --test scripts/validate-subaru-model-adjudication.test.js scripts/verify-subaru-all-hold-live.test.js scripts/subaru-independent-adversarial.test.js` — 45 deterministic, mutation, archive, routing, provenance, and read-only-query tests pass.
+- `node --test scripts/validate-subaru-model-adjudication.test.js scripts/verify-subaru-all-hold-live.test.js scripts/subaru-independent-adversarial.test.js` — 51 deterministic, mutation, archive, routing, provenance, and read-only-query tests pass.
 - `..\node_modules\.bin\tsx.cmd --test scripts/subaru-routing-equivalence.test.ts` — JS audit mirror matches the production TypeScript matcher.
 - `node scripts/validate-subaru-primary-evidence.js` plus all 14 packet validators and `node scripts/validate-subaru-make-reconciliation.js` — evidence, exact coverage, archive exclusion, and source provenance pass.
 - `node scripts/verify-subaru-all-hold-live.js` — read-only production verification passes global 7,642, Subaru 205 published plus 12 archived, exact model/status splits and archived IDs.
