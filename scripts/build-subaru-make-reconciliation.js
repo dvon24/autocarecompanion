@@ -15,6 +15,14 @@ const STATUS_INVENTORY_FILE = 'data/_subaru-status-inventory-2026-08-11.json';
 const EXPECTED_BASELINE = '950c28cdec60ea49df4cdd6642ba7dbb6239641a';
 const EXPECTED_BRANCH = 'codex/subaru-final-audit';
 const IDENTITY_FIELDS = Object.freeze(['make', 'model', 'years', 'trims', 'engines', 'category', 'title', 'severity', 'status', 'relatedIssueIds']);
+const AUDITED_DATA_FILES = Object.freeze([
+  'data/_subaru-deeplink-snapshot-2026-08-11.json',
+  STATUS_INVENTORY_FILE,
+  'data/known-issue-subaru-primary-evidence-2026-08-11.json',
+  'data/known-issue-subaru-review-ledger-2026-08-11.json',
+  ROUTING_FILE,
+  ...supportedModels.map((model) => `data/known-issue-subaru-${model.toLowerCase().replace(/\s+/g, '-')}-adjudication-2026-08-11.json`),
+]);
 
 function resolveRepo(file) { return path.resolve(__dirname, '..', file); }
 function equal(left, right) { return JSON.stringify(stableValue(left)) === JSON.stringify(stableValue(right)); }
@@ -42,10 +50,7 @@ function reviewedArtifactFiles() {
     'verify-subaru-all-hold-live.js',
     'verify-subaru-all-hold-live.test.js',
   ].map((file) => `scripts/${file}`);
-  const dataFiles = fs.readdirSync(resolveRepo('data'))
-    .filter((file) => /^(?:_subaru|known-issue-subaru)/i.test(file) && file !== path.basename(OUTPUT_FILE))
-    .map((file) => `data/${file}`);
-  return ['.gitignore', '_bmad-output/implementation-artifacts/spec-subaru-known-issues-audit.md', ...scriptFiles, ...dataFiles].sort();
+  return ['.gitignore', '_bmad-output/implementation-artifacts/spec-subaru-known-issues-audit.md', ...scriptFiles, ...AUDITED_DATA_FILES].sort();
 }
 
 function sourceControlProvenance() {
@@ -142,4 +147,4 @@ if (require.main === module) {
   console.log(JSON.stringify({ output: OUTPUT_FILE, summary: report.summary, routing: report.routing.summary, crossPacketChecks: report.crossPacketChecks }, null, 2));
 }
 
-module.exports = { EXPECTED_BASELINE, EXPECTED_BRANCH, OUTPUT_FILE, assertReconciliationWritable, buildReconciliation, reviewedArtifactFiles, sourceControlProvenance, writeValidatedReconciliation };
+module.exports = { AUDITED_DATA_FILES, EXPECTED_BASELINE, EXPECTED_BRANCH, OUTPUT_FILE, assertReconciliationWritable, buildReconciliation, reviewedArtifactFiles, sourceControlProvenance, writeValidatedReconciliation };

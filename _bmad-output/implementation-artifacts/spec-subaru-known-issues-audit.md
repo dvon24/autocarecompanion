@@ -4,7 +4,7 @@ type: 'chore'
 created: '2026-08-11'
 status: 'in-review'
 baseline_commit: '950c28cdec60ea49df4cdd6642ba7dbb6239641a'
-review_loop_iteration: 0
+review_loop_iteration: 1
 context: []
 ---
 
@@ -52,6 +52,7 @@ context: []
 - [x] Freeze production and pin 205 published rows across 14 models, while reconciling the supplied 217-row all-status inventory and 12 archived-row delta.
 - [x] Generate and validate the evidence inventory, 205-row ledger, 14 model packets, routing report, and make reconciliation deterministically.
 - [x] Add mutation tests for case/Unicode inventory, archived leakage, identity/status/owner/commerce drift, held-row mutation, ledger gaps, routing writes, reconciliation gaps, and live query mutability.
+- [x] Harden live verification after independent review so a fresh deterministic reconciliation is validated before querying and all frozen full-record fields are compared against production.
 - [x] Run self-adversarial checks, JS/TS production-matcher equivalence, evidence, reconciliation, live read-only inventory, ESLint, TypeScript, and diff checks; hand the exact local commit to the coordinator for an additional independent review before integration.
 - [x] Prepare only reproducible local Subaru artifacts for the authorized `chore: audit Subaru known issues` commit.
 
@@ -65,6 +66,7 @@ context: []
 
 - 2026-08-11: Completed the authorized local audit without production mutation. The exact result is 0 retained rewrites, 205 byte-identical published holds, 12 archived rows excluded, and 0 authorized content or metadata writes.
 - 2026-08-11: Hardened the all-status boundary after reconciling the supplied counts: the per-model totals sum to 217, while the read-only production freeze proves 205 published plus 12 archived. Archived IDs are separately pinned and rejected by packets, routing, reconciliation, and live verification.
+- 2026-08-11: Independent review found that the live verifier checked only ID/make/model/status and trusted the committed reconciliation summary. The verifier now fails before connection unless the committed reconciliation exactly matches a fresh deterministic rebuild, selects every `FULL_RECORD_FIELDS` column, and rejects frozen title, vehicle scope, owner telemetry, prose, or commerce drift. KEEP: repeatable-read read-only execution, exact status/model/archive accounting, and the zero-write all-hold result.
 
 ## Design Notes
 
@@ -72,10 +74,14 @@ The 14 supplied per-model totals sum to 217; the 12-row difference from the 205 
 
 No reviewed row had a byte-pinned exact same-identity source sufficient for a bounded rewrite, so the evidence set is intentionally empty. Five duplicate-looking clusters remain separately indexed. Routing remains report-only: 5,521 routes include 1,219 exact, 889 substring-only, 542 hidden, and 2,871 model-wide fail-open routes; seven rows have no exact selectable-trim overlap and two issue-years have no selectable trims. No correction candidate contains proposed metadata.
 
+Live verification is now intentionally coupled to the entire frozen record, not only inventory identity. The committed make reconciliation must equal a fresh deterministic packet/routing rebuild before the database pool is connected, and every published Subaru production row is compared across all full-record fields. Mutation tests cover title, years, trims, engines, report counts, last-reported owner telemetry, fix parts, community recommendations, and reconciliation tampering that preserves the headline summary.
+
+Reviewed-tree provenance uses an explicit audited-artifact allowlist. Temporary capture candidates and unrelated matching filenames cannot silently invalidate or expand the reconciliation. The production loader is regression-tested twice in succession and is forbidden from rewriting reconciliation during validation.
+
 ## Verification
 
 **Commands:**
-- `node --test scripts/validate-subaru-model-adjudication.test.js scripts/verify-subaru-all-hold-live.test.js scripts/subaru-independent-adversarial.test.js` — 33 deterministic, mutation, archive, routing, provenance, and read-only-query tests pass.
+- `node --test scripts/validate-subaru-model-adjudication.test.js scripts/verify-subaru-all-hold-live.test.js scripts/subaru-independent-adversarial.test.js` — 45 deterministic, mutation, archive, routing, provenance, and read-only-query tests pass.
 - `..\node_modules\.bin\tsx.cmd --test scripts/subaru-routing-equivalence.test.ts` — JS audit mirror matches the production TypeScript matcher.
 - `node scripts/validate-subaru-primary-evidence.js` plus all 14 packet validators and `node scripts/validate-subaru-make-reconciliation.js` — evidence, exact coverage, archive exclusion, and source provenance pass.
 - `node scripts/verify-subaru-all-hold-live.js` — read-only production verification passes global 7,642, Subaru 205 published plus 12 archived, exact model/status splits and archived IDs.

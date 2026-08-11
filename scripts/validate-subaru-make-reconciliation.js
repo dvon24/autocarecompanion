@@ -7,9 +7,8 @@ const { stableValue } = require('./known-issue-adjudication-utils');
 
 function equal(left, right) { return JSON.stringify(stableValue(left)) === JSON.stringify(stableValue(right)); }
 
-function validateReconciliation(report) {
+function validateReconciliation(report, deterministic = buildReconciliation()) {
   const errors = [];
-  const deterministic = buildReconciliation();
   if (!equal(report, deterministic)) errors.push('make reconciliation does not match deterministic packet union');
   if (report.status !== 'proposal-only' || report.requiresIndependentApproval !== true) errors.push('make reconciliation is not proposal-only');
   const expectedSummary = { models: 14, rows: 205, retained: 0, held: 205, archivedExcluded: 12, pagesPreservedPublished: 205, authorizedWriteCandidates: 0 };
