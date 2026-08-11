@@ -29,3 +29,18 @@ test('unsupported procedure mentions are not claimed as covered', () => {
   assert.deepEqual(proceduresInSolution('Blue smoke test after startup.'), []);
   assert.deepEqual(proceduresInSolution('Perform a cooling-system pressure test.'), []);
 });
+
+test('a parasitic-drain symptom mention is not a test prescription', () => {
+  for (const solution of [
+    'Disconnect the TCB to prevent parasitic drain.',
+    'Install software that improves parasitic drain management.',
+    'The update may reduce parasitic drain while parked.',
+  ]) {
+    assert.deepEqual(proceduresInSolution(solution), [], solution);
+  }
+});
+
+test('an explicit parasitic-draw test still recommends the procedure', () => {
+  assert.deepEqual(proceduresInSolution('Perform a parasitic draw test after the modules enter sleep mode.'), ['parasitic-draw']);
+  assert.deepEqual(proceduresInSolution('Measure the parasitic drain with a low-current DC clamp meter.'), ['parasitic-draw']);
+});

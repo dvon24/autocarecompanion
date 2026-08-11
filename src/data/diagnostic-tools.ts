@@ -234,8 +234,8 @@ export function codeFamilyOf(code: string): CodeFamily | null {
  * conservative: an unmatched solution surfaces no tool rather than a guess.
  */
 const PROCEDURE_PATTERNS: Array<[Procedure, RegExp]> = [
-  ['parasitic-draw', /\bparasitic (?:draw|drain)\b|\bcurrent draw test\b/i],
-  ['battery-load-test', /\bbattery (?:state[- ]of[- ]health|load test|capacity test)\b|\bload test(?:ing)? the battery\b/i],
+  ['parasitic-draw', /\b(?:perform|run|do|conduct) (?:an? )?parasitic (?:draw|drain)(?: test)?\b|\b(?:measure|test|check|diagnose) (?:for )?(?:the )?parasitic (?:draw|drain)\b|\bcurrent draw test\b|\blow-current (?:dc )?clamp meter\b/i],
+  ['battery-load-test', /\b(?:perform|run|do|conduct) (?:an? )?battery (?:state[- ]of[- ]health|load|capacity) test\b|\bload[- ]test(?:ing)? the battery\b/i],
   // Unsupported procedures intentionally have no matcher until a verified tool
   // exists. Recognizing them while rendering nothing creates false coverage.
   ['scan-codes', /\b(?:use|connect|diagnose with) (?:an? )?(?:scan tool|scanner)\b|\b(?:read|retrieve|scan for) (?:the )?(?:stored )?(?:fault )?codes\b/i],
