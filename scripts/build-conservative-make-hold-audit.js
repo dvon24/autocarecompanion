@@ -51,6 +51,40 @@ function sourceInspection(citation) {
   };
 }
 
+function isSearchLikeUrl(value) {
+  try {
+    const url = new URL(String(value || ''));
+    const searchKeys = new Set(['q', 'k', '_nkw', 'query', 'keyword', 'keywords', 'search', 'searchterm', 'text']);
+    return [...url.searchParams.keys()].some((key) => searchKeys.has(key.toLowerCase())) || /\/(?:search|s)\/?$/i.test(url.pathname);
+  } catch {
+    return true;
+  }
+}
+
+function buildRiskSignals(rows) {
+  const byTitle = new Map();
+  const normalizeTitle = (value) => String(value || '').normalize('NFKD').replace(/\p{M}/gu, '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+  for (const row of rows) {
+    const key = `${row.model}\u0000${normalizeTitle(row.title)}`;
+    if (!byTitle.has(key)) byTitle.set(key, []);
+    byTitle.get(key).push(row.id);
+  }
+  const idsWhere = (predicate) => rows.filter(predicate).map((row) => row.id).sort();
+  return {
+    uncitedRowIds: idsWhere((row) => !(row.citations || []).length),
+    searchOrInvalidCitationRowIds: idsWhere((row) => (row.citations || []).some((citation) => isSearchLikeUrl(citation?.url))),
+    literalUndefinedCitationRowIds: idsWhere((row) => (row.citations || []).some((citation) => /\bundefined\b/i.test(String(citation?.url || '')))),
+    applicabilityProseTrimRowIds: idsWhere((row) => (row.trims || []).some((trim) => /\b(?:vehicles?|vin|equipped|built|production|applicability|sales code)\b/i.test(String(trim)))),
+    positiveOwnerCountRowIds: idsWhere((row) => Number(row.reportCount) > 0),
+    ownerClaimLanguageRowIds: idsWhere((row) => /\b(?:owners?|owner[- ]reports?|reported by|commonly reported|widespread)\b/i.test(`${row.description || ''} ${row.solution || ''}`)),
+    commerceRowIds: idsWhere((row) => (row.fixParts || []).length > 0 || (row.communityRecommendations || []).length > 0),
+    exactModelTitleDuplicateClusters: [...byTitle.entries()]
+      .filter(([, ids]) => ids.length > 1)
+      .map(([key, ids]) => ({ model: key.split('\u0000')[0], ids: [...ids].sort() }))
+      .sort((left, right) => left.model.localeCompare(right.model) || left.ids[0].localeCompare(right.ids[0])),
+  };
+}
+
 function buildRouting(rows, config, ymmt) {
   const routes = [];
   for (const row of rows) {
@@ -73,6 +107,31 @@ function buildRouting(rows, config, ymmt) {
     }
   }
   const summary = routes.reduce((counts, route) => ({ ...counts, [route.classification]: (counts[route.classification] || 0) + 1 }), {});
+  if (config.compactRouting === true) {
+    const byId = new Map();
+    for (const row of rows) byId.set(row.id, { id: row.id, model: row.model, exact: 0, substringOnly: 0, hidden: 0, modelWideFailOpen: 0, selectorUnavailable: 0, selectorUnavailableYears: [], substringOnlyTrimSamples: [] });
+    for (const route of routes) {
+      const item = byId.get(route.id);
+      if (route.classification === 'exact') item.exact += 1;
+      else if (route.classification === 'substring-only') {
+        item.substringOnly += 1;
+        if (item.substringOnlyTrimSamples.length < 10 && route.selectedTrim) item.substringOnlyTrimSamples.push({ year: route.year, trim: route.selectedTrim });
+      } else if (route.classification === 'hidden') item.hidden += 1;
+      else if (route.classification === 'model-wide-fail-open') item.modelWideFailOpen += 1;
+      else if (route.classification === 'selector-unavailable') {
+        item.selectorUnavailable += 1;
+        item.selectorUnavailableYears.push(route.year);
+      }
+    }
+    return {
+      selectorYearRange: clone(config.selectorYearRange),
+      encoding: 'per-row-route-counts',
+      routeCount: routes.length,
+      rowSummaries: [...byId.values()].sort((left, right) => left.id.localeCompare(right.id)),
+      summary: sortedObject(summary),
+      metadataWritesAuthorized: 0,
+    };
+  }
   return { selectorYearRange: clone(config.selectorYearRange), routes, summary: sortedObject(summary), metadataWritesAuthorized: 0 };
 }
 
@@ -80,24 +139,28 @@ function buildAudit(config) {
   const snapshot = JSON.parse(fs.readFileSync(resolveRepo(config.snapshotFile), 'utf8'));
   const ymmt = JSON.parse(fs.readFileSync(resolveRepo('public/data/ymmt.json'), 'utf8'));
   const rows = assertSnapshot(config, snapshot);
+  for (const reference of config.additionalAuditReferences || []) {
+    if (!reference.file || !reference.normalizedSha256) throw new Error(`${config.make} additional audit reference is incomplete`);
+    if (normalizedFileHash(resolveRepo(reference.file)) !== reference.normalizedSha256) throw new Error(`${config.make} additional audit reference drifted: ${reference.file}`);
+  }
   const decisions = rows.map((row) => {
     const before = fullRecord(row);
     const proposal = clone(before);
-    return {
+    const decision = {
       id: row.id,
       model: row.model,
       action: ACTION,
       disposition: 'Preserve the complete published record byte-identical pending exact-identity primary-source review.',
       justification: config.flaggedRows[row.id] || 'No captured exact same-identity primary evidence authorizes a content or metadata rewrite.',
       existingSourcesInspected: (row.citations || []).map(sourceInspection),
-      before,
       beforeSha256: hashValue(before),
-      proposal,
       proposalSha256: hashValue(proposal),
       changedFields: diffFields(before, proposal),
       contentWriteAuthorized: false,
       metadataWriteAuthorized: false,
     };
+    if (config.compactDecisions === true) return decision;
+    return { ...decision, before, proposal };
   });
   const routing = buildRouting(rows, config, ymmt);
   return {
@@ -118,6 +181,9 @@ function buildAudit(config) {
       secretValuesRecorded: false,
       globalPublishedCountAtFreeze: config.expectedGlobalPublishedAtFreeze,
     },
+    ...(Array.isArray(config.additionalAuditReferences) && config.additionalAuditReferences.length
+      ? { additionalAuditReferences: clone(config.additionalAuditReferences) }
+      : {}),
     safetyContract: [
       'No archive, redirect, consolidation, title change, URL change, indexed vehicle-metadata change, status/severity change, owner-telemetry change or commerce mutation is authorized.',
       'Every audited row remains a byte-identical published no-op across every full-record field.',
@@ -133,7 +199,9 @@ function buildAudit(config) {
       pagesPreservedPublished: decisions.length,
       authorizedWriteCandidates: 0,
     },
+    ...(config.compactDecisions === true ? { decisionEncoding: 'snapshot-full-record-hashes' } : {}),
     modelCounts: clone(config.expectedModelCounts),
+    ...(config.includeRiskSignals === true ? { riskSignals: buildRiskSignals(rows) } : {}),
     routing,
     applicationGate: { status: 'blocked', reason: `All ${decisions.length} ${config.make} rows are byte-identical holds; no database write set exists.` },
     decisions,
@@ -153,4 +221,4 @@ if (require.main === module) {
   console.log(JSON.stringify({ output: config.outputFile, summary: audit.summary, routing: audit.routing.summary, applicationGate: audit.applicationGate.status }, null, 2));
 }
 
-module.exports = { ACTION, assertSnapshot, buildAudit, buildRouting, normalizeMake, sourceInspection, writeAudit };
+module.exports = { ACTION, assertSnapshot, buildAudit, buildRiskSignals, buildRouting, isSearchLikeUrl, normalizeMake, sourceInspection, writeAudit };

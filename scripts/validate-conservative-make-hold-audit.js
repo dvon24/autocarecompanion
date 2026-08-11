@@ -16,14 +16,24 @@ function validateAudit(config, audit) {
   if (!equal(audit.modelCounts, config.expectedModelCounts)) errors.push('model counts drifted');
   const rows = Array.isArray(audit.decisions) ? audit.decisions : [];
   const ids = rows.map((row) => row.id);
+  const snapshot = JSON.parse(fs.readFileSync(resolveRepo(config.snapshotFile), 'utf8'));
+  const frozenById = new Map(snapshot.records.map((row) => [row.id, row]));
   if (rows.length !== config.expectedRows || new Set(ids).size !== config.expectedRows) errors.push('decision inventory drifted');
   for (const row of rows) {
+    const frozen = frozenById.get(row.id);
+    if (!frozen) { errors.push(`${row.id}: decision is not in the frozen snapshot`); continue; }
+    const expected = Object.fromEntries(FULL_RECORD_FIELDS.map((field) => [field, frozen[field]]));
     if (row.action !== ACTION || row.contentWriteAuthorized !== false || row.metadataWriteAuthorized !== false) errors.push(`${row.id}: write authorization drifted`);
-    if (!equal(row.before, row.proposal) || row.beforeSha256 !== row.proposalSha256 || row.beforeSha256 !== hashValue(row.before) || row.proposalSha256 !== hashValue(row.proposal) || row.changedFields.length !== 0 || !equal(row.changedFields, diffFields(row.before, row.proposal))) errors.push(`${row.id}: held row is not byte-identical`);
-    if (row.proposal.status !== 'published') errors.push(`${row.id}: page became unpublished`);
-    for (const field of FULL_RECORD_FIELDS) if (!(field in row.before) || !(field in row.proposal)) errors.push(`${row.id}: missing full-record field ${field}`);
-    if (!equal(row.before.fixParts, row.proposal.fixParts) || !equal(row.before.communityRecommendations, row.proposal.communityRecommendations)) errors.push(`${row.id}: commerce drifted`);
-    if (row.before.reportCount !== row.proposal.reportCount || row.before.lastReportedByOwners !== row.proposal.lastReportedByOwners) errors.push(`${row.id}: owner telemetry drifted`);
+    if (row.beforeSha256 !== row.proposalSha256 || row.beforeSha256 !== hashValue(expected) || row.changedFields.length !== 0) errors.push(`${row.id}: held row hash is not byte-identical to the frozen record`);
+    if (config.compactDecisions === true) {
+      if ('before' in row || 'proposal' in row) errors.push(`${row.id}: compact decision unexpectedly embeds mutable record content`);
+    } else {
+      if (!equal(row.before, row.proposal) || !equal(row.before, expected) || row.proposalSha256 !== hashValue(row.proposal) || !equal(row.changedFields, diffFields(row.before, row.proposal))) errors.push(`${row.id}: held row is not byte-identical`);
+      if (row.proposal.status !== 'published') errors.push(`${row.id}: page became unpublished`);
+      for (const field of FULL_RECORD_FIELDS) if (!(field in row.before) || !(field in row.proposal)) errors.push(`${row.id}: missing full-record field ${field}`);
+      if (!equal(row.before.fixParts, row.proposal.fixParts) || !equal(row.before.communityRecommendations, row.proposal.communityRecommendations)) errors.push(`${row.id}: commerce drifted`);
+      if (row.before.reportCount !== row.proposal.reportCount || row.before.lastReportedByOwners !== row.proposal.lastReportedByOwners) errors.push(`${row.id}: owner telemetry drifted`);
+    }
   }
   if (audit.routing?.metadataWritesAuthorized !== 0) errors.push('routing report authorizes metadata writes');
   return errors;
