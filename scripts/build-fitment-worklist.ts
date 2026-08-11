@@ -61,8 +61,13 @@ function prescribesAFix(solution: string): boolean {
   );
   await pool.end();
 
+  // This lane sources missing parts. Existing fixParts need a separate
+  // verification lane; proposing a second replacement beside them can create
+  // contradictory commerce and never exercises the quoted-PN verifier.
+  const hasExistingFixParts = (value: unknown) => Array.isArray(value) && value.length > 0;
   const prescribing = rows.filter(
     (r) => prescribesAFix(r.solution)
+      && !hasExistingFixParts(r.fixParts)
       && !(DEALER.test(r.solution) && !/aftermarket|purchase|order the part|buy/i.test(r.solution)),
   );
 

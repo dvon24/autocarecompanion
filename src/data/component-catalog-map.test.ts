@@ -43,6 +43,11 @@ test('a DPF article maps to the filter, not an exhaust temperature sensor', () =
   assert.equal(mapComponent('Exhaust Gas Temperature Sensor Failure')?.partTypeMatch, 'temperature sensor');
 });
 
+test('a generic EVAP leak does not guess that the purge valve is the cause', () => {
+  assert.equal(mapComponent('EVAP System Small Leak (P0456)'), null);
+  assert.equal(mapComponent('EVAP Purge Solenoid Failure')?.partTypeMatch, 'vapor canister purge valve');
+});
+
 // The title is authoritative: matching title+solution as one blob once made a
 // head-gasket article resolve to a thermostat mentioned in its solution text.
 test('the more specific rule wins over the generic one', () => {

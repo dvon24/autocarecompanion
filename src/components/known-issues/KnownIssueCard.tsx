@@ -11,7 +11,7 @@ import { triggerHaptic } from '@/hooks/useHaptic';
 import { IssueFix } from '@/hooks/useIssueFixes';
 import { trackAffiliateClick } from '@/lib/analytics';
 import { getKnownIssueCommerce, hasKnownIssueCommerce, knownIssueAffiliateUrl } from '@/lib/known-issue-commerce';
-import { partIsEligibleForVehicle, describeFitment, isNarrowerThanArticle } from '@/lib/known-issue-part-fitment';
+import { partCanBeShownForVehicle, describeFitment, isNarrowerThanArticle } from '@/lib/known-issue-part-fitment';
 import { formatOwnerReportCount } from '@/lib/owner-report-count';
 import { IssueDiagnosticTools } from './IssueDiagnosticTools';
 
@@ -91,6 +91,7 @@ interface KnownIssueCardProps {
     make: string;
     model: string;
     trim?: string;
+    engine?: string;
   };
   vehicleId?: string;
   userFix?: IssueFix;
@@ -187,9 +188,13 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
   // it rather than listing a part they cannot use under "What you need to fix
   // it". Parts with no declared fitment are untouched — that is every part in
   // the catalog today, so this only takes effect once a part is scoped.
-  const fitmentVehicle = { year: vehicleInfo?.year ?? null, trim: vehicleInfo?.trim ?? null };
-  const fixParts = gatedParts.filter((part) => partIsEligibleForVehicle(part.fitment, fitmentVehicle));
-  const hiddenPartCount = gatedParts.length - fixParts.length;
+  const fitmentVehicle = {
+    year: vehicleInfo?.year ?? null,
+    trim: vehicleInfo?.trim ?? null,
+    engine: vehicleInfo?.engine ?? null,
+  };
+  const fixParts = gatedParts.filter((part) => partCanBeShownForVehicle(part.fitment, fitmentVehicle));
+  const excludedPartCount = gatedParts.length - fixParts.length;
   const hasPartRecommendations = hasKnownIssueCommerce(fixParts);
   const contentUpdateDate = formatContentUpdatedOn(issue.contentUpdatedOn);
   const contentUpdateSummary = issue.contentUpdateSummary?.trim();
@@ -530,9 +535,9 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
               </h4>
               <p className="mb-3 text-xs leading-relaxed text-[#475569]">
                 Only diagnosis- and fitment-reviewed repair parts are linked here.
-                {hiddenPartCount > 0 && vehicleInfo && (
+                {excludedPartCount > 0 && vehicleInfo && (
                   <span className="mt-1 block text-[#64748B]">
-                    {hiddenPartCount === 1 ? '1 part is' : `${hiddenPartCount} parts are`} hidden because fitment could not be confirmed for your {vehicleInfo.year} {vehicleInfo.model}.
+                    {excludedPartCount === 1 ? '1 part is' : `${excludedPartCount} parts are`} hidden because fitment could not be confirmed for your {vehicleInfo.year} {vehicleInfo.model}.
                   </span>
                 )}
               </p>

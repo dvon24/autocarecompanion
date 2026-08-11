@@ -23,6 +23,8 @@ import { config } from 'dotenv';
 import { Pool } from 'pg';
 import { recommendParts, type PartCandidate } from '../src/lib/part-recommendation';
 import { formatYearRange } from '../src/lib/known-issue-part-fitment';
+import { fullyCoveredYears } from '../src/lib/part-proposal-coverage';
+import { candidateQualifiersAppearInArticle } from '../src/lib/part-type-evidence';
 
 config({ path: '.env.local' });
 
@@ -37,6 +39,8 @@ interface Verdict {
   partTypeMatch?: string;
   mappedFrom?: string;
   engineMatch?: string | null;
+  catalogModelsByYear?: Record<string, string[]>;
+  catalogApplicationsByYear?: Record<string, string[]>;
   /** Set by the fitment pass when the part-type query had to be loosened. */
   partTypeTierUsed?: string;
   notes?: string[];
@@ -82,12 +86,6 @@ function headNoun(value: string): string {
  * Words in a catalog part type that carry no identifying information — they
  * appear on almost every row and would never be quoted in an article.
  */
-const GENERIC_TYPE_WORD = new Set([
-  'engine', 'assembly', 'kit', 'set', 'system', 'auto', 'automatic', 'vehicle',
-  'front', 'rear', 'left', 'right', 'upper', 'lower', 'inner', 'outer', 'and',
-  'with', 'for', 'the', 'of', 'universal', 'epa', 'carb', 'direct', 'genuine',
-]);
-
 /**
  * A candidate must not introduce a QUALIFIER the article never mentions.
  *
@@ -100,17 +98,6 @@ const GENERIC_TYPE_WORD = new Set([
  * somewhere in the article. This is deliberately evidence-based rather than a
  * hand-maintained list of confusable sensors.
  */
-function qualifiersAppearInArticle(partType: string, article: string): boolean {
-  if (!article) return true; // no text to check against — do not invent a rejection
-  const haystack = article.toLowerCase();
-  return String(partType || '')
-    .toLowerCase()
-    .replace(/[^a-z0-9\s/-]/g, ' ')
-    .split(/\s+/)
-    .filter((w) => w.length > 2 && !GENERIC_TYPE_WORD.has(w))
-    .every((w) => haystack.includes(w));
-}
-
 function partTypeIsRelevant(partType: string, target: string): boolean {
   const type = String(partType || '').toLowerCase();
   const tokens = String(target || '').toLowerCase().split(/\s+/).filter(Boolean);
@@ -183,7 +170,8 @@ for (const file of inputs) {
     // A part confirmed in 2009 and 2013 but not 2011 keeps that shape rather
     // than being smoothed into a range it was never tested across.
     const yearsByPart = new Map<string, Set<number>>();
-    const modelsByPart = new Map<string, Set<string>>();
+    const modelsByPartYear = new Map<string, Map<number, Set<string>>>();
+    const applicationsByPartYear = new Map<string, Map<number, Set<string>>>();
     const candidateByKey = new Map<string, FitmentCandidate>();
     for (const [year, list] of Object.entries(r.candidatesByYear || {})) {
       for (const entry of list as Array<FitmentCandidate | string>) {
@@ -192,8 +180,14 @@ for (const file of inputs) {
         if (!yearsByPart.has(key)) yearsByPart.set(key, new Set());
         yearsByPart.get(key)!.add(Number(year));
         if (entry.catalogModel) {
-          if (!modelsByPart.has(key)) modelsByPart.set(key, new Set());
-          modelsByPart.get(key)!.add(entry.catalogModel);
+          if (!modelsByPartYear.has(key)) modelsByPartYear.set(key, new Map());
+          if (!modelsByPartYear.get(key)!.has(Number(year))) modelsByPartYear.get(key)!.set(Number(year), new Set());
+          modelsByPartYear.get(key)!.get(Number(year))!.add(entry.catalogModel);
+          if (entry.engine) {
+            if (!applicationsByPartYear.has(key)) applicationsByPartYear.set(key, new Map());
+            if (!applicationsByPartYear.get(key)!.has(Number(year))) applicationsByPartYear.get(key)!.set(Number(year), new Set());
+            applicationsByPartYear.get(key)!.get(Number(year))!.add(`${entry.catalogModel}|${entry.engine}`);
+          }
         }
         if (!candidateByKey.has(key)) candidateByKey.set(key, entry);
       }
@@ -226,7 +220,7 @@ for (const file of inputs) {
       continue;
     }
     const relevant = [...candidateByKey.entries()].filter(([, c]) =>
-      partTypeIsRelevant(c.partType || '', target) && qualifiersAppearInArticle(c.partType || '', articleText));
+      partTypeIsRelevant(c.partType || '', target) && candidateQualifiersAppearInArticle(c.partType || '', articleText));
     if (relevant.length === 0) {
       // The vehicle had fitting parts, but none of them were this component.
       // Proposing the closest thing anyway is how an axle-bearing article ends
@@ -235,6 +229,37 @@ for (const file of inputs) {
       continue;
     }
     for (const key of [...candidateByKey.keys()]) if (!relevant.some(([k]) => k === key)) candidateByKey.delete(key);
+
+    // Generic model names can resolve to several catalog aliases and, unless
+    // the article names an engine, several engine applications. A PN is usable
+    // only in years where it appears for the complete resolved set. Review
+    // metadata alone cannot make a one-variant part safe at render time.
+    for (const key of [...candidateByKey.keys()]) {
+      const candidateModelsByYear = Object.fromEntries(
+        [...(modelsByPartYear.get(key) || new Map()).entries()]
+          .map(([year, values]) => [String(year), [...values]]),
+      );
+      const candidateApplicationsByYear = Object.fromEntries(
+        [...(applicationsByPartYear.get(key) || new Map()).entries()]
+          .map(([year, values]) => [String(year), [...values]]),
+      );
+      const coveredYears = fullyCoveredYears({
+        partYears: [...(yearsByPart.get(key) || [])],
+        candidateModelsByYear,
+        candidateApplicationsByYear,
+        requiredModelsByYear: r.catalogModelsByYear || {},
+        requiredApplicationsByYear: r.catalogApplicationsByYear || {},
+      });
+      if (coveredYears.length === 0) {
+        candidateByKey.delete(key);
+        continue;
+      }
+      yearsByPart.set(key, new Set(coveredYears));
+    }
+    if (candidateByKey.size === 0) {
+      skipped['incomplete-model-or-engine-coverage'] = (skipped['incomplete-model-or-engine-coverage'] || 0) + 1;
+      continue;
+    }
 
     /**
      * A part confirmed in only ONE sampled year, while the other sampled years
@@ -294,14 +319,15 @@ for (const file of inputs) {
 
     const toPart = (p: NonNullable<typeof primary>, role: 'primary' | 'alternate') => {
       const years = scopeFor(p.supplier, p.partNumber);
-      const key = `${p.supplier}|${p.partNumber}`.toLowerCase();
-      const catalogModels = [...(modelsByPart.get(key) || [])].sort();
+      const catalogModels = [...new Set(
+        years.flatMap((year) => r.catalogModelsByYear?.[String(year)] || []),
+      )].sort();
       return {
         role,
         component: p.partType || 'Replacement part',
         supplier: p.supplier,
         oemPartNumber: '',            // this is an aftermarket number, not OEM
-        aftermarketPartNumber: p.partNumber,
+        aftermarketXref: [p.partNumber],
         supplierTier: p.tier,
         note: [
           `${p.supplier} ${p.partNumber}.`,
@@ -309,8 +335,11 @@ for (const file of inputs) {
           p.note ? `${p.note}.` : '',
           'Fitment only — repair role not established.',
         ].filter(Boolean).join(' '),
-        fitment: { years, ...(engine ? { engines: [engine] } : {}) },
-        ...(catalogModels.length ? { catalogModels } : {}),
+        fitment: {
+          years,
+          ...(engine ? { engines: [engine] } : {}),
+          ...(catalogModels.length ? { catalogModels } : {}),
+        },
         buyLinks: [],
         verified: false,
         provenance: 'ShowMeTheParts catalog fitment lookup by year and engine',
@@ -322,6 +351,8 @@ for (const file of inputs) {
       vehicle: r.vehicle,
       yearsChecked: r.yearsChecked,
       consideredCount,
+      partTypeMatch: r.partTypeMatch,
+      mappedFrom: r.mappedFrom,
       /**
        * How loose the catalog query had to get before it answered, carried
        * through from the fitment pass so review can weigh it. A candidate found

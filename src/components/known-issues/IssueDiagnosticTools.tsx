@@ -35,14 +35,17 @@ interface IssueDiagnosticToolsProps {
 
 export function IssueDiagnosticTools({ solution, dtcCodes }: IssueDiagnosticToolsProps) {
   const procedures = proceduresInSolution(solution);
+  const nonemptyCodes = (dtcCodes || []).map((code) => String(code).trim()).filter(Boolean);
+  const parsedFamilies = nonemptyCodes.map(codeFamilyOf);
+  const hasUnknownCode = parsedFamilies.some((family) => family === null);
   const families = [...new Set(
-    (dtcCodes || []).map(codeFamilyOf).filter((family): family is CodeFamily => family !== null),
+    parsedFamilies.filter((family): family is CodeFamily => family !== null),
   )];
-  const tools: DiagnosticTool[] = [...toolsForProcedures(procedures, families)];
+  const tools: DiagnosticTool[] = [...toolsForProcedures(procedures, hasUnknownCode ? [] : families)];
 
   // If the issue names codes, the reader also needs something that can READ
   // them — and for a body or network code that is emphatically not a $20 reader.
-  const capable = scannersForCodeFamilies(families)[0];
+  const capable = hasUnknownCode ? undefined : scannersForCodeFamilies(families)[0];
   if (capable && !tools.some((t) => t.id === capable.id)) tools.push(capable);
 
   if (tools.length === 0) return null;
@@ -76,6 +79,11 @@ export function IssueDiagnosticTools({ solution, dtcCodes }: IssueDiagnosticTool
         {families.length > 0 && (
           <span className="mt-1 block text-[#64748B]">
             The recommended scanner supports these code families; confirm your exact year, model and module coverage before buying.
+          </span>
+        )}
+        {hasUnknownCode && (
+          <span className="mt-1 block text-[#64748B]">
+            At least one code uses a manufacturer-specific format. No scanner recommendation is shown because family-level coverage cannot prove it can read that code.
           </span>
         )}
       </p>

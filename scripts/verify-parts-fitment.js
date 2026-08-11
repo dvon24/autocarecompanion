@@ -257,6 +257,20 @@ function looserPartTypeTier(left, right) {
   return toks(right).length < toks(left).length ? right : left;
 }
 
+function selectOrderedCategory(pool, wanted, partTypeMatch) {
+  const tiers = partTypeTiers(partTypeMatch);
+  for (const category of wanted) {
+    const categoryPool = pool.filter((entry) => entry.category === category);
+    if (!categoryPool.length) continue;
+    if (!tiers.length) return { matched: categoryPool, usedCategory: category || '', usedTier: '' };
+    for (const tier of tiers) {
+      const matched = categoryPool.filter(({ part }) => partMatchesTokens(part, tier));
+      if (matched.length) return { matched, usedCategory: category || '', usedTier: tier.join(' ') };
+    }
+  }
+  return { matched: [], usedCategory: '', usedTier: '' };
+}
+
 /**
  * One (year, make, model) → the fitting parts for a product/engine/part-type
  * slice. Every step is cached independently, so a second year on the same model
@@ -273,8 +287,10 @@ async function fittingParts({ year, make, model, productMatch, engineMatch, part
     return { covered: false, reason: `model "${model}" not in catalog for ${year}`, parts: [] };
   }
   const modelNote = resolved.kind === 'exact' ? '' : `${year}: model resolved by ${resolved.kind}`;
+  const resolvedModels = resolved.rows.map((row) => row.data);
 
   const collected = [];
+  const resolvedApplications = [];
   let anyProduct = false;
   let rawTotal = 0;
   let usedCategoryAny = '';
@@ -288,6 +304,9 @@ async function fittingParts({ year, make, model, productMatch, engineMatch, part
     rawTotal += one.rawCount;
     usedCategoryAny = usedCategoryAny || one.usedCategory;
     usedTierAny = looserPartTypeTier(usedTierAny, one.usedTier);
+    for (const engine of one.resolvedEngines || []) {
+      resolvedApplications.push({ catalogModel: modelRow.data, engine });
+    }
     collected.push(...one.parts.map((p) => ({ ...p, catalogModel: modelRow.data })));
   }
   if (!anyProduct) {
@@ -296,11 +315,13 @@ async function fittingParts({ year, make, model, productMatch, engineMatch, part
       reason: `no product category matching ${JSON.stringify(Array.isArray(productMatch) ? productMatch : [productMatch])}`,
       parts: [],
       modelNote,
+      resolvedModels,
+      resolvedApplications,
     };
   }
   return {
     covered: true, reason: '', parts: collected, rawCount: rawTotal,
-    usedCategory: usedCategoryAny, usedTier: usedTierAny, modelNote,
+    usedCategory: usedCategoryAny, usedTier: usedTierAny, modelNote, resolvedModels, resolvedApplications,
   };
 }
 
@@ -315,13 +336,11 @@ async function fittingPartsForModel({ year, makeRow, modelRow, productMatch, eng
   // set is per-vehicle, so one that exists on one model is absent on another.
   const wanted = Array.isArray(productMatch) ? productMatch : [productMatch];
   const selectedProducts = [];
-  for (const candidate of wanted) {
-    const hit = candidate ? products.filter((p) => matchesAllTokens(p.data, candidate)) : products;
-    for (const product of hit) {
-      if (!selectedProducts.some((entry) => entry.product.id === product.id)) {
-        selectedProducts.push({ product, category: candidate });
-      }
-    }
+  for (const category of wanted) {
+    const productsInCategory = category
+      ? products.filter((product) => matchesAllTokens(product.data, category))
+      : products;
+    for (const product of productsInCategory) selectedProducts.push({ product, category });
   }
   if (selectedProducts.length === 0) {
     return { covered: false, reason: `no product category matching ${JSON.stringify(wanted)}`, parts: [] };
@@ -332,12 +351,15 @@ async function fittingPartsForModel({ year, makeRow, modelRow, productMatch, eng
   // catalog calls for nothing — they are all cached anyway.
   const pool = [];
   let rawCount = 0;
+  const resolvedEnginesByCategory = new Map();
   for (const { product, category } of selectedProducts) {
     const engines = await lookup(
       `engines:${year}:${makeRow.id}:${modelRow.id}:${product.id}`,
       { lookup: 'engine', year, make: makeRow.id, model: modelRow.id, product: product.id }, 'engine',
     );
     const selectedEngines = engineMatch ? engines.filter((e) => matchesAllTokens(e.data, engineMatch)) : engines;
+    if (!resolvedEnginesByCategory.has(category)) resolvedEnginesByCategory.set(category, new Set());
+    for (const engine of selectedEngines) resolvedEnginesByCategory.get(category).add(engine.data);
     for (const engine of selectedEngines) {
       const parts = await lookup(
         `parts:${year}:${makeRow.id}:${modelRow.id}:${product.id}:${engine.id}`,
@@ -351,17 +373,11 @@ async function fittingPartsForModel({ year, makeRow, modelRow, productMatch, eng
     }
   }
 
-  const tiers = partTypeTiers(partTypeMatch);
-  let matched = [];
-  let usedTier = '';
-  if (!tiers.length) {
-    matched = pool;
-  } else {
-    for (const tier of tiers) {
-      const hit = pool.filter(({ part }) => partMatchesTokens(part, tier));
-      if (hit.length) { matched = hit; usedTier = tier.join(' '); break; }
-    }
-  }
+  // Preserve declared fallback order. A lower-priority category may only be
+  // considered when every product in the earlier category lacks the requested
+  // part type; categories never compete in one supplier-ranked pool.
+  const { matched, usedCategory, usedTier } = selectOrderedCategory(pool, wanted, partTypeMatch);
+  const resolvedEngines = [...(resolvedEnginesByCategory.get(usedCategory || null) || [])].sort();
 
   const out = matched.map(({ part, engine, product }) => {
     const candidate = candidateFromPart(part, { year, engine: engine.data, product: product.data });
@@ -373,8 +389,7 @@ async function fittingPartsForModel({ year, makeRow, modelRow, productMatch, eng
       engine: engine.data,
     };
   });
-  const usedCategory = matched[0]?.category || selectedProducts[0]?.category || '';
-  return { covered: true, reason: '', parts: out, rawCount, usedCategory, usedTier };
+  return { covered: true, reason: '', parts: out, rawCount, usedCategory, usedTier, resolvedEngines };
 }
 
 async function verifyEntry(entry, yearCap) {
@@ -391,6 +406,8 @@ async function verifyEntry(entry, yearCap) {
   const notes = [];
   let anyCovered = false;
   let partTypeTierUsed = '';
+  const catalogModelsByYear = {};
+  const catalogApplicationsByYear = {};
 
   for (const year of years) {
     let result;
@@ -402,6 +419,10 @@ async function verifyEntry(entry, yearCap) {
     }
     if (result.modelNote && !notes.includes(result.modelNote)) notes.push(result.modelNote);
     if (!result.covered) { notes.push(`${year}: ${result.reason}`); continue; }
+    catalogModelsByYear[year] = [...new Set(result.resolvedModels || [])].sort();
+    catalogApplicationsByYear[year] = [...new Set(
+      (result.resolvedApplications || []).map((application) => `${application.catalogModel}|${application.engine}`),
+    )].sort();
     // How loose the part-type filter had to get before the catalog answered.
     // A candidate found at "pump" is weaker evidence than one found at
     // "electric water pump", and review has to be able to tell them apart.
@@ -454,6 +475,8 @@ async function verifyEntry(entry, yearCap) {
     partTypeMatch: entry.partTypeMatch,
     mappedFrom: entry.mappedFrom,
     engineMatch: entry.engineMatch || null,
+    catalogModelsByYear,
+    catalogApplicationsByYear,
     candidatesByYear,
     notes,
   };
@@ -512,4 +535,4 @@ if (require.main === module) {
   main().catch((error) => { saveCache(); console.error('ERR', error.message); process.exitCode = 1; });
 }
 
-module.exports = { looserPartTypeTier, resolveModels };
+module.exports = { looserPartTypeTier, resolveModels, selectOrderedCategory };

@@ -7,11 +7,18 @@ import {
   formatYearRange,
   describeFitment,
   isNarrowerThanArticle,
+  partCanBeShownForVehicle,
 } from './known-issue-part-fitment';
 
 test('an unscoped part stays unscoped — never a silent "fits"', () => {
   assert.equal(partFitsVehicle(undefined, { year: 2015 }), 'unscoped');
   assert.equal(partFitsVehicle({}, { year: 2015 }), 'unscoped');
+});
+
+test('public commerce hides scoped parts when a required vehicle dimension is unknown', () => {
+  assert.equal(partCanBeShownForVehicle({ years: [2020], engines: ['2.0L'] }, { year: 2020 }), false);
+  assert.equal(partCanBeShownForVehicle({ years: [2020], engines: ['2.0L'] }, { year: 2020, engine: '2.0L I4' }), true);
+  assert.equal(partCanBeShownForVehicle(undefined, { year: 2020 }), true);
 });
 
 test('a declared year scope excludes vehicles outside it', () => {
@@ -118,4 +125,6 @@ test('isNarrowerThanArticle flags the case the reader needs to see', () => {
   assert.equal(isNarrowerThanArticle({ years: [2009, 2010] }, article), true);
   assert.equal(isNarrowerThanArticle({ years: article }, article), false);
   assert.equal(isNarrowerThanArticle(undefined, article), false);
+  assert.equal(isNarrowerThanArticle({ engines: ['3.6L V6'] }, article), true);
+  assert.equal(isNarrowerThanArticle({ trims: ['Sport'] }, article), true);
 });

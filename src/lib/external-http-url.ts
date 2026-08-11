@@ -7,7 +7,9 @@
  * they simply do not become anchors until the underlying source is repaired.
  */
 export function isPublicWebHostname(value: string): boolean {
-  const hostname = String(value || '').toLowerCase().replace(/^\[|\]$/g, '').replace(/\.$/, '');
+  const rawHostname = String(value || '').toLowerCase().replace(/^\[|\]$/g, '');
+  if (rawHostname.includes('..')) return false;
+  const hostname = rawHostname.replace(/\.+$/, '');
   return Boolean(
     hostname.includes('.')
     && !hostname.includes(':')

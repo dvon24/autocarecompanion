@@ -63,6 +63,9 @@ export const fixPartSchema = z.object({
     years: z.array(z.number()).optional(),
     engines: z.array(z.string()).optional(),
     trims: z.array(z.string()).optional(),
+    /** Catalog aliases covered during research. Audit evidence only: the
+     * proposal builder still requires one PN to cover every resolved alias. */
+    catalogModels: z.array(z.string()).optional(),
   }).optional(),
   // ── record-store audit fields (from the parts-audit persist) ──
   /**

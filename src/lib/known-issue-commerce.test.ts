@@ -104,6 +104,10 @@ test('rejects local-only retailer hosts and substring-lookalike merchants', () =
     { vendor: 'router', url: 'https://router.lan/product/part-1234', verified: true },
     { vendor: 'shop', url: 'https://shop.home/product/part-1234', verified: true },
     { vendor: 'BMW', url: 'https://notbmwparts.com/product/widget-1234', verified: true },
+    { vendor: 'BMW', url: 'https://bmwmalware.com/product/ABC1234', verified: true },
+    { vendor: 'Ford', url: 'https://fordscam.com/product/ABC1234', verified: true },
+    { vendor: 'Bosch', url: 'https://boschfraud.example/product/ABC1234', verified: true },
+    { vendor: 'shop', url: 'https://shop.home../product/part-1234', verified: true },
   ]) {
     const { fixParts } = getKnownIssueCommerce(
       issue([{ component: 'Tensioner', verified: true, buyLinks: [buyLink] }]),

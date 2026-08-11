@@ -35,7 +35,7 @@ const NOISE = new Set([
   'failed', 'faulty', 'bad', 'worn', 'old', 'new', 'entire', 'complete', 'whole',
   'affected', 'damaged', 'leaking', 'cracked', 'defective', 'original', 'oem',
   'genuine', 'updated', 'revised', 'improved', 'correct', 'proper', 'both', 'all',
-  'any', 'each', 'one', 'two', 'four', 'six', 'eight', 'driver', 'drivers', 'passenger',
+  'any', 'each', 'one', 'two', 'four', 'six', 'eight',
   'again', 'usually', 'typically', 'often', 'simply', 'just',
 ]);
 

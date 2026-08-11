@@ -10,6 +10,8 @@ test('accepts absolute web citations', () => {
 test('public-host validation handles trailing-dot and local suffix boundaries', () => {
   assert.equal(isPublicWebHostname('static.nhtsa.gov.'), true);
   assert.equal(isPublicWebHostname('router.lan.'), false);
+  assert.equal(isPublicWebHostname('router.lan..'), false);
+  assert.equal(isPublicWebHostname('localhost..'), false);
   assert.equal(isPublicWebHostname('shop.home'), false);
 });
 

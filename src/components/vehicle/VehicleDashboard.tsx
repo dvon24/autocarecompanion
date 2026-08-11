@@ -13,12 +13,13 @@ import type { KnownIssue as CatalogKnownIssue } from '@/schemas/knownIssue.schem
 import { getKnownIssueCommerce, hasKnownIssueCommerce, knownIssueAffiliateUrl } from '@/lib/known-issue-commerce';
 import { trackAffiliateClick } from '@/lib/analytics';
 import { externalHttpUrl } from '@/lib/external-http-url';
+import { describeFitment, isNarrowerThanArticle, partCanBeShownForVehicle } from '@/lib/known-issue-part-fitment';
 
 type IssueRecommendation = NonNullable<CatalogKnownIssue['communityRecommendations']>[number];
 type IssueFixPart = NonNullable<CatalogKnownIssue['fixParts']>[number];
 type IssueCitation = CatalogKnownIssue['citations'][number] | string;
 
-interface VehicleTuple { year: number; make: string; model: string; trim: string; }
+interface VehicleTuple { year: number; make: string; model: string; trim: string; engine?: string; }
 interface KnownIssue {
   id: string; title: string; description: string; severity: string;
   category: string; reportCount: number;
@@ -213,7 +214,7 @@ export function VehicleDashboard({
               <p className="text-sm text-gray-400">No documented issues for this vehicle.</p>
             ) : (
               issues.map(issue => (
-                <IssueCardExpanded key={issue.id} issue={issue} styled={styledTheme} onAskAI={() => sendMessage('Tell me about the "' + issue.title + '" issue on my ' + vehicleDisplay + '. What parts do I need to fix it, what are owners using, and how much does it cost? Include part links.')} />
+                <IssueCardExpanded key={issue.id} issue={issue} vehicle={vehicle} styled={styledTheme} onAskAI={() => sendMessage('Tell me about the "' + issue.title + '" issue on my ' + vehicleDisplay + '. What parts do I need to fix it, what are owners using, and how much does it cost? Include part links.')} />
               ))
             )}
           </div>
@@ -532,10 +533,12 @@ function EmptyState({ title, description }: { title: string; description: string
   return (<div className="text-center py-12"><h3 className="text-base font-semibold text-gray-800 mt-3">{title}</h3><p className="text-sm text-gray-400 mt-1">{description}</p></div>);
 }
 
-function IssueCardExpanded({ issue, styled = true, onAskAI }: { issue: KnownIssue; styled?: boolean; onAskAI: () => void }) {
+function IssueCardExpanded({ issue, vehicle, styled = true, onAskAI }: { issue: KnownIssue; vehicle: VehicleTuple; styled?: boolean; onAskAI: () => void }) {
   const [expanded, setExpanded] = useState(false);
   const sevColor = 'border border-[#C9C0B1] bg-[#EFEDE6] text-[#0B1220]';
-  const { fixParts, ownerGuidance } = getKnownIssueCommerce(issue);
+  const { fixParts: gatedParts, ownerGuidance } = getKnownIssueCommerce(issue);
+  const fitmentVehicle = { year: vehicle.year, trim: vehicle.trim || null, engine: vehicle.engine || null };
+  const fixParts = gatedParts.filter((part) => partCanBeShownForVehicle(part.fitment, fitmentVehicle));
   const citations = issue.citations || [];
   const makeModel = issue.vehicleMatch?.make && issue.vehicleMatch?.model ? issue.vehicleMatch.make + ' ' + issue.vehicleMatch.model : '';
   const searchQuery = encodeURIComponent(makeModel + ' ' + issue.title);
@@ -571,6 +574,9 @@ function IssueCardExpanded({ issue, styled = true, onAskAI }: { issue: KnownIssu
                 {fixParts.map((part, index) => (
                   <li key={`${part.component}-${part.oemPartNumber || ''}-${index}`} className="rounded-lg border border-[#C9C0B1] bg-[#F7F4EC] p-2.5">
                     <p className="text-xs font-semibold text-[#0B1220]">{part.component}</p>
+                    {isNarrowerThanArticle(part.fitment, issue.vehicleMatch.years) && (
+                      <p className="mt-0.5 text-[10px] font-medium text-[#475569]">Fits {describeFitment(part.fitment)}</p>
+                    )}
                     {part.oemPartNumber && <p className="mt-0.5 font-mono text-[10px] text-[#475569]">OEM {part.oemPartNumber}</p>}
                     {part.buyLinks && part.buyLinks.length > 0 && (
                       <div className="mt-2 flex flex-wrap gap-1.5">

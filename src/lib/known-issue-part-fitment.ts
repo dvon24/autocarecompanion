@@ -24,6 +24,7 @@ export interface PartFitment {
   years?: number[];
   engines?: string[];
   trims?: string[];
+  catalogModels?: string[];
 }
 
 export interface FitmentVehicle {
@@ -116,6 +117,20 @@ export function partIsEligibleForVehicle(
 }
 
 /**
+ * Public commerce must fail closed when a part declares a dimension the current
+ * vehicle has not supplied. This is intentionally stricter than the diagnostic
+ * `partFitsVehicle` verdict: unknown engine/trim cannot prove a scoped product
+ * is safe to show, while a legacy part with no declared scope remains visible.
+ */
+export function partCanBeShownForVehicle(fitment: PartFitment | undefined, vehicle: FitmentVehicle): boolean {
+  if (!fitment) return true;
+  if (fitment.years?.length && vehicle.year == null) return false;
+  if (fitment.engines?.length && !vehicle.engine) return false;
+  if (fitment.trims?.length && !vehicle.trim) return false;
+  return partFitsVehicle(fitment, vehicle) !== 'excluded';
+}
+
+/**
  * Pick the part number for a specific vehicle when fitment splits across
  * variants — the CR-V VTC actuator case, where one article's year span needs
  * `14310-RZA-003` for 2007-09 and `14310-R40-A02` for 2010-11 and a single PN
@@ -193,7 +208,9 @@ export function describeFitment(fitment: PartFitment | undefined): string {
  * otherwise imply the part fits their car.
  */
 export function isNarrowerThanArticle(fitment: PartFitment | undefined, articleYears: number[]): boolean {
-  if (!fitment?.years?.length || articleYears.length === 0) return false;
+  if (!fitment) return false;
+  if (fitment.engines?.length || fitment.trims?.length) return true;
+  if (!fitment.years?.length || articleYears.length === 0) return false;
   const scoped = new Set(fitment.years);
   return articleYears.some((y) => !scoped.has(y));
 }

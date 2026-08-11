@@ -44,3 +44,19 @@ test('an explicit parasitic-draw test still recommends the procedure', () => {
   assert.deepEqual(proceduresInSolution('Perform a parasitic draw test after the modules enter sleep mode.'), ['parasitic-draw']);
   assert.deepEqual(proceduresInSolution('Measure the parasitic drain with a low-current DC clamp meter.'), ['parasitic-draw']);
 });
+
+test('delegated, negated and not-required tests never produce affiliate guidance', () => {
+  for (const solution of [
+    'Have the dealer perform a parasitic draw test.',
+    'Do not perform a parasitic draw test.',
+    'A low-current DC clamp meter is not required.',
+  ]) {
+    assert.deepEqual(proceduresInSolution(solution), [], solution);
+  }
+});
+
+test('malformed family-prefixed strings are not treated as supported DTCs', () => {
+  assert.equal(codeFamilyOf('P0300'), 'P');
+  assert.equal(codeFamilyOf('U1000'), 'U');
+  for (const code of ['Pbanana', 'U', 'C-', 'B12', '2E81']) assert.equal(codeFamilyOf(code), null, code);
+});

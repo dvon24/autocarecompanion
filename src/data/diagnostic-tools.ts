@@ -222,11 +222,12 @@ export function scannersForCodeFamilies(families: CodeFamily[]): DiagnosticTool[
     .sort((a, b) => a.priceAnchor - b.priceAnchor);
 }
 
-/** The code family of a DTC string, defaulting to powertrain for odd formats. */
+/** The code family of a canonical five-character OBD DTC. */
 export function codeFamilyOf(code: string): CodeFamily | null {
-  const first = String(code || '').trim().toUpperCase()[0];
-  if (first === 'P' || first === 'B' || first === 'C' || first === 'U') return first;
-  return null;
+  const normalized = String(code || '').trim().toUpperCase();
+  return /^[PBCU][0-3][0-9A-F]{3}$/.test(normalized)
+    ? normalized[0] as CodeFamily
+    : null;
 }
 
 /**
@@ -243,7 +244,11 @@ const PROCEDURE_PATTERNS: Array<[Procedure, RegExp]> = [
 
 export function proceduresInSolution(solution: string): Procedure[] {
   const text = String(solution || '');
-  return PROCEDURE_PATTERNS.filter(([, re]) => re.test(text)).map(([p]) => p);
+  const clauses = text.split(/(?<=[.;!?])\s+|\n+/).map((clause) => clause.trim()).filter(Boolean);
+  const excluded = /\b(?:do not|don'?t|never|not required|isn'?t required|no need)\b|\b(?:dealer|dealership|shop|technician|professional|specialist|service cent(?:er|re))\b/i;
+  return PROCEDURE_PATTERNS
+    .filter(([, re]) => clauses.some((clause) => re.test(clause) && !excluded.test(clause)))
+    .map(([p]) => p);
 }
 
 /** Tools for a set of procedures, cheapest first, deduped. */

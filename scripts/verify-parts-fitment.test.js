@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-require-imports */
 const assert = require('node:assert/strict');
 const test = require('node:test');
-const { looserPartTypeTier, resolveModels } = require('./verify-parts-fitment');
+const { looserPartTypeTier, resolveModels, selectOrderedCategory } = require('./verify-parts-fitment');
 
 const models = (...names) => names.map((data, index) => ({ id: String(index + 1), data }));
 
@@ -21,4 +21,18 @@ test('relaxation evidence always keeps the loosest tier', () => {
   tier = looserPartTypeTier(tier, 'pump');
   tier = looserPartTypeTier(tier, 'electric water pump');
   assert.equal(tier, 'pump');
+});
+
+test('ordered category fallback never pools a lower-priority category', () => {
+  const part = (part_type, id) => ({
+    category: id.startsWith('primary') ? 'primary' : 'fallback',
+    part: { part_type, part_number: id },
+  });
+  const result = selectOrderedCategory([
+    part('Engine Water Pump', 'primary-1'),
+    part('Engine Water Pump', 'fallback-1'),
+    part('Engine Water Pump', 'fallback-2'),
+  ], ['primary', 'fallback'], 'water pump');
+  assert.equal(result.usedCategory, 'primary');
+  assert.deepEqual(result.matched.map((entry) => entry.part.part_number), ['primary-1']);
 });

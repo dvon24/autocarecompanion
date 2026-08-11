@@ -24,9 +24,10 @@ test('handles "swap or replace"', () => {
   assert.ok(p[0]?.includes('gdi injector'), `got ${JSON.stringify(p)}`);
 });
 
-test('strips possessives and qualifiers', () => {
+test('preserves side qualifiers needed to avoid the wrong variant', () => {
   const p = extractPrescribedParts("The usual fix is to replace the driver's master window switch assembly.");
-  assert.equal(p[0], 'master window switch assembly');
+  assert.equal(p[0], 'driver master window switch');
+  assert.equal(extractPrescribedParts('Replace the passenger-side mirror motor.')[0], 'passenger-side mirror motor');
 });
 
 // The negation cases are the whole reason the solution could not be trusted

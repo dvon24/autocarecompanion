@@ -21,13 +21,23 @@ import { formatYearRange } from '../src/lib/known-issue-part-fitment';
 config({ path: '.env.local' });
 
 interface Part {
-  role: string; component: string; supplier: string; aftermarketPartNumber: string;
-  supplierTier: string; fitment?: { years?: number[]; engines?: string[] };
-  catalogModels?: string[];
+  role: string; component: string; supplier: string; aftermarketXref: string[];
+  supplierTier: string; fitment?: { years?: number[]; engines?: string[]; catalogModels?: string[] };
 }
 interface Proposal {
   id: string; vehicle: string; consideredCount: number; parts: Part[];
   partTypeRelaxedTo?: string; modelResolvedBy?: string;
+  partTypeMatch?: string; mappedFrom?: string;
+}
+
+function repairEvidence(solution: unknown): string {
+  const text = String(solution || '').replace(/\|/g, '/').replace(/\s+/g, ' ').trim();
+  if (!text) return 'missing solution evidence';
+  const clauses = text.split(/(?<=[.;!?])\s+/)
+    .filter((clause) => /\b(?:replace|replacing|replacement|install|swap|repair)\b/i.test(clause));
+  // Show every repair clause; a fixed prefix can omit the exact conditional
+  // language the reviewer needs to distinguish the right component/variant.
+  return (clauses.length ? clauses : [text]).join(' / ');
 }
 
 (async () => {
@@ -35,7 +45,7 @@ interface Proposal {
   const pool = new Pool({ connectionString: process.env.DATABASE_URL, max: 2 });
   pool.on('error', () => {});
   const { rows } = await pool.query(
-    'select id, make, model, title from "KnownIssue" where id = any($1)',
+    'select id, make, model, title, solution from "KnownIssue" where id = any($1)',
     [doc.proposals.map((p) => p.id)],
   );
   await pool.end();
@@ -71,11 +81,8 @@ interface Proposal {
     'The catalog proved these parts FIT the vehicle (year + engine). It did NOT prove any of them',
     'REPAIRS the failure the article describes — that judgment is what this review is for.',
     '',
-    'A hand-audit of 25 rows found 21 correct, 2 wrong, 2 partial (~8% clear error rate). The two',
-    'wrong ones were a *Fuel Pump Driver Module* article matched to an in-tank pump, and a',
-    '*dual-pump fluid* differential article matched to a pinion bearing — both cases where the title',
-    'names a component whose name overlaps a different part. Rows are sorted riskiest-first inside',
-    'each make to surface that class early.',
+    'Rows are sorted riskiest-first inside each make. The review evidence includes the article repair',
+    'clauses, the mapping source, catalog aliases, engine scope, and any part-type relaxation.',
     '',
     '| ✓ | article | proposed part | alt | fits |',
     '|---|---|---|---|---|',
@@ -87,6 +94,11 @@ interface Proposal {
       const m = meta.get(p.id);
       const primary = p.parts[0]!;
       const alt = p.parts[1];
+      const primaryPartNumber = primary.aftermarketXref?.[0]?.trim();
+      const alternatePartNumber = alt?.aftermarketXref?.[0]?.trim();
+      if (!primaryPartNumber || (alt && !alternatePartNumber)) {
+        throw new Error(`proposal ${p.id} is missing schema-compatible aftermarketXref evidence`);
+      }
       const years = primary.fitment?.years?.length
         ? formatYearRange(primary.fitment.years)
         : '';
@@ -94,15 +106,17 @@ interface Proposal {
       const evidence = [
         years,
         engine,
-        primary.catalogModels?.length ? `catalog: ${primary.catalogModels.join(', ')}` : '',
+        primary.fitment?.catalogModels?.length ? `catalog: ${primary.fitment.catalogModels.join(', ')}` : '',
+        `mapped from ${p.mappedFrom || 'unknown'}: ${p.partTypeMatch || 'missing'}`,
+        `solution: ${repairEvidence(m?.solution)}`,
         p.partTypeRelaxedTo ? `relaxed: ${p.partTypeRelaxedTo}` : '',
         p.modelResolvedBy || '',
       ].filter(Boolean).join('; ');
       const flag = risk(p) >= 4 ? '⚠️' : '';
       out.push(
         `| ${flag} | ${(m?.title || p.id).replace(/\|/g, '/').slice(0, 72)} `
-        + `| ${primary.supplier} \`${primary.aftermarketPartNumber}\` — ${primary.component} `
-        + `| ${alt ? `${alt.supplier} \`${alt.aftermarketPartNumber}\`` : '—'} `
+        + `| ${primary.supplier} \`${primaryPartNumber}\` — ${primary.component} `
+        + `| ${alt ? `${alt.supplier} \`${alternatePartNumber}\`` : '—'} `
         + `| ${evidence || 'unscoped'} |`,
       );
     }

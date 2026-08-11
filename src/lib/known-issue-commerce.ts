@@ -33,7 +33,7 @@ function vendorMatchesProductUrl(vendor: string, value: string): boolean {
   const vendorIdentity = normalizedVendor.replace(/[^a-z0-9]/g, '');
   const hostLabels = new URL(value).hostname.toLowerCase().replace(/^www\./, '').split('.');
   return vendorIdentity.length >= 3
-    && hostLabels.some((label) => label === vendorIdentity || label.startsWith(vendorIdentity));
+    && hostLabels.some((label) => label === vendorIdentity);
 }
 
 /** Add owned affiliate attribution only after the destination passes the guard. */

@@ -94,7 +94,10 @@ export const COMPONENT_CATALOG_MAP: ComponentMapping[] = [
   { pattern: /\bspark plug\b/i, productMatch: 'ignition', partTypeMatch: 'spark plug' },
   { pattern: /\bcatalytic converter\b/i, productMatch: 'catalytic converter', partTypeMatch: 'catalytic converter' },
   { pattern: /\begr\b/i, productMatch: 'egr related components', partTypeMatch: 'egr valve' },
-  { pattern: /\b(purge valve|evap)\b/i, productMatch: ['evaporative system', 'fuel injection system components'], partTypeMatch: 'vapor canister purge valve' },
+  // Generic EVAP leaks have several possible causes (cap, hose, canister,
+  // wiring, purge/vent valve). Only map when the article actually identifies
+  // the purge component; otherwise a P0456 page would sell one arbitrary cause.
+  { pattern: /\b(?:purge valve|purge solenoid|evap(?:orative)? purge)\b/i, productMatch: ['evaporative system', 'fuel injection system components'], partTypeMatch: 'vapor canister purge valve' },
 
   // ── sensors, split by the catalog's own sensor families ──
   { pattern: /\b(oxygen sensor|o2 sensor|air.?fuel ratio sensor)\b/i, productMatch: 'sensors-exhaust', partTypeMatch: 'oxygen sensor' },
