@@ -171,6 +171,8 @@ if (require.main === module) {
 }
 
 module.exports = {
+  EXPECTED_ADJUDICATION,
+  EXPECTED_PROPOSALS,
   EXPECTED_ID_SET_SHA256,
   EXPECTED_REVIEW_SET_SHA256,
   assertReviewedRows,

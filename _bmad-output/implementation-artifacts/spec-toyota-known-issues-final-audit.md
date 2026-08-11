@@ -60,3 +60,12 @@ Close Toyota without risking the indexed catalog: freeze every live Toyota row, 
 5. `data/known-issue-toyota-make-audit-2026-08-11.json`
 6. `data/known-issue-toyota-adjudication-2026-08-05.json`
 7. The three `known-issue-toyota-*-rewrite-proposals-2026-08-05.json` files
+
+## Reviewed republish release gate (2026-08-11)
+
+- The 32 independently reviewed `rewrite_then_publish` rows are frozen in `data/known-issue-toyota-reviewed-release-manifest-2026-08-11.json`.
+- The manifest is rebuilt deterministically from the hash-pinned 91-row hold packet, adjudication, and three proposal files. It cannot introduce an unreviewed ID or patch.
+- Every write requires the exact archived full-record before hash under row lock, an exact pre-release catalog inventory of 7,642 published / 547 published Toyota / 107 archived Toyota, and the explicit batch confirmation token.
+- The transaction is all-or-nothing at `SERIALIZABLE`; it verifies all 32 full-record after hashes and the projected 7,674 / 579 / 75 inventory before commit.
+- The release changes only the reviewed non-identity patch fields. `make`, `model`, and `category` are absent from the generated SQL. All 32 title restorations are explicitly justified and apply only to currently archived rows.
+- This tooling remains unapplied until the all-make release batch has passed independent review.
