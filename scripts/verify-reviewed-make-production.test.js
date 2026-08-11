@@ -2,8 +2,20 @@ const assert = require('node:assert/strict');
 const test = require('node:test');
 const {
   compareModelCounts,
+  expectedMakeCounts,
   expectedModelCounts,
 } = require('./verify-reviewed-make-production');
+
+test('sums case-preserved make inventories across packets', () => {
+  const counts = expectedMakeCounts({
+    batchId: 'reviewed-ram',
+    packets: [
+      { summary: { frozen_make_counts: { RAM: 25, Ram: 36 } } },
+      { summary: { frozen_make_counts: { RAM: 5 } } },
+    ],
+  });
+  assert.deepEqual(Object.fromEntries(counts), { RAM: 30, Ram: 36 });
+});
 
 test('sums packet rows for each model', () => {
   const counts = expectedModelCounts({

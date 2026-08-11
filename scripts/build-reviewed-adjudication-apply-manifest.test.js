@@ -7,8 +7,12 @@ function fixture() {
   const current = {
     make: 'Hyundai',
     model: 'Accent',
+    years: [2018, 2019],
+    trims: ['SE'],
+    engines: ['1.6L I4'],
     title: 'ABS Module Fire Risk',
     category: 'brakes',
+    severity: 'high',
     status: 'published',
     description: 'old copy',
     solution: 'old solution',
@@ -18,6 +22,7 @@ function fixture() {
     humanApproved: false,
     reportCount: 17,
     lastReportedByOwners: '2026-08-08',
+    relatedIssueIds: [],
   };
   return {
     current,
@@ -53,6 +58,25 @@ test('rejects a title substitution under an indexed id', () => {
   assert.throws(() => buildReviewedAfterState(row, current), /proposal changes title/);
 });
 
+test('rejects frozen vehicle-scope drift under an indexed id', () => {
+  const { row, current } = fixture();
+  row.proposal.engines = ['2.0L I4'];
+  row.changedFields.push('engines');
+  assert.throws(() => buildReviewedAfterState(row, current), /proposal changes engines/);
+});
+
+test('preserves an existing verified fixParts deep link', () => {
+  const { row, current } = fixture();
+  current.fixParts = [{
+    component: 'ABS module',
+    buyLinks: [{ vendor: 'Amazon', url: 'https://www.amazon.com/dp/B000000000' }],
+  }];
+  row.before.fixParts = [];
+  row.proposal.fixParts = [];
+  const after = buildReviewedAfterState(row, current);
+  assert.deepEqual(after.fixParts, current.fixParts);
+});
+
 test('rejects retail commerce in a reviewed no-commerce adjudication', () => {
   const { row, current } = fixture();
   row.changedFields.push('fixParts');
@@ -60,7 +84,7 @@ test('rejects retail commerce in a reviewed no-commerce adjudication', () => {
     component: 'ABS module',
     buyLinks: [{ vendor: 'Amazon', url: 'https://www.amazon.com/dp/B000000000' }],
   }];
-  assert.throws(() => buildReviewedAfterState(row, current), /must remain no-commerce/);
+  assert.throws(() => buildReviewedAfterState(row, current), /cannot change fixParts/);
 });
 
 test('requires pending cleanup actions to be explicitly classified as no-ops', () => {

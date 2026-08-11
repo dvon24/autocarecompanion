@@ -1,0 +1,1044 @@
+{
+  "schemaVersion": 2,
+  "auditScope": "full-record",
+  "manifestKind": "known-issues-catalog-deeplinks",
+  "batchId": "reviewed-ram-adjudication-2026-08-11",
+  "generatedAt": "2026-08-11T03:03:16.213Z",
+  "sourceRef": "codex/ram-deeplink-audit",
+  "make": "RAM",
+  "frozenMakeValues": [
+    "RAM",
+    "Ram"
+  ],
+  "frozenMakeCounts": {
+    "RAM": 66,
+    "Ram": 36
+  },
+  "approval": {
+    "reviewer": "Opus",
+    "owner": "Devon",
+    "reviewDate": "2026-08-11",
+    "contract": "same indexed identity, published status preserved, holds are no-ops, no retail commerce"
+  },
+  "packetCount": 6,
+  "packetRowCount": 102,
+  "writeRowCount": 7,
+  "heldRowCount": 95,
+  "packets": [
+    {
+      "file": "data/known-issue-ram-1500-adjudication-2026-08-11.json",
+      "sha256": "04ccff74275cd32c430608395dad881052dea5dfebd2129c0588c69780caa9c3",
+      "model": "1500",
+      "frozenMakeValues": [
+        "RAM",
+        "Ram"
+      ],
+      "summary": {
+        "retain_indexed_identity_and_accuracy_cleanup": 7,
+        "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy": 54,
+        "fabricated_report_counts_proposed_zero": 10,
+        "frozen_make_counts": {
+          "RAM": 25,
+          "Ram": 36
+        },
+        "pages_preserved_published": 61,
+        "total": 61
+      }
+    },
+    {
+      "file": "data/known-issue-ram-1500-classic-adjudication-2026-08-11.json",
+      "sha256": "0c1630a410ae5def72970c543bdf9bcb5abd617923061c2149041c8aecead689",
+      "model": "1500 Classic",
+      "frozenMakeValues": [
+        "RAM"
+      ],
+      "summary": {
+        "retain_indexed_identity_and_accuracy_cleanup": 0,
+        "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy": 5,
+        "fabricated_report_counts_proposed_zero": 1,
+        "frozen_make_counts": {
+          "RAM": 5
+        },
+        "pages_preserved_published": 5,
+        "total": 5
+      }
+    },
+    {
+      "file": "data/known-issue-ram-2500-adjudication-2026-08-11.json",
+      "sha256": "18faf6a48c8d5277cefc351d819deaef0c17173c3491acef463b8c4aab510c29",
+      "model": "2500",
+      "frozenMakeValues": [
+        "RAM"
+      ],
+      "summary": {
+        "retain_indexed_identity_and_accuracy_cleanup": 0,
+        "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy": 20,
+        "fabricated_report_counts_proposed_zero": 4,
+        "frozen_make_counts": {
+          "RAM": 20
+        },
+        "pages_preserved_published": 20,
+        "total": 20
+      }
+    },
+    {
+      "file": "data/known-issue-ram-3500-adjudication-2026-08-11.json",
+      "sha256": "18909ebd7bd1731129c12d47f72cc365c5a4943d67e002786fe002e157cb64c4",
+      "model": "3500",
+      "frozenMakeValues": [
+        "RAM"
+      ],
+      "summary": {
+        "retain_indexed_identity_and_accuracy_cleanup": 0,
+        "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy": 8,
+        "fabricated_report_counts_proposed_zero": 4,
+        "frozen_make_counts": {
+          "RAM": 8
+        },
+        "pages_preserved_published": 8,
+        "total": 8
+      }
+    },
+    {
+      "file": "data/known-issue-ram-promaster-adjudication-2026-08-11.json",
+      "sha256": "44c437a7e9fb29830883e720f0bc5ae880f79d95ddcfd77ce087b4854460b904",
+      "model": "ProMaster",
+      "frozenMakeValues": [
+        "RAM"
+      ],
+      "summary": {
+        "retain_indexed_identity_and_accuracy_cleanup": 0,
+        "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy": 4,
+        "fabricated_report_counts_proposed_zero": 4,
+        "frozen_make_counts": {
+          "RAM": 4
+        },
+        "pages_preserved_published": 4,
+        "total": 4
+      }
+    },
+    {
+      "file": "data/known-issue-ram-promaster-city-adjudication-2026-08-11.json",
+      "sha256": "ba964cc1cada06af05210b9b32928dab2605020b2d86be2941c7e61736359d24",
+      "model": "ProMaster City",
+      "frozenMakeValues": [
+        "RAM"
+      ],
+      "summary": {
+        "retain_indexed_identity_and_accuracy_cleanup": 0,
+        "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy": 4,
+        "fabricated_report_counts_proposed_zero": 2,
+        "frozen_make_counts": {
+          "RAM": 4
+        },
+        "pages_preserved_published": 4,
+        "total": 4
+      }
+    }
+  ],
+  "issues": [
+    {
+      "id": "ram-1500-digital-instrument-cluster-goes-blank-startup-while-driving",
+      "disposition": "no-commerce",
+      "evidence": [
+        {
+          "kind": "primary-evidence",
+          "observation": "25V826 identifies a blank cluster display caused by a software error."
+        },
+        {
+          "kind": "primary-evidence",
+          "observation": "26V225 identifies failure to display critical safety information and specifies a software update."
+        },
+        {
+          "kind": "primary-evidence",
+          "observation": "Both campaigns cover VIN-selected 2025-2026 RAM 1500 vehicles."
+        },
+        {
+          "kind": "evidence-limitation",
+          "observation": "A communication proves only its stated condition and population; no owner-frequency rate, universal mechanism, repair price or retail fitment is inferred."
+        },
+        {
+          "kind": "independent-review",
+          "verifiedOn": "2026-08-11",
+          "observation": "Opus independently reconciled the RAM packet set; Devon authorized deployment after review. Source packet: data/known-issue-ram-1500-adjudication-2026-08-11.json."
+        }
+      ],
+      "before": {
+        "makeHash": "599f64ab348a76c293cda2750239a0c1e73c34861ca507fc9999930736ef76ad",
+        "modelHash": "296cefdbdbaaf7b598a5786de6e134c99b7822c1c7b2ecc2a1b3d8cbdd03b287",
+        "yearsHash": "aa567c9bf7cb828a00b99aa8a4fb0528381ffe78f95878a9914dde2739076ab0",
+        "trimsHash": "1840c4bc808fe656f2395f06b5002c9b9ab1d311709d12fa6cdc00c2b40864d6",
+        "enginesHash": "0dad050dc23a9b5a1988f4d5ed4a3315b3827c053df9d124d22918ea1f7b4271",
+        "categoryHash": "477920ba85abe16e6b8c01e5637691d82cc78f5a9db884222f77d438c73ceb87",
+        "titleHash": "8c88018dc1ac0c17e5d603caade19cc7bf48aabd2121f47a8de9bf2b8194ec5b",
+        "descriptionHash": "968f7cde29297f27f6b9f4405c0431b8665cca5985301c5517007cccb3b0f5e5",
+        "solutionHash": "8b724edf687022ceb46018b6a617079759795c65495c1b1f8e610365ae8db087",
+        "severityHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "47cb0bc9a6f20025f72afafa8b01a4ee4a1ac8f57958c613e0ca3b8a09204ecb",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "estimatedCostHighHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "6a45cdd0e160fae0ff54ebd344119191e2f69a0399babab02fc313cee5c38ae2",
+        "communityRecommendationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "060998a3582d16f70ac4e76cf28b406c2c9c82cd4324932d1b970d346a976e93",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": []
+      },
+      "after": {
+        "make": "RAM",
+        "model": "1500",
+        "years": [
+          2025,
+          2026
+        ],
+        "trims": [
+          "Big Horn",
+          "Laramie",
+          "Limited",
+          "Tungsten"
+        ],
+        "engines": [
+          "3.0L Hurricane twin-turbo I6",
+          "5.7L HEMI V8"
+        ],
+        "category": "electrical",
+        "title": "Digital Instrument Cluster Goes Blank at Startup or While Driving (Recall 25V826 / 26V225)",
+        "description": "NHTSA campaigns 25V826 and 26V225 establish this identity for VIN-selected 2025-2026 RAM 1500 trucks. A software error can leave the instrument-panel display blank or unable to show safety information such as gear selection and warning lamps. The campaigns use different compliance scopes and remedies, so VIN status determines which action applies; neither campaign establishes an owner-frequency count.",
+        "solution": "Check the VIN for 25V826 (FCA B4C/B8C) and 26V225 (FCA 35D). Have the dealer inspect and update instrument-cluster software or replace the cluster when the applicable campaign requires it, free of charge. If the display fails while driving, avoid relying on missing gear or warning information, move to a safe location and arrange service. Outside an open campaign, preserve cluster, body and network faults before diagnosis. Do not buy a cluster, display or control module from this page; campaign eligibility, software level, coding, current part number and VIN fitment must be established first.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "VIN checked for 25V826 and 26V225",
+          "blank or failed display condition recorded",
+          "cluster, power and vehicle-network faults preserved",
+          "software remedy separated from hardware replacement"
+        ],
+        "affectedSystems": [
+          "instrument-panel cluster display",
+          "cluster software and vehicle network",
+          "gear-selection and safety-warning information"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "title": "NHTSA Live RAM 1500 2026 Recall Results",
+            "type": "recall",
+            "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=RAM&model=1500&modelYear=2026"
+          },
+          {
+            "title": "NHTSA Manufacturer Communications and Recall Datasets",
+            "type": "nhtsa",
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-11",
+        "contentUpdatedOn": "2026-08-11",
+        "contentUpdateSummary": "Retained the exact 25V826/26V225 cluster-display identity and bounded it to VIN eligibility, safety response and campaign remedy.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "ram-1500-ecodiesel-3-0l-egr-cooler-cracks-can-cause-intake-manifold-f",
+      "disposition": "no-commerce",
+      "evidence": [
+        {
+          "kind": "primary-evidence",
+          "observation": "19V757 identifies an EGR-cooler crack and vaporized-coolant path."
+        },
+        {
+          "kind": "primary-evidence",
+          "observation": "The consequence is possible intake-manifold combustion and fire."
+        },
+        {
+          "kind": "primary-evidence",
+          "observation": "The remedy replaces the cooler and inspects or replaces the intake manifold."
+        },
+        {
+          "kind": "evidence-limitation",
+          "observation": "A communication proves only its stated condition and population; no owner-frequency rate, universal mechanism, repair price or retail fitment is inferred."
+        },
+        {
+          "kind": "independent-review",
+          "verifiedOn": "2026-08-11",
+          "observation": "Opus independently reconciled the RAM packet set; Devon authorized deployment after review. Source packet: data/known-issue-ram-1500-adjudication-2026-08-11.json."
+        }
+      ],
+      "before": {
+        "makeHash": "599f64ab348a76c293cda2750239a0c1e73c34861ca507fc9999930736ef76ad",
+        "modelHash": "296cefdbdbaaf7b598a5786de6e134c99b7822c1c7b2ecc2a1b3d8cbdd03b287",
+        "yearsHash": "de1a11d9eb39b25916a6432c5469430999fadc64813f84e7229e26146682bef6",
+        "trimsHash": "f5f1d470fe8d49a5a32a65b5fc5dbd6730564ba0daf791ef846c29072134ef13",
+        "enginesHash": "f4afb684f14f465b54c7f9e5c24d1e203aaa6d2d5c92a98e6735f04e885f0ded",
+        "categoryHash": "ca827b5231b577d4cf0d96711cee3df41ca412e26972493d1186d04c3fc3539b",
+        "titleHash": "4ddeb4e75798518ed637393343754f4ff0383fe8becafecc94a2722670930d4f",
+        "descriptionHash": "47d62c6567ebeada3d9bc699540e8c7b4b7ea3476f7aac7fbcdcbfde86c9a803",
+        "solutionHash": "4a54be6b22f3e1aad8d66c5d08e9e8c03ee5204c912a3d386c82fdbfceb5b09d",
+        "severityHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "b96970fcecfb73d0a44fc4c29097c9aca3e237b857232cab9b41e9aea97cd068",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "estimatedCostHighHash": "b090147020e033534635010c4f7eb6fc270d44e5df67ea9e744a8087df9ca106",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "07b8a96bde1eed775ccd5d12ca4622e0144d3e18a60aa149295ffa55b561f1b8",
+        "communityRecommendationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "b08c57b524535d7fe7b5af511f683581853ad1685fece9ee445f68967cf3c643",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": []
+      },
+      "after": {
+        "make": "RAM",
+        "model": "1500",
+        "years": [
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019
+        ],
+        "trims": [
+          "1500",
+          "1500 Classic"
+        ],
+        "engines": [
+          "3.0L EcoDiesel V6 (VM Motori A630)"
+        ],
+        "category": "exhaust",
+        "title": "EcoDiesel 3.0L EGR cooler cracks and can cause intake-manifold fire (NHTSA Recall 19V-757)",
+        "description": "NHTSA 19V757 / FCA VB1 establishes this identity for affected 2014-2019 RAM 1500 and 1500 Classic trucks with the 3.0L EcoDiesel. The EGR cooler may crack, allowing pre-heated vaporized coolant into the EGR system; the mixture can combust in the intake manifold and increase fire risk. The campaign is VIN-specific and does not establish an owner-frequency total.",
+        "solution": "Check the VIN for 19V757 / VB1 and have the dealer replace the EGR cooler and inspect or replace the intake manifold as necessary, free of charge. If coolant loss, smoke, a burning odor or fire occurs, stop safely, shut down, exit and call emergency services when needed. Do not buy an EGR cooler or intake manifold from this page; campaign eligibility, completed remedy, current part number and VIN fitment must be established first.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "VIN checked for 19V757 / VB1",
+          "coolant loss and smoke or odor documented",
+          "EGR cooler and intake manifold inspected under campaign procedure",
+          "open recall and completed remedy confirmed"
+        ],
+        "affectedSystems": [
+          "3.0L EcoDiesel EGR cooler",
+          "intake manifold",
+          "engine cooling and exhaust-gas recirculation"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "title": "NHTSA 19V757 - RAM 1500 EcoDiesel EGR Cooler",
+            "type": "recall",
+            "url": "https://static.nhtsa.gov/odi/rcl/2019/RCLRPT-19V757-2821.PDF"
+          },
+          {
+            "title": "NHTSA Live RAM 1500 2019 Recall Results",
+            "type": "recall",
+            "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=RAM&model=1500&modelYear=2019"
+          },
+          {
+            "title": "NHTSA Manufacturer Communications and Recall Datasets",
+            "type": "nhtsa",
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-11",
+        "contentUpdatedOn": "2026-08-11",
+        "contentUpdateSummary": "Retained the exact VB1 EcoDiesel EGR-cooler fire-risk identity and replaced secondary claims with the VIN-bounded recall condition and remedy.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "ram-1500-ecodiesel-fuel-pump-2014",
+      "disposition": "no-commerce",
+      "evidence": [
+        {
+          "kind": "primary-evidence",
+          "observation": "22V406 covers affected 2014-2019 RAM 1500 diesels and identifies debris and fuel starvation."
+        },
+        {
+          "kind": "primary-evidence",
+          "observation": "22V767 covers affected 2020-2022 RAM 1500 diesels and identifies HPFP failure and engine stall."
+        },
+        {
+          "kind": "primary-evidence",
+          "observation": "Both remedies replace the HPFP and inspect or replace additional fuel-system components as necessary."
+        },
+        {
+          "kind": "evidence-limitation",
+          "observation": "A communication proves only its stated condition and population; no owner-frequency rate, universal mechanism, repair price or retail fitment is inferred."
+        },
+        {
+          "kind": "independent-review",
+          "verifiedOn": "2026-08-11",
+          "observation": "Opus independently reconciled the RAM packet set; Devon authorized deployment after review. Source packet: data/known-issue-ram-1500-adjudication-2026-08-11.json."
+        }
+      ],
+      "before": {
+        "makeHash": "599f64ab348a76c293cda2750239a0c1e73c34861ca507fc9999930736ef76ad",
+        "modelHash": "296cefdbdbaaf7b598a5786de6e134c99b7822c1c7b2ecc2a1b3d8cbdd03b287",
+        "yearsHash": "925c35048cc19263cc0bab52fec869b84365c54bfec245779b7438224ad9a983",
+        "trimsHash": "add5976f2e62922a9df24b821fce9c4318cf69816e86776871ab28c7293d21d4",
+        "enginesHash": "3819bca2ba78a8d2d4453f61c13437443595351b3d2aceafa4aa8594c7ad18b4",
+        "categoryHash": "c864f62f92859207770d11f0ffbbf2e0e44aad05259e8ed83391cbb3193803f9",
+        "titleHash": "5b233a035dffe0154f88f4ef6470d6817bf4bca041ba984122f8a97aa3cc6b66",
+        "descriptionHash": "425679aaac7aa1e40c67c9b56b14e82704766ffa58d8529d860c97d4a9ead43d",
+        "solutionHash": "c5f544a91578ec27e7c92839ebf46783a284381ec6fef5fd7e385469b301c880",
+        "severityHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "a53fc1dc698142dcf657a7e6f432a6e413eb1699351f558fe2902edf8db0a94b",
+        "affectedSystemsHash": "2a861d7e211e20ca4098f35cd9955123216523ede472ce4060df78801dd85740",
+        "dtcCodesHash": "f15afd8ae55623b5c219fa012cca93341120a5a9c512ee70f9a5e78fd3da7d05",
+        "estimatedCostLowHash": "1a1cf797fabe7f95836fabeca626907c77b3e6c9aff7c2290b396a238c69362e",
+        "estimatedCostHighHash": "c5d1866aabc15dda07995e73b08c4ccb514947dcd3a621cea851af5fe366f11b",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "b6f414f8029abd354b89490f3e1db2f01c5f62ae48bc93ed7ef151846d0daaef",
+        "communityRecommendationsHash": "abf6515b2eec0005af6f59ff20420e52e50168ccb9d257c68189f449b51b772a",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "55c8079ac96c6a4f6a94e3460c79e4006d62374cce6e9fc8b281938a3abc7627",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "e9271efb2c5664392fdac0d17748c5687b134021cd9743ea86eed4643c9464e9",
+        "reviewedOnHash": "10c8087a17959a12f7f6c875bf2590902208df8e81deb86e3966c843e2780ee5",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "52de649dd725d35b8b804937764f89ccd2a54c1276d92d08c74873bd6284cf0c",
+        "claimIds": [
+          "communityRecommendations:0",
+          "communityRecommendations:1"
+        ]
+      },
+      "after": {
+        "make": "RAM",
+        "model": "1500",
+        "years": [
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022
+        ],
+        "trims": [
+          "Big Horn",
+          "Laramie",
+          "Laramie Longhorn",
+          "Limited",
+          "Limited Longhorn",
+          "Lone Star",
+          "Rebel"
+        ],
+        "engines": [
+          "3.0L EcoDiesel"
+        ],
+        "category": "fuel",
+        "title": "EcoDiesel Fuel Pump Failure / Stalling",
+        "description": "NHTSA 22V406 / FCA Z46 covers affected 2014-2019 RAM 1500 trucks with the 3.0L diesel, while 22V767 / FCA Z96 covers affected 2020-2022 RAM 1500 trucks with that engine. High-pressure fuel-pump failure can introduce debris or cause fuel starvation and an unexpected loss of drive power. Together the campaigns support the indexed model-year span, but only VIN-selected vehicles are included and no owner-frequency count is established.",
+        "solution": "Check the VIN for Z46 / 22V406 and Z96 / 22V767. Have the dealer replace the high-pressure fuel pump and inspect or replace additional fuel-system components as necessary, free of charge. If the engine stalls or loses power, use hazards, steer and brake to a safe location and arrange service. Do not buy a high-pressure pump, injector, rail or fuel-system kit from this page; campaign eligibility, contamination extent, completed remedy, current part number and VIN fitment must be established first.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "VIN checked for Z46 and Z96",
+          "stall or loss-of-power sequence recorded",
+          "rail pressure and contamination evidence preserved",
+          "pump and downstream fuel-system scope established"
+        ],
+        "affectedSystems": [
+          "3.0L diesel high-pressure fuel pump",
+          "fuel rails, injectors and delivery system",
+          "engine fuel-pressure control"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "title": "NHTSA Live RAM 1500 2019 Recall Results",
+            "type": "recall",
+            "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=RAM&model=1500&modelYear=2019"
+          },
+          {
+            "title": "NHTSA Live RAM 1500 2022 Recall Results",
+            "type": "recall",
+            "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=RAM&model=1500&modelYear=2022"
+          },
+          {
+            "title": "NHTSA Manufacturer Communications and Recall Datasets",
+            "type": "nhtsa",
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-11",
+        "contentUpdatedOn": "2026-08-11",
+        "contentUpdateSummary": "Retained the exact EcoDiesel HPFP stall identity and separated the Z46 and Z96 VIN populations and contamination scope.",
+        "relatedIssueIds": [
+          "ram-2500-cp4-fuel-pump-failure-2019"
+        ]
+      }
+    },
+    {
+      "id": "ram-1500-front-wheel-bearing-encoder-ring-damage-disables-electronic",
+      "disposition": "no-commerce",
+      "evidence": [
+        {
+          "kind": "primary-evidence",
+          "observation": "24V794 identifies damaged front wheel hub encoder rings."
+        },
+        {
+          "kind": "primary-evidence",
+          "observation": "The defect can disable electronic stability control."
+        },
+        {
+          "kind": "primary-evidence",
+          "observation": "The remedy is inspection and hub assembly replacement as necessary."
+        },
+        {
+          "kind": "evidence-limitation",
+          "observation": "A communication proves only its stated condition and population; no owner-frequency rate, universal mechanism, repair price or retail fitment is inferred."
+        },
+        {
+          "kind": "independent-review",
+          "verifiedOn": "2026-08-11",
+          "observation": "Opus independently reconciled the RAM packet set; Devon authorized deployment after review. Source packet: data/known-issue-ram-1500-adjudication-2026-08-11.json."
+        }
+      ],
+      "before": {
+        "makeHash": "599f64ab348a76c293cda2750239a0c1e73c34861ca507fc9999930736ef76ad",
+        "modelHash": "296cefdbdbaaf7b598a5786de6e134c99b7822c1c7b2ecc2a1b3d8cbdd03b287",
+        "yearsHash": "9c9380fb50cd4f4f9e2032bd9a18645ae4fc1d30335672c62c897bcb9e099ba5",
+        "trimsHash": "1840c4bc808fe656f2395f06b5002c9b9ab1d311709d12fa6cdc00c2b40864d6",
+        "enginesHash": "0dad050dc23a9b5a1988f4d5ed4a3315b3827c053df9d124d22918ea1f7b4271",
+        "categoryHash": "6ad35495f7e0102ccece4d8a88ed3c254b882110341f84dc2c9026be82600e3f",
+        "titleHash": "de78ba4f50e92d486527476266b14cc3938f4cd2144fff573ad2bafcde044eaf",
+        "descriptionHash": "68767b5709cc136ebd633a373c744aa3cc955a1dcc283a8a3eb27837ef980357",
+        "solutionHash": "75fbbc931b4d1e6d06fc68e8321d8d5d49ea7fbd262e3db4aa8d1a1ce1ddb448",
+        "severityHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "06976ccacfb6eb357eaca5d20b68148818fc41ad7898673a9506829b0438e883",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "estimatedCostHighHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "568f54bba304adcfdbedfff511d5a2c971cfb5ed9d7ffb551b3544ef45244be2",
+        "communityRecommendationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "060998a3582d16f70ac4e76cf28b406c2c9c82cd4324932d1b970d346a976e93",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": []
+      },
+      "after": {
+        "make": "RAM",
+        "model": "1500",
+        "years": [
+          2025
+        ],
+        "trims": [
+          "Big Horn",
+          "Laramie",
+          "Limited",
+          "Tungsten"
+        ],
+        "engines": [
+          "3.0L Hurricane twin-turbo I6",
+          "5.7L HEMI V8"
+        ],
+        "category": "safety",
+        "title": "Front Wheel Bearing Encoder Ring Damage Disables Electronic Stability Control (Recall 24V794)",
+        "description": "NHTSA 24V794 / FCA 97B establishes this identity for affected 2025 RAM 1500 vehicles. Damaged front-wheel-hub encoder rings can disable electronic stability control and cause an FMVSS 126 noncompliance. The remedy is VIN-specific inspection and front wheel bearing/hub replacement as necessary, not proof that every frozen vehicle needs a hub.",
+        "solution": "Check the VIN for 24V794 / 97B and have the dealer inspect and replace the affected front wheel bearing/hub assembly as necessary, free of charge. Treat an ESC warning as a loss of an important stability aid and adjust driving until repaired. Outside the campaign, preserve wheel-speed and chassis faults and inspect wiring, sensor air gap, encoder ring and hub separately. Do not buy a hub, bearing or wheel-speed sensor from this page; campaign eligibility, failed side, current part number and VIN fitment must be established first.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "VIN checked for 24V794 / 97B",
+          "ESC and wheel-speed faults preserved",
+          "encoder ring and hub inspected",
+          "failed side separated from sensor and wiring paths"
+        ],
+        "affectedSystems": [
+          "front wheel hub encoder rings",
+          "wheel-speed sensing",
+          "electronic stability control"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "title": "NHTSA Live RAM 1500 2025 Recall Results",
+            "type": "recall",
+            "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=RAM&model=1500&modelYear=2025"
+          },
+          {
+            "title": "NHTSA Manufacturer Communications and Recall Datasets",
+            "type": "nhtsa",
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-11",
+        "contentUpdatedOn": "2026-08-11",
+        "contentUpdateSummary": "Retained the exact 97B encoder-ring identity and bounded it to affected 2025 VINs and inspection-led hub replacement.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "ram-1500-power-tailgate-unlatches-opens-while-driving",
+      "disposition": "no-commerce",
+      "evidence": [
+        {
+          "kind": "primary-evidence",
+          "observation": "18V486 covers specified 2015-2017 bed configurations and identifies limiter-tab fracture."
+        },
+        {
+          "kind": "primary-evidence",
+          "observation": "19V347 covers specified 2013-2018 bed and build populations and identifies the same limiter-tab failure path."
+        },
+        {
+          "kind": "primary-evidence",
+          "observation": "22V904 covers affected 2019-2022 RAM 1500 trucks with misaligned tailgate strikers and specifies free striker-alignment inspection and adjustment."
+        },
+        {
+          "kind": "evidence-limitation",
+          "observation": "A communication proves only its stated condition and population; no owner-frequency rate, universal mechanism, repair price or retail fitment is inferred."
+        },
+        {
+          "kind": "independent-review",
+          "verifiedOn": "2026-08-11",
+          "observation": "Opus independently reconciled the RAM packet set; Devon authorized deployment after review. Source packet: data/known-issue-ram-1500-adjudication-2026-08-11.json."
+        }
+      ],
+      "before": {
+        "makeHash": "d88d53c93ce94662b8b7952f3b6195099ce55bc5fc035d7b41f47e316c4580c3",
+        "modelHash": "296cefdbdbaaf7b598a5786de6e134c99b7822c1c7b2ecc2a1b3d8cbdd03b287",
+        "yearsHash": "9f86998b9fd13188fbeb90b514c9af5c43dba256aea56be82f1d09473306125f",
+        "trimsHash": "8e7e2c7ce4b301d0ec355595f8e17a5427a2d40a59062ab2d2657f7852b6b417",
+        "enginesHash": "1c22bce82f384f4869879c56bc066bf9ae3d17e4748d4bfefdafcffb08f06d89",
+        "categoryHash": "6ad35495f7e0102ccece4d8a88ed3c254b882110341f84dc2c9026be82600e3f",
+        "titleHash": "72aee4c64f3f3dcc11be9f1c6382d46352632580fdcb84a93a6862ed0a445266",
+        "descriptionHash": "ed300dd0c019debe0fe08e41048b44652995a36202a82eed17628bf9ad7d1371",
+        "solutionHash": "44fc5329462e4154dff27a90b58875e39bffa899b5b86452d4f917b116505f73",
+        "severityHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "d93972466b342986d3ac5682daa8ea8594a0848a8add1e78b0239a2373168fa0",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "estimatedCostHighHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "dd6f00b3d8de9d7ab7b021aa6870298f86ac7c8fa236635055565d3cfb1c2498",
+        "communityRecommendationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "956506168505830278c810e3e6f98a5f317b6e08d064d4de8bb354cb0936db86",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": []
+      },
+      "after": {
+        "make": "Ram",
+        "model": "1500",
+        "years": [
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022
+        ],
+        "trims": [
+          "Big Horn",
+          "Laramie",
+          "Limited",
+          "Longhorn",
+          "Rebel"
+        ],
+        "engines": [
+          "3.6L Pentastar V6",
+          "5.7L HEMI",
+          "3.0L EcoDiesel"
+        ],
+        "category": "safety",
+        "title": "Power Tailgate Unlatches and Opens While Driving (Recall)",
+        "description": "Three NHTSA campaigns establish two VIN-bounded mechanisms under this frozen identity. NHTSA 18V486 / FCA U74 and 19V347 / FCA V44 cover specified 2013-2018 RAM 1500 bed, build-date and power-locking-tailgate configurations in which a tailgate-actuator limiter tab may fracture and allow the tailgate to unlatch while driving. NHTSA 22V904 / FCA ZB8 separately covers affected 2019-2022 RAM 1500 trucks whose misaligned tailgate strikers may prevent proper latching and allow the tailgate to open while driving. Either condition can release unsecured cargo and create a road hazard; VIN, model year and equipment determine the applicable campaign.",
+        "solution": "Check the VIN for U74 / 18V486, V44 / 19V347 and ZB8 / 22V904. Have the dealer complete the applicable free remedy: repair the tailgate latch for the limiter-tab campaigns, or inspect tailgate-striker alignment to the box latch and adjust it if necessary for ZB8. Until campaign status and remedy completion are confirmed, verify the tailgate is latched before every trip and secure cargo independently. Outside those campaigns, inspect the latch, striker, actuator, limiter, wiring and alignment before replacement. Do not buy a latch, actuator or striker from this page; campaign eligibility, bed configuration, failed component, current part number and VIN fitment must be established first.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "VIN, model year and bed configuration checked for U74, V44 and ZB8",
+          "unlatch event and cargo condition documented",
+          "latch, actuator limiter tab and striker alignment inspected",
+          "2013-2018 limiter-tab campaigns separated from the 2019-2022 striker-alignment campaign"
+        ],
+        "affectedSystems": [
+          "power-locking tailgate latch",
+          "tailgate actuator limiter tab",
+          "tailgate strikers and box latch alignment",
+          "cargo retention"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "title": "NHTSA Live RAM 1500 2018 Recall Results",
+            "type": "recall",
+            "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=RAM&model=1500&modelYear=2018"
+          },
+          {
+            "title": "NHTSA 22V904 / FCA ZB8 - RAM Tailgate Striker Alignment",
+            "type": "recall",
+            "url": "https://static.nhtsa.gov/odi/rcl/2022/RCAK-22V904-6414.pdf"
+          },
+          {
+            "title": "NHTSA Manufacturer Communications and Recall Datasets",
+            "type": "nhtsa",
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-11",
+        "contentUpdatedOn": "2026-08-11",
+        "contentUpdateSummary": "Retained the exact power-tailgate recall identity while separating the U74/V44 limiter-tab populations from the ZB8 striker-alignment population and remedies.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "ram-1500-trailer-tow-module-defect-trailer-brakes-lights-may-not-work",
+      "disposition": "no-commerce",
+      "evidence": [
+        {
+          "kind": "primary-evidence",
+          "observation": "26V059 identifies an improperly designed trailer-tow module."
+        },
+        {
+          "kind": "primary-evidence",
+          "observation": "The defect can disable trailer lamps and trailer brakes."
+        },
+        {
+          "kind": "primary-evidence",
+          "observation": "The remedy replaces the module free of charge."
+        },
+        {
+          "kind": "evidence-limitation",
+          "observation": "A communication proves only its stated condition and population; no owner-frequency rate, universal mechanism, repair price or retail fitment is inferred."
+        },
+        {
+          "kind": "independent-review",
+          "verifiedOn": "2026-08-11",
+          "observation": "Opus independently reconciled the RAM packet set; Devon authorized deployment after review. Source packet: data/known-issue-ram-1500-adjudication-2026-08-11.json."
+        }
+      ],
+      "before": {
+        "makeHash": "599f64ab348a76c293cda2750239a0c1e73c34861ca507fc9999930736ef76ad",
+        "modelHash": "296cefdbdbaaf7b598a5786de6e134c99b7822c1c7b2ecc2a1b3d8cbdd03b287",
+        "yearsHash": "aa567c9bf7cb828a00b99aa8a4fb0528381ffe78f95878a9914dde2739076ab0",
+        "trimsHash": "2a386478a5d569df4fbc74ae5b083ced8280eaa631d501e5683622fbbebbf0e4",
+        "enginesHash": "0dad050dc23a9b5a1988f4d5ed4a3315b3827c053df9d124d22918ea1f7b4271",
+        "categoryHash": "fcae623f085305db57d9e06647def7f7d27df9dca65d99f1348cd12bc5126108",
+        "titleHash": "6c590622260b885f45bd18abc04958eb853bb7a00635c2a07b21f6458f1c5da0",
+        "descriptionHash": "2def832a719552508fdf21f2a306af7409c32dcdea85eaded01fb65ceb34abb4",
+        "solutionHash": "6ae00765ddddbdf2813c33e74f5967d0e0762b1a2ffab8aceac5144268afb942",
+        "severityHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "8852e9ab85c369dfa87d4ba3bd11fd8b7618f24a40e59628096df4568e58f229",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "estimatedCostHighHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "57e930477c2c063bfd12d59c359805c6a26e6d2ff5fa002b4121c8013e96c87f",
+        "communityRecommendationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "060998a3582d16f70ac4e76cf28b406c2c9c82cd4324932d1b970d346a976e93",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": []
+      },
+      "after": {
+        "make": "RAM",
+        "model": "1500",
+        "years": [
+          2025,
+          2026
+        ],
+        "trims": [
+          "Big Horn",
+          "Laramie",
+          "Limited",
+          "Tungsten",
+          "Rebel"
+        ],
+        "engines": [
+          "3.0L Hurricane twin-turbo I6",
+          "5.7L HEMI V8"
+        ],
+        "category": "brakes",
+        "title": "Trailer Tow Module Defect — Trailer Brakes and Lights May Not Work (Recall 26V059)",
+        "description": "NHTSA 26V059 / FCA 03D establishes this identity for affected 2025-2026 RAM 1500 trucks. An improperly designed trailer-tow module can prevent trailer lights from illuminating and trailer brakes from operating, increasing crash risk. The campaign is VIN-specific and does not establish an owner-frequency count.",
+        "solution": "Check the VIN for 26V059 / 03D and have the dealer replace the trailer-tow module free of charge. Do not tow until campaign status is known and trailer brake, brake-light and turn-signal operation has been verified with the connected trailer. Do not buy a tow module, brake controller or harness from this page; campaign eligibility, module state, connector condition, programming, current part number and VIN fitment must be established first.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "VIN checked for 26V059 / 03D",
+          "trailer brake and lamp operation tested",
+          "module, connector and harness condition documented",
+          "completed campaign remedy confirmed"
+        ],
+        "affectedSystems": [
+          "integrated trailer-tow module",
+          "trailer brakes",
+          "trailer brake lights and turn signals"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "title": "NHTSA Live RAM 1500 2026 Recall Results",
+            "type": "recall",
+            "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=RAM&model=1500&modelYear=2026"
+          },
+          {
+            "title": "NHTSA Manufacturer Communications and Recall Datasets",
+            "type": "nhtsa",
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-11",
+        "contentUpdatedOn": "2026-08-11",
+        "contentUpdateSummary": "Retained the exact 03D trailer-tow-module identity and added a no-tow verification boundary before parts.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "ram-1500-turn-signal-self-canceling-failure-from-steering-column-cont",
+      "disposition": "no-commerce",
+      "evidence": [
+        {
+          "kind": "primary-evidence",
+          "observation": "24V729 identifies improper turn-signal self-canceling operation."
+        },
+        {
+          "kind": "primary-evidence",
+          "observation": "The condition is an FMVSS 108 noncompliance."
+        },
+        {
+          "kind": "primary-evidence",
+          "observation": "The remedy inspects and replaces the steering-column control module as necessary."
+        },
+        {
+          "kind": "evidence-limitation",
+          "observation": "A communication proves only its stated condition and population; no owner-frequency rate, universal mechanism, repair price or retail fitment is inferred."
+        },
+        {
+          "kind": "independent-review",
+          "verifiedOn": "2026-08-11",
+          "observation": "Opus independently reconciled the RAM packet set; Devon authorized deployment after review. Source packet: data/known-issue-ram-1500-adjudication-2026-08-11.json."
+        }
+      ],
+      "before": {
+        "makeHash": "599f64ab348a76c293cda2750239a0c1e73c34861ca507fc9999930736ef76ad",
+        "modelHash": "296cefdbdbaaf7b598a5786de6e134c99b7822c1c7b2ecc2a1b3d8cbdd03b287",
+        "yearsHash": "8396e5b53797e39c4be2a63d684c88930f6462aad46b1eb2e163aea02cc6265a",
+        "trimsHash": "81a74910714747c1575bec5cba249873b308f8f4b9c59f2fb3bc5cea414cdef9",
+        "enginesHash": "dfaab011e4baabcc63428c456ee417a505fa6139f278a782dd4efccf4441303a",
+        "categoryHash": "477920ba85abe16e6b8c01e5637691d82cc78f5a9db884222f77d438c73ceb87",
+        "titleHash": "840c4b01378403c518fdfb3b61e62fc726dc7dcb46b5559505e847945c5151ac",
+        "descriptionHash": "daa48ea9e0f971e6b6079259e2f5a238b193847957c48d6b9c98d513815b0e95",
+        "solutionHash": "ba023c3fbc18e30ea614d696f649e12363cc50df7692cd3d1a483197dcbebc52",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "3d65661bc3cd3d570b09d9e220e27348f216043f644da8bdf5cb8017ed070c45",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "estimatedCostHighHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "80765fce59e7e39ecb82dce858b20ac00a7d95e6e3896ac1e2035b92d89a6735",
+        "communityRecommendationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "060998a3582d16f70ac4e76cf28b406c2c9c82cd4324932d1b970d346a976e93",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": []
+      },
+      "after": {
+        "make": "RAM",
+        "model": "1500",
+        "years": [
+          2023,
+          2024
+        ],
+        "trims": [
+          "Big Horn",
+          "Laramie",
+          "Limited",
+          "Rebel",
+          "Tradesman"
+        ],
+        "engines": [
+          "5.7L HEMI V8",
+          "5.7L HEMI eTorque"
+        ],
+        "category": "electrical",
+        "title": "Turn Signal Self-Canceling Failure From Steering Column Control Module (Recall 24V729)",
+        "description": "NHTSA 24V729 / FCA A1B establishes this identity for affected 2023-2024 RAM 1500 vehicles. The turn-signal self-canceling feature may not work correctly, creating an FMVSS 108 noncompliance and increasing crash risk when the displayed signal does not match driver intent. The remedy is VIN-specific inspection and steering-column-control-module replacement as necessary.",
+        "solution": "Check the VIN for 24V729 / A1B and have the dealer inspect and replace the steering-column control module as necessary, free of charge. Until repaired, cancel the signal manually after every turn and verify the indicator state. Outside the campaign, inspect the switch, column module, clockspring, wiring and configuration before replacement. Do not buy a steering-column module or switch from this page; campaign eligibility, failed component, programming, current part number and VIN fitment must be established first.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "VIN checked for 24V729 / A1B",
+          "self-canceling behavior reproduced",
+          "switch, column module and wiring inspected",
+          "indicator state verified after every turn"
+        ],
+        "affectedSystems": [
+          "steering-column control module",
+          "turn-signal switch and cancellation logic",
+          "exterior turn-signal indication"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "title": "NHTSA Live RAM 1500 2024 Recall Results",
+            "type": "recall",
+            "url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=RAM&model=1500&modelYear=2024"
+          },
+          {
+            "title": "NHTSA Manufacturer Communications and Recall Datasets",
+            "type": "nhtsa",
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-11",
+        "contentUpdatedOn": "2026-08-11",
+        "contentUpdateSummary": "Retained the exact A1B turn-signal self-canceling identity and bounded it to affected 2023-2024 VINs.",
+        "relatedIssueIds": []
+      }
+    }
+  ]
+}

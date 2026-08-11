@@ -1,0 +1,428 @@
+{
+  "schemaVersion": 2,
+  "auditScope": "full-record",
+  "manifestKind": "known-issues-catalog-deeplinks",
+  "batchId": "reviewed-rivian-adjudication-2026-08-11",
+  "generatedAt": "2026-08-11T03:03:54.613Z",
+  "sourceRef": "codex/rivian-deeplink-audit",
+  "make": "Rivian",
+  "frozenMakeValues": [
+    "Rivian"
+  ],
+  "frozenMakeCounts": {
+    "Rivian": 14
+  },
+  "approval": {
+    "reviewer": "Opus",
+    "owner": "Devon",
+    "reviewDate": "2026-08-11",
+    "contract": "same indexed identity, published status preserved, holds are no-ops, no retail commerce"
+  },
+  "packetCount": 4,
+  "packetRowCount": 14,
+  "writeRowCount": 3,
+  "heldRowCount": 11,
+  "packets": [
+    {
+      "file": "data/known-issue-rivian-edv-adjudication-2026-08-11.json",
+      "sha256": "9441e0d6c3bf32ba68837b5256b4bc50036bf6ea0be31815e46a19aae8e62053",
+      "model": "EDV",
+      "frozenMakeValues": [
+        "Rivian"
+      ],
+      "summary": {
+        "retain_indexed_identity_and_accuracy_cleanup": 2,
+        "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy": 1,
+        "fabricated_report_counts_proposed_zero": 0,
+        "pages_preserved_published": 3,
+        "total": 3
+      }
+    },
+    {
+      "file": "data/known-issue-rivian-r1s-adjudication-2026-08-11.json",
+      "sha256": "ca25c010c63630256664e6f0d406b435e982f9432deddaed5d6fbfd371d3742d",
+      "model": "R1S",
+      "frozenMakeValues": [
+        "Rivian"
+      ],
+      "summary": {
+        "retain_indexed_identity_and_accuracy_cleanup": 0,
+        "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy": 1,
+        "fabricated_report_counts_proposed_zero": 0,
+        "pages_preserved_published": 1,
+        "total": 1
+      }
+    },
+    {
+      "file": "data/known-issue-rivian-r1t-adjudication-2026-08-11.json",
+      "sha256": "a2a419dcd860b33911cbcba8cd7d5b300b873d78172c01d9dc35efbfdb42adcf",
+      "model": "R1T",
+      "frozenMakeValues": [
+        "Rivian"
+      ],
+      "summary": {
+        "retain_indexed_identity_and_accuracy_cleanup": 1,
+        "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy": 7,
+        "fabricated_report_counts_proposed_zero": 0,
+        "pages_preserved_published": 8,
+        "total": 8
+      }
+    },
+    {
+      "file": "data/known-issue-rivian-r2-adjudication-2026-08-11.json",
+      "sha256": "4986f9e0d8a095514b5b136327e48302e9913d199e0f11894c5c04295fe28712",
+      "model": "R2",
+      "frozenMakeValues": [
+        "Rivian"
+      ],
+      "summary": {
+        "retain_indexed_identity_and_accuracy_cleanup": 0,
+        "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy": 2,
+        "fabricated_report_counts_proposed_zero": 0,
+        "pages_preserved_published": 2,
+        "total": 2
+      }
+    }
+  ],
+  "issues": [
+    {
+      "id": "rivian-edv-driver-seat-belt-pretensioner-cable-damage-from-driver-sitti",
+      "disposition": "no-commerce",
+      "evidence": [
+        {
+          "kind": "primary-evidence",
+          "observation": "25V-816 identifies 2022-2025 EDV, 34,824 potentially involved units, the repeated-misuse condition and the OTA plus inspection/replacement remedy."
+        },
+        {
+          "kind": "primary-evidence",
+          "observation": "PE25011 confirms NHTSA opened the investigation on September 22, 2025 and closed it after the recall addressed the subject population."
+        },
+        {
+          "kind": "evidence-limitation",
+          "observation": "No owner-frequency rate, universal mechanism, repair price or retail fitment is inferred."
+        },
+        {
+          "kind": "independent-review",
+          "verifiedOn": "2026-08-11",
+          "observation": "Opus independently reconciled the Rivian packet set; Devon authorized deployment after review. Source packet: data/known-issue-rivian-edv-adjudication-2026-08-11.json."
+        }
+      ],
+      "before": {
+        "makeHash": "d7d89f1977785616f91d7e27f84155cefc0a8d3685fef312622918786d431299",
+        "modelHash": "098b69438c7d550ea61f55bf96de6d678cc517d056bc17b6cb36cdb88355181f",
+        "yearsHash": "d561bc00fb87bcfc6f54d90b5f87d554897102b916356c077a65798f55903665",
+        "trimsHash": "aeb181ca5ae2c6ff09dbf680ad32e1778e9eb2de994bf0ad096148f9ebb1bd00",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "2081fd17e4a66ecba5846219ac6f3ec934aecb3c43b7ccff51afffa2da965d78",
+        "titleHash": "aa2cd5c9b34605cd82d6d3f2c6ba73e9219d15537e71f7473bbb7350dad5467d",
+        "descriptionHash": "0d357e7c87857a8c55f8b3593dd28457a002106add84699b460e2f6c9d658dc2",
+        "solutionHash": "631e014a42e4e4d47f8e82acfad9a94842347c5cbf53b5e227a0dd2b96597339",
+        "severityHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "e3eb5e97cd712fa1b6a010456b1b20f72961baaae86002236c51ca0217855f36",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "estimatedCostHighHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "26af1d72b369c4be2acdd57ee0ae016f969b49b352013a74ac6b90a106250ac4",
+        "communityRecommendationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "2d4050c58d078b71a8d3c2a7e013ee37e05ce9116c1a84a043c5c8d0db417672",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": []
+      },
+      "after": {
+        "make": "Rivian",
+        "model": "EDV",
+        "years": [
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [
+          "EDV 500",
+          "EDV 700"
+        ],
+        "engines": [],
+        "category": "interior",
+        "title": "Driver seat belt pretensioner cable damage from driver sitting on buckled belt (Recall 25V-816)",
+        "description": "NHTSA recall 25V-816 covers certain 2022-2025 Rivian EDVs built from December 10, 2021 through November 8, 2025. Rivian reported that repeated misuse, such as sitting on a seat belt already buckled beneath the driver, can damage the driver-side pretensioner cable. A damaged cable may not restrain the occupant as intended in a crash. The 34,824 figure is the potentially involved recall population, not an owner-report total or measured failure rate.",
+        "solution": "Check the VIN for recall 25V-816 / Rivian FSAM-1770. Rivian released an over-the-air misuse-detection update and will inspect and replace the driver seat-belt pretensioner assembly as necessary, free of charge. A damaged pretensioner may be visible in some cases; do not test restraint performance yourself. Wear the belt across the body and contact Rivian if the VIN is open or damage is suspected. Do not buy a seat-belt assembly from this page; recall eligibility and the exact assembly must be confirmed by VIN and Rivian inspection.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Visible damage to the driver seat-belt pretensioner cable in some cases",
+          "Seat-belt misuse-detection chime after the applicable OTA update"
+        ],
+        "affectedSystems": [
+          "Driver seat-belt pretensioner assembly",
+          "Seat-belt misuse-detection software"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://static.nhtsa.gov/odi/rcl/2025/RCLRPT-25V816-8746.pdf",
+            "type": "nhtsa",
+            "title": "NHTSA Part 573 Safety Recall Report 25V-816"
+          },
+          {
+            "url": "https://static.nhtsa.gov/odi/inv/2025/INCLA-PE25011-38365.pdf",
+            "type": "nhtsa",
+            "title": "NHTSA ODI Closing Resume PE25011"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-11",
+        "contentUpdatedOn": "2026-08-11",
+        "contentUpdateSummary": "Bound recall scope, mechanism and remedy to NHTSA records; separated campaign population from owner reports and added a VIN/inspection commerce boundary.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "rivian-edv-front-upper-control-arm-steering-knuckle-fastener-under-torq",
+      "disposition": "no-commerce",
+      "evidence": [
+        {
+          "kind": "primary-evidence",
+          "observation": "22V-744 identifies model-year 2022 EDV and the exact December 2021-September 2022 EDV production window."
+        },
+        {
+          "kind": "primary-evidence",
+          "observation": "The Rivian owner notice states the inspection-first, no-cost remedy and the control-risk warning."
+        },
+        {
+          "kind": "evidence-limitation",
+          "observation": "No owner-frequency rate, universal mechanism, repair price or retail fitment is inferred."
+        },
+        {
+          "kind": "independent-review",
+          "verifiedOn": "2026-08-11",
+          "observation": "Opus independently reconciled the Rivian packet set; Devon authorized deployment after review. Source packet: data/known-issue-rivian-edv-adjudication-2026-08-11.json."
+        }
+      ],
+      "before": {
+        "makeHash": "d7d89f1977785616f91d7e27f84155cefc0a8d3685fef312622918786d431299",
+        "modelHash": "098b69438c7d550ea61f55bf96de6d678cc517d056bc17b6cb36cdb88355181f",
+        "yearsHash": "45664e664faebad5fc02a3efd2b1f19fd49747c5c99501ead3ea70961e5fd569",
+        "trimsHash": "aeb181ca5ae2c6ff09dbf680ad32e1778e9eb2de994bf0ad096148f9ebb1bd00",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "5e320919e33a33f015ca217a116536130910f84898fbc70dfe28a3e787a73a5e",
+        "titleHash": "d3b708f05a4611f0b39b54a49df6be2a53def45a8f9f0196ee807bfd67390f31",
+        "descriptionHash": "9291584eace63589efb7981d5ab1bb83785a23813878edc5f2c17a0467e759a4",
+        "solutionHash": "d88dd7632b02f27c7b8fa82fcdc31ab54d87acabf6b7e4915a42ed4d5a5580d5",
+        "severityHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "estimatedCostHighHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "de1edf12e4e047cb20008ed505c5d37b10807274a607037c82836f045fad7008",
+        "communityRecommendationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "2d4050c58d078b71a8d3c2a7e013ee37e05ce9116c1a84a043c5c8d0db417672",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": []
+      },
+      "after": {
+        "make": "Rivian",
+        "model": "EDV",
+        "years": [
+          2022
+        ],
+        "trims": [
+          "EDV 500",
+          "EDV 700"
+        ],
+        "engines": [],
+        "category": "suspension",
+        "title": "Front upper control arm / steering knuckle fastener under-torqued (Recall 22V-744)",
+        "description": "NHTSA recall 22V-744 includes a subset of model-year 2022 EDVs produced from December 10, 2021 through September 27, 2022 whose records could not confirm proper torque of the fastener joining each front upper control arm to the steering knuckle. A loose fastener can produce excessive front-suspension noise, vibration or harshness, a change in steering feel or excessive wheel camber; in rare cases separation can reduce vehicle control. The 12,212 campaign total includes R1T, R1S and EDV vehicles and is not an EDV failure count.",
+        "solution": "Check the VIN for recall 22V-744 / Rivian FSAM-997. Rivian will inspect both sides and secure the steering-knuckle fasteners as necessary at no charge; components are replaced only if inspection finds damage. If steering feel changes, wheel camber appears abnormal or severe front-suspension noise develops, stop in a safe place and contact Rivian rather than continuing to diagnose on the road. Do not buy a control arm, knuckle or fastener from this page; the recall remedy is inspection-first and any replacement is VIN- and damage-dependent.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Excessive noise, vibration or harshness from the front suspension",
+          "Change in steering performance or feel",
+          "Abnormal front-wheel camber"
+        ],
+        "affectedSystems": [
+          "Front upper control arm-to-steering-knuckle joint",
+          "Front suspension and steering"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://static.nhtsa.gov/odi/rcl/2022/RCLRPT-22V744-5291.PDF",
+            "type": "nhtsa",
+            "title": "NHTSA Part 573 Safety Recall Report 22V-744"
+          },
+          {
+            "url": "https://static.nhtsa.gov/odi/rcl/2022/RCONL-22V744-8813.pdf",
+            "type": "nhtsa",
+            "title": "Rivian Owner Notice for Recall 22V-744"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-11",
+        "contentUpdatedOn": "2026-08-11",
+        "contentUpdateSummary": "Preserved the exact recall identity while separating the combined campaign population from EDV incidence and making the remedy inspection-first.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "rivian-r1t-r1s-seatbelt-anchor-recall",
+      "disposition": "no-commerce",
+      "evidence": [
+        {
+          "kind": "primary-evidence",
+          "observation": "22V-641 gives the 198 R1T/9 R1S population, production window, cross-thread mechanism and warning signs."
+        },
+        {
+          "kind": "primary-evidence",
+          "observation": "The owner letter gives the inspection/secure remedy, mobile/service-center availability and approximate service time."
+        },
+        {
+          "kind": "evidence-limitation",
+          "observation": "No owner-frequency rate, universal mechanism, repair price or retail fitment is inferred."
+        },
+        {
+          "kind": "independent-review",
+          "verifiedOn": "2026-08-11",
+          "observation": "Opus independently reconciled the Rivian packet set; Devon authorized deployment after review. Source packet: data/known-issue-rivian-r1t-adjudication-2026-08-11.json."
+        }
+      ],
+      "before": {
+        "makeHash": "d7d89f1977785616f91d7e27f84155cefc0a8d3685fef312622918786d431299",
+        "modelHash": "9404963041c6bb955e3c9777738a2eda47d63b73177c0c36a03ce85c1d8dda4e",
+        "yearsHash": "45664e664faebad5fc02a3efd2b1f19fd49747c5c99501ead3ea70961e5fd569",
+        "trimsHash": "a2e22e920495a2bf0eebfa4dd3de3a6b58fbe6c6358496266605f8626737656d",
+        "enginesHash": "f8918c387aa662b4bd5135809814d7ae110ad28638e794059b216908075b4f5c",
+        "categoryHash": "6ad35495f7e0102ccece4d8a88ed3c254b882110341f84dc2c9026be82600e3f",
+        "titleHash": "5fe8309b18a246217140c84dc7b0149bcfacee204ca908f58b3d6b18342e6212",
+        "descriptionHash": "0dac8ca5ac59272c643f3cf2f3ebb0bad17ae36254f85c6101cbb009866d2773",
+        "solutionHash": "93b17d617c75d0cbabb51f232bcc49bb0792bfb05481e4df01627118d9214827",
+        "severityHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "50af37036b463e1d3372bedbd8051abd04ffc2edede76fd0b5028b8d6b446613",
+        "affectedSystemsHash": "8422b380a72c5c1c22245f38fdc7fce3d3916f6e73c53823c484ba275fc70e1e",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "estimatedCostHighHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "typicalMileageLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "typicalMileageHighHash": "60734f174b2035e5b2ba85fef8c648cc0cb18c5995b419d3cd1c025c5b09d0c7",
+        "citationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "communityRecommendationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "73d805be762751aa4785797620b276477490af34ab027cbfcb75c1004dc63ded",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": []
+      },
+      "after": {
+        "make": "Rivian",
+        "model": "R1T",
+        "years": [
+          2022
+        ],
+        "trims": [
+          "Adventure",
+          "Explore",
+          "Launch Edition"
+        ],
+        "engines": [
+          "Quad-Motor",
+          "Dual-Motor"
+        ],
+        "category": "safety",
+        "title": "R1T / R1S Front Seat Belt Anchor Recall (22V-641, 207 Vehicles)",
+        "description": "NHTSA recall 22V-641 / Rivian FSAM-924 covers 207 model-year 2022 vehicles: 198 R1Ts and 9 R1Ss built from January 28 through August 8, 2022. A front driver and/or passenger seat-belt height-adjuster bolt may have been cross-threaded, weakening the attachment to the B-pillar. A loose assembly may rattle at the height-adjuster area or move excessively, and may not restrain an occupant as intended in a crash. These are campaign-population counts, not owner reports.",
+        "solution": "Check the VIN for recall 22V-641 / FSAM-924 and schedule Rivian service promptly if open. Rivian Mobile Service or a Rivian Service Center will inspect and, as necessary, properly secure the seat-belt anchorage free of charge; the owner notice estimates about one hour. Do not pull-test or disassemble the anchor. Do not buy a belt, bolt or height adjuster from this page; the recall remedy and any parts depend on VIN and Rivian inspection.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Rattle near the front seat-belt height adjuster on the B-pillar",
+          "Excessive movement while adjusting front seat-belt height",
+          "Open recall 22V-641 for the VIN"
+        ],
+        "affectedSystems": [
+          "Front driver and passenger seat-belt height-adjuster anchorage",
+          "B-pillar bolt joint"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://static.nhtsa.gov/odi/rcl/2022/RCLRPT-22V641-9602.PDF",
+            "type": "nhtsa",
+            "title": "NHTSA Part 573 Safety Recall Report 22V-641"
+          },
+          {
+            "url": "https://static.nhtsa.gov/odi/rcl/2022/RCONL-22V641-9345.pdf",
+            "type": "nhtsa",
+            "title": "Rivian Owner Notice for Recall 22V-641"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-11",
+        "contentUpdatedOn": "2026-08-11",
+        "contentUpdateSummary": "Preserved the exact campaign identity while separating campaign population from owner reports and adding a no-self-test/no-parts boundary.",
+        "relatedIssueIds": []
+      }
+    }
+  ]
+}

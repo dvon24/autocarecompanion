@@ -28,6 +28,27 @@ function expectedModelCounts(manifest) {
   return counts;
 }
 
+function expectedMakeCounts(manifest) {
+  if (manifest.frozenMakeCounts && typeof manifest.frozenMakeCounts === 'object') {
+    return new Map(Object.entries(manifest.frozenMakeCounts).map(([make, count]) => [make, Number(count)]));
+  }
+  const counts = new Map();
+  for (const packet of manifest.packets || []) {
+    const packetCounts = packet.summary && packet.summary.frozen_make_counts;
+    if (packetCounts && typeof packetCounts === 'object') {
+      for (const [make, count] of Object.entries(packetCounts)) {
+        if (!Number.isInteger(count) || count < 0) throw new Error(`${manifest.batchId}: invalid make inventory`);
+        counts.set(make, (counts.get(make) || 0) + count);
+      }
+      continue;
+    }
+    const total = packet.summary && packet.summary.total;
+    if (!Number.isInteger(total) || total < 0) throw new Error(`${manifest.batchId}: invalid packet make inventory`);
+    counts.set(manifest.make, (counts.get(manifest.make) || 0) + total);
+  }
+  return counts;
+}
+
 function compareModelCounts(expected, actualRows) {
   const actual = new Map(actualRows.map((row) => [row.model, Number(row.count)]));
   const models = new Set([...expected.keys(), ...actual.keys()]);
@@ -46,6 +67,8 @@ async function verifyMakeInventory(pool, manifest) {
     throw new Error(`${manifest.batchId}: manifest.packetRowCount must be a positive integer`);
   }
   const expected = expectedModelCounts(manifest);
+  const expectedMakes = expectedMakeCounts(manifest);
+  const frozenMakeValues = [...expectedMakes.keys()];
   const expectedPacketRows = [...expected.values()].reduce((sum, count) => sum + count, 0);
   if (expectedPacketRows !== manifest.packetRowCount) {
     throw new Error(
@@ -53,25 +76,34 @@ async function verifyMakeInventory(pool, manifest) {
     );
   }
 
-  const [catalogStatus, makeStatus, publishedModels] = await Promise.all([
+  const [catalogStatus, makeStatus, publishedModels, publishedMakeValues] = await Promise.all([
     pool.query(`SELECT status, count(*)::int AS count
                   FROM "KnownIssue"
                  GROUP BY status
                  ORDER BY status`),
     pool.query(`SELECT status, count(*)::int AS count
                   FROM "KnownIssue"
-                 WHERE make = $1
+                 WHERE make = ANY($1::text[])
                  GROUP BY status
-                 ORDER BY status`, [manifest.make]),
+                 ORDER BY status`, [frozenMakeValues]),
     pool.query(`SELECT model, count(*)::int AS count
                   FROM "KnownIssue"
-                 WHERE make = $1 AND status = 'published'
+                 WHERE make = ANY($1::text[]) AND status = 'published'
                  GROUP BY model
-                 ORDER BY model`, [manifest.make]),
+                 ORDER BY model`, [frozenMakeValues]),
+    pool.query(`SELECT make, count(*)::int AS count
+                  FROM "KnownIssue"
+                 WHERE make = ANY($1::text[]) AND status = 'published'
+                 GROUP BY make
+                 ORDER BY make`, [frozenMakeValues]),
   ]);
 
   const makeStatuses = Object.fromEntries(makeStatus.rows.map((row) => [row.status, Number(row.count)]));
   const modelCountMismatches = compareModelCounts(expected, publishedModels.rows);
+  const makeCountMismatches = compareModelCounts(
+    expectedMakes,
+    publishedMakeValues.rows.map((row) => ({ model: row.make, count: row.count })),
+  ).map(({ model, expected: expectedCount, actual }) => ({ make: model, expected: expectedCount, actual }));
   const failures = [];
   if ((makeStatuses.published || 0) !== manifest.packetRowCount) {
     failures.push(
@@ -82,11 +114,13 @@ async function verifyMakeInventory(pool, manifest) {
   // inventory. They are reported above, but this gate must only fail when the
   // reviewed batch loses a published row or a published model page.
   if (modelCountMismatches.length) failures.push(`${modelCountMismatches.length} model-count mismatches`);
+  if (makeCountMismatches.length) failures.push(`${makeCountMismatches.length} make-casing count mismatches`);
 
   return {
     passed: failures.length === 0,
     batchId: manifest.batchId,
     make: manifest.make,
+    frozenMakeValues,
     catalogStatus: Object.fromEntries(catalogStatus.rows.map((row) => [row.status, Number(row.count)])),
     makeStatus: makeStatuses,
     expectedPublishedModels: Object.fromEntries(expected),
@@ -94,6 +128,9 @@ async function verifyMakeInventory(pool, manifest) {
       publishedModels.rows.map((row) => [row.model, Number(row.count)]),
     ),
     modelCountMismatches,
+    expectedPublishedMakeValues: Object.fromEntries(expectedMakes),
+    actualPublishedMakeValues: Object.fromEntries(publishedMakeValues.rows.map((row) => [row.make, Number(row.count)])),
+    makeCountMismatches,
     failures,
   };
 }
@@ -127,6 +164,7 @@ if (require.main === module) {
 
 module.exports = {
   compareModelCounts,
+  expectedMakeCounts,
   expectedModelCounts,
   verifyMakeInventory,
 };

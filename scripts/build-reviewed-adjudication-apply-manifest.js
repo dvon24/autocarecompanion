@@ -33,7 +33,10 @@ const {
 } = require('./apply-known-issue-catalog-deeplinks');
 
 const PROJECT_ROOT = path.resolve(__dirname, '..');
-const IDENTITY_FIELDS = new Set(['make', 'model', 'title', 'category', 'status']);
+const FROZEN_FIELDS = new Set([
+  'make', 'model', 'years', 'trims', 'engines', 'category', 'title', 'severity', 'status', 'relatedIssueIds',
+]);
+const PRESERVED_LIVE_FIELDS = new Set(['fixParts']);
 const DEFAULT_HOLD_ACTIONS = new Set(['keep_published_pending_source', 'hold', 'keep']);
 
 function actionSets(args) {
@@ -70,6 +73,20 @@ function clone(value) {
   return JSON.parse(JSON.stringify(value));
 }
 
+function reviewedEvidence(row) {
+  if (Array.isArray(row.evidence)) return clone(row.evidence);
+  if (!row.evidence || typeof row.evidence !== 'object') return [];
+  return [
+    ...(Array.isArray(row.evidence.primaryEvidence) ? row.evidence.primaryEvidence : []).map((observation) => ({
+      kind: 'primary-evidence',
+      observation,
+    })),
+    ...(typeof row.evidence.limitations === 'string' && row.evidence.limitations.trim()
+      ? [{ kind: 'evidence-limitation', observation: row.evidence.limitations }]
+      : []),
+  ];
+}
+
 function git(args) {
   return execFileSync('git', args, { cwd: PROJECT_ROOT, encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 });
 }
@@ -101,16 +118,19 @@ function selectRowsSql() {
 }
 
 function buildReviewedAfterState(row, current) {
-  for (const field of IDENTITY_FIELDS) {
-    if (current[field] !== row.before[field]) throw new Error(`${row.id}: live ${field} drift`);
-    if (row.proposal[field] !== row.before[field]) throw new Error(`${row.id}: proposal changes ${field}`);
+  for (const field of FROZEN_FIELDS) {
+    assertEqual(`${row.id}: live ${field}`, current[field], row.before[field]);
+    if (stableHash(row.proposal[field]) !== stableHash(row.before[field])) {
+      throw new Error(`${row.id}: proposal changes ${field}`);
+    }
   }
   if (current.status !== 'published') throw new Error(`${row.id}: live row is not published`);
 
   const after = clone(current);
   for (const field of row.changedFields || []) {
     if (!FULL_RECORD_FIELDS.includes(field)) throw new Error(`${row.id}: unknown changed field ${field}`);
-    if (IDENTITY_FIELDS.has(field)) throw new Error(`${row.id}: identity field ${field} cannot be written`);
+    if (FROZEN_FIELDS.has(field)) throw new Error(`${row.id}: frozen field ${field} cannot be written`);
+    if (PRESERVED_LIVE_FIELDS.has(field)) throw new Error(`${row.id}: cannot change ${field}`);
     if (!Object.prototype.hasOwnProperty.call(row.proposal, field)) throw new Error(`${row.id}: proposal missing ${field}`);
     after[field] = clone(row.proposal[field]);
   }
@@ -118,8 +138,11 @@ function buildReviewedAfterState(row, current) {
   // identity remain exactly the reviewed after-state.
   after.humanApproved = true;
 
-  for (const field of IDENTITY_FIELDS) assertEqual(`${row.id}: after ${field}`, after[field], current[field]);
-  if (commerceUrls(after).length !== 0) throw new Error(`${row.id}: reviewed adjudication must remain no-commerce`);
+  for (const field of FROZEN_FIELDS) assertEqual(`${row.id}: after ${field}`, after[field], current[field]);
+  assertEqual(`${row.id}: after fixParts`, after.fixParts, current.fixParts);
+  const currentCommerce = new Set(commerceUrls(current).map((entry) => stableHash(entry)));
+  const introducedCommerce = commerceUrls(after).filter((entry) => !currentCommerce.has(stableHash(entry)));
+  if (introducedCommerce.length) throw new Error(`${row.id}: reviewed adjudication introduces commerce`);
   if (!Array.isArray(after.citations) || after.citations.length === 0) throw new Error(`${row.id}: no verified citation in after-state`);
   return after;
 }
@@ -148,7 +171,13 @@ async function main() {
     if (packet.status !== 'proposal-only' || packet.requiresIndependentApproval !== true || packet.make !== make) {
       throw new Error(`${file}: invalid proposal contract`);
     }
-    packetProvenance.push({ file, sha256: normalizedFileHash(sourceRef, file), model: packet.model, summary: packet.summary });
+    packetProvenance.push({
+      file,
+      sha256: normalizedFileHash(sourceRef, file),
+      model: packet.model,
+      frozenMakeValues: packet.frozenMakeValues || [packet.make],
+      summary: packet.summary,
+    });
     for (const row of packet.rows || []) {
       if (seenIds.has(row.id)) throw new Error(`${row.id}: duplicate packet row`);
       seenIds.add(row.id);
@@ -166,6 +195,24 @@ async function main() {
   const writes = rows.filter((row) => applyActions.has(row.action));
   if (rows.length !== expectedTotal) throw new Error(`row count ${rows.length}; expected ${expectedTotal}`);
   if (writes.length !== expectedWrites) throw new Error(`write count ${writes.length}; expected ${expectedWrites}`);
+  const frozenMakeCounts = {};
+  for (const packet of packetProvenance) {
+    const packetCounts = packet.summary && packet.summary.frozen_make_counts;
+    if (packetCounts && typeof packetCounts === 'object') {
+      for (const [makeValue, count] of Object.entries(packetCounts)) {
+        if (!Number.isInteger(count) || count < 0) throw new Error(`${packet.file}: invalid frozen make count`);
+        frozenMakeCounts[makeValue] = (frozenMakeCounts[makeValue] || 0) + count;
+      }
+    } else {
+      const total = packet.summary && packet.summary.total;
+      if (!Number.isInteger(total) || total < 0) throw new Error(`${packet.file}: missing frozen make counts`);
+      frozenMakeCounts[make] = (frozenMakeCounts[make] || 0) + total;
+    }
+  }
+  const frozenMakeValues = Object.keys(frozenMakeCounts).sort();
+  if (Object.values(frozenMakeCounts).reduce((sum, count) => sum + count, 0) !== expectedTotal) {
+    throw new Error('frozen make counts do not equal packet row count');
+  }
 
   const { Pool } = require('pg');
   const pool = new Pool({ connectionString: resolveKnownIssueConnectionString(), max: 1 });
@@ -191,7 +238,7 @@ async function main() {
       id: row.id,
       disposition: 'no-commerce',
       evidence: [
-        ...(row.evidence || []),
+        ...reviewedEvidence(row),
         {
           kind: 'independent-review',
           verifiedOn: reviewDate,
@@ -211,6 +258,8 @@ async function main() {
     generatedAt: new Date().toISOString(),
     sourceRef,
     make,
+    frozenMakeValues,
+    frozenMakeCounts,
     approval: {
       reviewer: 'Opus',
       owner: 'Devon',
