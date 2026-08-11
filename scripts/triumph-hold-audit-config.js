@@ -1,0 +1,23 @@
+module.exports = Object.freeze({
+  schemaVersion: 1,
+  make: 'Triumph',
+  normalizedMake: 'triumph',
+  generatedOn: '2026-08-11',
+  snapshotFile: 'data/_triumph-deeplink-snapshot-2026-08-11.json',
+  snapshotNormalizedSha256: 'e926a4258c9bc3c47db387def49227ce1fe301bdf96c4a3873454c007015eff1',
+  snapshotInternalHash: '05547b369124cc08274253dbe6c1d97328e3b02f2cfee1aa264d7579b2c9e423',
+  outputFile: 'data/known-issue-triumph-make-audit-2026-08-11.json',
+  expectedRows: 6,
+  expectedModelCounts: Object.freeze({ TR6: 6 }),
+  expectedGlobalPublishedAtFreeze: 7642,
+  selectorYearRange: Object.freeze({ minimum: 1990, maximum: 2027 }),
+  reviewBoundary: 'Every frozen row and citation descriptor was inspected. No uncaptured web page, forum post, vendor page, or search result is promoted to primary evidence. Because exact same-identity primary support was not captured for a content rewrite, every page remains a byte-identical published hold.',
+  flaggedRows: Object.freeze({
+    'triumph-tr6-cracking-differential-mount': 'The remedy names vendor reinforcement kits and welding steps, but the frozen sources are vendor/community material rather than captured factory service evidence.',
+    'triumph-tr6-crankshaft-thrust-washer-wear-excessive-end-float': 'The page gives precise end-float thresholds and machining advice using forum citations only; exact factory specifications were not captured.',
+    'triumph-tr6-lucas-charging-electrical-gremlins': 'The page generalizes several electrical identities and recommends conversions without captured factory evidence establishing the full scope.',
+    'triumph-tr6-lucas-pi-petrol-injection-hot-start-failure-blocked-injector': 'The page combines hot-start, injector, throttle-shaft, pump and surge identities and offers major conversions; the frozen sources do not establish that entire composite scope.',
+    'triumph-tr6-marginal-cooling-overheating-traffic-hot-weather': 'The page makes exact radiator-size and temperature-drop claims while relying on vendor/community sources; the figures were not promoted without captured primary evidence.',
+    'triumph-tr6-perished-rear-suspension-bushings-causing-rear-camber-handli': 'The page combines bushing wear, geometry, chassis cracking and aftermarket bracket recommendations without captured factory evidence for the complete identity.',
+  }),
+});
