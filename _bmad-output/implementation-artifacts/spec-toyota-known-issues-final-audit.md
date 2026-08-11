@@ -10,8 +10,8 @@ Close Toyota without risking the indexed catalog: freeze every live Toyota row, 
 
 - 547 published Toyota rows across 39 models.
 - 107 archived Toyota rows, for 654 all-status rows total.
-- 91 archived-history rows have the existing reviewed adjudication: 2 canonical replacements, 32 rewrite then publish, 7 duplicate holds, and 50 archive holds.
-- The other 16 archived rows remain outside the restoration set and stay archived.
+- The existing reviewed cohort spans 91 rows: two canonical replacements are already published and 89 remain archived. Its decisions are 2 keep replacement, 32 rewrite then publish, 7 duplicate holds, and 50 archive holds.
+- The other 18 archived rows remain outside the reviewed cohort and stay archived.
 
 ## Safety invariants
 
@@ -30,7 +30,7 @@ Close Toyota without risking the indexed catalog: freeze every live Toyota row, 
 - Risk signals expose uncited rows, invalid/search citations, applicability prose in trims, owner-claim language, positive telemetry, commerce, and exact model/title duplicate clusters without mutating them.
 - All-status inventory proves 547 published and 107 archived.
 - The 91-row adjudication and all three rewrite packets pass their validators.
-- A fresh read-only production verifier confirms all 32 rewrite candidates remain archived and hash-identical.
+- A fresh read-only production verifier is cryptographically bound to the exact adjudicated 32-ID set, pinned proposal-file hashes, and after-state digest; all 32 remain archived and hash-identical.
 - Targeted tests, ESLint, TypeScript, and diff checks pass before local commit.
 
 ## Release sequencing

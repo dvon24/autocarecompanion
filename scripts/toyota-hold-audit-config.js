@@ -63,6 +63,6 @@ module.exports = Object.freeze({
     { file: 'data/known-issue-toyota-camry-rewrite-proposals-2026-08-05.json', normalizedSha256: '6ca790e21cdbfd79946eb6829258c7881fc2235e31f211fd251fcb3dda837cff', purpose: 'Sixteen safe Camry rewrite-and-publish proposals.' },
     { file: 'data/known-issue-toyota-corolla-cross-rewrite-proposals-2026-08-05.json', normalizedSha256: 'a1598dfcbb1d8a76e40c249358e56a29e39dd85d10175670dca7b01cd675a8e3', purpose: 'Eight safe Corolla Cross rewrite-and-publish proposals.' },
     { file: 'data/known-issue-toyota-rav4-rewrite-proposals-2026-08-05.json', normalizedSha256: '02c4379a5543b81ecbc4417ae7f7cfa56de5f6c3817eafb2438d2caf3a09c0f3', purpose: 'Eight safe RAV4 rewrite-and-publish proposals.' },
-    { file: 'data/known-issue-toyota-rewrite-live-verification-2026-08-11.json', normalizedSha256: 'a8af08c1a560f224e4954506132eefe15881a79f37d0248b385ed994bf229bfb', purpose: 'Fresh read-only production hash verification for all 32 rewrite candidates.' },
+    { file: 'data/known-issue-toyota-rewrite-live-verification-2026-08-11.json', normalizedSha256: '43c4cd44f0eb86a33c539251c48a4b353c65b2bb4d2e7938e78deeecbdc65f36', purpose: 'Fresh read-only production verification bound to the exact 32 adjudicated IDs, after-state digest, and three pinned proposal files.' },
   ]),
 });

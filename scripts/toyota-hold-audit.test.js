@@ -46,6 +46,16 @@ test('reviewed restoration ledger reconciles and live verification covers all 32
   assert.equal(verification.proposalCount, 32);
   assert.equal(verification.productionRowCount, 32);
   assert.deepEqual(verification.mismatches, []);
+  assert.equal(verification.checkedIds.length, 32);
+  assert.equal(verification.reviewedIdSetSha256, '06d86a9cfa6f5524027ee83f3d873a89082246b59768f718fe1753d19155f4eb');
+  assert.equal(verification.reviewedSetSha256, '20ef3cd4104aec3364c99e2132b21456e3eb4906e35394a9a4f1145e635a9e80');
+  const inventory = JSON.parse(fs.readFileSync(path.join(root, 'data/_toyota-status-inventory-2026-08-11.json'), 'utf8'));
+  const packet = JSON.parse(fs.readFileSync(path.join(root, 'data/_toyota-hold-review-packet.json'), 'utf8'));
+  const statusById = new Map(inventory.rows.map((row) => [row.id, row.status]));
+  const cohortIds = new Set(packet.rows.map((row) => row.id));
+  assert.equal([...cohortIds].filter((id) => statusById.get(id) === 'published').length, 2);
+  assert.equal([...cohortIds].filter((id) => statusById.get(id) === 'archived').length, 89);
+  assert.equal(inventory.rows.filter((row) => row.status === 'archived' && !cohortIds.has(row.id)).length, 18);
 });
 
 test('compact decision mutation and reference drift are rejected', () => {

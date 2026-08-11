@@ -1,11 +1,64 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "status": "read-only-production-verification",
-  "checkedAt": "2026-08-11T20:28:41.940Z",
-  "transaction": "read-only point-in-time SELECT by exact proposal IDs",
+  "passed": true,
   "proposalCount": 32,
   "productionRowCount": 32,
-  "passed": true,
   "mismatches": [],
-  "finding": "All 32 previously reviewed Toyota rewrite candidates still match their frozen audit after-state hashes and remain archived."
+  "reviewedIdSetSha256": "06d86a9cfa6f5524027ee83f3d873a89082246b59768f718fe1753d19155f4eb",
+  "reviewedSetSha256": "20ef3cd4104aec3364c99e2132b21456e3eb4906e35394a9a4f1145e635a9e80",
+  "checkedIds": [
+    "toyota-camry-3vz-fe-3-0l-v6-head-gasket-failure",
+    "toyota-camry-c-compressor-seizure-internal-failure-causing-loss-cooling-b",
+    "toyota-camry-driver-assist-braking-faults-ecb-smart-stop-system-malfuncti",
+    "toyota-camry-engine-mount-wear-5s-fe-idle-vibration",
+    "toyota-camry-infotainment-touchscreen-delamination-bubbling-unresponsive",
+    "toyota-camry-leather-softex-seat-cracking-peeling-driver-s-seat-bottom-bo",
+    "toyota-camry-power-window-regulator-motor-failure",
+    "toyota-camry-rear-subframe-suspension-crossmember-rust-through",
+    "toyota-camry-rear-suspension-clunk-from-worn-strut-mounts-strut-rod-bushi",
+    "toyota-camry-sagging-drooping-headliner-from-degraded-adhesive-foam",
+    "toyota-camry-stripped-aluminum-oil-pan-drain-plug-threads-causing-oil-lea",
+    "toyota-camry-throttle-body-carbon-buildup-causing-rough-high-idle-stallin",
+    "toyota-camry-transmission-2018",
+    "toyota-camry-v6-active-control-hydraulic-engine-mount-failure-causing-idl",
+    "toyota-camry-warped-front-brake-rotors-causing-steering-wheel-shudder-pul",
+    "toyota-camry-wind-noise-2018",
+    "toyota-corolla-cross-excessive-cabin-road-noise-booming-rough-pavement",
+    "toyota-corolla-cross-front-brake-squeal-squeak-low-speed",
+    "toyota-corolla-cross-fuel-gauge-fuel-level-sender-reads-inaccurately",
+    "toyota-corolla-cross-hybrid-12v-battery-parasitic-drain-no-start-after-sitting",
+    "toyota-corolla-cross-loose-exhaust-heat-shield-rattle-speed",
+    "toyota-corolla-cross-power-liftgate-unlatches-but-fails-to-raise",
+    "toyota-corolla-cross-rear-suspension-clunk-harsh-bang-over-bumps",
+    "toyota-corolla-cross-roof-rail-gasket-whistle-highway-speed",
+    "toyota-rav4-2ar-fe-2-5l-excessive-oil-consumption-from-low-tension-pisto",
+    "toyota-rav4-2az-fe-cold-start-vvt-i-camshaft-gear-timing-rattle",
+    "toyota-rav4-excessive-road-tire-noise-from-inadequate-cabin-insulation",
+    "toyota-rav4-front-brake-rotor-warping-premature-pad-rotor-wear-causing-p",
+    "toyota-rav4-liftgate-2019",
+    "toyota-rav4-pre-collision-system-toyota-safety-sense-phantom-braking",
+    "toyota-rav4-uncomfortable-front-seats-causing-lower-back-hip-leg-pain-lo",
+    "toyota-rav4-windshield-cracking-easily-spontaneously-from-normal-use"
+  ],
+  "checkedAt": "2026-08-11T20:58:19.156Z",
+  "transaction": "BEGIN ISOLATION LEVEL REPEATABLE READ READ ONLY",
+  "adjudication": {
+    "file": "data/known-issue-toyota-adjudication-2026-08-05.json",
+    "normalizedSha256": "48c5071818b5de21a219504799dd60c6dd273498bfb002f12deed3327c176bd8"
+  },
+  "proposalFiles": [
+    {
+      "file": "data/known-issue-toyota-camry-rewrite-proposals-2026-08-05.json",
+      "normalizedSha256": "6ca790e21cdbfd79946eb6829258c7881fc2235e31f211fd251fcb3dda837cff"
+    },
+    {
+      "file": "data/known-issue-toyota-corolla-cross-rewrite-proposals-2026-08-05.json",
+      "normalizedSha256": "a1598dfcbb1d8a76e40c249358e56a29e39dd85d10175670dca7b01cd675a8e3"
+    },
+    {
+      "file": "data/known-issue-toyota-rav4-rewrite-proposals-2026-08-05.json",
+      "normalizedSha256": "02c4379a5543b81ecbc4417ae7f7cfa56de5f6c3817eafb2438d2caf3a09c0f3"
+    }
+  ]
 }
