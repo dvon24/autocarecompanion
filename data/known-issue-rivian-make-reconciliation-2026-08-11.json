@@ -1,0 +1,173 @@
+{
+  "schemaVersion": 1,
+  "status": "proposal-only",
+  "requiresIndependentApproval": true,
+  "generatedOn": "2026-08-11",
+  "make": "Rivian",
+  "branch": "codex/rivian-deeplink-audit",
+  "snapshot": {
+    "file": "data/_rivian-deeplink-snapshot-2026-08-11.json",
+    "normalizedSha256": "962923c87674ae81abc69d88d9624fa442733dcd13b0fa413a3f1413a1831bca",
+    "generatedAt": "2026-08-11T00:14:08.130Z",
+    "snapshotHash": "31d571b4443e1c9988d13313a14d633dfe471254f34b5b0517147bfbd804f1ed",
+    "makeRows": 14
+  },
+  "summary": {
+    "models": 4,
+    "rows": 14,
+    "retained": 3,
+    "held": 11,
+    "unsupportedOwnerCountsZeroed": 0,
+    "pagesPreservedPublished": 14
+  },
+  "crossPacketChecks": {
+    "exactModelInventory": true,
+    "exactRowInventory": true,
+    "makeDrift": 0,
+    "identityDrift": 0,
+    "unpublished": 0,
+    "noncanonicalSeverity": 0,
+    "ownerDataDrift": 0,
+    "ownerSocialProof": 0,
+    "commerceDrift": 0,
+    "perPacketValidationErrors": 0
+  },
+  "applicationGate": {
+    "status": "blocked",
+    "reason": "Independent review is required for every model packet, and held identities require an approved identity policy before any catalog write."
+  },
+  "models": [
+    {
+      "model": "EDV",
+      "packetFile": "data/known-issue-rivian-edv-adjudication-2026-08-11.json",
+      "packetSha256": "8c3b9f8959c5e60bd74f990863853d2fda4090d4c95d179a46d4c6a6a1bfa173",
+      "deterministicPacketSha256": "8c3b9f8959c5e60bd74f990863853d2fda4090d4c95d179a46d4c6a6a1bfa173",
+      "rows": 3,
+      "retained": 2,
+      "held": 1,
+      "unsupportedOwnerCountsZeroed": 0,
+      "applicationGate": "blocked"
+    },
+    {
+      "model": "R1S",
+      "packetFile": "data/known-issue-rivian-r1s-adjudication-2026-08-11.json",
+      "packetSha256": "b27e56d52da4941e5b1bd0aeab3fd814db53369359575ddfcad9fb36d2635726",
+      "deterministicPacketSha256": "b27e56d52da4941e5b1bd0aeab3fd814db53369359575ddfcad9fb36d2635726",
+      "rows": 1,
+      "retained": 0,
+      "held": 1,
+      "unsupportedOwnerCountsZeroed": 0,
+      "applicationGate": "blocked"
+    },
+    {
+      "model": "R1T",
+      "packetFile": "data/known-issue-rivian-r1t-adjudication-2026-08-11.json",
+      "packetSha256": "f540bb420dfecb03c4b1239ac9a7e353ab2107234507f0aa879de1888cd56184",
+      "deterministicPacketSha256": "f540bb420dfecb03c4b1239ac9a7e353ab2107234507f0aa879de1888cd56184",
+      "rows": 8,
+      "retained": 1,
+      "held": 7,
+      "unsupportedOwnerCountsZeroed": 0,
+      "applicationGate": "blocked"
+    },
+    {
+      "model": "R2",
+      "packetFile": "data/known-issue-rivian-r2-adjudication-2026-08-11.json",
+      "packetSha256": "e2230aebf4582c37035b163d6a15abc9a2ab79b3d1c86e85936cbb2583ff48ac",
+      "deterministicPacketSha256": "e2230aebf4582c37035b163d6a15abc9a2ab79b3d1c86e85936cbb2583ff48ac",
+      "rows": 2,
+      "retained": 0,
+      "held": 2,
+      "unsupportedOwnerCountsZeroed": 0,
+      "applicationGate": "blocked"
+    }
+  ],
+  "rows": [
+    {
+      "id": "rivian-charge-port-motor-failure",
+      "model": "R1T",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "f00e74a1c64c44b7d59c4a5c7e2117f6b8732f600ca1efa8de8b90c5a1701edb"
+    },
+    {
+      "id": "rivian-edv-driver-seat-belt-pretensioner-cable-damage-from-driver-sitti",
+      "model": "EDV",
+      "action": "retain_indexed_identity_and_accuracy_cleanup",
+      "proposalSha256": "3d1c87e9b4fc6f79005331514852ec086aa3e4517c976b9535b92d023202b07a"
+    },
+    {
+      "id": "rivian-edv-front-upper-control-arm-steering-knuckle-fastener-under-torq",
+      "model": "EDV",
+      "action": "retain_indexed_identity_and_accuracy_cleanup",
+      "proposalSha256": "1748a7dd35db0c3ec7cf15be99e13e3efe365d6d8e425ff7ecac7ffee09a1b32"
+    },
+    {
+      "id": "rivian-edv-thermal-events-vehicle-fires-while-parked-depot-chargers-ext",
+      "model": "EDV",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "3f33b2817c1a9eec493c7f6b5a5d70012cffd46c55e270bcd923843646c6a00f"
+    },
+    {
+      "id": "rivian-r1s-third-row-creaks",
+      "model": "R1S",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "6d1a2b5d41a756405e1fdda90b73232c1fe712e8a9f556cd628a350da91de7a5"
+    },
+    {
+      "id": "rivian-r1t-control-arm-corrosion",
+      "model": "R1T",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "333bdf4bce1fbdc6b71b4986a9d3cb7bd6c777a747a81b91e99e98261279fccc"
+    },
+    {
+      "id": "rivian-r1t-frunk-finger-pinch-recall",
+      "model": "R1T",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "1e54b1f2f623fff369b0316cee41b6f10dad75a52dad551d29e6125abb77b618"
+    },
+    {
+      "id": "rivian-r1t-r1s-12v-drain",
+      "model": "R1T",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "abda140332bfbbe406cc8bdae761f5d5c7cd17de6ce66f05cc57568220546d45"
+    },
+    {
+      "id": "rivian-r1t-r1s-brake-light-recall",
+      "model": "R1T",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "ad795941de4be0fa085b53039bcd1449fe3e8b3922d4980badb1b11aec92efb6"
+    },
+    {
+      "id": "rivian-r1t-r1s-front-drive-unit-failure",
+      "model": "R1T",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "b1e3e2f1c4f3c808a6570d81fb84104d61bfbbdf14b081e08d210c6f857e6b2e"
+    },
+    {
+      "id": "rivian-r1t-r1s-infotainment-freezes",
+      "model": "R1T",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "b500fe0215869826622dd5993396a706612a2fbb881134f800d73c6bba6dba50"
+    },
+    {
+      "id": "rivian-r1t-r1s-seatbelt-anchor-recall",
+      "model": "R1T",
+      "action": "retain_indexed_identity_and_accuracy_cleanup",
+      "proposalSha256": "7d2281a23662a0b9459be838b81c8b239d782440f8def98235662909beffcc55"
+    },
+    {
+      "id": "rivian-r2-400v-architecture-limits-dc-fast-charging-speed-vs-800v-comp",
+      "model": "R2",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "c089fa3e1aa8de11d45b42bb2bad4e477787074e23baad13f5b6667d090deeb3"
+    },
+    {
+      "id": "rivian-r2-electronic-door-handles-rear-seat-manual-emergency-release-i",
+      "model": "R2",
+      "action": "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy",
+      "proposalSha256": "0e274f72a02dbc65e293712a0d8f0eb46ee60f7df97bf7df64c5b90f90f53888"
+    }
+  ],
+  "passed": true,
+  "errors": []
+}
