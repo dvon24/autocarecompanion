@@ -10,6 +10,7 @@ const contracts = Object.freeze({
   Sandero: () => require('./renault-sandero-adjudication-contract'),
   Scenic: () => require('./renault-scenic-adjudication-contract'),
   Twizy: () => require('./renault-twizy-adjudication-contract'),
+  Zoe: () => require('./renault-zoe-adjudication-contract'),
 });
 
 function getContract(model) {
