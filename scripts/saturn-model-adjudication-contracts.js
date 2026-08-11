@@ -665,6 +665,100 @@ const contracts = {
       },
     },
   },
+  Sky: {
+    make: 'Saturn',
+    model: 'Sky',
+    reviewDate: REVIEW_DATE,
+    snapshotFile: SNAPSHOT_FILE,
+    outputFile: 'data/known-issue-saturn-sky-adjudication-2026-08-11.json',
+    allIds: [
+      'saturn-sky-ignition-switch-recall',
+      'saturn-sky-trunk-leak',
+    ],
+    retainedIds: [],
+    reportCountCleanupIds: [],
+    observations: [
+      'The frozen ignition page conflates three different field actions: 14V047/14063 for 2007 Sky, service-parts recall 14092 for certain 2008-2010 vehicles, and 14V171/14113 for lock-cylinder/key removal across 2007-2010.',
+      'GM water-leak guide 05-08-67-011B covers 2007-2008 Sky and lists multiple source-specific trunk leak paths; it does not establish a universal top-down trunk-seal mechanism across frozen 2007-2010 years.',
+      'Both indexed pages remain published while their frozen title/year identities exceed the exact evidence.',
+    ],
+    pdfSources: {
+      ignition2007: {
+        url: 'https://static.nhtsa.gov/odi/rcl/2014/RCMN-14V047-7733.pdf',
+        type: 'manufacturer',
+        title: 'GM recall notice for 14V047/14063 ignition-switch replacement',
+        contains: ['2007 Saturn Sky', 'move out of the run position', 'remove all items from their key rings'],
+      },
+      ignitionServiceParts: {
+        url: 'https://static.nhtsa.gov/odi/rcl/2014/RCRIT-14V047-6031.pdf',
+        type: 'manufacturer',
+        title: 'GM service-parts safety recall 14092B',
+        contains: ['2008-2010 Saturn Sky', 'service parts may have been installed', 'ignition switch may unintentionally move'],
+      },
+      lockCylinderRecall: {
+        url: 'https://static.nhtsa.gov/odi/rcl/2014/RCRIT-14V171-1178.pdf',
+        type: 'manufacturer',
+        title: 'GM recall 14113: Ignition lock cylinder and key',
+        contains: ['2007-2010 Saturn Sky', 'ignition key may be removed', 'unintended vehicle motion'],
+      },
+    },
+    otherSources: {
+      waterLeakGuide: {
+        url: 'https://charm.li/Saturn/2008/Sky%20L4-2.0L%20Turbo/Repair%20and%20Diagnosis/Technical%20Service%20Bulletins/Customer%20Interest/Body%20-%20Water%20Leak%20Diagnosis%20and%20Repair/Procedures%2014%20-%2020/',
+        type: 'manufacturer-service-bulletin-mirror',
+        title: 'GM bulletin 05-08-67-011B trunk water-leak procedures 14-20',
+        contains: ['fascia studs may not be sealed properly', 'pressure relief valve may not be seated', 'flange that holds the trunk seal', 'wiring harness rubber housing end'],
+      },
+      waterLeakOverview: {
+        url: 'https://workshop-manuals.com/saturn/sky/l4-2.0l_turbo/body_and_frame/weatherstrip/front_door_weatherstrip/component_information/technical_service_bulletins/customer_interest/05-08-67-011b/mar/08/body_water_leak_diagnosis_and_repair/',
+        type: 'manufacturer-service-bulletin-mirror',
+        title: 'GM bulletin 05-08-67-011B: General Waterleak Guide',
+        contains: ['2007-2008 Saturn Sky', 'Plan-A', 'Plan-B'],
+      },
+    },
+    bulletinInventory: {
+      method: 'Exact Sky model-year, ignition field-action, top architecture, water-leak and trunk-source searches across NHTSA-hosted GM documents and factory bulletin mirrors.',
+      exactDocuments: 5,
+    },
+    recallInventory: {
+      method: 'Separated 2007 switch recall 14063, conditional 2008-2010 service-parts recall 14092 and 2007-2010 lock-cylinder recall 14113.',
+      exactCampaigns: 3,
+    },
+    modelAliases: ['Sky', 'SKY', 'Kappa'],
+    searchTerms: ['14V047 14063', '14092 service parts', '14V171 14113', '05-08-67-011B', 'trunk water leak'],
+    relevantDocumentIds: ['14063', '14092B', '14113', '05-08-67-011B'],
+    campaigns: ['14V047', '14V171'],
+    requiredProse: [
+      { id: 'saturn-sky-ignition-switch-recall', field: 'description', patterns: ['14V047/14063 directly applies to the 2007 Saturn Sky', '2008-2010 field action 14092'] },
+      { id: 'saturn-sky-trunk-leak', field: 'description', patterns: ['does not establish one top-down trunk-seal defect across 2007-2010'] },
+    ],
+    content: {
+      'saturn-sky-ignition-switch-recall': {
+        description: 'GM recall 14V047/14063 directly applies to the 2007 Saturn Sky and documents an ignition switch that may move out of Run after key-ring loading or jarring, turning off the engine and partially removing electrical power; airbags may not deploy if a crash occurs with the switch out of Run. The frozen 2007-2010 scope is not one identical Ion recall population. The 2008-2010 field action 14092 is a service-parts recall for certain replacement switches or housings that may have been installed, while 14V171/14113 separately covers an ignition-lock-cylinder/key-removal rollaway condition across 2007-2010. VIN history must identify which action applies.',
+        solution: 'Check the VIN and completed field-action history for 14063, 14092 and 14113. Until applicable repairs are completed, remove added weight and the fob from the key ring; before leaving the vehicle, place an automatic in Park or a manual in reverse and set the parking brake as directed. An authorized dealer should perform the exact switch, lock-cylinder and key procedure shown for the VIN. Do not buy an ignition switch, housing, lock cylinder or key from this page; model year, installed service-part history and VIN field actions determine the authorized repair, with no universal retail part.',
+        symptoms: ['2007 switch moves out of Run after key-ring loading or jarring', 'Engine shuts off with partial loss of electrical power', 'Key can be removed outside Off under the 14113 identity', 'Open 14063, 14092 or 14113 field action identified by VIN'],
+        affectedSystems: ['Ignition switch and start-switch housing', 'Ignition lock cylinder and key', 'Engine electrical power, assist systems and airbag enable state'],
+        dtcCodes: [],
+        citations: ['ignition2007', 'ignitionServiceParts', 'lockCylinderRecall'],
+        evidence: ['GM identifies 2007 Sky in the original switch campaign.', 'GM separately defines conditional 2008-2010 service-parts and 2007-2010 lock-cylinder/key populations.'],
+        summary: 'Separated three field actions, corrected the over-broad same-as-Ion claim and made all repair guidance VIN- and installed-part-controlled.',
+        conflict: 'The immutable title assigns one 14V047 same-as-Ion identity to 2007-2010, while exact GM materials distinguish the 2007 switch population from later service-part and lock-cylinder actions.',
+        commerceDecision: 'model year, VIN field actions, completed campaign history and installed switch/housing provenance determine the dealer repair; no universal retail part',
+      },
+      'saturn-sky-trunk-leak': {
+        description: 'GM bulletin 05-08-67-011B provides a general water-leak guide for 2007-2008 Saturn Sky and distinguishes Plan-A and Plan-B top/weatherstrip systems. For rear-trunk water, it lists several possible entry paths including fascia studs, a pressure-relief valve, tonneau-latch bezels, trunk-seal flange, wiring-harness housing and body-sealer voids. That source does not establish one top-down trunk-seal defect across 2007-2010, does not say rain normally leaks past an exposed seal whenever the top is stowed and does not identify a spare-tire well or inevitable floor rust. The exact entry point must be reproduced before any seal or adhesive work.',
+        solution: 'Dry the trunk, protect electrical items and reproduce the leak in a controlled water test while observing the first wet point. Identify the top design and inspect fascia-stud sealing, pressure-relief valve seating, tonneau-latch bezels, trunk-seal flange, harness boot and body seams using the applicable factory procedure. Repair only the confirmed path with the specified service material, then retest. Do not buy a trunk seal, weatherstrip, pressure-relief valve, latch bezel or adhesive from this page; build/VIN top design and the observed entry path determine the repair, with no universal retail part.',
+        symptoms: ['Wet rear-trunk carpet after rain or washing', 'First water path reproduced at a specific stud, valve, bezel, seal, boot or seam', 'Mildew or corrosion requiring drying and inspection', 'Plan-A or Plan-B top/weatherstrip identified before repair'],
+        affectedSystems: ['Rear-trunk body seams and fascia studs', 'Pressure-relief valve, harness boot and tonneau-latch bezels', 'Trunk-seal flange and convertible-top weatherstrip, source-dependent'],
+        dtcCodes: [],
+        citations: ['waterLeakGuide', 'waterLeakOverview'],
+        evidence: ['GM bulletin 05-08-67-011B documents multiple separate rear-trunk water paths on 2007-2008 Sky.', 'The bulletin requires Plan-A/Plan-B and observed leak-path distinctions rather than a universal trunk-seal repair.'],
+        summary: 'Replaced the unsupported top-down/spare-well story and universal seal remedy with the exact multi-source GM leak-isolation process.',
+        conflict: 'The immutable title and frozen 2007-2010 years assert one top-down Kappa leak identity beyond the 2007-2008, source-specific bulletin evidence.',
+        commerceDecision: 'build/VIN top design, controlled water-test result and confirmed stud, valve, bezel, seal, boot or seam path determine the repair; no universal retail part',
+      },
+    },
+  },
 };
 
 const supportedModels = Object.freeze(Object.keys(contracts));

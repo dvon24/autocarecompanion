@@ -65,6 +65,18 @@ test('SC packet holds the unsupported third-door defect without darkening the pa
   });
 });
 
+test('Sky packet holds both over-broad identities while preserving both URLs', () => {
+  const { contract, packet, snapshot } = buildForModel('Sky');
+  assert.deepEqual(validatePacket(contract, packet, snapshot), []);
+  assert.deepEqual(packet.summary, {
+    retain_indexed_identity_and_accuracy_cleanup: 0,
+    hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy: 2,
+    fabricated_report_counts_proposed_zero: 0,
+    pages_preserved_published: 2,
+    total: 2,
+  });
+});
+
 test('validator rejects a held page becoming unpublished', () => {
   const { contract, packet, snapshot } = buildForModel('Astra');
   const changed = clone(packet);
