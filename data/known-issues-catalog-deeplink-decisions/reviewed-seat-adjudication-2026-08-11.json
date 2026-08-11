@@ -1,0 +1,228 @@
+{
+  "schemaVersion": 2,
+  "auditScope": "full-record",
+  "manifestKind": "known-issues-catalog-deeplinks",
+  "batchId": "reviewed-seat-adjudication-2026-08-11",
+  "generatedAt": "2026-08-11T17:17:28.954Z",
+  "sourceRef": "origin/codex/seat-deeplink-audit",
+  "make": "SEAT",
+  "frozenMakeValues": [
+    "SEAT"
+  ],
+  "frozenMakeCounts": {
+    "SEAT": 36
+  },
+  "frozenCatalogStatus": {
+    "archived": 464,
+    "pending_review": 3,
+    "published": 7642
+  },
+  "approval": {
+    "reviewer": "Opus + Codex Blind Hunter + Edge Case Hunter",
+    "owner": "Devon",
+    "reviewDate": "2026-08-11",
+    "contract": "same indexed identity, published status preserved, holds are no-ops, no retail commerce"
+  },
+  "packetCount": 6,
+  "packetRowCount": 36,
+  "writeRowCount": 1,
+  "heldRowCount": 35,
+  "packets": [
+    {
+      "file": "data/known-issue-seat-alhambra-adjudication-2026-08-11.json",
+      "sha256": "8de7275fc1b3073061c8289b60e96acd570598436b65b5863fc1c9263493bc76",
+      "model": "Alhambra",
+      "frozenMakeValues": [
+        "SEAT"
+      ],
+      "summary": {
+        "retain_indexed_identity_and_accuracy_cleanup": 0,
+        "hold_indexed_identity_byte_identical_pending_identity_policy": 1,
+        "fabricated_report_counts_proposed_zero": 0,
+        "pages_preserved_published": 1,
+        "total": 1
+      }
+    },
+    {
+      "file": "data/known-issue-seat-arona-adjudication-2026-08-11.json",
+      "sha256": "881ed9f0ac42dc7e75f53abdeabcd803153eb8f3276397adfef955e21be65412",
+      "model": "Arona",
+      "frozenMakeValues": [
+        "SEAT"
+      ],
+      "summary": {
+        "retain_indexed_identity_and_accuracy_cleanup": 1,
+        "hold_indexed_identity_byte_identical_pending_identity_policy": 7,
+        "fabricated_report_counts_proposed_zero": 0,
+        "pages_preserved_published": 8,
+        "total": 8
+      }
+    },
+    {
+      "file": "data/known-issue-seat-ateca-adjudication-2026-08-11.json",
+      "sha256": "1fcfdc09347257bac2a4974b8b0bcd74c2a9a5deae1d9e27fc42faca0290595e",
+      "model": "Ateca",
+      "frozenMakeValues": [
+        "SEAT"
+      ],
+      "summary": {
+        "retain_indexed_identity_and_accuracy_cleanup": 0,
+        "hold_indexed_identity_byte_identical_pending_identity_policy": 1,
+        "fabricated_report_counts_proposed_zero": 0,
+        "pages_preserved_published": 1,
+        "total": 1
+      }
+    },
+    {
+      "file": "data/known-issue-seat-ibiza-adjudication-2026-08-11.json",
+      "sha256": "80a1e6e9345142d5685d45ad52a8e0067e1a833f7beee9359f0fe5630915f0fb",
+      "model": "Ibiza",
+      "frozenMakeValues": [
+        "SEAT"
+      ],
+      "summary": {
+        "retain_indexed_identity_and_accuracy_cleanup": 0,
+        "hold_indexed_identity_byte_identical_pending_identity_policy": 11,
+        "fabricated_report_counts_proposed_zero": 0,
+        "pages_preserved_published": 11,
+        "total": 11
+      }
+    },
+    {
+      "file": "data/known-issue-seat-leon-adjudication-2026-08-11.json",
+      "sha256": "8e8e989ee00e10c30bc38648acf017bcea52c25b83952836cb774ee384d337ad",
+      "model": "Leon",
+      "frozenMakeValues": [
+        "SEAT"
+      ],
+      "summary": {
+        "retain_indexed_identity_and_accuracy_cleanup": 0,
+        "hold_indexed_identity_byte_identical_pending_identity_policy": 14,
+        "fabricated_report_counts_proposed_zero": 0,
+        "pages_preserved_published": 14,
+        "total": 14
+      }
+    },
+    {
+      "file": "data/known-issue-seat-mii-adjudication-2026-08-11.json",
+      "sha256": "aa4443b657993e2e8548ccf2d8156bbab9b043c6c65556283f478b2e413abd54",
+      "model": "Mii",
+      "frozenMakeValues": [
+        "SEAT"
+      ],
+      "summary": {
+        "retain_indexed_identity_and_accuracy_cleanup": 0,
+        "hold_indexed_identity_byte_identical_pending_identity_policy": 1,
+        "fabricated_report_counts_proposed_zero": 0,
+        "pages_preserved_published": 1,
+        "total": 1
+      }
+    }
+  ],
+  "issues": [
+    {
+      "id": "seat-arona-handbrake-lever-travel-increases",
+      "disposition": "no-commerce",
+      "evidence": [
+        {
+          "kind": "primary-evidence",
+          "observation": "DVSA campaign R/2019/039 states the defect mechanism and remedy on both the 2017 and 2018 Arona recall pages."
+        },
+        {
+          "kind": "evidence-limitation",
+          "observation": "No owner-frequency rate, universal fitment, price, DTC or unsupported production scope is inferred."
+        },
+        {
+          "kind": "independent-review",
+          "verifiedOn": "2026-08-11",
+          "observation": "Opus independently reconciled all 36 rows with production and approved the original handbrake retain; two same-capability adversarial reviewers narrowed the final packet to one retain and 35 byte-identical holds; Devon approved the workflow. Source packet: data/known-issue-seat-arona-adjudication-2026-08-11.json."
+        }
+      ],
+      "before": {
+        "makeHash": "91e85105381126821357d80fa04a0543abade5a1513ccdff4b0de6707adef1fa",
+        "modelHash": "f9096733bf52bd541734e7e878de8ac8f8914eb2d897d6a67d7001ad38181572",
+        "yearsHash": "7c41ac93eb5b815b288cd02c3c80606be00ced4bf39bcbb7ac9706d45308354d",
+        "trimsHash": "190cdd24c2f8217ce03f85813fb5848076c2d54714da2369235981f43e504c8e",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "fcae623f085305db57d9e06647def7f7d27df9dca65d99f1348cd12bc5126108",
+        "titleHash": "3a8732035ac0e3923d4ece17dbe2268589ad11d5514bcd7eca6eb5399c5206f3",
+        "descriptionHash": "32d8ed6d48735884628135371ede9654c5f7c517db138f77fde41067f9bdcb5d",
+        "solutionHash": "8cc12ac512e6d2a021f5b883a61e773c5e79031d599fd017f06318b710b44150",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "edbb9e6bd237a73f0222f70b8d0f0ed7c5ec8e0ac86ce2f1d5335f7cceaedbff",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "estimatedCostHighHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "7b4d879a126dc55b99923e0eb9a1739206c875c8b432312b09f6b6f130ac0cc6",
+        "communityRecommendationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "060998a3582d16f70ac4e76cf28b406c2c9c82cd4324932d1b970d346a976e93",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": []
+      },
+      "after": {
+        "make": "SEAT",
+        "model": "Arona",
+        "years": [
+          2017,
+          2018
+        ],
+        "trims": [
+          "Manual handbrake lever cars (early build)"
+        ],
+        "engines": [],
+        "category": "brakes",
+        "title": "Handbrake lever travel increases (parking-brake recall, manual lever cars)",
+        "description": "The UK DVSA recall results for 2017 and 2018 SEAT Arona vehicles list campaign R/2019/039. The record says handbrake lever travel can increase because the adjuster nut moves. The public recall page does not publish build dates and does not substantiate the frozen \"early build\" trim label; model year alone does not prove inclusion, so a VIN or recall check is required for a particular Arona.",
+        "solution": "Check the VIN with SEAT or the applicable national recall service. For a vehicle included in R/2019/039, the official remedy is to readjust the handbrake assembly and fit a locking device to the nut; the DVSA page says recall work is provided without charge. Do not buy a handbrake cable, caliper or adjuster from this page; recall inclusion and the required repair must be confirmed from the VIN.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Handbrake lever travel increases from its previous position"
+        ],
+        "affectedSystems": [
+          "Handbrake lever adjuster nut and locking device"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.check-vehicle-recalls.service.gov.uk/recall-type/vehicle/make/SEAT/model/ARONA/year/2017/recalls",
+            "type": "recall",
+            "title": "DVSA SEAT Arona 2017 recall results"
+          },
+          {
+            "url": "https://www.check-vehicle-recalls.service.gov.uk/recall-type/vehicle/make/SEAT/model/ARONA/year/2018/recalls",
+            "type": "recall",
+            "title": "DVSA SEAT Arona 2018 recall results"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-11",
+        "contentUpdatedOn": "2026-08-11",
+        "contentUpdateSummary": "Replaced secondary recall copy with exact DVSA campaign language; removed inferred loss-of-hold symptoms and exposed the unverified early-build label.",
+        "relatedIssueIds": []
+      }
+    }
+  ]
+}

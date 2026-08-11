@@ -65,11 +65,11 @@ context: []
 
 ## Post-Review Release Checklist
 
-- [ ] Independently re-derive production inventory, live-before equality, and the exact evidence for the one retained row.
-- [ ] Commit and push `codex/seat-deeplink-audit` with only the reproducible audit artifacts.
-- [ ] Build a reviewed schema-v2 decision manifest; dry-run, apply, and verify only independently approved retained rows while all holds produce zero writes.
+- [x] Independently re-derive production inventory, live-before equality, and the exact evidence for the one retained row.
+- [x] Commit and push `codex/seat-deeplink-audit` with only the reproducible audit artifacts.
+- [x] Build a reviewed schema-v2 decision manifest; dry-run, apply, and verify only independently approved retained rows while all holds produce zero writes.
 - [ ] Promote the gated release to `origin/main` and Vercel production; verify the deployment ID, exact catalog/model counts, and representative live SEAT content.
-- [ ] Stop and do not declare production complete on any failed citation, hash, build, deployment, API, or inventory gate.
+- [x] Stop and do not declare production complete on any failed citation, hash, build, deployment, API, or inventory gate.
 
 ## Spec Change Log
 
