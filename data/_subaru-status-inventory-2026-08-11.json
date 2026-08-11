@@ -1,0 +1,1383 @@
+{
+  "schemaVersion": 1,
+  "capturedOn": "2026-08-11",
+  "status": "read-only-inventory",
+  "make": "Subaru",
+  "captureProvenance": {
+    "transaction": "BEGIN ISOLATION LEVEL REPEATABLE READ READ ONLY",
+    "query": "SELECT id, make, model, status FROM KnownIssue ORDER BY id",
+    "derivation": "All rows were selected without a make or status predicate; Unicode NFKD mark-folding was applied locally.",
+    "environment": {
+      "envFile": "C:/Users/devon/autocarecompanion/.env.local",
+      "connectionVariable": "POSTGRES_PRISMA_URL (DATABASE_URL/DIRECT_URL fallback)",
+      "secretValuesRecorded": false
+    }
+  },
+  "globalPublishedCount": 7642,
+  "normalizedSubaruRows": 217,
+  "statusCounts": {
+    "archived": 12,
+    "published": 205
+  },
+  "rawMakeVariants": [
+    {
+      "make": "Subaru",
+      "normalized": "subaru",
+      "codePoints": [
+        "U+0053",
+        "U+0075",
+        "U+0062",
+        "U+0061",
+        "U+0072",
+        "U+0075"
+      ],
+      "count": 217
+    }
+  ],
+  "modelCounts": {
+    "allStatuses": {
+      "Ascent": 12,
+      "Baja": 4,
+      "BRZ": 10,
+      "Crosstrek": 15,
+      "Forester": 35,
+      "Impreza": 14,
+      "Legacy": 15,
+      "Loyale": 5,
+      "Outback": 41,
+      "Solterra": 22,
+      "SVX": 5,
+      "Tribeca": 4,
+      "WRX": 19,
+      "WRX STI": 16
+    },
+    "published": {
+      "Ascent": 11,
+      "Baja": 4,
+      "BRZ": 10,
+      "Crosstrek": 14,
+      "Forester": 33,
+      "Impreza": 12,
+      "Legacy": 15,
+      "Loyale": 2,
+      "Outback": 41,
+      "Solterra": 22,
+      "SVX": 2,
+      "Tribeca": 4,
+      "WRX": 19,
+      "WRX STI": 16
+    },
+    "archived": {
+      "Ascent": 1,
+      "Crosstrek": 1,
+      "Forester": 2,
+      "Impreza": 2,
+      "Loyale": 3,
+      "SVX": 3
+    }
+  },
+  "rows": [
+    {
+      "id": "subaru-ascent-ac-condenser-leak-2019",
+      "make": "Subaru",
+      "model": "Ascent",
+      "status": "published"
+    },
+    {
+      "id": "subaru-ascent-battery-drain-2019",
+      "make": "Subaru",
+      "model": "Ascent",
+      "status": "published"
+    },
+    {
+      "id": "subaru-ascent-battery-drain-parasitic-2019",
+      "make": "Subaru",
+      "model": "Ascent",
+      "status": "archived"
+    },
+    {
+      "id": "subaru-ascent-cvt-hesitation-2019",
+      "make": "Subaru",
+      "model": "Ascent",
+      "status": "published"
+    },
+    {
+      "id": "subaru-ascent-denso-low-pressure-fuel-pump-impeller-failure",
+      "make": "Subaru",
+      "model": "Ascent",
+      "status": "published"
+    },
+    {
+      "id": "subaru-ascent-fa24f-pcv-hose-oil-fuel-hot-rubber-odor-under-hood",
+      "make": "Subaru",
+      "model": "Ascent",
+      "status": "published"
+    },
+    {
+      "id": "subaru-ascent-fuel-pump-recall-2019",
+      "make": "Subaru",
+      "model": "Ascent",
+      "status": "published"
+    },
+    {
+      "id": "subaru-ascent-open-tailgate-drains-12v-battery-hours",
+      "make": "Subaru",
+      "model": "Ascent",
+      "status": "published"
+    },
+    {
+      "id": "subaru-ascent-spontaneously-cracking-windshield",
+      "make": "Subaru",
+      "model": "Ascent",
+      "status": "published"
+    },
+    {
+      "id": "subaru-ascent-tr690-cvt-chain-slip-chain-guide-breakage",
+      "make": "Subaru",
+      "model": "Ascent",
+      "status": "published"
+    },
+    {
+      "id": "subaru-ascent-valve-body-failure-2019",
+      "make": "Subaru",
+      "model": "Ascent",
+      "status": "published"
+    },
+    {
+      "id": "subaru-ascent-windshield-crack-2019",
+      "make": "Subaru",
+      "model": "Ascent",
+      "status": "published"
+    },
+    {
+      "id": "subaru-baja-bed-rust-2003",
+      "make": "Subaru",
+      "model": "Baja",
+      "status": "published"
+    },
+    {
+      "id": "subaru-baja-head-gasket-2003",
+      "make": "Subaru",
+      "model": "Baja",
+      "status": "published"
+    },
+    {
+      "id": "subaru-baja-rear-strut-tower-2003",
+      "make": "Subaru",
+      "model": "Baja",
+      "status": "published"
+    },
+    {
+      "id": "subaru-baja-turbo-failure-2004",
+      "make": "Subaru",
+      "model": "Baja",
+      "status": "published"
+    },
+    {
+      "id": "subaru-brz-denso-low-pressure-fuel-pump-impeller-swelling",
+      "make": "Subaru",
+      "model": "BRZ",
+      "status": "published"
+    },
+    {
+      "id": "subaru-brz-fa20-rough-idle-hunting-stall-ecm-reflash",
+      "make": "Subaru",
+      "model": "BRZ",
+      "status": "published"
+    },
+    {
+      "id": "subaru-brz-fa20-valve-spring-fracture-stall-no-start",
+      "make": "Subaru",
+      "model": "BRZ",
+      "status": "published"
+    },
+    {
+      "id": "subaru-brz-fa24-excessive-rtv-sealant-clogs-oil-pickup-engine-failure",
+      "make": "Subaru",
+      "model": "BRZ",
+      "status": "published"
+    },
+    {
+      "id": "subaru-brz-fa24-oil-starvation-track-right-hand-cornering-pressure-drop",
+      "make": "Subaru",
+      "model": "BRZ",
+      "status": "published"
+    },
+    {
+      "id": "subaru-brz-oil-consumption-2013",
+      "make": "Subaru",
+      "model": "BRZ",
+      "status": "published"
+    },
+    {
+      "id": "subaru-brz-rear-combination-lamp-capacitor-failure-turn-signal-inoperat",
+      "make": "Subaru",
+      "model": "BRZ",
+      "status": "published"
+    },
+    {
+      "id": "subaru-brz-rear-diff-whine-2022",
+      "make": "Subaru",
+      "model": "BRZ",
+      "status": "published"
+    },
+    {
+      "id": "subaru-brz-throwout-bearing-2013",
+      "make": "Subaru",
+      "model": "BRZ",
+      "status": "published"
+    },
+    {
+      "id": "subaru-brz-valve-spring-recall-2013",
+      "make": "Subaru",
+      "model": "BRZ",
+      "status": "published"
+    },
+    {
+      "id": "subaru-crosstrek-2-0l-manual-transmission-hesitation-lack-power-1500-3500-rpm",
+      "make": "Subaru",
+      "model": "Crosstrek",
+      "status": "published"
+    },
+    {
+      "id": "subaru-crosstrek-2019-left-rear-door-window-glass-improper-tempering",
+      "make": "Subaru",
+      "model": "Crosstrek",
+      "status": "published"
+    },
+    {
+      "id": "subaru-crosstrek-cvt-chain-stretch-2013",
+      "make": "Subaru",
+      "model": "Crosstrek",
+      "status": "published"
+    },
+    {
+      "id": "subaru-crosstrek-cvt-hesitation-2013",
+      "make": "Subaru",
+      "model": "Crosstrek",
+      "status": "published"
+    },
+    {
+      "id": "subaru-crosstrek-denso-low-pressure-fuel-pump-impeller-failure-causing-stall",
+      "make": "Subaru",
+      "model": "Crosstrek",
+      "status": "published"
+    },
+    {
+      "id": "subaru-crosstrek-eyesight-phantom-pre-collision-braking",
+      "make": "Subaru",
+      "model": "Crosstrek",
+      "status": "published"
+    },
+    {
+      "id": "subaru-crosstrek-front-driveshaft-quench-crack-failure",
+      "make": "Subaru",
+      "model": "Crosstrek",
+      "status": "published"
+    },
+    {
+      "id": "subaru-crosstrek-infotainment-freeze-2018",
+      "make": "Subaru",
+      "model": "Crosstrek",
+      "status": "published"
+    },
+    {
+      "id": "subaru-crosstrek-oil-consumption-2013",
+      "make": "Subaru",
+      "model": "Crosstrek",
+      "status": "published"
+    },
+    {
+      "id": "subaru-crosstrek-oil-consumption-fb20-2013",
+      "make": "Subaru",
+      "model": "Crosstrek",
+      "status": "archived"
+    },
+    {
+      "id": "subaru-crosstrek-rear-brake-seize-2016",
+      "make": "Subaru",
+      "model": "Crosstrek",
+      "status": "published"
+    },
+    {
+      "id": "subaru-crosstrek-starlink-gen-3-0-head-unit-freezing-reboots-audio-lockup",
+      "make": "Subaru",
+      "model": "Crosstrek",
+      "status": "published"
+    },
+    {
+      "id": "subaru-crosstrek-sunshine-orange-thin-paint-chipping-hood-roof",
+      "make": "Subaru",
+      "model": "Crosstrek",
+      "status": "published"
+    },
+    {
+      "id": "subaru-crosstrek-wheel-bearing-2013",
+      "make": "Subaru",
+      "model": "Crosstrek",
+      "status": "published"
+    },
+    {
+      "id": "subaru-crosstrek-windshield-crack-2018",
+      "make": "Subaru",
+      "model": "Crosstrek",
+      "status": "published"
+    },
+    {
+      "id": "subaru-fb25-ac-compressor-2011",
+      "make": "Subaru",
+      "model": "Outback",
+      "status": "published"
+    },
+    {
+      "id": "subaru-fb25-battery-drain-2014",
+      "make": "Subaru",
+      "model": "Outback",
+      "status": "published"
+    },
+    {
+      "id": "subaru-fb25-cvt-2012",
+      "make": "Subaru",
+      "model": "Outback",
+      "status": "published"
+    },
+    {
+      "id": "subaru-fb25-head-gasket-2011",
+      "make": "Subaru",
+      "model": "Outback",
+      "status": "published"
+    },
+    {
+      "id": "subaru-fb25-oil-consumption-2011",
+      "make": "Subaru",
+      "model": "Outback",
+      "status": "published"
+    },
+    {
+      "id": "subaru-fb25-starlink-2015",
+      "make": "Subaru",
+      "model": "Outback",
+      "status": "published"
+    },
+    {
+      "id": "subaru-fb25-suspension-2011",
+      "make": "Subaru",
+      "model": "Outback",
+      "status": "published"
+    },
+    {
+      "id": "subaru-fb25-windshield-2011",
+      "make": "Subaru",
+      "model": "Outback",
+      "status": "published"
+    },
+    {
+      "id": "subaru-forester-ac-clutch-failure-2014",
+      "make": "Subaru",
+      "model": "Forester",
+      "status": "archived"
+    },
+    {
+      "id": "subaru-forester-ac-compressor-2014",
+      "make": "Subaru",
+      "model": "Forester",
+      "status": "published"
+    },
+    {
+      "id": "subaru-forester-brake-light-switch-silicone-contamination-no-start-stuck-par",
+      "make": "Subaru",
+      "model": "Forester",
+      "status": "published"
+    },
+    {
+      "id": "subaru-forester-c-condenser-internal-corrosion-refrigerant-leak",
+      "make": "Subaru",
+      "model": "Forester",
+      "status": "published"
+    },
+    {
+      "id": "subaru-forester-catalytic-converter-efficiency-failure-often-triggered-by-oi",
+      "make": "Subaru",
+      "model": "Forester",
+      "status": "published"
+    },
+    {
+      "id": "subaru-forester-cvt-failure-2014",
+      "make": "Subaru",
+      "model": "Forester",
+      "status": "published"
+    },
+    {
+      "id": "subaru-forester-cvt-judder-2019",
+      "make": "Subaru",
+      "model": "Forester",
+      "status": "archived"
+    },
+    {
+      "id": "subaru-forester-denso-low-pressure-tank-fuel-pump-failure-causing-sudden-sta",
+      "make": "Subaru",
+      "model": "Forester",
+      "status": "published"
+    },
+    {
+      "id": "subaru-forester-ej255-turbo-piston-ringland-cracking-engine-failure",
+      "make": "Subaru",
+      "model": "Forester",
+      "status": "published"
+    },
+    {
+      "id": "subaru-forester-electric-power-steering-gearbox-corrosion-cracking-salt-belt",
+      "make": "Subaru",
+      "model": "Forester",
+      "status": "published"
+    },
+    {
+      "id": "subaru-forester-eyesight-false-phantom-automatic-emergency-braking",
+      "make": "Subaru",
+      "model": "Forester",
+      "status": "published"
+    },
+    {
+      "id": "subaru-forester-fb25-timing-chain-tensioner-cold-start-rattle",
+      "make": "Subaru",
+      "model": "Forester",
+      "status": "published"
+    },
+    {
+      "id": "subaru-forester-front-air-fuel-ratio-sensor-heater-circuit-failure-p0031-p00",
+      "make": "Subaru",
+      "model": "Forester",
+      "status": "published"
+    },
+    {
+      "id": "subaru-forester-front-cv-axle-boot-tearing-grease-leak-causing-clicking-turn",
+      "make": "Subaru",
+      "model": "Forester",
+      "status": "published"
+    },
+    {
+      "id": "subaru-forester-front-driveshaft-outer-race-crack-breakage",
+      "make": "Subaru",
+      "model": "Forester",
+      "status": "published"
+    },
+    {
+      "id": "subaru-forester-front-lower-control-arm-forward-bushing-premature-wear-steer",
+      "make": "Subaru",
+      "model": "Forester",
+      "status": "published"
+    },
+    {
+      "id": "subaru-forester-front-passenger-occupant-detection-system-sensor-mat-harness",
+      "make": "Subaru",
+      "model": "Forester",
+      "status": "published"
+    },
+    {
+      "id": "subaru-forester-head-gasket-1998",
+      "make": "Subaru",
+      "model": "Forester",
+      "status": "published"
+    },
+    {
+      "id": "subaru-forester-ignition-coil-failure-causing-misfire-hard-cold-weather-star",
+      "make": "Subaru",
+      "model": "Forester",
+      "status": "published"
+    },
+    {
+      "id": "subaru-forester-oil-consumption-2011",
+      "make": "Subaru",
+      "model": "Forester",
+      "status": "published"
+    },
+    {
+      "id": "subaru-forester-pcv-valve-separation-causing-loss-power-engine-damage",
+      "make": "Subaru",
+      "model": "Forester",
+      "status": "published"
+    },
+    {
+      "id": "subaru-forester-power-liftgate-won-t-stay-open-drops-shut",
+      "make": "Subaru",
+      "model": "Forester",
+      "status": "published"
+    },
+    {
+      "id": "subaru-forester-premature-front-brake-rotor-warping-brake-judder-steering-wh",
+      "make": "Subaru",
+      "model": "Forester",
+      "status": "published"
+    },
+    {
+      "id": "subaru-forester-premature-front-rear-wheel-bearing-hub-failure",
+      "make": "Subaru",
+      "model": "Forester",
+      "status": "published"
+    },
+    {
+      "id": "subaru-forester-premature-rear-tire-inner-edge-wear-from-excess-factory-rear",
+      "make": "Subaru",
+      "model": "Forester",
+      "status": "published"
+    },
+    {
+      "id": "subaru-forester-rear-coil-spring-corrosion-fracture-spring-snaps-salt-belt-s",
+      "make": "Subaru",
+      "model": "Forester",
+      "status": "published"
+    },
+    {
+      "id": "subaru-forester-rear-suspension-clunk-2009",
+      "make": "Subaru",
+      "model": "Forester",
+      "status": "published"
+    },
+    {
+      "id": "subaru-forester-secondary-air-injection-pump-relay-failure-overheat-fire-ris",
+      "make": "Subaru",
+      "model": "Forester",
+      "status": "published"
+    },
+    {
+      "id": "subaru-forester-starlink-dcm-parasitic-battery-drain-after-3g-network-shutdo",
+      "make": "Subaru",
+      "model": "Forester",
+      "status": "published"
+    },
+    {
+      "id": "subaru-forester-starlink-infotainment-screen-freezing-rebooting-black-screen",
+      "make": "Subaru",
+      "model": "Forester",
+      "status": "published"
+    },
+    {
+      "id": "subaru-forester-sunroof-moonroof-water-leak-from-clogged-detached-drain-tube",
+      "make": "Subaru",
+      "model": "Forester",
+      "status": "published"
+    },
+    {
+      "id": "subaru-forester-takata-front-passenger-airbag-inflator-rupture-risk-safety-r",
+      "make": "Subaru",
+      "model": "Forester",
+      "status": "published"
+    },
+    {
+      "id": "subaru-forester-turbo-failure-from-clogged-oil-supply-banjo-bolt-filter",
+      "make": "Subaru",
+      "model": "Forester",
+      "status": "published"
+    },
+    {
+      "id": "subaru-forester-valve-cover-gasket-spark-plug-tube-seal-oil-leak-causing-mis",
+      "make": "Subaru",
+      "model": "Forester",
+      "status": "published"
+    },
+    {
+      "id": "subaru-forester-windshield-crack-2019",
+      "make": "Subaru",
+      "model": "Forester",
+      "status": "published"
+    },
+    {
+      "id": "subaru-head-gasket-2000",
+      "make": "Subaru",
+      "model": "Outback",
+      "status": "published"
+    },
+    {
+      "id": "subaru-impreza-automatic-awd-torque-bind-duty-c-solenoid-failure",
+      "make": "Subaru",
+      "model": "Impreza",
+      "status": "published"
+    },
+    {
+      "id": "subaru-impreza-coil-spring-2008",
+      "make": "Subaru",
+      "model": "Impreza",
+      "status": "published"
+    },
+    {
+      "id": "subaru-impreza-cvt-chain-slip-2012",
+      "make": "Subaru",
+      "model": "Impreza",
+      "status": "archived"
+    },
+    {
+      "id": "subaru-impreza-cvt-failure-2012",
+      "make": "Subaru",
+      "model": "Impreza",
+      "status": "published"
+    },
+    {
+      "id": "subaru-impreza-distributor-cap-rotor-ignition-moisture-misfire",
+      "make": "Subaru",
+      "model": "Impreza",
+      "status": "published"
+    },
+    {
+      "id": "subaru-impreza-front-wheel-bearing-hub-failure",
+      "make": "Subaru",
+      "model": "Impreza",
+      "status": "published"
+    },
+    {
+      "id": "subaru-impreza-head-gasket-1999",
+      "make": "Subaru",
+      "model": "Impreza",
+      "status": "published"
+    },
+    {
+      "id": "subaru-impreza-head-gasket-2002",
+      "make": "Subaru",
+      "model": "Impreza",
+      "status": "archived"
+    },
+    {
+      "id": "subaru-impreza-interference-engine-timing-belt-neglect",
+      "make": "Subaru",
+      "model": "Impreza",
+      "status": "published"
+    },
+    {
+      "id": "subaru-impreza-phase-i-ej25d-dohc-2-5l-internal-head-gasket-failure",
+      "make": "Subaru",
+      "model": "Impreza",
+      "status": "published"
+    },
+    {
+      "id": "subaru-impreza-rear-wheel-arch-rocker-panel-subframe-rust",
+      "make": "Subaru",
+      "model": "Impreza",
+      "status": "published"
+    },
+    {
+      "id": "subaru-impreza-trailing-arm-bushing-2008",
+      "make": "Subaru",
+      "model": "Impreza",
+      "status": "published"
+    },
+    {
+      "id": "subaru-impreza-wheel-bearing-2008",
+      "make": "Subaru",
+      "model": "Impreza",
+      "status": "published"
+    },
+    {
+      "id": "subaru-impreza-windshield-crack-2017",
+      "make": "Subaru",
+      "model": "Impreza",
+      "status": "published"
+    },
+    {
+      "id": "subaru-legacy-4eat-awd-torque-bind",
+      "make": "Subaru",
+      "model": "Legacy",
+      "status": "published"
+    },
+    {
+      "id": "subaru-legacy-battery-drain-and-no-start-2021",
+      "make": "Subaru",
+      "model": "Legacy",
+      "status": "published"
+    },
+    {
+      "id": "subaru-legacy-cvt-failure-2010",
+      "make": "Subaru",
+      "model": "Legacy",
+      "status": "published"
+    },
+    {
+      "id": "subaru-legacy-ej25-dohc-internal-head-gasket-failure",
+      "make": "Subaru",
+      "model": "Legacy",
+      "status": "published"
+    },
+    {
+      "id": "subaru-legacy-external-head-gasket-coolant-leak-wwp-99-campaign",
+      "make": "Subaru",
+      "model": "Legacy",
+      "status": "published"
+    },
+    {
+      "id": "subaru-legacy-front-wheel-bearing-wear-noise",
+      "make": "Subaru",
+      "model": "Legacy",
+      "status": "published"
+    },
+    {
+      "id": "subaru-legacy-head-gasket-2000",
+      "make": "Subaru",
+      "model": "Legacy",
+      "status": "published"
+    },
+    {
+      "id": "subaru-legacy-infotainment-head-unit-freezing-2021",
+      "make": "Subaru",
+      "model": "Legacy",
+      "status": "published"
+    },
+    {
+      "id": "subaru-legacy-interference-engine-neglected-timing-belt-destroys-valves",
+      "make": "Subaru",
+      "model": "Legacy",
+      "status": "published"
+    },
+    {
+      "id": "subaru-legacy-low-speed-brake-pedal-pulsation-2021",
+      "make": "Subaru",
+      "model": "Legacy",
+      "status": "published"
+    },
+    {
+      "id": "subaru-legacy-motorized-automatic-seat-belt-failure",
+      "make": "Subaru",
+      "model": "Legacy",
+      "status": "published"
+    },
+    {
+      "id": "subaru-legacy-oil-consumption-2010",
+      "make": "Subaru",
+      "model": "Legacy",
+      "status": "published"
+    },
+    {
+      "id": "subaru-legacy-suspension-clunk-2010",
+      "make": "Subaru",
+      "model": "Legacy",
+      "status": "published"
+    },
+    {
+      "id": "subaru-legacy-thermo-control-valve-failure-2021",
+      "make": "Subaru",
+      "model": "Legacy",
+      "status": "published"
+    },
+    {
+      "id": "subaru-legacy-windshield-cracking-easily-and-2021",
+      "make": "Subaru",
+      "model": "Legacy",
+      "status": "published"
+    },
+    {
+      "id": "subaru-loyale-head-gasket-1990",
+      "make": "Subaru",
+      "model": "Loyale",
+      "status": "published"
+    },
+    {
+      "id": "subaru-loyale-head-gasket-ea82-1990",
+      "make": "Subaru",
+      "model": "Loyale",
+      "status": "archived"
+    },
+    {
+      "id": "subaru-loyale-head-gasket-failure-1990",
+      "make": "Subaru",
+      "model": "Loyale",
+      "status": "archived"
+    },
+    {
+      "id": "subaru-loyale-rust-1990",
+      "make": "Subaru",
+      "model": "Loyale",
+      "status": "published"
+    },
+    {
+      "id": "subaru-loyale-rust-body-1990",
+      "make": "Subaru",
+      "model": "Loyale",
+      "status": "archived"
+    },
+    {
+      "id": "subaru-outback-c-condenser-refrigerant-line-leak-causing-loss-cooling",
+      "make": "Subaru",
+      "model": "Outback",
+      "status": "published"
+    },
+    {
+      "id": "subaru-outback-catalytic-converter-front-exhaust-pipe-failure-triggering-p0",
+      "make": "Subaru",
+      "model": "Outback",
+      "status": "published"
+    },
+    {
+      "id": "subaru-outback-cvt-valve-body-internal-failure",
+      "make": "Subaru",
+      "model": "Outback",
+      "status": "published"
+    },
+    {
+      "id": "subaru-outback-denso-fuel-pump-impeller-2020",
+      "make": "Subaru",
+      "model": "Outback",
+      "status": "published"
+    },
+    {
+      "id": "subaru-outback-driver-monitoring-system-and-2020",
+      "make": "Subaru",
+      "model": "Outback",
+      "status": "published"
+    },
+    {
+      "id": "subaru-outback-exterior-paint-peeling-clear-coat-delamination",
+      "make": "Subaru",
+      "model": "Outback",
+      "status": "published"
+    },
+    {
+      "id": "subaru-outback-eyesight-unintended-phantom-automatic-emergency-braking",
+      "make": "Subaru",
+      "model": "Outback",
+      "status": "published"
+    },
+    {
+      "id": "subaru-outback-fa24-2-4l-turbo-direct-injection-intake-valve-carbon-buildup",
+      "make": "Subaru",
+      "model": "Outback",
+      "status": "published"
+    },
+    {
+      "id": "subaru-outback-fb25-cam-carrier-valve-cover-oil-leak",
+      "make": "Subaru",
+      "model": "Outback",
+      "status": "published"
+    },
+    {
+      "id": "subaru-outback-front-propeller-shaft-separation-from-painted-center-support",
+      "make": "Subaru",
+      "model": "Outback",
+      "status": "published"
+    },
+    {
+      "id": "subaru-outback-front-rear-wheel-hub-bearing-failure-causing-droning-humming",
+      "make": "Subaru",
+      "model": "Outback",
+      "status": "published"
+    },
+    {
+      "id": "subaru-outback-harman-kardon-touchscreen-delamination-bubbling-ghost-touche",
+      "make": "Subaru",
+      "model": "Outback",
+      "status": "published"
+    },
+    {
+      "id": "subaru-outback-hvac-blower-motor-fan-failure",
+      "make": "Subaru",
+      "model": "Outback",
+      "status": "published"
+    },
+    {
+      "id": "subaru-outback-inhibitor-switch-water-intrusion-disabling-reverse-lights-re",
+      "make": "Subaru",
+      "model": "Outback",
+      "status": "published"
+    },
+    {
+      "id": "subaru-outback-melting-sticky-dashboard-causing-glare",
+      "make": "Subaru",
+      "model": "Outback",
+      "status": "published"
+    },
+    {
+      "id": "subaru-outback-occupant-detection-system-sensor-failure-front-passenger-air",
+      "make": "Subaru",
+      "model": "Outback",
+      "status": "published"
+    },
+    {
+      "id": "subaru-outback-p0011-bank-1-intake-cam-timing-over-advanced-from-clogged-av",
+      "make": "Subaru",
+      "model": "Outback",
+      "status": "published"
+    },
+    {
+      "id": "subaru-outback-p0016-bank-1-crank-cam-correlation-fault-from-low-dirty-oil",
+      "make": "Subaru",
+      "model": "Outback",
+      "status": "published"
+    },
+    {
+      "id": "subaru-outback-p0430-bank-2-catalytic-converter-efficiency-loss-often-prece",
+      "make": "Subaru",
+      "model": "Outback",
+      "status": "published"
+    },
+    {
+      "id": "subaru-outback-p0442-small-evap-leak-from-gas-cap-o-ring-leaking-purge-vent",
+      "make": "Subaru",
+      "model": "Outback",
+      "status": "published"
+    },
+    {
+      "id": "subaru-outback-p0455-gross-evap-leak-from-failed-purge-control-solenoid-cha",
+      "make": "Subaru",
+      "model": "Outback",
+      "status": "published"
+    },
+    {
+      "id": "subaru-outback-p0741-torque-converter-clutch-stuck-off-from-failed-lockup-s",
+      "make": "Subaru",
+      "model": "Outback",
+      "status": "published"
+    },
+    {
+      "id": "subaru-outback-premature-rear-brake-pad-rotor-wear",
+      "make": "Subaru",
+      "model": "Outback",
+      "status": "published"
+    },
+    {
+      "id": "subaru-outback-rear-differential-driveline-carrier-bearing-whine",
+      "make": "Subaru",
+      "model": "Outback",
+      "status": "published"
+    },
+    {
+      "id": "subaru-outback-rear-gate-control-module-2020",
+      "make": "Subaru",
+      "model": "Outback",
+      "status": "published"
+    },
+    {
+      "id": "subaru-outback-rear-high-mount-brake-light-gasket-failure-causing-cargo-are",
+      "make": "Subaru",
+      "model": "Outback",
+      "status": "published"
+    },
+    {
+      "id": "subaru-outback-rodent-chewed-wiring-causing-electrical-faults",
+      "make": "Subaru",
+      "model": "Outback",
+      "status": "published"
+    },
+    {
+      "id": "subaru-outback-seat-heater-failure-or-2020",
+      "make": "Subaru",
+      "model": "Outback",
+      "status": "published"
+    },
+    {
+      "id": "subaru-outback-sunroof-moonroof-drain-tube-clog-causing-interior-water-leak",
+      "make": "Subaru",
+      "model": "Outback",
+      "status": "published"
+    },
+    {
+      "id": "subaru-outback-takata-passenger-airbag-inflator-explosion-risk",
+      "make": "Subaru",
+      "model": "Outback",
+      "status": "published"
+    },
+    {
+      "id": "subaru-outback-thermo-control-valve-failure-2020",
+      "make": "Subaru",
+      "model": "Outback",
+      "status": "published"
+    },
+    {
+      "id": "subaru-outback-windshield-wiper-motor-overheating-bottom-cover-melt-crash-f",
+      "make": "Subaru",
+      "model": "Outback",
+      "status": "published"
+    },
+    {
+      "id": "subaru-solterra-12v-battery-drain-2023",
+      "make": "Subaru",
+      "model": "Solterra",
+      "status": "published"
+    },
+    {
+      "id": "subaru-solterra-charge-port-door-freezes-sticks-fails-to-lock-release",
+      "make": "Subaru",
+      "model": "Solterra",
+      "status": "published"
+    },
+    {
+      "id": "subaru-solterra-charging-issues-2023",
+      "make": "Subaru",
+      "model": "Solterra",
+      "status": "published"
+    },
+    {
+      "id": "subaru-solterra-dc-fast-charge-limit-2023",
+      "make": "Subaru",
+      "model": "Solterra",
+      "status": "published"
+    },
+    {
+      "id": "subaru-solterra-driver-side-mirror-vibrates-flutters-highway-speed-blurring",
+      "make": "Subaru",
+      "model": "Solterra",
+      "status": "published"
+    },
+    {
+      "id": "subaru-solterra-ev-system-malfunction-drive-start-control-warning-no-start-p",
+      "make": "Subaru",
+      "model": "Solterra",
+      "status": "published"
+    },
+    {
+      "id": "subaru-solterra-eyesight-lane-centering-ping-pongs-between-lane-markers",
+      "make": "Subaru",
+      "model": "Solterra",
+      "status": "published"
+    },
+    {
+      "id": "subaru-solterra-eyesight-phantom-braking-false-pre-collision-activation",
+      "make": "Subaru",
+      "model": "Solterra",
+      "status": "published"
+    },
+    {
+      "id": "subaru-solterra-firm-busy-ride-excessive-road-tire-noise",
+      "make": "Subaru",
+      "model": "Solterra",
+      "status": "published"
+    },
+    {
+      "id": "subaru-solterra-fragile-low-profile-oe-tires-no-spare-near-useless-sealant-m",
+      "make": "Subaru",
+      "model": "Solterra",
+      "status": "published"
+    },
+    {
+      "id": "subaru-solterra-hub-bolt-loose-2023",
+      "make": "Subaru",
+      "model": "Solterra",
+      "status": "published"
+    },
+    {
+      "id": "subaru-solterra-hub-bolt-recall-2023",
+      "make": "Subaru",
+      "model": "Solterra",
+      "status": "published"
+    },
+    {
+      "id": "subaru-solterra-hvac-electric-c-compressor-fault-disables-defroster-defogger",
+      "make": "Subaru",
+      "model": "Solterra",
+      "status": "published"
+    },
+    {
+      "id": "subaru-solterra-infotainment-head-unit-random-reboot-black-screen",
+      "make": "Subaru",
+      "model": "Solterra",
+      "status": "published"
+    },
+    {
+      "id": "subaru-solterra-interior-squeaks-rattles",
+      "make": "Subaru",
+      "model": "Solterra",
+      "status": "published"
+    },
+    {
+      "id": "subaru-solterra-real-world-highway-winter-range-falls-far-short-epa-rating",
+      "make": "Subaru",
+      "model": "Solterra",
+      "status": "published"
+    },
+    {
+      "id": "subaru-solterra-rearview-camera-freezes-goes-blank-reverse",
+      "make": "Subaru",
+      "model": "Solterra",
+      "status": "published"
+    },
+    {
+      "id": "subaru-solterra-regenerative-braking-severely-limited-cold-weather",
+      "make": "Subaru",
+      "model": "Solterra",
+      "status": "published"
+    },
+    {
+      "id": "subaru-solterra-solterra-connect-starlink-app-remote-climate-preconditioning",
+      "make": "Subaru",
+      "model": "Solterra",
+      "status": "published"
+    },
+    {
+      "id": "subaru-solterra-weak-cabin-heat-slow-warm-up-from-undersized-heat-pump",
+      "make": "Subaru",
+      "model": "Solterra",
+      "status": "published"
+    },
+    {
+      "id": "subaru-solterra-windshield-chips-cracks-easily-weeks-long-dealer-only-adas-c",
+      "make": "Subaru",
+      "model": "Solterra",
+      "status": "published"
+    },
+    {
+      "id": "subaru-solterra-wireless-apple-carplay-bluetooth-drops-out",
+      "make": "Subaru",
+      "model": "Solterra",
+      "status": "published"
+    },
+    {
+      "id": "subaru-sti-rod-bearing-2015",
+      "make": "Subaru",
+      "model": "WRX STI",
+      "status": "published"
+    },
+    {
+      "id": "subaru-svx-auto-transmission-failure-1992",
+      "make": "Subaru",
+      "model": "SVX",
+      "status": "archived"
+    },
+    {
+      "id": "subaru-svx-automatic-transmission-1992",
+      "make": "Subaru",
+      "model": "SVX",
+      "status": "published"
+    },
+    {
+      "id": "subaru-svx-automatic-transmission-failure-1992",
+      "make": "Subaru",
+      "model": "SVX",
+      "status": "archived"
+    },
+    {
+      "id": "subaru-svx-window-regulator-1992",
+      "make": "Subaru",
+      "model": "SVX",
+      "status": "published"
+    },
+    {
+      "id": "subaru-svx-window-regulator-motor-1992",
+      "make": "Subaru",
+      "model": "SVX",
+      "status": "archived"
+    },
+    {
+      "id": "subaru-tribeca-cvt-2010",
+      "make": "Subaru",
+      "model": "Tribeca",
+      "status": "published"
+    },
+    {
+      "id": "subaru-tribeca-head-gasket-2006",
+      "make": "Subaru",
+      "model": "Tribeca",
+      "status": "published"
+    },
+    {
+      "id": "subaru-tribeca-oil-leak-2006",
+      "make": "Subaru",
+      "model": "Tribeca",
+      "status": "published"
+    },
+    {
+      "id": "subaru-tribeca-timing-chain-2008",
+      "make": "Subaru",
+      "model": "Tribeca",
+      "status": "published"
+    },
+    {
+      "id": "subaru-wrx-battery-drain-no-start-2022",
+      "make": "Subaru",
+      "model": "WRX",
+      "status": "published"
+    },
+    {
+      "id": "subaru-wrx-brake-pedal-squeak--2022",
+      "make": "Subaru",
+      "model": "WRX",
+      "status": "published"
+    },
+    {
+      "id": "subaru-wrx-clutch-judder-2015",
+      "make": "Subaru",
+      "model": "WRX",
+      "status": "published"
+    },
+    {
+      "id": "subaru-wrx-eyesight-driver-assist-disablement-and-2024",
+      "make": "Subaru",
+      "model": "WRX",
+      "status": "published"
+    },
+    {
+      "id": "subaru-wrx-fa24-turbo-oil-feed-2022",
+      "make": "Subaru",
+      "model": "WRX",
+      "status": "published"
+    },
+    {
+      "id": "subaru-wrx-firewall-spot-weld-cracking-and-2002",
+      "make": "Subaru",
+      "model": "WRX",
+      "status": "published"
+    },
+    {
+      "id": "subaru-wrx-front-driveshaft-outer-race-quench-cracking-leading-to-fract",
+      "make": "Subaru",
+      "model": "WRX",
+      "status": "published"
+    },
+    {
+      "id": "subaru-wrx-fuel-filler-neck-corrosion-2002",
+      "make": "Subaru",
+      "model": "WRX",
+      "status": "published"
+    },
+    {
+      "id": "subaru-wrx-infotainment-2015",
+      "make": "Subaru",
+      "model": "WRX",
+      "status": "published"
+    },
+    {
+      "id": "subaru-wrx-manual-transmission-2nd-3rd-gear-synchro-grind-notchy-cold-s",
+      "make": "Subaru",
+      "model": "WRX",
+      "status": "published"
+    },
+    {
+      "id": "subaru-wrx-oil-consumption-2015",
+      "make": "Subaru",
+      "model": "WRX",
+      "status": "published"
+    },
+    {
+      "id": "subaru-wrx-power-steering-pump-and-2002",
+      "make": "Subaru",
+      "model": "WRX",
+      "status": "published"
+    },
+    {
+      "id": "subaru-wrx-radiator-end-tank-cracking-2002",
+      "make": "Subaru",
+      "model": "WRX",
+      "status": "published"
+    },
+    {
+      "id": "subaru-wrx-rear-differential-final-2022",
+      "make": "Subaru",
+      "model": "WRX",
+      "status": "published"
+    },
+    {
+      "id": "subaru-wrx-rev-hang-2015",
+      "make": "Subaru",
+      "model": "WRX",
+      "status": "published"
+    },
+    {
+      "id": "subaru-wrx-ringland-failure-2015",
+      "make": "Subaru",
+      "model": "WRX",
+      "status": "published"
+    },
+    {
+      "id": "subaru-wrx-secondary-air-injection-pump-2006",
+      "make": "Subaru",
+      "model": "WRX",
+      "status": "published"
+    },
+    {
+      "id": "subaru-wrx-sti-air-injection-system-secondary-air-pump-valves-failure-p0410-p244x",
+      "make": "Subaru",
+      "model": "WRX STI",
+      "status": "published"
+    },
+    {
+      "id": "subaru-wrx-sti-avcs-solenoid-2004",
+      "make": "Subaru",
+      "model": "WRX STI",
+      "status": "published"
+    },
+    {
+      "id": "subaru-wrx-sti-boost-leak-wastegate-2004",
+      "make": "Subaru",
+      "model": "WRX STI",
+      "status": "published"
+    },
+    {
+      "id": "subaru-wrx-sti-brake-fade-2004",
+      "make": "Subaru",
+      "model": "WRX STI",
+      "status": "published"
+    },
+    {
+      "id": "subaru-wrx-sti-catalytic-converter-efficiency-failure-p0420-on-stock-downpipe",
+      "make": "Subaru",
+      "model": "WRX STI",
+      "status": "published"
+    },
+    {
+      "id": "subaru-wrx-sti-hatchback-rear-strut-tower-cracking-seam-separation-gr-sti",
+      "make": "Subaru",
+      "model": "WRX STI",
+      "status": "published"
+    },
+    {
+      "id": "subaru-wrx-sti-intercooler-y-pipe-turbo-inlet-coupler-tearing-post-maf-air-leak-underboost",
+      "make": "Subaru",
+      "model": "WRX STI",
+      "status": "published"
+    },
+    {
+      "id": "subaru-wrx-sti-oil-starvation-2004",
+      "make": "Subaru",
+      "model": "WRX STI",
+      "status": "published"
+    },
+    {
+      "id": "subaru-wrx-sti-power-steering-hose-line-leak-atf-on-exhaust-smoke-burning-smell",
+      "make": "Subaru",
+      "model": "WRX STI",
+      "status": "published"
+    },
+    {
+      "id": "subaru-wrx-sti-rear-diff-whine-2004",
+      "make": "Subaru",
+      "model": "WRX STI",
+      "status": "published"
+    },
+    {
+      "id": "subaru-wrx-sti-ringland-failure-2008",
+      "make": "Subaru",
+      "model": "WRX STI",
+      "status": "published"
+    },
+    {
+      "id": "subaru-wrx-sti-steering-rack-internal-leak-failure-heavy-steering-fluid-loss",
+      "make": "Subaru",
+      "model": "WRX STI",
+      "status": "published"
+    },
+    {
+      "id": "subaru-wrx-sti-throwout-bearing-2008",
+      "make": "Subaru",
+      "model": "WRX STI",
+      "status": "published"
+    },
+    {
+      "id": "subaru-wrx-sti-tumble-generator-valve-tgv-sensor-motor-fault-p2004-p2005-p2011-p2016",
+      "make": "Subaru",
+      "model": "WRX STI",
+      "status": "published"
+    },
+    {
+      "id": "subaru-wrx-sti-wheel-bearing-premature-wear-humming-growling-play-at-hub",
+      "make": "Subaru",
+      "model": "WRX STI",
+      "status": "published"
+    },
+    {
+      "id": "subaru-wrx-suspension-clunk-2015",
+      "make": "Subaru",
+      "model": "WRX",
+      "status": "published"
+    },
+    {
+      "id": "subaru-wrx-throw-out-bearing-2015",
+      "make": "Subaru",
+      "model": "WRX",
+      "status": "published"
+    }
+  ]
+}

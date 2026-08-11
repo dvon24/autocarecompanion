@@ -1,0 +1,3353 @@
+{
+  "schemaVersion": 1,
+  "status": "proposal-only",
+  "auditStage": "model-primary-source-technical-adjudication",
+  "requiresIndependentApproval": true,
+  "generatedOn": "2026-08-11",
+  "make": "Subaru",
+  "model": "WRX",
+  "completionStatement": "All 19 frozen Subaru WRX pages are byte-identical published holds.",
+  "applicationGate": {
+    "status": "blocked",
+    "blockerRecordIds": [
+      "subaru-wrx-battery-drain-no-start-2022",
+      "subaru-wrx-brake-pedal-squeak--2022",
+      "subaru-wrx-clutch-judder-2015",
+      "subaru-wrx-eyesight-driver-assist-disablement-and-2024",
+      "subaru-wrx-fa24-turbo-oil-feed-2022",
+      "subaru-wrx-firewall-spot-weld-cracking-and-2002",
+      "subaru-wrx-front-driveshaft-outer-race-quench-cracking-leading-to-fract",
+      "subaru-wrx-fuel-filler-neck-corrosion-2002",
+      "subaru-wrx-infotainment-2015",
+      "subaru-wrx-manual-transmission-2nd-3rd-gear-synchro-grind-notchy-cold-s",
+      "subaru-wrx-oil-consumption-2015",
+      "subaru-wrx-power-steering-pump-and-2002",
+      "subaru-wrx-radiator-end-tank-cracking-2002",
+      "subaru-wrx-rear-differential-final-2022",
+      "subaru-wrx-rev-hang-2015",
+      "subaru-wrx-ringland-failure-2015",
+      "subaru-wrx-secondary-air-injection-pump-2006",
+      "subaru-wrx-suspension-clunk-2015",
+      "subaru-wrx-throw-out-bearing-2015"
+    ],
+    "reason": "No row has captured exact same-identity evidence sufficient to authorize a content write."
+  },
+  "safetyContract": [
+    "No archive, redirect, consolidation, new issue, title change, indexed vehicle-metadata change, status/severity change or commerce mutation is authorized.",
+    "Every held row is a byte-identical published no-op across every full-record field.",
+    "The twelve archived Subaru rows are historical inventory only and cannot enter a packet or published total.",
+    "Identity, status, owner telemetry, commerce and related IDs remain frozen.",
+    "Unknown owner totals remain internal zero and are never converted into social proof.",
+    "Sibling-model or platform similarity is not Subaru proof without an exact applicability path.",
+    "Routing correction candidates are reported separately and authorize no metadata write."
+  ],
+  "source": {
+    "snapshotFile": "data/_subaru-deeplink-snapshot-2026-08-11.json",
+    "snapshotSha256": "09f65fc7910ad81f3c977dffd7c093f36ac4032499cff626c45f891a663c0a88",
+    "snapshotGeneratedAt": "2026-08-11T20:07:16.102Z",
+    "snapshotHash": "32cf9fb0e216009da5a2e55588c59629fe180525dc53c81ef7faa8b566973d2d",
+    "modelRecordCount": 19,
+    "statusInventoryFile": "data/_subaru-status-inventory-2026-08-11.json",
+    "reviewLedgerFile": "data/known-issue-subaru-review-ledger-2026-08-11.json",
+    "evidenceFile": "data/known-issue-subaru-primary-evidence-2026-08-11.json"
+  },
+  "observations": [
+    "All frozen Subaru WRX pages remain published and byte-identical because no bounded rewrite has captured exact same-identity primary support."
+  ],
+  "duplicateClusters": [],
+  "evidenceInventory": {
+    "method": "Every frozen citation was inventoried as metadata. No uncaptured source was promoted to exact primary proof and no negative-search conclusion is asserted.",
+    "exactConflictDocuments": 0,
+    "retainedRewriteDocuments": 0
+  },
+  "summary": {
+    "retain_indexed_identity_and_accuracy_cleanup": 0,
+    "hold_indexed_identity_byte_identical_pending_identity_policy": 19,
+    "pages_preserved_published": 19,
+    "archived_rows_excluded": 12,
+    "authorized_write_candidates": 0,
+    "total": 19
+  },
+  "rows": [
+    {
+      "id": "subaru-wrx-battery-drain-no-start-2022",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "identityReviewRequired": true,
+      "identityConflict": "The frozen citation inventory does not include a locally captured exact same-identity primary record supporting a bounded rewrite; preserving the row unchanged is the conservative disposition.",
+      "reason": "Exact same-identity primary support was not captured. The complete frozen record remains byte-identical and published.",
+      "evidence": {
+        "primaryEvidence": [],
+        "limitations": "The frozen citation inventory does not include a locally captured exact same-identity primary record supporting a bounded rewrite; preserving the row unchanged is the conservative disposition."
+      },
+      "reviewLedger": {
+        "disposition": "Preserve the complete published record byte-identical pending separately approved identity/applicability policy.",
+        "existingSourcesInspected": [
+          {
+            "url": "https://www.subarubatterysettlement.com/",
+            "type": "forum",
+            "title": "Subaru battery settlement / owner discussions affecting late-model Subaru platforms",
+            "urlMissing": false,
+            "inspection": "frozen-citation-metadata-only; source content was not promoted to exact primary proof"
+          }
+        ],
+        "duplicateClusterKeys": []
+      },
+      "commerceDecision": "No audit commerce action; all frozen commerce and recommendation fields remain byte-identical.",
+      "before": {
+        "make": "Subaru",
+        "model": "WRX",
+        "years": [
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Battery Drain / No-Start After Sitting Due to Low Quiescent Voltage",
+        "description": "A recurring owner complaint on late-model Subarus including the VB WRX is premature battery discharge, leading to slow cranking or a no-start condition after the car sits for a short period. Owners often report the vehicle tests fine after a jump but repeatedly goes dead, especially in cold weather or with short-trip use. The issue appears tied to battery reserve capacity, charging profile, and occasional parasitic draw concerns rather than a single universal failed component.",
+        "solution": "Perform a battery load test and parasitic draw test after the vehicle has gone to sleep, and verify charging voltage under different loads. Many cases are resolved with battery replacement to a stronger AGM-compatible unit, software updates where applicable, or correcting an abnormal draw from accessories or modules. If the car is driven infrequently, a maintainer can prevent repeat failures.",
+        "severity": "low",
+        "confidence": "medium",
+        "symptoms": [
+          "dead battery after sitting",
+          "slow crank",
+          "click no-start",
+          "needs jump start repeatedly",
+          "battery warning or low voltage behavior"
+        ],
+        "affectedSystems": [
+          "12V battery",
+          "charging system",
+          "body control electronics",
+          "starting system"
+        ],
+        "dtcCodes": [
+          "P0562"
+        ],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 450,
+        "typicalMileageLow": 0,
+        "typicalMileageHigh": 30000,
+        "citations": [
+          {
+            "url": "https://www.subarubatterysettlement.com/",
+            "type": "forum",
+            "title": "Subaru battery settlement / owner discussions affecting late-model Subaru platforms"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "If the car sits often, use a smart battery maintainer through the engine bay jump posts.",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "Ask for a full parasitic draw printout instead of only a quick battery test if the problem is intermittent.",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "subaru-legacy-battery-drain-and-no-start-2021",
+          "lexus-is-battery-discharge-no-start-2023"
+        ]
+      },
+      "beforeSha256": "3cc6b3ba6fbebe99ee3b62c71e4698f8b3be9875e1d4c458c428022d41088c37",
+      "proposal": {
+        "make": "Subaru",
+        "model": "WRX",
+        "years": [
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Battery Drain / No-Start After Sitting Due to Low Quiescent Voltage",
+        "description": "A recurring owner complaint on late-model Subarus including the VB WRX is premature battery discharge, leading to slow cranking or a no-start condition after the car sits for a short period. Owners often report the vehicle tests fine after a jump but repeatedly goes dead, especially in cold weather or with short-trip use. The issue appears tied to battery reserve capacity, charging profile, and occasional parasitic draw concerns rather than a single universal failed component.",
+        "solution": "Perform a battery load test and parasitic draw test after the vehicle has gone to sleep, and verify charging voltage under different loads. Many cases are resolved with battery replacement to a stronger AGM-compatible unit, software updates where applicable, or correcting an abnormal draw from accessories or modules. If the car is driven infrequently, a maintainer can prevent repeat failures.",
+        "severity": "low",
+        "confidence": "medium",
+        "symptoms": [
+          "dead battery after sitting",
+          "slow crank",
+          "click no-start",
+          "needs jump start repeatedly",
+          "battery warning or low voltage behavior"
+        ],
+        "affectedSystems": [
+          "12V battery",
+          "charging system",
+          "body control electronics",
+          "starting system"
+        ],
+        "dtcCodes": [
+          "P0562"
+        ],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 450,
+        "typicalMileageLow": 0,
+        "typicalMileageHigh": 30000,
+        "citations": [
+          {
+            "url": "https://www.subarubatterysettlement.com/",
+            "type": "forum",
+            "title": "Subaru battery settlement / owner discussions affecting late-model Subaru platforms"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "If the car sits often, use a smart battery maintainer through the engine bay jump posts.",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "Ask for a full parasitic draw printout instead of only a quick battery test if the problem is intermittent.",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "subaru-legacy-battery-drain-and-no-start-2021",
+          "lexus-is-battery-discharge-no-start-2023"
+        ]
+      },
+      "proposalSha256": "3cc6b3ba6fbebe99ee3b62c71e4698f8b3be9875e1d4c458c428022d41088c37",
+      "changedFields": []
+    },
+    {
+      "id": "subaru-wrx-brake-pedal-squeak--2022",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "identityReviewRequired": true,
+      "identityConflict": "The frozen citation inventory does not include a locally captured exact same-identity primary record supporting a bounded rewrite; preserving the row unchanged is the conservative disposition.",
+      "reason": "Exact same-identity primary support was not captured. The complete frozen record remains byte-identical and published.",
+      "evidence": {
+        "primaryEvidence": [],
+        "limitations": "The frozen citation inventory does not include a locally captured exact same-identity primary record supporting a bounded rewrite; preserving the row unchanged is the conservative disposition."
+      },
+      "reviewLedger": {
+        "disposition": "Preserve the complete published record byte-identical pending separately approved identity/applicability policy.",
+        "existingSourcesInspected": [
+          {
+            "url": "https://www.reddit.com/r/wrx_vb/",
+            "type": "forum",
+            "title": "VB WRX forum discussions of brake pedal squeak/creak",
+            "urlMissing": false,
+            "inspection": "frozen-citation-metadata-only; source content was not promoted to exact primary proof"
+          }
+        ],
+        "duplicateClusterKeys": []
+      },
+      "commerceDecision": "No audit commerce action; all frozen commerce and recommendation fields remain byte-identical.",
+      "before": {
+        "make": "Subaru",
+        "model": "WRX",
+        "years": [
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "brakes",
+        "title": "Brake Pedal Squeak / Creak from Pedal Bracket or Booster Area",
+        "description": "Current-generation WRX owners have reported an audible squeak or creak when pressing or releasing the brake pedal, often heard inside the cabin at low speeds or while parked. The noise is usually traced to pedal pivot points, bracket contact, or booster pushrod interface rather than a loss of braking performance. While mostly an annoyance, repeated complaints have made it a recognizable issue among owners.",
+        "solution": "Confirm the noise occurs at the pedal assembly rather than at the pads or calipers, then inspect the pedal pivot, return spring, booster pushrod contact point, and bracket fasteners. Lubrication of the affected pivot/contact surfaces often resolves it; in persistent cases, dealers may replace pedal assembly components or adjust hardware. Ensure no brake fluid leak or booster fault is present before treating it as a simple noise issue.",
+        "severity": "low",
+        "confidence": "medium",
+        "symptoms": [
+          "squeak when pressing brake pedal",
+          "creak on brake release",
+          "noise heard inside cabin",
+          "noise while stationary",
+          "normal braking performance despite noise"
+        ],
+        "affectedSystems": [
+          "brake pedal assembly",
+          "brake booster linkage",
+          "pedal bracket"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 250,
+        "typicalMileageLow": 0,
+        "typicalMileageHigh": 25000,
+        "citations": [
+          {
+            "url": "https://www.reddit.com/r/wrx_vb/",
+            "type": "forum",
+            "title": "VB WRX forum discussions of brake pedal squeak/creak"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "A small amount of silicone-safe lubricant on the pedal pivot/contact points is commonly recommended after confirming the source.",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "Record the noise with the driver door open and hood closed to help the dealer distinguish cabin pedal noise from brake hardware noise.",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "beforeSha256": "438514b167665be79070ad1f8b14ab6bb2d7a4a32195aff6da4a30294a1049ba",
+      "proposal": {
+        "make": "Subaru",
+        "model": "WRX",
+        "years": [
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "brakes",
+        "title": "Brake Pedal Squeak / Creak from Pedal Bracket or Booster Area",
+        "description": "Current-generation WRX owners have reported an audible squeak or creak when pressing or releasing the brake pedal, often heard inside the cabin at low speeds or while parked. The noise is usually traced to pedal pivot points, bracket contact, or booster pushrod interface rather than a loss of braking performance. While mostly an annoyance, repeated complaints have made it a recognizable issue among owners.",
+        "solution": "Confirm the noise occurs at the pedal assembly rather than at the pads or calipers, then inspect the pedal pivot, return spring, booster pushrod contact point, and bracket fasteners. Lubrication of the affected pivot/contact surfaces often resolves it; in persistent cases, dealers may replace pedal assembly components or adjust hardware. Ensure no brake fluid leak or booster fault is present before treating it as a simple noise issue.",
+        "severity": "low",
+        "confidence": "medium",
+        "symptoms": [
+          "squeak when pressing brake pedal",
+          "creak on brake release",
+          "noise heard inside cabin",
+          "noise while stationary",
+          "normal braking performance despite noise"
+        ],
+        "affectedSystems": [
+          "brake pedal assembly",
+          "brake booster linkage",
+          "pedal bracket"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 250,
+        "typicalMileageLow": 0,
+        "typicalMileageHigh": 25000,
+        "citations": [
+          {
+            "url": "https://www.reddit.com/r/wrx_vb/",
+            "type": "forum",
+            "title": "VB WRX forum discussions of brake pedal squeak/creak"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "A small amount of silicone-safe lubricant on the pedal pivot/contact points is commonly recommended after confirming the source.",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "Record the noise with the driver door open and hood closed to help the dealer distinguish cabin pedal noise from brake hardware noise.",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposalSha256": "438514b167665be79070ad1f8b14ab6bb2d7a4a32195aff6da4a30294a1049ba",
+      "changedFields": []
+    },
+    {
+      "id": "subaru-wrx-clutch-judder-2015",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "identityReviewRequired": true,
+      "identityConflict": "The frozen citation inventory does not include a locally captured exact same-identity primary record supporting a bounded rewrite; preserving the row unchanged is the conservative disposition.",
+      "reason": "Exact same-identity primary support was not captured. The complete frozen record remains byte-identical and published.",
+      "evidence": {
+        "primaryEvidence": [],
+        "limitations": "The frozen citation inventory does not include a locally captured exact same-identity primary record supporting a bounded rewrite; preserving the row unchanged is the conservative disposition."
+      },
+      "reviewLedger": {
+        "disposition": "Preserve the complete published record byte-identical pending separately approved identity/applicability policy.",
+        "existingSourcesInspected": [],
+        "duplicateClusterKeys": []
+      },
+      "commerceDecision": "No audit commerce action; all frozen commerce and recommendation fields remain byte-identical.",
+      "before": {
+        "make": "Subaru",
+        "model": "WRX",
+        "years": [
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "transmission",
+        "title": "Clutch Judder/Chatter When Engaging",
+        "description": "Many WRX owners experience clutch judder or chatter when starting from a stop, especially in 1st or reverse. This vibration/shaking during clutch engagement is often related to the dual-mass flywheel or clutch disk characteristics, and is considered somewhat normal for this model.",
+        "solution": "Ensure proper clutch break-in procedure on new clutches. Use a consistent engagement point and avoid excessive slipping. Some owners replace the dual-mass flywheel with a single-mass unit and upgraded clutch. Keep clutch free of contamination and ensure proper hydraulic system bleeding.",
+        "severity": "low",
+        "confidence": "high",
+        "symptoms": [
+          "Vibration when releasing clutch from stop",
+          "Shuddering in 1st gear or reverse",
+          "Jerky engagement at low speeds",
+          "Noise during clutch engagement",
+          "Worse when clutch/engine is cold"
+        ],
+        "affectedSystems": [
+          "Transmission"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 2500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Get a proper diagnosis before replacing parts - similar symptoms can have different causes",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Search Subaru WRX forums and owner groups for real-world experiences and DIY guides",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Get multiple quotes from independent mechanics - dealer prices can be 2-3x higher for the same repair",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "Complete clutch replacement kit with disc, pressure plate, and throwout bearing",
+            "partName": "OEM Replacement Clutch Kit",
+            "partBrand": "Exedy"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 920,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2024-02-19",
+        "reviewedOn": "2026-02-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "beforeSha256": "ce9fae7bcd677f149de6fe6ab7722f0c0b389253e503c3b32ccef0412f994468",
+      "proposal": {
+        "make": "Subaru",
+        "model": "WRX",
+        "years": [
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "transmission",
+        "title": "Clutch Judder/Chatter When Engaging",
+        "description": "Many WRX owners experience clutch judder or chatter when starting from a stop, especially in 1st or reverse. This vibration/shaking during clutch engagement is often related to the dual-mass flywheel or clutch disk characteristics, and is considered somewhat normal for this model.",
+        "solution": "Ensure proper clutch break-in procedure on new clutches. Use a consistent engagement point and avoid excessive slipping. Some owners replace the dual-mass flywheel with a single-mass unit and upgraded clutch. Keep clutch free of contamination and ensure proper hydraulic system bleeding.",
+        "severity": "low",
+        "confidence": "high",
+        "symptoms": [
+          "Vibration when releasing clutch from stop",
+          "Shuddering in 1st gear or reverse",
+          "Jerky engagement at low speeds",
+          "Noise during clutch engagement",
+          "Worse when clutch/engine is cold"
+        ],
+        "affectedSystems": [
+          "Transmission"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 2500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Get a proper diagnosis before replacing parts - similar symptoms can have different causes",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Search Subaru WRX forums and owner groups for real-world experiences and DIY guides",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Get multiple quotes from independent mechanics - dealer prices can be 2-3x higher for the same repair",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "Complete clutch replacement kit with disc, pressure plate, and throwout bearing",
+            "partName": "OEM Replacement Clutch Kit",
+            "partBrand": "Exedy"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 920,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2024-02-19",
+        "reviewedOn": "2026-02-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposalSha256": "ce9fae7bcd677f149de6fe6ab7722f0c0b389253e503c3b32ccef0412f994468",
+      "changedFields": []
+    },
+    {
+      "id": "subaru-wrx-eyesight-driver-assist-disablement-and-2024",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "identityReviewRequired": true,
+      "identityConflict": "The frozen citation inventory does not include a locally captured exact same-identity primary record supporting a bounded rewrite; preserving the row unchanged is the conservative disposition.",
+      "reason": "Exact same-identity primary support was not captured. The complete frozen record remains byte-identical and published.",
+      "evidence": {
+        "primaryEvidence": [],
+        "limitations": "The frozen citation inventory does not include a locally captured exact same-identity primary record supporting a bounded rewrite; preserving the row unchanged is the conservative disposition."
+      },
+      "reviewLedger": {
+        "disposition": "Preserve the complete published record byte-identical pending separately approved identity/applicability policy.",
+        "existingSourcesInspected": [
+          {
+            "url": "https://www.subaru.com/owners/vehicle-resources/manuals.html",
+            "type": "tsb",
+            "title": "Subaru EyeSight Owner's Manual / system limitations and warning behavior",
+            "urlMissing": false,
+            "inspection": "frozen-citation-metadata-only; source content was not promoted to exact primary proof"
+          }
+        ],
+        "duplicateClusterKeys": []
+      },
+      "commerceDecision": "No audit commerce action; all frozen commerce and recommendation fields remain byte-identical.",
+      "before": {
+        "make": "Subaru",
+        "model": "WRX",
+        "years": [
+          2024,
+          2025
+        ],
+        "trims": [
+          "GT",
+          "CVT-equipped trims"
+        ],
+        "engines": [],
+        "category": "safety",
+        "title": "Eyesight Driver-Assist Disablement and Warning Lights on CVT Models",
+        "description": "For 2024+ WRX models equipped with the Subaru Performance Transmission, owners have reported EyeSight and related driver-assistance features becoming unavailable, often accompanied by warning messages and disabled adaptive cruise or pre-collision functions. This is well documented because EyeSight was newly added to the automatic/CVT-equipped WRX for this generation update. In many cases the issue is linked to camera visibility, calibration, low voltage, or software-related faults rather than a mechanical failure.",
+        "solution": "Scan all ADAS modules for stored faults, verify battery state of charge, inspect windshield/camera area for contamination or tint interference, and confirm no recent windshield replacement occurred without recalibration. Dealer repair may involve software updates, camera aiming/calibration, or replacement of a faulty camera or related module. If warnings are intermittent, capture photos of the cluster and note weather/light conditions.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "EyeSight disabled message",
+          "adaptive cruise unavailable",
+          "pre-collision braking unavailable",
+          "lane departure warning unavailable",
+          "multiple warning lights on startup"
+        ],
+        "affectedSystems": [
+          "EyeSight stereo camera",
+          "ADAS control module",
+          "adaptive cruise control",
+          "pre-collision braking"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 1800,
+        "typicalMileageLow": 0,
+        "typicalMileageHigh": 30000,
+        "citations": [
+          {
+            "url": "https://www.subaru.com/owners/vehicle-resources/manuals.html",
+            "type": "tsb",
+            "title": "Subaru EyeSight Owner's Manual / system limitations and warning behavior"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Keep the upper windshield glass clean inside and out, especially around the stereo camera shroud.",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "If the battery has been weak or recently disconnected, have the charging system tested before chasing camera hardware faults.",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "beforeSha256": "ba77cfbe28ae2982f839d7c8551b02950e1dce6606c6999a37fbbb5f843510e0",
+      "proposal": {
+        "make": "Subaru",
+        "model": "WRX",
+        "years": [
+          2024,
+          2025
+        ],
+        "trims": [
+          "GT",
+          "CVT-equipped trims"
+        ],
+        "engines": [],
+        "category": "safety",
+        "title": "Eyesight Driver-Assist Disablement and Warning Lights on CVT Models",
+        "description": "For 2024+ WRX models equipped with the Subaru Performance Transmission, owners have reported EyeSight and related driver-assistance features becoming unavailable, often accompanied by warning messages and disabled adaptive cruise or pre-collision functions. This is well documented because EyeSight was newly added to the automatic/CVT-equipped WRX for this generation update. In many cases the issue is linked to camera visibility, calibration, low voltage, or software-related faults rather than a mechanical failure.",
+        "solution": "Scan all ADAS modules for stored faults, verify battery state of charge, inspect windshield/camera area for contamination or tint interference, and confirm no recent windshield replacement occurred without recalibration. Dealer repair may involve software updates, camera aiming/calibration, or replacement of a faulty camera or related module. If warnings are intermittent, capture photos of the cluster and note weather/light conditions.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "EyeSight disabled message",
+          "adaptive cruise unavailable",
+          "pre-collision braking unavailable",
+          "lane departure warning unavailable",
+          "multiple warning lights on startup"
+        ],
+        "affectedSystems": [
+          "EyeSight stereo camera",
+          "ADAS control module",
+          "adaptive cruise control",
+          "pre-collision braking"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 1800,
+        "typicalMileageLow": 0,
+        "typicalMileageHigh": 30000,
+        "citations": [
+          {
+            "url": "https://www.subaru.com/owners/vehicle-resources/manuals.html",
+            "type": "tsb",
+            "title": "Subaru EyeSight Owner's Manual / system limitations and warning behavior"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Keep the upper windshield glass clean inside and out, especially around the stereo camera shroud.",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "If the battery has been weak or recently disconnected, have the charging system tested before chasing camera hardware faults.",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposalSha256": "ba77cfbe28ae2982f839d7c8551b02950e1dce6606c6999a37fbbb5f843510e0",
+      "changedFields": []
+    },
+    {
+      "id": "subaru-wrx-fa24-turbo-oil-feed-2022",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "identityReviewRequired": true,
+      "identityConflict": "The frozen citation inventory does not include a locally captured exact same-identity primary record supporting a bounded rewrite; preserving the row unchanged is the conservative disposition.",
+      "reason": "Exact same-identity primary support was not captured. The complete frozen record remains byte-identical and published.",
+      "evidence": {
+        "primaryEvidence": [],
+        "limitations": "The frozen citation inventory does not include a locally captured exact same-identity primary record supporting a bounded rewrite; preserving the row unchanged is the conservative disposition."
+      },
+      "reviewLedger": {
+        "disposition": "Preserve the complete published record byte-identical pending separately approved identity/applicability policy.",
+        "existingSourcesInspected": [
+          {
+            "url": "https://www.reddit.com/r/wrx_vb/",
+            "type": "forum",
+            "title": "WRX VB forum discussions on turbo oil leak / burning oil smell",
+            "urlMissing": false,
+            "inspection": "frozen-citation-metadata-only; source content was not promoted to exact primary proof"
+          }
+        ],
+        "duplicateClusterKeys": []
+      },
+      "commerceDecision": "No audit commerce action; all frozen commerce and recommendation fields remain byte-identical.",
+      "before": {
+        "make": "Subaru",
+        "model": "WRX",
+        "years": [
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "engine",
+        "title": "FA24 Turbo Oil Feed Line / Banjo Bolt Leak Causing Burning Oil Smell and Smoke",
+        "description": "Multiple VB-generation WRX owners have reported oil leaking from the turbocharger oil feed area, often traced to the banjo bolt or sealing washers on the turbo oil supply line. The leak typically shows up as a burning oil smell after driving, light smoke from the engine bay, or visible oil residue near the turbo and exhaust-side components. Because the leak can drip onto hot exhaust parts, owners often notice it early even when oil loss is modest.",
+        "solution": "Inspect the turbo oil feed line, banjo bolt, and crush washers for seepage, especially around the turbocharger and upper engine rear area. Repair usually involves replacing the sealing washers and re-torquing or replacing the affected fitting/line; any oil-soaked heat shielding should be cleaned to prevent recurring odor. After repair, verify no fresh seepage appears after a full heat cycle.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "burning oil smell after driving",
+          "light smoke from engine bay",
+          "oil residue near turbocharger",
+          "small but repeated oil level drop",
+          "smoke visible near passenger-side rear of engine"
+        ],
+        "affectedSystems": [
+          "turbocharger lubrication",
+          "engine lubrication",
+          "exhaust heat shielding"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 150,
+        "estimatedCostHigh": 700,
+        "typicalMileageLow": 500,
+        "typicalMileageHigh": 20000,
+        "citations": [
+          {
+            "url": "https://www.reddit.com/r/wrx_vb/",
+            "type": "forum",
+            "title": "WRX VB forum discussions on turbo oil leak / burning oil smell"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Use UV dye and a UV flashlight if the leak is intermittent or only appears after boost and heat soak.",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "Replace crush washers rather than reusing them when resealing turbo oil feed fittings.",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "beforeSha256": "c3c8f290be3f1c86d815c0bca51e5c63a79fad074ff3e7cf670ec43feaf12eb1",
+      "proposal": {
+        "make": "Subaru",
+        "model": "WRX",
+        "years": [
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "engine",
+        "title": "FA24 Turbo Oil Feed Line / Banjo Bolt Leak Causing Burning Oil Smell and Smoke",
+        "description": "Multiple VB-generation WRX owners have reported oil leaking from the turbocharger oil feed area, often traced to the banjo bolt or sealing washers on the turbo oil supply line. The leak typically shows up as a burning oil smell after driving, light smoke from the engine bay, or visible oil residue near the turbo and exhaust-side components. Because the leak can drip onto hot exhaust parts, owners often notice it early even when oil loss is modest.",
+        "solution": "Inspect the turbo oil feed line, banjo bolt, and crush washers for seepage, especially around the turbocharger and upper engine rear area. Repair usually involves replacing the sealing washers and re-torquing or replacing the affected fitting/line; any oil-soaked heat shielding should be cleaned to prevent recurring odor. After repair, verify no fresh seepage appears after a full heat cycle.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "burning oil smell after driving",
+          "light smoke from engine bay",
+          "oil residue near turbocharger",
+          "small but repeated oil level drop",
+          "smoke visible near passenger-side rear of engine"
+        ],
+        "affectedSystems": [
+          "turbocharger lubrication",
+          "engine lubrication",
+          "exhaust heat shielding"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 150,
+        "estimatedCostHigh": 700,
+        "typicalMileageLow": 500,
+        "typicalMileageHigh": 20000,
+        "citations": [
+          {
+            "url": "https://www.reddit.com/r/wrx_vb/",
+            "type": "forum",
+            "title": "WRX VB forum discussions on turbo oil leak / burning oil smell"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Use UV dye and a UV flashlight if the leak is intermittent or only appears after boost and heat soak.",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "Replace crush washers rather than reusing them when resealing turbo oil feed fittings.",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposalSha256": "c3c8f290be3f1c86d815c0bca51e5c63a79fad074ff3e7cf670ec43feaf12eb1",
+      "changedFields": []
+    },
+    {
+      "id": "subaru-wrx-firewall-spot-weld-cracking-and-2002",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "identityReviewRequired": true,
+      "identityConflict": "The frozen citation inventory does not include a locally captured exact same-identity primary record supporting a bounded rewrite; preserving the row unchanged is the conservative disposition.",
+      "reason": "Exact same-identity primary support was not captured. The complete frozen record remains byte-identical and published.",
+      "evidence": {
+        "primaryEvidence": [],
+        "limitations": "The frozen citation inventory does not include a locally captured exact same-identity primary record supporting a bounded rewrite; preserving the row unchanged is the conservative disposition."
+      },
+      "reviewLedger": {
+        "disposition": "Preserve the complete published record byte-identical pending separately approved identity/applicability policy.",
+        "existingSourcesInspected": [
+          {
+            "url": "https://static.nhtsa.gov/odi/tsbs/",
+            "type": "tsb",
+            "title": "Subaru service bulletin covering clutch pedal bracket/firewall cracking inspection and repair on Impreza/WRX models",
+            "urlMissing": false,
+            "inspection": "frozen-citation-metadata-only; source content was not promoted to exact primary proof"
+          }
+        ],
+        "duplicateClusterKeys": []
+      },
+      "commerceDecision": "No audit commerce action; all frozen commerce and recommendation fields remain byte-identical.",
+      "before": {
+        "make": "Subaru",
+        "model": "WRX",
+        "years": [
+          2002,
+          2003,
+          2004,
+          2005,
+          2006,
+          2007
+        ],
+        "trims": [],
+        "engines": [
+          "2.0L turbo EJ205",
+          "2.5L turbo EJ255"
+        ],
+        "category": "body",
+        "title": "Firewall Spot-Weld Cracking and Clutch Pedal Bracket Flex Causing Hard Shifting or Clutch Engagement Problems",
+        "description": "On GD-chassis WRX models, repeated clutch pedal loads can crack the firewall around the clutch master cylinder and pedal bracket mounting area. Owners report the pedal assembly moving, popping noises from the firewall, inconsistent clutch engagement, and difficulty selecting gears. Subaru issued service information and many forum threads document visible sheetmetal cracking or broken spot welds in the pedal box/firewall area.",
+        "solution": "Diagnosis involves inspecting the clutch pedal bracket, master cylinder mounting area, and firewall from both cabin and engine-bay sides while an assistant depresses the pedal. Repairs range from reinforcement plates and bracket replacement to welding cracked seams and installing aftermarket firewall reinforcement kits; alignment of the pedal assembly and master cylinder pushrod should be checked afterward. Ignoring it can worsen shifting issues and lead to repeated clutch hydraulic problems.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "clicking or popping when pressing clutch pedal",
+          "clutch engagement point changes",
+          "difficulty shifting into gear",
+          "visible firewall flex",
+          "pedal bracket movement under dash"
+        ],
+        "affectedSystems": [
+          "clutch pedal assembly",
+          "firewall structure",
+          "clutch hydraulics",
+          "manual transmission shift engagement"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 400,
+        "estimatedCostHigh": 1800,
+        "typicalMileageLow": 60000,
+        "typicalMileageHigh": 150000,
+        "citations": [
+          {
+            "url": "https://static.nhtsa.gov/odi/tsbs/",
+            "type": "tsb",
+            "title": "Subaru service bulletin covering clutch pedal bracket/firewall cracking inspection and repair on Impreza/WRX models"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Have a helper press the clutch while you watch the master cylinder/firewall area for movement; this is the quickest confirmation before transmission removal.",
+            "upvotes": 0
+          },
+          {
+            "content": "If cracks are found, reinforce the area rather than only replacing the pedal assembly, or the problem often returns."
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "beforeSha256": "dcf18f5e79fdbf576c90ca12a9ee384b2cae799ca828981ff0fbc09bb24e9d24",
+      "proposal": {
+        "make": "Subaru",
+        "model": "WRX",
+        "years": [
+          2002,
+          2003,
+          2004,
+          2005,
+          2006,
+          2007
+        ],
+        "trims": [],
+        "engines": [
+          "2.0L turbo EJ205",
+          "2.5L turbo EJ255"
+        ],
+        "category": "body",
+        "title": "Firewall Spot-Weld Cracking and Clutch Pedal Bracket Flex Causing Hard Shifting or Clutch Engagement Problems",
+        "description": "On GD-chassis WRX models, repeated clutch pedal loads can crack the firewall around the clutch master cylinder and pedal bracket mounting area. Owners report the pedal assembly moving, popping noises from the firewall, inconsistent clutch engagement, and difficulty selecting gears. Subaru issued service information and many forum threads document visible sheetmetal cracking or broken spot welds in the pedal box/firewall area.",
+        "solution": "Diagnosis involves inspecting the clutch pedal bracket, master cylinder mounting area, and firewall from both cabin and engine-bay sides while an assistant depresses the pedal. Repairs range from reinforcement plates and bracket replacement to welding cracked seams and installing aftermarket firewall reinforcement kits; alignment of the pedal assembly and master cylinder pushrod should be checked afterward. Ignoring it can worsen shifting issues and lead to repeated clutch hydraulic problems.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "clicking or popping when pressing clutch pedal",
+          "clutch engagement point changes",
+          "difficulty shifting into gear",
+          "visible firewall flex",
+          "pedal bracket movement under dash"
+        ],
+        "affectedSystems": [
+          "clutch pedal assembly",
+          "firewall structure",
+          "clutch hydraulics",
+          "manual transmission shift engagement"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 400,
+        "estimatedCostHigh": 1800,
+        "typicalMileageLow": 60000,
+        "typicalMileageHigh": 150000,
+        "citations": [
+          {
+            "url": "https://static.nhtsa.gov/odi/tsbs/",
+            "type": "tsb",
+            "title": "Subaru service bulletin covering clutch pedal bracket/firewall cracking inspection and repair on Impreza/WRX models"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Have a helper press the clutch while you watch the master cylinder/firewall area for movement; this is the quickest confirmation before transmission removal.",
+            "upvotes": 0
+          },
+          {
+            "content": "If cracks are found, reinforce the area rather than only replacing the pedal assembly, or the problem often returns."
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposalSha256": "dcf18f5e79fdbf576c90ca12a9ee384b2cae799ca828981ff0fbc09bb24e9d24",
+      "changedFields": []
+    },
+    {
+      "id": "subaru-wrx-front-driveshaft-outer-race-quench-cracking-leading-to-fract",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "identityReviewRequired": true,
+      "identityConflict": "The frozen citation inventory does not include a locally captured exact same-identity primary record supporting a bounded rewrite; preserving the row unchanged is the conservative disposition.",
+      "reason": "Exact same-identity primary support was not captured. The complete frozen record remains byte-identical and published.",
+      "evidence": {
+        "primaryEvidence": [],
+        "limitations": "The frozen citation inventory does not include a locally captured exact same-identity primary record supporting a bounded rewrite; preserving the row unchanged is the conservative disposition."
+      },
+      "reviewLedger": {
+        "disposition": "Preserve the complete published record byte-identical pending separately approved identity/applicability policy.",
+        "existingSourcesInspected": [
+          {
+            "url": "https://repairpal.com/recall/23V754000",
+            "type": "recall",
+            "title": "NHTSA Safety Recall 23V-754 - Front Driveshaft Components Crack And Fracture (RepairPal)",
+            "urlMissing": false,
+            "inspection": "frozen-citation-metadata-only; source content was not promoted to exact primary proof"
+          },
+          {
+            "url": "https://subaru.oemdtc.com/7342/wrp-23-front-driveshaft-assemblies-may-crack-and-break-2024-subaru-crosstrek-impreza-2023-2024-forester-2023-wrx/",
+            "type": "recall",
+            "title": "WRP-23 Front Driveshaft Assemblies May Crack And Break - 2023 WRX (and others)",
+            "urlMissing": false,
+            "inspection": "frozen-citation-metadata-only; source content was not promoted to exact primary proof"
+          },
+          {
+            "url": "https://static.nhtsa.gov/odi/rcl/2023/RCMN-23V754-7419.pdf",
+            "type": "recall",
+            "title": "NHTSA 23V-754 Recall / STOP SALE: WRP-23 Driveshaft Failure (RCMN PDF)",
+            "urlMissing": false,
+            "inspection": "frozen-citation-metadata-only; source content was not promoted to exact primary proof"
+          }
+        ],
+        "duplicateClusterKeys": []
+      },
+      "commerceDecision": "No audit commerce action; all frozen commerce and recommendation fields remain byte-identical.",
+      "before": {
+        "make": "Subaru",
+        "model": "WRX",
+        "years": [
+          2023
+        ],
+        "trims": [
+          "WRX",
+          "WRX Premium",
+          "WRX Limited",
+          "WRX GT"
+        ],
+        "engines": [
+          "FA24DIT 2.4L Turbo"
+        ],
+        "category": "drivetrain",
+        "title": "Front Driveshaft Outer-Race Quench Cracking Leading to Fracture and Power Loss (Recall 23V-754)",
+        "description": "NHTSA safety recall 23V-754 (Subaru campaign WRP-23) covers front drive-shaft (half-shaft) assemblies whose CV-joint outer race may crack. A hole in a cooling-water pipe on the supplier's heat-treat line reduced cooling-water flow, improperly cooling the inner surface of the race and causing quench cracking on the outer surface. Over time the cracked outer race can break, causing loss of motive power while driving; if it fails while parked without the parking brake set the vehicle can roll away. The WRX portion is limited to a small run of 2023 cars (about 413 units, built roughly September 1-13, 2023); the wider recall also included 2024 Crosstrek/Impreza and 2023-2024 Forester.",
+        "solution": "Under the recall, Subaru dealers inspect both the left- and right-hand front drive shafts and replace any affected shaft with a new part at no cost (about a two-hour job). Affected VINs should be checked via the NHTSA recall lookup or a Subaru dealer. Out of recall coverage, half-shaft replacement is a straightforward but not trivial repair.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Clicking or knocking from the front CV joints",
+          "Sudden loss of drive/motive power",
+          "Vehicle rolls when parked without parking brake",
+          "Vibration or clunk from front axle under load"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 900,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://repairpal.com/recall/23V754000",
+            "type": "recall",
+            "title": "NHTSA Safety Recall 23V-754 - Front Driveshaft Components Crack And Fracture (RepairPal)"
+          },
+          {
+            "url": "https://subaru.oemdtc.com/7342/wrp-23-front-driveshaft-assemblies-may-crack-and-break-2024-subaru-crosstrek-impreza-2023-2024-forester-2023-wrx/",
+            "type": "recall",
+            "title": "WRP-23 Front Driveshaft Assemblies May Crack And Break - 2023 WRX (and others)"
+          },
+          {
+            "url": "https://static.nhtsa.gov/odi/rcl/2023/RCMN-23V754-7419.pdf",
+            "type": "recall",
+            "title": "NHTSA 23V-754 Recall / STOP SALE: WRP-23 Driveshaft Failure (RCMN PDF)"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-08",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "beforeSha256": "7757076a90d00cdd57ef063be9c7b7533c9830b7164259c113db54807affaf12",
+      "proposal": {
+        "make": "Subaru",
+        "model": "WRX",
+        "years": [
+          2023
+        ],
+        "trims": [
+          "WRX",
+          "WRX Premium",
+          "WRX Limited",
+          "WRX GT"
+        ],
+        "engines": [
+          "FA24DIT 2.4L Turbo"
+        ],
+        "category": "drivetrain",
+        "title": "Front Driveshaft Outer-Race Quench Cracking Leading to Fracture and Power Loss (Recall 23V-754)",
+        "description": "NHTSA safety recall 23V-754 (Subaru campaign WRP-23) covers front drive-shaft (half-shaft) assemblies whose CV-joint outer race may crack. A hole in a cooling-water pipe on the supplier's heat-treat line reduced cooling-water flow, improperly cooling the inner surface of the race and causing quench cracking on the outer surface. Over time the cracked outer race can break, causing loss of motive power while driving; if it fails while parked without the parking brake set the vehicle can roll away. The WRX portion is limited to a small run of 2023 cars (about 413 units, built roughly September 1-13, 2023); the wider recall also included 2024 Crosstrek/Impreza and 2023-2024 Forester.",
+        "solution": "Under the recall, Subaru dealers inspect both the left- and right-hand front drive shafts and replace any affected shaft with a new part at no cost (about a two-hour job). Affected VINs should be checked via the NHTSA recall lookup or a Subaru dealer. Out of recall coverage, half-shaft replacement is a straightforward but not trivial repair.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Clicking or knocking from the front CV joints",
+          "Sudden loss of drive/motive power",
+          "Vehicle rolls when parked without parking brake",
+          "Vibration or clunk from front axle under load"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 900,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://repairpal.com/recall/23V754000",
+            "type": "recall",
+            "title": "NHTSA Safety Recall 23V-754 - Front Driveshaft Components Crack And Fracture (RepairPal)"
+          },
+          {
+            "url": "https://subaru.oemdtc.com/7342/wrp-23-front-driveshaft-assemblies-may-crack-and-break-2024-subaru-crosstrek-impreza-2023-2024-forester-2023-wrx/",
+            "type": "recall",
+            "title": "WRP-23 Front Driveshaft Assemblies May Crack And Break - 2023 WRX (and others)"
+          },
+          {
+            "url": "https://static.nhtsa.gov/odi/rcl/2023/RCMN-23V754-7419.pdf",
+            "type": "recall",
+            "title": "NHTSA 23V-754 Recall / STOP SALE: WRP-23 Driveshaft Failure (RCMN PDF)"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-08",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposalSha256": "7757076a90d00cdd57ef063be9c7b7533c9830b7164259c113db54807affaf12",
+      "changedFields": []
+    },
+    {
+      "id": "subaru-wrx-fuel-filler-neck-corrosion-2002",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "identityReviewRequired": true,
+      "identityConflict": "The frozen citation inventory does not include a locally captured exact same-identity primary record supporting a bounded rewrite; preserving the row unchanged is the conservative disposition.",
+      "reason": "Exact same-identity primary support was not captured. The complete frozen record remains byte-identical and published.",
+      "evidence": {
+        "primaryEvidence": [],
+        "limitations": "The frozen citation inventory does not include a locally captured exact same-identity primary record supporting a bounded rewrite; preserving the row unchanged is the conservative disposition."
+      },
+      "reviewLedger": {
+        "disposition": "Preserve the complete published record byte-identical pending separately approved identity/applicability policy.",
+        "existingSourcesInspected": [],
+        "duplicateClusterKeys": []
+      },
+      "commerceDecision": "No audit commerce action; all frozen commerce and recommendation fields remain byte-identical.",
+      "before": {
+        "make": "Subaru",
+        "model": "WRX",
+        "years": [
+          2002,
+          2003,
+          2004,
+          2005,
+          2006,
+          2007
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "fuel",
+        "title": "Fuel Filler Neck Corrosion Causing EVAP Leaks, Fuel Smell, and Check-Engine Light",
+        "description": "Rust-belt GD-chassis WRX models are known for corrosion of the steel fuel filler neck and vent tubes behind the left rear wheel area. As the neck rusts through, owners notice a raw fuel smell, difficulty filling the tank, or EVAP leak codes from the compromised venting system. Subaru issued recalls and service campaigns on related Impreza models in salt-belt states because the corrosion could lead to fuel leakage.",
+        "solution": "Inspect the filler neck and vent pipes by removing the left rear wheel and splash shield, looking for rust perforation, dampness, or fuel staining. Repair usually requires replacing the filler neck assembly and associated hoses/clamps; heavily corroded fasteners may need cutting. After repair, clear EVAP codes and verify the system seals with a smoke test.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "raw fuel smell near left rear of car",
+          "check engine light with EVAP leak code",
+          "difficulty filling fuel tank",
+          "visible rust on filler neck",
+          "fuel seepage after fill-up"
+        ],
+        "affectedSystems": [
+          "fuel filler neck",
+          "EVAP system",
+          "fuel tank venting"
+        ],
+        "dtcCodes": [
+          "P0440",
+          "P0442",
+          "P0455",
+          "P0456"
+        ],
+        "estimatedCostLow": 300,
+        "estimatedCostHigh": 900,
+        "typicalMileageLow": 80000,
+        "typicalMileageHigh": 180000,
+        "citations": [],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Check recall eligibility by VIN first, especially for cars originally sold in salt-belt states.",
+            "upvotes": 0
+          },
+          {
+            "content": "When replacing the neck, buy new clamps and short vent hoses because the originals are often too corroded to reuse."
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "beforeSha256": "60a3cfdd2eb24eb3df919c589b8b7173e1611b6e1c3f50a43b13ed9e21e29cea",
+      "proposal": {
+        "make": "Subaru",
+        "model": "WRX",
+        "years": [
+          2002,
+          2003,
+          2004,
+          2005,
+          2006,
+          2007
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "fuel",
+        "title": "Fuel Filler Neck Corrosion Causing EVAP Leaks, Fuel Smell, and Check-Engine Light",
+        "description": "Rust-belt GD-chassis WRX models are known for corrosion of the steel fuel filler neck and vent tubes behind the left rear wheel area. As the neck rusts through, owners notice a raw fuel smell, difficulty filling the tank, or EVAP leak codes from the compromised venting system. Subaru issued recalls and service campaigns on related Impreza models in salt-belt states because the corrosion could lead to fuel leakage.",
+        "solution": "Inspect the filler neck and vent pipes by removing the left rear wheel and splash shield, looking for rust perforation, dampness, or fuel staining. Repair usually requires replacing the filler neck assembly and associated hoses/clamps; heavily corroded fasteners may need cutting. After repair, clear EVAP codes and verify the system seals with a smoke test.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "raw fuel smell near left rear of car",
+          "check engine light with EVAP leak code",
+          "difficulty filling fuel tank",
+          "visible rust on filler neck",
+          "fuel seepage after fill-up"
+        ],
+        "affectedSystems": [
+          "fuel filler neck",
+          "EVAP system",
+          "fuel tank venting"
+        ],
+        "dtcCodes": [
+          "P0440",
+          "P0442",
+          "P0455",
+          "P0456"
+        ],
+        "estimatedCostLow": 300,
+        "estimatedCostHigh": 900,
+        "typicalMileageLow": 80000,
+        "typicalMileageHigh": 180000,
+        "citations": [],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Check recall eligibility by VIN first, especially for cars originally sold in salt-belt states.",
+            "upvotes": 0
+          },
+          {
+            "content": "When replacing the neck, buy new clamps and short vent hoses because the originals are often too corroded to reuse."
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposalSha256": "60a3cfdd2eb24eb3df919c589b8b7173e1611b6e1c3f50a43b13ed9e21e29cea",
+      "changedFields": []
+    },
+    {
+      "id": "subaru-wrx-infotainment-2015",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "identityReviewRequired": true,
+      "identityConflict": "The frozen citation inventory does not include a locally captured exact same-identity primary record supporting a bounded rewrite; preserving the row unchanged is the conservative disposition.",
+      "reason": "Exact same-identity primary support was not captured. The complete frozen record remains byte-identical and published.",
+      "evidence": {
+        "primaryEvidence": [],
+        "limitations": "The frozen citation inventory does not include a locally captured exact same-identity primary record supporting a bounded rewrite; preserving the row unchanged is the conservative disposition."
+      },
+      "reviewLedger": {
+        "disposition": "Preserve the complete published record byte-identical pending separately approved identity/applicability policy.",
+        "existingSourcesInspected": [],
+        "duplicateClusterKeys": []
+      },
+      "commerceDecision": "No audit commerce action; all frozen commerce and recommendation fields remain byte-identical.",
+      "before": {
+        "make": "Subaru",
+        "model": "WRX",
+        "years": [
+          2015,
+          2016,
+          2017,
+          2018,
+          2019
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Starlink Infotainment Freezing/Lag",
+        "description": "The Subaru Starlink infotainment system can experience freezing, lag, and unresponsive touch inputs. The system may take a long time to boot up or may reset randomly while driving. This affects navigation, audio, and phone connectivity.",
+        "solution": "Update to latest Starlink software version. Perform a factory reset of the system. Check for SD card corruption if navigation-equipped. Some owners have had the head unit replaced under warranty. Aftermarket head unit is an option for persistent issues.",
+        "severity": "low",
+        "confidence": "high",
+        "symptoms": [
+          "Slow touchscreen response",
+          "System freezes and requires restart",
+          "Bluetooth connection drops",
+          "Long boot-up time",
+          "Random reboots while driving",
+          "Navigation crashes"
+        ],
+        "affectedSystems": [
+          "Electrical"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 1000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Consider OEM parts for critical components like sensors and electrical parts - aftermarket can be unreliable",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Get a proper diagnosis before replacing parts - similar symptoms can have different causes",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Search Subaru WRX forums and owner groups for real-world experiences and DIY guides",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Get multiple quotes from independent mechanics - dealer prices can be 2-3x higher for the same repair",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "Professional OBD-II diagnostic scanner for reading infotainment and body module codes",
+            "partName": "Bluetooth Pro OBD2 Scan Tool",
+            "partBrand": "BlueDriver"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 640,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2024-02-19",
+        "reviewedOn": "2026-02-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "subaru-fb25-starlink-2015"
+        ]
+      },
+      "beforeSha256": "c633046b431f790144dff5b693d681e472c4f497661fed32f5a7c70e0d66cc99",
+      "proposal": {
+        "make": "Subaru",
+        "model": "WRX",
+        "years": [
+          2015,
+          2016,
+          2017,
+          2018,
+          2019
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Starlink Infotainment Freezing/Lag",
+        "description": "The Subaru Starlink infotainment system can experience freezing, lag, and unresponsive touch inputs. The system may take a long time to boot up or may reset randomly while driving. This affects navigation, audio, and phone connectivity.",
+        "solution": "Update to latest Starlink software version. Perform a factory reset of the system. Check for SD card corruption if navigation-equipped. Some owners have had the head unit replaced under warranty. Aftermarket head unit is an option for persistent issues.",
+        "severity": "low",
+        "confidence": "high",
+        "symptoms": [
+          "Slow touchscreen response",
+          "System freezes and requires restart",
+          "Bluetooth connection drops",
+          "Long boot-up time",
+          "Random reboots while driving",
+          "Navigation crashes"
+        ],
+        "affectedSystems": [
+          "Electrical"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 1000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Consider OEM parts for critical components like sensors and electrical parts - aftermarket can be unreliable",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Get a proper diagnosis before replacing parts - similar symptoms can have different causes",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Search Subaru WRX forums and owner groups for real-world experiences and DIY guides",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Get multiple quotes from independent mechanics - dealer prices can be 2-3x higher for the same repair",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "Professional OBD-II diagnostic scanner for reading infotainment and body module codes",
+            "partName": "Bluetooth Pro OBD2 Scan Tool",
+            "partBrand": "BlueDriver"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 640,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2024-02-19",
+        "reviewedOn": "2026-02-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "subaru-fb25-starlink-2015"
+        ]
+      },
+      "proposalSha256": "c633046b431f790144dff5b693d681e472c4f497661fed32f5a7c70e0d66cc99",
+      "changedFields": []
+    },
+    {
+      "id": "subaru-wrx-manual-transmission-2nd-3rd-gear-synchro-grind-notchy-cold-s",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "identityReviewRequired": true,
+      "identityConflict": "The frozen citation inventory does not include a locally captured exact same-identity primary record supporting a bounded rewrite; preserving the row unchanged is the conservative disposition.",
+      "reason": "Exact same-identity primary support was not captured. The complete frozen record remains byte-identical and published.",
+      "evidence": {
+        "primaryEvidence": [],
+        "limitations": "The frozen citation inventory does not include a locally captured exact same-identity primary record supporting a bounded rewrite; preserving the row unchanged is the conservative disposition."
+      },
+      "reviewLedger": {
+        "disposition": "Preserve the complete published record byte-identical pending separately approved identity/applicability policy.",
+        "existingSourcesInspected": [
+          {
+            "url": "https://www.wrxtuners.com/threads/wrx-gears-are-very-rough-grinding-like-when-changing-into-2nd-gear.71777/",
+            "type": "forum",
+            "title": "WRX gears are very rough/grinding like when changing into 2nd gear - Subaru WRX Forum",
+            "urlMissing": false,
+            "inspection": "frozen-citation-metadata-only; source content was not promoted to exact primary proof"
+          },
+          {
+            "url": "https://www.iwsti.com/threads/how-to-fix-your-sti-6-speed-synchro-grinds-easily-and-cheaply.271543/",
+            "type": "forum",
+            "title": "How to fix your STI 6 speed synchro Grinds Easily and cheaply - IW STi Forum",
+            "urlMissing": false,
+            "inspection": "frozen-citation-metadata-only; source content was not promoted to exact primary proof"
+          },
+          {
+            "url": "https://www.iwsti.com/threads/difficult-extra-notchy-2-3-shift.171357/",
+            "type": "forum",
+            "title": "Difficult (extra notchy) 2-3 shift - IW STi Forum",
+            "urlMissing": false,
+            "inspection": "frozen-citation-metadata-only; source content was not promoted to exact primary proof"
+          }
+        ],
+        "duplicateClusterKeys": []
+      },
+      "commerceDecision": "No audit commerce action; all frozen commerce and recommendation fields remain byte-identical.",
+      "before": {
+        "make": "Subaru",
+        "model": "WRX",
+        "years": [
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021
+        ],
+        "trims": [
+          "WRX",
+          "WRX Premium",
+          "WRX Limited",
+          "STI"
+        ],
+        "engines": [
+          "EJ255 2.5L Turbo",
+          "EJ257 2.5L Turbo (STI)",
+          "FA20DIT 2.0L Turbo"
+        ],
+        "category": "transmission",
+        "title": "Manual Transmission 2nd/3rd Gear Synchro Grind and Notchy Cold Shifting",
+        "description": "Owners of the WRX 5-speed (2008-2014 GR/GV) and 6-speed manual (2015+ VA WRX and the STI 6MT) gearboxes widely report grinding or 'crunching' when shifting into 2nd or 3rd gear, worst on higher-RPM/aggressive shifts and when the transmission is cold. The root cause is premature wear of the brass synchronizer rings, with the 2-3 synchro most commonly cited; the early WRX 5MT in particular is noted as a comparatively weak unit. Left unaddressed the grind worsens until the gear becomes hard or impossible to engage. This is a wear/failure mode inside the gearbox itself, distinct from clutch-actuation or throw-out-bearing problems.",
+        "solution": "Early cases are frequently improved by switching to the correct-friction gear oil (genuine Subaru Extra-S / Redline MT-90 or an appropriate Synchromesh blend rather than an over-slippery synthetic) and driving with a deliberate pause during the 2-3 shift. Persistent grinding requires pulling the transmission to replace the worn synchro rings, hub sleeves, and gear dog teeth (some owners upgrade to carbon-lined synchros); a full rebuild or a good used/reman transmission is the common end-state fix.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Grinding or crunching noise shifting into 2nd or 3rd gear",
+          "Grinding worst on cold starts / cold fluid",
+          "Notchy or hard engagement above ~4000 RPM",
+          "Gear lever balks or blocks entry into 2nd/3rd",
+          "Improvement once transmission warms up"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 200,
+        "estimatedCostHigh": 3500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.wrxtuners.com/threads/wrx-gears-are-very-rough-grinding-like-when-changing-into-2nd-gear.71777/",
+            "type": "forum",
+            "title": "WRX gears are very rough/grinding like when changing into 2nd gear - Subaru WRX Forum"
+          },
+          {
+            "url": "https://www.iwsti.com/threads/how-to-fix-your-sti-6-speed-synchro-grinds-easily-and-cheaply.271543/",
+            "type": "forum",
+            "title": "How to fix your STI 6 speed synchro Grinds Easily and cheaply - IW STi Forum"
+          },
+          {
+            "url": "https://www.iwsti.com/threads/difficult-extra-notchy-2-3-shift.171357/",
+            "type": "forum",
+            "title": "Difficult (extra notchy) 2-3 shift - IW STi Forum"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-08",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "beforeSha256": "cfe0373dcb8816785d34aa59d30232376a28f726f6a8682dc3dbea403bb8bbff",
+      "proposal": {
+        "make": "Subaru",
+        "model": "WRX",
+        "years": [
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021
+        ],
+        "trims": [
+          "WRX",
+          "WRX Premium",
+          "WRX Limited",
+          "STI"
+        ],
+        "engines": [
+          "EJ255 2.5L Turbo",
+          "EJ257 2.5L Turbo (STI)",
+          "FA20DIT 2.0L Turbo"
+        ],
+        "category": "transmission",
+        "title": "Manual Transmission 2nd/3rd Gear Synchro Grind and Notchy Cold Shifting",
+        "description": "Owners of the WRX 5-speed (2008-2014 GR/GV) and 6-speed manual (2015+ VA WRX and the STI 6MT) gearboxes widely report grinding or 'crunching' when shifting into 2nd or 3rd gear, worst on higher-RPM/aggressive shifts and when the transmission is cold. The root cause is premature wear of the brass synchronizer rings, with the 2-3 synchro most commonly cited; the early WRX 5MT in particular is noted as a comparatively weak unit. Left unaddressed the grind worsens until the gear becomes hard or impossible to engage. This is a wear/failure mode inside the gearbox itself, distinct from clutch-actuation or throw-out-bearing problems.",
+        "solution": "Early cases are frequently improved by switching to the correct-friction gear oil (genuine Subaru Extra-S / Redline MT-90 or an appropriate Synchromesh blend rather than an over-slippery synthetic) and driving with a deliberate pause during the 2-3 shift. Persistent grinding requires pulling the transmission to replace the worn synchro rings, hub sleeves, and gear dog teeth (some owners upgrade to carbon-lined synchros); a full rebuild or a good used/reman transmission is the common end-state fix.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Grinding or crunching noise shifting into 2nd or 3rd gear",
+          "Grinding worst on cold starts / cold fluid",
+          "Notchy or hard engagement above ~4000 RPM",
+          "Gear lever balks or blocks entry into 2nd/3rd",
+          "Improvement once transmission warms up"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 200,
+        "estimatedCostHigh": 3500,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.wrxtuners.com/threads/wrx-gears-are-very-rough-grinding-like-when-changing-into-2nd-gear.71777/",
+            "type": "forum",
+            "title": "WRX gears are very rough/grinding like when changing into 2nd gear - Subaru WRX Forum"
+          },
+          {
+            "url": "https://www.iwsti.com/threads/how-to-fix-your-sti-6-speed-synchro-grinds-easily-and-cheaply.271543/",
+            "type": "forum",
+            "title": "How to fix your STI 6 speed synchro Grinds Easily and cheaply - IW STi Forum"
+          },
+          {
+            "url": "https://www.iwsti.com/threads/difficult-extra-notchy-2-3-shift.171357/",
+            "type": "forum",
+            "title": "Difficult (extra notchy) 2-3 shift - IW STi Forum"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-07-08",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposalSha256": "cfe0373dcb8816785d34aa59d30232376a28f726f6a8682dc3dbea403bb8bbff",
+      "changedFields": []
+    },
+    {
+      "id": "subaru-wrx-oil-consumption-2015",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "identityReviewRequired": true,
+      "identityConflict": "The frozen citation inventory does not include a locally captured exact same-identity primary record supporting a bounded rewrite; preserving the row unchanged is the conservative disposition.",
+      "reason": "Exact same-identity primary support was not captured. The complete frozen record remains byte-identical and published.",
+      "evidence": {
+        "primaryEvidence": [],
+        "limitations": "The frozen citation inventory does not include a locally captured exact same-identity primary record supporting a bounded rewrite; preserving the row unchanged is the conservative disposition."
+      },
+      "reviewLedger": {
+        "disposition": "Preserve the complete published record byte-identical pending separately approved identity/applicability policy.",
+        "existingSourcesInspected": [],
+        "duplicateClusterKeys": []
+      },
+      "commerceDecision": "No audit commerce action; all frozen commerce and recommendation fields remain byte-identical.",
+      "before": {
+        "make": "Subaru",
+        "model": "WRX",
+        "years": [
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021
+        ],
+        "trims": [
+          "Base",
+          "Limited",
+          "Premium"
+        ],
+        "engines": [
+          "FA20DIT"
+        ],
+        "category": "engine",
+        "title": "Excessive Oil Consumption",
+        "description": "The FA20DIT engine can consume oil at a rate higher than expected, sometimes up to 1 quart every 1,000-3,000 miles. This is often related to the turbocharger, PCV system, or piston ring design. Subaru considers up to 1 quart per 1,200 miles as within normal range.",
+        "solution": "Check oil level frequently (every fuel fill-up). Use high-quality synthetic oil that meets Subaru specifications. Inspect PCV system for proper operation. Monitor for turbo seal leaks. If consumption is excessive, oil consumption test at dealer may warrant warranty coverage.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Oil level drops between changes",
+          "Need to add oil between scheduled changes",
+          "Light blue smoke at startup or deceleration",
+          "Oil residue around turbo",
+          "Low oil pressure warnings"
+        ],
+        "affectedSystems": [
+          "Engine"
+        ],
+        "dtcCodes": [
+          "P0171",
+          "P0174",
+          "P052E"
+        ],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 3000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Use high-quality synthetic oil",
+            "upvotes": 0,
+            "partBrand": "Use",
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Get a proper diagnosis before replacing parts - similar symptoms can have different causes",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Search Subaru WRX forums and owner groups for real-world experiences and DIY guides",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Get multiple quotes from independent mechanics - dealer prices can be 2-3x higher for the same repair",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 1050,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2024-02-19",
+        "reviewedOn": "2026-02-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "subaru-crosstrek-oil-consumption-fb20-2013",
+          "subaru-fb25-oil-consumption-2011",
+          "subaru-crosstrek-oil-consumption-2013",
+          "subaru-forester-oil-consumption-2011"
+        ]
+      },
+      "beforeSha256": "61eb3483c9afa3ecb29ef10543dcdec9ea0bf66846042fdf98a14f69cf9d62b1",
+      "proposal": {
+        "make": "Subaru",
+        "model": "WRX",
+        "years": [
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021
+        ],
+        "trims": [
+          "Base",
+          "Limited",
+          "Premium"
+        ],
+        "engines": [
+          "FA20DIT"
+        ],
+        "category": "engine",
+        "title": "Excessive Oil Consumption",
+        "description": "The FA20DIT engine can consume oil at a rate higher than expected, sometimes up to 1 quart every 1,000-3,000 miles. This is often related to the turbocharger, PCV system, or piston ring design. Subaru considers up to 1 quart per 1,200 miles as within normal range.",
+        "solution": "Check oil level frequently (every fuel fill-up). Use high-quality synthetic oil that meets Subaru specifications. Inspect PCV system for proper operation. Monitor for turbo seal leaks. If consumption is excessive, oil consumption test at dealer may warrant warranty coverage.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Oil level drops between changes",
+          "Need to add oil between scheduled changes",
+          "Light blue smoke at startup or deceleration",
+          "Oil residue around turbo",
+          "Low oil pressure warnings"
+        ],
+        "affectedSystems": [
+          "Engine"
+        ],
+        "dtcCodes": [
+          "P0171",
+          "P0174",
+          "P052E"
+        ],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 3000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Use high-quality synthetic oil",
+            "upvotes": 0,
+            "partBrand": "Use",
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Get a proper diagnosis before replacing parts - similar symptoms can have different causes",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Search Subaru WRX forums and owner groups for real-world experiences and DIY guides",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Get multiple quotes from independent mechanics - dealer prices can be 2-3x higher for the same repair",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 1050,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2024-02-19",
+        "reviewedOn": "2026-02-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "subaru-crosstrek-oil-consumption-fb20-2013",
+          "subaru-fb25-oil-consumption-2011",
+          "subaru-crosstrek-oil-consumption-2013",
+          "subaru-forester-oil-consumption-2011"
+        ]
+      },
+      "proposalSha256": "61eb3483c9afa3ecb29ef10543dcdec9ea0bf66846042fdf98a14f69cf9d62b1",
+      "changedFields": []
+    },
+    {
+      "id": "subaru-wrx-power-steering-pump-and-2002",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "identityReviewRequired": true,
+      "identityConflict": "The frozen citation inventory does not include a locally captured exact same-identity primary record supporting a bounded rewrite; preserving the row unchanged is the conservative disposition.",
+      "reason": "Exact same-identity primary support was not captured. The complete frozen record remains byte-identical and published.",
+      "evidence": {
+        "primaryEvidence": [],
+        "limitations": "The frozen citation inventory does not include a locally captured exact same-identity primary record supporting a bounded rewrite; preserving the row unchanged is the conservative disposition."
+      },
+      "reviewLedger": {
+        "disposition": "Preserve the complete published record byte-identical pending separately approved identity/applicability policy.",
+        "existingSourcesInspected": [
+          {
+            "url": "https://static.nhtsa.gov/odi/tsbs/",
+            "type": "tsb",
+            "title": "Subaru technical service information for power steering pump noise and inlet O-ring replacement on Impreza-based models",
+            "urlMissing": false,
+            "inspection": "frozen-citation-metadata-only; source content was not promoted to exact primary proof"
+          }
+        ],
+        "duplicateClusterKeys": []
+      },
+      "commerceDecision": "No audit commerce action; all frozen commerce and recommendation fields remain byte-identical.",
+      "before": {
+        "make": "Subaru",
+        "model": "WRX",
+        "years": [
+          2002,
+          2003,
+          2004,
+          2005,
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "suspension",
+        "title": "Power Steering Pump and Suction Hose Air Leak Causing Whine, Foamy Fluid, and Heavy Steering",
+        "description": "A common WRX complaint is a groaning or whining power steering system, especially when cold, often traced to the pump inlet O-ring or suction hose allowing air into the system. Aerated fluid becomes foamy in the reservoir and steering assist can feel inconsistent or heavy at low speeds. On higher-mileage cars, the pump itself may also wear out after running with air-contaminated fluid.",
+        "solution": "Inspect the reservoir for bubbles/foam, check fluid level and condition, and examine the suction hose, clamps, and pump inlet O-ring for seepage or looseness. Replacing the inlet O-ring and any hardened hose sections often cures the issue; if noise remains, the pump may need replacement and the system should be flushed with the correct Subaru-compatible fluid. Belt condition and tension should also be verified because belt slip can mimic pump noise.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "whining or groaning while turning",
+          "foamy power steering fluid",
+          "heavy steering when cold",
+          "fluid seepage near pump or hose",
+          "intermittent loss of steering assist"
+        ],
+        "affectedSystems": [
+          "power steering pump",
+          "power steering hoses",
+          "steering assist hydraulic system"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 50,
+        "estimatedCostHigh": 700,
+        "typicalMileageLow": 50000,
+        "typicalMileageHigh": 180000,
+        "citations": [
+          {
+            "url": "https://static.nhtsa.gov/odi/tsbs/",
+            "type": "tsb",
+            "title": "Subaru technical service information for power steering pump noise and inlet O-ring replacement on Impreza-based models"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Replace the pump inlet O-ring first before condemning the whole pump; it is a very common low-cost fix.",
+            "upvotes": 0
+          },
+          {
+            "content": "Use the correct Subaru-compatible fluid and bleed the system thoroughly with the front wheels off the ground to remove trapped air."
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "beforeSha256": "4c252ca4ad6b034124bd9af61b66a73d1643a65a03a7a82426b0899c9143b83d",
+      "proposal": {
+        "make": "Subaru",
+        "model": "WRX",
+        "years": [
+          2002,
+          2003,
+          2004,
+          2005,
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "suspension",
+        "title": "Power Steering Pump and Suction Hose Air Leak Causing Whine, Foamy Fluid, and Heavy Steering",
+        "description": "A common WRX complaint is a groaning or whining power steering system, especially when cold, often traced to the pump inlet O-ring or suction hose allowing air into the system. Aerated fluid becomes foamy in the reservoir and steering assist can feel inconsistent or heavy at low speeds. On higher-mileage cars, the pump itself may also wear out after running with air-contaminated fluid.",
+        "solution": "Inspect the reservoir for bubbles/foam, check fluid level and condition, and examine the suction hose, clamps, and pump inlet O-ring for seepage or looseness. Replacing the inlet O-ring and any hardened hose sections often cures the issue; if noise remains, the pump may need replacement and the system should be flushed with the correct Subaru-compatible fluid. Belt condition and tension should also be verified because belt slip can mimic pump noise.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "whining or groaning while turning",
+          "foamy power steering fluid",
+          "heavy steering when cold",
+          "fluid seepage near pump or hose",
+          "intermittent loss of steering assist"
+        ],
+        "affectedSystems": [
+          "power steering pump",
+          "power steering hoses",
+          "steering assist hydraulic system"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 50,
+        "estimatedCostHigh": 700,
+        "typicalMileageLow": 50000,
+        "typicalMileageHigh": 180000,
+        "citations": [
+          {
+            "url": "https://static.nhtsa.gov/odi/tsbs/",
+            "type": "tsb",
+            "title": "Subaru technical service information for power steering pump noise and inlet O-ring replacement on Impreza-based models"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Replace the pump inlet O-ring first before condemning the whole pump; it is a very common low-cost fix.",
+            "upvotes": 0
+          },
+          {
+            "content": "Use the correct Subaru-compatible fluid and bleed the system thoroughly with the front wheels off the ground to remove trapped air."
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposalSha256": "4c252ca4ad6b034124bd9af61b66a73d1643a65a03a7a82426b0899c9143b83d",
+      "changedFields": []
+    },
+    {
+      "id": "subaru-wrx-radiator-end-tank-cracking-2002",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "identityReviewRequired": true,
+      "identityConflict": "The frozen citation inventory does not include a locally captured exact same-identity primary record supporting a bounded rewrite; preserving the row unchanged is the conservative disposition.",
+      "reason": "Exact same-identity primary support was not captured. The complete frozen record remains byte-identical and published.",
+      "evidence": {
+        "primaryEvidence": [],
+        "limitations": "The frozen citation inventory does not include a locally captured exact same-identity primary record supporting a bounded rewrite; preserving the row unchanged is the conservative disposition."
+      },
+      "reviewLedger": {
+        "disposition": "Preserve the complete published record byte-identical pending separately approved identity/applicability policy.",
+        "existingSourcesInspected": [
+          {
+            "url": "https://www.carcomplaints.com/Subaru/Impreza/",
+            "type": "forum",
+            "title": "CarComplaints owner reports and forum documentation of radiator tank seam leaks on Subaru Impreza WRX models",
+            "urlMissing": false,
+            "inspection": "frozen-citation-metadata-only; source content was not promoted to exact primary proof"
+          }
+        ],
+        "duplicateClusterKeys": []
+      },
+      "commerceDecision": "No audit commerce action; all frozen commerce and recommendation fields remain byte-identical.",
+      "before": {
+        "make": "Subaru",
+        "model": "WRX",
+        "years": [
+          2002,
+          2003,
+          2004,
+          2005,
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "cooling",
+        "title": "Radiator End Tank Cracking and Coolant Leaks on Plastic-Aluminum OEM Radiators",
+        "description": "Many 2002-2014 WRX owners report coolant leaks from the crimped plastic end tanks of the factory radiator, especially as the car ages and sees repeated heat cycles. Cracks often form near the upper tank seam or hose neck, leading to a sweet coolant smell, low coolant level, and eventual overheating if ignored. This is widely documented in owner forums and repair databases across both EJ205 and EJ255 cars.",
+        "solution": "Pressure-test the cooling system and inspect the radiator tank seams, upper neck, and side crimps for wetness or dried coolant residue. Replacement of the radiator is the standard repair; many owners upgrade to a quality all-aluminum unit or a fresh OEM-style radiator along with new hoses and cap. After replacement, the system should be properly burped to avoid trapped air and false overheating symptoms.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "coolant smell after driving",
+          "low coolant reservoir level",
+          "visible coolant at radiator seam",
+          "engine temperature rising in traffic",
+          "white residue on radiator tank"
+        ],
+        "affectedSystems": [
+          "radiator",
+          "cooling system",
+          "engine temperature control"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 250,
+        "estimatedCostHigh": 900,
+        "typicalMileageLow": 70000,
+        "typicalMileageHigh": 180000,
+        "citations": [
+          {
+            "url": "https://www.carcomplaints.com/Subaru/Impreza/",
+            "type": "forum",
+            "title": "CarComplaints owner reports and forum documentation of radiator tank seam leaks on Subaru Impreza WRX models"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Pressure-test before replacing parts; small seam leaks can be hard to see when the system is cold.",
+            "upvotes": 0
+          },
+          {
+            "content": "Replace the radiator cap and inspect upper/lower hoses during radiator service to avoid repeat cooling issues."
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "beforeSha256": "281684681fa2652eae98addc4751d18d9b6602b963fd2f4808ab6af7c006b672",
+      "proposal": {
+        "make": "Subaru",
+        "model": "WRX",
+        "years": [
+          2002,
+          2003,
+          2004,
+          2005,
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "cooling",
+        "title": "Radiator End Tank Cracking and Coolant Leaks on Plastic-Aluminum OEM Radiators",
+        "description": "Many 2002-2014 WRX owners report coolant leaks from the crimped plastic end tanks of the factory radiator, especially as the car ages and sees repeated heat cycles. Cracks often form near the upper tank seam or hose neck, leading to a sweet coolant smell, low coolant level, and eventual overheating if ignored. This is widely documented in owner forums and repair databases across both EJ205 and EJ255 cars.",
+        "solution": "Pressure-test the cooling system and inspect the radiator tank seams, upper neck, and side crimps for wetness or dried coolant residue. Replacement of the radiator is the standard repair; many owners upgrade to a quality all-aluminum unit or a fresh OEM-style radiator along with new hoses and cap. After replacement, the system should be properly burped to avoid trapped air and false overheating symptoms.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "coolant smell after driving",
+          "low coolant reservoir level",
+          "visible coolant at radiator seam",
+          "engine temperature rising in traffic",
+          "white residue on radiator tank"
+        ],
+        "affectedSystems": [
+          "radiator",
+          "cooling system",
+          "engine temperature control"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 250,
+        "estimatedCostHigh": 900,
+        "typicalMileageLow": 70000,
+        "typicalMileageHigh": 180000,
+        "citations": [
+          {
+            "url": "https://www.carcomplaints.com/Subaru/Impreza/",
+            "type": "forum",
+            "title": "CarComplaints owner reports and forum documentation of radiator tank seam leaks on Subaru Impreza WRX models"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Pressure-test before replacing parts; small seam leaks can be hard to see when the system is cold.",
+            "upvotes": 0
+          },
+          {
+            "content": "Replace the radiator cap and inspect upper/lower hoses during radiator service to avoid repeat cooling issues."
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposalSha256": "281684681fa2652eae98addc4751d18d9b6602b963fd2f4808ab6af7c006b672",
+      "changedFields": []
+    },
+    {
+      "id": "subaru-wrx-rear-differential-final-2022",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "identityReviewRequired": true,
+      "identityConflict": "The frozen citation inventory does not include a locally captured exact same-identity primary record supporting a bounded rewrite; preserving the row unchanged is the conservative disposition.",
+      "reason": "Exact same-identity primary support was not captured. The complete frozen record remains byte-identical and published.",
+      "evidence": {
+        "primaryEvidence": [],
+        "limitations": "The frozen citation inventory does not include a locally captured exact same-identity primary record supporting a bounded rewrite; preserving the row unchanged is the conservative disposition."
+      },
+      "reviewLedger": {
+        "disposition": "Preserve the complete published record byte-identical pending separately approved identity/applicability policy.",
+        "existingSourcesInspected": [],
+        "duplicateClusterKeys": []
+      },
+      "commerceDecision": "No audit commerce action; all frozen commerce and recommendation fields remain byte-identical.",
+      "before": {
+        "make": "Subaru",
+        "model": "WRX",
+        "years": [
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "drivetrain",
+        "title": "Rear Differential / Final Drive Whine or Howl at Highway Speeds",
+        "description": "Owners of the current WRX have documented a pronounced rear driveline whine or howl, most noticeable during steady-state cruising between roughly 45 and 75 mph. Reports commonly describe the noise as coming from the rear of the vehicle and changing with road speed rather than engine rpm, pointing to the rear differential or final drive. Some vehicles improve with fluid service, while others require further dealer diagnosis for gear pattern or bearing issues.",
+        "solution": "Road-test the car to confirm the noise changes with vehicle speed and load, then inspect rear differential fluid condition and level. Dealers typically compare against another WRX, check for abnormal backlash or bearing noise, and may replace fluid, bearings, or the differential assembly depending on findings. Rule out tire cupping first because aggressive OEM tires can mimic driveline hum.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "whining from rear of vehicle",
+          "howling noise at 45-75 mph",
+          "noise changes with road speed not rpm",
+          "driveline hum during cruise",
+          "rear-end noise on deceleration or light throttle"
+        ],
+        "affectedSystems": [
+          "rear differential",
+          "final drive",
+          "AWD drivetrain"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 120,
+        "estimatedCostHigh": 2500,
+        "typicalMileageLow": 1000,
+        "typicalMileageHigh": 40000,
+        "citations": [],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Before authorizing differential work, rotate tires and inspect for uneven wear to separate tire noise from gear noise.",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "If fluid is changed, use the correct Subaru-spec gear oil and document the old fluid condition for warranty support.",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "acura-mdx-shawd-rear-diff-whine-2007"
+        ]
+      },
+      "beforeSha256": "7b5fb843467781cbb0f3664dbee5ee695b2341e8f9b0a3e182dd44f5a621e180",
+      "proposal": {
+        "make": "Subaru",
+        "model": "WRX",
+        "years": [
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "drivetrain",
+        "title": "Rear Differential / Final Drive Whine or Howl at Highway Speeds",
+        "description": "Owners of the current WRX have documented a pronounced rear driveline whine or howl, most noticeable during steady-state cruising between roughly 45 and 75 mph. Reports commonly describe the noise as coming from the rear of the vehicle and changing with road speed rather than engine rpm, pointing to the rear differential or final drive. Some vehicles improve with fluid service, while others require further dealer diagnosis for gear pattern or bearing issues.",
+        "solution": "Road-test the car to confirm the noise changes with vehicle speed and load, then inspect rear differential fluid condition and level. Dealers typically compare against another WRX, check for abnormal backlash or bearing noise, and may replace fluid, bearings, or the differential assembly depending on findings. Rule out tire cupping first because aggressive OEM tires can mimic driveline hum.",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "whining from rear of vehicle",
+          "howling noise at 45-75 mph",
+          "noise changes with road speed not rpm",
+          "driveline hum during cruise",
+          "rear-end noise on deceleration or light throttle"
+        ],
+        "affectedSystems": [
+          "rear differential",
+          "final drive",
+          "AWD drivetrain"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 120,
+        "estimatedCostHigh": 2500,
+        "typicalMileageLow": 1000,
+        "typicalMileageHigh": 40000,
+        "citations": [],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Before authorizing differential work, rotate tires and inspect for uneven wear to separate tire noise from gear noise.",
+            "upvotes": 0
+          },
+          {
+            "type": "tip",
+            "content": "If fluid is changed, use the correct Subaru-spec gear oil and document the old fluid condition for warranty support.",
+            "upvotes": 0
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "acura-mdx-shawd-rear-diff-whine-2007"
+        ]
+      },
+      "proposalSha256": "7b5fb843467781cbb0f3664dbee5ee695b2341e8f9b0a3e182dd44f5a621e180",
+      "changedFields": []
+    },
+    {
+      "id": "subaru-wrx-rev-hang-2015",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "identityReviewRequired": true,
+      "identityConflict": "The frozen citation inventory does not include a locally captured exact same-identity primary record supporting a bounded rewrite; preserving the row unchanged is the conservative disposition.",
+      "reason": "Exact same-identity primary support was not captured. The complete frozen record remains byte-identical and published.",
+      "evidence": {
+        "primaryEvidence": [],
+        "limitations": "The frozen citation inventory does not include a locally captured exact same-identity primary record supporting a bounded rewrite; preserving the row unchanged is the conservative disposition."
+      },
+      "reviewLedger": {
+        "disposition": "Preserve the complete published record byte-identical pending separately approved identity/applicability policy.",
+        "existingSourcesInspected": [
+          {
+            "url": "https://www.reddit.com/r/WRX/wiki/rev-hang/",
+            "type": "forum",
+            "title": "Understanding and Addressing Rev Hang",
+            "urlMissing": false,
+            "inspection": "frozen-citation-metadata-only; source content was not promoted to exact primary proof"
+          }
+        ],
+        "duplicateClusterKeys": []
+      },
+      "commerceDecision": "No audit commerce action; all frozen commerce and recommendation fields remain byte-identical.",
+      "before": {
+        "make": "Subaru",
+        "model": "WRX",
+        "years": [
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "engine",
+        "title": "Throttle Rev-Hang (Slow RPM Drop)",
+        "description": "The WRX exhibits significant rev-hang where the RPMs are slow to drop when lifting off the throttle, making it difficult to shift quickly between gears. This is an emissions-related ECU calibration designed to reduce unburned fuel in the exhaust.",
+        "solution": "An aftermarket tune can eliminate rev-hang while maintaining proper engine operation. Popular tuning options include Cobb Accessport with OTS or custom tune. Note: This may affect emissions compliance and warranty. Some owners learn to work around it with slower shifts.",
+        "severity": "low",
+        "confidence": "high",
+        "symptoms": [
+          "RPMs slow to drop when releasing throttle",
+          "Difficulty making quick shifts",
+          "Need to pause between shifts",
+          "Slight lurch if shifting quickly",
+          "Feels like throttle is still partially open"
+        ],
+        "affectedSystems": [
+          "Engine"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 700,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.reddit.com/r/WRX/wiki/rev-hang/",
+            "type": "forum",
+            "title": "Understanding and Addressing Rev Hang"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Consider OEM parts for critical components like sensors and electrical parts - aftermarket can be unreliable",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Get a proper diagnosis before replacing parts - similar symptoms can have different causes",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Search Subaru WRX forums and owner groups for real-world experiences and DIY guides",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Get multiple quotes from independent mechanics - dealer prices can be 2-3x higher for the same repair",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "Bluetooth OBD-II scanner for reading engine codes and monitoring live data",
+            "partName": "Bluetooth OBD2 Diagnostic Scan Tool",
+            "partBrand": "BlueDriver"
+          },
+          {
+            "type": "part",
+            "content": "Quality synthetic oil and filter combo for engine maintenance",
+            "partName": "Full Synthetic Oil and Filter Bundle",
+            "partBrand": "Mobil 1"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 1200,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2024-02-19",
+        "reviewedOn": "2026-02-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "beforeSha256": "950a9c91f2e3e48f6763c13d9a10fda8beab5f24d90c202ba4c3f8f5f7a6fb8e",
+      "proposal": {
+        "make": "Subaru",
+        "model": "WRX",
+        "years": [
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "engine",
+        "title": "Throttle Rev-Hang (Slow RPM Drop)",
+        "description": "The WRX exhibits significant rev-hang where the RPMs are slow to drop when lifting off the throttle, making it difficult to shift quickly between gears. This is an emissions-related ECU calibration designed to reduce unburned fuel in the exhaust.",
+        "solution": "An aftermarket tune can eliminate rev-hang while maintaining proper engine operation. Popular tuning options include Cobb Accessport with OTS or custom tune. Note: This may affect emissions compliance and warranty. Some owners learn to work around it with slower shifts.",
+        "severity": "low",
+        "confidence": "high",
+        "symptoms": [
+          "RPMs slow to drop when releasing throttle",
+          "Difficulty making quick shifts",
+          "Need to pause between shifts",
+          "Slight lurch if shifting quickly",
+          "Feels like throttle is still partially open"
+        ],
+        "affectedSystems": [
+          "Engine"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 0,
+        "estimatedCostHigh": 700,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.reddit.com/r/WRX/wiki/rev-hang/",
+            "type": "forum",
+            "title": "Understanding and Addressing Rev Hang"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Consider OEM parts for critical components like sensors and electrical parts - aftermarket can be unreliable",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Get a proper diagnosis before replacing parts - similar symptoms can have different causes",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Search Subaru WRX forums and owner groups for real-world experiences and DIY guides",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Get multiple quotes from independent mechanics - dealer prices can be 2-3x higher for the same repair",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "Bluetooth OBD-II scanner for reading engine codes and monitoring live data",
+            "partName": "Bluetooth OBD2 Diagnostic Scan Tool",
+            "partBrand": "BlueDriver"
+          },
+          {
+            "type": "part",
+            "content": "Quality synthetic oil and filter combo for engine maintenance",
+            "partName": "Full Synthetic Oil and Filter Bundle",
+            "partBrand": "Mobil 1"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 1200,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2024-02-19",
+        "reviewedOn": "2026-02-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposalSha256": "950a9c91f2e3e48f6763c13d9a10fda8beab5f24d90c202ba4c3f8f5f7a6fb8e",
+      "changedFields": []
+    },
+    {
+      "id": "subaru-wrx-ringland-failure-2015",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "identityReviewRequired": true,
+      "identityConflict": "The frozen citation inventory does not include a locally captured exact same-identity primary record supporting a bounded rewrite; preserving the row unchanged is the conservative disposition.",
+      "reason": "Exact same-identity primary support was not captured. The complete frozen record remains byte-identical and published.",
+      "evidence": {
+        "primaryEvidence": [],
+        "limitations": "The frozen citation inventory does not include a locally captured exact same-identity primary record supporting a bounded rewrite; preserving the row unchanged is the conservative disposition."
+      },
+      "reviewLedger": {
+        "disposition": "Preserve the complete published record byte-identical pending separately approved identity/applicability policy.",
+        "existingSourcesInspected": [],
+        "duplicateClusterKeys": []
+      },
+      "commerceDecision": "No audit commerce action; all frozen commerce and recommendation fields remain byte-identical.",
+      "before": {
+        "make": "Subaru",
+        "model": "WRX",
+        "years": [
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021
+        ],
+        "trims": [
+          "Base",
+          "Limited",
+          "Premium"
+        ],
+        "engines": [
+          "FA20DIT"
+        ],
+        "category": "engine",
+        "title": "Piston Ringland Failure",
+        "description": "The FA20DIT engine can suffer from piston ringland failure, especially when tuned or running high boost. The ringland (area between piston rings) can crack, causing compression loss and engine damage. This is often related to detonation from improper tuning or low octane fuel.",
+        "solution": "Always use 93 octane fuel. If tuning, use a reputable tuner with proper air/fuel ratios and timing. Consider forged pistons if building engine. Monitor for knock with an accessport or similar device. Catch early signs through oil analysis showing elevated metals.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Loss of power",
+          "Excessive oil consumption",
+          "Blue smoke from exhaust",
+          "Knocking or pinging under load",
+          "Compression loss on cylinder test",
+          "Check engine light with misfire codes"
+        ],
+        "affectedSystems": [
+          "Engine"
+        ],
+        "dtcCodes": [
+          "P0171",
+          "P0174",
+          "P0420"
+        ],
+        "estimatedCostLow": 4000,
+        "estimatedCostHigh": 10000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Use a reputable tuner",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "warning",
+            "content": "This is a high-severity issue - ignoring it can lead to costly repairs or safety concerns. Address it promptly.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Get a proper diagnosis before replacing parts - similar symptoms can have different causes",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 890,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2024-02-19",
+        "reviewedOn": "2026-02-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "beforeSha256": "a4caca3db971c6bd1a32859f8aaf835ea1efc815cf601d69ac8ec8d29f716728",
+      "proposal": {
+        "make": "Subaru",
+        "model": "WRX",
+        "years": [
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021
+        ],
+        "trims": [
+          "Base",
+          "Limited",
+          "Premium"
+        ],
+        "engines": [
+          "FA20DIT"
+        ],
+        "category": "engine",
+        "title": "Piston Ringland Failure",
+        "description": "The FA20DIT engine can suffer from piston ringland failure, especially when tuned or running high boost. The ringland (area between piston rings) can crack, causing compression loss and engine damage. This is often related to detonation from improper tuning or low octane fuel.",
+        "solution": "Always use 93 octane fuel. If tuning, use a reputable tuner with proper air/fuel ratios and timing. Consider forged pistons if building engine. Monitor for knock with an accessport or similar device. Catch early signs through oil analysis showing elevated metals.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Loss of power",
+          "Excessive oil consumption",
+          "Blue smoke from exhaust",
+          "Knocking or pinging under load",
+          "Compression loss on cylinder test",
+          "Check engine light with misfire codes"
+        ],
+        "affectedSystems": [
+          "Engine"
+        ],
+        "dtcCodes": [
+          "P0171",
+          "P0174",
+          "P0420"
+        ],
+        "estimatedCostLow": 4000,
+        "estimatedCostHigh": 10000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Use a reputable tuner",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "warning",
+            "content": "This is a high-severity issue - ignoring it can lead to costly repairs or safety concerns. Address it promptly.",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Get a proper diagnosis before replacing parts - similar symptoms can have different causes",
+            "upvotes": 0,
+            "needsReview": false
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 890,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2024-02-19",
+        "reviewedOn": "2026-02-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposalSha256": "a4caca3db971c6bd1a32859f8aaf835ea1efc815cf601d69ac8ec8d29f716728",
+      "changedFields": []
+    },
+    {
+      "id": "subaru-wrx-secondary-air-injection-pump-2006",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "identityReviewRequired": true,
+      "identityConflict": "The frozen citation inventory does not include a locally captured exact same-identity primary record supporting a bounded rewrite; preserving the row unchanged is the conservative disposition.",
+      "reason": "Exact same-identity primary support was not captured. The complete frozen record remains byte-identical and published.",
+      "evidence": {
+        "primaryEvidence": [],
+        "limitations": "The frozen citation inventory does not include a locally captured exact same-identity primary record supporting a bounded rewrite; preserving the row unchanged is the conservative disposition."
+      },
+      "reviewLedger": {
+        "disposition": "Preserve the complete published record byte-identical pending separately approved identity/applicability policy.",
+        "existingSourcesInspected": [],
+        "duplicateClusterKeys": []
+      },
+      "commerceDecision": "No audit commerce action; all frozen commerce and recommendation fields remain byte-identical.",
+      "before": {
+        "make": "Subaru",
+        "model": "WRX",
+        "years": [
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014
+        ],
+        "trims": [],
+        "engines": [
+          "2.5L turbo EJ255",
+          "2.5L turbo EJ257"
+        ],
+        "category": "engine",
+        "title": "Secondary Air Injection Pump and Switching Valve Failure Triggering CEL and Limp Mode",
+        "description": "Turbo EJ255/EJ257 WRX models equipped with the secondary air injection system commonly develop failures of the air pump, pressure sensor, or the air switching valves. Moisture intrusion and corrosion can cause the valves to stick or the pump to seize, which sets emissions faults and on many cars can reduce power or force a limp-home condition. Owners typically report a check-engine light shortly after cold start, often with rough cold operation or an audible pump noise before failure.",
+        "solution": "Diagnosis usually starts with scanning for secondary air system codes and commanding the pump/valves with a capable scan tool. Repair typically involves replacing one or both air switching valves, the pump, and sometimes the pressure sensor or related hoses; some owners also inspect for water entry and update gaskets/hoses during repair. Because access is tight on turbo models, labor can be significant, and clearing codes without fixing the root cause usually results in repeat faults.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "check engine light after cold start",
+          "reduced power or limp mode",
+          "loud buzzing or whining from air pump area",
+          "rough cold start",
+          "failed emissions inspection"
+        ],
+        "affectedSystems": [
+          "secondary air injection",
+          "emissions controls",
+          "engine management"
+        ],
+        "dtcCodes": [
+          "P0410",
+          "P0411",
+          "P0413",
+          "P0414",
+          "P0418",
+          "P2431",
+          "P2440",
+          "P2441",
+          "P2444"
+        ],
+        "estimatedCostLow": 700,
+        "estimatedCostHigh": 2200,
+        "typicalMileageLow": 50000,
+        "typicalMileageHigh": 120000,
+        "citations": [],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Use an OBD-II scanner that can read Subaru-specific pending/history codes and active test the air pump/valves before buying parts.",
+            "upvotes": 0
+          },
+          {
+            "content": "If replacing valves, inspect the pump and hoses for moisture contamination at the same time to avoid repeat failures."
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "subaru-wrx-sti-air-injection-system-secondary-air-pump-valves-failure-p0410-p244x"
+        ]
+      },
+      "beforeSha256": "4377d83ed328bcf5fbf9d14a1eff493910b3f35c4ee472ba996df2cc750d9b31",
+      "proposal": {
+        "make": "Subaru",
+        "model": "WRX",
+        "years": [
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014
+        ],
+        "trims": [],
+        "engines": [
+          "2.5L turbo EJ255",
+          "2.5L turbo EJ257"
+        ],
+        "category": "engine",
+        "title": "Secondary Air Injection Pump and Switching Valve Failure Triggering CEL and Limp Mode",
+        "description": "Turbo EJ255/EJ257 WRX models equipped with the secondary air injection system commonly develop failures of the air pump, pressure sensor, or the air switching valves. Moisture intrusion and corrosion can cause the valves to stick or the pump to seize, which sets emissions faults and on many cars can reduce power or force a limp-home condition. Owners typically report a check-engine light shortly after cold start, often with rough cold operation or an audible pump noise before failure.",
+        "solution": "Diagnosis usually starts with scanning for secondary air system codes and commanding the pump/valves with a capable scan tool. Repair typically involves replacing one or both air switching valves, the pump, and sometimes the pressure sensor or related hoses; some owners also inspect for water entry and update gaskets/hoses during repair. Because access is tight on turbo models, labor can be significant, and clearing codes without fixing the root cause usually results in repeat faults.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "check engine light after cold start",
+          "reduced power or limp mode",
+          "loud buzzing or whining from air pump area",
+          "rough cold start",
+          "failed emissions inspection"
+        ],
+        "affectedSystems": [
+          "secondary air injection",
+          "emissions controls",
+          "engine management"
+        ],
+        "dtcCodes": [
+          "P0410",
+          "P0411",
+          "P0413",
+          "P0414",
+          "P0418",
+          "P2431",
+          "P2440",
+          "P2441",
+          "P2444"
+        ],
+        "estimatedCostLow": 700,
+        "estimatedCostHigh": 2200,
+        "typicalMileageLow": 50000,
+        "typicalMileageHigh": 120000,
+        "citations": [],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Use an OBD-II scanner that can read Subaru-specific pending/history codes and active test the air pump/valves before buying parts.",
+            "upvotes": 0
+          },
+          {
+            "content": "If replacing valves, inspect the pump and hoses for moisture contamination at the same time to avoid repeat failures."
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "subaru-wrx-sti-air-injection-system-secondary-air-pump-valves-failure-p0410-p244x"
+        ]
+      },
+      "proposalSha256": "4377d83ed328bcf5fbf9d14a1eff493910b3f35c4ee472ba996df2cc750d9b31",
+      "changedFields": []
+    },
+    {
+      "id": "subaru-wrx-suspension-clunk-2015",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "identityReviewRequired": true,
+      "identityConflict": "The frozen citation inventory does not include a locally captured exact same-identity primary record supporting a bounded rewrite; preserving the row unchanged is the conservative disposition.",
+      "reason": "Exact same-identity primary support was not captured. The complete frozen record remains byte-identical and published.",
+      "evidence": {
+        "primaryEvidence": [],
+        "limitations": "The frozen citation inventory does not include a locally captured exact same-identity primary record supporting a bounded rewrite; preserving the row unchanged is the conservative disposition."
+      },
+      "reviewLedger": {
+        "disposition": "Preserve the complete published record byte-identical pending separately approved identity/applicability policy.",
+        "existingSourcesInspected": [],
+        "duplicateClusterKeys": []
+      },
+      "commerceDecision": "No audit commerce action; all frozen commerce and recommendation fields remain byte-identical.",
+      "before": {
+        "make": "Subaru",
+        "model": "WRX",
+        "years": [
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "suspension",
+        "title": "Front Suspension Clunk Over Bumps",
+        "description": "A common complaint on WRX models is a clunking or knocking noise from the front suspension when going over bumps or rough roads. This is typically caused by worn sway bar end links, strut mounts, or control arm bushings.",
+        "solution": "Inspect and replace sway bar end links (most common cause). Check front strut mounts for wear or play. Inspect lower control arm bushings. Ensure all suspension bolts are properly torqued. Consider upgraded polyurethane bushings for firmer feel.",
+        "severity": "low",
+        "confidence": "high",
+        "symptoms": [
+          "Clunking noise over bumps",
+          "Knocking from front end on rough roads",
+          "Loose feeling in steering",
+          "Noise when turning at low speeds",
+          "Clunk when hitting potholes"
+        ],
+        "affectedSystems": [
+          "Suspension"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 100,
+        "estimatedCostHigh": 600,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Get a proper diagnosis before replacing parts - similar symptoms can have different causes",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Search Subaru WRX forums and owner groups for real-world experiences and DIY guides",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Get multiple quotes from independent mechanics - dealer prices can be 2-3x higher for the same repair",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "Quality replacement struts for ride comfort and handling restoration",
+            "partName": "Quick-Strut Complete Assembly",
+            "partBrand": "Monroe"
+          },
+          {
+            "type": "part",
+            "content": "Strut mount and bearing for noise-free strut operation",
+            "partName": "Strut Mount Assembly",
+            "partBrand": "Moog"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 580,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2024-02-19",
+        "reviewedOn": "2026-02-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "subaru-forester-rear-suspension-clunk-2009"
+        ]
+      },
+      "beforeSha256": "f8c58e41fe9f0565d95c35662ea2914247826e0c50bff3d2d70797ce11048544",
+      "proposal": {
+        "make": "Subaru",
+        "model": "WRX",
+        "years": [
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "suspension",
+        "title": "Front Suspension Clunk Over Bumps",
+        "description": "A common complaint on WRX models is a clunking or knocking noise from the front suspension when going over bumps or rough roads. This is typically caused by worn sway bar end links, strut mounts, or control arm bushings.",
+        "solution": "Inspect and replace sway bar end links (most common cause). Check front strut mounts for wear or play. Inspect lower control arm bushings. Ensure all suspension bolts are properly torqued. Consider upgraded polyurethane bushings for firmer feel.",
+        "severity": "low",
+        "confidence": "high",
+        "symptoms": [
+          "Clunking noise over bumps",
+          "Knocking from front end on rough roads",
+          "Loose feeling in steering",
+          "Noise when turning at low speeds",
+          "Clunk when hitting potholes"
+        ],
+        "affectedSystems": [
+          "Suspension"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": 100,
+        "estimatedCostHigh": 600,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Get a proper diagnosis before replacing parts - similar symptoms can have different causes",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Search Subaru WRX forums and owner groups for real-world experiences and DIY guides",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Get multiple quotes from independent mechanics - dealer prices can be 2-3x higher for the same repair",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "Quality replacement struts for ride comfort and handling restoration",
+            "partName": "Quick-Strut Complete Assembly",
+            "partBrand": "Monroe"
+          },
+          {
+            "type": "part",
+            "content": "Strut mount and bearing for noise-free strut operation",
+            "partName": "Strut Mount Assembly",
+            "partBrand": "Moog"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 580,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2024-02-19",
+        "reviewedOn": "2026-02-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "subaru-forester-rear-suspension-clunk-2009"
+        ]
+      },
+      "proposalSha256": "f8c58e41fe9f0565d95c35662ea2914247826e0c50bff3d2d70797ce11048544",
+      "changedFields": []
+    },
+    {
+      "id": "subaru-wrx-throw-out-bearing-2015",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "identityReviewRequired": true,
+      "identityConflict": "The frozen citation inventory does not include a locally captured exact same-identity primary record supporting a bounded rewrite; preserving the row unchanged is the conservative disposition.",
+      "reason": "Exact same-identity primary support was not captured. The complete frozen record remains byte-identical and published.",
+      "evidence": {
+        "primaryEvidence": [],
+        "limitations": "The frozen citation inventory does not include a locally captured exact same-identity primary record supporting a bounded rewrite; preserving the row unchanged is the conservative disposition."
+      },
+      "reviewLedger": {
+        "disposition": "Preserve the complete published record byte-identical pending separately approved identity/applicability policy.",
+        "existingSourcesInspected": [
+          {
+            "url": "https://www.reddit.com/r/WRX/wiki/tob-chirp/",
+            "type": "forum",
+            "title": "TOB Chirp - What You Need to Know",
+            "urlMissing": false,
+            "inspection": "frozen-citation-metadata-only; source content was not promoted to exact primary proof"
+          }
+        ],
+        "duplicateClusterKeys": []
+      },
+      "commerceDecision": "No audit commerce action; all frozen commerce and recommendation fields remain byte-identical.",
+      "before": {
+        "make": "Subaru",
+        "model": "WRX",
+        "years": [
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "transmission",
+        "title": "Throw-Out Bearing Chirp/Failure",
+        "description": "The clutch throw-out bearing (release bearing) commonly develops a chirping noise that goes away when the clutch pedal is pressed. This is a known issue on WRX models and while the noise is annoying, it doesn't always indicate imminent failure. However, it should be monitored.",
+        "solution": "Replace throw-out bearing during clutch replacement. Consider upgrading to a better quality bearing. Some owners report improvement with different clutch fork pivot ball. Replace entire clutch kit when addressing this issue to avoid repeat labor costs.",
+        "severity": "low",
+        "confidence": "high",
+        "symptoms": [
+          "Chirping or squeaking noise at idle",
+          "Noise goes away when clutch pedal is depressed",
+          "Noise returns when clutch pedal is released",
+          "Sound may vary with temperature",
+          "Grinding noise in severe cases"
+        ],
+        "affectedSystems": [
+          "Transmission"
+        ],
+        "dtcCodes": [
+          "P0700",
+          "P0730",
+          "P0741",
+          "P0751"
+        ],
+        "estimatedCostLow": 800,
+        "estimatedCostHigh": 2000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.reddit.com/r/WRX/wiki/tob-chirp/",
+            "type": "forum",
+            "title": "TOB Chirp - What You Need to Know"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Get a proper diagnosis before replacing parts - similar symptoms can have different causes",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Search Subaru WRX forums and owner groups for real-world experiences and DIY guides",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Get multiple quotes from independent mechanics - dealer prices can be 2-3x higher for the same repair",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "Complete clutch replacement kit with disc, pressure plate, and throwout bearing",
+            "partName": "OEM Replacement Clutch Kit",
+            "partBrand": "Exedy"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 1100,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2024-02-19",
+        "reviewedOn": "2026-02-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "subaru-brz-throwout-bearing-2013",
+          "toyota-gr86-throwout-bearing-noise-2022"
+        ]
+      },
+      "beforeSha256": "036a08e75e56d45e37a19ed5896fab0e818e3bee9d00fb5a59dcf7c77e165316",
+      "proposal": {
+        "make": "Subaru",
+        "model": "WRX",
+        "years": [
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "transmission",
+        "title": "Throw-Out Bearing Chirp/Failure",
+        "description": "The clutch throw-out bearing (release bearing) commonly develops a chirping noise that goes away when the clutch pedal is pressed. This is a known issue on WRX models and while the noise is annoying, it doesn't always indicate imminent failure. However, it should be monitored.",
+        "solution": "Replace throw-out bearing during clutch replacement. Consider upgrading to a better quality bearing. Some owners report improvement with different clutch fork pivot ball. Replace entire clutch kit when addressing this issue to avoid repeat labor costs.",
+        "severity": "low",
+        "confidence": "high",
+        "symptoms": [
+          "Chirping or squeaking noise at idle",
+          "Noise goes away when clutch pedal is depressed",
+          "Noise returns when clutch pedal is released",
+          "Sound may vary with temperature",
+          "Grinding noise in severe cases"
+        ],
+        "affectedSystems": [
+          "Transmission"
+        ],
+        "dtcCodes": [
+          "P0700",
+          "P0730",
+          "P0741",
+          "P0751"
+        ],
+        "estimatedCostLow": 800,
+        "estimatedCostHigh": 2000,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.reddit.com/r/WRX/wiki/tob-chirp/",
+            "type": "forum",
+            "title": "TOB Chirp - What You Need to Know"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Get a proper diagnosis before replacing parts - similar symptoms can have different causes",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Search Subaru WRX forums and owner groups for real-world experiences and DIY guides",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "tip",
+            "content": "Get multiple quotes from independent mechanics - dealer prices can be 2-3x higher for the same repair",
+            "upvotes": 0,
+            "needsReview": false
+          },
+          {
+            "type": "part",
+            "content": "Complete clutch replacement kit with disc, pressure plate, and throwout bearing",
+            "partName": "OEM Replacement Clutch Kit",
+            "partBrand": "Exedy"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 1100,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2024-02-19",
+        "reviewedOn": "2026-02-21",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": [
+          "subaru-brz-throwout-bearing-2013",
+          "toyota-gr86-throwout-bearing-noise-2022"
+        ]
+      },
+      "proposalSha256": "036a08e75e56d45e37a19ed5896fab0e818e3bee9d00fb5a59dcf7c77e165316",
+      "changedFields": []
+    }
+  ]
+}

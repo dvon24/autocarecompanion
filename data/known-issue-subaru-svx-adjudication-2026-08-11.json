@@ -1,0 +1,376 @@
+{
+  "schemaVersion": 1,
+  "status": "proposal-only",
+  "auditStage": "model-primary-source-technical-adjudication",
+  "requiresIndependentApproval": true,
+  "generatedOn": "2026-08-11",
+  "make": "Subaru",
+  "model": "SVX",
+  "completionStatement": "All 2 frozen Subaru SVX pages are byte-identical published holds.",
+  "applicationGate": {
+    "status": "blocked",
+    "blockerRecordIds": [
+      "subaru-svx-automatic-transmission-1992",
+      "subaru-svx-window-regulator-1992"
+    ],
+    "reason": "No row has captured exact same-identity evidence sufficient to authorize a content write."
+  },
+  "safetyContract": [
+    "No archive, redirect, consolidation, new issue, title change, indexed vehicle-metadata change, status/severity change or commerce mutation is authorized.",
+    "Every held row is a byte-identical published no-op across every full-record field.",
+    "The twelve archived Subaru rows are historical inventory only and cannot enter a packet or published total.",
+    "Identity, status, owner telemetry, commerce and related IDs remain frozen.",
+    "Unknown owner totals remain internal zero and are never converted into social proof.",
+    "Sibling-model or platform similarity is not Subaru proof without an exact applicability path.",
+    "Routing correction candidates are reported separately and authorize no metadata write."
+  ],
+  "source": {
+    "snapshotFile": "data/_subaru-deeplink-snapshot-2026-08-11.json",
+    "snapshotSha256": "09f65fc7910ad81f3c977dffd7c093f36ac4032499cff626c45f891a663c0a88",
+    "snapshotGeneratedAt": "2026-08-11T20:07:16.102Z",
+    "snapshotHash": "32cf9fb0e216009da5a2e55588c59629fe180525dc53c81ef7faa8b566973d2d",
+    "modelRecordCount": 2,
+    "statusInventoryFile": "data/_subaru-status-inventory-2026-08-11.json",
+    "reviewLedgerFile": "data/known-issue-subaru-review-ledger-2026-08-11.json",
+    "evidenceFile": "data/known-issue-subaru-primary-evidence-2026-08-11.json"
+  },
+  "observations": [
+    "All frozen Subaru SVX pages remain published and byte-identical because no bounded rewrite has captured exact same-identity primary support."
+  ],
+  "duplicateClusters": [],
+  "evidenceInventory": {
+    "method": "Every frozen citation was inventoried as metadata. No uncaptured source was promoted to exact primary proof and no negative-search conclusion is asserted.",
+    "exactConflictDocuments": 0,
+    "retainedRewriteDocuments": 0
+  },
+  "summary": {
+    "retain_indexed_identity_and_accuracy_cleanup": 0,
+    "hold_indexed_identity_byte_identical_pending_identity_policy": 2,
+    "pages_preserved_published": 2,
+    "archived_rows_excluded": 12,
+    "authorized_write_candidates": 0,
+    "total": 2
+  },
+  "rows": [
+    {
+      "id": "subaru-svx-automatic-transmission-1992",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "identityReviewRequired": true,
+      "identityConflict": "The frozen citation inventory does not include a locally captured exact same-identity primary record supporting a bounded rewrite; preserving the row unchanged is the conservative disposition.",
+      "reason": "Exact same-identity primary support was not captured. The complete frozen record remains byte-identical and published.",
+      "evidence": {
+        "primaryEvidence": [],
+        "limitations": "The frozen citation inventory does not include a locally captured exact same-identity primary record supporting a bounded rewrite; preserving the row unchanged is the conservative disposition."
+      },
+      "reviewLedger": {
+        "disposition": "Preserve the complete published record byte-identical pending separately approved identity/applicability policy.",
+        "existingSourcesInspected": [
+          {
+            "url": "https://www.ultimatesubaru.org",
+            "urlMissing": false,
+            "inspection": "frozen-citation-metadata-only; source content was not promoted to exact primary proof"
+          }
+        ],
+        "duplicateClusterKeys": []
+      },
+      "commerceDecision": "No audit commerce action; all frozen commerce and recommendation fields remain byte-identical.",
+      "before": {
+        "make": "Subaru",
+        "model": "SVX",
+        "years": [
+          1992,
+          1993,
+          1994,
+          1995,
+          1996,
+          1997
+        ],
+        "trims": [],
+        "engines": [
+          "3.3L flat-six"
+        ],
+        "category": "transmission",
+        "title": "4EAT Automatic Transmission Failure",
+        "description": "The SVX's 4EAT automatic transmission is the weak link in an otherwise robust drivetrain. The transmission cannot handle the torque from the 3.3L flat-six long-term, leading to premature clutch pack wear, torque converter failure, and eventual loss of gears. The SVX was not offered with a manual, making this the only option.",
+        "solution": "Rebuild the transmission with upgraded clutch packs and a higher-capacity torque converter. Some owners swap in a 5-speed manual from a Legacy. Regular fluid changes every 25,000 miles with Subaru ATF-HP extend life.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Slipping on acceleration",
+          "Harsh or delayed shifts",
+          "Transmission shudder",
+          "No movement in one or more gears",
+          "Whining noise from transmission",
+          "Fluid dark brown or burnt"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 1500,
+        "estimatedCostHigh": 3500,
+        "typicalMileageLow": 20000,
+        "typicalMileageHigh": 30000,
+        "citations": [
+          {
+            "url": "https://www.ultimatesubaru.org",
+            "source": "Ultimate Subaru Message Board",
+            "description": "SVX 4EAT transmission weakness and rebuild options"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Change ATF every 25,000 miles with Subaru ATF-HP — the 4EAT in the SVX needs more frequent service than most automatics"
+          },
+          {
+            "type": "warning",
+            "content": "Avoid aggressive launches — the 4EAT simply cannot handle repeated hard starts with the 3.3L flat-six's torque"
+          },
+          {
+            "type": "part",
+            "content": "Transmission flush kit for complete fluid exchange to address shudder",
+            "partName": "Transmission Flush Kit",
+            "partBrand": "Liqui Moly"
+          },
+          {
+            "type": "part",
+            "content": "Full synthetic ATF designed to reduce shudder in automatic transmissions",
+            "partName": "MaxLife ATF Full Synthetic",
+            "partBrand": "Valvoline"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 180,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-03-13",
+        "reviewedOn": "2026-03-13",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "beforeSha256": "e5daf4895a339a269592c98bed2976430f65099a70dd84debe0b0e097c2c68cc",
+      "proposal": {
+        "make": "Subaru",
+        "model": "SVX",
+        "years": [
+          1992,
+          1993,
+          1994,
+          1995,
+          1996,
+          1997
+        ],
+        "trims": [],
+        "engines": [
+          "3.3L flat-six"
+        ],
+        "category": "transmission",
+        "title": "4EAT Automatic Transmission Failure",
+        "description": "The SVX's 4EAT automatic transmission is the weak link in an otherwise robust drivetrain. The transmission cannot handle the torque from the 3.3L flat-six long-term, leading to premature clutch pack wear, torque converter failure, and eventual loss of gears. The SVX was not offered with a manual, making this the only option.",
+        "solution": "Rebuild the transmission with upgraded clutch packs and a higher-capacity torque converter. Some owners swap in a 5-speed manual from a Legacy. Regular fluid changes every 25,000 miles with Subaru ATF-HP extend life.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Slipping on acceleration",
+          "Harsh or delayed shifts",
+          "Transmission shudder",
+          "No movement in one or more gears",
+          "Whining noise from transmission",
+          "Fluid dark brown or burnt"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 1500,
+        "estimatedCostHigh": 3500,
+        "typicalMileageLow": 20000,
+        "typicalMileageHigh": 30000,
+        "citations": [
+          {
+            "url": "https://www.ultimatesubaru.org",
+            "source": "Ultimate Subaru Message Board",
+            "description": "SVX 4EAT transmission weakness and rebuild options"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "tip",
+            "content": "Change ATF every 25,000 miles with Subaru ATF-HP — the 4EAT in the SVX needs more frequent service than most automatics"
+          },
+          {
+            "type": "warning",
+            "content": "Avoid aggressive launches — the 4EAT simply cannot handle repeated hard starts with the 3.3L flat-six's torque"
+          },
+          {
+            "type": "part",
+            "content": "Transmission flush kit for complete fluid exchange to address shudder",
+            "partName": "Transmission Flush Kit",
+            "partBrand": "Liqui Moly"
+          },
+          {
+            "type": "part",
+            "content": "Full synthetic ATF designed to reduce shudder in automatic transmissions",
+            "partName": "MaxLife ATF Full Synthetic",
+            "partBrand": "Valvoline"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 180,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "2026-03-13",
+        "reviewedOn": "2026-03-13",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposalSha256": "e5daf4895a339a269592c98bed2976430f65099a70dd84debe0b0e097c2c68cc",
+      "changedFields": []
+    },
+    {
+      "id": "subaru-svx-window-regulator-1992",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "identityReviewRequired": true,
+      "identityConflict": "The frozen citation inventory does not include a locally captured exact same-identity primary record supporting a bounded rewrite; preserving the row unchanged is the conservative disposition.",
+      "reason": "Exact same-identity primary support was not captured. The complete frozen record remains byte-identical and published.",
+      "evidence": {
+        "primaryEvidence": [],
+        "limitations": "The frozen citation inventory does not include a locally captured exact same-identity primary record supporting a bounded rewrite; preserving the row unchanged is the conservative disposition."
+      },
+      "reviewLedger": {
+        "disposition": "Preserve the complete published record byte-identical pending separately approved identity/applicability policy.",
+        "existingSourcesInspected": [
+          {
+            "url": "https://www.youtube.com/watch?v=5W1xv3Jzq7Q",
+            "type": "video",
+            "title": "YouTube repair video by 'ChrisFix' on fixing Subaru SVX power window regulator",
+            "urlMissing": false,
+            "inspection": "frozen-citation-metadata-only; source content was not promoted to exact primary proof"
+          }
+        ],
+        "duplicateClusterKeys": []
+      },
+      "commerceDecision": "No audit commerce action; all frozen commerce and recommendation fields remain byte-identical.",
+      "before": {
+        "make": "Subaru",
+        "model": "SVX",
+        "years": [
+          1992,
+          1993,
+          1994,
+          1995,
+          1996,
+          1997
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Power Window Regulator Failure (Window-Within-Window)",
+        "description": "The SVX features a unique window-within-a-window design where only the inner portion of the side glass drops down. This distinctive design uses complex window regulators that are prone to failure. The cable-driven regulators stretch, break, or the motor fails, leaving the inner window stuck. OEM replacement parts are extremely scarce due to the unique design. Aftermarket options are limited, and many SVX owners rebuild regulators or source used parts from salvage vehicles.",
+        "solution": "",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Inner window stuck in up or down position",
+          "Grinding noise when operating window",
+          "Window moves very slowly",
+          "Motor runs but window does not move",
+          "Broken cable visible inside door panel"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 200,
+        "estimatedCostHigh": 800,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.youtube.com/watch?v=5W1xv3Jzq7Q",
+            "type": "video",
+            "title": "YouTube repair video by 'ChrisFix' on fixing Subaru SVX power window regulator"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Direct-fit window regulator assembly with motor for easy installation",
+            "partName": "Power Window Regulator and Motor Assembly",
+            "partBrand": "Dorman"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "beforeSha256": "5efd83cb42e592f79047a8b90cf04bd188510670de5cb718892b94a12f82e474",
+      "proposal": {
+        "make": "Subaru",
+        "model": "SVX",
+        "years": [
+          1992,
+          1993,
+          1994,
+          1995,
+          1996,
+          1997
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Power Window Regulator Failure (Window-Within-Window)",
+        "description": "The SVX features a unique window-within-a-window design where only the inner portion of the side glass drops down. This distinctive design uses complex window regulators that are prone to failure. The cable-driven regulators stretch, break, or the motor fails, leaving the inner window stuck. OEM replacement parts are extremely scarce due to the unique design. Aftermarket options are limited, and many SVX owners rebuild regulators or source used parts from salvage vehicles.",
+        "solution": "",
+        "severity": "medium",
+        "confidence": "medium",
+        "symptoms": [
+          "Inner window stuck in up or down position",
+          "Grinding noise when operating window",
+          "Window moves very slowly",
+          "Motor runs but window does not move",
+          "Broken cable visible inside door panel"
+        ],
+        "affectedSystems": [],
+        "dtcCodes": [],
+        "estimatedCostLow": 200,
+        "estimatedCostHigh": 800,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://www.youtube.com/watch?v=5W1xv3Jzq7Q",
+            "type": "video",
+            "title": "YouTube repair video by 'ChrisFix' on fixing Subaru SVX power window regulator"
+          }
+        ],
+        "communityRecommendations": [
+          {
+            "type": "part",
+            "content": "Direct-fit window regulator assembly with motor for easy installation",
+            "partName": "Power Window Regulator and Motor Assembly",
+            "partBrand": "Dorman"
+          }
+        ],
+        "fixParts": [],
+        "humanApproved": false,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "",
+        "contentUpdatedOn": "",
+        "contentUpdateSummary": "",
+        "relatedIssueIds": []
+      },
+      "proposalSha256": "5efd83cb42e592f79047a8b90cf04bd188510670de5cb718892b94a12f82e474",
+      "changedFields": []
+    }
+  ]
+}
