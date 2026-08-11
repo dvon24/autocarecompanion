@@ -132,6 +132,7 @@ function buildReviewedAfterState(row, current) {
     if (FROZEN_FIELDS.has(field)) throw new Error(`${row.id}: frozen field ${field} cannot be written`);
     if (PRESERVED_LIVE_FIELDS.has(field)) throw new Error(`${row.id}: cannot change ${field}`);
     if (!Object.prototype.hasOwnProperty.call(row.proposal, field)) throw new Error(`${row.id}: proposal missing ${field}`);
+    assertEqual(`${row.id}: live ${field}`, current[field], row.before[field]);
     after[field] = clone(row.proposal[field]);
   }
   // Independent approval changes the proposal's audit flag only; content and
@@ -217,12 +218,17 @@ async function main() {
   const { Pool } = require('pg');
   const pool = new Pool({ connectionString: resolveKnownIssueConnectionString(), max: 1 });
   let liveRows;
+  let frozenCatalogStatus;
   try {
-    const result = await pool.query(
-      `SELECT ${selectRowsSql()} FROM "KnownIssue" WHERE id = ANY($1::text[]) ORDER BY id`,
-      [writes.map((row) => row.id)],
-    );
+    const [result, catalogStatus] = await Promise.all([
+      pool.query(
+        `SELECT ${selectRowsSql()} FROM "KnownIssue" WHERE id = ANY($1::text[]) ORDER BY id`,
+        [writes.map((row) => row.id)],
+      ),
+      pool.query(`SELECT status, count(*)::int AS count FROM "KnownIssue" GROUP BY status ORDER BY status`),
+    ]);
     liveRows = result.rows;
+    frozenCatalogStatus = Object.fromEntries(catalogStatus.rows.map((row) => [row.status, Number(row.count)]));
   } finally {
     await pool.end();
   }
@@ -260,6 +266,7 @@ async function main() {
     make,
     frozenMakeValues,
     frozenMakeCounts,
+    frozenCatalogStatus,
     approval: {
       reviewer: 'Opus',
       owner: 'Devon',

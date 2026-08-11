@@ -1,0 +1,85 @@
+{
+  "schemaVersion": 1,
+  "capturedOn": "2026-08-11",
+  "status": "review-evidence-only",
+  "sources": [
+    {
+      "key": "aronaRecall2017",
+      "url": "https://www.check-vehicle-recalls.service.gov.uk/recall-type/vehicle/make/SEAT/model/ARONA/year/2017/recalls",
+      "captureMethod": "official GOV.UK indexed recall page, independently reopened during adversarial review",
+      "facts": {
+        "make": "SEAT",
+        "model": "ARONA",
+        "modelYear": 2017,
+        "campaign": "R/2019/039",
+        "reason": "Hand brake lever travel increase due to adjuster nut movement.",
+        "remedy": "Re-adjust assembly and fit locking device to nut.",
+        "affectedVehicles": 19854,
+        "recallWorkCharge": "The official page says the owner will not need to pay for recall work."
+      }
+    },
+    {
+      "key": "aronaRecall2018",
+      "url": "https://www.check-vehicle-recalls.service.gov.uk/recall-type/vehicle/make/SEAT/model/ARONA/year/2018/recalls",
+      "captureMethod": "official GOV.UK indexed recall page, independently reopened during adversarial review",
+      "facts": {
+        "make": "SEAT",
+        "model": "ARONA",
+        "modelYear": 2018,
+        "campaign": "R/2019/039",
+        "reason": "Hand brake lever travel increase due to adjuster nut movement.",
+        "remedy": "Re-adjust assembly and fit locking device to nut.",
+        "affectedVehicles": 19854,
+        "recallWorkCharge": "The official page says the owner will not need to pay for recall work."
+      }
+    },
+    {
+      "key": "aronaManual2021",
+      "url": "https://www.seat.com/datamanual-manual/arona/my21_w48/en-uk/ARONA_11_20_EN.pdf",
+      "captureMethod": "downloaded official PDF; SHA-256 checked; page text extracted; PDF page 278 rendered and visually inspected",
+      "binary": {
+        "bytes": 6058372,
+        "sha256": "c704116e21bb265b367b80bcd2d100bb6e89a318a28833812d851ada271909e2"
+      },
+      "page": {
+        "pdfPage": 278,
+        "printedPage": 276,
+        "requiredText": [
+          "Regeneration of the petrol and diesel particulate filter",
+          "Drive at a speed of between 50-120 km/h",
+          "If the warning lamp stays on after 30 minutes"
+        ]
+      }
+    },
+    {
+      "key": "ibizaManual2015",
+      "url": "https://www.seat.com/datamanual-manual/ibiza/my15_w45/en-uk/Gama%20Ibiza_EN.pdf",
+      "captureMethod": "downloaded official PDF; SHA-256 checked; page text extracted; PDF page 61 rendered and visually inspected",
+      "binary": {
+        "bytes": 5125249,
+        "sha256": "2576cea7ce38b3a058b1908f9def034c3627923da7c19506c285338d7b66a6ef"
+      },
+      "page": {
+        "pdfPage": 61,
+        "printedPage": 59,
+        "requiredText": [
+          "Soot accumulation in the diesel engine particulate filter",
+          "drive about 15 minutes in fourth or fifth gear",
+          "minimum speed of 60 km/h",
+          "approximately 2,000 rpm"
+        ]
+      }
+    },
+    {
+      "key": "seatTakata",
+      "url": "https://www.seat.com/owners/aftersales/takata-airbag-recall-campaign",
+      "captureMethod": "official SEAT campaign page opened and independently reviewed",
+      "facts": {
+        "brandWindow": "SEAT vehicles produced from 2009 to 2018 may be affected; VIN confirmation is required.",
+        "mechanism": "Heat and humidity can age a faulty gas generator and create excessive pressure during deployment.",
+        "hazard": "Metal fragments can enter the cabin and cause serious or fatal injury.",
+        "remedy": "SEAT says an affected airbag is replaced free of charge."
+      }
+    }
+  ]
+}

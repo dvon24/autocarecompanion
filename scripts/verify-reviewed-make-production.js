@@ -9,7 +9,6 @@
  * Usage:
  *   node scripts/verify-reviewed-make-production.js --manifest data/...json
  */
-const path = require('node:path');
 const {
   loadManifests,
   resolveKnownIssueConnectionString,
@@ -61,6 +60,15 @@ function compareModelCounts(expected, actualRows) {
     });
 }
 
+function compareCatalogStatus(expected, actual) {
+  const statuses = new Set([...Object.keys(expected || {}), ...Object.keys(actual || {})]);
+  return [...statuses]
+    .sort((left, right) => left.localeCompare(right))
+    .flatMap((status) => Number(expected?.[status] || 0) === Number(actual?.[status] || 0)
+      ? []
+      : [{ status, expected: Number(expected?.[status] || 0), actual: Number(actual?.[status] || 0) }]);
+}
+
 async function verifyMakeInventory(pool, manifest) {
   if (!manifest.make) throw new Error(`${manifest.batchId}: manifest.make is required`);
   if (!Number.isInteger(manifest.packetRowCount) || manifest.packetRowCount < 1) {
@@ -99,6 +107,10 @@ async function verifyMakeInventory(pool, manifest) {
   ]);
 
   const makeStatuses = Object.fromEntries(makeStatus.rows.map((row) => [row.status, Number(row.count)]));
+  const actualCatalogStatus = Object.fromEntries(catalogStatus.rows.map((row) => [row.status, Number(row.count)]));
+  const catalogStatusMismatches = manifest.frozenCatalogStatus
+    ? compareCatalogStatus(manifest.frozenCatalogStatus, actualCatalogStatus)
+    : [];
   const modelCountMismatches = compareModelCounts(expected, publishedModels.rows);
   const makeCountMismatches = compareModelCounts(
     expectedMakes,
@@ -115,13 +127,16 @@ async function verifyMakeInventory(pool, manifest) {
   // reviewed batch loses a published row or a published model page.
   if (modelCountMismatches.length) failures.push(`${modelCountMismatches.length} model-count mismatches`);
   if (makeCountMismatches.length) failures.push(`${makeCountMismatches.length} make-casing count mismatches`);
+  if (catalogStatusMismatches.length) failures.push(`${catalogStatusMismatches.length} catalog-status count mismatches`);
 
   return {
     passed: failures.length === 0,
     batchId: manifest.batchId,
     make: manifest.make,
     frozenMakeValues,
-    catalogStatus: Object.fromEntries(catalogStatus.rows.map((row) => [row.status, Number(row.count)])),
+    frozenCatalogStatus: manifest.frozenCatalogStatus || null,
+    catalogStatus: actualCatalogStatus,
+    catalogStatusMismatches,
     makeStatus: makeStatuses,
     expectedPublishedModels: Object.fromEntries(expected),
     actualPublishedModels: Object.fromEntries(
@@ -163,6 +178,7 @@ if (require.main === module) {
 }
 
 module.exports = {
+  compareCatalogStatus,
   compareModelCounts,
   expectedMakeCounts,
   expectedModelCounts,

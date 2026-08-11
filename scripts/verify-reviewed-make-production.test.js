@@ -1,10 +1,22 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
 const assert = require('node:assert/strict');
 const test = require('node:test');
 const {
+  compareCatalogStatus,
   compareModelCounts,
   expectedMakeCounts,
   expectedModelCounts,
 } = require('./verify-reviewed-make-production');
+
+test('detects catalog-wide status-count loss outside the reviewed make', () => {
+  assert.deepEqual(compareCatalogStatus(
+    { published: 7642, archived: 464, pending_review: 3 },
+    { published: 7641, archived: 465, pending_review: 3 },
+  ), [
+    { status: 'archived', expected: 464, actual: 465 },
+    { status: 'published', expected: 7642, actual: 7641 },
+  ]);
+});
 
 test('sums case-preserved make inventories across packets', () => {
   const counts = expectedMakeCounts({

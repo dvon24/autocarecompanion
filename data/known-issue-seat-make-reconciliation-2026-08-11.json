@@ -1,0 +1,414 @@
+{
+  "schemaVersion": 1,
+  "status": "proposal-only",
+  "requiresIndependentApproval": true,
+  "generatedOn": "2026-08-11",
+  "make": "SEAT",
+  "sourceControl": {
+    "branch": "codex/seat-deeplink-audit",
+    "baselineCommit": "788bc03680e738d3ffb18c2718f78f1ae8887e6a"
+  },
+  "snapshot": {
+    "file": "data/_seat-deeplink-snapshot-2026-08-11.json",
+    "normalizedSha256": "59ed7d40db9945b9b24afc43eb74bd141eebab842d47967b1debeebcbd2432cc",
+    "generatedAt": "2026-08-11T15:51:07.298Z",
+    "snapshotHash": "32756359c1bbc514c15f193fd6ed6429269271abb5de529ba28a2c6d69e590bb",
+    "makeRows": 36,
+    "frozenMakeValues": [
+      "SEAT"
+    ],
+    "frozenMakeCounts": {
+      "SEAT": 36
+    }
+  },
+  "summary": {
+    "models": 6,
+    "rows": 36,
+    "retained": 1,
+    "held": 35,
+    "pagesPreservedPublished": 36,
+    "authorizedWriteCandidates": 1
+  },
+  "crossPacketChecks": {
+    "exactModelInventory": true,
+    "exactRowInventory": true,
+    "exactFrozenMakeCounts": true,
+    "makeDrift": 0,
+    "identityDrift": 0,
+    "unpublished": 0,
+    "noncanonicalSeverity": 0,
+    "ownerDataDrift": 0,
+    "ownerSocialProof": 0,
+    "commerceDrift": 0,
+    "holdMutation": 0,
+    "perPacketValidationErrors": 0
+  },
+  "applicationGate": {
+    "status": "blocked",
+    "reason": "No catalog write is authorized until an independent reviewer approves the retained rows and re-runs this make-wide reconciliation. Held rows always remain no-op."
+  },
+  "models": [
+    {
+      "model": "Alhambra",
+      "packetFile": "data/known-issue-seat-alhambra-adjudication-2026-08-11.json",
+      "packetSha256": "8de7275fc1b3073061c8289b60e96acd570598436b65b5863fc1c9263493bc76",
+      "deterministicPacketSha256": "8de7275fc1b3073061c8289b60e96acd570598436b65b5863fc1c9263493bc76",
+      "rows": 1,
+      "retained": 0,
+      "held": 1,
+      "applicationGate": "blocked"
+    },
+    {
+      "model": "Arona",
+      "packetFile": "data/known-issue-seat-arona-adjudication-2026-08-11.json",
+      "packetSha256": "881ed9f0ac42dc7e75f53abdeabcd803153eb8f3276397adfef955e21be65412",
+      "deterministicPacketSha256": "881ed9f0ac42dc7e75f53abdeabcd803153eb8f3276397adfef955e21be65412",
+      "rows": 8,
+      "retained": 1,
+      "held": 7,
+      "applicationGate": "blocked"
+    },
+    {
+      "model": "Ateca",
+      "packetFile": "data/known-issue-seat-ateca-adjudication-2026-08-11.json",
+      "packetSha256": "1fcfdc09347257bac2a4974b8b0bcd74c2a9a5deae1d9e27fc42faca0290595e",
+      "deterministicPacketSha256": "1fcfdc09347257bac2a4974b8b0bcd74c2a9a5deae1d9e27fc42faca0290595e",
+      "rows": 1,
+      "retained": 0,
+      "held": 1,
+      "applicationGate": "blocked"
+    },
+    {
+      "model": "Ibiza",
+      "packetFile": "data/known-issue-seat-ibiza-adjudication-2026-08-11.json",
+      "packetSha256": "80a1e6e9345142d5685d45ad52a8e0067e1a833f7beee9359f0fe5630915f0fb",
+      "deterministicPacketSha256": "80a1e6e9345142d5685d45ad52a8e0067e1a833f7beee9359f0fe5630915f0fb",
+      "rows": 11,
+      "retained": 0,
+      "held": 11,
+      "applicationGate": "blocked"
+    },
+    {
+      "model": "Leon",
+      "packetFile": "data/known-issue-seat-leon-adjudication-2026-08-11.json",
+      "packetSha256": "8e8e989ee00e10c30bc38648acf017bcea52c25b83952836cb774ee384d337ad",
+      "deterministicPacketSha256": "8e8e989ee00e10c30bc38648acf017bcea52c25b83952836cb774ee384d337ad",
+      "rows": 14,
+      "retained": 0,
+      "held": 14,
+      "applicationGate": "blocked"
+    },
+    {
+      "model": "Mii",
+      "packetFile": "data/known-issue-seat-mii-adjudication-2026-08-11.json",
+      "packetSha256": "aa4443b657993e2e8548ccf2d8156bbab9b043c6c65556283f478b2e413abd54",
+      "deterministicPacketSha256": "aa4443b657993e2e8548ccf2d8156bbab9b043c6c65556283f478b2e413abd54",
+      "rows": 1,
+      "retained": 0,
+      "held": 1,
+      "applicationGate": "blocked"
+    }
+  ],
+  "rows": [
+    {
+      "id": "seat-alhambra-tailgate-struts",
+      "make": "SEAT",
+      "model": "Alhambra",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "87c209bcfd21fca8bb32f1e6e71e5bba71756a3b99ce5dde980c318b0a1c42d6",
+      "changedFields": []
+    },
+    {
+      "id": "seat-arona-1-5-tsi-evo-kangarooing-cold-start-hesitation-low-speed-jerk",
+      "make": "SEAT",
+      "model": "Arona",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "def3a9a4e4603c70d0306d83d3034f1e55e5a2969b1f4f0606280a0fbc60b834",
+      "changedFields": []
+    },
+    {
+      "id": "seat-arona-7-speed-dry-clutch-dsg-jerky-shifts-mechatronic-failure",
+      "make": "SEAT",
+      "model": "Arona",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "51a41837ac8fa318de710859cef9739945a944cd131add1db3ca6656db432590",
+      "changedFields": []
+    },
+    {
+      "id": "seat-arona-early-1-0-tsi-clutch-injector-failures",
+      "make": "SEAT",
+      "model": "Arona",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "2a65a9f7405c5ed7134068666c9542a235b9b23530f6cc44750354b70cddb9e2",
+      "changedFields": []
+    },
+    {
+      "id": "seat-arona-handbrake-lever-travel-increases",
+      "make": "SEAT",
+      "model": "Arona",
+      "action": "retain_indexed_identity_and_accuracy_cleanup",
+      "proposalSha256": "25884b65b1f389a70b43a4414a70673d18a8e4b1dd7b638de05182ca5e28df84",
+      "changedFields": [
+        "description",
+        "solution",
+        "symptoms",
+        "affectedSystems",
+        "estimatedCostLow",
+        "estimatedCostHigh",
+        "citations",
+        "humanApproved",
+        "reviewedOn",
+        "contentUpdatedOn",
+        "contentUpdateSummary"
+      ]
+    },
+    {
+      "id": "seat-arona-infotainment-system-goes-black-continuously-reboots",
+      "make": "SEAT",
+      "model": "Arona",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "562d7b6c37b8ea3c541d772d97113a4de9fa2fdb2e8326348342f62fa7479314",
+      "changedFields": []
+    },
+    {
+      "id": "seat-arona-petrol-particulate-filter-blocks-short-journey-city-driving",
+      "make": "SEAT",
+      "model": "Arona",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "42ff79d39ee7c9a591fdd2d8e102323b9ab6ba987ab96f199e6922fced921d52",
+      "changedFields": []
+    },
+    {
+      "id": "seat-arona-rear-brake-discs-corrode-seize-very-low-mileage",
+      "make": "SEAT",
+      "model": "Arona",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "ff329f59e86b174c542405d660b489e4800d1bd959b1ca7c85a82d776cc657cd",
+      "changedFields": []
+    },
+    {
+      "id": "seat-arona-rear-left-seatbelt-buckle-can-release-involuntarily",
+      "make": "SEAT",
+      "model": "Arona",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "d77e8859a403d5f2ed45f29d6884ef31502761123f3976bb79db01241f767e21",
+      "changedFields": []
+    },
+    {
+      "id": "seat-ateca-tarraco-2.0-tsi-water-pump",
+      "make": "SEAT",
+      "model": "Ateca",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "66c3912a1c9a63ab5c3136d5c8161d38c9b321280f2eb815604e4f6ca7158921",
+      "changedFields": []
+    },
+    {
+      "id": "seat-dsg-dq200-mechatronic",
+      "make": "SEAT",
+      "model": "Ibiza",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "4a8c692307537d20ec56432e19ffcfddce72851dca0a2e7dde362deef078e494",
+      "changedFields": []
+    },
+    {
+      "id": "seat-ibiza-1-2-tsi-timing-chain-stretch-tensioner-failure",
+      "make": "SEAT",
+      "model": "Ibiza",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "3381b4f71728a471651e320565f09865c51b7a16b5f3c5a89b47fe26277ab619",
+      "changedFields": []
+    },
+    {
+      "id": "seat-ibiza-1-6-tdi-egr-valve-failure-aggravated-by-dieselgate-emissions",
+      "make": "SEAT",
+      "model": "Ibiza",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "9455796d795c6dbb69208348f19808e126542f3f009ae7ff7435c86185eb3cfc",
+      "changedFields": []
+    },
+    {
+      "id": "seat-ibiza-battery-drain-parasitic-drain-requiring-ecu-software-update",
+      "make": "SEAT",
+      "model": "Ibiza",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "d94909d2d09ec636454ac7e377634d67a72abd2480886c684146e0638276724a",
+      "changedFields": []
+    },
+    {
+      "id": "seat-ibiza-diesel-particulate-filter-clogging-tdi-diesels",
+      "make": "SEAT",
+      "model": "Ibiza",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "9d5bdb7cc126e9d481c928f4872ec4259d90ad68ffb0f6fcd15fbcb8a4d6c8e6",
+      "changedFields": []
+    },
+    {
+      "id": "seat-ibiza-dq200-7-speed-dry-clutch-dsg-mechatronic-clutch-failure",
+      "make": "SEAT",
+      "model": "Ibiza",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "a61aa19e4fd8a1a75b3480cad73acc828d47f9d3bcc8cec60796ec3474c7b5ee",
+      "changedFields": []
+    },
+    {
+      "id": "seat-ibiza-electric-power-steering-loss-assistance-no-communication",
+      "make": "SEAT",
+      "model": "Ibiza",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "d25222797e87b73fe6b2f381b3b2e43d4316cfb2fab5393cbcab683007e9219b",
+      "changedFields": []
+    },
+    {
+      "id": "seat-ibiza-integrated-water-pump-thermostat-housing-coolant-leak",
+      "make": "SEAT",
+      "model": "Ibiza",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "962ebae7e6e082a1d422c7e9be14414d39b1528acec1e99f2a8031ac4741b6a8",
+      "changedFields": []
+    },
+    {
+      "id": "seat-ibiza-leon-1.2-tsi-ea111-chain",
+      "make": "SEAT",
+      "model": "Ibiza",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "e1ceb92cb030331e8d895bc0751bbd5b32556761ac631356a379b8d5bf1e738b",
+      "changedFields": []
+    },
+    {
+      "id": "seat-ibiza-leon-1.6-tdi-cr-injectors",
+      "make": "SEAT",
+      "model": "Ibiza",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "32604ccb34c534ffedc04d6d2ca4b030759047f8aa0034bd75e9940eccc0d31e",
+      "changedFields": []
+    },
+    {
+      "id": "seat-ibiza-wheel-arch-body-seam-corrosion",
+      "make": "SEAT",
+      "model": "Ibiza",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "c2204a741a33388a898eb7e4048f8fbbc4292554219e4947a8793ff90456ef96",
+      "changedFields": []
+    },
+    {
+      "id": "seat-leon-1-2-1-4-tsi-timing-chain-stretch-tensioner-failure",
+      "make": "SEAT",
+      "model": "Leon",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "13a3c335ff4ab485f1ff047243f5d94ebed879b61151c31d8bb6c3e8a3e081cf",
+      "changedFields": []
+    },
+    {
+      "id": "seat-leon-1-8-2-0-tsi-oil-consumption-intake-valve-carbon-buildup",
+      "make": "SEAT",
+      "model": "Leon",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "a01a6fa7d4b5f20a75cd464d4766b2722e145768bc7a679e16e3aec3b000d2a5",
+      "changedFields": []
+    },
+    {
+      "id": "seat-leon-2.0-tfsi-ea888-gen2-oil",
+      "make": "SEAT",
+      "model": "Leon",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "2ebcf56d950bc69c9a53b984d6fc4440633bc5bf80c753943904a0aac7be140f",
+      "changedFields": []
+    },
+    {
+      "id": "seat-leon-7-speed-dsg-dry-clutch-mechatronic-failure",
+      "make": "SEAT",
+      "model": "Leon",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "0d219c6eb693a5508081afedd86bbffdda55c8d2b81742d8bf8382be95e15b5d",
+      "changedFields": []
+    },
+    {
+      "id": "seat-leon-cordoba-window-regulator",
+      "make": "SEAT",
+      "model": "Leon",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "30ecac8b97d38702ab43bca7769ffc706206e73be4cacf84dbee0b140b2eb92b",
+      "changedFields": []
+    },
+    {
+      "id": "seat-leon-ea189-tdi-diesel-egr-dpf-clogging-post-dieselgate-oil-diluti",
+      "make": "SEAT",
+      "model": "Leon",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "d095ce32a22dfd18184b3504e59aae12cbe221e6e074e0e540bc4c688ba790eb",
+      "changedFields": []
+    },
+    {
+      "id": "seat-leon-ea211-water-pump-thermostat-housing-coolant-leak",
+      "make": "SEAT",
+      "model": "Leon",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "1e6bc51c53573492d51eaa97c890e97ac23f42bd28413dd5fbedc1d334ddcbcd",
+      "changedFields": []
+    },
+    {
+      "id": "seat-leon-infotainment-media-system-faults-touchscreen-failures",
+      "make": "SEAT",
+      "model": "Leon",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "0a36591bb4cb78beb3599026845116c60f9f1dc6f0a6160685da419f47b413f9",
+      "changedFields": []
+    },
+    {
+      "id": "seat-leon-mk2-1.4-tsi-twincharger-chain",
+      "make": "SEAT",
+      "model": "Leon",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "87d7530a676d6590c6a7acb163a6084c05b7521b47a347112ec01b97961cd49f",
+      "changedFields": []
+    },
+    {
+      "id": "seat-leon-mk2-2.0-tdi-pd-injectors",
+      "make": "SEAT",
+      "model": "Leon",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "ae17e37957a517839a8dce15e4d2c19e62d0089984222a8951ef764b395ed9e0",
+      "changedFields": []
+    },
+    {
+      "id": "seat-leon-mk3-2.0-tsi-carbon",
+      "make": "SEAT",
+      "model": "Leon",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "745f084c2154fa12cecfa3ae08028acf429fd7245de394e14935e7047afc87e8",
+      "changedFields": []
+    },
+    {
+      "id": "seat-leon-mk3-cupra-haldex",
+      "make": "SEAT",
+      "model": "Leon",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "8521421b49a695f7c9f50828a2ed34b52d7d9e3dfa6c765c1f9342b13b91e419",
+      "changedFields": []
+    },
+    {
+      "id": "seat-leon-takata-airbag-inflator-safety-recall",
+      "make": "SEAT",
+      "model": "Leon",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "475ca242500ebd35113f5dc048d32c23967692228bd353fa755d1c82df7aa549",
+      "changedFields": []
+    },
+    {
+      "id": "seat-leon-tdi-dual-mass-flywheel-failure",
+      "make": "SEAT",
+      "model": "Leon",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "c26ff260835b08a156fbe7dee87c5b4054aeb73051b4a0b3ceea70a8acb99d16",
+      "changedFields": []
+    },
+    {
+      "id": "seat-mii-electric-12v-drain",
+      "make": "SEAT",
+      "model": "Mii",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "0ef324b476dfb40e3265e37f22dcceda84b63a9d96a6935d537edefdb74543ee",
+      "changedFields": []
+    }
+  ]
+}

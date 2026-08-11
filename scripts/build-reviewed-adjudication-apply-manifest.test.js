@@ -77,6 +77,12 @@ test('preserves an existing verified fixParts deep link', () => {
   assert.deepEqual(after.fixParts, current.fixParts);
 });
 
+test('rejects stale live prose before overlaying a reviewed proposal', () => {
+  const { row, current } = fixture();
+  current.description = 'newer production correction';
+  assert.throws(() => buildReviewedAfterState(row, current), /live description mismatch/);
+});
+
 test('rejects retail commerce in a reviewed no-commerce adjudication', () => {
   const { row, current } = fixture();
   row.changedFields.push('fixParts');
@@ -103,4 +109,13 @@ test('rejects an action classified as both apply and hold', () => {
     () => actionSets(['--apply-actions', 'rewrite_same_identity', '--hold-actions', 'rewrite_same_identity']),
     /both apply and hold/,
   );
+});
+
+test('classifies the exact SEAT retain and byte-identical hold actions', () => {
+  const { applyActions, holdActions } = actionSets([
+    '--apply-actions', 'retain_indexed_identity_and_accuracy_cleanup',
+    '--hold-actions', 'hold_indexed_identity_byte_identical_pending_identity_policy',
+  ]);
+  assert.deepEqual([...applyActions], ['retain_indexed_identity_and_accuracy_cleanup']);
+  assert.ok(holdActions.has('hold_indexed_identity_byte_identical_pending_identity_policy'));
 });
