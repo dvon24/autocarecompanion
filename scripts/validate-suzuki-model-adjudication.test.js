@@ -147,3 +147,25 @@ test('reconciliation refuses invalid routing before local write callback', () =>
   assert.equal(writes, 0);
   assert.throws(() => assertReconciliationWritable(changed), /routing validation failed/);
 });
+
+test('reconciliation refuses same-total gate, provenance and row-payload tampering before local write callback', () => {
+  const mutations = [
+    ['application gate', (report) => { report.applicationGate.status = 'approved'; }],
+    ['source-control baseline', (report) => { report.sourceControl.baselineCommit = '0'.repeat(40); }],
+    ['reviewed-tree provenance', (report) => { report.sourceControl.reviewedTree.sha256 = '0'.repeat(64); }],
+    ['row changed-fields inventory', (report) => { report.rows[0].changedFields = ['description']; }],
+    ['row payload hash', (report) => { report.rows[0].proposalSha256 = '0'.repeat(64); }],
+  ];
+
+  for (const [label, mutate] of mutations) {
+    const changed = clone(buildReconciliation());
+    mutate(changed);
+    let writes = 0;
+    assert.throws(
+      () => writeValidatedReconciliation(changed, () => { writes += 1; }),
+      /fresh deterministic reconciliation/,
+      label,
+    );
+    assert.equal(writes, 0, label);
+  }
+});

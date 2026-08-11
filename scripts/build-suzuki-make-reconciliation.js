@@ -119,9 +119,12 @@ function buildReconciliation() {
 
 function assertReconciliationWritable(report) {
   const failures = [];
+  const deterministic = buildReconciliation();
+  if (!equal(report, deterministic)) failures.push('report does not match fresh deterministic reconciliation');
   if (report.routing?.deterministic !== true || report.routing?.validationErrors !== 0) failures.push('routing validation failed');
   for (const [name, value] of Object.entries(report.crossPacketChecks || {})) if (name.startsWith('exact') ? value !== true : value !== 0) failures.push(`cross-packet ${name} failed`);
   if (report.summary?.retained !== 0 || report.summary?.held !== 18 || report.summary?.authorizedWriteCandidates !== 0) failures.push('all-hold totals failed');
+  if (report.applicationGate?.status !== 'blocked') failures.push('application gate failed');
   if ((report.models || []).some((model) => !model.deterministicPacketSha256 || model.applicationGate !== 'blocked')) failures.push('packet determinism/gate failed');
   if (failures.length) throw new Error(`Refusing to write reconciliation: ${failures.join('; ')}`);
   return report;
