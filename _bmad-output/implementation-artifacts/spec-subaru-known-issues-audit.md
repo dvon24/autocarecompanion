@@ -4,7 +4,7 @@ type: 'chore'
 created: '2026-08-11'
 status: 'in-review'
 baseline_commit: '950c28cdec60ea49df4cdd6642ba7dbb6239641a'
-review_loop_iteration: 2
+review_loop_iteration: 3
 context: []
 ---
 
@@ -68,6 +68,7 @@ context: []
 - 2026-08-11: Hardened the all-status boundary after reconciling the supplied counts: the per-model totals sum to 217, while the read-only production freeze proves 205 published plus 12 archived. Archived IDs are separately pinned and rejected by packets, routing, reconciliation, and live verification.
 - 2026-08-11: Independent review found that the live verifier checked only ID/make/model/status and trusted the committed reconciliation summary. The verifier now fails before connection unless the committed reconciliation exactly matches a fresh deterministic rebuild, selects every `FULL_RECORD_FIELDS` column, and rejects frozen title, vehicle scope, owner telemetry, prose, or commerce drift. KEEP: repeatable-read read-only execution, exact status/model/archive accounting, and the zero-write all-hold result.
 - 2026-08-11: A clean full-record live run isolated three `communityRecommendations` differences to mutable `clickCount` telemetry. The verifier now uses the production applicator's content-audit projection, reports click-count deltas separately, and still blocks recommendation URL, content, membership, or ordering drift.
+- 2026-08-11: Independent review found that the shared content-audit projection coerced malformed Prisma JSON containers to empty arrays and that Subaru provenance did not bind the shared helper. The canonical projection now preserves invalid JSON and typed-array shapes so they fail closed, and the helper itself is hash-covered by Subaru reconciliation.
 
 ## Design Notes
 
@@ -81,10 +82,13 @@ Reviewed-tree provenance uses an explicit audited-artifact allowlist. Temporary 
 
 `communityRecommendations[].clickCount` is mirrored mutable click telemetry and is excluded by the shared production full-record snapshot semantics. It is not silently ignored: live verification reports every per-record/index delta. All other recommendation fields and array structure remain hash-compared and blocking.
 
+The shared projection preserves object, null, and scalar containers for `citations`, `communityRecommendations`, and `fixParts`, and preserves malformed typed-array containers. Only a genuine recommendation array receives top-level `clickCount` stripping. Canonical and Subaru mutation tests prove malformed shapes drift from `[]`, while the Subaru reviewed-tree hash binds the shared helper file.
+
 ## Verification
 
 **Commands:**
-- `node --test scripts/validate-subaru-model-adjudication.test.js scripts/verify-subaru-all-hold-live.test.js scripts/subaru-independent-adversarial.test.js` — 51 deterministic, mutation, archive, routing, provenance, and read-only-query tests pass.
+- `node --test scripts/validate-subaru-model-adjudication.test.js scripts/verify-subaru-all-hold-live.test.js scripts/subaru-independent-adversarial.test.js` — 52 deterministic, mutation, archive, routing, provenance, and read-only-query tests pass.
+- `node --test scripts/apply-known-issue-catalog-deeplinks.test.js` — 38 canonical applicator tests pass, including malformed JSON-container preservation and recommendation URL/content/membership/order drift.
 - `..\node_modules\.bin\tsx.cmd --test scripts/subaru-routing-equivalence.test.ts` — JS audit mirror matches the production TypeScript matcher.
 - `node scripts/validate-subaru-primary-evidence.js` plus all 14 packet validators and `node scripts/validate-subaru-make-reconciliation.js` — evidence, exact coverage, archive exclusion, and source provenance pass.
 - `node scripts/verify-subaru-all-hold-live.js` — read-only production verification passes global 7,642, Subaru 205 published plus 12 archived, exact model/status splits and archived IDs.

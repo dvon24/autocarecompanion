@@ -31,6 +31,7 @@ function sha256(value) { return crypto.createHash('sha256').update(value).digest
 
 function reviewedArtifactFiles() {
   const scriptFiles = [
+    'apply-known-issue-catalog-deeplinks.js',
     'build-subaru-make-reconciliation.js',
     'build-subaru-model-adjudication.js',
     'build-subaru-review-ledger.js',

@@ -30,8 +30,10 @@ test('adversarial routing: every classified route is accounted for exactly once'
 
 test('adversarial provenance: reviewed artifact tree is Subaru-scoped and rooted at reviewed Skoda', () => {
   const files = reviewedArtifactFiles();
+  const canonicalProjection = 'scripts/apply-known-issue-catalog-deeplinks.js';
   assert.ok(files.length > 20);
-  assert.ok(files.every((file) => /subaru/i.test(file) || file === '.gitignore'));
+  assert.ok(files.every((file) => /subaru/i.test(file) || file === '.gitignore' || file === canonicalProjection));
+  assert.equal(files.filter((file) => file === canonicalProjection).length, 1);
   const provenance = sourceControlProvenance();
   assert.equal(provenance.containsBaseline, true);
   assert.equal(provenance.baselineCommit, '950c28cdec60ea49df4cdd6642ba7dbb6239641a');

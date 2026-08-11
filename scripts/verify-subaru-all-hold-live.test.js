@@ -86,6 +86,20 @@ for (const [field, mutate] of fullRecordMutations) {
   });
 }
 
+test('live full-record comparison rejects malformed Prisma JSON container shapes', () => {
+  const invalidContainers = [{ invalid: true }, null, 'invalid-container'];
+  for (const field of ['citations', 'communityRecommendations', 'fixParts']) {
+    for (const invalidContainer of invalidContainers) {
+      const changed = rows();
+      const target = changed.find((row) => row.make === 'Subaru' && row.status === 'published');
+      target[field] = invalidContainer;
+      const result = evaluateLiveInventory(changed, reconciliation(), frozenRows());
+      assert.equal(result.passed, false, `${field} ${JSON.stringify(invalidContainer)} must fail`);
+      assert.deepEqual(result.fullRecordComparison.drift, [{ id: target.id, fields: [field] }]);
+    }
+  }
+});
+
 test('clickCount-only recommendation telemetry passes content verification and is reported separately', () => {
   const changed = rows();
   const target = changed.find((row) => row.make === 'Subaru' && row.status === 'published' && row.communityRecommendations.length);
@@ -132,8 +146,10 @@ test('committed local state validates against a fresh deterministic reconciliati
   assert.equal(state.reconciliation.summary.held, 205);
 });
 
-test('reviewed-tree provenance ignores temporary Subaru capture candidates', () => {
-  assert.equal(reviewedArtifactFiles().includes('data/_subaru-deeplink-snapshot-refreeze-candidate-2026-08-11.json'), false);
+test('reviewed-tree provenance binds the canonical projection and ignores temporary Subaru capture candidates', () => {
+  const files = reviewedArtifactFiles();
+  assert.equal(files.includes('scripts/apply-known-issue-catalog-deeplinks.js'), true);
+  assert.equal(files.includes('data/_subaru-deeplink-snapshot-refreeze-candidate-2026-08-11.json'), false);
 });
 
 test('production loader is deterministic across two consecutive runs and does not rewrite reconciliation', () => {
