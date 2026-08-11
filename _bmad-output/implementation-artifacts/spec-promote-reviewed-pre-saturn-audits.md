@@ -2,7 +2,7 @@
 title: 'Promote independently reviewed pre-Saturn known-issue audits'
 type: 'chore'
 created: '2026-08-11'
-status: 'in-progress'
+status: 'done'
 baseline_commit: 'e62481f35e24d8d7f728d45eae5b81cc31a305ca'
 review_loop_iteration: 0
 context: []
@@ -49,12 +49,12 @@ context: []
 ## Tasks & Acceptance
 
 **Execution:**
-- [ ] `scripts/ram-1500-adjudication-contract.js` -- restore 22V-904/ZB8 facts, source, and required-prose gate; regenerate/reconcile RAM packets.
-- [ ] `scripts/build-reviewed-adjudication-apply-manifest.js` and tests -- support reviewed retain/hold actions and preserve current commerce fields.
-- [ ] `scripts/verify-reviewed-make-production.js` and tests -- verify case-split RAM inventory without changing stored make identity.
-- [ ] Five audit branches -- merge complete reproducible histories into an isolated release branch based on current `origin/main`.
-- [ ] Decision/result artifacts -- build, dry-run, atomically apply, and independently verify 24 reviewed writes.
-- [ ] Production -- push reviewed release to `main`, wait for Vercel, and verify deployed routes plus catalog invariants.
+- [x] `scripts/ram-1500-adjudication-contract.js` -- restore 22V-904/ZB8 facts, source, and required-prose gate; regenerate/reconcile RAM packets.
+- [x] `scripts/build-reviewed-adjudication-apply-manifest.js` and tests -- support reviewed retain/hold actions and preserve current commerce fields.
+- [x] `scripts/verify-reviewed-make-production.js` and tests -- verify case-split RAM inventory without changing stored make identity.
+- [x] Five audit branches -- merge complete reproducible histories into an isolated release branch based on current `origin/main`.
+- [x] Decision/result artifacts -- build, dry-run, atomically apply, and independently verify 24 reviewed writes.
+- [x] Production -- push reviewed release to `main`, wait for Vercel, and verify deployed routes plus catalog invariants.
 
 **Acceptance Criteria:**
 - Given 286 frozen rows across Porsche through Saab, when the release completes, then all remain published under identical indexed identities and model counts.
@@ -67,7 +67,7 @@ context: []
 
 ## Design Notes
 
-Use one release branch and one guarded database transaction across the approved manifests. Git promotion and database mutation remain separately verifiable: committed decision manifests describe the exact write set, while result artifacts record the transaction outcome and post-apply inventory checks.
+Use one release branch and one guarded make-scoped transaction per approved manifest after a full-set preflight. Git promotion and database mutation remain separately verifiable: committed decision manifests describe the exact write set, while result artifacts record each transaction outcome and post-apply inventory checks.
 
 ## Verification
 
@@ -78,3 +78,37 @@ Use one release branch and one guarded database transaction across the approved 
 - `node scripts/verify-reviewed-make-production.js --manifest <each>` -- published make/model inventory passes after apply.
 - `npm run build` -- production build exits 0.
 - `vercel inspect <deployment>` and live route checks -- deployment is Ready and reviewed pages serve expected content.
+
+## Suggested Review Order
+
+**Frozen identity and live-state overlay**
+
+- Defines the indexed fields that no reviewed content write may change.
+  [`build-reviewed-adjudication-apply-manifest.js:36`](../../scripts/build-reviewed-adjudication-apply-manifest.js#L36)
+
+- Overlays approved prose onto current rows while preserving verified `fixParts`.
+  [`build-reviewed-adjudication-apply-manifest.js:120`](../../scripts/build-reviewed-adjudication-apply-manifest.js#L120)
+
+**RAM recall correction**
+
+- Separates limiter-tab campaigns from 22V-904/ZB8 striker alignment and remedies.
+  [`ram-1500-adjudication-contract.js:199`](../../scripts/ram-1500-adjudication-contract.js#L199)
+
+- Pins the exact official NHTSA recall acknowledgement PDF.
+  [`ram-1500-adjudication-contract.js:231`](../../scripts/ram-1500-adjudication-contract.js#L231)
+
+**Production inventory gates**
+
+- Aggregates exact make casing across model packets.
+  [`verify-reviewed-make-production.js:31`](../../scripts/verify-reviewed-make-production.js#L31)
+
+- Verifies published counts without normalizing stored identities.
+  [`verify-reviewed-make-production.js:64`](../../scripts/verify-reviewed-make-production.js#L64)
+
+**Regression coverage**
+
+- Proves frozen engine scope cannot drift under an indexed ID.
+  [`build-reviewed-adjudication-apply-manifest.test.js:61`](../../scripts/build-reviewed-adjudication-apply-manifest.test.js#L61)
+
+- Proves `RAM` and `Ram` inventories stay independently exact.
+  [`verify-reviewed-make-production.test.js:9`](../../scripts/verify-reviewed-make-production.test.js#L9)
