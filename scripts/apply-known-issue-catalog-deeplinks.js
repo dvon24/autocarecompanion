@@ -45,7 +45,8 @@ const SOURCE_VALUES = new Set(['nhtsa-verified', 'recall-related', 'ai-researche
 const CITATION_TYPES = new Set(['tsb', 'recall', 'forum', 'manual', 'nhtsa', 'manufacturer', 'investigation']);
 
 function hashValue(value) {
-  return crypto.createHash('sha256').update(JSON.stringify(value)).digest('hex');
+  const serialized = JSON.stringify(value);
+  return crypto.createHash('sha256').update(serialized === undefined ? 'undefined' : serialized).digest('hex');
 }
 
 function applicabilityProseTrimError(value) {
@@ -74,14 +75,18 @@ function cloneValue(value) {
 }
 
 function recommendationsForContentAudit(value) {
-  return asArray(value).map((recommendation) => {
+  // Preserve invalid Prisma Json container shapes so full-record verification
+  // fails closed. clickCount is ignorable only inside a real recommendation array.
+  if (!Array.isArray(value)) return cloneValue(value);
+  return value.map((recommendation) => {
     if (!recommendation || typeof recommendation !== 'object' || Array.isArray(recommendation)) {
       return cloneValue(recommendation);
     }
     // clickCount is mutable telemetry mirrored from AffiliateClick, not part of
     // the reviewed repair guidance. A legitimate click must not make an exact
     // schema-v2 content after-state look drifted.
-    const { clickCount: _clickCount, ...content } = recommendation;
+    const content = { ...recommendation };
+    delete content.clickCount;
     return cloneValue(content);
   });
 }
@@ -96,7 +101,8 @@ function fullRecordSnapshot(row) {
       ? row.vehicle[field] : undefined;
     const value = row && row[field] !== undefined ? row[field] : vehicleValue;
     if (field === 'communityRecommendations') return [field, recommendationsForContentAudit(value)];
-    if (FULL_ARRAY_FIELDS.has(field)) return [field, cloneValue(asArray(value))];
+    // Do not normalize malformed JSON or PostgreSQL-array containers to [].
+    if (FULL_ARRAY_FIELDS.has(field)) return [field, cloneValue(value)];
     if (FULL_NULLABLE_INTEGER_FIELDS.has(field)) return [field, value !== undefined ? value : null];
     if (field === 'humanApproved') return [field, value === true];
     if (field === 'reportCount') return [field, Number.isInteger(value) ? value : 0];

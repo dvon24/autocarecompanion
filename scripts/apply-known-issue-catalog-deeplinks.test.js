@@ -352,6 +352,60 @@ test('schema v2 content verification ignores runtime recommendation click teleme
   assert.equal(evaluateRows([after], manifest).state, 'drift');
 });
 
+const recommendationContentMutations = [
+  ['URL', (recommendations) => { recommendations[0].affiliateUrl = 'https://www.amazon.com/dp/B012345678'; }],
+  ['content', (recommendations) => { recommendations[0].content = 'Unexpected guidance edit'; }],
+  ['add', (recommendations) => { recommendations.push({ type: 'tip', content: 'Unexpected added guidance' }); }],
+  ['remove', (recommendations) => { recommendations.splice(0, 1); }],
+  ['order', (recommendations) => { recommendations.reverse(); }],
+];
+
+for (const [name, mutate] of recommendationContentMutations) {
+  test(`schema v2 content verification rejects recommendation ${name} drift`, () => {
+    const row = baseRow();
+    const manifest = fullRecordManifest(row);
+    manifest.issues[0].after.communityRecommendations = [
+      { type: 'tip', content: 'First reviewed recommendation.', upvotes: 2 },
+      { type: 'tip', content: 'Second reviewed recommendation.', upvotes: 1 },
+    ];
+    const after = {
+      id: row.id,
+      ...manifest.issues[0].after,
+      communityRecommendations: structuredClone(manifest.issues[0].after.communityRecommendations),
+    };
+    mutate(after.communityRecommendations);
+    assert.equal(evaluateRows([after], manifest).state, 'drift');
+  });
+}
+
+test('full-record projection preserves invalid Prisma JSON container shapes and rejects them as drift', () => {
+  const row = baseRow();
+  row.citations = [];
+  row.communityRecommendations = [];
+  row.fixParts = [];
+  const manifest = fullRecordManifest(row, 'json-container-shapes', 'no-commerce');
+  const cleanAfter = { id: row.id, ...manifest.issues[0].after };
+  const invalidContainers = [{ invalid: true }, null, 'invalid-container'];
+
+  for (const field of ['citations', 'communityRecommendations', 'fixParts']) {
+    for (const invalidContainer of invalidContainers) {
+      const actual = { ...cleanAfter, [field]: invalidContainer };
+      assert.deepEqual(fullRecordSnapshot(actual)[field], invalidContainer, `${field} must preserve ${JSON.stringify(invalidContainer)}`);
+      assert.equal(evaluateRows([actual], manifest).state, 'drift', `${field} ${JSON.stringify(invalidContainer)} must drift from []`);
+    }
+  }
+});
+
+test('full-record projection preserves invalid typed-array container shapes', () => {
+  const row = baseRow();
+  const invalidContainers = [{ invalid: true }, null, 'invalid-container'];
+  for (const field of ['years', 'trims', 'engines', 'symptoms', 'affectedSystems', 'dtcCodes', 'relatedIssueIds']) {
+    for (const invalidContainer of invalidContainers) {
+      assert.deepEqual(fullRecordSnapshot({ ...row, [field]: invalidContainer })[field], invalidContainer, `${field} must preserve ${JSON.stringify(invalidContainer)}`);
+    }
+  }
+});
+
 test('legacy after-state and result verification ignore only recommendation click telemetry', () => {
   const row = baseRow();
   const manifest = changedManifest(row);
