@@ -64,6 +64,75 @@ const contracts = {
       },
     },
   },
+  '9-2X': {
+    make: 'Saab',
+    model: '9-2X',
+    reviewDate: REVIEW_DATE,
+    snapshotFile: SNAPSHOT_FILE,
+    outputFile: 'data/known-issue-saab-9-2x-adjudication-2026-08-11.json',
+    allIds: ['saab-9-2x-head-gasket-2.5'],
+    retainedIds: [],
+    reportCountCleanupIds: [],
+    observations: [
+      'Saab workshop information confirms the 9-2X 2.5i/Linear configuration and supplies the cylinder-head gasket replacement procedure, but does not label external head-gasket leakage a recurring 2005-2006 9-2X defect.',
+      'A gasket-manufacturer technical note describes external oil leakage as a possible failure mode on Subaru EJ-series 2.5 L engines, but it does not establish 9-2X incidence, mileage, all listed years or the frozen cost range.',
+      'Subaru WWP-99 is not used: it covered earlier 1999-2002 Subaru populations and external coolant leakage, not the frozen 2005-2006 Saab 9-2X external-oil identity.',
+    ],
+    pdfSources: {
+      felProGuide: {
+        url: 'https://www.felpro.com/content/dam/marketing/North-America/felpro/pdfs/article-bulletins/Fel-Pro%20TechTip_Solving%20Subaru%202.5L%20Head%20Gasket%20Problems%20With%20Fel-Pro.pdf',
+        type: 'manufacturer',
+        title: 'Fel-Pro technical note on Subaru 2.5 L head-gasket diagnosis',
+        contains: ['External oil leak from failed gasket', 'EJ-series 2.5L boxer engine'],
+      },
+    },
+    otherSources: {
+      saabSpecification: {
+        url: 'https://saabwisonline.com/9-2x-9346/2005/2-engine/mechanical-2-5i/general-description/technical-data/specification',
+        type: 'manufacturer',
+        title: 'Saab WIS 2005 9-2X 2.5i engine specification',
+        contains: ['Saab 9-2X 2.5i Linear', 'single over-head camshaft'],
+      },
+      saabHeadInstallation: {
+        url: 'https://saabwisonline.com/9-2x-9346/2005/2-engine/mechanical-2-5i/cylinder-head/adjustment-replacement/installation',
+        type: 'manufacturer',
+        title: 'Saab WIS 2005 9-2X 2.5i cylinder-head installation procedure',
+        contains: ['Use new cylinder head gaskets', 'mating surface'],
+      },
+    },
+    bulletinInventory: {
+      method: 'Exact Saab 9-2X WIS and Subaru head-gasket campaign searches; WWP-99 was rejected as an earlier Subaru-only coolant-leak population.',
+      exactDocuments: 2,
+    },
+    recallInventory: {
+      method: 'No recall was used to substantiate this non-safety engine-leak identity.',
+      exactCampaigns: 0,
+    },
+    modelAliases: ['9-2X', '9-2X 2.5i', '9-2X Linear'],
+    searchTerms: ['head gasket external oil leak', 'head gasket coolant leak', '2.5i cylinder head'],
+    relevantDocumentIds: [],
+    campaigns: [],
+    requiredProse: [
+      {
+        id: 'saab-9-2x-head-gasket-2.5',
+        field: 'description',
+        patterns: ['do not establish a recurring 2005-2006 Saab 9-2X defect', 'WWP-99 does not apply'],
+      },
+    ],
+    content: {
+      'saab-9-2x-head-gasket-2.5': {
+        description: 'Saab workshop information confirms that the 9-2X 2.5i/Linear uses a 2,457 cc horizontally opposed SOHC engine and supplies a cylinder-head gasket installation procedure. A Fel-Pro technical note for Subaru EJ-series 2.5 L engines identifies external oil leakage as one possible head-gasket failure mode. Those documents do not establish a recurring 2005-2006 Saab 9-2X defect, an 80,000-150,000-mile onset or a universal front-of-engine leak location. Subaru service program WWP-99 does not apply: it addressed external coolant leakage on specified 1999-2002 Subaru vehicles, not this frozen Saab population. Oil or coolant observed near the head-to-block joint can also travel from another seal or component and requires source confirmation.',
+        solution: 'Clean the area and have a Subaru/Saab-experienced technician identify the fluid and its highest fresh source; pressure testing, UV dye, cooling-system testing or a combustion-gas test may be appropriate depending on the symptoms. If a head-gasket leak is confirmed, use the exact 9-2X service procedure, new gaskets and measured checks of the head and block surfaces. Resurfacing, timing-belt service, idlers and water-pump replacement should follow measurements, maintenance history and component condition rather than an automatic rule. Stop driving if the engine overheats, loses coolant rapidly or oil pressure is affected. Do not buy a head-gasket kit, timing parts or water pump from this page; engine identification, leak source, machining needs and kit contents require VIN-level diagnosis.',
+        symptoms: ['Fresh oil or coolant at the head-to-block joint after the engine is cleaned', 'Burning-fluid odor or smoke from fluid reaching hot exhaust parts', 'Coolant loss or overheating requiring immediate diagnosis', 'Leak traced to another upper-engine seal rather than the head gasket'],
+        affectedSystems: ['2.5i cylinder-head sealing surfaces and gaskets', 'Cooling and lubrication systems, leak source unresolved', 'Timing-belt-area components, condition-dependent'],
+        citations: ['saabSpecification', 'saabHeadInstallation', 'felProGuide'],
+        evidence: ['Saab WIS identifies the 2.5i/Linear engine configuration and the exact cylinder-head installation sequence.', 'Fel-Pro documents external oil leakage as a possible EJ-series 2.5 L head-gasket failure mode but does not prove Saab 9-2X frequency or mileage.'],
+        summary: 'Removed unsupported prevalence, mileage, price, universal leak location, gasket-brand recommendation and automatic resurfacing/timing-system replacement claims; added leak-source and measurement gates.',
+        conflict: 'The frozen page converts a general EJ-series possible failure mode into a high-confidence, all-2005-2006 Saab 9-2X pattern with exact mileage, price and mandatory repair steps unsupported by a 9-2X-specific campaign.',
+        commerceDecision: 'engine identity, leak source, surface measurements, maintenance history and kit contents require VIN-level diagnosis; no universal retail part',
+      },
+    },
+  },
 };
 
 const supportedModels = Object.freeze(Object.keys(contracts));
