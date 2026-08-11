@@ -403,6 +403,94 @@ const contracts = {
       },
     },
   },
+  R2: {
+    make: 'Rivian',
+    model: 'R2',
+    reviewDate: REVIEW_DATE,
+    snapshotFile: SNAPSHOT_FILE,
+    outputFile: 'data/known-issue-rivian-r2-adjudication-2026-08-11.json',
+    allIds: [
+      'rivian-r2-400v-architecture-limits-dc-fast-charging-speed-vs-800v-comp',
+      'rivian-r2-electronic-door-handles-rear-seat-manual-emergency-release-i',
+    ],
+    retainedIds: [],
+    reportCountCleanupIds: [],
+    observations: [
+      'Both frozen pages describe design characteristics rather than a documented recurring component failure.',
+      'Rivian currently advertises 150 miles added in 15 minutes and 10-80% in under 30 minutes, while its model-year 2027 emergency-response guide describes a high-voltage system up to 450 V; neither source substantiates the frozen cell layout, exact nominal voltage, independent charging curve or competitor-time comparison.',
+      'The model-year 2027 emergency-response guide confirms redundant support for the interior e-latches and a rear-door manual service release behind the armrest panel, but the frozen door page is scoped only to 2026 and overstates entrapment, child-operability and fire outcomes without an exact campaign or investigation.',
+    ],
+    pdfSources: {
+      emergencyGuide: {
+        url: 'https://assets.ctfassets.net/2md5qhoeajym/1Gkn6MnFxdzEBqgwe3y1sX/835156a9329b673c0bf25d1b3f95019e/erg-r2-en-us-20260424.pdf',
+        type: 'manufacturer',
+        title: 'Rivian R2 Emergency Response Guide, model year 2027',
+        contains: ['up to 450 V', 'manual service release', 'Pull off the panel on the front face of the door armrest'],
+      },
+    },
+    otherSources: {
+      productPage: {
+        url: 'https://rivian.com/en-US/r2',
+        type: 'manufacturer',
+        title: 'Rivian R2 product and charging information',
+        contains: ['Add 150 miles in 15 minutes', '10% to 80% in under 30 minutes'],
+      },
+      releaseReport: {
+        url: 'https://techcrunch.com/2026/02/10/heres-how-rivian-changed-the-rear-door-manual-release-on-the-r2/',
+        type: 'article',
+        title: 'TechCrunch report on the R2 rear-door manual release shown before production',
+        contains: ['behind a piece of plastic', 'manual releases'],
+      },
+    },
+    bulletinInventory: {
+      method: 'Current Rivian R2 product information and the model-year 2027 emergency-response guide were opened; no exact Rivian/NHTSA bulletin was found that treats either design characteristic as a recurring defect.',
+      exactDocuments: 1,
+    },
+    recallInventory: {
+      method: 'No recall was used to substantiate either frozen R2 identity, and neither frozen page is presented as an open campaign.',
+      exactCampaigns: 0,
+    },
+    modelAliases: ['R2'],
+    searchTerms: ['R2 400 V charging', 'R2 DC fast charging', 'R2 rear door manual release', 'R2 e-latch'],
+    relevantDocumentIds: ['erg-r2-en-us-20260424'],
+    campaigns: [],
+    requiredProse: [
+      {
+        id: 'rivian-r2-400v-architecture-limits-dc-fast-charging-speed-vs-800v-comp',
+        field: 'description',
+        patterns: ['does not establish the frozen exact 353.3 V nominal architecture', 'not a documented component failure'],
+      },
+      {
+        id: 'rivian-r2-electronic-door-handles-rear-seat-manual-emergency-release-i',
+        field: 'description',
+        patterns: ['model-year 2027', 'does not validate the frozen 2026 scope'],
+      },
+    ],
+    content: {
+      'rivian-r2-400v-architecture-limits-dc-fast-charging-speed-vs-800v-comp': {
+        description: 'This frozen page describes a charging-architecture comparison, not a documented component failure. Rivian currently advertises that R2 can add 150 miles in 15 minutes and charge from 10% to 80% in under 30 minutes on a suitable DC fast charger. Rivian\'s model-year 2027 emergency-response guide describes high-voltage components up to 450 V, but that responder limit does not establish the frozen exact 353.3 V nominal architecture, cell-string layout, battery capacity or charge curve. The captured official sources also do not prove a universal ten-minute disadvantage versus named competitors, annual charging frequency or the frozen 181-190 kW test result across 2026-2027 vehicles.',
+        solution: 'Treat charge time as a trip-planning characteristic, not proof of a failed part. Use the vehicle\'s current route planner and charging guidance, arrive with a suitable state of charge, and record charger power, battery temperature, starting state of charge and software version if performance is unexpectedly low. Compare the session with Rivian\'s current specifications and contact Rivian or the charging-network operator when a repeatable shortfall remains. Do not buy a battery, charging module or adapter from this page; no failed component or universal retail remedy has been established.',
+        symptoms: ['DC fast-charge time differs from the vehicle\'s current estimate', 'Charging power tapers as state of charge rises', 'Repeatable charging shortfall requiring vehicle-versus-charger diagnosis'],
+        affectedSystems: ['High-voltage battery and DC fast-charging controls, no failure established', 'Charging-station capability and session conditions'],
+        citations: ['productPage', 'emergencyGuide'],
+        evidence: ['Rivian\'s current product page supplies its public 150-mile/15-minute and under-30-minute 10-80% claims.', 'The model-year 2027 emergency-response guide states only that high-voltage components can be up to 450 V; it does not prove the frozen nominal voltage, cell construction or comparative charging curve.'],
+        summary: 'Recast a speculative architecture comparison as a held design-characteristic page, retained only current official charging claims and removed unsupported cell, curve, competitor and owner-behavior assertions.',
+        conflict: 'The frozen title asserts a 400 V limitation against 800 V competitors, while captured official evidence supplies advertised charging performance and an up-to-450 V safety boundary but no validated recurring defect or exact comparative architecture proof.',
+        commerceDecision: 'charging performance depends on vehicle configuration, battery state, temperature, charger and software; no failed component is established and there is no universal retail part',
+      },
+      'rivian-r2-electronic-door-handles-rear-seat-manual-emergency-release-i': {
+        description: 'Rivian\'s model-year 2027 R2 emergency-response guide says the vehicle unlocks its doors when a crash is detected and that redundant vehicle power and distribution systems continue to support the interior e-latches after a collision or electrical-system power loss. If that redundant support cannot operate the e-latches over an extended period, the guide identifies a rear-door manual service release: remove the panel on the front face of the door armrest and pull down on the release cord. This official model-year 2027 procedure does not validate the frozen 2026 scope, does not establish a failure rate and does not prove the frozen claims that rear children will be unable to exit or that fire entrapment is a recurring R2 defect.',
+        solution: 'Before carrying passengers, review the current owner and emergency instructions for the exact model year and identify the normal e-latch and the manual service release location without modifying the door. After a collision or power loss, use the interior e-latch normally while it remains supported; if it does not operate and it is safe to do so, follow Rivian\'s exact model-year instructions for the manual release and move occupants away from danger. Contact emergency services for any crash, smoke or fire. Do not alter the release cord. Do not buy a latch, trim panel or electrical component from this page; no component failure or universal retail repair has been established.',
+        symptoms: ['Interior e-latch does not operate after an extended loss of redundant power', 'Rear occupant cannot locate the model-year-specific manual service release', 'Door or latch behavior differs from the current Rivian instructions'],
+        affectedSystems: ['Rear-door interior e-latches and redundant power support', 'Rear-door manual service release behind the armrest panel on the documented model-year 2027 vehicle'],
+        citations: ['emergencyGuide', 'releaseReport'],
+        evidence: ['Rivian\'s model-year 2027 guide gives the crash-unlock, redundant e-latch-support and rear manual-service-release procedure.', 'TechCrunch reported the pre-production release location, but that report cannot establish a failure rate, campaign or frozen 2026 applicability.'],
+        summary: 'Bound the page to Rivian\'s exact model-year 2027 emergency procedure, removed unsupported failure, child-operability, fire-outcome, recall and accessory advice, and exposed the frozen 2026 scope conflict.',
+        conflict: 'The frozen page is scoped only to 2026, while the captured final official procedure is explicitly for model year 2027; the title also frames release placement as a known failure without a campaign or incidence evidence.',
+        commerceDecision: 'release procedure and components are model-year-specific and no latch or power-distribution failure is diagnosed; no universal retail part',
+      },
+    },
+  },
 };
 
 const supportedModels = Object.freeze(Object.keys(contracts));
