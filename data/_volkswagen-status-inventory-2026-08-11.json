@@ -1,0 +1,2207 @@
+{
+  "schemaVersion": 1,
+  "capturedOn": "2026-08-11",
+  "status": "read-only-inventory",
+  "make": "Volkswagen",
+  "captureProvenance": {
+    "transaction": "BEGIN ISOLATION LEVEL REPEATABLE READ READ ONLY",
+    "query": "SELECT id, make, model, status FROM KnownIssue ORDER BY id",
+    "derivation": "All rows were selected without a make or status predicate; Unicode NFKD mark-folding was applied locally.",
+    "environment": {
+      "connectionVariable": "POSTGRES_PRISMA_URL (DATABASE_URL/DIRECT_URL fallback)",
+      "secretValuesRecorded": false
+    }
+  },
+  "globalPublishedCount": 7642,
+  "normalizedMakeRows": 346,
+  "statusCounts": {
+    "archived": 17,
+    "published": 329
+  },
+  "rawMakeVariants": [
+    {
+      "make": "Volkswagen",
+      "normalized": "volkswagen",
+      "codePoints": [
+        "U+0056",
+        "U+006F",
+        "U+006C",
+        "U+006B",
+        "U+0073",
+        "U+0077",
+        "U+0061",
+        "U+0067",
+        "U+0065",
+        "U+006E"
+      ],
+      "count": 346
+    }
+  ],
+  "modelCounts": {
+    "allStatuses": {
+      "Arteon": 11,
+      "Atlas": 14,
+      "Atlas Cross Sport": 5,
+      "Beetle": 15,
+      "Bus": 7,
+      "Cabrio": 5,
+      "Caddy": 8,
+      "CC": 12,
+      "Corrado": 5,
+      "Eos": 12,
+      "Eurovan": 5,
+      "Fox": 5,
+      "Gol": 6,
+      "Golf": 19,
+      "Golf Alltrack": 5,
+      "Golf R": 17,
+      "GTI": 12,
+      "ID. Buzz": 5,
+      "ID.3": 8,
+      "ID.4": 13,
+      "Jetta": 26,
+      "Karmann Ghia": 7,
+      "New Beetle": 11,
+      "Passat": 10,
+      "Phaeton": 11,
+      "Polo": 6,
+      "Rabbit": 5,
+      "Routan": 4,
+      "Scirocco": 9,
+      "T-Cross": 7,
+      "T-Roc": 8,
+      "Taos": 15,
+      "Tiguan": 9,
+      "Touareg": 13,
+      "Touran": 7,
+      "Up": 9
+    },
+    "published": {
+      "Arteon": 10,
+      "Atlas": 14,
+      "Atlas Cross Sport": 5,
+      "Beetle": 14,
+      "Bus": 7,
+      "Cabrio": 4,
+      "Caddy": 8,
+      "CC": 12,
+      "Corrado": 4,
+      "Eos": 12,
+      "Eurovan": 4,
+      "Fox": 5,
+      "Gol": 6,
+      "Golf": 14,
+      "Golf Alltrack": 5,
+      "Golf R": 17,
+      "GTI": 12,
+      "ID. Buzz": 5,
+      "ID.3": 8,
+      "ID.4": 13,
+      "Jetta": 22,
+      "Karmann Ghia": 7,
+      "New Beetle": 11,
+      "Passat": 10,
+      "Phaeton": 10,
+      "Polo": 6,
+      "Rabbit": 5,
+      "Routan": 4,
+      "Scirocco": 9,
+      "T-Cross": 7,
+      "T-Roc": 8,
+      "Taos": 15,
+      "Tiguan": 7,
+      "Touareg": 13,
+      "Touran": 7,
+      "Up": 9
+    },
+    "archived": {
+      "Arteon": 1,
+      "Beetle": 1,
+      "Cabrio": 1,
+      "Corrado": 1,
+      "Eurovan": 1,
+      "Golf": 5,
+      "Jetta": 4,
+      "Phaeton": 1,
+      "Tiguan": 2
+    }
+  },
+  "rows": [
+    {
+      "id": "volkswagen-arteon-7-speed-dq381-dsg-mechatronics-failure-low-speed-shudder",
+      "make": "Volkswagen",
+      "model": "Arteon",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-arteon-brake-booster-pressure-input-rod-connection-may-detach",
+      "make": "Volkswagen",
+      "model": "Arteon",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-arteon-ea888-direct-injection-carbon-buildup-intake-valves",
+      "make": "Volkswagen",
+      "model": "Arteon",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-arteon-ea888-excessive-oil-consumption",
+      "make": "Volkswagen",
+      "model": "Arteon",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-arteon-infotainment-2019",
+      "make": "Volkswagen",
+      "model": "Arteon",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-arteon-rear-wheel-carrier-bearing-housing-breakage",
+      "make": "Volkswagen",
+      "model": "Arteon",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-arteon-rearview-camera-black-screen-image-failure",
+      "make": "Volkswagen",
+      "model": "Arteon",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-arteon-water-pump-2019",
+      "make": "Volkswagen",
+      "model": "Arteon",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-atlas-12v-battery-drain-no-start-linked-to-start-stop-parasitic-dr",
+      "make": "Volkswagen",
+      "model": "Atlas",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-atlas-2-0t-ea888-intake-valve-carbon-buildup-causing-cold-start-mi",
+      "make": "Volkswagen",
+      "model": "Atlas",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-atlas-3-6l-vr6-water-pump-thermostat-housing-coolant-leak",
+      "make": "Volkswagen",
+      "model": "Atlas",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-atlas-cross-sport-infotainment-freezing-2020",
+      "make": "Volkswagen",
+      "model": "Atlas Cross Sport",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-atlas-cross-sport-turbo-lag-hesitation-2020",
+      "make": "Volkswagen",
+      "model": "Atlas Cross Sport",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-atlas-cross-sport-water-intrusion-2020",
+      "make": "Volkswagen",
+      "model": "Atlas Cross Sport",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-atlas-engine-compartment-fuse-box-relay-defect-causing-inadvertent",
+      "make": "Volkswagen",
+      "model": "Atlas",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-atlas-front-assist-aeb-phantom-braking-nhtsa-engineering-analysis",
+      "make": "Volkswagen",
+      "model": "Atlas",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-atlas-front-door-wiring-harness-fretting-corrosion-causing-unexpec",
+      "make": "Volkswagen",
+      "model": "Atlas",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-atlas-fuel-pump-failure-2018",
+      "make": "Volkswagen",
+      "model": "Atlas",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-atlas-infotainment-freeze-2018",
+      "make": "Volkswagen",
+      "model": "Atlas",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-atlas-rear-ac-blower-2018",
+      "make": "Volkswagen",
+      "model": "Atlas",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-atlas-sunroof-cracking-2018",
+      "make": "Volkswagen",
+      "model": "Atlas",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-atlas-transmission-8speed-2018",
+      "make": "Volkswagen",
+      "model": "Atlas",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-atlas-transmission-shudder-2018",
+      "make": "Volkswagen",
+      "model": "Atlas",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-atlas-vr6-timing-chain-2018",
+      "make": "Volkswagen",
+      "model": "Atlas",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-atlas-water-intrusion-2018",
+      "make": "Volkswagen",
+      "model": "Atlas",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-beetle-bosch-009-distributor-flat-spot-hesitation-just-off-idle",
+      "make": "Volkswagen",
+      "model": "Beetle",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-beetle-door-handle-breakage-2012",
+      "make": "Volkswagen",
+      "model": "Beetle",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-beetle-ignition-coil-2006",
+      "make": "Volkswagen",
+      "model": "Beetle",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-beetle-intake-manifold-flap-2012",
+      "make": "Volkswagen",
+      "model": "Beetle",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-beetle-overheating-drops-valve-seats-warps-magnesium-case",
+      "make": "Volkswagen",
+      "model": "Beetle",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-beetle-rusted-out-heater-channels-floor-pans-destroy-car-s-structur",
+      "make": "Volkswagen",
+      "model": "Beetle",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-beetle-single-circuit-master-cylinder-skinny-front-drums-one-leak-f",
+      "make": "Volkswagen",
+      "model": "Beetle",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-beetle-swing-axle-rear-suspension-jacks-snaps-into-lift-off-overste",
+      "make": "Volkswagen",
+      "model": "Beetle",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-beetle-timing-chain-25l-2006",
+      "make": "Volkswagen",
+      "model": "Beetle",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-beetle-timing-chain-tensioner-2012",
+      "make": "Volkswagen",
+      "model": "Beetle",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-beetle-turbo-wastegate-2012",
+      "make": "Volkswagen",
+      "model": "Beetle",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-beetle-turbo-wastegate-rattle-2012",
+      "make": "Volkswagen",
+      "model": "Beetle",
+      "status": "archived"
+    },
+    {
+      "id": "volkswagen-beetle-water-pump-leak-2012",
+      "make": "Volkswagen",
+      "model": "Beetle",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-beetle-weak-6-volt-system-failing-generator-leaves-dim-lights-slow",
+      "make": "Volkswagen",
+      "model": "Beetle",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-beetle-worn-king-pin-link-pin-front-beam-causes-wandering-vague-ste",
+      "make": "Volkswagen",
+      "model": "Beetle",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-bus-3-cylinder-overheating-dropped-valve-seats",
+      "make": "Volkswagen",
+      "model": "Bus",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-bus-inadequate-front-drum-brakes-single-circuit-master-cylinder",
+      "make": "Volkswagen",
+      "model": "Bus",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-bus-perished-rubber-fuel-lines-engine-bay-fire-risk",
+      "make": "Volkswagen",
+      "model": "Bus",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-bus-structural-rust-outriggers-jacking-points-cab-floor",
+      "make": "Volkswagen",
+      "model": "Bus",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-bus-type-4-d-jetronic-fuel-injection-gremlins",
+      "make": "Volkswagen",
+      "model": "Bus",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-bus-weak-6-volt-electrical-charging-system",
+      "make": "Volkswagen",
+      "model": "Bus",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-bus-worn-steering-box-causing-wander-vague-steering",
+      "make": "Volkswagen",
+      "model": "Bus",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-cabrio-coil-pack-failure-1999",
+      "make": "Volkswagen",
+      "model": "Cabrio",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-cabrio-top-mechanism-1995",
+      "make": "Volkswagen",
+      "model": "Cabrio",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-caddy-dpf-blockage-from-short-journey-urban-use",
+      "make": "Volkswagen",
+      "model": "Caddy",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-caddy-dq200-7-speed-dsg-mechatronic-unit-failure",
+      "make": "Volkswagen",
+      "model": "Caddy",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-caddy-dual-mass-flywheel-clutch-judder-failure-tdi-manuals",
+      "make": "Volkswagen",
+      "model": "Caddy",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-caddy-egr-valve-failure-limp-mode-after-ea189-dieselgate-emissions",
+      "make": "Volkswagen",
+      "model": "Caddy",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-caddy-egr-valve-sticking-clogging-causing-insufficient-flow-fault",
+      "make": "Volkswagen",
+      "model": "Caddy",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-caddy-heater-blower-only-works-highest-speed",
+      "make": "Volkswagen",
+      "model": "Caddy",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-caddy-tdi-fuel-injector-failure",
+      "make": "Volkswagen",
+      "model": "Caddy",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-caddy-water-pump-failure-coolant-loss",
+      "make": "Volkswagen",
+      "model": "Caddy",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-cc-carbon-buildup-intake-valves",
+      "make": "Volkswagen",
+      "model": "CC",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-cc-dsg-failure-2009",
+      "make": "Volkswagen",
+      "model": "CC",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-cc-ea888-2-0-tsi-excessive-oil-consumption-from-low-tension-pis",
+      "make": "Volkswagen",
+      "model": "CC",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-cc-ignition-coil-pack-failure-causing-misfires-power-loss",
+      "make": "Volkswagen",
+      "model": "CC",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-cc-interior-water-intrusion-comfort-control-module-water-damage",
+      "make": "Volkswagen",
+      "model": "CC",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-cc-pcv-valve-oil-separator-diaphragm-failure",
+      "make": "Volkswagen",
+      "model": "CC",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-cc-rear-multi-link-suspension-clunk-from-worn-control-arm-bushi",
+      "make": "Volkswagen",
+      "model": "CC",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-cc-steering-wheel-clock-spring-failure",
+      "make": "Volkswagen",
+      "model": "CC",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-cc-timing-chain-2009",
+      "make": "Volkswagen",
+      "model": "CC",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-cc-water-pump-2009",
+      "make": "Volkswagen",
+      "model": "CC",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-corrado-g60-supercharger-1990",
+      "make": "Volkswagen",
+      "model": "Corrado",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-corrado-vr6-chain-tensioner-1992",
+      "make": "Volkswagen",
+      "model": "Corrado",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-eos-2-0-tsi-fsi-carbon-buildup-intake-valves",
+      "make": "Volkswagen",
+      "model": "Eos",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-eos-2-0-tsi-high-pressure-fuel-pump-cam-follower-wear-failure",
+      "make": "Volkswagen",
+      "model": "Eos",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-eos-2-0-tsi-water-pump-plastic-thermostat-housing-coolant-leak",
+      "make": "Volkswagen",
+      "model": "Eos",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-eos-airbag-clock-spring-contamination-disabled-driver-airbag-hor",
+      "make": "Volkswagen",
+      "model": "Eos",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-eos-convertible-top-hydraulic-2007",
+      "make": "Volkswagen",
+      "model": "Eos",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-eos-dsg-mechatronic-unit-clutch-pack-failure",
+      "make": "Volkswagen",
+      "model": "Eos",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-eos-ea888-gen-2-2-0-tsi-excessive-oil-consumption",
+      "make": "Volkswagen",
+      "model": "Eos",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-eos-sunroof-drain-2007",
+      "make": "Volkswagen",
+      "model": "Eos",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-eos-timing-chain-2008",
+      "make": "Volkswagen",
+      "model": "Eos",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-eos-wind-deflector-mesh-tearing-roof-sensor-wire-break-splice-m3",
+      "make": "Volkswagen",
+      "model": "Eos",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-eurovan-auto-trans-failure-1993",
+      "make": "Volkswagen",
+      "model": "Eurovan",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-eurovan-cooling-system-1997",
+      "make": "Volkswagen",
+      "model": "Eurovan",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-fox-cooling-system-1990",
+      "make": "Volkswagen",
+      "model": "Fox",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-fox-fuel-injection-1990",
+      "make": "Volkswagen",
+      "model": "Fox",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-gol-chronic-starter-motor-failure-gol-g6-1-6-undersized-9-tooth",
+      "make": "Volkswagen",
+      "model": "Gol",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-gol-ea111-1-0-engine-excessive-oil-consumption-lubrication-failu",
+      "make": "Volkswagen",
+      "model": "Gol",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-gol-front-door-window-regulator-failure-glass-drops-inside-door",
+      "make": "Volkswagen",
+      "model": "Gol",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-gol-i-motion-automated-manual-gearbox-harsh-shifts-engagement-fa",
+      "make": "Volkswagen",
+      "model": "Gol",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-gol-recall-crankshaft-pulley-can-loosen-killing-power-steering-a",
+      "make": "Volkswagen",
+      "model": "Gol",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-gol-recall-left-front-suspension-ball-joint-nuts-improperly-fast",
+      "make": "Volkswagen",
+      "model": "Gol",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-golf-1-9-tdi-vnt-turbo-actuator-sticking-maf-sensor-failure",
+      "make": "Volkswagen",
+      "model": "Golf",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-golf-carbon-buildup-2008",
+      "make": "Volkswagen",
+      "model": "Golf",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-golf-central-locking-vacuum-pump-failure",
+      "make": "Volkswagen",
+      "model": "Golf",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-golf-dsg-mechatronic-2008",
+      "make": "Volkswagen",
+      "model": "Golf",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-golf-plastic-coolant-flange-blue-temperature-sensor-leaking-rear",
+      "make": "Volkswagen",
+      "model": "Golf",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-golf-r-dq381-7-speed-dsg-intermittent-neutral-drop-free-revving",
+      "make": "Volkswagen",
+      "model": "Golf R",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-golf-r-dq381-7-speed-dsg-mechatronic-failure-limp-mode",
+      "make": "Volkswagen",
+      "model": "Golf R",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-golf-r-ea888-pcv-crankcase-ventilation-failure-causing-high-oil-con",
+      "make": "Volkswagen",
+      "model": "Golf R",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-golf-r-ea888-pcv-valve-oil-separator-diaphragm-failure",
+      "make": "Volkswagen",
+      "model": "Golf R",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-golf-r-ea888-timing-chain-stretch-tensioner-failure",
+      "make": "Volkswagen",
+      "model": "Golf R",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-golf-r-engine-coolant-temperature-sensor-inaccurate-temp-gauge",
+      "make": "Volkswagen",
+      "model": "Golf R",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-golf-r-evap-n80-purge-valve-failure-large-small-leak-codes",
+      "make": "Volkswagen",
+      "model": "Golf R",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-golf-r-front-control-arm-bushing-strut-mount-creak-knock",
+      "make": "Volkswagen",
+      "model": "Golf R",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-golf-r-is38-turbocharger-wastegate-rattle-electronic-actuator-failu",
+      "make": "Volkswagen",
+      "model": "Golf R",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-golf-r-mk8-mib3-infotainment-bugs-capacitive-touch-control-failures",
+      "make": "Volkswagen",
+      "model": "Golf R",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-golf-r-mk8-mib3-infotainment-lag-freezing-haptic-steering-controls",
+      "make": "Volkswagen",
+      "model": "Golf R",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-golf-r-radiator-improperly-attached-to-intercooler-coolant-hose-dam",
+      "make": "Volkswagen",
+      "model": "Golf R",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-golf-structural-rust-sills-wheel-arches-jacking-points-front-susp",
+      "make": "Volkswagen",
+      "model": "Golf",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-golf-timing-chain-tensioner-2008",
+      "make": "Volkswagen",
+      "model": "Golf",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-golf-vr6-coil-pack-casing-cracking-causing-misfires",
+      "make": "Volkswagen",
+      "model": "Golf",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-golf-vr6-timing-chain-guide-tensioner-failure",
+      "make": "Volkswagen",
+      "model": "Golf",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-golf-water-pump-2008",
+      "make": "Volkswagen",
+      "model": "Golf",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-gti-idle-stabilizer-valve-fouling-causing-rough-idle-stalling",
+      "make": "Volkswagen",
+      "model": "GTI",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-gti-plastic-coolant-flange-blue-temperature-sensor-failure",
+      "make": "Volkswagen",
+      "model": "GTI",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-gti-power-window-regulator-failure",
+      "make": "Volkswagen",
+      "model": "GTI",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-gti-vr6-plastic-coolant-crack-pipe-failure",
+      "make": "Volkswagen",
+      "model": "GTI",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-gti-vr6-timing-chain-guide-tensioner-failure",
+      "make": "Volkswagen",
+      "model": "GTI",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-gti-vr6-water-pump-plastic-impeller-failure",
+      "make": "Volkswagen",
+      "model": "GTI",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-id-3-12v-auxiliary-battery-drains-flat-car-dead-after-sitting-few",
+      "make": "Volkswagen",
+      "model": "ID.3",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-id-3-clunk-click-from-rear-when-pulling-away",
+      "make": "Volkswagen",
+      "model": "ID.3",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-id-3-dc-rapid-charging-failures-handshake-errors-refused-charge-s",
+      "make": "Volkswagen",
+      "model": "ID.3",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-id-3-electric-drive-system-fault-sudden-reduced-power-car-shuts-d",
+      "make": "Volkswagen",
+      "model": "ID.3",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-id-3-high-voltage-battery-module-overheat-fire-risk-recall",
+      "make": "Volkswagen",
+      "model": "ID.3",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-id-3-infotainment-freezing-black-screens-laggy-touchscreen",
+      "make": "Volkswagen",
+      "model": "ID.3",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-id-3-optional-heat-pump-delivers-poor-cold-weather-efficiency-stu",
+      "make": "Volkswagen",
+      "model": "ID.3",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-id-3-rear-drum-brakes-corroding-binding-from-low-mechanical-use",
+      "make": "Volkswagen",
+      "model": "ID.3",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-id-4-charge-port-door-actuator-solenoid-failure",
+      "make": "Volkswagen",
+      "model": "ID.4",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-id-4-electronic-door-handle-water-intrusion-causing-doors-to-open",
+      "make": "Volkswagen",
+      "model": "ID.4",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-id-4-high-voltage-battery-cell-module-fire-risk-range-loss",
+      "make": "Volkswagen",
+      "model": "ID.4",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-id-4-onboard-charger-condensation-failure-stopping-12v-charging",
+      "make": "Volkswagen",
+      "model": "ID.4",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-id-4-panoramic-glass-roof-creaking-squeaking-cold-weather",
+      "make": "Volkswagen",
+      "model": "ID.4",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-id-4-panoramic-roof-sunshade-insufficiently-fire-retardant",
+      "make": "Volkswagen",
+      "model": "ID.4",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-id-4-pulse-inverter-hv-battery-management-reset-causing-sudden-lo",
+      "make": "Volkswagen",
+      "model": "ID.4",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-id-4-rearview-camera-image-fails-to-display-reverse",
+      "make": "Volkswagen",
+      "model": "ID.4",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-id-buzz-12v-battery-drain-2025",
+      "make": "Volkswagen",
+      "model": "ID. Buzz",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-id-buzz-infotainment-freeze-2025",
+      "make": "Volkswagen",
+      "model": "ID. Buzz",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-id-buzz-software-updates-2025",
+      "make": "Volkswagen",
+      "model": "ID. Buzz",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-id4-12v-battery-drain-2021",
+      "make": "Volkswagen",
+      "model": "ID.4",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-id4-charging-issues-2021",
+      "make": "Volkswagen",
+      "model": "ID.4",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-id4-infotainment-software-2021",
+      "make": "Volkswagen",
+      "model": "ID.4",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-jetta-1-9-tdi-timing-belt-failure-interference-engine",
+      "make": "Volkswagen",
+      "model": "Jetta",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-jetta-abs-control-module-and-low-speed-false-abs-activation",
+      "make": "Volkswagen",
+      "model": "Jetta",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-jetta-airbag-warning-light-crash-sensor-and-non-deployment-concerns",
+      "make": "Volkswagen",
+      "model": "Jetta",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-jetta-brake-light-switch-failure",
+      "make": "Volkswagen",
+      "model": "Jetta",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-jetta-coolant-temperature-sensor-failure",
+      "make": "Volkswagen",
+      "model": "Jetta",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-jetta-fuel-pump-and-fuel-leak-stalling-issues",
+      "make": "Volkswagen",
+      "model": "Jetta",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-jetta-hazard-flasher-switch-relay-failure",
+      "make": "Volkswagen",
+      "model": "Jetta",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-jetta-heated-seat-element-overheating-and-burn-through",
+      "make": "Volkswagen",
+      "model": "Jetta",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-jetta-ignition-coil-pack-failure-causing-misfires",
+      "make": "Volkswagen",
+      "model": "Jetta",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-jetta-power-window-regulator-clip-failure",
+      "make": "Volkswagen",
+      "model": "Jetta",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-jetta-power-window-regulator-failure",
+      "make": "Volkswagen",
+      "model": "Jetta",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-jetta-vr6-plastic-coolant-flange-crack-pipe-coolant-leak",
+      "make": "Volkswagen",
+      "model": "Jetta",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-jetta-vr6-timing-chain-guide-tensioner-rattle",
+      "make": "Volkswagen",
+      "model": "Jetta",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-karmann-ghia-3-cylinder-runs-hot-drops-exhaust-valve",
+      "make": "Volkswagen",
+      "model": "Karmann Ghia",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-karmann-ghia-all-drum-brakes-that-fade-no-stopping-power-way-it-s-driven",
+      "make": "Volkswagen",
+      "model": "Karmann Ghia",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-karmann-ghia-floor-pan-frame-head-rust-under-battery-pedals",
+      "make": "Volkswagen",
+      "model": "Karmann Ghia",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-karmann-ghia-heater-channel-sill-rot-structural-rust-that-totals-ghia-bod",
+      "make": "Volkswagen",
+      "model": "Karmann Ghia",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-karmann-ghia-points-condenser-ignition-that-strands-you-plus-weak-6v-elec",
+      "make": "Volkswagen",
+      "model": "Karmann Ghia",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-karmann-ghia-swing-axle-rear-suspension-oversteer-rear-wheel-tuck",
+      "make": "Volkswagen",
+      "model": "Karmann Ghia",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-karmann-ghia-worn-link-pin-king-pin-front-beam-vague-steering-uneven-tyre",
+      "make": "Volkswagen",
+      "model": "Karmann Ghia",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-new-beetle-09g-automatic-transmission-limp-mode-valve-body-failure",
+      "make": "Volkswagen",
+      "model": "New Beetle",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-new-beetle-1-9-tdi-dual-mass-flywheel-failure",
+      "make": "Volkswagen",
+      "model": "New Beetle",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-new-beetle-coil-pack-failure-1998",
+      "make": "Volkswagen",
+      "model": "New Beetle",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-new-beetle-door-lock-module-central-locking-microswitch-failure",
+      "make": "Volkswagen",
+      "model": "New Beetle",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-new-beetle-engine-coolant-temperature-sensor-failure",
+      "make": "Volkswagen",
+      "model": "New Beetle",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-new-beetle-instrument-cluster-gauge-stepper-motor-failure",
+      "make": "Volkswagen",
+      "model": "New Beetle",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-new-beetle-timing-chain-25l-2005",
+      "make": "Volkswagen",
+      "model": "New Beetle",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-new-beetle-water-leak-into-footwell-from-clogged-cowl-sunroof-drains",
+      "make": "Volkswagen",
+      "model": "New Beetle",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-new-beetle-window-regulator-2000",
+      "make": "Volkswagen",
+      "model": "New Beetle",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-passat-camshaft-adjuster-2008",
+      "make": "Volkswagen",
+      "model": "Passat",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-passat-dpf-clogging-2012",
+      "make": "Volkswagen",
+      "model": "Passat",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-passat-dsg-shudder-2012",
+      "make": "Volkswagen",
+      "model": "Passat",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-passat-oil-consumption-2012",
+      "make": "Volkswagen",
+      "model": "Passat",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-passat-pcv-valve-failure-2006",
+      "make": "Volkswagen",
+      "model": "Passat",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-passat-timing-chain-stretch-2012",
+      "make": "Volkswagen",
+      "model": "Passat",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-passat-timing-chain-tensioner-2008",
+      "make": "Volkswagen",
+      "model": "Passat",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-passat-trunk-latch-failure-2006",
+      "make": "Volkswagen",
+      "model": "Passat",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-phaeton-3-0-v6-tdi-intake-manifold-swirl-flap-carbon-clogging",
+      "make": "Volkswagen",
+      "model": "Phaeton",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-phaeton-3-0-v6-tdi-timing-chain-tensioner-rattle-cold-start",
+      "make": "Volkswagen",
+      "model": "Phaeton",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-phaeton-air-suspension-failure-2004",
+      "make": "Volkswagen",
+      "model": "Phaeton",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-phaeton-clogged-plenum-scuttle-drains-causing-cabin-water-intrusion",
+      "make": "Volkswagen",
+      "model": "Phaeton",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-phaeton-coolant-pipe-2004",
+      "make": "Volkswagen",
+      "model": "Phaeton",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-phaeton-power-trunk-boot-lid-actuator-control-module-failure",
+      "make": "Volkswagen",
+      "model": "Phaeton",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-phaeton-secondary-air-injection-pump-failure-v8-w12",
+      "make": "Volkswagen",
+      "model": "Phaeton",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-phaeton-w12-ignition-coil-failure-causing-misfires-rough-running",
+      "make": "Volkswagen",
+      "model": "Phaeton",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-polo-1-2-tsi-timing-chain-stretch-tensioner-failure",
+      "make": "Volkswagen",
+      "model": "Polo",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-polo-b-pillar-trim-fastening-defect-affecting-side-airbag-deploym",
+      "make": "Volkswagen",
+      "model": "Polo",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-polo-digital-instrument-cluster-software-failure-blank-panel-afte",
+      "make": "Volkswagen",
+      "model": "Polo",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-polo-door-lock-module-central-locking-microswitch-failure",
+      "make": "Volkswagen",
+      "model": "Polo",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-polo-dq200-7-speed-dry-clutch-dsg-mechatronic-clutch-failure",
+      "make": "Volkswagen",
+      "model": "Polo",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-polo-rear-seat-belt-buckle-can-unlatch-itself",
+      "make": "Volkswagen",
+      "model": "Polo",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-rabbit-ignition-coil-2006",
+      "make": "Volkswagen",
+      "model": "Rabbit",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-rabbit-oil-leak-valve-cover-2006",
+      "make": "Volkswagen",
+      "model": "Rabbit",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-rabbit-window-regulator-2006",
+      "make": "Volkswagen",
+      "model": "Rabbit",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-scirocco-1-4-tsi-twincharger-supercharger-bypass-changeover-valve-mag",
+      "make": "Volkswagen",
+      "model": "Scirocco",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-scirocco-2-0-tdi-diesel-particulate-filter-egr-clogging",
+      "make": "Volkswagen",
+      "model": "Scirocco",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-scirocco-2-0-tdi-dual-mass-flywheel-failure",
+      "make": "Volkswagen",
+      "model": "Scirocco",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-scirocco-2-0-tsi-direct-injection-carbon-build-up-intake-valves",
+      "make": "Volkswagen",
+      "model": "Scirocco",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-scirocco-2-0-tsi-timing-chain-tensioner-failure",
+      "make": "Volkswagen",
+      "model": "Scirocco",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-scirocco-7-speed-dsg-dry-clutch-mechatronic-failure-juddering",
+      "make": "Volkswagen",
+      "model": "Scirocco",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-scirocco-ea888-water-pump-thermostat-housing-coolant-leak",
+      "make": "Volkswagen",
+      "model": "Scirocco",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-scirocco-electric-fuel-filler-flap-will-not-open",
+      "make": "Volkswagen",
+      "model": "Scirocco",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-scirocco-sporadic-abs-esp-traction-control-warning-lights",
+      "make": "Volkswagen",
+      "model": "Scirocco",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-t-cross-1-0-tsi-wet-timing-belt-service-interval-critical-to-avoid-b",
+      "make": "Volkswagen",
+      "model": "T-Cross",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-t-cross-1-5-tsi-ea211-evo-act-cylinder-deactivation-shudder-oil-cons",
+      "make": "Volkswagen",
+      "model": "T-Cross",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-t-cross-curtain-airbag-gas-generator-weld-defect",
+      "make": "Volkswagen",
+      "model": "T-Cross",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-t-cross-dq200-7-speed-dry-dual-clutch-juddering-hesitation-low-speed",
+      "make": "Volkswagen",
+      "model": "T-Cross",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-t-cross-infotainment-electrical-software-glitches",
+      "make": "Volkswagen",
+      "model": "T-Cross",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-t-cross-instrument-cluster-software-fault-disables-seatbelt-reminder",
+      "make": "Volkswagen",
+      "model": "T-Cross",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-t-cross-start-stop-system-fails-causes-stalling",
+      "make": "Volkswagen",
+      "model": "T-Cross",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-t-roc-1-5-tsi-evo-kangarooing-cold-start-judder-hesitation",
+      "make": "Volkswagen",
+      "model": "T-Roc",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-t-roc-7-speed-dq200-dry-clutch-dsg-jerky-shifts-shudder-hesitation",
+      "make": "Volkswagen",
+      "model": "T-Roc",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-t-roc-engine-cover-fire-hazard-recall",
+      "make": "Volkswagen",
+      "model": "T-Roc",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-t-roc-front-right-seatbelt-retractor-recall",
+      "make": "Volkswagen",
+      "model": "T-Roc",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-t-roc-infotainment-freezing-rebooting",
+      "make": "Volkswagen",
+      "model": "T-Roc",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-t-roc-interior-dashboard-door-trim-rattles-squeaks",
+      "make": "Volkswagen",
+      "model": "T-Roc",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-t-roc-tdi-diesel-dpf-clogging-egr-contamination-short-journeys",
+      "make": "Volkswagen",
+      "model": "T-Roc",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-t-roc-water-ingress-into-footwells-cabin",
+      "make": "Volkswagen",
+      "model": "T-Roc",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-taos-12v-battery-parasitic-drain-repeated-dead-battery",
+      "make": "Volkswagen",
+      "model": "Taos",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-taos-acceleration-hesitation-throttle-lag-from-standstill",
+      "make": "Volkswagen",
+      "model": "Taos",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-taos-dsg-shudder-2022",
+      "make": "Volkswagen",
+      "model": "Taos",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-taos-ea211-1-5t-coolant-loss-from-water-pump-thermostat-housing-l",
+      "make": "Volkswagen",
+      "model": "Taos",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-taos-ea211-engine-noise-2022",
+      "make": "Volkswagen",
+      "model": "Taos",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-taos-engine-stalls-when-coming-to-stop-awd-ecu-software-defect",
+      "make": "Volkswagen",
+      "model": "Taos",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-taos-fuel-delivery-module-failure-causing-sudden-power-loss",
+      "make": "Volkswagen",
+      "model": "Taos",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-taos-infotainment-bugs-2022",
+      "make": "Volkswagen",
+      "model": "Taos",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-taos-intake-valve-carbon-buildup-gdi-1-5-tsi",
+      "make": "Volkswagen",
+      "model": "Taos",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-taos-premature-rear-brake-pad-wear",
+      "make": "Volkswagen",
+      "model": "Taos",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-taos-rear-suspension-knuckle-cracking-fracture",
+      "make": "Volkswagen",
+      "model": "Taos",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-taos-rearview-camera-image-fails-to-display-emmc-infotainment-mem",
+      "make": "Volkswagen",
+      "model": "Taos",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-taos-underhood-fuel-supply-quick-connector-detachment-fuel-leak",
+      "make": "Volkswagen",
+      "model": "Taos",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-tiguan-dsg-mechatronic-2009",
+      "make": "Volkswagen",
+      "model": "Tiguan",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-tiguan-oil-leak-valve-cover-2009",
+      "make": "Volkswagen",
+      "model": "Tiguan",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-tiguan-panoramic-sunroof-2018",
+      "make": "Volkswagen",
+      "model": "Tiguan",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-tiguan-rear-hatch-wiring-2009",
+      "make": "Volkswagen",
+      "model": "Tiguan",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-tiguan-sunroof-drain-clog-2009",
+      "make": "Volkswagen",
+      "model": "Tiguan",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-tiguan-timing-chain-tensioner-2009",
+      "make": "Volkswagen",
+      "model": "Tiguan",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-tiguan-water-pump-failure-2009",
+      "make": "Volkswagen",
+      "model": "Tiguan",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-touareg-3-0-tdi-engine-valley-coolant-leak",
+      "make": "Volkswagen",
+      "model": "Touareg",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-touareg-adblue-scr-system-fault-no-start-countdown-lockout",
+      "make": "Volkswagen",
+      "model": "Touareg",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-touareg-air-suspension-2004",
+      "make": "Volkswagen",
+      "model": "Touareg",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-touareg-blocked-sunroof-drains-causing-passenger-footwell-water-leak",
+      "make": "Volkswagen",
+      "model": "Touareg",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-touareg-dpf-clogging-egr-induced-limp-mode",
+      "make": "Volkswagen",
+      "model": "Touareg",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-touareg-driveshaft-center-support-bearing-carrier-failure",
+      "make": "Volkswagen",
+      "model": "Touareg",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-touareg-electronic-parking-brake-actuator-module-electrical-failure",
+      "make": "Volkswagen",
+      "model": "Touareg",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-touareg-fuel-filter-flange-cracking-fuel-leak-fire-risk",
+      "make": "Volkswagen",
+      "model": "Touareg",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-touareg-transfer-case-2004",
+      "make": "Volkswagen",
+      "model": "Touareg",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-touareg-v6-tdi-fuel-system-2009",
+      "make": "Volkswagen",
+      "model": "Touareg",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-touareg-v6-tdi-timing-chain-tensioner-failure-chain-stretch",
+      "make": "Volkswagen",
+      "model": "Touareg",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-touran-1-4-tsi-timing-chain-stretch-tensioner-failure",
+      "make": "Volkswagen",
+      "model": "Touran",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-touran-1-5-tsi-evo-kangarooing-hesitation-stalling",
+      "make": "Volkswagen",
+      "model": "Touran",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-touran-1-6-2-0-tdi-egr-valve-failure-worsened-by-dieselgate-emissio",
+      "make": "Volkswagen",
+      "model": "Touran",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-touran-diesel-particulate-filter-clogging-tdi-models",
+      "make": "Volkswagen",
+      "model": "Touran",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-touran-dq200-7-speed-dry-clutch-dsg-failure",
+      "make": "Volkswagen",
+      "model": "Touran",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-touran-front-anti-roll-bar-drop-link-wear-suspension-knocking",
+      "make": "Volkswagen",
+      "model": "Touran",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-touran-water-ingress-to-footwell-via-blocked-plenum-sunroof-drains",
+      "make": "Volkswagen",
+      "model": "Touran",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-up-asg-automated-manual-gearbox-jerky-shifts-won-t-pull-away-re",
+      "make": "Volkswagen",
+      "model": "Up",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-up-daytime-running-light-sidelight-bulb-failures",
+      "make": "Volkswagen",
+      "model": "Up",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-up-e-up-high-voltage-battery-short-circuit-fire-risk",
+      "make": "Volkswagen",
+      "model": "Up",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-up-manual-gearbox-difficulty-selecting-1st-reverse-when-cold-be",
+      "make": "Volkswagen",
+      "model": "Up",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-up-panoramic-sunroof-front-panel-debonding-detachment",
+      "make": "Volkswagen",
+      "model": "Up",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-up-premature-manual-clutch-wear-failure-low-mileage",
+      "make": "Volkswagen",
+      "model": "Up",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-up-rear-drum-brakes-seize-wheel-cylinders-stick-after-standing",
+      "make": "Volkswagen",
+      "model": "Up",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-up-rear-wheel-arch-fuel-filler-corrosion",
+      "make": "Volkswagen",
+      "model": "Up",
+      "status": "published"
+    },
+    {
+      "id": "volkswagen-up-water-leak-into-footwells",
+      "make": "Volkswagen",
+      "model": "Up",
+      "status": "published"
+    },
+    {
+      "id": "vw-20t-carbon-buildup-2008",
+      "make": "Volkswagen",
+      "model": "Jetta",
+      "status": "published"
+    },
+    {
+      "id": "vw-20t-dsg-mechatronic-2008",
+      "make": "Volkswagen",
+      "model": "Jetta",
+      "status": "published"
+    },
+    {
+      "id": "vw-20t-hpfp-2008",
+      "make": "Volkswagen",
+      "model": "Jetta",
+      "status": "published"
+    },
+    {
+      "id": "vw-20t-ignition-coils-2008",
+      "make": "Volkswagen",
+      "model": "Jetta",
+      "status": "published"
+    },
+    {
+      "id": "vw-20t-pcv-valve-2008",
+      "make": "Volkswagen",
+      "model": "Jetta",
+      "status": "published"
+    },
+    {
+      "id": "vw-20t-timing-chain-2008",
+      "make": "Volkswagen",
+      "model": "Jetta",
+      "status": "published"
+    },
+    {
+      "id": "vw-20t-turbo-failure-2008",
+      "make": "Volkswagen",
+      "model": "Jetta",
+      "status": "published"
+    },
+    {
+      "id": "vw-20t-water-pump-2008",
+      "make": "Volkswagen",
+      "model": "Jetta",
+      "status": "published"
+    },
+    {
+      "id": "vw-arteon-infotainment-glitches-2019",
+      "make": "Volkswagen",
+      "model": "Arteon",
+      "status": "archived"
+    },
+    {
+      "id": "vw-arteon-panoramic-sunroof-creak-2019",
+      "make": "Volkswagen",
+      "model": "Arteon",
+      "status": "published"
+    },
+    {
+      "id": "vw-arteon-turbo-coolant-line-2019",
+      "make": "Volkswagen",
+      "model": "Arteon",
+      "status": "published"
+    },
+    {
+      "id": "vw-atlas-cross-sport-panoramic-roof-creak-2020",
+      "make": "Volkswagen",
+      "model": "Atlas Cross Sport",
+      "status": "published"
+    },
+    {
+      "id": "vw-atlas-cross-sport-transmission-shudder-2020",
+      "make": "Volkswagen",
+      "model": "Atlas Cross Sport",
+      "status": "published"
+    },
+    {
+      "id": "vw-cabrio-convertible-top-leak-1995",
+      "make": "Volkswagen",
+      "model": "Cabrio",
+      "status": "archived"
+    },
+    {
+      "id": "vw-cabrio-ignition-switch-1995",
+      "make": "Volkswagen",
+      "model": "Cabrio",
+      "status": "published"
+    },
+    {
+      "id": "vw-cabrio-window-regulator-1995",
+      "make": "Volkswagen",
+      "model": "Cabrio",
+      "status": "published"
+    },
+    {
+      "id": "vw-cc-cam-follower-wear-2009",
+      "make": "Volkswagen",
+      "model": "CC",
+      "status": "published"
+    },
+    {
+      "id": "vw-cc-sunroof-drain-clog-2009",
+      "make": "Volkswagen",
+      "model": "CC",
+      "status": "published"
+    },
+    {
+      "id": "vw-corrado-g60-supercharger-1990",
+      "make": "Volkswagen",
+      "model": "Corrado",
+      "status": "archived"
+    },
+    {
+      "id": "vw-corrado-headliner-sag-1990",
+      "make": "Volkswagen",
+      "model": "Corrado",
+      "status": "published"
+    },
+    {
+      "id": "vw-corrado-window-regulator-1990",
+      "make": "Volkswagen",
+      "model": "Corrado",
+      "status": "published"
+    },
+    {
+      "id": "vw-eos-roof-microswitch-2007",
+      "make": "Volkswagen",
+      "model": "Eos",
+      "status": "published"
+    },
+    {
+      "id": "vw-eos-water-leak-roof-2007",
+      "make": "Volkswagen",
+      "model": "Eos",
+      "status": "published"
+    },
+    {
+      "id": "vw-eurovan-cylinder-head-crack-1997",
+      "make": "Volkswagen",
+      "model": "Eurovan",
+      "status": "published"
+    },
+    {
+      "id": "vw-eurovan-power-window-regulator-1993",
+      "make": "Volkswagen",
+      "model": "Eurovan",
+      "status": "published"
+    },
+    {
+      "id": "vw-eurovan-transmission-failure-1993",
+      "make": "Volkswagen",
+      "model": "Eurovan",
+      "status": "archived"
+    },
+    {
+      "id": "vw-fox-cv-joint-boot-1990",
+      "make": "Volkswagen",
+      "model": "Fox",
+      "status": "published"
+    },
+    {
+      "id": "vw-fox-exhaust-manifold-crack-1990",
+      "make": "Volkswagen",
+      "model": "Fox",
+      "status": "published"
+    },
+    {
+      "id": "vw-fox-ignition-coil-failure-1987",
+      "make": "Volkswagen",
+      "model": "Fox",
+      "status": "published"
+    },
+    {
+      "id": "vw-gli-carbon-buildup-2006",
+      "make": "Volkswagen",
+      "model": "Jetta",
+      "status": "archived"
+    },
+    {
+      "id": "vw-gli-timing-chain-tensioner-2006",
+      "make": "Volkswagen",
+      "model": "Jetta",
+      "status": "archived"
+    },
+    {
+      "id": "vw-gli-water-pump-2006",
+      "make": "Volkswagen",
+      "model": "Jetta",
+      "status": "archived"
+    },
+    {
+      "id": "vw-golf-alltrack-haldex-2017",
+      "make": "Volkswagen",
+      "model": "Golf Alltrack",
+      "status": "published"
+    },
+    {
+      "id": "vw-golf-alltrack-panoramic-sunroof-2017",
+      "make": "Volkswagen",
+      "model": "Golf Alltrack",
+      "status": "published"
+    },
+    {
+      "id": "vw-golf-alltrack-rear-hatch-wiring-2017",
+      "make": "Volkswagen",
+      "model": "Golf Alltrack",
+      "status": "published"
+    },
+    {
+      "id": "vw-golf-alltrack-turbo-failure-2017",
+      "make": "Volkswagen",
+      "model": "Golf Alltrack",
+      "status": "published"
+    },
+    {
+      "id": "vw-golf-alltrack-water-pump-2017",
+      "make": "Volkswagen",
+      "model": "Golf Alltrack",
+      "status": "published"
+    },
+    {
+      "id": "vw-golf-mk4-window-regulator-1999",
+      "make": "Volkswagen",
+      "model": "Golf",
+      "status": "published"
+    },
+    {
+      "id": "vw-golf-mk7-water-pump-2015",
+      "make": "Volkswagen",
+      "model": "Golf",
+      "status": "published"
+    },
+    {
+      "id": "vw-golf-r-carbon-buildup-2015",
+      "make": "Volkswagen",
+      "model": "Golf R",
+      "status": "published"
+    },
+    {
+      "id": "vw-golf-r-haldex-2012",
+      "make": "Volkswagen",
+      "model": "Golf R",
+      "status": "published"
+    },
+    {
+      "id": "vw-golf-r-haldex-pump-failure-2015",
+      "make": "Volkswagen",
+      "model": "Golf",
+      "status": "archived"
+    },
+    {
+      "id": "vw-golf-r-mk8-infotainment-2022",
+      "make": "Volkswagen",
+      "model": "Golf",
+      "status": "archived"
+    },
+    {
+      "id": "vw-golf-r-rear-diff-failure-2015",
+      "make": "Volkswagen",
+      "model": "Golf R",
+      "status": "published"
+    },
+    {
+      "id": "vw-golf-r-turbo-diverter-valve-2015",
+      "make": "Volkswagen",
+      "model": "Golf R",
+      "status": "published"
+    },
+    {
+      "id": "vw-golf-r-turbo-failure-2015",
+      "make": "Volkswagen",
+      "model": "Golf",
+      "status": "published"
+    },
+    {
+      "id": "vw-golf-r-water-pump-2015",
+      "make": "Volkswagen",
+      "model": "Golf R",
+      "status": "published"
+    },
+    {
+      "id": "vw-gti-carbon-buildup-2006",
+      "make": "Volkswagen",
+      "model": "Golf",
+      "status": "archived"
+    },
+    {
+      "id": "vw-gti-carbon-buildup-intake-2006",
+      "make": "Volkswagen",
+      "model": "GTI",
+      "status": "published"
+    },
+    {
+      "id": "vw-gti-dsg-mechatronic-2006",
+      "make": "Volkswagen",
+      "model": "Golf",
+      "status": "archived"
+    },
+    {
+      "id": "vw-gti-dsg-mechatronic-unit-2006",
+      "make": "Volkswagen",
+      "model": "GTI",
+      "status": "published"
+    },
+    {
+      "id": "vw-gti-mk8-infotainment-2022",
+      "make": "Volkswagen",
+      "model": "Golf",
+      "status": "published"
+    },
+    {
+      "id": "vw-gti-rear-main-seal-2015",
+      "make": "Volkswagen",
+      "model": "GTI",
+      "status": "published"
+    },
+    {
+      "id": "vw-gti-timing-chain-tensioner-2006",
+      "make": "Volkswagen",
+      "model": "GTI",
+      "status": "published"
+    },
+    {
+      "id": "vw-gti-turbo-diverter-valve-2006",
+      "make": "Volkswagen",
+      "model": "GTI",
+      "status": "published"
+    },
+    {
+      "id": "vw-gti-water-pump-housing-2006",
+      "make": "Volkswagen",
+      "model": "GTI",
+      "status": "published"
+    },
+    {
+      "id": "vw-gti-water-pump-thermostat-2006",
+      "make": "Volkswagen",
+      "model": "Golf",
+      "status": "archived"
+    },
+    {
+      "id": "vw-id-buzz-charge-port-lid-2024",
+      "make": "Volkswagen",
+      "model": "ID. Buzz",
+      "status": "published"
+    },
+    {
+      "id": "vw-id-buzz-sliding-door-2024",
+      "make": "Volkswagen",
+      "model": "ID. Buzz",
+      "status": "published"
+    },
+    {
+      "id": "vw-id4-heat-pump-failure-2021",
+      "make": "Volkswagen",
+      "model": "ID.4",
+      "status": "published"
+    },
+    {
+      "id": "vw-id4-rear-window-defroster-2021",
+      "make": "Volkswagen",
+      "model": "ID.4",
+      "status": "published"
+    },
+    {
+      "id": "vw-jetta-25-intake-manifold-2005",
+      "make": "Volkswagen",
+      "model": "Jetta",
+      "status": "published"
+    },
+    {
+      "id": "vw-new-beetle-abs-module-2000",
+      "make": "Volkswagen",
+      "model": "New Beetle",
+      "status": "published"
+    },
+    {
+      "id": "vw-new-beetle-oil-leak-valve-cover-1998",
+      "make": "Volkswagen",
+      "model": "New Beetle",
+      "status": "published"
+    },
+    {
+      "id": "vw-passat-18t-oil-sludge-1998",
+      "make": "Volkswagen",
+      "model": "Passat",
+      "status": "published"
+    },
+    {
+      "id": "vw-passat-timing-belt-failure-1998",
+      "make": "Volkswagen",
+      "model": "Passat",
+      "status": "published"
+    },
+    {
+      "id": "vw-phaeton-air-suspension-failure-2004",
+      "make": "Volkswagen",
+      "model": "Phaeton",
+      "status": "archived"
+    },
+    {
+      "id": "vw-phaeton-touareg-brake-light-switch-2004",
+      "make": "Volkswagen",
+      "model": "Phaeton",
+      "status": "published"
+    },
+    {
+      "id": "vw-phaeton-transmission-valve-body-2004",
+      "make": "Volkswagen",
+      "model": "Phaeton",
+      "status": "published"
+    },
+    {
+      "id": "vw-rabbit-ignition-coil-crack-2006",
+      "make": "Volkswagen",
+      "model": "Rabbit",
+      "status": "published"
+    },
+    {
+      "id": "vw-rabbit-pcv-valve-2006",
+      "make": "Volkswagen",
+      "model": "Rabbit",
+      "status": "published"
+    },
+    {
+      "id": "vw-routan-ignition-switch-2009",
+      "make": "Volkswagen",
+      "model": "Routan",
+      "status": "published"
+    },
+    {
+      "id": "vw-routan-steering-clockspring-2009",
+      "make": "Volkswagen",
+      "model": "Routan",
+      "status": "published"
+    },
+    {
+      "id": "vw-routan-tipm-failure-2009",
+      "make": "Volkswagen",
+      "model": "Routan",
+      "status": "published"
+    },
+    {
+      "id": "vw-routan-transmission-shudder-2009",
+      "make": "Volkswagen",
+      "model": "Routan",
+      "status": "published"
+    },
+    {
+      "id": "vw-taos-ac-compressor-noise-2022",
+      "make": "Volkswagen",
+      "model": "Taos",
+      "status": "published"
+    },
+    {
+      "id": "vw-taos-rear-drum-brake-noise-2022",
+      "make": "Volkswagen",
+      "model": "Taos",
+      "status": "published"
+    },
+    {
+      "id": "vw-tiguan-timing-chain-tensioner-2009",
+      "make": "Volkswagen",
+      "model": "Tiguan",
+      "status": "archived"
+    },
+    {
+      "id": "vw-tiguan-water-pump-leak-2009",
+      "make": "Volkswagen",
+      "model": "Tiguan",
+      "status": "archived"
+    },
+    {
+      "id": "vw-timing-chain-2008",
+      "make": "Volkswagen",
+      "model": "Jetta",
+      "status": "archived"
+    },
+    {
+      "id": "vw-touareg-abs-module-2004",
+      "make": "Volkswagen",
+      "model": "Touareg",
+      "status": "published"
+    },
+    {
+      "id": "vw-touareg-coolant-pipe-2004",
+      "make": "Volkswagen",
+      "model": "Touareg",
+      "status": "published"
+    }
+  ]
+}
