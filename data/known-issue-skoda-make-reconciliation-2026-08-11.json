@@ -1,0 +1,637 @@
+{
+  "schemaVersion": 1,
+  "status": "proposal-only",
+  "requiresIndependentApproval": true,
+  "generatedOn": "2026-08-11",
+  "make": "Skoda",
+  "sourceControl": {
+    "branch": "codex/remaining-makes-audit",
+    "baselineCommit": "32bec43571f3028856977175c6cc1013689f43fc",
+    "dirtyInventory": [
+      " M scripts/build-skoda-make-reconciliation.js",
+      "M data/known-issue-skoda-make-reconciliation-2026-08-11.json"
+    ],
+    "dirtyInventorySha256": "92317c294bf9594d0717f4ea365dd6de338090155db44c4ea5c70fbbeed77872",
+    "reviewedDiffSha256": "6ccd41707419232f34f85d97019d847f3df724418a2fabda0e67f56fde681020",
+    "reviewedTree": {
+      "files": [
+        {
+          "file": "scripts/build-skoda-make-reconciliation.js",
+          "sha256": "f4e0ca2bab3618ea2dce6b999617c11b0b6ee1eb89cc6c3aa0bb6522591d8833"
+        }
+      ],
+      "sha256": "4d17d7c28cc650ff0c8371a1f9a31c1292950407eceb277f742079a1a40097b6"
+    }
+  },
+  "snapshot": {
+    "file": "data/_skoda-deeplink-snapshot-2026-08-11.json",
+    "normalizedSha256": "b136f63176ae452b5a5a99d7399ca8d1297a49f0ec6065beff91b5933816be16",
+    "generatedAt": "2026-08-11T18:57:09.910Z",
+    "snapshotHash": "629d0a3ad1d9736189b6f5889b39fff61c20b4d552b15ccdba27c1acb1d83bb7",
+    "makeRows": 60,
+    "frozenMakeValues": [
+      "Skoda"
+    ],
+    "frozenMakeCounts": {
+      "Skoda": 60
+    }
+  },
+  "routing": {
+    "file": "data/known-issue-skoda-routing-report-2026-08-11.json",
+    "normalizedSha256": "b991cb1222b6b057bf2c768c9d93d9af8fad91ed5e3d6aeea4eb57cce79268f6",
+    "deterministic": true,
+    "validationErrors": 0,
+    "summary": {
+      "rows": 60,
+      "rowsWithFrozenTrimGate": 33,
+      "issueYearSelectableTrimRoutes": 3061,
+      "exactTrimRoutes": 491,
+      "substringOnlyRoutes": 20,
+      "hiddenRoutes": 1207,
+      "modelWideFailOpenRoutes": 1343,
+      "applicabilityProseFailOpenRoutes": 0,
+      "rowsWithSubstringOnlyRoutes": 4,
+      "noLegitimateSelectableTrimOverlap": 19,
+      "hiddenForAllSelectableTrims": 18,
+      "metadataWrites": 0
+    }
+  },
+  "summary": {
+    "models": 7,
+    "rows": 60,
+    "retained": 0,
+    "held": 60,
+    "pagesPreservedPublished": 60,
+    "authorizedWriteCandidates": 0
+  },
+  "crossPacketChecks": {
+    "exactModelInventory": true,
+    "exactRowInventory": true,
+    "exactFrozenMakeCounts": true,
+    "makeDrift": 0,
+    "identityDrift": 0,
+    "statusDrift": 0,
+    "ownerTelemetryDrift": 0,
+    "commerceDrift": 0,
+    "holdMutation": 0,
+    "perPacketValidationErrors": 0
+  },
+  "applicationGate": {
+    "status": "blocked",
+    "reason": "All 60 rows are byte-identical holds; there is no authorized write set."
+  },
+  "models": [
+    {
+      "model": "Enyaq",
+      "packetFile": "data/known-issue-skoda-enyaq-adjudication-2026-08-11.json",
+      "packetSha256": "20dad36f67545591478e9c3175dea54e3e7ec32b6582ac9f2a36870251b16851",
+      "deterministicPacketSha256": "20dad36f67545591478e9c3175dea54e3e7ec32b6582ac9f2a36870251b16851",
+      "rows": 2,
+      "retained": 0,
+      "held": 2,
+      "applicationGate": "blocked"
+    },
+    {
+      "model": "Fabia",
+      "packetFile": "data/known-issue-skoda-fabia-adjudication-2026-08-11.json",
+      "packetSha256": "1aa09059149870c91834bff5f96a22c1f0a57a1db138977f4ae5dcd150372f5a",
+      "deterministicPacketSha256": "1aa09059149870c91834bff5f96a22c1f0a57a1db138977f4ae5dcd150372f5a",
+      "rows": 16,
+      "retained": 0,
+      "held": 16,
+      "applicationGate": "blocked"
+    },
+    {
+      "model": "Kodiaq",
+      "packetFile": "data/known-issue-skoda-kodiaq-adjudication-2026-08-11.json",
+      "packetSha256": "624facd2d219b6656423dcc72d0d0585cfcddc69e18ddd253fb16e474efd283d",
+      "deterministicPacketSha256": "624facd2d219b6656423dcc72d0d0585cfcddc69e18ddd253fb16e474efd283d",
+      "rows": 9,
+      "retained": 0,
+      "held": 9,
+      "applicationGate": "blocked"
+    },
+    {
+      "model": "Octavia",
+      "packetFile": "data/known-issue-skoda-octavia-adjudication-2026-08-11.json",
+      "packetSha256": "a7efb471d6aafdb63796fc85b5df027a6ab119e3de9269f78cdeb51024dd9e20",
+      "deterministicPacketSha256": "a7efb471d6aafdb63796fc85b5df027a6ab119e3de9269f78cdeb51024dd9e20",
+      "rows": 13,
+      "retained": 0,
+      "held": 13,
+      "applicationGate": "blocked"
+    },
+    {
+      "model": "Scala",
+      "packetFile": "data/known-issue-skoda-scala-adjudication-2026-08-11.json",
+      "packetSha256": "770c3afd6a3e83b9194dd8237ba6de1b8a80ba5f4a3d13221c874c55f667fd78",
+      "deterministicPacketSha256": "770c3afd6a3e83b9194dd8237ba6de1b8a80ba5f4a3d13221c874c55f667fd78",
+      "rows": 9,
+      "retained": 0,
+      "held": 9,
+      "applicationGate": "blocked"
+    },
+    {
+      "model": "Superb",
+      "packetFile": "data/known-issue-skoda-superb-adjudication-2026-08-11.json",
+      "packetSha256": "396a48aee6d11dc1210819168b8bd077f43087b32486fceef45358bbd4c81504",
+      "deterministicPacketSha256": "396a48aee6d11dc1210819168b8bd077f43087b32486fceef45358bbd4c81504",
+      "rows": 10,
+      "retained": 0,
+      "held": 10,
+      "applicationGate": "blocked"
+    },
+    {
+      "model": "Yeti",
+      "packetFile": "data/known-issue-skoda-yeti-adjudication-2026-08-11.json",
+      "packetSha256": "9551241b6f2c3c57a319f18c6f5eb1be188a7301aa58b5b6f55857e61f0839e2",
+      "deterministicPacketSha256": "9551241b6f2c3c57a319f18c6f5eb1be188a7301aa58b5b6f55857e61f0839e2",
+      "rows": 1,
+      "retained": 0,
+      "held": 1,
+      "applicationGate": "blocked"
+    }
+  ],
+  "rows": [
+    {
+      "id": "skoda-enyaq-12v-drain",
+      "make": "Skoda",
+      "model": "Enyaq",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "31d985060a72be54edf5dc11a26c1bd78f780143f00c1eb80150ec4364d54e09",
+      "changedFields": []
+    },
+    {
+      "id": "skoda-enyaq-infotainment",
+      "make": "Skoda",
+      "model": "Enyaq",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "c7021456ec6b6bb404776a8e27528d1e1192be4301f6ba72116511aafd41a7cc",
+      "changedFields": []
+    },
+    {
+      "id": "skoda-fabia-1-2-tsi-ea111-timing-chain-stretch-tensioner-failure",
+      "make": "Skoda",
+      "model": "Fabia",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "1075aa83d0fc353a4966adb161e3ba67affa93cae7c47343268a31ad89fe9373",
+      "changedFields": []
+    },
+    {
+      "id": "skoda-fabia-1-2-tsi-timing-chain-stretch-tensioner-failure",
+      "make": "Skoda",
+      "model": "Fabia",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "167e3e2a70945d6a708c2f7854cde4735916416c396edd7814409a51b957da7c",
+      "changedFields": []
+    },
+    {
+      "id": "skoda-fabia-1-6-tdi-diesel-injector-fuel-system-faults",
+      "make": "Skoda",
+      "model": "Fabia",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "d7fd52864cd4b5bad569f340e71d1c44fc91bfc3cef9ba5395304c06fe801145",
+      "changedFields": []
+    },
+    {
+      "id": "skoda-fabia-1-6-tdi-dieselgate-recall-post-fix-egr-dpf-failures",
+      "make": "Skoda",
+      "model": "Fabia",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "120a8a871dc8fe85b0508e9d69ccd1265e7801bbcf5bb9c48470922f8dceeb5a",
+      "changedFields": []
+    },
+    {
+      "id": "skoda-fabia-7-speed-dsg-dry-clutch-mechatronic-failures",
+      "make": "Skoda",
+      "model": "Fabia",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "e927470e2220dc5a69c0486ba321d04074651b5284db18098ef176dbe2f80597",
+      "changedFields": []
+    },
+    {
+      "id": "skoda-fabia-7-speed-dsg-mechatronic-jerky-shifting-faults",
+      "make": "Skoda",
+      "model": "Fabia",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "718d61e98e94b39b8e2e919260a4f48fa49317717ed67af8b30fe4572138f22c",
+      "changedFields": []
+    },
+    {
+      "id": "skoda-fabia-abs-pump-control-module-internal-failure",
+      "make": "Skoda",
+      "model": "Fabia",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "7fc58825e9007847a2b442b6edbba2b6b5adbce39a6c16045d5c69a5ddb1bbf2",
+      "changedFields": []
+    },
+    {
+      "id": "skoda-fabia-central-locking-actuator-door-lock-failures",
+      "make": "Skoda",
+      "model": "Fabia",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "ac579728af97919ad5394c9eda949dc14fd35020d94238fd1cb34e16879e6fbf",
+      "changedFields": []
+    },
+    {
+      "id": "skoda-fabia-curtain-airbag-wiring-recall",
+      "make": "Skoda",
+      "model": "Fabia",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "5c27192c3da8e6f621a0ae7b02bde82f0636e5d719808b53c2c616e21a4229fc",
+      "changedFields": []
+    },
+    {
+      "id": "skoda-fabia-mk1-ignition-coil-pack-misfire",
+      "make": "Skoda",
+      "model": "Fabia",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "ec9b1df714e288244ea7ab3f1e2aa93461d32ccbc5a34c99a341da864267b48e",
+      "changedFields": []
+    },
+    {
+      "id": "skoda-fabia-rear-axle-rust",
+      "make": "Skoda",
+      "model": "Fabia",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "909d525ec46cfa12ab7971124df1abd3614c23fcaba8d96d3ff19b6912317d5f",
+      "changedFields": []
+    },
+    {
+      "id": "skoda-fabia-rear-wiper-motor-failure",
+      "make": "Skoda",
+      "model": "Fabia",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "a058b9c10f4434251508c03133f1190bdd8e6e4afde1b974d19a15cc11759eae",
+      "changedFields": []
+    },
+    {
+      "id": "skoda-fabia-spurious-dashboard-warning-lights-abs-wheel-speed-sensor-fau",
+      "make": "Skoda",
+      "model": "Fabia",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "2b4563723589e0313647c5c5ccc8fdbde973ace71103f30d1073c9132a2a9c7f",
+      "changedFields": []
+    },
+    {
+      "id": "skoda-fabia-tsi-timing-chain",
+      "make": "Skoda",
+      "model": "Fabia",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "1c4e5e51349ccb8dab07bad7765e11890e6908efdb88332d109b28f3fbbb5b8f",
+      "changedFields": []
+    },
+    {
+      "id": "skoda-fabia-water-ingress-through-rear-door-seals-into-footwells",
+      "make": "Skoda",
+      "model": "Fabia",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "6126795ff3ef91de3ce11a244db5addca864fb3b1c9e74833d6f6f81cde21812",
+      "changedFields": []
+    },
+    {
+      "id": "skoda-fabia-water-pump-thermostat-housing-coolant-leaks",
+      "make": "Skoda",
+      "model": "Fabia",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "084349bd36559194cd97ca3e13162d1230b2b64c55fe582e83d84ee36172aba6",
+      "changedFields": []
+    },
+    {
+      "id": "skoda-kodiaq-coolant-loss-from-water-pump-thermostat-housing",
+      "make": "Skoda",
+      "model": "Kodiaq",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "afb1453799315538823a89179aebc354d511f7bd5619f4676b18c7842098380b",
+      "changedFields": []
+    },
+    {
+      "id": "skoda-kodiaq-dpf-clogging-adblue-scr-system-faults-2-0-tdi-diesels",
+      "make": "Skoda",
+      "model": "Kodiaq",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "d707287075dce755daad633a0b8d727ef5f344b80721d72e6847ebbaa2cd2510",
+      "changedFields": []
+    },
+    {
+      "id": "skoda-kodiaq-dsg-dual-clutch-transmission-jerking-mechatronic-failure",
+      "make": "Skoda",
+      "model": "Kodiaq",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "3bc56d02b6aa863220ad749735ea980f8685fed05887cc16a106784ebdace7ea",
+      "changedFields": []
+    },
+    {
+      "id": "skoda-kodiaq-dsg-hesitation",
+      "make": "Skoda",
+      "model": "Kodiaq",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "6b0ca1e0d7821f0b9bcb854c90a90a4a8e0517e7b74de0ffeaa8e93afe26939b",
+      "changedFields": []
+    },
+    {
+      "id": "skoda-kodiaq-general-electrical-faults-central-locking-sensors-climate-co",
+      "make": "Skoda",
+      "model": "Kodiaq",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "bea7e9cf89c1583a72ad60693c7fd1f1795ed65391b56ee48e93108b0325347c",
+      "changedFields": []
+    },
+    {
+      "id": "skoda-kodiaq-infotainment-screen-freezing-blanking-rebooting",
+      "make": "Skoda",
+      "model": "Kodiaq",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "2e1f7a2dd1bf35ae54ef0663f112f02537ed65d6a105154a6df25d93edac660f",
+      "changedFields": []
+    },
+    {
+      "id": "skoda-kodiaq-iv-battery",
+      "make": "Skoda",
+      "model": "Kodiaq",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "59d3c7364a93ca361c00db2807b48a5237e9c990b997a9fc8353d44fe722d278",
+      "changedFields": []
+    },
+    {
+      "id": "skoda-kodiaq-recall-low-engine-torque-low-rpm",
+      "make": "Skoda",
+      "model": "Kodiaq",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "117273f7cfcf60755eeec76ab5c93d024933b36be0ead3d2a365b8c5a1e95bce",
+      "changedFields": []
+    },
+    {
+      "id": "skoda-kodiaq-recall-takata-driver-airbag-inflator-may-rupture",
+      "make": "Skoda",
+      "model": "Kodiaq",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "c142dac498469ea75f6795a5b91b80bb42252d711d21a7438dc0e54c037290d7",
+      "changedFields": []
+    },
+    {
+      "id": "skoda-octavia-1-4-tsi-plastic-water-pump-thermostat-housing-coolant-leak",
+      "make": "Skoda",
+      "model": "Octavia",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "6fbcff9c44eba8ecef740fbb9399270b54cfbdead978a2b3812b3da44ef7b2eb",
+      "changedFields": []
+    },
+    {
+      "id": "skoda-octavia-1-5-tsi-evo-kangaroo-jerking-hesitation-low-revs",
+      "make": "Skoda",
+      "model": "Octavia",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "0606761236829394970460360890cd491ddf0cec2e7ce1559ba24d246045a917",
+      "changedFields": []
+    },
+    {
+      "id": "skoda-octavia-1-6-tdi-diesel-injector-egr-valve-failures",
+      "make": "Skoda",
+      "model": "Octavia",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "3f9946a8003c8cb0c429f63d1ae5822e2d87446f8b8fb39ebb25af41c8a61392",
+      "changedFields": []
+    },
+    {
+      "id": "skoda-octavia-1-8-2-0-tsi-timing-chain-tensioner-failure",
+      "make": "Skoda",
+      "model": "Octavia",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "11af2c96548b9a6abebd1b516a6dc6455a00d25ed54563a3de45beb85b593fc5",
+      "changedFields": []
+    },
+    {
+      "id": "skoda-octavia-2-0-tdi-egr-cooler-cracking-dpf-blockage",
+      "make": "Skoda",
+      "model": "Octavia",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "c329fbcd601ec7f98193c356c246248775de73e5b4fd059ed8fcfb58293e6620",
+      "changedFields": []
+    },
+    {
+      "id": "skoda-octavia-abs-esp-brake-pressure-sensor-fault-mk2",
+      "make": "Skoda",
+      "model": "Octavia",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "bb5a61b85b5200a7e31b696d5406d54ffdbe8b09068a1f5110f827be6d365137",
+      "changedFields": []
+    },
+    {
+      "id": "skoda-octavia-dq200-7-speed-dry-clutch-dsg-mechatronic-clutch-pack-failure",
+      "make": "Skoda",
+      "model": "Octavia",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "59f4af16f60b0836de5c35d64977339bb825a4155cdcc8e2dd0f9337575a2b58",
+      "changedFields": []
+    },
+    {
+      "id": "skoda-octavia-dsg-mechatronic",
+      "make": "Skoda",
+      "model": "Octavia",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "7ea94de18442ece8d5fdaf18e23b459c46c7ec98500455d3b15410513079758a",
+      "changedFields": []
+    },
+    {
+      "id": "skoda-octavia-dual-mass-flywheel-failure-tdi-tsi",
+      "make": "Skoda",
+      "model": "Octavia",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "7478c178caa87377d9bdb36334e802f4bbfbf015d0b8f8e6a2a57671475b857e",
+      "changedFields": []
+    },
+    {
+      "id": "skoda-octavia-glove-box-damper",
+      "make": "Skoda",
+      "model": "Octavia",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "1d211e7c6fabef963ec470acb5a2aa7db24024be981510f763400964d87a5f9b",
+      "changedFields": []
+    },
+    {
+      "id": "skoda-octavia-rear-bushings",
+      "make": "Skoda",
+      "model": "Octavia",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "ef3ca0b8632c7b422aadc1004876488f384705ed8b391ba23cf951d8b4f4e159",
+      "changedFields": []
+    },
+    {
+      "id": "skoda-octavia-tdi-egr-cooler",
+      "make": "Skoda",
+      "model": "Octavia",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "e7914dde2b9c0b389f9999f34b90576591d85330e8fbda66845d458391f475ea",
+      "changedFields": []
+    },
+    {
+      "id": "skoda-octavia-tsi-timing-chain",
+      "make": "Skoda",
+      "model": "Octavia",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "1060a19d287d3f47f7d24415188e57b18d9ca92ee740f06845e7e2e2e8bbb9ea",
+      "changedFields": []
+    },
+    {
+      "id": "skoda-scala-1-0-tsi-leaking-fuel-injectors-emissions-recall",
+      "make": "Skoda",
+      "model": "Scala",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "6671e6efc2ac0e8171d3851a9f106e01ea1269faded49fde54f1b99a58db0f90",
+      "changedFields": []
+    },
+    {
+      "id": "skoda-scala-1-5-tsi-evo-kangaroo-juddering-hesitation-when-pulling-away",
+      "make": "Skoda",
+      "model": "Scala",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "eedf61bc24463c1aa96398c5041af4a6169485845fbfdb0fe0c1f7ef7968c085",
+      "changedFields": []
+    },
+    {
+      "id": "skoda-scala-1-6-tdi-dpf-clogging-oil-dilution-short-journey-use",
+      "make": "Skoda",
+      "model": "Scala",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "b29e98313f065c31c5e7d34695dbf37c33d48b0c727452d8981fd372af03fac3",
+      "changedFields": []
+    },
+    {
+      "id": "skoda-scala-7-speed-dsg-jerky-shifts-mechatronic-failure",
+      "make": "Skoda",
+      "model": "Scala",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "055376812d9769408e5a8cb41ab31ccbe58c66494ba3efc882d2026a5ce0c912",
+      "changedFields": []
+    },
+    {
+      "id": "skoda-scala-air-conditioning-weak-intermittent-cooling-compressor-conden",
+      "make": "Skoda",
+      "model": "Scala",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "5b98b5efc943c5c338b1ce0ff78288a9cc2f4d760e6ac8bfc94d6c7815b4cbef",
+      "changedFields": []
+    },
+    {
+      "id": "skoda-scala-bolero-amundsen-infotainment-freezing-random-reboots",
+      "make": "Skoda",
+      "model": "Scala",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "ad5330b3f2c27f297c355c2320b08c3b268f45f4f8082eaa57ffdde8f03e4516",
+      "changedFields": []
+    },
+    {
+      "id": "skoda-scala-ecall-online-connectivity-unit-emergency-call-software-fault",
+      "make": "Skoda",
+      "model": "Scala",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "c3015f5d3efeeda2b5c3cc82f9ef6d50041359ea7fbf465120c519826724c7ad",
+      "changedFields": []
+    },
+    {
+      "id": "skoda-scala-premature-front-brake-pad-disc-wear",
+      "make": "Skoda",
+      "model": "Scala",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "518f0edabed128c0e099d67b36c0b2531b9323630a7bad68b0ebca80550e4c13",
+      "changedFields": []
+    },
+    {
+      "id": "skoda-scala-side-airbag-seat-cover-stitching-defect-safety-recall",
+      "make": "Skoda",
+      "model": "Scala",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "859cb265e6336087a86264427701675279e72159a8118b0d23b5b1f7be6b2d99",
+      "changedFields": []
+    },
+    {
+      "id": "skoda-superb-2.0-tdi-egr",
+      "make": "Skoda",
+      "model": "Superb",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "978dcce50d8b4ece538e58396e6ab2e6aa278c4ca2cf73d3ca209b5fad2eafa7",
+      "changedFields": []
+    },
+    {
+      "id": "skoda-superb-7-speed-dry-clutch-dsg-mechatronic-clutch-pack-failures",
+      "make": "Skoda",
+      "model": "Superb",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "d7df65a2777e527ba95e3632de4d13c207a3026cb9d21c9f527c07d88ea28c71",
+      "changedFields": []
+    },
+    {
+      "id": "skoda-superb-columbus-infotainment-freezes-shutdowns-reboot-loops",
+      "make": "Skoda",
+      "model": "Superb",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "400e6828a0eccfa70cead0468e3b19569f79fac101295fc9fb7a2e81e64d3fef",
+      "changedFields": []
+    },
+    {
+      "id": "skoda-superb-diesel-particulate-filter-clogging-regeneration-failure",
+      "make": "Skoda",
+      "model": "Superb",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "990de65728209871c723ebdeaf21546716878b70d90cce76e3811564fa4b5d32",
+      "changedFields": []
+    },
+    {
+      "id": "skoda-superb-ea888-gen2-petrol-oil-consumption-stretched-timing-chain",
+      "make": "Skoda",
+      "model": "Superb",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "aca39dd849e6405912d03f68557f4672c1bd3e055d1e4b3831ec9be4f5ac8762",
+      "changedFields": []
+    },
+    {
+      "id": "skoda-superb-electromechanical-parking-brake-sticking-rapid-rear-disc-pad",
+      "make": "Skoda",
+      "model": "Superb",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "fa662ba5473da1962d5df51781712cbb67f95a5f8c673e38d8ec4659a57c5002",
+      "changedFields": []
+    },
+    {
+      "id": "skoda-superb-high-pressure-fuel-pipe-leak-recall-2009-2011-diesel",
+      "make": "Skoda",
+      "model": "Superb",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "58875c0af8cc1fd5447f444feafb3c8b9d50190b968740de1f8cf489fd5e7e46",
+      "changedFields": []
+    },
+    {
+      "id": "skoda-superb-p2015-intake-manifold-swirl-flap-actuator-failure",
+      "make": "Skoda",
+      "model": "Superb",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "6b4f638c394046a85b7a3bfc753f941566c309c00e73c51b1ea18beece28f5de",
+      "changedFields": []
+    },
+    {
+      "id": "skoda-superb-water-ingress-through-blocked-plenum-drains-causing-wet-foot",
+      "make": "Skoda",
+      "model": "Superb",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "fce91b9e718db231560f447a82616ff3af54b3545b804478ebe4a125bff96205",
+      "changedFields": []
+    },
+    {
+      "id": "skoda-superb-water-pump",
+      "make": "Skoda",
+      "model": "Superb",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "1aca67b7833733667a09b111f890329240652ec21dc83fc93768f7bb16b1e7f3",
+      "changedFields": []
+    },
+    {
+      "id": "skoda-yeti-haldex-coupling",
+      "make": "Skoda",
+      "model": "Yeti",
+      "action": "hold_indexed_identity_byte_identical_pending_identity_policy",
+      "proposalSha256": "be7eb323d2b90529e4930d207e14a3b4376cfc5c415874529ab3f6546d207472",
+      "changedFields": []
+    }
+  ]
+}

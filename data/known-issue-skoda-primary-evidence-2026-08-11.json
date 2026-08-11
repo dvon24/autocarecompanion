@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "capturedOn": "2026-08-11",
+  "status": "review-evidence-only",
+  "writeAuthorization": false,
+  "sources": [
+    {
+      "key": "kodiaqFirstPhev2024",
+      "url": "https://www.skoda-storyboard.com/en/press-kits/skoda-kodiaq-press-kit/powertrains-more-efficient-than-ever-with-plug-in-and-mild-hybrid-technology-a-first-for-the-kodiaq/",
+      "localCaptureFile": "data/known-issue-skoda-evidence-2026-08-11/kodiaq-first-phev-2024.html",
+      "captureMethod": "official Skoda Storyboard page opened, downloaded and SHA-256 pinned",
+      "binary": {
+        "bytes": 147990,
+        "sha256": "e12ea83cd841b8be9be3be8a5d7ae2b967a0698a7c504d357276464807ffca1e"
+      },
+      "requiredText": [
+        "For the first time, the Kodiaq is also available with plug-in and mild-hybrid technology.",
+        "As the first ever Kodiaq plug-in hybrid",
+        "1.5 TSI"
+      ],
+      "facts": {
+        "publishedOn": "2024-04-08",
+        "generation": "second-generation Kodiaq",
+        "identityBoundary": "The first Kodiaq plug-in hybrid is the second-generation Kodiaq iV introduced for 2024.",
+        "powertrain": "1.5 TSI plug-in hybrid",
+        "conflict": "The frozen 2020-2023 Kodiaq iV row claims a 1.4 TSI iV PHEV that did not exist in that vehicle scope."
+      },
+      "associatedRows": [
+        "skoda-kodiaq-iv-battery"
+      ],
+      "decisionUse": "conflict-only; no rewrite under the frozen indexed identity"
+    },
+    {
+      "key": "skodaServiceMaintenance2023",
+      "url": "https://www.skoda-auto.com/_doc/eb5dd7a6-8c4c-4376-a719-799ed4f87427",
+      "localCaptureFile": "data/known-issue-skoda-evidence-2026-08-11/skoda-service-maintenance-2023.pdf",
+      "extractedTextFile": "data/known-issue-skoda-evidence-2026-08-11/skoda-service-maintenance-2023-page-4.txt",
+      "extractedTextSha256": "a619f7bc684b85ae4ca41c203928d462df19ab78a6dcf4fe5751f1ec3d8ca9f6",
+      "captureMethod": "official Skoda Service and Maintenance PDF downloaded and SHA-256 pinned; PDF page 4 text inspected",
+      "binary": {
+        "bytes": 751303,
+        "sha256": "1f81a84375f8aa9524bedaaff848979991ea80e8faa6c803610329eafa5bdc66"
+      },
+      "page": {
+        "pdfPage": 4,
+        "printedPage": 3,
+        "requiredText": [
+          "Haldex clutch oil (4WD cars)",
+          "Every 3 years"
+        ]
+      },
+      "facts": {
+        "supportedBoundary": "The captured general Skoda maintenance package lists Haldex clutch oil for 4WD cars every three years.",
+        "notEstablished": "It does not establish the frozen Yeti-wide 30,000-mile/40,000-km interval, a filter replacement, failure prevalence, or the frozen repair costs."
+      },
+      "associatedRows": [
+        "skoda-yeti-haldex-coupling"
+      ],
+      "decisionUse": "scope-boundary-only; no rewrite under the frozen indexed identity"
+    }
+  ]
+}
