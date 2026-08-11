@@ -4,7 +4,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const test = require('node:test');
 const config = require('./volvo-hold-audit-config');
-const { assertSnapshot, buildAudit, writeAudit } = require('./build-conservative-make-hold-audit');
+const { assertSnapshot, buildAudit, buildReviewedTree, writeAudit } = require('./build-conservative-make-hold-audit');
 const { hashValue } = require('./known-issue-adjudication-utils');
 const { validateAudit } = require('./validate-conservative-make-hold-audit');
 
@@ -16,6 +16,20 @@ test('covers all 180 live Volvo rows with compact byte-identical holds', () => {
   assert.deepEqual(audit.summary, { models: 28, rows: 180, retained: 0, held: 180, pagesPreservedPublished: 180, authorizedWriteCandidates: 0 });
   assert.equal(audit.decisions.every((row) => !('before' in row) && !('proposal' in row) && row.beforeSha256 === row.proposalSha256 && row.changedFields.length === 0), true);
   assert.deepEqual(validateAudit(config, audit), []);
+});
+
+
+test('reviewed-tree provenance explicitly binds the canonical applicator and its mutations', () => {
+  const tree = buildReviewedTree(config);
+  const files = tree.files.map((entry) => entry.file);
+  assert.equal(files.includes('scripts/apply-known-issue-catalog-deeplinks.js'), true);
+  assert.equal(files.includes('scripts/apply-known-issue-catalog-deeplinks.test.js'), true);
+  assert.equal(files.includes('scripts/volvo-hold-audit-config.js'), true);
+  assert.equal(files.includes('data/_volvo-deeplink-snapshot-candidate-2026-08-11.json'), false);
+  assert.equal(tree.files.every((entry) => /^[a-f0-9]{64}$/.test(entry.normalizedSha256)), true);
+  assert.deepEqual(buildAudit(config).provenance.reviewedTree, tree);
+  const duplicate = { ...config, reviewedFiles: [...config.reviewedFiles, config.reviewedFiles[0]] };
+  assert.throws(() => buildReviewedTree(duplicate), /allowlist contains duplicates/);
 });
 
 test('snapshot contract rejects rehashed, balanced and substituted caller objects', () => {

@@ -22,6 +22,7 @@ Account for every Volvo known-issue page without changing an indexed identity or
 - Risk signals expose uncited/invalid citations, applicability prose, owner-language/counts, commerce, and exact model/title duplicates.
 - Routing records 174 rows with no exact selectable-trim overlap, but zero rows hidden for every selectable trim; these findings authorize no silent metadata rewrite.
 - Mutation tests, validators, ESLint, TypeScript, and diff checks pass before local commit.
+- Explicit reviewed-tree provenance binds the canonical full-record applicator and its regression tests; the validated local-state loader is deterministic across repeated runs and never rewrites reconciliation.
 
 ## Release note
 
@@ -30,7 +31,7 @@ This make has no catalog write manifest. Its artifacts will join the final remai
 ## Verification
 
 - Deterministic Volvo, Volkswagen, Toyota, and Triumph validators: passed.
-- Generic, Volvo, and live-verifier mutation suite: 18/18 passed.
+- Canonical applicator, generic, Volvo, and live-verifier mutation suite: 59/59 passed, including object/null/scalar/number JSON container mutations for citations, community recommendations, and fix parts.
 - Read-only live verification: passed at 7,642 global published rows, 180 published Volvo rows, three archived Volvo rows, exact IDs/models/statuses, and zero substantive full-record drift. Eighteen rows contain only mutable `communityRecommendations[*].clickCount` telemetry drift; URLs, content, parts, and all other commerce fields remain frozen.
 - Targeted ESLint: passed.
 - TypeScript no-emit with incremental output disabled: passed.
@@ -43,3 +44,5 @@ This make has no catalog write manifest. Its artifacts will join the final remai
 3. `data/known-issue-volvo-make-audit-2026-08-11.json`
 4. `data/_volvo-status-inventory-2026-08-11.json`
 5. `scripts/verify-volvo-all-hold-live.js`
+6. `scripts/apply-known-issue-catalog-deeplinks.js`
+7. `scripts/apply-known-issue-catalog-deeplinks.test.js`

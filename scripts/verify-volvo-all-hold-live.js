@@ -114,10 +114,17 @@ async function verifyVolvoAllHoldLive(pool, audit, snapshot, statusInventory) {
   }
 }
 
+function loadValidatedLocalAuditState(fileSystem = fs) {
+  const audit = JSON.parse(fileSystem.readFileSync(resolveRepo(config.outputFile), 'utf8'));
+  const snapshot = JSON.parse(fileSystem.readFileSync(resolveRepo(config.snapshotFile), 'utf8'));
+  const statusInventory = JSON.parse(fileSystem.readFileSync(resolveRepo(STATUS_INVENTORY_FILE), 'utf8'));
+  assertSnapshot(config, snapshot);
+  assertLocalPlan(audit);
+  return { audit, snapshot, statusInventory };
+}
+
 async function main() {
-  const audit = JSON.parse(fs.readFileSync(resolveRepo(config.outputFile), 'utf8'));
-  const snapshot = JSON.parse(fs.readFileSync(resolveRepo(config.snapshotFile), 'utf8'));
-  const statusInventory = JSON.parse(fs.readFileSync(resolveRepo(STATUS_INVENTORY_FILE), 'utf8'));
+  const { audit, snapshot, statusInventory } = loadValidatedLocalAuditState();
   const { Pool } = require('pg');
   const pool = new Pool({ connectionString: resolveKnownIssueConnectionString(), max: 1, idleTimeoutMillis: 30000 });
   try {
@@ -136,6 +143,7 @@ module.exports = {
   assertLocalPlan,
   comparableFullRecord,
   evaluateLiveInventory,
+  loadValidatedLocalAuditState,
   stripMutableClickCount,
   verifyVolvoAllHoldLive,
 };

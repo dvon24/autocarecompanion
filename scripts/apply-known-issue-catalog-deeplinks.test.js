@@ -385,7 +385,7 @@ test('full-record projection preserves invalid Prisma JSON container shapes and 
   row.fixParts = [];
   const manifest = fullRecordManifest(row, 'json-container-shapes', 'no-commerce');
   const cleanAfter = { id: row.id, ...manifest.issues[0].after };
-  const invalidContainers = [{ invalid: true }, null, 'invalid-container'];
+  const invalidContainers = [{ invalid: true }, null, 'invalid-container', 17];
 
   for (const field of ['citations', 'communityRecommendations', 'fixParts']) {
     for (const invalidContainer of invalidContainers) {
@@ -398,7 +398,7 @@ test('full-record projection preserves invalid Prisma JSON container shapes and 
 
 test('full-record projection preserves invalid typed-array container shapes', () => {
   const row = baseRow();
-  const invalidContainers = [{ invalid: true }, null, 'invalid-container'];
+  const invalidContainers = [{ invalid: true }, null, 'invalid-container', 17];
   for (const field of ['years', 'trims', 'engines', 'symptoms', 'affectedSystems', 'dtcCodes', 'relatedIssueIds']) {
     for (const invalidContainer of invalidContainers) {
       assert.deepEqual(fullRecordSnapshot({ ...row, [field]: invalidContainer })[field], invalidContainer, `${field} must preserve ${JSON.stringify(invalidContainer)}`);

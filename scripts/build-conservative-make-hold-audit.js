@@ -19,6 +19,18 @@ function equal(left, right) { return JSON.stringify(stableValue(left)) === JSON.
 function normalizeMake(value) { return String(value || '').normalize('NFKD').replace(/\p{M}/gu, '').trim().toLowerCase(); }
 function sortedObject(value) { return Object.fromEntries(Object.entries(value).sort(([a], [b]) => a.localeCompare(b))); }
 
+function buildReviewedTree(config) {
+  if (!Array.isArray(config.reviewedFiles) || config.reviewedFiles.length === 0) return null;
+  const names = [...new Set(config.reviewedFiles)].sort();
+  if (names.length !== config.reviewedFiles.length) throw new Error(`${config.make} reviewed file allowlist contains duplicates`);
+  const files = names.map((file) => {
+    const absolute = resolveRepo(file);
+    if (!fs.statSync(absolute).isFile()) throw new Error(`${config.make} reviewed artifact is not a file: ${file}`);
+    return { file, normalizedSha256: normalizedFileHash(absolute) };
+  });
+  return { files, sha256: hashValue(files) };
+}
+
 function assertSnapshot(config, snapshot) {
   const absolute = resolveRepo(config.snapshotFile);
   const pinnedSource = fs.readFileSync(absolute, 'utf8');
@@ -147,6 +159,7 @@ function buildAudit(config) {
     if (!reference.file || !reference.normalizedSha256) throw new Error(`${config.make} additional audit reference is incomplete`);
     if (normalizedFileHash(resolveRepo(reference.file)) !== reference.normalizedSha256) throw new Error(`${config.make} additional audit reference drifted: ${reference.file}`);
   }
+  const reviewedTree = buildReviewedTree(config);
   const decisions = rows.map((row) => {
     const before = fullRecord(row);
     const proposal = clone(before);
@@ -185,6 +198,7 @@ function buildAudit(config) {
       secretValuesRecorded: false,
       globalPublishedCountAtFreeze: config.expectedGlobalPublishedAtFreeze,
     },
+    ...(reviewedTree ? { provenance: { artifactScope: 'explicit-reviewed-artifact-allowlist', reviewedTree } } : {}),
     ...(Array.isArray(config.additionalAuditReferences) && config.additionalAuditReferences.length
       ? { additionalAuditReferences: clone(config.additionalAuditReferences) }
       : {}),
@@ -226,4 +240,4 @@ if (require.main === module) {
   console.log(JSON.stringify({ output: config.outputFile, summary: audit.summary, routing: audit.routing.summary, applicationGate: audit.applicationGate.status }, null, 2));
 }
 
-module.exports = { ACTION, assertSnapshot, buildAudit, buildRiskSignals, buildRouting, isSearchLikeUrl, normalizeMake, sourceInspection, writeAudit };
+module.exports = { ACTION, assertSnapshot, buildAudit, buildReviewedTree, buildRiskSignals, buildRouting, isSearchLikeUrl, normalizeMake, sourceInspection, writeAudit };
