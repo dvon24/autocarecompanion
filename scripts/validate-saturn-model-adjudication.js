@@ -14,7 +14,7 @@ function resolveRepo(file) { return path.resolve(__dirname, '..', file); }
 function equal(left, right) { return JSON.stringify(stableValue(left)) === JSON.stringify(stableValue(right)); }
 function prose(row) { return `${row?.description || ''} ${row?.solution || ''}`; }
 function searchStyle(url) { return /[?&](?:q|query|search|keyword)=|\/search(?:\/|\?|$)|\/s\?/i.test(String(url)); }
-function official(url) { return /^https:\/\/(?:static\.nhtsa\.gov|www\.nhtsa\.gov|nhtsa\.gov|experience\.gm\.com)\//i.test(String(url)); }
+function official(url) { return /^https:\/\/(?:static\.nhtsa\.gov|www\.nhtsa\.gov|nhtsa\.gov|experience\.gm\.com|www\.gmc\.com\/ownercenter)\//i.test(String(url)); }
 
 function validatePacket(contract, packet, snapshot) {
   const errors = [];

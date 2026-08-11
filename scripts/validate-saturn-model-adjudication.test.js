@@ -101,6 +101,26 @@ test('S-Series packet holds all three mismatched identities without trusting pri
   });
 });
 
+test('Vue packet covers all nine pages and blocks the four over-broad identities', () => {
+  const { contract, packet, snapshot } = buildForModel('Vue');
+  assert.deepEqual(validatePacket(contract, packet, snapshot), []);
+  assert.deepEqual(packet.summary, {
+    retain_indexed_identity_and_accuracy_cleanup: 5,
+    hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy: 4,
+    fabricated_report_counts_proposed_zero: 0,
+    pages_preserved_published: 9,
+    total: 9,
+  });
+  assert.match(
+    packet.rows.find((row) => row.id === 'saturn-vue-3-6l-high-feature-v6-timing-chain-stretch').proposal.description,
+    /must not be replaced automatically/,
+  );
+  assert.equal(
+    packet.rows.find((row) => row.id === 'saturn-vue-vti-cvt-failure').proposal.status,
+    'published',
+  );
+});
+
 test('validator rejects a held page becoming unpublished', () => {
   const { contract, packet, snapshot } = buildForModel('Astra');
   const changed = clone(packet);
