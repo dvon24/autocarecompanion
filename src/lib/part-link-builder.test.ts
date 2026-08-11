@@ -6,7 +6,7 @@ const ebayUrl = 'https://www.ebay.com/itm/227028512551';
 const retailerUrl = 'https://www.bmwpartsdeal.com/parts/bmw-repair_kit_valve_seal_ring-11340054492.html';
 
 const resolverReturning = (candidates: Array<{ vendor: string; url: string }>): LinkResolver =>
-  async () => candidates.map((c) => ({ ...c, via: 'test' }));
+  async (input) => candidates.map((c) => ({ ...c, via: 'test', matchedPartNumber: input.partNumber }));
 
 test('accepts a real product URL and tags it', () => {
   const link = acceptCandidate({ vendor: 'eBay', url: ebayUrl, via: 'ebay-browse' });
@@ -71,6 +71,13 @@ test('a throwing resolver is skipped, not fatal, and later ones still run', asyn
   const throwing: LinkResolver = async () => { throw new Error('eBay down'); };
   const links = await buildPartLinks({ partNumber: 'X' }, [throwing, resolverReturning([{ vendor: 'eBay', url: ebayUrl }])]);
   assert.equal(links.length, 1);
+});
+
+test('rejects a product URL whose resolver identity does not match the requested part', async () => {
+  const resolver: LinkResolver = async () => [{
+    vendor: 'eBay', url: ebayUrl, via: 'test', matchedPartNumber: 'WRONG-123',
+  }];
+  assert.deepEqual(await buildPartLinks({ partNumber: 'RIGHT-456' }, [resolver]), []);
 });
 
 test('respects maxLinks', async () => {

@@ -111,18 +111,21 @@ const named = (rows, name) => rows.find((r) => norm(r.data) === norm(name));
 // Order matters: the first pattern that matches wins, so the classes whose
 // catalog stem is NOT just their letter have to be listed before the general rule.
 const MODEL_ALIASES = [
-  [/^mclass$/, () => 'ml'],                    // M-Class → ML350, ML63 AMG
-  [/^([a-z]+)class$/, (m) => m[1]],            // C-Class → C180, C300, C63 AMG
-  [/^slkslc$/, () => 'slk'],                   // SLK/SLC → SLK250 (SLC is the later rename)
-  [/^hardbody$/, () => 'pickup'],              // Nissan's nickname for the D21
+  { pattern: /^mclass$/, resolve: () => ({ stems: ['ml'], numericOnly: false }) },
+  // C-Class variants begin with a number. Without this boundary, the `c` alias
+  // also swallowed CL and CLS, which are different vehicles.
+  { pattern: /^([a-z]+)class$/, resolve: (m) => ({ stems: [m[1]], numericOnly: true }) },
+  // The later SLC rename is a separate catalog stem, not an SLK suffix.
+  { pattern: /^slkslc$/, resolve: () => ({ stems: ['slk', 'slc'], numericOnly: false }) },
+  { pattern: /^hardbody$/, resolve: () => ({ stems: ['pickup'], numericOnly: false }) },
 ];
 
 function aliasFor(w) {
-  for (const [pattern, resolve] of MODEL_ALIASES) {
+  for (const { pattern, resolve } of MODEL_ALIASES) {
     const m = pattern.exec(w);
     if (m) return resolve(m);
   }
-  return '';
+  return null;
 }
 
 /** Does the catalog's token run appear contiguously inside ours, or ours in theirs? */
@@ -163,9 +166,11 @@ function resolveModels(models, wanted, make) {
   // letter suffix (IS F). It must not be allowed to begin with letters: "C" was
   // matching CL500 and CLS350, which are different cars entirely.
   const isVariantSuffix = (rest) => /^[0-9]{1,4}[a-z]{0,4}$/.test(rest) || /^[a-z]{1,2}$/.test(rest);
-  const familyOf = (stem) => models.filter((m) => {
+  const familyOf = (stem, numericOnly = false) => models.filter((m) => {
     const c = norm(m.data);
-    return c.startsWith(stem) && c !== stem && isVariantSuffix(c.slice(stem.length));
+    const rest = c.slice(stem.length);
+    return c.startsWith(stem) && c !== stem
+      && (numericOnly ? /^[0-9]{1,4}[a-z]{0,4}$/.test(rest) : isVariantSuffix(rest));
   });
 
   const family = familyOf(w);
@@ -174,7 +179,8 @@ function resolveModels(models, wanted, make) {
   // A naming convention the catalog does not share ("C-Class" → C180…C63 AMG).
   const alias = aliasFor(w);
   if (alias) {
-    const hit = models.filter((m) => norm(m.data) === alias).concat(familyOf(alias));
+    const hit = alias.stems.flatMap((stem) =>
+      models.filter((m) => norm(m.data) === stem).concat(familyOf(stem, alias.numericOnly)));
     if (hit.length) return { rows: hit, kind: `catalog naming (${wanted} → ${hit.map((m) => m.data).join(', ')})` };
   }
 
@@ -301,11 +307,14 @@ async function fittingPartsForModel({ year, makeRow, modelRow, productMatch, eng
   // gasket is filed under gaskets, not engine components), and the category
   // set is per-vehicle, so one that exists on one model is absent on another.
   const wanted = Array.isArray(productMatch) ? productMatch : [productMatch];
-  let selectedProducts = [];
-  let usedCategory = '';
+  const selectedProducts = [];
   for (const candidate of wanted) {
     const hit = candidate ? products.filter((p) => matchesAllTokens(p.data, candidate)) : products;
-    if (hit.length) { selectedProducts = hit; usedCategory = candidate; break; }
+    for (const product of hit) {
+      if (!selectedProducts.some((entry) => entry.product.id === product.id)) {
+        selectedProducts.push({ product, category: candidate });
+      }
+    }
   }
   if (selectedProducts.length === 0) {
     return { covered: false, reason: `no product category matching ${JSON.stringify(wanted)}`, parts: [] };
@@ -316,7 +325,7 @@ async function fittingPartsForModel({ year, makeRow, modelRow, productMatch, eng
   // catalog calls for nothing — they are all cached anyway.
   const pool = [];
   let rawCount = 0;
-  for (const product of selectedProducts) {
+  for (const { product, category } of selectedProducts) {
     const engines = await lookup(
       `engines:${year}:${makeRow.id}:${modelRow.id}:${product.id}`,
       { lookup: 'engine', year, make: makeRow.id, model: modelRow.id, product: product.id }, 'engine',
@@ -331,7 +340,7 @@ async function fittingPartsForModel({ year, makeRow, modelRow, productMatch, eng
       // "the catalog covers this vehicle and our part is not in it" from "our
       // part-type filter matched nothing" — only the first is evidence.
       rawCount += parts.length;
-      for (const part of parts) pool.push({ part, engine, product });
+      for (const part of parts) pool.push({ part, engine, product, category });
     }
   }
 
@@ -357,6 +366,7 @@ async function fittingPartsForModel({ year, makeRow, modelRow, productMatch, eng
       engine: engine.data,
     };
   });
+  const usedCategory = matched[0]?.category || selectedProducts[0]?.category || '';
   return { covered: true, reason: '', parts: out, rawCount, usedCategory, usedTier };
 }
 
@@ -411,6 +421,7 @@ async function verifyEntry(entry, yearCap) {
       partType: p.partType,
       brand: p.brand,
       engine: p.engine,
+      catalogModel: p.catalogModel,
     }));
     if (result.parts.some((p) => normalizePn(p.partNumber) === target)) fitmentYears.push(year);
   }
@@ -433,6 +444,9 @@ async function verifyEntry(entry, yearCap) {
     yearsChecked: years,
     // Empty when the article's own wording matched the catalog as written.
     partTypeTierUsed,
+    partTypeMatch: entry.partTypeMatch,
+    mappedFrom: entry.mappedFrom,
+    engineMatch: entry.engineMatch || null,
     candidatesByYear,
     notes,
   };

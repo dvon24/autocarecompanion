@@ -26,12 +26,17 @@ import { formatYearRange } from '../src/lib/known-issue-part-fitment';
 
 config({ path: '.env.local' });
 
+type FitmentCandidate = PartCandidate & { catalogModel?: string };
+
 interface Verdict {
   id: string;
   vehicle: string;
   verdict: string;
   yearsChecked: number[];
-  candidatesByYear: Record<string, PartCandidate[] | string[]>;
+  candidatesByYear: Record<string, FitmentCandidate[] | string[]>;
+  partTypeMatch?: string;
+  mappedFrom?: string;
+  engineMatch?: string | null;
   /** Set by the fitment pass when the part-type query had to be loosened. */
   partTypeTierUsed?: string;
   notes?: string[];
@@ -109,7 +114,7 @@ function qualifiersAppearInArticle(partType: string, article: string): boolean {
 function partTypeIsRelevant(partType: string, target: string): boolean {
   const type = String(partType || '').toLowerCase();
   const tokens = String(target || '').toLowerCase().split(/\s+/).filter(Boolean);
-  if (tokens.length === 0) return true;
+  if (tokens.length === 0) return false;
   // Every word the article asked for must appear — "fuel pump" cannot match a
   // part type that never says fuel.
   if (!tokens.every((t) => type.includes(t))) return false;
@@ -136,21 +141,6 @@ function partTypeIsRelevant(partType: string, target: string): boolean {
  * heads looking for a water pump. It is 19% of entries and nearly all of the
  * observed errors, so it is excluded from proposals by default.
  */
-function loadTargets(): Map<string, { partTypeMatch: string; mappedFrom?: string }> {
-  const targets = new Map<string, { partTypeMatch: string; mappedFrom?: string }>();
-  for (const file of fs.readdirSync('data')) {
-    if (!/-fitment-input\.json$/.test(file)) continue;
-    try {
-      const rows = JSON.parse(fs.readFileSync(`data/${file}`, 'utf8')) as Array<{ id: string; partTypeMatch: string; mappedFrom?: string }>;
-      for (const r of rows) targets.set(r.id, { partTypeMatch: r.partTypeMatch, mappedFrom: r.mappedFrom });
-    } catch { /* a malformed worklist should not take the whole run down */ }
-  }
-  return targets;
-}
-const TARGETS = loadTargets();
-/** --include-solution-derived opts the risky tier back in, for review tooling. */
-const INCLUDE_SOLUTION_DERIVED = process.argv.includes('--include-solution-derived');
-
 /**
  * id -> title + solution, the evidence a candidate's qualifiers are checked
  * against. Loaded once up front; a failure here degrades to "no article text",
@@ -193,26 +183,34 @@ for (const file of inputs) {
     // A part confirmed in 2009 and 2013 but not 2011 keeps that shape rather
     // than being smoothed into a range it was never tested across.
     const yearsByPart = new Map<string, Set<number>>();
-    const candidateByKey = new Map<string, PartCandidate>();
+    const modelsByPart = new Map<string, Set<string>>();
+    const candidateByKey = new Map<string, FitmentCandidate>();
     for (const [year, list] of Object.entries(r.candidatesByYear || {})) {
-      for (const entry of list as Array<PartCandidate | string>) {
+      for (const entry of list as Array<FitmentCandidate | string>) {
         if (typeof entry === 'string') { structuredMissing++; continue; }
         const key = `${entry.supplier}|${entry.partNumber}`.toLowerCase();
         if (!yearsByPart.has(key)) yearsByPart.set(key, new Set());
         yearsByPart.get(key)!.add(Number(year));
+        if (entry.catalogModel) {
+          if (!modelsByPart.has(key)) modelsByPart.set(key, new Set());
+          modelsByPart.get(key)!.add(entry.catalogModel);
+        }
         if (!candidateByKey.has(key)) candidateByKey.set(key, entry);
       }
     }
     if (candidateByKey.size === 0) { skipped['no-structured-candidates'] = (skipped['no-structured-candidates'] || 0) + 1; continue; }
 
-    const entry = TARGETS.get(r.id);
-    if (!INCLUDE_SOLUTION_DERIVED && entry?.mappedFrom === 'solution') {
-      skipped['solution-derived (needs review)'] = (skipped['solution-derived (needs review)'] || 0) + 1;
+    if (!r.partTypeMatch || !['title', 'prescription'].includes(r.mappedFrom || '')) {
+      skipped['missing-or-risky-source-metadata'] = (skipped['missing-or-risky-source-metadata'] || 0) + 1;
       continue;
     }
     // Drop anything whose part_type is not actually the component in question.
-    const target = entry?.partTypeMatch || '';
+    const target = r.partTypeMatch;
     const articleText = ARTICLE.get(r.id) || '';
+    if (!articleText) {
+      skipped['missing-article-text'] = (skipped['missing-article-text'] || 0) + 1;
+      continue;
+    }
 
     /**
      * Some articles explicitly tell the reader NOT to buy a part from the page,
@@ -223,7 +221,7 @@ for (const file of inputs) {
      * Attaching a buy button to such a page contradicts its own instruction, so
      * the article's judgment wins over the catalog's.
      */
-    if (/(do not|don'?t|never)\s+(buy|purchase|order)/i.test(articleText)) {
+    if (/\b(do not|don'?t|never)\s+(buy|purchase|order)\b/i.test(articleText)) {
       skipped['article says do not buy'] = (skipped['article says do not buy'] || 0) + 1;
       continue;
     }
@@ -270,15 +268,21 @@ for (const file of inputs) {
 
     // Engine comes from the candidates themselves — the verifier already scoped
     // the query by engine where the article named one.
-    const engine = [...candidateByKey.values()].map((c) => c.engine).find(Boolean) || null;
+    // Do not invent engine scope from API ordering. An unscoped article remains
+    // unscoped even when the catalog returned candidates for several engines.
+    const engine = r.engineMatch || null;
     const { primary, alternate, consideredCount } = recommendParts([...candidateByKey.values()], { engine });
     if (!primary) { skipped['no-primary'] = (skipped['no-primary'] || 0) + 1; continue; }
 
     // The catalog occasionally carries a placeholder where a part number should
     // be — "N/R" (no reference) among them. It is not orderable, not linkable,
     // and putting it on a page states a part number that does not exist.
-    const PLACEHOLDER = /^(n\/?r|n\/?a|none|null|tbd|-+)$/i;
-    if (!primary.partNumber || PLACEHOLDER.test(primary.partNumber.trim()) || primary.partNumber.trim().length < 3) {
+    const PLACEHOLDER = /^(n\/?r|n\/?a|none|null|tbd|unknown|-+)$/i;
+    const validPartNumber = (value?: string | null) => {
+      const normalized = String(value || '').trim();
+      return normalized.length >= 3 && !PLACEHOLDER.test(normalized);
+    };
+    if (!validPartNumber(primary.partNumber)) {
       skipped['placeholder-part-number'] = (skipped['placeholder-part-number'] || 0) + 1;
       continue;
     }
@@ -290,6 +294,8 @@ for (const file of inputs) {
 
     const toPart = (p: NonNullable<typeof primary>, role: 'primary' | 'alternate') => {
       const years = scopeFor(p.supplier, p.partNumber);
+      const key = `${p.supplier}|${p.partNumber}`.toLowerCase();
+      const catalogModels = [...(modelsByPart.get(key) || [])].sort();
       return {
         role,
         component: p.partType || 'Replacement part',
@@ -304,6 +310,7 @@ for (const file of inputs) {
           'Fitment only — repair role not established.',
         ].filter(Boolean).join(' '),
         fitment: { years, ...(engine ? { engines: [engine] } : {}) },
+        ...(catalogModels.length ? { catalogModels } : {}),
         buyLinks: [],
         verified: false,
         provenance: 'ShowMeTheParts catalog fitment lookup by year and engine',
@@ -329,7 +336,10 @@ for (const file of inputs) {
       ...(r.notes?.some((n) => /model resolved by/.test(n))
         ? { modelResolvedBy: r.notes.find((n) => /model resolved by/.test(n))?.replace(/^\d+: /, '') }
         : {}),
-      parts: [toPart(primary, 'primary'), ...(alternate ? [toPart(alternate, 'alternate')] : [])],
+      parts: [
+        toPart(primary, 'primary'),
+        ...(alternate && validPartNumber(alternate.partNumber) ? [toPart(alternate, 'alternate')] : []),
+      ],
     });
   }
 }

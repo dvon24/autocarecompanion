@@ -108,7 +108,9 @@ export const diagnosticTools: DiagnosticTool[] = [
       'Smog check readiness',
       'Free app (iOS & Android)',
     ],
-    codeFamilies: ['P', 'B', 'C', 'U'],
+    // Enhanced coverage is vehicle-specific. Treat only generic powertrain as
+    // guaranteed here; the UI must not promise body/chassis/network coverage.
+    codeFamilies: ['P'],
     procedures: ['scan-codes'],
     tier: 'midrange',
     productUrl: 'https://www.amazon.com/BlueDriver-Bluetooth-Professional-iPhone-Android/dp/B00652G4TS?tag=au7o-20',
@@ -128,7 +130,10 @@ export const diagnosticTools: DiagnosticTool[] = [
       'AutoVIN for vehicle identification',
       'Free lifetime updates via Wi-Fi',
     ],
-    codeFamilies: ['P', 'B', 'C', 'U'],
+    // Four named modules are not equivalent to every B/C/U module. Keep the
+    // conservative generic guarantee and require a true all-system tool below
+    // for non-powertrain families.
+    codeFamilies: ['P'],
     procedures: ['scan-codes'],
     tier: 'advanced',
     productUrl: 'https://www.amazon.com/CRP123X-Lifetime-Calibration-Throttle-Diagnostic/dp/B07RLF8FBC?tag=au7o-20',
@@ -208,10 +213,20 @@ export function scannersForCodeFamily(family: CodeFamily): DiagnosticTool[] {
     .sort((a, b) => a.priceAnchor - b.priceAnchor);
 }
 
+/** Scanners that support every required family, cheapest first. */
+export function scannersForCodeFamilies(families: CodeFamily[]): DiagnosticTool[] {
+  const required = [...new Set(families)];
+  if (required.length === 0) return [];
+  return diagnosticTools
+    .filter((t) => t.kind === 'scanner' && required.every((family) => t.codeFamilies.includes(family)))
+    .sort((a, b) => a.priceAnchor - b.priceAnchor);
+}
+
 /** The code family of a DTC string, defaulting to powertrain for odd formats. */
-export function codeFamilyOf(code: string): CodeFamily {
+export function codeFamilyOf(code: string): CodeFamily | null {
   const first = String(code || '').trim().toUpperCase()[0];
-  return first === 'B' || first === 'C' || first === 'U' ? first : 'P';
+  if (first === 'P' || first === 'B' || first === 'C' || first === 'U') return first;
+  return null;
 }
 
 /**
@@ -221,11 +236,9 @@ export function codeFamilyOf(code: string): CodeFamily {
 const PROCEDURE_PATTERNS: Array<[Procedure, RegExp]> = [
   ['parasitic-draw', /\bparasitic (?:draw|drain)\b|\bcurrent draw test\b/i],
   ['battery-load-test', /\bbattery (?:state[- ]of[- ]health|load test|capacity test)\b|\bload test(?:ing)? the battery\b/i],
-  ['smoke-test', /\bsmoke (?:test|machine)\b/i],
-  ['fuel-pressure', /\bfuel[- ]pressure (?:test|gauge)\b/i],
-  ['compression-test', /\bcompression test\b|\bleak[- ]?down test\b/i],
-  ['cooling-pressure-test', /\bcooling[- ]system pressure test\b|\bpressure[- ]test the (?:cooling|radiator)\b/i],
-  ['scan-codes', /\bscan tool\b|\bscanner\b|\bread (?:the )?(?:stored )?codes\b/i],
+  // Unsupported procedures intentionally have no matcher until a verified tool
+  // exists. Recognizing them while rendering nothing creates false coverage.
+  ['scan-codes', /\b(?:use|connect|diagnose with) (?:an? )?(?:scan tool|scanner)\b|\b(?:read|retrieve|scan for) (?:the )?(?:stored )?(?:fault )?codes\b/i],
 ];
 
 export function proceduresInSolution(solution: string): Procedure[] {
@@ -234,9 +247,13 @@ export function proceduresInSolution(solution: string): Procedure[] {
 }
 
 /** Tools for a set of procedures, cheapest first, deduped. */
-export function toolsForProcedures(procedures: Procedure[]): DiagnosticTool[] {
+export function toolsForProcedures(procedures: Procedure[], families: CodeFamily[] = []): DiagnosticTool[] {
   const wanted = new Set(procedures);
   return diagnosticTools
-    .filter((t) => t.procedures.some((p) => wanted.has(p)))
+    .filter((t) => {
+      if (!t.procedures.some((p) => wanted.has(p))) return false;
+      if (t.kind !== 'scanner') return true;
+      return families.length > 0 && families.every((family) => t.codeFamilies.includes(family));
+    })
     .sort((a, b) => a.priceAnchor - b.priceAnchor);
 }

@@ -31,6 +31,8 @@ export interface LinkCandidate {
   url: string;
   /** How this URL was obtained — carried through to the stored record. */
   via: string;
+  /** Part identity observed by the resolver on the destination/listing. */
+  matchedPartNumber?: string;
 }
 
 export interface BuiltLink {
@@ -119,6 +121,11 @@ export async function buildPartLinks(
       continue; // a resolver failing is not a reason to emit a worse link
     }
     for (const candidate of candidates) {
+      const expectedPartNumber = input.partNumber.toLowerCase().replace(/[^a-z0-9]/g, '');
+      const matchedPartNumber = String(candidate.matchedPartNumber || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+      // URL shape proves only that this is a product page. The resolver must
+      // also return identity evidence tying that listing to the requested PN.
+      if (!matchedPartNumber || matchedPartNumber !== expectedPartNumber) continue;
       const link = acceptCandidate(candidate);
       if (!link) continue;
       const vendorKey = link.vendor.toLowerCase();

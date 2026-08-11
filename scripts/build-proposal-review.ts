@@ -16,14 +16,19 @@
 import { config } from 'dotenv';
 import fs from 'fs';
 import { Pool } from 'pg';
+import { formatYearRange } from '../src/lib/known-issue-part-fitment';
 
 config({ path: '.env.local' });
 
 interface Part {
   role: string; component: string; supplier: string; aftermarketPartNumber: string;
   supplierTier: string; fitment?: { years?: number[]; engines?: string[] };
+  catalogModels?: string[];
 }
-interface Proposal { id: string; vehicle: string; consideredCount: number; parts: Part[] }
+interface Proposal {
+  id: string; vehicle: string; consideredCount: number; parts: Part[];
+  partTypeRelaxedTo?: string; modelResolvedBy?: string;
+}
 
 (async () => {
   const doc = JSON.parse(fs.readFileSync('data/_part-proposals.json', 'utf8')) as { proposals: Proposal[] };
@@ -45,6 +50,8 @@ interface Proposal { id: string; vehicle: string; consideredCount: number; parts
     if (p.consideredCount > 25) score += 2;          // ambiguous part type
     if (p.consideredCount <= 2) score += 1;          // thin coverage
     if (!primary.fitment?.engines?.length) score += 1; // not engine-scoped
+    if (p.partTypeRelaxedTo) score += 2;
+    if (p.modelResolvedBy) score += 1;
     return score;
   };
 
@@ -81,15 +88,22 @@ interface Proposal { id: string; vehicle: string; consideredCount: number; parts
       const primary = p.parts[0]!;
       const alt = p.parts[1];
       const years = primary.fitment?.years?.length
-        ? `${Math.min(...primary.fitment.years)}-${Math.max(...primary.fitment.years)}`
+        ? formatYearRange(primary.fitment.years)
         : '';
       const engine = primary.fitment?.engines?.[0] || '';
+      const evidence = [
+        years,
+        engine,
+        primary.catalogModels?.length ? `catalog: ${primary.catalogModels.join(', ')}` : '',
+        p.partTypeRelaxedTo ? `relaxed: ${p.partTypeRelaxedTo}` : '',
+        p.modelResolvedBy || '',
+      ].filter(Boolean).join('; ');
       const flag = risk(p) >= 4 ? '⚠️' : '';
       out.push(
         `| ${flag} | ${(m?.title || p.id).replace(/\|/g, '/').slice(0, 72)} `
         + `| ${primary.supplier} \`${primary.aftermarketPartNumber}\` — ${primary.component} `
         + `| ${alt ? `${alt.supplier} \`${alt.aftermarketPartNumber}\`` : '—'} `
-        + `| ${years}${engine ? ` ${engine}` : ''} |`,
+        + `| ${evidence || 'unscoped'} |`,
       );
     }
   }

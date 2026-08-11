@@ -66,6 +66,8 @@ export const COMPONENT_CATALOG_MAP: ComponentMapping[] = [
 
   // ── cooling ──
   { pattern: /\bthermostat\b/i, productMatch: ['thermostat gasket housing', 'cooling system service'], partTypeMatch: 'thermostat' },
+  { pattern: /\bradiator support\b|\bcore support\b/i, productMatch: 'body', partTypeMatch: 'radiator support', engineIndependent: true },
+  { pattern: /\b(radiator fan|cooling fan)\b/i, productMatch: 'radiators coolers related components', partTypeMatch: 'fan', engineIndependent: true },
   { pattern: /\bradiator\b/i, productMatch: 'radiators coolers related components', partTypeMatch: 'radiator' },
   { pattern: /\b(coolant hose|radiator hose|heater hose)\b/i, productMatch: 'hoses pipes', partTypeMatch: 'hose' },
   { pattern: /\bintercooler\b/i, productMatch: 'radiators coolers related components', partTypeMatch: 'intercooler' },
@@ -191,8 +193,8 @@ export const COMPONENT_CATALOG_MAP: ComponentMapping[] = [
   { pattern: /\b(hub assembly|wheel hub)\b/i, productMatch: 'wheel bearings seals', partTypeMatch: 'hub', engineIndependent: true },
   { pattern: /\b(door handle)\b/i, productMatch: 'body-doors', partTypeMatch: 'door handle', engineIndependent: true },
   { pattern: /\b(headlight|headlamp)\b/i, productMatch: 'lighting - exterior', partTypeMatch: 'headlight', engineIndependent: true },
-  { pattern: /\b(radiator (support|fan)|cooling fan)\b/i, productMatch: 'radiators coolers related components', partTypeMatch: 'fan' },
-  { pattern: /\b(exhaust gas temperature|dpf|diesel particulate)\b/i, productMatch: 'sensors-exhaust', partTypeMatch: 'temperature sensor' },
+  { pattern: /\b(exhaust gas temperature|egt sensor)\b/i, productMatch: 'sensors-exhaust', partTypeMatch: 'temperature sensor' },
+  { pattern: /\b(dpf|diesel particulate filter)\b/i, productMatch: ['exhaust', 'catalytic converter'], partTypeMatch: 'particulate filter' },
 ];
 
 /** First match wins — see the ordering note above. */

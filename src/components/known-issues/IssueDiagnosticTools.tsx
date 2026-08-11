@@ -1,8 +1,9 @@
 import {
   proceduresInSolution,
   toolsForProcedures,
-  scannersForCodeFamily,
+  scannersForCodeFamilies,
   codeFamilyOf,
+  type CodeFamily,
   type DiagnosticTool,
 } from '@/data/diagnostic-tools';
 
@@ -34,21 +35,22 @@ interface IssueDiagnosticToolsProps {
 
 export function IssueDiagnosticTools({ solution, dtcCodes }: IssueDiagnosticToolsProps) {
   const procedures = proceduresInSolution(solution);
-  const tools: DiagnosticTool[] = [...toolsForProcedures(procedures)];
+  const families = [...new Set(
+    (dtcCodes || []).map(codeFamilyOf).filter((family): family is CodeFamily => family !== null),
+  )];
+  const tools: DiagnosticTool[] = [...toolsForProcedures(procedures, families)];
 
   // If the issue names codes, the reader also needs something that can READ
   // them — and for a body or network code that is emphatically not a $20 reader.
-  const families = [...new Set((dtcCodes || []).map(codeFamilyOf))];
-  const capable = families
-    .flatMap((f) => scannersForCodeFamily(f))
-    .sort((a, b) => a.priceAnchor - b.priceAnchor)[0];
+  const capable = scannersForCodeFamilies(families)[0];
   if (capable && !tools.some((t) => t.id === capable.id)) tools.push(capable);
 
   if (tools.length === 0) return null;
   const nonPowertrain = families.filter((f) => f !== 'P');
   // Whether the ARTICLE asked for a test, versus us offering a reader because
   // the page happens to name a code. The two justify different claims.
-  const matchedProcedure = procedures.length > 0;
+  const matchedProcedure = procedures.some((procedure) => procedure !== 'scan-codes');
+  const hasAffiliateLinks = tools.some((tool) => Boolean(tool.productUrl));
 
   return (
     <div className="rounded-lg border border-[#D8D1C3] bg-[#EFEDE6] p-3">
@@ -69,6 +71,11 @@ export function IssueDiagnosticTools({ solution, dtcCodes }: IssueDiagnosticTool
           <span className="mt-1 block text-[#64748B]">
             This issue involves {nonPowertrain.join('/')} codes, which a basic engine-code reader
             cannot see.
+          </span>
+        )}
+        {families.length > 0 && (
+          <span className="mt-1 block text-[#64748B]">
+            The recommended scanner supports these code families; confirm your exact year, model and module coverage before buying.
           </span>
         )}
       </p>
@@ -96,6 +103,12 @@ export function IssueDiagnosticTools({ solution, dtcCodes }: IssueDiagnosticTool
           </li>
         ))}
       </ul>
+
+      {hasAffiliateLinks && (
+        <p className="mt-2 text-[11px] font-medium text-[#64748B]">
+          Tool links may earn au7o a commission.
+        </p>
+      )}
 
       <p className="mt-3 text-xs leading-relaxed text-[#64748B]">
         {matchedProcedure

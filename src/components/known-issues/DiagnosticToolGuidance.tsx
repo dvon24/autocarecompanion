@@ -31,6 +31,17 @@ const SHOP_WORK = [
 
 export function DiagnosticToolGuidance({ dtcCode }: { dtcCode: string }) {
   const family = codeFamilyOf(dtcCode);
+  if (!family) {
+    return (
+      <section className="mb-10">
+        <h2 className="mb-2 text-xl font-bold text-[#0B1220]">Diagnostic Tools</h2>
+        <p className="text-sm leading-relaxed text-[#64748B]">
+          {dtcCode} does not use the standard P/B/C/U prefix. It may be a manufacturer-specific
+          code, so verify that a scanner supports your exact year, model and module before buying.
+        </p>
+      </section>
+    );
+  }
   const scanners = scannersForCodeFamily(family);
   // Never render a buy button for a link we have not audited. Naming the tool
   // is honest; linking one we have not verified is the thing we refuse to do.

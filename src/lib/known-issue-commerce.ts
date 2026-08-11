@@ -22,8 +22,8 @@ function vendorMatchesProductUrl(vendor: string, value: string): boolean {
   const marketplace = marketplaceForProductUrl(value);
   if (!marketplace) return false;
   const normalizedVendor = vendor.trim().toLowerCase();
-  if (marketplace === 'amazon') return normalizedVendor.includes('amazon');
-  if (marketplace === 'ebay') return normalizedVendor.includes('ebay');
+  if (marketplace === 'amazon') return /^(amazon|amazon\.com)$/i.test(normalizedVendor);
+  if (marketplace === 'ebay') return /^(ebay|ebay\.com)$/i.test(normalizedVendor);
   if (/(amazon|ebay|rockauto)/i.test(normalizedVendor)) return false;
 
   // A verified flag alone must not let an unrelated retailer label point at
@@ -170,7 +170,7 @@ const VERIFIED_RETAILER_PATTERNS: Array<[RegExp, RegExp]> = [
   // summitracing.com/parts/mah-vs50109 — note these render the part number in
   // JavaScript, so they still have to clear the separate identity check that
   // the link auditor applies before a URL is stored.
-  [/^summitracing\.com$/, /^\/parts\/[a-z0-9][a-z0-9-]+$/i],
+  [/^summitracing\.com$/, /^\/parts\/(?=[a-z0-9-]*\d)[a-z0-9][a-z0-9-]+$/i],
   // raybestospowertrain.com/steel-clutch-packs/000601 — the manufacturer's own
   // product page. Trade-channel transmission parts are largely absent from
   // consumer retail, so the maker's page is often the only real destination.

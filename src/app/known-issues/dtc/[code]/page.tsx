@@ -10,6 +10,7 @@ import { CollapsibleMakeSection } from '@/components/known-issues/CollapsibleMak
 import { DiagnosticToolGuidance } from '@/components/known-issues/DiagnosticToolGuidance';
 import { SiteFooter } from '@/components/shared/SiteFooter';
 import { ShareButtons } from '@/components/shared/ShareButtons';
+import { externalHttpUrl } from '@/lib/external-http-url';
 
 // --- ISR + dynamic params ---
 
@@ -172,9 +173,9 @@ export default async function DTCCodePage({
   const citationMap = new Map<string, { type: string; title: string; url: string }>();
   for (const iss of data.issues) {
     for (const c of (iss.citations || [])) {
-      if (!c.url) continue;
-      if (citationMap.has(c.url)) continue;
-      citationMap.set(c.url, { type: c.type, title: c.title, url: c.url });
+      const url = externalHttpUrl(c.url);
+      if (!url || citationMap.has(url)) continue;
+      citationMap.set(url, { type: c.type, title: c.title, url });
     }
   }
   const citations = [...citationMap.values()].slice(0, 12);

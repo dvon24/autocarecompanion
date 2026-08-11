@@ -88,6 +88,17 @@ test('rejects a link whose vendor label does not match the destination host', ()
   assert.deepEqual(fixParts[0]!.buyLinks, []);
 });
 
+test('rejects marketplace labels that merely contain the marketplace name', () => {
+  const { fixParts } = getKnownIssueCommerce(
+    issue([{
+      component: 'Tensioner',
+      verified: true,
+      buyLinks: [{ vendor: 'Not Amazon', url: 'https://www.amazon.com/dp/B01G5EA74I', verified: true }],
+    }]),
+  );
+  assert.deepEqual(fixParts[0]!.buyLinks, []);
+});
+
 // Documents a known FALSE NEGATIVE, so the behaviour is deliberate rather than
 // discovered again later. The guard only accepts a retailer path containing a
 // product/part/item/sku segment, so ECS Tuning's category-style product URLs are
@@ -135,6 +146,7 @@ test('accepts verified-retailer product pages the generic path rule misses', () 
 test('allowlisting a host does not allowlist its category, search or lookalike URLs', () => {
   for (const url of [
     'https://www.summitracing.com/search/part-type/intake-manifold-gaskets',
+    'https://www.summitracing.com/parts/brakes',
     'https://www.zoro.com/search?q=water+pump',
     'https://partshawk.com/catalog/water-pumps',
     'https://www.densoproducts.com/collections/condensers',

@@ -32,6 +32,17 @@ test('unrelated mappings are unaffected by the veto', () => {
   assert.equal(mapComponent('Water Pump Leak')?.partTypeMatch, 'water pump');
 });
 
+test('radiator support and cooling fan do not collapse into a radiator', () => {
+  assert.equal(mapComponent('Radiator Support Rust')?.partTypeMatch, 'radiator support');
+  assert.equal(mapComponent('Cooling Fan Failure')?.partTypeMatch, 'fan');
+  assert.equal(mapComponent('Radiator Leak')?.partTypeMatch, 'radiator');
+});
+
+test('a DPF article maps to the filter, not an exhaust temperature sensor', () => {
+  assert.equal(mapComponent('Diesel Particulate Filter (DPF) Clogging')?.partTypeMatch, 'particulate filter');
+  assert.equal(mapComponent('Exhaust Gas Temperature Sensor Failure')?.partTypeMatch, 'temperature sensor');
+});
+
 // The title is authoritative: matching title+solution as one blob once made a
 // head-gasket article resolve to a thermostat mentioned in its solution text.
 test('the more specific rule wins over the generic one', () => {

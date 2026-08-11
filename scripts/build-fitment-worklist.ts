@@ -142,9 +142,11 @@ function prescribesAFix(solution: string): boolean {
       mapping = onSubject.m; partTypeMatch = onSubject.phrase; mappedFrom = 'prescription';
     } else if (titleMapping) {
       mapping = titleMapping; partTypeMatch = titleMapping.partTypeMatch; mappedFrom = 'title';
-    } else if (prescribed.length) {
-      mapping = prescribed[0]!.m; partTypeMatch = prescribed[0]!.phrase; mappedFrom = 'prescription-offsubject';
     }
+    // An off-subject prescription is intentionally NOT a fallback. A page can
+    // say "replace the timing belt while the head is off" without making a
+    // timing belt the repair for its head-gasket identity. If neither the title
+    // nor an on-subject prescription maps, leave it for human review.
     if (!mapping) { unmapped.push({ id: r.id, title: r.title }); continue; }
     // WHERE the component was identified is the strongest confidence signal we
     // have. A title names what the page is about; a solution mentions other
