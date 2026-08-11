@@ -29,6 +29,18 @@ test('Aura packet covers all nine pages and preserves every indexed identity', (
   });
 });
 
+test('Ion packet covers all nine pages without retiring duplicate URLs', () => {
+  const { contract, packet, snapshot } = buildForModel('Ion');
+  assert.deepEqual(validatePacket(contract, packet, snapshot), []);
+  assert.deepEqual(packet.summary, {
+    retain_indexed_identity_and_accuracy_cleanup: 2,
+    hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy: 7,
+    fabricated_report_counts_proposed_zero: 0,
+    pages_preserved_published: 9,
+    total: 9,
+  });
+});
+
 test('validator rejects a held page becoming unpublished', () => {
   const { contract, packet, snapshot } = buildForModel('Astra');
   const changed = clone(packet);
