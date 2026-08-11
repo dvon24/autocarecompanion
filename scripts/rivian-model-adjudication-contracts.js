@@ -118,6 +118,68 @@ const contracts = {
       },
     },
   },
+  R1S: {
+    make: 'Rivian',
+    model: 'R1S',
+    reviewDate: REVIEW_DATE,
+    snapshotFile: SNAPSHOT_FILE,
+    outputFile: 'data/known-issue-rivian-r1s-adjudication-2026-08-11.json',
+    allIds: ['rivian-r1s-third-row-creaks'],
+    retainedIds: [],
+    reportCountCleanupIds: [],
+    observations: [
+      'The frozen page has no citations and combines an interior noise complaint with a seat-operation complaint.',
+      'Rivian owner guides describe manual latches for the third-row seatbacks and quick-fold buttons for the second row; the frozen claim of a powered third-row folding mechanism is not supported.',
+      'No exact Rivian or NHTSA service communication captured in this review supports a common third-row creak, a universal bushing/damper repair, warranty coverage or the frozen cost range.',
+    ],
+    pdfSources: {
+      guide2022: {
+        url: 'https://assets.rivian.com/2md5qhoeajym/7Ao7NIFkLxOZtvdc7Fqh70/c7da41962ebd4d50c96d47ccdbbd85de/r1s-owners-guide-en-us-20220523.pdf',
+        type: 'manufacturer',
+        title: 'Rivian R1S Owner\'s Guide, May 2022',
+        contains: ['Fold the third row seats with the manual latch'],
+      },
+      guide2024: {
+        url: 'https://assets.rivian.com/2md5qhoeajym/7Ao7NIFkLxOZtvdc7Fqh70/17fb79d029ad826ae08db938421f7a6b/r1s-og-en-us-20240205.pdf',
+        type: 'manufacturer',
+        title: 'Rivian R1S Owner\'s Guide, February 2024',
+        contains: ['Pull the manual latches down to fold the third-row seats', 'quick-fold the second-row seats'],
+      },
+    },
+    otherSources: {},
+    bulletinInventory: {
+      method: 'Exact NHTSA/Rivian searches for R1S third-row creak, squeak, folding and seat mechanism communications; unrelated suspension, A/C and audio noise documents were rejected.',
+      exactDocuments: 0,
+    },
+    recallInventory: {
+      method: 'No recall was used to substantiate the frozen third-row noise/mechanism identity.',
+      exactCampaigns: 0,
+    },
+    modelAliases: ['R1S'],
+    searchTerms: ['third row creak', 'third row squeak', 'third row folding', 'seat mechanism'],
+    relevantDocumentIds: [],
+    campaigns: [],
+    requiredProse: [
+      {
+        id: 'rivian-r1s-third-row-creaks',
+        field: 'description',
+        patterns: ['third-row seatbacks use manual latches', 'quick-fold buttons operate the second-row seats'],
+      },
+    ],
+    content: {
+      'rivian-r1s-third-row-creaks': {
+        description: 'This frozen page combines at least two different identities: a creak or squeak over bumps and a seatback that does not fold, raise or latch correctly. Rivian\'s 2022 and 2024 R1S owner guides say the third-row seatbacks use manual latches; the cargo-area quick-fold buttons operate the second-row seats. The guides therefore do not support the frozen claim of a powered third-row mechanism. No exact Rivian/NHTSA bulletin captured in this review establishes that third-row creaks are common, identifies universal plastic-contact points or prescribes bushings or dampers across 2022-2024 vehicles.',
+        solution: 'First identify the symptom and location. Remove loose cargo and accessory mats, make sure no item or occupant obstructs the seat, and operate the seat only as the owner guide directs. If a third-row seatback will not latch securely, a manual latch binds or a structural creak remains after loose items are excluded, stop forcing the seat and document the condition for Rivian service. Do not apply tape or lubricant to a seat latch and do not buy a latch, trim panel, bushing or folding component from this page; the failed component and fitment are not established.',
+        symptoms: ['Creak or squeak localized near the third-row seat area', 'Third-row seatback does not fold, raise or latch using its manual latch', 'Second-row quick-fold operation mistaken for a third-row mechanism fault'],
+        affectedSystems: ['Third-row manual seatback latches and trim, exact source unresolved', 'Second-row quick-fold controls, separate identity'],
+        citations: ['guide2022', 'guide2024'],
+        evidence: ['The May 2022 guide describes the third-row seat as manual-latch operated.', 'The February 2024 guide again separates manual third-row latches from second-row quick-fold buttons.'],
+        summary: 'Removed unsupported frequency, powered-third-row, bulletin, warranty, cost and universal-repair claims; separated noise from functional latch diagnosis.',
+        conflict: 'The frozen title and body combine creaks with folding faults, while the body misidentifies the manual third-row seats as powered and cites no exact service communication.',
+        commerceDecision: 'noise location, manual latch state, obstruction and exact failed component require vehicle inspection; no universal retail part',
+      },
+    },
+  },
 };
 
 const supportedModels = Object.freeze(Object.keys(contracts));
