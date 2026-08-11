@@ -1,5 +1,6 @@
 import type { KnownIssue } from '@/schemas/knownIssue.schema';
 import { ebayAffiliate } from '@/lib/ebay-affiliate';
+import { isPublicWebHostname } from '@/lib/external-http-url';
 
 export type KnownIssueFixPart = NonNullable<KnownIssue['fixParts']>[number];
 
@@ -30,11 +31,9 @@ function vendorMatchesProductUrl(vendor: string, value: string): boolean {
   // another domain. Be conservative: a false negative hides a CTA, while a
   // false positive can send an owner to the wrong product or merchant.
   const vendorIdentity = normalizedVendor.replace(/[^a-z0-9]/g, '');
-  const hostIdentity = new URL(value).hostname
-    .toLowerCase()
-    .replace(/^www\./, '')
-    .replace(/[^a-z0-9]/g, '');
-  return vendorIdentity.length >= 3 && hostIdentity.includes(vendorIdentity);
+  const hostLabels = new URL(value).hostname.toLowerCase().replace(/^www\./, '').split('.');
+  return vendorIdentity.length >= 3
+    && hostLabels.some((label) => label === vendorIdentity || label.startsWith(vendorIdentity));
 }
 
 /** Add owned affiliate attribution only after the destination passes the guard. */
@@ -66,6 +65,7 @@ export function isKnownIssueProductUrl(value: string): boolean {
   if (url.protocol !== 'https:' || url.username || url.password) return false;
 
   const host = url.hostname.toLowerCase().replace(/^www\./, '');
+  if (!isPublicWebHostname(host)) return false;
   let path = url.pathname;
   try {
     for (let pass = 0; pass < 2; pass += 1) {

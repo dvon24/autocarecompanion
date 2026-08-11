@@ -99,6 +99,19 @@ test('rejects marketplace labels that merely contain the marketplace name', () =
   assert.deepEqual(fixParts[0]!.buyLinks, []);
 });
 
+test('rejects local-only retailer hosts and substring-lookalike merchants', () => {
+  for (const buyLink of [
+    { vendor: 'router', url: 'https://router.lan/product/part-1234', verified: true },
+    { vendor: 'shop', url: 'https://shop.home/product/part-1234', verified: true },
+    { vendor: 'BMW', url: 'https://notbmwparts.com/product/widget-1234', verified: true },
+  ]) {
+    const { fixParts } = getKnownIssueCommerce(
+      issue([{ component: 'Tensioner', verified: true, buyLinks: [buyLink] }]),
+    );
+    assert.deepEqual(fixParts[0]!.buyLinks, [], buyLink.url);
+  }
+});
+
 // Documents a known FALSE NEGATIVE, so the behaviour is deliberate rather than
 // discovered again later. The guard only accepts a retailer path containing a
 // product/part/item/sku segment, so ECS Tuning's category-style product URLs are

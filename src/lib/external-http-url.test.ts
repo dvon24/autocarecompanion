@@ -1,10 +1,16 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { externalHttpUrl } from './external-http-url';
+import { externalHttpUrl, isPublicWebHostname } from './external-http-url';
 
 test('accepts absolute web citations', () => {
   assert.equal(externalHttpUrl('https://static.nhtsa.gov/example.pdf'), 'https://static.nhtsa.gov/example.pdf');
   assert.equal(externalHttpUrl('http://example.com/source'), 'http://example.com/source');
+});
+
+test('public-host validation handles trailing-dot and local suffix boundaries', () => {
+  assert.equal(isPublicWebHostname('static.nhtsa.gov.'), true);
+  assert.equal(isPublicWebHostname('router.lan.'), false);
+  assert.equal(isPublicWebHostname('shop.home'), false);
 });
 
 test('rejects sentinel, relative and non-web citation targets', () => {

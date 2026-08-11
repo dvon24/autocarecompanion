@@ -250,6 +250,13 @@ function partTypeTiers(query) {
   return tiers;
 }
 
+/** Keep the loosest (fewest-token) tier so review never understates fallback. */
+function looserPartTypeTier(left, right) {
+  if (!left) return right || '';
+  if (!right) return left;
+  return toks(right).length < toks(left).length ? right : left;
+}
+
 /**
  * One (year, make, model) → the fitting parts for a product/engine/part-type
  * slice. Every step is cached independently, so a second year on the same model
@@ -280,7 +287,7 @@ async function fittingParts({ year, make, model, productMatch, engineMatch, part
     anyProduct = true;
     rawTotal += one.rawCount;
     usedCategoryAny = usedCategoryAny || one.usedCategory;
-    usedTierAny = usedTierAny || one.usedTier;
+    usedTierAny = looserPartTypeTier(usedTierAny, one.usedTier);
     collected.push(...one.parts.map((p) => ({ ...p, catalogModel: modelRow.data })));
   }
   if (!anyProduct) {
@@ -401,7 +408,7 @@ async function verifyEntry(entry, yearCap) {
     if (result.usedTier && toks(result.usedTier).length < toks(entry.partTypeMatch).length) {
       const relaxed = `part-type relaxed to "${result.usedTier}" (asked "${entry.partTypeMatch}")`;
       if (!notes.includes(relaxed)) notes.push(relaxed);
-      partTypeTierUsed = result.usedTier;
+      partTypeTierUsed = looserPartTypeTier(partTypeTierUsed, result.usedTier);
     }
     if (result.parts.length === 0) {
       // The vehicle resolved but nothing matched the part-type filter. That is a
@@ -452,7 +459,7 @@ async function verifyEntry(entry, yearCap) {
   };
 }
 
-(async () => {
+async function main() {
   const args = process.argv.slice(2);
   const arg = (flag, fallback) => {
     const i = args.indexOf(flag);
@@ -499,4 +506,10 @@ async function verifyEntry(entry, yearCap) {
   saveCache();
   console.log('\nTALLY:', JSON.stringify(tally));
   console.log('report:', outFile);
-})().catch((error) => { saveCache(); console.error('ERR', error.message); process.exitCode = 1; });
+}
+
+if (require.main === module) {
+  main().catch((error) => { saveCache(); console.error('ERR', error.message); process.exitCode = 1; });
+}
+
+module.exports = { looserPartTypeTier, resolveModels };
