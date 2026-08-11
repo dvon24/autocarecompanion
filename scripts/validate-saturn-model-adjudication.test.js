@@ -41,6 +41,18 @@ test('Ion packet covers all nine pages without retiring duplicate URLs', () => {
   });
 });
 
+test('Outlook packet preserves the indexed page and corrects special-coverage scope', () => {
+  const { contract, packet, snapshot } = buildForModel('Outlook');
+  assert.deepEqual(validatePacket(contract, packet, snapshot), []);
+  assert.deepEqual(packet.summary, {
+    retain_indexed_identity_and_accuracy_cleanup: 1,
+    hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy: 0,
+    fabricated_report_counts_proposed_zero: 0,
+    pages_preserved_published: 1,
+    total: 1,
+  });
+});
+
 test('validator rejects a held page becoming unpublished', () => {
   const { contract, packet, snapshot } = buildForModel('Astra');
   const changed = clone(packet);

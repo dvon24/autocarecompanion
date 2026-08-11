@@ -545,6 +545,66 @@ const contracts = {
       },
     },
   },
+  Outlook: {
+    make: 'Saturn',
+    model: 'Outlook',
+    reviewDate: REVIEW_DATE,
+    snapshotFile: SNAPSHOT_FILE,
+    outputFile: 'data/known-issue-saturn-outlook-adjudication-2026-08-11.json',
+    allIds: ['saturn-outlook-power-steering-recall'],
+    retainedIds: ['saturn-outlook-power-steering-recall'],
+    reportCountCleanupIds: [],
+    observations: [
+      'GM bulletin 14329B is a Special Coverage Adjustment, not a safety recall, and exactly lists 2007-2010 Saturn Outlook vehicles.',
+      'The exact condition is internal power-steering-pump wear causing an intermittent hydraulic-pressure drop and reduced or lost assist; the frozen hose-leak, smoke and exhaust symptoms describe a different identity.',
+      'Eligibility was VIN-controlled and limited to 10 years or 150,000 miles from original in-service date, so the page must not promise a free repair in 2026.',
+    ],
+    pdfSources: {
+      steeringCoverage: {
+        url: 'https://static.nhtsa.gov/odi/tsbs/2015/MC-10123499-9999.pdf',
+        type: 'manufacturer',
+        title: 'GM Special Coverage 14329B: Loss of Power Steering Assist',
+        contains: ['2007-2010 Saturn OUTLOOK', 'power steering pump wear condition', '10 years or 150,000 miles', 'replace the power steering pump'],
+      },
+      ownerLetter: {
+        url: 'https://static.nhtsa.gov/odi/tsbs/2014/CSC-10056459-8503.pdf',
+        type: 'manufacturer',
+        title: 'GM owner letter for Special Coverage 14329A',
+        contains: ['2007-2010 MY Saturn OUTLOOK', 'intermittent drop of power steering hydraulic pressure', 'greater driver effort'],
+      },
+    },
+    otherSources: {},
+    bulletinInventory: {
+      method: 'Exact Outlook model-year and 14329 Special Coverage searches across NHTSA-hosted GM communications.',
+      exactDocuments: 2,
+    },
+    recallInventory: {
+      method: 'Confirmed that 14329B is a VIN-controlled Special Coverage Adjustment rather than a safety recall.',
+      exactCampaigns: 0,
+    },
+    modelAliases: ['Outlook', 'OUTLOOK', 'Lambda'],
+    searchTerms: ['14329B', 'power steering pump wear', 'hydraulic pressure', 'steering gear valve housing'],
+    relevantDocumentIds: ['14329B', '14329A'],
+    campaigns: [],
+    requiredProse: [
+      { id: 'saturn-outlook-power-steering-recall', field: 'description', patterns: ['Special Coverage Adjustment, not a safety recall', 'internal power-steering-pump wear'] },
+      { id: 'saturn-outlook-power-steering-recall', field: 'solution', patterns: ['Do not buy', 'no universal retail part'] },
+    ],
+    content: {
+      'saturn-outlook-power-steering-recall': {
+        description: 'GM bulletin 14329B is a Special Coverage Adjustment, not a safety recall, for certain 2007-2010 Saturn Outlook vehicles. It documents internal power-steering-pump wear that can intermittently reduce hydraulic pressure and cause reduced or lost steering assist, with greater driver effort particularly at low speeds. The bulletin does not describe a pressure-hose leak, burning-fluid smell, smoke or an exhaust-system condition; those frozen symptoms are removed because they are a different failure identity. Coverage was VIN-controlled for 10 years or 150,000 miles from original in-service date and should not be represented as currently free without a VIN eligibility check.',
+        solution: 'Check the VIN history with a GM dealer and diagnose the hydraulic steering system before replacing anything. Under 14329B, an eligible vehicle with the documented condition received a system flush, power-steering-pump replacement and, if not already installed, a new steering-gear valve housing. Because the time limit may have expired, confirm current coverage and obtain a written diagnosis and estimate. Do not buy a pump, hose, steering gear, valve housing or fluid from this page; VIN eligibility, leak inspection, fluid condition and hydraulic-pressure diagnosis determine the repair, with no universal retail part.',
+        symptoms: ['Intermittent reduction or loss of hydraulic steering assist', 'Steering effort increases, especially at low vehicle speed', 'Condition matches the pump-wear description after hydraulic diagnosis', 'VIN eligibility and prior 14329 repair history require confirmation'],
+        affectedSystems: ['Hydraulic power-steering pump', 'Power-steering fluid circuit', 'Steering-gear valve housing, only as directed by 14329B'],
+        dtcCodes: [],
+        citations: ['steeringCoverage', 'ownerLetter'],
+        evidence: ['GM 14329B exactly identifies 2007-2010 Outlook and the internal pump-wear/pressure-loss condition.', 'The GM bulletin states the former 10-year/150,000-mile limit, VIN verification rule and covered service procedure.'],
+        summary: 'Kept the exact 14329 identity while removing hose/fire symptoms, an unsupported repair-cost range and a stale promise of free coverage; made diagnosis and eligibility VIN-controlled.',
+        conflict: null,
+        commerceDecision: 'VIN eligibility, prior campaign history, leak inspection, fluid condition and hydraulic-pressure diagnosis determine pump, gear or other service; no universal retail part',
+      },
+    },
+  },
 };
 
 const supportedModels = Object.freeze(Object.keys(contracts));
