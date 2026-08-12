@@ -61,6 +61,8 @@ export function ebayIsPrimaryFor(category?: string): boolean {
 }
 
 export interface EbayListing {
+  /** Stable item identifier from the exact product URL returned by Browse. */
+  itemId: string;
   title: string;
   price: number | null;
   currency: string;
@@ -248,6 +250,7 @@ export async function resolveEbay(
     const url = s.itemAffiliateWebUrl || s.itemWebUrl || '';
     if (!url) return [];
     return [{
+      itemId: String(s.itemId || ''),
       title: String(s.title || '').slice(0, 140),
       price: s.price?.value ? Number(s.price.value) : null,
       currency: s.price?.currency || 'USD',

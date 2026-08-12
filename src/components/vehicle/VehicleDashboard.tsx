@@ -13,13 +13,22 @@ import type { KnownIssue as CatalogKnownIssue } from '@/schemas/knownIssue.schem
 import { getKnownIssueCommerce, hasKnownIssueCommerce, knownIssueAffiliateUrl } from '@/lib/known-issue-commerce';
 import { trackAffiliateClick } from '@/lib/analytics';
 import { externalHttpUrl } from '@/lib/external-http-url';
-import { describeFitment, isNarrowerThanArticle, resolvePartsForVehicle } from '@/lib/known-issue-part-fitment';
+import { describeFitment, fitmentResolutionPrompt, isNarrowerThanArticle, resolvePartsForVehicle } from '@/lib/known-issue-part-fitment';
+import { resolveReviewedVehicleContext } from '@/lib/reviewed-vehicle-context';
 
 type IssueRecommendation = NonNullable<CatalogKnownIssue['communityRecommendations']>[number];
 type IssueFixPart = NonNullable<CatalogKnownIssue['fixParts']>[number];
 type IssueCitation = CatalogKnownIssue['citations'][number] | string;
 
-interface VehicleTuple { year: number; make: string; model: string; trim: string; engine?: string; }
+interface VehicleTuple {
+  year: number;
+  make: string;
+  model: string;
+  trim: string;
+  engine?: string;
+  drivetrain?: string;
+  transmission?: string;
+}
 interface KnownIssue {
   id: string; title: string; description: string; severity: string;
   category: string; reportCount: number;
@@ -104,7 +113,17 @@ export function VehicleDashboard({
   const standardParts = cachedParts.filter(p => !p.task.startsWith('freetext:'));
   const criticalCount = issues.filter(i => i.severity === 'high' || i.severity === 'critical').length;
 
-  useEffect(() => { setVehicle(vehicle); }, [vehicle, setVehicle]);
+  // AppContext persists only the canonical YMMT tuple. Runtime fitment details
+  // remain on this dashboard prop and are not implied to be durable garage or
+  // Prisma fields.
+  useEffect(() => {
+    setVehicle({
+      year: vehicle.year,
+      make: vehicle.make,
+      model: vehicle.model,
+      trim: vehicle.trim,
+    });
+  }, [vehicle.year, vehicle.make, vehicle.model, vehicle.trim, setVehicle]);
   useEffect(() => {
     if (activeSection === 'chat') chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [chatMessages, chatLoading, activeSection]);
@@ -543,14 +562,9 @@ function IssueCardExpanded({ issue, vehicle, styled = true, onAskAI }: { issue: 
   const [expanded, setExpanded] = useState(false);
   const sevColor = 'border border-[#C9C0B1] bg-[#EFEDE6] text-[#0B1220]';
   const { fixParts: gatedParts, ownerGuidance } = getKnownIssueCommerce(issue);
-  const fitmentVehicle = {
-    year: vehicle.year,
-    make: vehicle.make,
-    model: vehicle.model,
-    trim: vehicle.trim || null,
-    engine: vehicle.engine || null,
-  };
+  const fitmentVehicle = resolveReviewedVehicleContext(vehicle);
   const resolved = resolvePartsForVehicle(gatedParts, fitmentVehicle, issue.vehicleMatch);
+  const fitmentPrompt = fitmentResolutionPrompt(resolved);
   const { fixParts } = getKnownIssueCommerce({
     fixParts: resolved.parts,
     communityRecommendations: [],
@@ -582,10 +596,20 @@ function IssueCardExpanded({ issue, vehicle, styled = true, onAskAI }: { issue: 
           {issue.dtcCodes && issue.dtcCodes.length > 0 && (<div className="py-3" style={dividerStyle}><p className="text-xs font-semibold uppercase mb-1.5 px-2 py-1 rounded inline-block" style={labelStyle}>Common error codes that may appear</p><div className="flex gap-1.5 flex-wrap mt-2">{issue.dtcCodes.map(code => (<Link key={code} href={'/known-issues/dtc/' + code.toLowerCase()} className="text-[10px] font-mono px-2.5 py-1 rounded-md hover:opacity-80 transition-opacity" style={{ backgroundColor: '#EFEDE6', color: '#3C313D' }}>{code}</Link>))}</div></div>)}
           {issue.symptoms && issue.symptoms.length > 0 && (<div className="py-3" style={dividerStyle}><p className="text-xs font-semibold uppercase mb-1.5 px-2 py-1 rounded inline-block" style={labelStyle}>Common Symptoms</p><ul className="space-y-1 mt-2">{issue.symptoms.map((s, i) => (<li key={i} className="text-xs flex gap-2" style={{ color: bodyColor }}><span style={{ color: '#9D9BA2' }}>&bull;</span><span>{s}</span></li>))}</ul></div>)}
           {issue.solution && (<div className="py-3" style={dividerStyle}><p className="text-xs font-semibold uppercase mb-1.5 px-2 py-1 rounded inline-block" style={labelStyle}>How to Fix</p><p className="text-xs leading-relaxed mt-2" style={{ color: bodyColor }}>{issue.solution}</p></div>)}
+          {fixParts.length === 0 && fitmentPrompt && (
+            <div className="py-3" style={dividerStyle}>
+              <p className="rounded-lg border border-[#C9C0B1] bg-[#F7F4EC] p-2.5 text-xs leading-relaxed text-[#475569]">
+                {fitmentPrompt}
+              </p>
+            </div>
+          )}
           {fixParts.length > 0 && (
             <div className="py-3" style={dividerStyle}>
               <p className="text-xs font-semibold uppercase mb-1.5 px-2 py-1 rounded inline-block" style={labelStyle}>What you need to fix it</p>
-              <p className="mt-1 text-[10px]" style={{ color: '#6B6570' }}>Only diagnosis- and fitment-reviewed repair parts are linked here.</p>
+              <p className="mt-1 text-[10px]" style={{ color: '#6B6570' }}>
+                Only diagnosis- and fitment-reviewed repair parts are linked here.
+                {fitmentPrompt && <span className="mt-1 block">{fitmentPrompt}</span>}
+              </p>
               <ul className="mt-2 space-y-2">
                 {fixParts.map((part, index) => (
                   <li key={`${part.component}-${part.oemPartNumber || ''}-${index}`} className="rounded-lg border border-[#C9C0B1] bg-[#F7F4EC] p-2.5">

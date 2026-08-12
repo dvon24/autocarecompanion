@@ -42,6 +42,23 @@ function hashValue(value) {
   return crypto.createHash('sha256').update(typeof value === 'string' ? value : JSON.stringify(value)).digest('hex');
 }
 
+function stableValue(value) {
+  if (Array.isArray(value)) return value.map(stableValue);
+  if (value && typeof value === 'object') {
+    return Object.fromEntries(Object.keys(value).sort().map((key) => [key, stableValue(value[key])]));
+  }
+  return value;
+}
+
+function canonicalHash(value) {
+  return hashValue(stableValue(value));
+}
+
+function sha256File(file) {
+  const canonicalText = fs.readFileSync(file, 'utf8').replace(/\r\n?/g, '\n');
+  return crypto.createHash('sha256').update(canonicalText, 'utf8').digest('hex');
+}
+
 function makeKey(value) {
   return String(value || '').trim().toLocaleLowerCase('en-US');
 }
@@ -104,6 +121,23 @@ function loadFrozenSnapshot(snapshotPath) {
   const snapshot = JSON.parse(fs.readFileSync(absolute, 'utf8'));
   if (!snapshot || !Array.isArray(snapshot.records)) throw new Error('Frozen snapshot must contain records[].');
   if (!HASH_RE.test(snapshot.snapshotHash || '')) throw new Error('Frozen snapshot must contain a 64-character snapshotHash.');
+  if (snapshot.artifactKind === 'known-issue-make-source') {
+    const { makeSourceHash, ...body } = snapshot;
+    if (!HASH_RE.test(makeSourceHash || '') || hashValue(body) !== makeSourceHash) {
+      throw new Error('Frozen make source hash mismatch.');
+    }
+    if (snapshot.globalSnapshotHash !== snapshot.snapshotHash
+      || snapshot.recordCount !== snapshot.records.length
+      || snapshot.recordCount !== snapshot.recordIds?.length) {
+      throw new Error('Frozen make source inventory binding mismatch.');
+    }
+    const recordIds = snapshot.records.map((record) => String(record.id || '').trim());
+    if (new Set(recordIds).size !== recordIds.length
+      || [...recordIds].sort(compareText).join('\n') !== [...snapshot.recordIds].sort(compareText).join('\n')) {
+      throw new Error('Frozen make source record IDs mismatch.');
+    }
+    return { snapshot, snapshotHash: snapshot.snapshotHash };
+  }
   const actualHash = snapshotBodyHash(snapshot);
   if (actualHash !== snapshot.snapshotHash) {
     throw new Error(`Frozen snapshot hash mismatch: declared ${snapshot.snapshotHash}, computed ${actualHash}.`);
@@ -268,7 +302,30 @@ function checkpointFiles(outputRoot, makeEntry, makes, snapshotHash) {
   };
 }
 
-function requireCompleteCheckpoint(outputRoot, makeEntry, makes, snapshotHash) {
+function resolveBoundFile(root, relativeFile, label) {
+  if (typeof relativeFile !== 'string' || !relativeFile.trim() || path.isAbsolute(relativeFile)) {
+    throw new Error(`${label} must be a relative path.`);
+  }
+  const absoluteRoot = path.resolve(root);
+  const absolute = path.resolve(absoluteRoot, relativeFile);
+  if (absolute === absoluteRoot || !absolute.startsWith(`${absoluteRoot}${path.sep}`)
+    || !fs.statSync(absolute, { throwIfNoEntry: false })?.isFile()) {
+    throw new Error(`${label} is missing or escapes its binding root.`);
+  }
+  return absolute;
+}
+
+function verifyDiskHashMap(hashMap, root, label) {
+  const entries = Object.entries(hashMap || {});
+  if (entries.length === 0) throw new Error(`${label} has no file bindings.`);
+  for (const [file, expected] of entries) {
+    if (!HASH_RE.test(expected || '')) throw new Error(`${label}.${file} has no SHA-256 binding.`);
+    const actual = sha256File(resolveBoundFile(root, file, `${label}.${file}`));
+    if (actual !== expected) throw new Error(`${label}.${file} drifted on disk.`);
+  }
+}
+
+function requireCompleteCheckpoint(outputRoot, makeEntry, makes, snapshotHash, projectRoot = PROJECT_ROOT) {
   const files = checkpointFiles(outputRoot, makeEntry, makes, snapshotHash);
   if (!fs.existsSync(files.complete)) {
     throw new Error(`Cannot audit a later make: ${makeEntry.make} has no COMPLETE checkpoint for snapshot ${snapshotHash}.`);
@@ -295,11 +352,20 @@ function requireCompleteCheckpoint(outputRoot, makeEntry, makes, snapshotHash) {
   ];
   const artifactFiles = Object.keys(checkpoint.artifactSha256 || {}).sort(compareText);
   const expectedFiles = [...requiredArtifacts].sort(compareText);
+  const completionBody = { ...checkpoint };
+  delete completionBody.completionHash;
+  const completionHash = canonicalHash(completionBody);
   const implementationHashes = Object.values(checkpoint.diagnosticImplementationSha256 || {});
-  if (checkpoint.schemaVersion !== 1
+  const commerceImplementationHashes = Object.values(checkpoint.commercePipelineImplementationSha256 || {});
+  const completionStateMatchesRelease = checkpoint.releaseBlocked === true
+    ? checkpoint.completionState === 'AUDIT_COMPLETE_RELEASE_BLOCKED'
+    : checkpoint.releaseBlocked === false
+      && checkpoint.completionState === 'AUDIT_COMPLETE_RELEASE_READY';
+  if (checkpoint.schemaVersion !== 2
     || checkpoint.artifactKind !== 'known-issue-make-completion'
-    || checkpoint.status !== 'COMPLETE'
-    || checkpoint.completionState !== 'REVIEW_READY_NOT_APPLIED'
+    || checkpoint.status !== 'AUDIT_COMPLETE'
+    || checkpoint.auditComplete !== true
+    || !completionStateMatchesRelease
     || checkpoint.snapshotHash !== snapshotHash
     || checkpoint.makeKey !== makeEntry.key
     || checkpoint.manifestFile !== '08-guarded-manifest.json'
@@ -308,13 +374,41 @@ function requireCompleteCheckpoint(outputRoot, makeEntry, makes, snapshotHash) {
     || JSON.stringify(artifactFiles) !== JSON.stringify(expectedFiles)
     || requiredArtifacts.some((file) => !HASH_RE.test(checkpoint.artifactSha256[file] || ''))
     || checkpoint.artifactSha256['08-guarded-manifest.json'] !== checkpoint.manifestHash
+    || Object.keys(checkpoint.artifactSha256 || {}).some((file) => path.basename(file).toUpperCase() === 'COMPLETE.JSON')
+    || !HASH_RE.test(checkpoint.completionHash || '')
+    || checkpoint.completionHash !== completionHash
     || implementationHashes.length === 0
     || implementationHashes.some((hash) => !HASH_RE.test(hash || ''))
+    || commerceImplementationHashes.length === 0
+    || commerceImplementationHashes.some((hash) => !HASH_RE.test(hash || ''))
     || checkpoint.diagnosticScope?.issueCount !== checkpoint.issueCount
     || checkpoint.diagnosticScope?.uncoveredDiagnosticInstructionCount !== 0
     || checkpoint.productionApplied !== false
     || checkpoint.productionWriteAuthorized !== false) {
     throw new Error(`Cannot audit a later make: ${makeEntry.make} checkpoint is not a valid COMPLETE checkpoint.`);
+  }
+  try {
+    verifyDiskHashMap(checkpoint.artifactSha256, files.directory, 'artifactSha256');
+    verifyDiskHashMap(checkpoint.diagnosticImplementationSha256, projectRoot, 'diagnosticImplementationSha256');
+    verifyDiskHashMap(
+      checkpoint.commercePipelineImplementationSha256,
+      projectRoot,
+      'commercePipelineImplementationSha256',
+    );
+    const source = JSON.parse(fs.readFileSync(
+      resolveBoundFile(files.directory, '00-make-source.json', 'make source'),
+      'utf8',
+    ));
+    const { makeSourceHash, ...sourceBody } = source;
+    if (hashValue(sourceBody) !== makeSourceHash
+      || source.snapshotHash !== checkpoint.snapshotHash
+      || makeSourceHash !== checkpoint.makeSourceHash
+      || makeKey(source.make) !== makeEntry.key
+      || source.makeKey !== makeEntry.key) {
+      throw new Error('make source binding drifted on disk.');
+    }
+  } catch (error) {
+    throw new Error(`Cannot audit a later make: ${makeEntry.make} checkpoint bindings are stale (${error.message}).`);
   }
 }
 
@@ -347,7 +441,7 @@ function buildMakeLedger({ snapshot, snapshotHash, makeEntry, makeIndex, makes, 
   return ledger;
 }
 
-function runAudit({ snapshotPath, dispositionPath, make, outputRoot = DEFAULT_OUTPUT_ROOT }) {
+function runAudit({ snapshotPath, dispositionPath, make, outputRoot = DEFAULT_OUTPUT_ROOT, projectRoot = PROJECT_ROOT }) {
   if (!String(snapshotPath || '').trim()) throw new Error('--snapshot is required.');
   if (!String(make || '').trim()) throw new Error('--make is required.');
   const { snapshot, snapshotHash } = loadFrozenSnapshot(snapshotPath);
@@ -361,7 +455,7 @@ function runAudit({ snapshotPath, dispositionPath, make, outputRoot = DEFAULT_OU
   const makeIndex = makes.findIndex((entry) => entry.key === requestedKey);
   if (makeIndex < 0) throw new Error(`Make not found in frozen snapshot: ${make}.`);
   for (const priorMake of makes.slice(0, makeIndex)) {
-    requireCompleteCheckpoint(outputRoot, priorMake, makes, snapshotHash);
+    requireCompleteCheckpoint(outputRoot, priorMake, makes, snapshotHash, projectRoot);
   }
 
   const makeEntry = makes[makeIndex];
@@ -438,5 +532,7 @@ module.exports = {
   makeSlug,
   runAudit,
   snapshotBodyHash,
+  canonicalHash,
+  sha256File,
   validateLedger,
 };

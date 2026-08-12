@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /**
  * Shared, conservative diagnostic-procedure recognition.
  *
@@ -42,7 +43,7 @@ const PROCEDURE_PATTERNS = Object.freeze([
   ['cooling-pressure-test', /\b(?:perform|run|do|conduct) (?:an? )?(?:cooling[- ]system|coolant|radiator) pressure test\b|\bpressure[- ]test (?:the )?(?:cooling system|radiator)\b|\buse (?:an? )?(?:cooling[- ]system|coolant|radiator) pressure tester\b/i],
   ['multimeter-basic', /\b(?:test|check|measure|verify|diagnose)[^.!?;]{0,80}\b(?:with|using) (?:an? )?(?:digital )?multimeter\b|\b(?:multimeter|voltmeter|ohmmeter) (?:check|test|measurement)\b|\buse (?:an? )?(?:digital )?(?:multimeter|voltmeter|ohmmeter)\b/i],
   ['oil-pressure', /\b(?:perform|run|do|conduct) (?:an? )?(?:mechanical )?oil[- ]pressure test\b|\b(?:check|measure|test) (?:the )?oil pressure (?:with|using)\b|\b(?:connect|install|use) (?:an? )?(?:mechanical )?oil[- ]pressure (?:tester|gauge)\b|\boil[- ]pressure gauge (?:will|can) confirm\b/i],
-  ['scan-codes', /\b(?:use|connect|diagnose with) (?:an? )?(?:scan tool|scanner)\b|\b(?:read|retrieve|scan for|pull) (?:the )?(?:stored )?(?:fault )?(?:codes|dtcs)\b/i],
+  ['scan-codes', /\b(?:use|connect|diagnose with) (?:an? )?(?:scan tool|scanner)\b|\b(?:check|read|retrieve|scan for|pull) (?:for )?(?:the )?(?:(?:honda|acura|manufacturer(?:-specific)?) )?(?:stored )?(?:fault )?(?:code|codes|dtc|dtcs)\b/i],
 ]);
 
 const EXCLUDED_TOOL_CLAUSE = /\b(?:not|no|never|without|avoid|cannot|unnecessar\w*)\b|\b[a-z]+n['’]t\b|\b(?:dont|isnt|cant|mustnt|shouldnt|wouldnt|wont|neednt)\b|\b(?:dealer|dealership|shop|technician|mechanic|garage|professional|specialist|repair facility|service cent(?:er|re))\b/i;
@@ -55,7 +56,7 @@ const NON_DIAGNOSTIC_IDIOM = /\b(?:preventive measure|discipline check)\b/i;
 function splitClauses(solution) {
   return String(solution || '')
     .replace(/\s+/g, ' ')
-    .split(/(?<=[.;!?])\s+/)
+    .split(/(?<=[.;!?])\s+|\n+/)
     .map((clause) => clause.trim())
     .filter(Boolean);
 }
@@ -66,10 +67,29 @@ function matchedProceduresInClause(clause) {
     .map(([procedure]) => procedure);
 }
 
+const DIAGNOSTIC_ACTION = /\b(?:perform|run|do|conduct|use|connect|install|read|retrieve|scan|pull|test|check|measure|diagnose|multimeter|voltmeter|ohmmeter|scanner|scan tool|gauge|tester|meter)\b/i;
+const NEGATION_BEFORE_ACTION = /\b(?:do not|don't|dont|never|avoid|must not|should not|cannot|can't|cant|without|there is no reason to|it is unnecessary to)\b[^.!?;]{0,80}\b(?:perform|run|do|conduct|use|connect|install|read|retrieve|scan|pull|test|check|measure|diagnose)\b/i;
+const NEGATION_AFTER_ACTION = /\b(?:test|check|measurement|procedure|multimeter|voltmeter|ohmmeter|scanner|scan tool|gauge|tester|meter)\b[^.!?;]{0,50}\b(?:is|are|was|were|would be|will be|should be|must be)?\s*(?:not required|not recommended|not needed|unnecessary|not appropriate|should not be used|must not be used|should not be connected|isn't needed|isnt needed|won't be needed|wont be needed|wouldn't be appropriate|wouldnt be appropriate|needn't be used|neednt be used)\b/i;
+
+function diagnosticProcedureIsNegated(clause) {
+  return DIAGNOSTIC_ACTION.test(clause)
+    && (NEGATION_BEFORE_ACTION.test(clause) || NEGATION_AFTER_ACTION.test(clause));
+}
+
+function inlineManufacturerCodes(solution) {
+  const codes = [];
+  const pattern = /\b(honda|acura|manufacturer(?:-specific)?)\s+(?:code|dtc)\s*[:#-]?\s*([a-z]?\d{1,5})\b/ig;
+  for (const match of String(solution || '').matchAll(pattern)) {
+    codes.push(`${match[1].toUpperCase()}:${match[2].toUpperCase()}`);
+  }
+  return [...new Set(codes)];
+}
+
 function proceduresInSolution(solution) {
   const clauses = splitClauses(solution);
   return PROCEDURE_PATTERNS
-    .filter(([, pattern]) => clauses.some((clause) => pattern.test(clause) && !EXCLUDED_TOOL_CLAUSE.test(clause)))
+    .filter(([, pattern]) => clauses.some((clause) => pattern.test(clause)
+      && !DELEGATED.test(clause) && !diagnosticProcedureIsNegated(clause)))
     .map(([procedure]) => procedure);
 }
 
@@ -124,11 +144,13 @@ function toolIdForProcedure(procedure, context = {}) {
  */
 function diagnosticDispositionsForIssue(solution, dtcCodes, context = {}) {
   const dispositions = [];
+  const inlineCodes = inlineManufacturerCodes(solution);
+  const scannerCodes = [...(Array.isArray(dtcCodes) ? dtcCodes : []), ...inlineCodes];
   for (const clause of splitClauses(solution)) {
     if (!INSTRUCTION.test(clause) || NON_DIAGNOSTIC_IDIOM.test(clause)) continue;
     const matched = matchedProceduresInClause(clause);
 
-    if (NEGATED.test(clause)) {
+    if (diagnosticProcedureIsNegated(clause)) {
       dispositions.push({
         source: 'solution',
         status: 'procedure-no-tool',
@@ -156,7 +178,7 @@ function diagnosticDispositionsForIssue(solution, dtcCodes, context = {}) {
     if (matched.length > 0) {
       for (const procedure of matched) {
         if (procedure === 'scan-codes') {
-          const scanner = scannerToolIdForCodes(dtcCodes);
+          const scanner = scannerToolIdForCodes(scannerCodes);
           dispositions.push({
             source: 'solution',
             status: scanner.toolId ? 'tool-linked' : 'unresolved-tool-hold',
@@ -207,7 +229,7 @@ function diagnosticDispositionsForIssue(solution, dtcCodes, context = {}) {
 
   const codes = [...new Set((Array.isArray(dtcCodes) ? dtcCodes : []).map((code) => String(code).trim()).filter(Boolean))];
   if (codes.length > 0) {
-    const scanner = scannerToolIdForCodes(codes);
+    const scanner = scannerToolIdForCodes([...codes, ...inlineCodes]);
     dispositions.push({
       source: 'dtcCodes',
       status: scanner.toolId ? 'tool-linked' : 'unresolved-tool-hold',
@@ -227,6 +249,8 @@ module.exports = {
   TOOL_PRODUCT_URLS,
   codeFamilyOf,
   diagnosticDispositionsForIssue,
+  diagnosticProcedureIsNegated,
+  inlineManufacturerCodes,
   proceduresInSolution,
   scannerToolIdForCodes,
   splitClauses,

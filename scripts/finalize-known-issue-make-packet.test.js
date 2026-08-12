@@ -5,6 +5,7 @@ const os = require('node:os');
 const path = require('node:path');
 const test = require('node:test');
 const {
+  canonicalHash,
   claimIdsForRow,
   fullRecordHashes,
   hashValue,
@@ -13,11 +14,14 @@ const {
 const {
   DIAGNOSTIC_ARTIFACT_FILES,
   DIAGNOSTIC_IMPLEMENTATION_FILES,
+  COMMERCE_PIPELINE_IMPLEMENTATION_FILES,
   PACKET_FILES,
   buildCompletionArtifact,
   buildMakeSource,
   consolidateCandidates,
+  fitmentValuesMatch,
   finalizePacket,
+  scopesOverlap,
   sha256File,
   validateMakeSource,
   verifyReviewHashes,
@@ -104,11 +108,17 @@ function row(id, options = {}) {
 }
 
 function exactLink(partNumber, item = '123456789012') {
-  return { vendor: 'eBay', url: `https://www.ebay.com/itm/${item}?_skw=${partNumber}`, linkType: 'product', verified: true };
+  return {
+    vendor: 'eBay',
+    url: `https://www.ebay.com/itm/${item}?_skw=${partNumber}`,
+    linkType: 'product',
+    verified: true,
+    productIdentity: { matchedPartNumber: partNumber, productId: item, listingTitleHash: 'a'.repeat(64) },
+  };
 }
 
-function fixture() {
-  const records = Array.from({ length: 70 }, (_, index) => row(
+function fixture(recordCount = 70) {
+  const records = Array.from({ length: recordCount }, (_, index) => row(
     `acura-${String(index + 1).padStart(2, '0')}`,
     index === 0 ? { legacyCitation: true, dtcCodes: ['22'] } : index === 1 ? {
       fixParts: [{ component: 'Existing belt kit', oemPartNumber: 'OLD-1', buyLinks: [exactLink('OLD-1', '123456789013')] }],
@@ -120,7 +130,7 @@ function fixture() {
     snapshotKind: 'known-issues-catalog-deeplinks',
     generatedAt: '2026-08-12T12:00:00.000Z',
     source: 'test freeze',
-    inventory: { publishedIssueCount: 70 },
+    inventory: { publishedIssueCount: recordCount },
     records,
   };
   const global = { ...globalBody, snapshotHash: hashValue(globalBody) };
@@ -139,10 +149,13 @@ function fixture() {
     role: 'primary', component: 'Engine Thermostat', supplier: 'Other', oemPartNumber: '',
     aftermarketXref: ['HOLD-1'], fitment: { years: [2020] }, buyLinks: [], note: 'No link', verified: false,
   };
-  const proposal = { proposalId: 'proposal-1', id: records[0].id, component: 'water pump', parts: [primary, alternate, held] };
+  const proposal = {
+    proposalId: 'work-1', id: records[0].id, component: 'water pump',
+    articleScope: { make: 'Acura', model: 'Example' }, parts: [primary, alternate, held],
+  };
   const ledger = {
     snapshotHash: source.snapshotHash,
-    issueCount: 70,
+    issueCount: recordCount,
     issues: records.map((record, index) => ({
       issueId: record.id,
       disposition: index < 2 ? 'buyable' : 'no-commerce',
@@ -151,11 +164,11 @@ function fixture() {
   };
   const worklist = {
     snapshotHash: source.snapshotHash,
-    issueCount: 70,
+    issueCount: recordCount,
     componentApplicationCount: 2,
     entries: [
-      { workItemId: 'work-1', issueId: records[0].id, source: 'prescription' },
-      { workItemId: 'existing-1', issueId: records[1].id, source: 'existing-fix-part' },
+      { workItemId: 'work-1', issueId: records[0].id, source: 'prescription', model: 'Example' },
+      { workItemId: 'existing-1', issueId: records[1].id, source: 'existing-fix-part', model: 'Example' },
     ],
   };
   const evidence = { complete: true, progress: '2/2', results: [{ workItemId: 'work-1' }, { workItemId: 'existing-1' }] };
@@ -170,9 +183,9 @@ function fixture() {
       '04-part-proposals.json', '05-direct-link-evidence.json',
     ],
     decisions: [
-      { proposalId: 'proposal-1', issueId: records[0].id, partIndex: 0, partNumber: 'ABC-123', decision: 'approve', reason: 'Approved exact primary.', reviewedSourceEvidence: { directLink: 'Exact ABC-123 product link.' } },
-      { proposalId: 'proposal-1', issueId: records[0].id, partIndex: 1, partNumber: 'ALT-456', decision: 'approve', reason: 'Approved alternate.', reviewedSourceEvidence: { directLink: 'Exact ALT-456 product link.' } },
-      { proposalId: 'proposal-1', issueId: records[0].id, partIndex: 2, partNumber: 'HOLD-1', decision: 'hold_no_exact_link', reason: 'No exact link.', reviewedSourceEvidence: { directLink: 'No exact link.' } },
+      { proposalId: 'work-1', issueId: records[0].id, partIndex: 0, partNumber: 'ABC-123', decision: 'approve', reason: 'Approved exact primary.', reviewedSourceEvidence: { directLink: 'Exact ABC-123 product link.' } },
+      { proposalId: 'work-1', issueId: records[0].id, partIndex: 1, partNumber: 'ALT-456', decision: 'approve', reason: 'Approved alternate.', reviewedSourceEvidence: { directLink: 'Exact ALT-456 product link.' } },
+      { proposalId: 'work-1', issueId: records[0].id, partIndex: 2, partNumber: 'HOLD-1', decision: 'hold_no_exact_link', reason: 'No exact link.', reviewedSourceEvidence: { directLink: 'No exact link.' } },
     ],
     reconciliation: { complete: true, sourcePartRowCount: 3, reviewedPartRowCount: 3, missing: [], duplicates: [] },
     existingClaimWorkRowCount: 1,
@@ -203,8 +216,8 @@ function fixture() {
     makeKey: 'acura',
     makeIndex: 0,
     totalMakes: 54,
-    issueCount: 70,
-    counts: { buyable: 2, 'diagnosis-dependent': 0, 'recall/dealer': 0, 'service/tool/fluid': 0, 'no-commerce': 68 },
+    issueCount: recordCount,
+    counts: { buyable: 2, 'diagnosis-dependent': 0, 'recall/dealer': 0, 'service/tool/fluid': 0, 'no-commerce': recordCount - 2 },
     diagnosticSummary,
     unclassifiedCount: 0,
     zeroUnclassified: true,
@@ -233,7 +246,7 @@ function fixture() {
     makeKey: 'acura',
     makeIndex: 0,
     totalMakes: 54,
-    issueCount: 70,
+    issueCount: recordCount,
     diagnosticSummary,
     unclassifiedCount: 0,
     zeroUnclassified: true,
@@ -247,7 +260,7 @@ function fixture() {
     make: 'Acura',
     status: 'IN_PROGRESS',
     scope: {
-      issueCount: 70,
+      issueCount: recordCount,
       issuesWithDtcCodes: 1,
       uniqueDtcCount: 1,
       solutionInstructionCount: 0,
@@ -269,10 +282,17 @@ function fixture() {
   const implementationSha256 = Object.fromEntries(
     DIAGNOSTIC_IMPLEMENTATION_FILES.map((file) => [file, 'a'.repeat(64)]),
   );
+  const commercePipelineImplementationSha256 = Object.fromEntries(
+    COMMERCE_PIPELINE_IMPLEMENTATION_FILES.map((file) => [file, 'c'.repeat(64)]),
+  );
   return {
     source, ledger, worklist, evidence, proposals, links, review,
     classification, checkpoint, diagnosticEvidence,
-    options: { make: 'Acura', inputSha256, implementationSha256 },
+    options: {
+      make: 'Acura', inputSha256, implementationSha256, commercePipelineImplementationSha256,
+      recomputedFitment: { ledger, worklist },
+      recomputedProposals: JSON.parse(JSON.stringify(proposals)),
+    },
   };
 }
 
@@ -293,7 +313,7 @@ test('make source is a deterministic exact 70-record subset with full-field proo
   assert.deepEqual(buildMakeSource({ ...reorderedBody, snapshotHash: hashValue(reorderedBody) }, 'Acura').recordIds, inputs.source.recordIds);
 });
 
-test('finalizer selects approved primary only, records holds, and builds a valid keyed manifest', () => {
+test('finalizer selects approved primary but keeps release blocked by unapplied existing claims', () => {
   const inputs = fixture();
   const result = finalizePacket(inputs, inputs.options);
   assert.equal(result.reconciliation.counts.issueCount, 70);
@@ -309,8 +329,10 @@ test('finalizer selects approved primary only, records holds, and builds a valid
   assert.equal(result.manifest.issues[0].after.fixParts[0].aftermarketXref[0], 'ABC-123');
   assert.equal(result.manifest.issues[0].after.citations[0].type, 'article');
   assert.equal(result.patch.removalProposals[0].applied, false);
-  assert.equal(result.patch.status, 'REVIEW_READY_RECONCILED');
-  assert.equal(result.patch.makeComplete, true);
+  assert.equal(result.patch.status, 'REVIEW_READY_BLOCKED_EXISTING_CLAIMS');
+  assert.equal(result.patch.auditComplete, true);
+  assert.equal(result.patch.makeComplete, false);
+  assert.equal(result.patch.releaseBlocked, true);
   assert.equal(result.patch.productionApplied, false);
   assert.equal(result.reconciliation.diagnosticReconciliation.scope.uncoveredDiagnosticInstructionCount, 0);
   assert.equal(result.reconciliation.diagnosticReconciliation.hold.issueId, 'acura-01');
@@ -325,9 +347,14 @@ test('finalizer selects approved primary only, records holds, and builds a valid
     manifest: result.manifest,
     artifactSha256,
     implementationSha256: inputs.options.implementationSha256,
+    commercePipelineImplementationSha256: inputs.options.commercePipelineImplementationSha256,
   });
-  assert.equal(complete.status, 'COMPLETE');
-  assert.equal(complete.completionState, 'REVIEW_READY_NOT_APPLIED');
+  assert.equal(complete.status, 'AUDIT_COMPLETE');
+  assert.equal(complete.schemaVersion, 2);
+  const { completionHash, ...completionBody } = complete;
+  assert.equal(completionHash, canonicalHash(completionBody));
+  assert.equal(complete.completionState, 'AUDIT_COMPLETE_RELEASE_BLOCKED');
+  assert.equal(complete.releaseBlocked, true);
   assert.equal(complete.productionApplied, false);
   assert.equal(complete.manifestHash, artifactSha256['08-guarded-manifest.json']);
 });
@@ -347,6 +374,69 @@ test('overlapping approved variants and non-product links fail closed', () => {
 
   inputs.links.proposals[0].parts[0].buyLinks[0].url = 'https://www.ebay.com/sch/i.html?_nkw=ABC-123';
   assert.throws(() => finalizePacket(inputs, inputs.options), /not a verified product URL/);
+});
+
+test('finalization derives make coverage from the frozen source rather than Acura constants', () => {
+  const inputs = fixture(3);
+  const result = finalizePacket(inputs, inputs.options);
+  assert.equal(result.reconciliation.counts.issueCount, 3);
+  assert.equal(result.reconciliation.issueCoverage.length, 3);
+});
+
+test('scope overlap uses runtime-equivalent whole-token fitment matching', () => {
+  assert.equal(fitmentValuesMatch('3.5L', '3.5L V6'), true);
+  assert.equal(fitmentValuesMatch('AWD', 'SH-AWD'), true);
+  assert.equal(fitmentValuesMatch('SE', 'SEL'), false);
+  assert.equal(scopesOverlap({ engines: ['3.5L'] }, { engines: ['3.5L V6'] }), true);
+  assert.equal(scopesOverlap({ drivetrains: ['AWD'] }, { drivetrains: ['SH-AWD'] }), true);
+  assert.equal(scopesOverlap({ trims: ['SE'] }, { trims: ['SEL'] }), false);
+});
+
+test('review decision identity is bound to proposal and work item', async (t) => {
+  await t.test('issue mismatch', () => {
+    const inputs = fixture();
+    inputs.review.decisions[0].issueId = 'acura-wrong-issue';
+    assert.throws(() => finalizePacket(inputs, inputs.options), /review\/proposal\/work-item issueId mismatch/);
+  });
+  await t.test('model mismatch', () => {
+    const inputs = fixture();
+    inputs.links.proposals[0].articleScope.model = 'Wrong Model';
+    inputs.proposals.proposals[0].articleScope.model = 'Wrong Model';
+    inputs.options.recomputedProposals.proposals[0].articleScope.model = 'Wrong Model';
+    assert.throws(() => finalizePacket(inputs, inputs.options), /proposal\/work-item model mismatch/);
+  });
+  await t.test('explicit work item mismatch', () => {
+    const inputs = fixture();
+    inputs.review.decisions[0].workItemId = 'wrong-work-item';
+    assert.throws(() => finalizePacket(inputs, inputs.options), /review workItemId mismatch/);
+  });
+});
+
+test('arbitrary eBay item with a PN only in query text is rejected', () => {
+  const inputs = fixture();
+  const link = inputs.links.proposals[0].parts[0].buyLinks[0];
+  link.url = 'https://www.ebay.com/itm/999999999999?_skw=ABC-123';
+  assert.throws(() => finalizePacket(inputs, inputs.options), /URL item ID does not match resolver evidence/);
+});
+
+test('fitment generator drift requires a rebuild before downstream review can finalize', () => {
+  const inputs = fixture();
+  inputs.options.recomputedFitment = JSON.parse(JSON.stringify(inputs.options.recomputedFitment));
+  inputs.options.recomputedFitment.worklist.entries.push({ workItemId: 'new-unreviewed-row' });
+  inputs.options.recomputedFitment.worklist.componentApplicationCount += 1;
+  assert.throws(() => finalizePacket(inputs, inputs.options), /AUDIT_REBUILD_REQUIRED/);
+});
+
+test('dropping an eligible proposal and its review rows cannot disappear from reconciliation', () => {
+  const inputs = fixture();
+  inputs.proposals.proposals = [];
+  inputs.proposals.count = 0;
+  inputs.links.proposals = [];
+  inputs.links.count = 0;
+  inputs.review.decisions = [];
+  inputs.review.reconciliation.sourcePartRowCount = 0;
+  inputs.review.reconciliation.reviewedPartRowCount = 0;
+  assert.throws(() => finalizePacket(inputs, inputs.options), /missing eligible proposals/);
 });
 
 test('diagnostic mutations fail closed before COMPLETE can be generated', async (t) => {

@@ -13,9 +13,12 @@
  *     --dir data/known-issue-part-audit/acura/<full-snapshot-hash> --make Acura
  */
 const crypto = require('crypto');
+const childProcess = require('child_process');
 const fs = require('fs');
+const os = require('os');
 const path = require('path');
 const {
+  canonicalHash,
   claimIdsForRow,
   fullRecordHashes,
   hashValue,
@@ -59,8 +62,29 @@ const DIAGNOSTIC_IMPLEMENTATION_FILES = [
   'src/app/garage/[id]/maintenance/page.tsx',
   'src/components/vehicle/VehicleDashboard.tsx',
 ];
+const COMMERCE_PIPELINE_IMPLEMENTATION_FILES = [
+  'src/lib/prescription.ts',
+  'src/lib/known-issue-fitment-worklist.ts',
+  'src/data/component-catalog-map.ts',
+  'scripts/build-fitment-worklist.ts',
+  'scripts/showmetheparts-known-issue-candidates.js',
+  'scripts/verify-parts-fitment.js',
+  'scripts/build-part-proposals.ts',
+  'src/lib/part-recommendation.ts',
+  'src/lib/part-proposal-coverage.ts',
+  'src/lib/part-type-evidence.ts',
+  'src/lib/catalog-candidate-safety.ts',
+  'scripts/build-known-issue-part-links.ts',
+  'src/lib/part-link-builder.ts',
+  'src/lib/ebay-part-link-resolver.ts',
+  'src/lib/ebay-resolver.ts',
+  'src/lib/known-issue-part-fitment.ts',
+  'src/lib/reviewed-vehicle-context.ts',
+  'scripts/build-known-issue-deeplink-manifest.js',
+];
 const HASH_RE = /^[a-f0-9]{64}$/;
 const REVIEW_READY_STATUS = 'REVIEW_READY_RECONCILED';
+const REVIEW_BLOCKED_STATUS = 'REVIEW_READY_BLOCKED_EXISTING_CLAIMS';
 
 function clone(value) {
   return JSON.parse(JSON.stringify(value));
@@ -214,12 +238,124 @@ function normalizedScope(fitment = {}) {
   };
 }
 
+function expectedFitmentArtifacts(source, make, packet) {
+  return {
+    ledger: {
+      schemaVersion: 1,
+      artifactKind: 'known-issue-make-disposition-ledger',
+      snapshotHash: source.snapshotHash,
+      make,
+      issueCount: packet.ledger.length,
+      issues: packet.ledger,
+    },
+    worklist: {
+      schemaVersion: 1,
+      artifactKind: 'known-issue-fitment-worklist',
+      snapshotHash: source.snapshotHash,
+      make,
+      guardrail: 'Catalog fitment proves application only; repair-role evidence requires independent review.',
+      issueCount: packet.ledger.length,
+      componentApplicationCount: packet.entries.length,
+      entries: packet.entries,
+    },
+  };
+}
+
+function validateRecomputedFitment(ledger, worklist, recomputed) {
+  if (!recomputed?.ledger || !recomputed?.worklist) throw new Error('Current-generator 01/02 recomputation is required');
+  if (!sameJson(ledger, recomputed.ledger) || !sameJson(worklist, recomputed.worklist)) {
+    const actualIds = new Set(worklist.entries.map((row) => row.workItemId));
+    const expectedIds = new Set(recomputed.worklist.entries.map((row) => row.workItemId));
+    const missing = [...expectedIds].filter((id) => !actualIds.has(id));
+    const stale = [...actualIds].filter((id) => !expectedIds.has(id));
+    const driftedLedgerRows = recomputed.ledger.issues.filter((row, index) => !sameJson(row, ledger.issues?.[index])).length;
+    throw new Error(
+      `AUDIT_REBUILD_REQUIRED: 01/02 do not match current generators `
+      + `(expected ${recomputed.worklist.entries.length}, actual ${worklist.entries.length}; `
+      + `${missing.length} missing, ${stale.length} stale, ${driftedLedgerRows} ledger rows drifted)`,
+    );
+  }
+  return recomputed;
+}
+
+function recomputeFitmentPacket(sourceFile, make) {
+  const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'au7o-fitment-recompute-'));
+  const output = path.join(directory, '02-fitment-worklist.json');
+  try {
+    childProcess.execFileSync(process.execPath, [
+      require.resolve('tsx/cli'),
+      path.join(PROJECT_ROOT, 'scripts', 'build-fitment-worklist.ts'),
+      make,
+      '--snapshot', sourceFile,
+      '--out', output,
+    ], { cwd: PROJECT_ROOT, stdio: ['ignore', 'pipe', 'pipe'] });
+    const packet = {
+      entries: readJson(output).entries,
+      ledger: readJson(`${output}.ledger.json`).issues,
+    };
+    return expectedFitmentArtifacts(readJson(sourceFile), make, packet);
+  } finally {
+    fs.rmSync(directory, { recursive: true, force: true });
+  }
+}
+
+function recomputeProposalArtifact(sourceFile, evidenceFile) {
+  const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'au7o-proposal-recompute-'));
+  const output = path.join(directory, '04-part-proposals.json');
+  try {
+    childProcess.execFileSync(process.execPath, [
+      require.resolve('tsx/cli'),
+      path.join(PROJECT_ROOT, 'scripts', 'build-part-proposals.ts'),
+      path.relative(PROJECT_ROOT, evidenceFile),
+      '--snapshot', path.relative(PROJECT_ROOT, sourceFile),
+      '--out', output,
+    ], { cwd: PROJECT_ROOT, stdio: ['ignore', 'pipe', 'pipe'] });
+    return readJson(output);
+  } finally {
+    fs.rmSync(directory, { recursive: true, force: true });
+  }
+}
+
+function validateRecomputedProposals(proposals, recomputedProposals) {
+  if (!recomputedProposals) throw new Error('Current-generator 04 proposal recomputation is required');
+  if (!sameJson(proposals, recomputedProposals)) {
+    const actual = new Set((proposals.proposals || []).map((row) => row.proposalId));
+    const expected = new Set((recomputedProposals.proposals || []).map((row) => row.proposalId));
+    const missing = [...expected].filter((id) => !actual.has(id));
+    const stale = [...actual].filter((id) => !expected.has(id));
+    throw new Error(
+      `AUDIT_REBUILD_REQUIRED: 04 does not match current proposal generator `
+      + `(${missing.length} missing eligible proposals, ${stale.length} stale proposals)`,
+    );
+  }
+  return recomputedProposals;
+}
+
+function normalizeFitmentValue(value) {
+  return String(value || '').toLowerCase().replace(/[^a-z0-9.]+/g, ' ').trim();
+}
+
+function fitmentValuesMatch(leftValue, rightValue) {
+  const left = normalizeFitmentValue(leftValue);
+  const right = normalizeFitmentValue(rightValue);
+  if (!left || !right) return false;
+  if (left === right) return true;
+  const [shorter, longer] = left.length <= right.length ? [left, right] : [right, left];
+  const needle = shorter.split(' ');
+  const haystack = longer.split(' ');
+  for (let index = 0; index + needle.length <= haystack.length; index += 1) {
+    if (needle.every((token, offset) => token === haystack[index + offset])) return true;
+  }
+  return false;
+}
+
 function scopesOverlap(leftFitment, rightFitment) {
   const left = normalizedScope(leftFitment);
   const right = normalizedScope(rightFitment);
   return ['years', 'engines', 'trims', 'drivetrains', 'transmissions'].every((field) => {
     if (!left[field].length || !right[field].length) return true;
-    return left[field].some((value) => right[field].includes(value));
+    if (field === 'years') return left[field].some((value) => right[field].includes(value));
+    return left[field].some((leftValue) => right[field].some((rightValue) => fitmentValuesMatch(leftValue, rightValue)));
   });
 }
 
@@ -237,12 +373,23 @@ function validateExactProductLink(part, review) {
   const links = part.buyLinks || [];
   if (!links.length) throw new Error(`${reviewKey(review)}: approved row has no direct link`);
   for (const link of links) {
-    const decoded = decodeURIComponent(String(link.url || '')).toLowerCase().replace(/[^a-z0-9]/g, '');
     if (link.linkType !== 'product' || link.verified !== true || productUrlError(link.url)) {
       throw new Error(`${reviewKey(review)}: approved link is not a verified product URL`);
     }
     if (!vendorMatchesUrl(link.vendor, link.url)) throw new Error(`${reviewKey(review)}: vendor/link mismatch`);
-    if (!decoded.includes(expected)) throw new Error(`${reviewKey(review)}: product URL lacks exact part-number evidence`);
+    const identity = link.productIdentity;
+    if (normalizedPartNumber(identity?.matchedPartNumber) !== expected
+      || !/^[a-f0-9]{64}$/i.test(identity?.listingTitleHash || '')
+      || !String(identity?.productId || '').trim()) {
+      throw new Error(`${reviewKey(review)}: product identity evidence is missing or mismatched`);
+    }
+    const url = new URL(link.url);
+    if (/(?:^|\.)ebay\./i.test(url.hostname)) {
+      const pathItemId = url.pathname.match(/\/itm\/(?:[^/]+\/)?([^/?#]+)/i)?.[1];
+      if (pathItemId !== String(identity.productId)) {
+        throw new Error(`${reviewKey(review)}: eBay URL item ID does not match resolver evidence`);
+      }
+    }
   }
 }
 
@@ -260,6 +407,7 @@ function finalPart(candidate) {
       linkType: 'product',
       verified: true,
       affiliate: /(?:^|\.)ebay\./i.test(new URL(link.url).hostname),
+      productIdentity: clone(link.productIdentity),
     })),
     fitment: clone(part.fitment || {}),
     variants: [],
@@ -334,11 +482,11 @@ function validatePacketSets(source, ledger, worklist, evidence, proposals, links
   for (const [label, artifact] of [['ledger', ledger], ['worklist', worklist], ['review', review]]) {
     if (artifact.snapshotHash !== snapshotHash) throw new Error(`${label} snapshotHash mismatch`);
   }
-  if (ledger.issueCount !== 70 || ledger.issues.length !== 70 || source.recordCount !== 70) {
-    throw new Error('Acura finalization requires exact 70-issue coverage');
+  if (ledger.issueCount !== source.recordCount || ledger.issues.length !== source.recordCount) {
+    throw new Error(`${source.make} finalization requires exact ${source.recordCount}-issue coverage`);
   }
   assertSameSet(source.recordIds, ledger.issues.map((issue) => issue.issueId), 'source/ledger issues');
-  if (worklist.issueCount !== 70 || worklist.entries.length !== worklist.componentApplicationCount) {
+  if (worklist.issueCount !== source.recordCount || worklist.entries.length !== worklist.componentApplicationCount) {
     throw new Error('Worklist counts mismatch');
   }
   if (!evidence.complete || evidence.results.length !== worklist.entries.length || evidence.progress !== `${worklist.entries.length}/${worklist.entries.length}`) {
@@ -413,8 +561,9 @@ function validateDiagnosticInputs(source, commerceLedger, inputs, options = {}) 
   if (classification.makeKey !== source.makeKey || checkpoint.makeKey !== source.makeKey) {
     throw new Error('Diagnostic makeKey mismatch');
   }
-  if (classification.issueCount !== 70 || classification.rows?.length !== 70 || checkpoint.issueCount !== 70) {
-    throw new Error('Diagnostic reconciliation requires exact 70-issue coverage');
+  if (classification.issueCount !== source.recordCount || classification.rows?.length !== source.recordCount
+    || checkpoint.issueCount !== source.recordCount) {
+    throw new Error(`Diagnostic reconciliation requires exact ${source.recordCount}-issue coverage`);
   }
   assertSameSet(source.recordIds, classification.rows.map((row) => row.issueId), 'source/diagnostic issue IDs');
   assertSameSet(commerceLedger.issues.map((row) => row.issueId), classification.rows.map((row) => row.issueId), 'commerce/diagnostic issue IDs');
@@ -422,7 +571,9 @@ function validateDiagnosticInputs(source, commerceLedger, inputs, options = {}) 
     throw new Error('Diagnostic classification has unclassified issues');
   }
   const classifiedTotal = Object.values(classification.counts || {}).reduce((sum, count) => sum + count, 0);
-  if (classifiedTotal !== 70) throw new Error(`Diagnostic classification scope total is ${classifiedTotal}, expected 70`);
+  if (classifiedTotal !== source.recordCount) {
+    throw new Error(`Diagnostic classification scope total is ${classifiedTotal}, expected ${source.recordCount}`);
+  }
 
   const summary = diagnosticSummaryFromRows(classification.rows);
   assertObjectValues(classification.diagnosticSummary, summary, 'classification diagnostic summary');
@@ -443,7 +594,7 @@ function validateDiagnosticInputs(source, commerceLedger, inputs, options = {}) 
   assertHashMap(options.implementationSha256, DIAGNOSTIC_IMPLEMENTATION_FILES, 'diagnostic implementation');
 
   const expectedScope = {
-    issueCount: 70,
+    issueCount: source.recordCount,
     issuesWithDtcCodes: summary.issueWithDtcCount,
     uniqueDtcCount: summary.uniqueDtcCount,
     solutionInstructionCount: summary.instructionCount,
@@ -455,7 +606,7 @@ function validateDiagnosticInputs(source, commerceLedger, inputs, options = {}) 
   };
   assertObjectValues(diagnosticEvidence.scope, expectedScope, 'diagnostic evidence scope');
   if (summary.unresolvedToolHoldCount !== 1 || diagnosticEvidence.holds?.length !== 1) {
-    throw new Error('Acura diagnostic reconciliation requires exactly one explicit hold');
+    throw new Error(`${source.make} diagnostic reconciliation requires exactly one explicit hold`);
   }
   const heldRows = classification.rows.flatMap((row) => (row.diagnosticDispositions || [])
     .filter((disposition) => disposition.status === 'unresolved-tool-hold')
@@ -500,6 +651,8 @@ function finalizePacket(inputs, options = {}) {
     classification, checkpoint, diagnosticEvidence,
   } = inputs;
   validateMakeSource(source, options.make || source.make);
+  validateRecomputedFitment(ledger, worklist, options.recomputedFitment);
+  validateRecomputedProposals(proposals, options.recomputedProposals);
   validatePacketSets(source, ledger, worklist, evidence, proposals, links, review);
   const diagnosticReconciliation = validateDiagnosticInputs(
     source,
@@ -508,12 +661,29 @@ function finalizePacket(inputs, options = {}) {
     options,
   );
   const proposalMap = new Map(links.proposals.map((proposal) => [proposal.proposalId, proposal]));
+  const workItemMap = new Map(worklist.entries.map((entry) => [entry.workItemId, entry]));
   const approvedPrimary = [];
   const reviewRows = [];
   for (const decision of review.decisions) {
     const proposal = proposalMap.get(decision.proposalId);
     const part = proposal?.parts?.[decision.partIndex];
     if (!proposal || !part) throw new Error(`${reviewKey(decision)}: reviewed source row missing`);
+    const workItem = workItemMap.get(proposal.proposalId);
+    if (!workItem) throw new Error(`${reviewKey(decision)}: proposal has no bound work item`);
+    if (decision.issueId !== proposal.id || proposal.id !== workItem.issueId) {
+      throw new Error(`${reviewKey(decision)}: review/proposal/work-item issueId mismatch`);
+    }
+    const proposalModel = String(proposal.articleScope?.model || '').trim().toLowerCase();
+    const workItemModel = String(workItem.model || workItem.articleScope?.model || '').trim().toLowerCase();
+    if (!proposalModel || proposalModel !== workItemModel) {
+      throw new Error(`${reviewKey(decision)}: proposal/work-item model mismatch`);
+    }
+    if (decision.workItemId !== undefined && decision.workItemId !== workItem.workItemId) {
+      throw new Error(`${reviewKey(decision)}: review workItemId mismatch`);
+    }
+    if (decision.model !== undefined && String(decision.model).trim().toLowerCase() !== workItemModel) {
+      throw new Error(`${reviewKey(decision)}: review model mismatch`);
+    }
     const sourcePartNumber = partNumberFor(part);
     if (normalizedPartNumber(sourcePartNumber) !== normalizedPartNumber(decision.partNumber)) {
       throw new Error(`${reviewKey(decision)}: source/review part number mismatch`);
@@ -530,6 +700,8 @@ function finalizePacket(inputs, options = {}) {
       proposalId: decision.proposalId,
       partIndex: decision.partIndex,
       issueId: decision.issueId,
+      workItemId: workItem.workItemId,
+      model: workItem.model || workItem.articleScope.model,
       partNumber: decision.partNumber,
       verdict: decision.decision,
       reconciliationStatus,
@@ -572,20 +744,47 @@ function finalizePacket(inputs, options = {}) {
       reason: claim.reason,
     });
   }
+  const contextBlockers = approvedPrimary.flatMap(({ proposal, part }) => {
+    const scopedDimensions = ['engines', 'drivetrains', 'transmissions']
+      .filter((field) => (part.fitment?.[field] || []).length > 0);
+    return scopedDimensions.length ? [{
+      issueId: proposal.id,
+      workItemId: proposal.proposalId,
+      type: 'authoritative-selected-vehicle-context-required',
+      dimensions: scopedDimensions,
+      reason: 'Do not render scoped commerce until the selected vehicle context is authoritative and durable.',
+    }] : [];
+  });
+  const releaseBlockers = [
+    ...removalProposals.map((row) => ({ ...row, type: 'unapplied-existing-claim-removal' })),
+    ...contextBlockers,
+  ];
+  const releaseBlocked = releaseBlockers.length > 0;
+  const reviewStatus = releaseBlocked ? REVIEW_BLOCKED_STATUS : REVIEW_READY_STATUS;
   const patch = {
     schemaVersion: 2,
     patchKind: 'known-issues-catalog-deeplink-decisions',
     batchId: `${source.makeKey}-parts-${source.snapshotHash.slice(0, 12)}`,
     snapshotHash: source.snapshotHash,
     makeSourceHash: source.makeSourceHash,
-    status: REVIEW_READY_STATUS,
-    makeComplete: true,
+    status: reviewStatus,
+    auditComplete: true,
+    makeComplete: !releaseBlocked,
+    releaseBlocked,
     productionApplied: false,
     diagnosticReconciliation: clone(diagnosticReconciliation),
+    commercePipelineImplementationSha256: clone(options.commercePipelineImplementationSha256 || {}),
     decisions,
     removalProposals,
+    releaseBlockers,
   };
   const manifest = buildManifest(source, patch);
+  manifest.releaseControl = {
+    kind: 'make-packet-v1',
+    make: source.make,
+    makeKey: source.makeKey,
+    makeSourceHash: source.makeSourceHash,
+  };
   const manifestErrors = validateManifest(manifest);
   if (manifestErrors.length) throw new Error(`Final manifest invalid: ${manifestErrors.join('; ')}`);
   assertSameSet(decisions.map((decision) => decision.id), manifest.issues.map((issue) => issue.id), 'patch/manifest changed issues');
@@ -609,18 +808,22 @@ function finalizePacket(inputs, options = {}) {
           ? 'proposal-held'
           : 'no-fixparts-change',
   }));
-  if (issueCoverage.length !== 70 || new Set(issueCoverage.map((row) => row.issueId)).size !== 70) {
-    throw new Error('Final reconciliation does not cover exactly 70 Acura issues');
+  if (issueCoverage.length !== source.recordCount
+    || new Set(issueCoverage.map((row) => row.issueId)).size !== source.recordCount) {
+    throw new Error(`Final reconciliation does not cover exactly ${source.recordCount} ${source.make} issues`);
   }
   const reconciliation = {
     schemaVersion: 2,
     artifactKind: 'known-issue-make-parts-reconciliation',
     snapshotHash: source.snapshotHash,
     makeSourceHash: source.makeSourceHash,
-    status: REVIEW_READY_STATUS,
-    makeComplete: true,
+    status: reviewStatus,
+    auditComplete: true,
+    makeComplete: !releaseBlocked,
+    releaseBlocked,
     productionApplied: false,
     diagnosticReconciliation: clone(diagnosticReconciliation),
+    commercePipelineImplementationSha256: clone(options.commercePipelineImplementationSha256 || {}),
     counts: {
       issueCount: issueCoverage.length,
       reviewedProposalPartRows: reviewRows.length,
@@ -637,22 +840,33 @@ function finalizePacket(inputs, options = {}) {
     inputSha256: options.inputSha256 || {},
     reviewRows,
     removalProposals,
+    releaseBlockers,
     issueCoverage,
   };
   patch.reconciliation = clone(reconciliation);
   return { patch, manifest, reconciliation };
 }
 
-function buildCompletionArtifact({ source, patch, manifest, artifactSha256, implementationSha256 }) {
+function buildCompletionArtifact({
+  source, patch, manifest, artifactSha256, implementationSha256, commercePipelineImplementationSha256,
+}) {
   validateMakeSource(source, source.make);
   assertHashMap(artifactSha256, [...PACKET_FILES, ...DIAGNOSTIC_ARTIFACT_FILES], 'completion artifacts');
   assertHashMap(implementationSha256, DIAGNOSTIC_IMPLEMENTATION_FILES, 'completion diagnostic implementation');
+  assertHashMap(
+    commercePipelineImplementationSha256,
+    COMMERCE_PIPELINE_IMPLEMENTATION_FILES,
+    'completion commerce-pipeline implementation',
+  );
   if (patch.snapshotHash !== source.snapshotHash || manifest.snapshotHash !== source.snapshotHash) {
     throw new Error('Completion packet snapshotHash mismatch');
   }
-  if (patch.makeSourceHash !== source.makeSourceHash || patch.status !== REVIEW_READY_STATUS
-    || patch.makeComplete !== true || patch.productionApplied !== false
-    || patch.reconciliation?.status !== REVIEW_READY_STATUS
+  const releaseBlocked = patch.releaseBlocked === true;
+  const expectedStatus = releaseBlocked ? REVIEW_BLOCKED_STATUS : REVIEW_READY_STATUS;
+  if (patch.makeSourceHash !== source.makeSourceHash || patch.status !== expectedStatus
+    || patch.auditComplete !== true || patch.makeComplete !== !releaseBlocked
+    || patch.releaseBlocked !== releaseBlocked || patch.productionApplied !== false
+    || patch.reconciliation?.status !== expectedStatus
     || patch.reconciliation?.diagnosticReconciliation?.status !== 'RECONCILED_WITH_EXPLICIT_HOLD') {
     throw new Error('Completion patch is not fully reconciled and review-ready');
   }
@@ -671,12 +885,17 @@ function buildCompletionArtifact({ source, patch, manifest, artifactSha256, impl
   if (!sameJson(patch.reconciliation.diagnosticReconciliation.implementationSha256, implementationSha256)) {
     throw new Error('Completion diagnostic implementation bindings mismatch');
   }
+  if (!sameJson(patch.reconciliation.commercePipelineImplementationSha256, commercePipelineImplementationSha256)) {
+    throw new Error('Completion commerce-pipeline implementation bindings mismatch');
+  }
   const manifestHash = artifactSha256['08-guarded-manifest.json'];
-  return {
-    schemaVersion: 1,
+  const body = {
+    schemaVersion: 2,
     artifactKind: 'known-issue-make-completion',
-    status: 'COMPLETE',
-    completionState: 'REVIEW_READY_NOT_APPLIED',
+    status: 'AUDIT_COMPLETE',
+    auditComplete: true,
+    releaseBlocked,
+    completionState: releaseBlocked ? 'AUDIT_COMPLETE_RELEASE_BLOCKED' : 'AUDIT_COMPLETE_RELEASE_READY',
     snapshotHash: source.snapshotHash,
     makeSourceHash: source.makeSourceHash,
     make: source.make,
@@ -686,11 +905,13 @@ function buildCompletionArtifact({ source, patch, manifest, artifactSha256, impl
     manifestHash,
     artifactSha256: clone(artifactSha256),
     diagnosticImplementationSha256: clone(implementationSha256),
+    commercePipelineImplementationSha256: clone(commercePipelineImplementationSha256),
     diagnosticScope: clone(patch.reconciliation.diagnosticReconciliation.scope),
     explicitDiagnosticHold: clone(patch.reconciliation.diagnosticReconciliation.hold),
     productionApplied: false,
     productionWriteAuthorized: false,
   };
+  return { ...body, completionHash: canonicalHash(body) };
 }
 
 function argValue(args, flag, fallback = '') {
@@ -744,7 +965,17 @@ function main() {
   inputSha256[files.review] = sha256File(path.join(directory, files.review));
   for (const file of DIAGNOSTIC_ARTIFACT_FILES) inputSha256[file] = sha256File(path.join(directory, file));
   const implementationSha256 = sha256Files(PROJECT_ROOT, DIAGNOSTIC_IMPLEMENTATION_FILES);
-  const result = finalizePacket(inputs, { make, inputSha256, implementationSha256 });
+  const commercePipelineImplementationSha256 = sha256Files(PROJECT_ROOT, COMMERCE_PIPELINE_IMPLEMENTATION_FILES);
+  const recomputedFitment = recomputeFitmentPacket(sourceFile, make);
+  const recomputedProposals = recomputeProposalArtifact(sourceFile, path.join(directory, files.evidence));
+  const result = finalizePacket(inputs, {
+    make,
+    inputSha256,
+    implementationSha256,
+    commercePipelineImplementationSha256,
+    recomputedFitment,
+    recomputedProposals,
+  });
   const patchFile = path.join(directory, '07-decision-patch.json');
   const manifestFile = path.join(directory, '08-guarded-manifest.json');
   writeJsonAtomic(patchFile, result.patch);
@@ -771,7 +1002,14 @@ function main() {
   };
   const diskInputSha256 = sha256Files(directory, [...PACKET_FILES.slice(0, 7), ...DIAGNOSTIC_ARTIFACT_FILES]);
   verifyReviewHashes(directory, diskInputs.review);
-  const recomputed = finalizePacket(diskInputs, { make, inputSha256: diskInputSha256, implementationSha256 });
+  const recomputed = finalizePacket(diskInputs, {
+    make,
+    inputSha256: diskInputSha256,
+    implementationSha256,
+    commercePipelineImplementationSha256,
+    recomputedFitment,
+    recomputedProposals,
+  });
   if (!sameJson(recomputed.patch, diskJson['07-decision-patch.json'])
     || !sameJson(recomputed.manifest, diskJson['08-guarded-manifest.json'])) {
     throw new Error('On-disk 07/08 do not exactly match deterministic reconciliation');
@@ -783,6 +1021,7 @@ function main() {
     manifest: diskJson['08-guarded-manifest.json'],
     artifactSha256,
     implementationSha256,
+    commercePipelineImplementationSha256,
   });
   const completeFile = path.join(directory, 'COMPLETE.json');
   writeJsonAtomic(completeFile, complete);
@@ -804,6 +1043,7 @@ if (require.main === module) {
 }
 
 module.exports = {
+  COMMERCE_PIPELINE_IMPLEMENTATION_FILES,
   DIAGNOSTIC_ARTIFACT_FILES,
   DIAGNOSTIC_IMPLEMENTATION_FILES,
   PACKET_FILES,
@@ -813,8 +1053,11 @@ module.exports = {
   consolidateCandidates,
   finalizePacket,
   scopesOverlap,
+  fitmentValuesMatch,
   sha256File,
   validateDiagnosticInputs,
+  validateRecomputedFitment,
+  validateRecomputedProposals,
   validateMakeSource,
   verifyReviewHashes,
 };

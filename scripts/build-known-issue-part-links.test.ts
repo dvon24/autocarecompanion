@@ -7,7 +7,14 @@ test('exact links attach to the staged part while repair role remains unapproved
     proposalId: 'issue--pump--5-7', id: 'issue', articleScope: { make: 'Dodge', model: 'Challenger' },
     parts: [{ component: 'Water Pump', supplier: 'Gates', aftermarketXref: ['43526'], fitment: { years: [2017], engines: ['5.7L'], trims: ['R/T'] }, buyLinks: [], verified: false }],
   }];
-  const result = await resolveProposalLinks(input, async () => [{ vendor: 'eBay', url: 'https://www.ebay.com/itm/123456789012', via: 'test', matchedPartNumber: '43526' }]);
+  const result = await resolveProposalLinks(input, async () => [{
+    vendor: 'eBay',
+    url: 'https://www.ebay.com/itm/123456789012',
+    via: 'test',
+    matchedPartNumber: '43526',
+    productId: '123456789012',
+    listingTitleHash: 'a'.repeat(64),
+  }]);
   assert.equal(result.proposals[0]!.parts[0]!.verified, false);
   assert.equal(result.proposals[0]!.parts[0]!.buyLinks?.[0]?.linkType, 'product');
   assert.equal((result.evidence[0] as { result: string }).result, 'exact-product-link');

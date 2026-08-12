@@ -28,6 +28,9 @@ interface CategorySectionProps {
     model: string;
     trim?: string;
     engine?: string;
+    engineSource?: 'selected' | 'reviewed-exact-ymmt' | null;
+    drivetrain?: string;
+    transmission?: string;
   };
   relatedByIssueId?: Record<string, RelatedIssueVehicle[]>;
   /** See KnownIssueCard.linkableDtcCodes — pass-through. */

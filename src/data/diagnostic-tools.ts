@@ -366,6 +366,11 @@ const PROCEDURE_PATTERNS: Array<[Procedure, RegExp]> = [
 ];
 
 export function proceduresInSolution(solution: string): Procedure[] {
+  // Keep the browser registry and snapshot audit on one conservative matcher.
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const shared = require('../lib/diagnostic-procedures') as { proceduresInSolution(value: string): Procedure[] };
+  return shared.proceduresInSolution(solution);
+  /* c8 ignore next 8 -- retained temporarily to keep historical regex review context */
   const text = String(solution || '');
   const clauses = text.split(/(?<=[.;!?])\s+|\n+/).map((clause) => clause.trim()).filter(Boolean);
   const excluded = /\b(?:not|no|never|without|avoid|cannot|unnecessar\w*)\b|\b[a-z]+n['’]t\b|\b(?:dont|isnt|cant|mustnt|shouldnt|wouldnt|wont|neednt)\b|\b(?:dealer|dealership|shop|technician|mechanic|garage|professional|specialist|repair facility|service cent(?:er|re))\b/i;

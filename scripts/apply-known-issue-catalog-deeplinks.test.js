@@ -8,6 +8,7 @@ const {
   applicabilityProseTrimError,
   afterHashes,
   beforeHashes,
+  canonicalHash,
   claimIdsForRow,
   evaluateRows,
   filterSupersededLegacyManifests,
@@ -20,7 +21,11 @@ const {
   loadManifests,
   productUrlError,
   resolveKnownIssueConnectionString,
+  run,
+  sha256File,
   snapshotFields,
+  validateApplyReleaseControl,
+  validateMakeReleaseEvidence,
   validateManifest,
   validateResult,
   vendorMatchesUrl,
@@ -163,6 +168,102 @@ function fullRecordManifest(row = baseRow(), batchId = 'full-batch', disposition
   };
 }
 
+function makeReleaseFixture() {
+  const projectRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'known-issue-make-release-'));
+  const packetDirectory = path.join(projectRoot, 'packet');
+  fs.mkdirSync(packetDirectory, { recursive: true });
+  const snapshotHash = '4'.repeat(64);
+  const sourceBody = {
+    schemaVersion: 2,
+    snapshotKind: 'known-issues-catalog-deeplinks',
+    auditScope: 'full-record',
+    artifactKind: 'known-issue-make-source',
+    snapshotHash,
+    globalSnapshotHash: snapshotHash,
+    make: 'Example',
+    makeKey: 'example',
+    records: [],
+  };
+  const source = { ...sourceBody, makeSourceHash: hashValue(sourceBody) };
+  const manifest = fullRecordManifest();
+  manifest.snapshotHash = snapshotHash;
+  manifest.releaseControl = {
+    kind: 'make-packet-v1',
+    make: 'Example',
+    makeKey: 'example',
+    makeSourceHash: source.makeSourceHash,
+  };
+  const requiredArtifacts = [
+    '00-make-source.json', '01-disposition-ledger.json', '02-fitment-worklist.json',
+    '03-showmetheparts-evidence.json', '04-part-proposals.json', '05-direct-link-evidence.json',
+    '06-independent-review.json', '07-decision-patch.json', '08-guarded-manifest.json',
+    'classification-ledger.json', 'checkpoint.json', 'diagnostic-tool-evidence.json',
+  ];
+  for (const file of requiredArtifacts) {
+    const value = file === '00-make-source.json' ? source : {};
+    fs.writeFileSync(path.join(packetDirectory, file), `${JSON.stringify(value, null, 2)}\n`, 'utf8');
+  }
+  const manifestFile = path.join(packetDirectory, '08-guarded-manifest.json');
+  fs.writeFileSync(manifestFile, `${JSON.stringify(manifest, null, 2)}\n`, 'utf8');
+  const diagnosticFile = path.join(projectRoot, 'implementation', 'diagnostic.js');
+  const commerceFile = path.join(projectRoot, 'implementation', 'commerce.js');
+  fs.mkdirSync(path.dirname(diagnosticFile), { recursive: true });
+  fs.writeFileSync(diagnosticFile, 'module.exports = "diagnostic";\n', 'utf8');
+  fs.writeFileSync(commerceFile, 'module.exports = "commerce";\n', 'utf8');
+  const artifactSha256 = Object.fromEntries(requiredArtifacts.map((file) => [
+    file,
+    sha256File(path.join(packetDirectory, file)),
+  ]));
+  const completionBody = {
+    schemaVersion: 2,
+    artifactKind: 'known-issue-make-completion',
+    status: 'AUDIT_COMPLETE',
+    auditComplete: true,
+    releaseBlocked: false,
+    completionState: 'AUDIT_COMPLETE_RELEASE_READY',
+    snapshotHash,
+    makeSourceHash: source.makeSourceHash,
+    make: 'Example',
+    makeKey: 'example',
+    manifestFile: '08-guarded-manifest.json',
+    manifestHash: artifactSha256['08-guarded-manifest.json'],
+    artifactSha256,
+    diagnosticImplementationSha256: { 'implementation/diagnostic.js': sha256File(diagnosticFile) },
+    commercePipelineImplementationSha256: { 'implementation/commerce.js': sha256File(commerceFile) },
+    productionApplied: false,
+    productionWriteAuthorized: false,
+  };
+  const completion = { ...completionBody, completionHash: canonicalHash(completionBody) };
+  const completionFile = path.join(packetDirectory, 'COMPLETE.json');
+  fs.writeFileSync(completionFile, `${JSON.stringify(completion, null, 2)}\n`, 'utf8');
+  const authorization = {
+    schemaVersion: 1,
+    artifactKind: 'known-issue-make-release-authorization',
+    manifestHash: completion.manifestHash,
+    completionHash: completion.completionHash,
+    snapshotHash,
+    gitCommit: '5'.repeat(40),
+    baselineCommit: '6'.repeat(40),
+    decision: 'APPROVE_RELEASE',
+    approver: { type: 'opus', identity: 'test-reviewer' },
+    nonce: 'release-test-nonce-0001',
+    authorizedAt: '2026-08-12T12:00:00.000Z',
+  };
+  const authorizationFile = path.join(packetDirectory, 'RELEASE-AUTHORIZATION.json');
+  fs.writeFileSync(authorizationFile, `${JSON.stringify(authorization, null, 2)}\n`, 'utf8');
+  return {
+    projectRoot,
+    packetDirectory,
+    manifest,
+    manifestFile,
+    completion,
+    completionFile,
+    authorization,
+    authorizationFile,
+    gitReleaseState: () => ({ gitCommit: authorization.gitCommit, baselineCommit: authorization.baselineCommit }),
+  };
+}
+
 function changedManifest(row = baseRow(), id = 'batch-1') {
   const after = {
     title: row.title,
@@ -261,6 +362,193 @@ test('the applicator loader rejects a truncated schema-v3 reviewed batch before 
     assert.throws(() => loadManifests(['--manifest', file]), /issues must be a non-empty array|writeRowCount/);
   } finally {
     fs.rmSync(directory, { recursive: true, force: true });
+  }
+});
+
+test('make release evidence recomputes manifest, completion, artifact, snapshot, and git bindings', () => {
+  const fixture = makeReleaseFixture();
+  try {
+    const receipt = validateMakeReleaseEvidence(fixture);
+    assert.equal(receipt.manifestHash, fixture.completion.manifestHash);
+    assert.equal(receipt.completionHash, fixture.completion.completionHash);
+    assert.equal(receipt.decision, 'APPROVE_RELEASE');
+    assert.equal(receipt.nonce, fixture.authorization.nonce);
+  } finally {
+    fs.rmSync(fixture.projectRoot, { recursive: true, force: true });
+  }
+});
+
+test('make release evidence fails closed under binding mutations', async (t) => {
+  await t.test('artifact bytes drift after completion', () => {
+    const fixture = makeReleaseFixture();
+    try {
+      fs.writeFileSync(path.join(fixture.packetDirectory, '04-part-proposals.json'), '{"mutated":true}\n', 'utf8');
+      assert.throws(() => validateMakeReleaseEvidence(fixture), /artifactSha256.*drift/);
+    } finally {
+      fs.rmSync(fixture.projectRoot, { recursive: true, force: true });
+    }
+  });
+
+  await t.test('authorization is copied to a different completion hash', () => {
+    const fixture = makeReleaseFixture();
+    try {
+      const authorization = { ...fixture.authorization, completionHash: 'f'.repeat(64) };
+      fs.writeFileSync(fixture.authorizationFile, `${JSON.stringify(authorization, null, 2)}\n`, 'utf8');
+      assert.throws(() => validateMakeReleaseEvidence(fixture), /completionHash binding mismatch/);
+    } finally {
+      fs.rmSync(fixture.projectRoot, { recursive: true, force: true });
+    }
+  });
+
+  await t.test('completion attempts to hash itself', () => {
+    const fixture = makeReleaseFixture();
+    try {
+      const completionBody = { ...fixture.completion };
+      delete completionBody.completionHash;
+      completionBody.artifactSha256 = { ...completionBody.artifactSha256, 'COMPLETE.json': 'a'.repeat(64) };
+      const completion = { ...completionBody, completionHash: canonicalHash(completionBody) };
+      fs.writeFileSync(fixture.completionFile, `${JSON.stringify(completion, null, 2)}\n`, 'utf8');
+      const authorization = { ...fixture.authorization, completionHash: completion.completionHash };
+      fs.writeFileSync(fixture.authorizationFile, `${JSON.stringify(authorization, null, 2)}\n`, 'utf8');
+      assert.throws(() => validateMakeReleaseEvidence(fixture), /self-referential COMPLETE\.json/);
+    } finally {
+      fs.rmSync(fixture.projectRoot, { recursive: true, force: true });
+    }
+  });
+
+  await t.test('checkout commit differs from authorization', () => {
+    const fixture = makeReleaseFixture();
+    try {
+      fixture.gitReleaseState = () => ({
+        gitCommit: '7'.repeat(40),
+        baselineCommit: fixture.authorization.baselineCommit,
+      });
+      assert.throws(() => validateMakeReleaseEvidence(fixture), /checkout does not match/);
+    } finally {
+      fs.rmSync(fixture.projectRoot, { recursive: true, force: true });
+    }
+  });
+
+  await t.test('authorization nonce was already consumed', () => {
+    const fixture = makeReleaseFixture();
+    try {
+      const resultsDirectory = path.join(
+        fixture.projectRoot,
+        'data',
+        'known-issues-catalog-deeplink-results',
+      );
+      fs.mkdirSync(resultsDirectory, { recursive: true });
+      fs.writeFileSync(path.join(resultsDirectory, 'prior.json'), JSON.stringify({
+        releaseAuthorization: { nonce: fixture.authorization.nonce },
+      }), 'utf8');
+      assert.throws(() => validateMakeReleaseEvidence(fixture), /nonce was already consumed/);
+    } finally {
+      fs.rmSync(fixture.projectRoot, { recursive: true, force: true });
+    }
+  });
+});
+
+test('--apply refuses before pool creation when release evidence is missing or legacy', async (t) => {
+  await t.test('marked make manifest without completion/authorization', async () => {
+    const fixture = makeReleaseFixture();
+    let poolCreations = 0;
+    try {
+      await assert.rejects(
+        run('apply', ['--manifest', fixture.manifestFile], {
+          createPool: () => { poolCreations += 1; },
+          resolveConnectionString: () => { throw new Error('database resolution must not run'); },
+        }),
+        /--completion <file> is required/,
+      );
+      assert.equal(poolCreations, 0);
+    } finally {
+      fs.rmSync(fixture.projectRoot, { recursive: true, force: true });
+    }
+  });
+
+  await t.test('legacy unmarked manifest cannot bypass the make gate', async () => {
+    const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'known-issue-legacy-apply-'));
+    const file = path.join(directory, 'legacy.json');
+    let poolCreations = 0;
+    try {
+      fs.writeFileSync(file, JSON.stringify(fullRecordManifest()), 'utf8');
+      await assert.rejects(
+        run('apply', ['--manifest', file], {
+          createPool: () => { poolCreations += 1; },
+          resolveConnectionString: () => { throw new Error('database resolution must not run'); },
+        }),
+        /apply is disabled for legacy or unmarked manifests/,
+      );
+      assert.equal(poolCreations, 0);
+    } finally {
+      fs.rmSync(directory, { recursive: true, force: true });
+    }
+  });
+
+  await t.test('blocked completion fails before database configuration or pool creation', async () => {
+    const fixture = makeReleaseFixture();
+    let poolCreations = 0;
+    let databaseResolutions = 0;
+    try {
+      const completionBody = { ...fixture.completion };
+      delete completionBody.completionHash;
+      completionBody.releaseBlocked = true;
+      completionBody.completionState = 'AUDIT_COMPLETE_RELEASE_BLOCKED';
+      const completion = { ...completionBody, completionHash: canonicalHash(completionBody) };
+      fs.writeFileSync(fixture.completionFile, `${JSON.stringify(completion, null, 2)}\n`, 'utf8');
+      const authorization = { ...fixture.authorization, completionHash: completion.completionHash };
+      fs.writeFileSync(fixture.authorizationFile, `${JSON.stringify(authorization, null, 2)}\n`, 'utf8');
+      await assert.rejects(
+        run('apply', [
+          '--manifest', fixture.manifestFile,
+          '--completion', fixture.completionFile,
+          '--authorization', fixture.authorizationFile,
+        ], {
+          projectRoot: fixture.projectRoot,
+          gitReleaseState: fixture.gitReleaseState,
+          createPool: () => { poolCreations += 1; },
+          resolveConnectionString: () => { databaseResolutions += 1; },
+        }),
+        /not an unapplied, unblocked schema-v2 make completion/,
+      );
+      assert.equal(databaseResolutions, 0);
+      assert.equal(poolCreations, 0);
+    } finally {
+      fs.rmSync(fixture.projectRoot, { recursive: true, force: true });
+    }
+  });
+});
+
+test('make manifests remain available to dry-run and verify without release authority', () => {
+  const fixture = makeReleaseFixture();
+  try {
+    const loaded = [{ file: fixture.manifestFile, manifest: fixture.manifest }];
+    assert.equal(validateApplyReleaseControl('dry-run', ['--manifest', fixture.manifestFile], loaded), null);
+    assert.equal(validateApplyReleaseControl('verify', ['--manifest', fixture.manifestFile], loaded), null);
+  } finally {
+    fs.rmSync(fixture.projectRoot, { recursive: true, force: true });
+  }
+});
+
+test('make result receipts retain the exact authorized manifest identity', () => {
+  const fixture = makeReleaseFixture();
+  try {
+    const releaseAuthorization = validateMakeReleaseEvidence(fixture);
+    const row = { id: fixture.manifest.issues[0].id, ...fixture.manifest.issues[0].after };
+    const result = {
+      schemaVersion: 2,
+      auditScope: 'full-record',
+      batchId: fixture.manifest.batchId,
+      manifestHash: hashValue(fixture.manifest),
+      status: 'applied-and-verified',
+      releaseAuthorization,
+      issues: [{ id: row.id, afterHashes: fullRecordHashes(row) }],
+    };
+    assert.deepEqual(validateResult(result, fixture.manifest, [row]), []);
+    result.releaseAuthorization.manifestCanonicalHash = 'f'.repeat(64);
+    assert.ok(validateResult(result, fixture.manifest, [row]).includes('releaseAuthorization'));
+  } finally {
+    fs.rmSync(fixture.projectRoot, { recursive: true, force: true });
   }
 });
 

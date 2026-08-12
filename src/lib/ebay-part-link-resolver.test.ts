@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { ebayQuery } from './ebay-part-link-resolver';
+import { canonicalEbayItemId, ebayQuery } from './ebay-part-link-resolver';
 
 test('eBay query carries exact vehicle, engine, trim, supplier, PN and component evidence', () => {
   assert.equal(
@@ -10,4 +10,11 @@ test('eBay query carries exact vehicle, engine, trim, supplier, PN and component
     }),
     '2017 Dodge Challenger R/T 5.7L Gates 43526 Engine Water Pump',
   );
+});
+
+test('canonicalizes Browse API item IDs to the numeric public URL identity', () => {
+  assert.equal(canonicalEbayItemId('v1|401988622225|0'), '401988622225');
+  assert.equal(canonicalEbayItemId('401988622225'), '401988622225');
+  assert.equal(canonicalEbayItemId('v1|not-an-item|0'), '');
+  assert.equal(canonicalEbayItemId('401988622225?query=part'), '');
 });

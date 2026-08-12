@@ -6,9 +6,11 @@ const path = require('node:path');
 const test = require('node:test');
 const {
   CLASSIFICATIONS,
+  canonicalHash,
   enumerateMakes,
   hashValue,
   runAudit,
+  sha256File,
   snapshotBodyHash,
   validateLedger,
 } = require('./build-known-issue-part-audit-ledger');
@@ -64,34 +66,68 @@ function writeDisposition(directory, hash, make, records) {
   return file;
 }
 
-function markComplete(outputRoot, make, snapshotHash) {
+function markComplete(outputRoot, make, snapshotHash, projectRoot) {
   const makeSlug = make.toLowerCase().replace(/[^a-z0-9]+/g, '-');
-  const file = path.join(outputRoot, makeSlug, snapshotHash, 'COMPLETE.json');
+  const directory = path.join(outputRoot, makeSlug, snapshotHash);
+  const file = path.join(directory, 'COMPLETE.json');
   const artifactFiles = [
     '00-make-source.json', '01-disposition-ledger.json', '02-fitment-worklist.json',
     '03-showmetheparts-evidence.json', '04-part-proposals.json', '05-direct-link-evidence.json',
     '06-independent-review.json', '07-decision-patch.json', '08-guarded-manifest.json',
     'classification-ledger.json', 'checkpoint.json', 'diagnostic-tool-evidence.json',
   ];
-  const manifestHash = hashValue(`manifest:${make}`);
-  fs.mkdirSync(path.dirname(file), { recursive: true });
-  fs.writeFileSync(file, JSON.stringify({
-    schemaVersion: 1,
+  fs.mkdirSync(directory, { recursive: true });
+  const sourceBody = {
+    schemaVersion: 2,
+    artifactKind: 'known-issue-make-source',
+    snapshotHash,
+    globalSnapshotHash: snapshotHash,
+    make,
+    makeKey: make.toLowerCase(),
+    records: [],
+  };
+  const makeSourceHash = hashValue(sourceBody);
+  for (const name of artifactFiles) {
+    const artifactFile = path.join(directory, name);
+    if (!fs.existsSync(artifactFile)) {
+      const value = name === '00-make-source.json' ? { ...sourceBody, makeSourceHash } : {};
+      fs.writeFileSync(artifactFile, `${JSON.stringify(value, null, 2)}\n`, 'utf8');
+    }
+  }
+  const diagnosticFile = path.join(projectRoot, 'implementation', `${makeSlug}-diagnostic.js`);
+  const commerceFile = path.join(projectRoot, 'implementation', `${makeSlug}-commerce.js`);
+  fs.mkdirSync(path.dirname(diagnosticFile), { recursive: true });
+  fs.writeFileSync(diagnosticFile, `module.exports = '${makeSlug}-diagnostic';\n`, 'utf8');
+  fs.writeFileSync(commerceFile, `module.exports = '${makeSlug}-commerce';\n`, 'utf8');
+  const artifactSha256 = Object.fromEntries(artifactFiles.map((name) => [name, sha256File(path.join(directory, name))]));
+  const completionBody = {
+    schemaVersion: 2,
     artifactKind: 'known-issue-make-completion',
-    status: 'COMPLETE',
-    completionState: 'REVIEW_READY_NOT_APPLIED',
+    status: 'AUDIT_COMPLETE',
+    auditComplete: true,
+    releaseBlocked: false,
+    completionState: 'AUDIT_COMPLETE_RELEASE_READY',
     snapshotHash,
     makeKey: make.toLowerCase(),
-    makeSourceHash: hashValue(`source:${make}`),
+    makeSourceHash,
     issueCount: 1,
     manifestFile: '08-guarded-manifest.json',
-    manifestHash,
-    artifactSha256: Object.fromEntries(artifactFiles.map((name) => [name, name === '08-guarded-manifest.json' ? manifestHash : hashValue(`${make}:${name}`)])),
-    diagnosticImplementationSha256: { 'src/data/diagnostic-tools.ts': hashValue(`tools:${make}`) },
+    manifestHash: artifactSha256['08-guarded-manifest.json'],
+    artifactSha256,
+    diagnosticImplementationSha256: {
+      [`implementation/${makeSlug}-diagnostic.js`]: sha256File(diagnosticFile),
+    },
+    commercePipelineImplementationSha256: {
+      [`implementation/${makeSlug}-commerce.js`]: sha256File(commerceFile),
+    },
     diagnosticScope: { issueCount: 1, uncoveredDiagnosticInstructionCount: 0 },
     productionApplied: false,
     productionWriteAuthorized: false,
-  }));
+  };
+  fs.writeFileSync(file, `${JSON.stringify({
+    ...completionBody,
+    completionHash: canonicalHash(completionBody),
+  }, null, 2)}\n`, 'utf8');
   return file;
 }
 
@@ -143,9 +179,9 @@ test('refuses to skip any prior make without a valid COMPLETE checkpoint', () =>
     /Acura has no COMPLETE checkpoint/,
   );
   runAudit({ snapshotPath: file, dispositionPath: acuraDisposition, make: 'Acura', outputRoot });
-  markComplete(outputRoot, 'Acura', hash);
+  markComplete(outputRoot, 'Acura', hash, temp);
   assert.throws(
-    () => runAudit({ snapshotPath: file, make: 'Audi', outputRoot }),
+    () => runAudit({ snapshotPath: file, make: 'Audi', outputRoot, projectRoot: temp }),
     /Alfa Romeo has no COMPLETE checkpoint/,
   );
 });
@@ -164,10 +200,10 @@ test('resumes in order after prior COMPLETE checkpoints', () => {
   const audiDisposition = writeDisposition(temp, hash, 'Audi', records.filter((item) => item.make === 'Audi'));
 
   runAudit({ snapshotPath: file, dispositionPath: acuraDisposition, make: 'Acura', outputRoot });
-  markComplete(outputRoot, 'Acura', hash);
-  runAudit({ snapshotPath: file, dispositionPath: alfaDisposition, make: 'Alfa Romeo', outputRoot });
-  markComplete(outputRoot, 'Alfa Romeo', hash);
-  const result = runAudit({ snapshotPath: file, dispositionPath: audiDisposition, make: 'Audi', outputRoot });
+  markComplete(outputRoot, 'Acura', hash, temp);
+  runAudit({ snapshotPath: file, dispositionPath: alfaDisposition, make: 'Alfa Romeo', outputRoot, projectRoot: temp });
+  markComplete(outputRoot, 'Alfa Romeo', hash, temp);
+  const result = runAudit({ snapshotPath: file, dispositionPath: audiDisposition, make: 'Audi', outputRoot, projectRoot: temp });
   assert.equal(result.make, 'Audi');
   assert.equal(result.makeIndex, 2);
   assert.equal(result.zeroUnclassified, true);
@@ -185,14 +221,106 @@ test('rejects legacy or mutated COMPLETE files for later-make gating', () => {
   ];
   const { file, hash } = writeSnapshot(temp, records);
   const alfaDisposition = writeDisposition(temp, hash, 'Alfa Romeo', records.filter((item) => item.make === 'Alfa Romeo'));
-  const completeFile = markComplete(outputRoot, 'Acura', hash);
+  const completeFile = markComplete(outputRoot, 'Acura', hash, temp);
   const complete = JSON.parse(fs.readFileSync(completeFile, 'utf8'));
   complete.artifactSha256['08-guarded-manifest.json'] = 'f'.repeat(64);
   fs.writeFileSync(completeFile, JSON.stringify(complete));
   assert.throws(
-    () => runAudit({ snapshotPath: file, dispositionPath: alfaDisposition, make: 'Alfa Romeo', outputRoot }),
+    () => runAudit({ snapshotPath: file, dispositionPath: alfaDisposition, make: 'Alfa Romeo', outputRoot, projectRoot: temp }),
     /not a valid COMPLETE checkpoint/,
   );
+});
+
+test('an independently reconciled prior audit may remain release-blocked without blocking the next make audit', () => {
+  const temp = fs.mkdtempSync(path.join(os.tmpdir(), 'au7o-audit-blocked-resume-'));
+  const outputRoot = path.join(temp, 'audit');
+  const records = [
+    record('acura-1', 'Acura', 'Replace the water pump.'),
+    record('alfa-1', 'Alfa Romeo', 'Replace the thermostat.'),
+  ];
+  const { file, hash } = writeSnapshot(temp, records);
+  const acuraDisposition = writeDisposition(temp, hash, 'Acura', [records[0]]);
+  runAudit({ snapshotPath: file, dispositionPath: acuraDisposition, make: 'Acura', outputRoot });
+  const completeFile = markComplete(outputRoot, 'Acura', hash, temp);
+  const complete = JSON.parse(fs.readFileSync(completeFile, 'utf8'));
+  complete.releaseBlocked = true;
+  complete.completionState = 'AUDIT_COMPLETE_RELEASE_BLOCKED';
+  const body = { ...complete };
+  delete body.completionHash;
+  complete.completionHash = canonicalHash(body);
+  fs.writeFileSync(completeFile, JSON.stringify(complete));
+  const alfaDisposition = writeDisposition(temp, hash, 'Alfa Romeo', [records[1]]);
+
+  const result = runAudit({ snapshotPath: file, dispositionPath: alfaDisposition, make: 'Alfa Romeo', outputRoot, projectRoot: temp });
+  assert.equal(result.make, 'Alfa Romeo');
+});
+
+test('later-make gating recomputes prior artifact, implementation, and source bindings from disk', async (t) => {
+  function setup() {
+    const temp = fs.mkdtempSync(path.join(os.tmpdir(), 'au7o-prior-make-drift-'));
+    const outputRoot = path.join(temp, 'audit');
+    const records = [
+      record('acura-1', 'Acura', 'Replace the water pump.'),
+      record('alfa-1', 'Alfa Romeo', 'Replace the thermostat.'),
+    ];
+    const { file, hash } = writeSnapshot(temp, records);
+    const dispositionPath = writeDisposition(temp, hash, 'Alfa Romeo', records.filter((item) => item.make === 'Alfa Romeo'));
+    const completeFile = markComplete(outputRoot, 'Acura', hash, temp);
+    return { temp, outputRoot, file, hash, dispositionPath, completeFile };
+  }
+
+  function advance(state) {
+    return runAudit({
+      snapshotPath: state.file,
+      dispositionPath: state.dispositionPath,
+      make: 'Alfa Romeo',
+      outputRoot: state.outputRoot,
+      projectRoot: state.temp,
+    });
+  }
+
+  await t.test('packet artifact drift', () => {
+    const state = setup();
+    try {
+      const artifact = path.join(state.outputRoot, 'acura', state.hash, '04-part-proposals.json');
+      fs.writeFileSync(artifact, '{"mutated":true}\n', 'utf8');
+      assert.throws(() => advance(state), /artifactSha256.*drifted on disk/);
+    } finally {
+      fs.rmSync(state.temp, { recursive: true, force: true });
+    }
+  });
+
+  await t.test('implementation drift', () => {
+    const state = setup();
+    try {
+      fs.writeFileSync(path.join(state.temp, 'implementation', 'acura-commerce.js'), 'mutated\n', 'utf8');
+      assert.throws(() => advance(state), /commercePipelineImplementationSha256.*drifted on disk/);
+    } finally {
+      fs.rmSync(state.temp, { recursive: true, force: true });
+    }
+  });
+
+  await t.test('source is rebound to different snapshot after completion', () => {
+    const state = setup();
+    try {
+      const directory = path.join(state.outputRoot, 'acura', state.hash);
+      const sourceFile = path.join(directory, '00-make-source.json');
+      const source = JSON.parse(fs.readFileSync(sourceFile, 'utf8'));
+      source.snapshotHash = 'f'.repeat(64);
+      const { makeSourceHash: ignored, ...sourceBody } = source;
+      source.makeSourceHash = hashValue(sourceBody);
+      fs.writeFileSync(sourceFile, `${JSON.stringify(source, null, 2)}\n`, 'utf8');
+      const completion = JSON.parse(fs.readFileSync(state.completeFile, 'utf8'));
+      completion.artifactSha256['00-make-source.json'] = sha256File(sourceFile);
+      delete completion.completionHash;
+      completion.completionHash = canonicalHash(completion);
+      fs.writeFileSync(state.completeFile, `${JSON.stringify(completion, null, 2)}\n`, 'utf8');
+      assert.throws(() => advance(state), /make source binding drifted on disk/);
+      void ignored;
+    } finally {
+      fs.rmSync(state.temp, { recursive: true, force: true });
+    }
+  });
 });
 
 test('writes byte-identical deterministic artifacts on rerun', () => {
@@ -280,4 +408,40 @@ test('rejects a snapshot whose declared hash no longer matches its body', () => 
   snapshot.records[0].solution = 'Changed after freeze.';
   fs.writeFileSync(file, JSON.stringify(snapshot, null, 2));
   assert.throws(() => runAudit({ snapshotPath: file, make: 'Acura', outputRoot }), /hash mismatch/);
+});
+
+test('accepts a hash-pinned make source without requiring the giant global snapshot', () => {
+  const temp = fs.mkdtempSync(path.join(os.tmpdir(), 'au7o-make-source-audit-'));
+  const outputRoot = path.join(temp, 'audit');
+  const records = [record('acura-1', 'Acura', 'Replace the water pump.')];
+  const { hash } = writeSnapshot(temp, records);
+  const body = {
+    schemaVersion: 2,
+    snapshotKind: 'known-issues-catalog-deeplinks',
+    auditScope: 'full-record',
+    artifactKind: 'known-issue-make-source',
+    snapshotHash: hash,
+    globalSnapshotHash: hash,
+    make: 'Acura',
+    makeKey: 'acura',
+    recordCount: records.length,
+    recordIds: records.map((item) => item.id),
+    recordProvenance: [],
+    records,
+  };
+  const sourceFile = path.join(temp, '00-make-source.json');
+  fs.writeFileSync(sourceFile, JSON.stringify({ ...body, makeSourceHash: hashValue(body) }));
+  const dispositionPath = writeDisposition(temp, hash, 'Acura', records);
+
+  const result = runAudit({ snapshotPath: sourceFile, dispositionPath, make: 'Acura', outputRoot });
+  assert.equal(result.snapshotHash, hash);
+  assert.equal(result.issueCount, 1);
+
+  const tampered = JSON.parse(fs.readFileSync(sourceFile, 'utf8'));
+  tampered.records[0].solution = 'Changed after the make freeze.';
+  fs.writeFileSync(sourceFile, JSON.stringify(tampered));
+  assert.throws(
+    () => runAudit({ snapshotPath: sourceFile, dispositionPath, make: 'Acura', outputRoot }),
+    /make source hash mismatch/,
+  );
 });

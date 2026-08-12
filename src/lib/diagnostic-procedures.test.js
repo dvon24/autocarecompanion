@@ -33,6 +33,23 @@ test('DTC family chooses a capable scanner and unknown codes fail closed', () =>
   assert.equal(held.every((item) => item.reasonCode === 'manufacturer-code-capability-unverified'), true);
 });
 
+test('inline manufacturer codes override an otherwise generic P-code scanner choice', () => {
+  const rows = diagnosticDispositionsForIssue(
+    'Pull DTCs with a scan tool and check Honda Code 22 before replacing the part.',
+    ['P1259'],
+  );
+  assert.ok(rows.length >= 2);
+  assert.equal(rows.every((row) => row.status === 'unresolved-tool-hold'), true);
+  assert.equal(rows.every((row) => row.reasonCode === 'manufacturer-code-capability-unverified'), true);
+});
+
+test('diagnostic negation binds to the procedure, not an unrelated later condition', () => {
+  assert.deepEqual(proceduresInSolution('Pull codes with a scan tool if the actuator is not engaging.'), ['scan-codes']);
+  assert.deepEqual(proceduresInSolution('Pull DTCs before replacement.'), ['scan-codes']);
+  assert.deepEqual(proceduresInSolution('Do not pull codes with a scan tool.'), []);
+  assert.deepEqual(proceduresInSolution('A scan tool is not required.'), []);
+});
+
 test('delegated, visual and ambiguous instructions get explicit non-commerce dispositions', () => {
   const delegated = diagnosticDispositionsForIssue('Have the dealer perform an oil consumption test.', []);
   assert.equal(delegated[0]?.status, 'procedure-no-tool');

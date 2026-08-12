@@ -82,6 +82,19 @@ export type FitmentVerdict =
   /** No scope declared, or nothing known about the vehicle to test against. */
   | 'unscoped';
 
+export type FitmentDimension = 'year' | 'engine' | 'trim' | 'drivetrain' | 'transmission';
+
+export interface PartsForVehicleResolution<T extends ResolvablePart> {
+  parts: VehicleResolvedPart<T>[];
+  hiddenCount: number;
+  /** Selected details still needed before a reviewed fitment can be resolved. */
+  unresolvedDimensions: FitmentDimension[];
+  /** More than one reviewed variant positively matched the supplied details. */
+  ambiguousCount: number;
+  /** Known details positively excluded all reviewed fitments. */
+  excludedCount: number;
+}
+
 function normalize(value: string): string {
   return value.toLowerCase().replace(/[^a-z0-9.]+/g, ' ').trim();
 }
@@ -111,6 +124,20 @@ function listMatches(declared: string[] | undefined, actual: string | null | und
   if (!declared || declared.length === 0) return null; // dimension not scoped
   if (!actual) return null; // nothing to test against — do not invent an exclusion
   return declared.some((d) => tokenMatch(d, actual));
+}
+
+function missingFitmentDimensions(
+  fitment: PartFitment | undefined,
+  vehicle: FitmentVehicle,
+): FitmentDimension[] {
+  if (!fitment) return [];
+  const missing: FitmentDimension[] = [];
+  if (fitment.years?.length && vehicle.year == null) missing.push('year');
+  if (fitment.engines?.length && !vehicle.engine) missing.push('engine');
+  if (fitment.trims?.length && !vehicle.trim) missing.push('trim');
+  if (fitment.drivetrains?.length && !vehicle.drivetrain) missing.push('drivetrain');
+  if (fitment.transmissions?.length && !vehicle.transmission) missing.push('transmission');
+  return missing;
 }
 
 /**
@@ -200,40 +227,95 @@ export function resolvePartForVehicle<T extends ResolvablePart>(
   vehicle: FitmentVehicle,
   expectedIdentity?: VehicleIdentity,
 ): VehicleResolvedPart<T> | null {
-  if (!vehicleIdentityMatches(vehicle, expectedIdentity)) return null;
-  if (!partCanBeShownForVehicle(part.fitment, vehicle)) return null;
+  return resolvePartForVehicleDetailed(part, vehicle, expectedIdentity).part;
+}
+
+type PartResolutionDetail<T extends ResolvablePart> =
+  | { part: VehicleResolvedPart<T>; reason: 'resolved'; missing: FitmentDimension[] }
+  | { part: null; reason: 'unknown' | 'ambiguous' | 'excluded'; missing: FitmentDimension[] };
+
+function resolvePartForVehicleDetailed<T extends ResolvablePart>(
+  part: T,
+  vehicle: FitmentVehicle,
+  expectedIdentity?: VehicleIdentity,
+): PartResolutionDetail<T> {
+  if (!vehicleIdentityMatches(vehicle, expectedIdentity)) {
+    return { part: null, reason: 'excluded', missing: [] };
+  }
+
+  const baseVerdict = partFitsVehicle(part.fitment, vehicle);
+  if (baseVerdict === 'excluded') return { part: null, reason: 'excluded', missing: [] };
+  const baseMissing = missingFitmentDimensions(part.fitment, vehicle);
+  if (baseMissing.length > 0) return { part: null, reason: 'unknown', missing: baseMissing };
 
   const variants = part.variants || [];
-  if (variants.length === 0) return part as VehicleResolvedPart<T>;
+  if (variants.length === 0) {
+    return { part: part as VehicleResolvedPart<T>, reason: 'resolved', missing: [] };
+  }
 
-  const compatible = variants.filter((variant) =>
-    partCanBeShownForVehicle(variant.fitment, vehicle)
-      && partFitsVehicle(variant.fitment, vehicle) === 'fits');
-  if (compatible.length !== 1) return null;
+  const notExcluded = variants.filter((variant) => partFitsVehicle(variant.fitment, vehicle) !== 'excluded');
+  const unresolved = [...new Set(notExcluded.flatMap((variant) =>
+    missingFitmentDimensions(variant.fitment, vehicle)))];
+  if (unresolved.length > 0) return { part: null, reason: 'unknown', missing: unresolved };
+  const compatible = notExcluded.filter((variant) => partFitsVehicle(variant.fitment, vehicle) === 'fits');
+  if (compatible.length > 1) return { part: null, reason: 'ambiguous', missing: [] };
 
-  const variant = compatible[0]!;
-  return {
-    ...part,
-    ...(variant.component ? { component: variant.component } : {}),
-    ...(variant.oemPartNumber !== undefined ? { oemPartNumber: variant.oemPartNumber } : {}),
-    ...(variant.aftermarketXref !== undefined ? { aftermarketXref: variant.aftermarketXref } : {}),
-    ...(variant.note !== undefined ? { note: variant.note } : {}),
-    fitment: variant.fitment,
-    // A variant is one independently reviewed offer. Never leak a base or
-    // sibling variant link into it when its own link evidence is absent.
-    buyLinks: variant.buyLinks || [],
-  } as VehicleResolvedPart<T>;
+  if (compatible.length === 1) {
+    const variant = compatible[0]!;
+    return {
+      reason: 'resolved',
+      missing: [],
+      part: {
+        ...part,
+        ...(variant.component ? { component: variant.component } : {}),
+        ...(variant.oemPartNumber !== undefined ? { oemPartNumber: variant.oemPartNumber } : {}),
+        ...(variant.aftermarketXref !== undefined ? { aftermarketXref: variant.aftermarketXref } : {}),
+        ...(variant.note !== undefined ? { note: variant.note } : {}),
+        fitment: variant.fitment,
+        buyLinks: variant.buyLinks || [],
+      } as VehicleResolvedPart<T>,
+    };
+  }
+
+  return { part: null, reason: 'excluded', missing: [] };
 }
 
 export function resolvePartsForVehicle<T extends ResolvablePart>(
   parts: readonly T[],
   vehicle: FitmentVehicle,
   expectedIdentity?: VehicleIdentity,
-): { parts: VehicleResolvedPart<T>[]; hiddenCount: number } {
-  const resolved = parts
-    .map((part) => resolvePartForVehicle(part, vehicle, expectedIdentity))
+): PartsForVehicleResolution<T> {
+  const decisions = parts.map((part) => resolvePartForVehicleDetailed(part, vehicle, expectedIdentity));
+  const resolved = decisions
+    .map((decision) => decision.part)
     .filter((part): part is VehicleResolvedPart<T> => part !== null);
-  return { parts: resolved, hiddenCount: parts.length - resolved.length };
+  return {
+    parts: resolved,
+    hiddenCount: parts.length - resolved.length,
+    unresolvedDimensions: [...new Set(decisions.flatMap((decision) => decision.missing))],
+    ambiguousCount: decisions.filter((decision) => decision.reason === 'ambiguous').length,
+    excludedCount: decisions.filter((decision) => decision.reason === 'excluded').length,
+  };
+}
+
+function humanList(values: string[]): string {
+  if (values.length <= 1) return values[0] || '';
+  if (values.length === 2) return `${values[0]} and ${values[1]}`;
+  return `${values.slice(0, -1).join(', ')}, and ${values[values.length - 1]}`;
+}
+
+/** Clear, uncertainty-preserving copy shared by public commerce renderers. */
+export function fitmentResolutionPrompt(
+  resolution: Pick<PartsForVehicleResolution<ResolvablePart>, 'unresolvedDimensions' | 'ambiguousCount'>,
+): string | null {
+  if (resolution.unresolvedDimensions.length > 0) {
+    const fields = humanList(resolution.unresolvedDimensions);
+    return `Confirm your exact ${fields} to see the reviewed part option. No part link is shown until those vehicle details are known.`;
+  }
+  if (resolution.ambiguousCount > 0) {
+    return 'More than one reviewed fitment matches these vehicle details. No part link is shown; confirm the exact configuration or VIN before buying.';
+  }
+  return null;
 }
 
 /**

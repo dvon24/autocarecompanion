@@ -28,7 +28,12 @@ const PRESCRIBE = /\b(?:replace|replacing|replacement of|install|installing|swap
  * a part the article is steering you AWAY from.
  */
 const NEGATED_BEFORE = /\b(?:before|after|prior to|instead of|rather than|without|avoid|unnecessar\w*|don'?t|do not|never|no need to|no need for|no reason to|no benefit in|little benefit in|not|no)\s+(?:\w+\s+){0,2}$/i;
-const NEGATED_AFTER = /\b(?:is|are|was|were|be|seems?|remains?)?\s*(?:not|never)\b|\b(?:unnecessar\w*|avoid\w*|prohibit\w*|inadvis\w*|contraindicat\w*|unwarrant\w*|not\s+(?:recommended|required|needed|advised|appropriate)|little\s+benefit)\b/i;
+// Post-object negation must describe the replacement instruction itself. A
+// later bare "not" often belongs to a qualifier ("not all four") or a fault
+// condition ("if the actuator is not engaging") and must not erase the buyable
+// object. These predicates are deliberately narrow grammatical statements that
+// the replacement is unnecessary, prohibited, or discouraged.
+const NEGATED_REPLACEMENT_PREDICATE = /\b(?:(?:is|are|was|were|seems?|remains?)\s+(?:not\s+(?:recommended|required|needed|advised|appropriate|necessary|beneficial)|unnecessar\w*|prohibit\w*|inadvis\w*|contraindicat\w*|unwarrant\w*)|(?:should|must|ought\s+to)\s+(?:not\s+be\s+(?:used|done|performed|installed|replaced)|be\s+(?:avoided|prohibited|discouraged)))\b/i;
 const NON_PRESCRIPTIVE_BEFORE = /\b(?:cost|price|estimate|labor|time)\s+(?:for\s+)?$/i;
 
 /** Words that qualify a part without identifying it. */
@@ -102,7 +107,7 @@ export function extractPrescriptionComponents(solution: string): PrescribedRepai
     // sensor. Inspect the connector." otherwise yields "crankshaft position
     // sensor inspect", which queries nothing.
     const after = text.slice(m.index + m[0].length).split(/[.;!?\u2013\u2014]/)[0]!.slice(0, 300);
-    if (NEGATED_AFTER.test(after.replace(/\([^)]*\)/g, ' '))) continue;
+    if (NEGATED_REPLACEMENT_PREDICATE.test(after.replace(/\([^)]*\)/g, ' '))) continue;
     const sentenceStart = Math.max(
       text.lastIndexOf('.', m.index - 1),
       text.lastIndexOf(';', m.index - 1),

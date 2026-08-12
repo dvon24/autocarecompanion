@@ -8,7 +8,7 @@ import {
   toolsForProcedures,
 } from './diagnostic-tools';
 import { isKnownIssueProductUrl } from '@/lib/known-issue-commerce';
-import { TOOL_PRODUCT_URLS } from '@/lib/diagnostic-procedures';
+import { proceduresInSolution as auditProceduresInSolution, TOOL_PRODUCT_URLS } from '@/lib/diagnostic-procedures';
 
 test('every linked diagnostic tool uses a guarded product URL', () => {
   for (const tool of diagnosticTools) {
@@ -48,6 +48,16 @@ test('procedure matching is explicit and newly supported testers resolve by capa
   assert.equal(toolsForProcedures(['cooling-pressure-test'])[0]?.id, 'otc-6977-cooling-pressure');
   assert.equal(toolsForProcedures(['multimeter-basic'])[0]?.id, 'fluke-15b-plus');
   assert.equal(toolsForProcedures(['oil-pressure'])[0]?.id, 'otc-5610-oil-pressure');
+});
+
+test('UI and audit recognize the same scan-code phrases and negation boundaries', () => {
+  for (const phrase of [
+    'Pull DTCs before replacement.',
+    'Pull codes with a scan tool if the actuator is not engaging.',
+    'Do not pull codes with a scan tool.',
+  ]) {
+    assert.deepEqual(proceduresInSolution(phrase), auditProceduresInSolution(phrase), phrase);
+  }
 });
 
 test('gasoline-only pressure and compression tools fail closed on unsafe or unknown engines', () => {

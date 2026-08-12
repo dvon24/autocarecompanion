@@ -1,7 +1,17 @@
 import { resolveEbay } from '@/lib/ebay-resolver';
 import type { BuildInput, LinkCandidate, LinkResolver } from '@/lib/part-link-builder';
+import { createHash } from 'node:crypto';
 
 const normalizePn = (value: unknown) => String(value || '').toUpperCase().replace(/[^A-Z0-9]/g, '');
+const titleHash = (value: string) => createHash('sha256').update(value, 'utf8').digest('hex');
+
+/** Browse API IDs are often `v1|123456789012|0`; public item URLs use the numeric ID. */
+export function canonicalEbayItemId(value: unknown): string {
+  const raw = String(value || '').trim();
+  const browseMatch = raw.match(/^v1\|(\d{9,15})\|\d+$/i);
+  if (browseMatch) return browseMatch[1]!;
+  return /^\d{9,15}$/.test(raw) ? raw : '';
+}
 
 export function ebayQuery(input: BuildInput): string {
   // Retail listings rarely contain internal engine codes (C27A/J35A3), so
@@ -27,7 +37,15 @@ export const ebayPartLinkResolver: LinkResolver = async (input): Promise<LinkCan
   if (!result) return [];
   return result.listings.flatMap((listing) => {
     const matched = listing.matchedPartNumbers.find((partNumber) => normalizePn(partNumber) === expected);
-    if (!matched) return [];
-    return [{ vendor: 'eBay', url: listing.url, via: 'eBay Browse exact listing PN', matchedPartNumber: matched }];
+    const productId = canonicalEbayItemId(listing.itemId);
+    if (!matched || !productId) return [];
+    return [{
+      vendor: 'eBay',
+      url: listing.url,
+      via: 'eBay Browse exact listing PN',
+      matchedPartNumber: matched,
+      productId,
+      listingTitleHash: titleHash(listing.title),
+    }];
   });
 };

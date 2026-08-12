@@ -6,13 +6,31 @@ const ebayUrl = 'https://www.ebay.com/itm/227028512551';
 const retailerUrl = 'https://www.bmwpartsdeal.com/parts/bmw-repair_kit_valve_seal_ring-11340054492.html';
 
 const resolverReturning = (candidates: Array<{ vendor: string; url: string }>): LinkResolver =>
-  async (input) => candidates.map((c) => ({ ...c, via: 'test', matchedPartNumber: input.partNumber }));
+  async (input) => candidates.map((c, index) => ({
+    ...c,
+    via: 'test',
+    matchedPartNumber: input.partNumber,
+    productId: c.url.match(/\/itm\/(\d+)/)?.[1] || `retailer-${index}`,
+    listingTitleHash: String(index + 1).repeat(64).slice(0, 64),
+  }));
 
 test('accepts a real product URL and tags it', () => {
   const link = acceptCandidate({ vendor: 'eBay', url: ebayUrl, via: 'ebay-browse' });
   assert.ok(link);
   assert.equal(link!.linkType, 'product');
   assert.equal(link!.verified, true);
+});
+
+test('persists resolver-observed product identity in the built link', async () => {
+  const links = await buildPartLinks(
+    { partNumber: 'ABC-123' },
+    [resolverReturning([{ vendor: 'eBay', url: ebayUrl }])],
+  );
+  assert.deepEqual(links[0]?.productIdentity, {
+    matchedPartNumber: 'ABC-123',
+    productId: '227028512551',
+    listingTitleHash: '1'.repeat(64),
+  });
 });
 
 // This is where 1,270 of the catalog's existing links point.
@@ -89,6 +107,14 @@ test('a throwing resolver is skipped, not fatal, and later ones still run', asyn
 test('rejects a product URL whose resolver identity does not match the requested part', async () => {
   const resolver: LinkResolver = async () => [{
     vendor: 'eBay', url: ebayUrl, via: 'test', matchedPartNumber: 'WRONG-123',
+    productId: '227028512551', listingTitleHash: 'a'.repeat(64),
+  }];
+  assert.deepEqual(await buildPartLinks({ partNumber: 'RIGHT-456' }, [resolver]), []);
+});
+
+test('rejects identity claims that lack stable product or listing-title evidence', async () => {
+  const resolver: LinkResolver = async () => [{
+    vendor: 'eBay', url: ebayUrl, via: 'test', matchedPartNumber: 'RIGHT-456',
   }];
   assert.deepEqual(await buildPartLinks({ partNumber: 'RIGHT-456' }, [resolver]), []);
 });

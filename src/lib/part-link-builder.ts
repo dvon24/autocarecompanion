@@ -33,6 +33,9 @@ export interface LinkCandidate {
   via: string;
   /** Part identity observed by the resolver on the destination/listing. */
   matchedPartNumber?: string;
+  /** Stable resolver-observed offer identity. Required for reviewed output. */
+  productId?: string;
+  listingTitleHash?: string;
 }
 
 export interface BuiltLink {
@@ -41,6 +44,11 @@ export interface BuiltLink {
   linkType: 'product';
   verified: true;
   via: string;
+  productIdentity: {
+    matchedPartNumber: string;
+    productId: string;
+    listingTitleHash: string;
+  };
 }
 
 export interface BuildInput {
@@ -67,7 +75,7 @@ export type LinkResolver = (input: BuildInput) => Promise<LinkCandidate[]>;
  * The gate is applied to every candidate, whatever produced it. A resolver
  * cannot opt out, and a hand-written link gets no special treatment.
  */
-export function acceptCandidate(candidate: LinkCandidate): BuiltLink | null {
+export function acceptCandidate(candidate: LinkCandidate): Omit<BuiltLink, 'productIdentity'> | null {
   const url = String(candidate.url || '').trim();
   if (!url || !isKnownIssueProductUrl(url)) return null;
 
@@ -119,7 +127,9 @@ export async function buildPartLinks(
       const matchedPartNumber = String(candidate.matchedPartNumber || '').toLowerCase().replace(/[^a-z0-9]/g, '');
       // URL shape proves only that this is a product page. The resolver must
       // also return identity evidence tying that listing to the requested PN.
-      if (!matchedPartNumber || matchedPartNumber !== expectedPartNumber) continue;
+      if (!matchedPartNumber || matchedPartNumber !== expectedPartNumber
+        || !String(candidate.productId || '').trim()
+        || !/^[a-f0-9]{64}$/i.test(candidate.listingTitleHash || '')) continue;
       const link = acceptCandidate(candidate);
       if (!link) continue;
       const vendorKey = link.vendor.toLowerCase();
@@ -128,7 +138,14 @@ export async function buildPartLinks(
       if (seenUrl.has(link.url) || seenVendor.has(vendorKey)) continue;
       seenUrl.add(link.url);
       seenVendor.add(vendorKey);
-      out.push(link);
+      out.push({
+        ...link,
+        productIdentity: {
+          matchedPartNumber: String(candidate.matchedPartNumber).trim(),
+          productId: String(candidate.productId).trim(),
+          listingTitleHash: String(candidate.listingTitleHash).toLowerCase(),
+        },
+      });
       if (out.length >= max) return out;
     }
   }

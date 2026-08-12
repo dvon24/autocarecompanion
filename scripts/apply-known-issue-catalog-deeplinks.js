@@ -7,10 +7,14 @@
  * verifies an exact approved after-state.
  *
  *   node scripts/apply-known-issue-catalog-deeplinks.js --dry-run --all
- *   node scripts/apply-known-issue-catalog-deeplinks.js --apply --manifest data/...json
+ *   node scripts/apply-known-issue-catalog-deeplinks.js --apply \
+ *     --manifest data/.../08-guarded-manifest.json \
+ *     --completion data/.../COMPLETE.json \
+ *     --authorization data/.../RELEASE-AUTHORIZATION.json
  *   node scripts/apply-known-issue-catalog-deeplinks.js --verify --all
  */
 const crypto = require('crypto');
+const childProcess = require('child_process');
 const fs = require('fs');
 const path = require('path');
 
@@ -44,10 +48,31 @@ const CATEGORY_VALUES = new Set([
 const LEVEL_VALUES = new Set(['high', 'medium', 'low']);
 const SOURCE_VALUES = new Set(['nhtsa-verified', 'recall-related', 'ai-researched', 'manual']);
 const CITATION_TYPES = new Set(['tsb', 'recall', 'forum', 'manual', 'nhtsa', 'manufacturer', 'investigation']);
+const MAKE_RELEASE_KIND = 'make-packet-v1';
+const MAKE_RELEASE_AUTHORIZATION_KIND = 'known-issue-make-release-authorization';
+const REQUIRED_MAKE_ARTIFACTS = Object.freeze([
+  '00-make-source.json',
+  '01-disposition-ledger.json',
+  '02-fitment-worklist.json',
+  '03-showmetheparts-evidence.json',
+  '04-part-proposals.json',
+  '05-direct-link-evidence.json',
+  '06-independent-review.json',
+  '07-decision-patch.json',
+  '08-guarded-manifest.json',
+  'classification-ledger.json',
+  'checkpoint.json',
+  'diagnostic-tool-evidence.json',
+]);
 
 function hashValue(value) {
   const serialized = JSON.stringify(value);
   return crypto.createHash('sha256').update(serialized === undefined ? 'undefined' : serialized).digest('hex');
+}
+
+function sha256File(file) {
+  const canonicalText = fs.readFileSync(file, 'utf8').replace(/\r\n?/g, '\n');
+  return crypto.createHash('sha256').update(canonicalText, 'utf8').digest('hex');
 }
 
 function applicabilityProseTrimError(value) {
@@ -168,6 +193,229 @@ function stableValue(value) {
     return Object.fromEntries(Object.keys(value).sort().map((key) => [key, stableValue(value[key])]));
   }
   return value;
+}
+
+function canonicalHash(value) {
+  return hashValue(stableValue(value));
+}
+
+function isMakePacketManifest(manifest) {
+  return Boolean(manifest
+    && manifest.schemaVersion === 2
+    && manifest.auditScope === 'full-record'
+    && manifest.releaseControl?.kind === MAKE_RELEASE_KIND);
+}
+
+function validateMakeReleaseMarker(manifest, errors) {
+  const marker = manifest?.releaseControl;
+  if (!marker) return;
+  if (manifest.schemaVersion !== 2 || manifest.auditScope !== 'full-record') {
+    errors.push('releaseControl is supported only for schemaVersion 2 full-record manifests');
+    return;
+  }
+  if (marker.kind !== MAKE_RELEASE_KIND) errors.push(`releaseControl.kind must be ${MAKE_RELEASE_KIND}`);
+  if (typeof marker.make !== 'string' || !marker.make.trim()) errors.push('releaseControl.make');
+  if (typeof marker.makeKey !== 'string' || !marker.makeKey.trim()) errors.push('releaseControl.makeKey');
+  if (!HASH_RE.test(marker.makeSourceHash || '')) errors.push('releaseControl.makeSourceHash');
+}
+
+function releaseArgPath(args, flag, projectRoot = PROJECT_ROOT) {
+  const indexes = args.flatMap((value, index) => (value === flag ? [index] : []));
+  if (indexes.length !== 1 || !args[indexes[0] + 1] || args[indexes[0] + 1].startsWith('--')) {
+    throw new Error(`${flag} <file> is required exactly once for --apply.`);
+  }
+  return path.resolve(projectRoot, args[indexes[0] + 1]);
+}
+
+function resolveBoundFile(root, relativeFile, label) {
+  if (typeof relativeFile !== 'string' || !relativeFile.trim() || path.isAbsolute(relativeFile)) {
+    throw new Error(`${label} must be a relative file path.`);
+  }
+  const absoluteRoot = path.resolve(root);
+  const absolute = path.resolve(absoluteRoot, relativeFile);
+  if (absolute === absoluteRoot || !absolute.startsWith(`${absoluteRoot}${path.sep}`)) {
+    throw new Error(`${label} escapes its binding root.`);
+  }
+  if (!fs.statSync(absolute, { throwIfNoEntry: false })?.isFile()) {
+    throw new Error(`${label} is missing: ${relativeFile}.`);
+  }
+  return absolute;
+}
+
+function assertDiskHashMap(hashMap, root, label) {
+  const entries = Object.entries(hashMap || {});
+  if (entries.length === 0) throw new Error(`${label} must contain at least one file binding.`);
+  for (const [relativeFile, expectedHash] of entries) {
+    if (!HASH_RE.test(expectedHash || '')) throw new Error(`${label}.${relativeFile} is not a SHA-256 hash.`);
+    const absolute = resolveBoundFile(root, relativeFile, `${label}.${relativeFile}`);
+    const actualHash = sha256File(absolute);
+    if (actualHash !== expectedHash) {
+      throw new Error(`${label}.${relativeFile} drift: expected ${expectedHash}, computed ${actualHash}.`);
+    }
+  }
+}
+
+function defaultGitReleaseState(projectRoot, baselineCommit) {
+  const execGit = (args) => childProcess.execFileSync('git', args, {
+    cwd: projectRoot,
+    encoding: 'utf8',
+    stdio: ['ignore', 'pipe', 'pipe'],
+  }).trim();
+  const gitCommit = execGit(['rev-parse', 'HEAD']);
+  const trackedChanges = execGit(['status', '--porcelain', '--untracked-files=no']);
+  if (trackedChanges) throw new Error('Release checkout has tracked changes; exact gitCommit binding is not sufficient for a dirty tree.');
+  execGit(['cat-file', '-e', `${baselineCommit}^{commit}`]);
+  try {
+    execGit(['merge-base', '--is-ancestor', baselineCommit, gitCommit]);
+  } catch {
+    throw new Error(`baselineCommit ${baselineCommit} is not an ancestor of gitCommit ${gitCommit}.`);
+  }
+  return { gitCommit, baselineCommit };
+}
+
+function assertUnusedReleaseNonce(nonce, resultsDirectory) {
+  if (!fs.existsSync(resultsDirectory)) return;
+  for (const name of fs.readdirSync(resultsDirectory)) {
+    if (!name.endsWith('.json')) continue;
+    const resultFile = path.join(resultsDirectory, name);
+    let result;
+    try {
+      result = loadJson(resultFile);
+    } catch {
+      continue;
+    }
+    if (result?.releaseAuthorization?.nonce === nonce) {
+      throw new Error(`Release authorization nonce was already consumed by ${name}.`);
+    }
+  }
+}
+
+function validateMakeReleaseEvidence({
+  manifest,
+  manifestFile,
+  completionFile,
+  authorizationFile,
+  projectRoot = PROJECT_ROOT,
+  gitReleaseState = defaultGitReleaseState,
+  resultsDirectory = projectRoot === PROJECT_ROOT
+    ? DEFAULT_RESULTS_DIR
+    : path.join(projectRoot, 'data', 'known-issues-catalog-deeplink-results'),
+}) {
+  const completionAbsolute = path.resolve(projectRoot, completionFile);
+  const authorizationAbsolute = path.resolve(projectRoot, authorizationFile);
+  const manifestAbsolute = path.resolve(projectRoot, manifestFile);
+  if (new Set([completionAbsolute, authorizationAbsolute, manifestAbsolute]).size !== 3) {
+    throw new Error('Manifest, completion, and release authorization must be separate files.');
+  }
+  const completion = loadJson(completionAbsolute);
+  const authorization = loadJson(authorizationAbsolute);
+  const completionDirectory = path.dirname(completionAbsolute);
+  const marker = manifest.releaseControl;
+
+  const completionBody = { ...completion };
+  delete completionBody.completionHash;
+  const recomputedCompletionHash = canonicalHash(completionBody);
+  if (!HASH_RE.test(completion.completionHash || '') || completion.completionHash !== recomputedCompletionHash) {
+    throw new Error(`Completion hash mismatch: declared ${completion.completionHash || '<missing>'}, computed ${recomputedCompletionHash}.`);
+  }
+  if (Object.keys(completion.artifactSha256 || {}).some((file) => path.basename(file).toUpperCase() === 'COMPLETE.JSON')) {
+    throw new Error('Completion artifactSha256 must not contain a self-referential COMPLETE.json binding.');
+  }
+  if (completion.schemaVersion !== 2
+    || completion.artifactKind !== 'known-issue-make-completion'
+    || completion.status !== 'AUDIT_COMPLETE'
+    || completion.auditComplete !== true
+    || completion.releaseBlocked !== false
+    || completion.completionState !== 'AUDIT_COMPLETE_RELEASE_READY'
+    || completion.productionApplied !== false
+    || completion.productionWriteAuthorized !== false) {
+    throw new Error('Completion is not an unapplied, unblocked schema-v2 make completion.');
+  }
+  for (const file of REQUIRED_MAKE_ARTIFACTS) {
+    if (!HASH_RE.test(completion.artifactSha256?.[file] || '')) {
+      throw new Error(`Completion is missing required artifact binding ${file}.`);
+    }
+  }
+  if (completion.manifestFile !== path.basename(manifestAbsolute)) {
+    throw new Error('Completion manifestFile does not name the supplied manifest.');
+  }
+  const manifestHash = sha256File(manifestAbsolute);
+  if (completion.manifestHash !== manifestHash
+    || completion.artifactSha256[completion.manifestFile] !== manifestHash) {
+    throw new Error('Completion manifest binding does not match the supplied manifest bytes.');
+  }
+  if (path.resolve(completionDirectory, completion.manifestFile) !== manifestAbsolute) {
+    throw new Error('Supplied manifest is not the completion packet manifest.');
+  }
+  if (completion.snapshotHash !== manifest.snapshotHash
+    || completion.make !== marker.make
+    || completion.makeKey !== marker.makeKey
+    || completion.makeSourceHash !== marker.makeSourceHash) {
+    throw new Error('Completion does not match the manifest make/snapshot bindings.');
+  }
+
+  assertDiskHashMap(completion.artifactSha256, completionDirectory, 'completion.artifactSha256');
+  assertDiskHashMap(completion.diagnosticImplementationSha256, projectRoot, 'completion.diagnosticImplementationSha256');
+  assertDiskHashMap(
+    completion.commercePipelineImplementationSha256,
+    projectRoot,
+    'completion.commercePipelineImplementationSha256',
+  );
+  const source = loadJson(resolveBoundFile(completionDirectory, '00-make-source.json', 'make source'));
+  const { makeSourceHash, ...sourceBody } = source;
+  if (hashValue(sourceBody) !== makeSourceHash
+    || source.snapshotHash !== completion.snapshotHash
+    || makeSourceHash !== completion.makeSourceHash
+    || source.make !== completion.make
+    || source.makeKey !== completion.makeKey) {
+    throw new Error('Recomputed make-source/snapshot bindings do not match completion.');
+  }
+
+  if (authorization.schemaVersion !== 1 || authorization.artifactKind !== MAKE_RELEASE_AUTHORIZATION_KIND) {
+    throw new Error('Release authorization has the wrong schemaVersion or artifactKind.');
+  }
+  if (authorization.decision !== 'APPROVE_RELEASE') throw new Error('Release authorization decision is not APPROVE_RELEASE.');
+  if (!['user', 'opus'].includes(authorization.approver?.type)
+    || typeof authorization.approver?.identity !== 'string'
+    || !authorization.approver.identity.trim()) {
+    throw new Error('Release authorization requires an identified user or Opus approver.');
+  }
+  if (!GIT_OID_RE.test(authorization.gitCommit || '') || !GIT_OID_RE.test(authorization.baselineCommit || '')) {
+    throw new Error('Release authorization must bind exact 40-character gitCommit and baselineCommit values.');
+  }
+  if (!/^[A-Za-z0-9][A-Za-z0-9._:-]{15,199}$/.test(authorization.nonce || '')) {
+    throw new Error('Release authorization nonce must be a unique 16-200 character token.');
+  }
+  const authorizedAt = new Date(authorization.authorizedAt);
+  if (typeof authorization.authorizedAt !== 'string'
+    || !/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{3})?Z$/.test(authorization.authorizedAt)
+    || Number.isNaN(authorizedAt.getTime())) {
+    throw new Error('Release authorization authorizedAt must be a valid UTC ISO timestamp.');
+  }
+  assertUnusedReleaseNonce(authorization.nonce, resultsDirectory);
+  for (const [field, expected] of [
+    ['manifestHash', manifestHash],
+    ['completionHash', completion.completionHash],
+    ['snapshotHash', completion.snapshotHash],
+  ]) {
+    if (authorization[field] !== expected) throw new Error(`Release authorization ${field} binding mismatch.`);
+  }
+  const gitState = gitReleaseState(projectRoot, authorization.baselineCommit);
+  if (gitState.gitCommit !== authorization.gitCommit || gitState.baselineCommit !== authorization.baselineCommit) {
+    throw new Error('Current checkout does not match the authorized git commit/baseline.');
+  }
+  return {
+    authorizationHash: sha256File(authorizationAbsolute),
+    manifestHash,
+    manifestCanonicalHash: hashValue(manifest),
+    completionHash: completion.completionHash,
+    gitCommit: authorization.gitCommit,
+    baselineCommit: authorization.baselineCommit,
+    decision: authorization.decision,
+    approver: cloneValue(authorization.approver),
+    nonce: authorization.nonce,
+    authorizedAt: authorization.authorizedAt,
+  };
 }
 
 function isIsoDate(value) {
@@ -429,6 +677,7 @@ function validateManifest(manifest) {
   if (!/^[a-z0-9][a-z0-9._-]{2,100}$/i.test(manifest.batchId || '')) errors.push('batchId');
   if (!Array.isArray(manifest.issues) || manifest.issues.length === 0) errors.push('issues must be a non-empty array');
   if (manifest.schemaVersion === 3) validateReviewedBatchContract(manifest, errors);
+  validateMakeReleaseMarker(manifest, errors);
   const seenIds = new Set();
   for (const issue of asArray(manifest.issues)) {
     const prefix = issue && issue.id ? issue.id : '<missing-id>';
@@ -576,6 +825,29 @@ function loadManifests(args) {
   });
 }
 
+function validateApplyReleaseControl(mode, args, loaded, options = {}) {
+  if (mode !== 'apply') return null;
+  if (loaded.length !== 1 || args.includes('--all')) {
+    throw new Error('--apply accepts exactly one explicit --manifest so release authorization cannot be shared across batches.');
+  }
+  const entry = loaded[0];
+  if (!isMakePacketManifest(entry.manifest)) {
+    throw new Error(
+      `${entry.manifest.batchId}: apply is disabled for legacy or unmarked manifests; `
+      + 'use --dry-run/--verify or migrate it to the schema-v2 make-packet release contract.',
+    );
+  }
+  const projectRoot = options.projectRoot || PROJECT_ROOT;
+  return validateMakeReleaseEvidence({
+    manifest: entry.manifest,
+    manifestFile: entry.file,
+    completionFile: releaseArgPath(args, '--completion', projectRoot),
+    authorizationFile: releaseArgPath(args, '--authorization', projectRoot),
+    projectRoot,
+    gitReleaseState: options.gitReleaseState || defaultGitReleaseState,
+  });
+}
+
 function filterSupersededLegacyManifests(manifests) {
   const fullRecordIssueIds = new Set(
     manifests
@@ -619,7 +891,7 @@ function resultPath(batchId) {
   return path.join(DEFAULT_RESULTS_DIR, `${batchId}.json`);
 }
 
-function buildResult(manifest, rows, state) {
+function buildResult(manifest, rows, state, releaseAuthorization = null) {
   const byId = new Map(rows.map((row) => [row.id, row]));
   const fullRecord = isFullRecordManifest(manifest);
   return {
@@ -630,6 +902,7 @@ function buildResult(manifest, rows, state) {
     status: 'applied-and-verified',
     state,
     completedAt: new Date().toISOString(),
+    ...(releaseAuthorization ? { releaseAuthorization: cloneValue(releaseAuthorization) } : {}),
     issues: manifest.issues.map((issue) => ({
       id: issue.id,
       disposition: issue.disposition,
@@ -650,6 +923,22 @@ function validateResult(result, manifest, rows) {
   if (!result || result.status !== 'applied-and-verified') errors.push('status');
   if (!result || result.schemaVersion !== manifest.schemaVersion) errors.push('schemaVersion');
   if (isFullRecordManifest(manifest) && result.auditScope !== 'full-record') errors.push('auditScope');
+  if (isMakePacketManifest(manifest)) {
+    const authorization = result && result.releaseAuthorization;
+    if (!authorization
+      || !HASH_RE.test(authorization.authorizationHash || '')
+      || !HASH_RE.test(authorization.manifestHash || '')
+      || authorization.manifestCanonicalHash !== hashValue(manifest)
+      || !HASH_RE.test(authorization.completionHash || '')
+      || !GIT_OID_RE.test(authorization.gitCommit || '')
+      || !GIT_OID_RE.test(authorization.baselineCommit || '')
+      || authorization.decision !== 'APPROVE_RELEASE'
+      || !['user', 'opus'].includes(authorization.approver?.type)
+      || !authorization.nonce
+      || !authorization.authorizedAt) {
+      errors.push('releaseAuthorization');
+    }
+  }
   const byResult = new Map(asArray(result && result.issues).map((issue) => [issue.id, issue]));
   const byRow = new Map(rows.map((row) => [row.id, row]));
   for (const issue of manifest.issues) {
@@ -742,7 +1031,7 @@ function resolveKnownIssueConnectionString(environment = process.env) {
   return connectionString;
 }
 
-async function applyBatch(pool, manifest, mode) {
+async function applyBatch(pool, manifest, mode, releaseAuthorization = null) {
   const ids = manifest.issues.map((issue) => issue.id);
   const fullRecord = isFullRecordManifest(manifest);
   if (mode !== 'apply') {
@@ -797,22 +1086,37 @@ async function applyBatch(pool, manifest, mode) {
   } finally {
     client.release();
   }
-  const result = buildResult(manifest, afterRows, initialState === 'before' ? 'applied' : 'already-applied');
+  const result = buildResult(
+    manifest,
+    afterRows,
+    initialState === 'before' ? 'applied' : 'already-applied',
+    releaseAuthorization,
+  );
   writeResult(result);
   return { batchId: manifest.batchId, state: result.state, issueCount: ids.length };
 }
 
-async function run(mode, args) {
-  const connectionString = resolveKnownIssueConnectionString();
-  const { Pool } = require('pg');
-  const pool = new Pool({ connectionString, max: 3, idleTimeoutMillis: 30000 });
+async function run(mode, args, options = {}) {
+  // Release evidence is deliberately loaded and recomputed before resolving a
+  // database URL, loading pg, constructing a pool, or issuing any query.
+  const loaded = loadManifests(args);
+  const releaseAuthorization = validateApplyReleaseControl(mode, args, loaded, options);
+  const connectionString = (options.resolveConnectionString || resolveKnownIssueConnectionString)();
+  let pool;
+  if (options.createPool) {
+    pool = options.createPool({ connectionString, max: 3, idleTimeoutMillis: 30000 });
+  } else {
+    const { Pool } = require('pg');
+    pool = new Pool({ connectionString, max: 3, idleTimeoutMillis: 30000 });
+  }
   try {
-    const loaded = loadManifests(args);
     const selection = args.includes('--all')
       ? filterSupersededLegacyManifests(loaded)
       : { active: loaded, superseded: [] };
     const results = [];
-    for (const { manifest } of selection.active) results.push(await applyBatch(pool, manifest, mode));
+    for (const { manifest } of selection.active) {
+      results.push(await applyBatch(pool, manifest, mode, releaseAuthorization));
+    }
     return {
       mode,
       manifestCount: loaded.length,
@@ -843,6 +1147,8 @@ if (require.main === module) {
 
 module.exports = {
   FULL_RECORD_FIELDS,
+  MAKE_RELEASE_AUTHORIZATION_KIND,
+  MAKE_RELEASE_KIND,
   applicabilityProseTrimError,
   afterErrors,
   afterHashes,
@@ -859,6 +1165,7 @@ module.exports = {
   hashValue,
   identityContinuityError,
   isFullRecordManifest,
+  isMakePacketManifest,
   issueUsesFullRecord,
   isIsoDate,
   loadManifests,
@@ -866,6 +1173,11 @@ module.exports = {
   resolveKnownIssueConnectionString,
   recommendationHasCommerce,
   snapshotFields,
+  canonicalHash,
+  run,
+  sha256File,
+  validateApplyReleaseControl,
+  validateMakeReleaseEvidence,
   validateManifest,
   validateResult,
   vendorMatchesUrl,

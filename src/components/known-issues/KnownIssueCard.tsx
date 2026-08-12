@@ -11,7 +11,8 @@ import { triggerHaptic } from '@/hooks/useHaptic';
 import { IssueFix } from '@/hooks/useIssueFixes';
 import { trackAffiliateClick } from '@/lib/analytics';
 import { getKnownIssueCommerce, hasKnownIssueCommerce, knownIssueAffiliateUrl } from '@/lib/known-issue-commerce';
-import { describeFitment, isNarrowerThanArticle, resolvePartsForVehicle } from '@/lib/known-issue-part-fitment';
+import { describeFitment, fitmentResolutionPrompt, isNarrowerThanArticle, resolvePartsForVehicle } from '@/lib/known-issue-part-fitment';
+import { resolveReviewedVehicleContext } from '@/lib/reviewed-vehicle-context';
 import { formatOwnerReportCount } from '@/lib/owner-report-count';
 import { IssueDiagnosticTools } from './IssueDiagnosticTools';
 
@@ -92,6 +93,9 @@ interface KnownIssueCardProps {
     model: string;
     trim?: string;
     engine?: string;
+    engineSource?: 'selected' | 'reviewed-exact-ymmt' | null;
+    drivetrain?: string;
+    transmission?: string;
   };
   vehicleId?: string;
   userFix?: IssueFix;
@@ -188,13 +192,19 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
   // it rather than listing a part they cannot use under "What you need to fix
   // it". Parts with no declared fitment are untouched — that is every part in
   // the catalog today, so this only takes effect once a part is scoped.
-  const fitmentVehicle = {
+  const fitmentVehicle = resolveReviewedVehicleContext({
     year: vehicleInfo?.year ?? null,
     make: vehicleInfo?.make ?? null,
     model: vehicleInfo?.model ?? null,
     trim: vehicleInfo?.trim ?? null,
-    engine: vehicleInfo?.engine ?? null,
-  };
+    // Existing garage callers pass getVehicleSpecs().engine, whose lookup can
+    // fall back to the first year/model row. Only an explicitly sourced engine
+    // may enter commerce resolution; otherwise the reviewed exact map below is
+    // the sole permitted derivation path.
+    engine: vehicleInfo?.engineSource ? vehicleInfo.engine ?? null : null,
+    drivetrain: vehicleInfo?.drivetrain ?? null,
+    transmission: vehicleInfo?.transmission ?? null,
+  });
   const resolved = resolvePartsForVehicle(gatedParts, fitmentVehicle, issue.vehicleMatch);
   // Variant links live below variants[], so run the canonical commerce gate a
   // second time after selecting one variant. URL shape, vendor identity,
@@ -204,7 +214,7 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
     fixParts: resolved.parts,
     communityRecommendations: [],
   });
-  const excludedPartCount = resolved.hiddenCount;
+  const fitmentPrompt = fitmentResolutionPrompt(resolved);
   const hasPartRecommendations = hasKnownIssueCommerce(fixParts);
   const contentUpdateDate = formatContentUpdatedOn(issue.contentUpdatedOn);
   const contentUpdateSummary = issue.contentUpdateSummary?.trim();
@@ -534,14 +544,14 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
           <IssueDiagnosticTools
             solution={issue.solution}
             dtcCodes={issue.dtcCodes}
-            engines={vehicleInfo?.engine ? [vehicleInfo.engine] : issue.vehicleMatch.engines}
+            engines={fitmentVehicle.engine ? [fitmentVehicle.engine] : undefined}
           />
 
           {/* Public commerce lives in this one canonical section. Search and
               category links have already been removed by getKnownIssueCommerce. */}
-          {fixParts.length === 0 && excludedPartCount > 0 && vehicleInfo && (
+          {fixParts.length === 0 && fitmentPrompt && (
             <div className="rounded-lg border border-[#D8D1C3] bg-[#F7F4EC] p-3 text-xs leading-relaxed text-[#64748B]">
-              {excludedPartCount === 1 ? '1 part option is' : `${excludedPartCount} part options are`} hidden until exact year, trim, and engine fitment can be confirmed.
+              {fitmentPrompt}
             </div>
           )}
           {fixParts.length > 0 && (
@@ -554,9 +564,9 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
               </h4>
               <p className="mb-3 text-xs leading-relaxed text-[#475569]">
                 Only diagnosis- and fitment-reviewed repair parts are linked here.
-                {excludedPartCount > 0 && vehicleInfo && (
+                {fitmentPrompt && (
                   <span className="mt-1 block text-[#64748B]">
-                    {excludedPartCount === 1 ? '1 part is' : `${excludedPartCount} parts are`} hidden until exact year, trim, and engine fitment can be confirmed.
+                    {fitmentPrompt}
                   </span>
                 )}
               </p>

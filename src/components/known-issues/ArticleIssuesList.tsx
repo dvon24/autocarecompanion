@@ -9,7 +9,7 @@ import { CategorySection } from './CategorySection';
 import { SeverityFilter } from './SeverityFilter';
 import { AdSlot } from '@/components/ads/AdSlot';
 import { filterableKnownIssueTrims, knownIssueMatchesTrim } from '@/lib/known-issue-trim-filter';
-import { getVehicleSpecs } from '@/lib/maintenance';
+import { resolveReviewedVehicleContext } from '@/lib/reviewed-vehicle-context';
 
 export interface RelatedIssueVehicle {
   slug: string;
@@ -128,17 +128,42 @@ export function ArticleIssuesList({ issues, make, model, initialYear, allYears, 
   }, [filteredIssues]);
 
   // Build the exact commerce vehicle. A URL year wins; otherwise a matching
-  // selected garage vehicle supplies its year. We intentionally do not use the
-  // article's maximum year as a pretend selection. Engine is derived only when
-  // both year and trim are known; an unresolved dimension must hide scoped
-  // links rather than borrowing the first engine in the specs table.
+  // selected garage vehicle supplies its year. Runtime engine/drivetrain/
+  // transmission fields are authoritative only while the year and trim still
+  // match that selected vehicle. Otherwise the reviewed exact-YMMT allow-list
+  // may derive engine; the general specs table must never supply its first row.
   const vehicleInfo = useMemo(() => {
     const year = yearFilter ?? selectedArticleVehicle?.year ?? null;
-    const trim = trimFilter || undefined;
-    const engine = year !== null && trim
-      ? getVehicleSpecs({ year, make, model, trim })?.engine
-      : undefined;
-    return { year, make, model, trim, engine };
+    const trim = trimFilter || null;
+    const runtimeVehicle = selectedArticleVehicle as (typeof selectedArticleVehicle & {
+      engine?: string;
+      drivetrain?: string;
+      transmission?: string;
+    });
+    const isExactSelectedVehicle = Boolean(
+      runtimeVehicle
+        && year === runtimeVehicle.year
+        && (trim || '').toLowerCase() === runtimeVehicle.trim.toLowerCase(),
+    );
+    const resolved = resolveReviewedVehicleContext({
+      year,
+      make,
+      model,
+      trim,
+      engine: isExactSelectedVehicle ? runtimeVehicle?.engine : null,
+      drivetrain: isExactSelectedVehicle ? runtimeVehicle?.drivetrain : null,
+      transmission: isExactSelectedVehicle ? runtimeVehicle?.transmission : null,
+    });
+    return {
+      year,
+      make,
+      model,
+      trim: trim || undefined,
+      engine: resolved.engine || undefined,
+      engineSource: resolved.engineSource,
+      drivetrain: resolved.drivetrain || undefined,
+      transmission: resolved.transmission || undefined,
+    };
   }, [make, model, selectedArticleVehicle, trimFilter, yearFilter]);
 
   return (

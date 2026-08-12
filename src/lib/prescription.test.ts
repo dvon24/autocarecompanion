@@ -56,6 +56,17 @@ test('a parenthetical warning about cheap alternatives does not negate replaceme
   );
 });
 
+test('later Acura qualifiers and fault conditions do not negate their replacement object', () => {
+  assert.deepEqual(
+    extractPrescribedParts('Inspect the mounts and replace the failed engine mount, not all four preemptively.'),
+    ['engine mount'],
+  );
+  const actuator = extractPrescriptionComponents('Replace the VTEC actuator if it is not engaging after the oil-pressure test.');
+  assert.deepEqual(actuator.map((part) => part.component), ['vtec actuator']);
+  assert.equal(actuator[0]?.diagnosisDependent, true);
+  assert.match(actuator[0]?.condition || '', /if it is not engaging/i);
+});
+
 test('handles "swap or replace"', () => {
   const p = extractPrescribedParts('Swap or replace the failed GDI injector (intake manifold removal required).');
   assert.ok(p[0]?.includes('gdi injector'), `got ${JSON.stringify(p)}`);
@@ -83,6 +94,7 @@ test('ignores a part the solution says NOT to replace', () => {
   assert.deepEqual(extractPrescribedParts('No replacement of the water pump is necessary.'), []);
   assert.deepEqual(extractPrescribedParts('No replacement of the water pump is recommended.'), []);
   assert.deepEqual(extractPrescribedParts('Replacing the water pump should be avoided.'), []);
+  assert.deepEqual(extractPrescribedParts('Replacing the water pump must be avoided.'), []);
   assert.deepEqual(extractPrescribedParts('Replacement of the water pump is prohibited.'), []);
   assert.deepEqual(extractPrescribedParts('Installing the water pump is inadvisable.'), []);
   assert.deepEqual(extractPrescribedParts('Replacing the water pump is contraindicated.'), []);

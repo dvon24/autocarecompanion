@@ -11,6 +11,7 @@ import {
   resolvePartForVehicle,
   resolvePartsForVehicle,
   vehicleIdentityMatches,
+  fitmentResolutionPrompt,
 } from './known-issue-part-fitment';
 import { getKnownIssueCommerce } from './known-issue-commerce';
 
@@ -252,6 +253,12 @@ test('unknown drivetrain or transmission hides a scoped Challenger variant', () 
 
   assert.equal(resolvePartForVehicle(driveshaft, base, identity), null);
   assert.equal(resolvePartForVehicle(driveshaft, { ...base, drivetrain: 'RWD' }, identity), null);
+  const unknown = resolvePartsForVehicle([driveshaft], base, identity);
+  assert.deepEqual(unknown.unresolvedDimensions, ['drivetrain', 'transmission']);
+  assert.equal(
+    fitmentResolutionPrompt(unknown),
+    'Confirm your exact drivetrain and transmission to see the reviewed part option. No part link is shown until those vehicle details are known.',
+  );
   assert.equal(
     resolvePartForVehicle(driveshaft, {
       ...base, drivetrain: 'RWD', transmission: '6-speed manual',
@@ -266,4 +273,51 @@ test('resolvePartsForVehicle reports hidden alternatives for renderer guidance',
   }, { make: 'Dodge', model: 'Challenger' });
   assert.deepEqual(result.parts, []);
   assert.equal(result.hiddenCount, 1);
+  assert.deepEqual(result.unresolvedDimensions, ['engine']);
+  assert.equal(result.ambiguousCount, 0);
+  assert.equal(result.excludedCount, 0);
+  assert.equal(
+    fitmentResolutionPrompt(result),
+    'Confirm your exact engine to see the reviewed part option. No part link is shown until those vehicle details are known.',
+  );
+});
+
+test('resolver distinguishes unknown, ambiguous, and known exclusions without inventing a mismatch', () => {
+  const identity = { make: 'Dodge', model: 'Challenger' };
+  const unknown = resolvePartsForVehicle([challengerPump], {
+    year: 2012, make: 'Dodge', model: 'Challenger', trim: 'R/T',
+  }, identity);
+  assert.deepEqual(unknown.unresolvedDimensions, ['engine']);
+  assert.equal(unknown.excludedCount, 0);
+
+  const excluded = resolvePartsForVehicle([challengerPump], {
+    year: 2012, make: 'Dodge', model: 'Challenger', trim: 'R/T', engine: '3.6L V6',
+  }, identity);
+  assert.deepEqual(excluded.unresolvedDimensions, []);
+  assert.equal(excluded.excludedCount, 1);
+  assert.equal(fitmentResolutionPrompt(excluded), null);
+
+  const ambiguous = resolvePartsForVehicle([{
+    ...challengerPump,
+    variants: [challengerPump.variants[1]!, {
+      ...challengerPump.variants[1]!, oemPartNumber: 'OTHER-PUMP', buyLinks: [earlyPumpLink],
+    }],
+  }], {
+    year: 2012, make: 'Dodge', model: 'Challenger', trim: 'R/T', engine: '5.7L V8',
+  }, identity);
+  assert.equal(ambiguous.ambiguousCount, 1);
+  assert.match(fitmentResolutionPrompt(ambiguous) || '', /More than one reviewed fitment/);
+});
+
+test('a positive variant does not override a plausible sibling with missing selected context', () => {
+  const part = {
+    component: 'Sway bar link',
+    variants: [
+      { fitment: { years: [2015] }, oemPartNumber: 'YEAR-ONLY', buyLinks: [earlyPumpLink] },
+      { fitment: { years: [2015], drivetrains: ['AWD'] }, oemPartNumber: 'AWD', buyLinks: [latePumpLink] },
+    ],
+  };
+  const result = resolvePartsForVehicle([part], { year: 2015 });
+  assert.deepEqual(result.parts, []);
+  assert.deepEqual(result.unresolvedDimensions, ['drivetrain']);
 });
