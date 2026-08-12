@@ -299,8 +299,10 @@ function proposedArchived(current, action, reason, canonicalId) {
   return fullRecord(proposal);
 }
 
-function main() {
-  const snapshot = JSON.parse(fs.readFileSync(SNAPSHOT, 'utf8'));
+function buildPacket(
+  snapshot = JSON.parse(fs.readFileSync(SNAPSHOT, 'utf8')),
+  snapshotSha256 = sha256File(SNAPSHOT),
+) {
   const legacyCards = loadLegacyCards();
   const rows = snapshot.records.map((current) => {
     let action;
@@ -361,7 +363,7 @@ function main() {
     byModel[model].total = scoped.length;
   }
 
-  const packet = {
+  return {
     schemaVersion: 1,
     status: 'proposal-only',
     requiresIndependentApproval: true,
@@ -376,7 +378,7 @@ function main() {
     ],
     source: {
       snapshotFile: 'data/_genesis-deeplink-snapshot-2026-08-05.json',
-      snapshotSha256: sha256File(SNAPSHOT),
+      snapshotSha256,
       snapshotGeneratedAt: snapshot.generatedAt,
       snapshotHash: snapshot.snapshotHash,
       productionRecordCount: snapshot.records.length,
@@ -385,8 +387,12 @@ function main() {
     byModel,
     rows,
   };
+}
+
+function main() {
+  const packet = buildPacket();
   fs.writeFileSync(OUTPUT, `${JSON.stringify(packet, null, 2)}\n`);
-  console.log(JSON.stringify({ output: OUTPUT, sha256: sha256File(OUTPUT), summary, byModel }, null, 2));
+  console.log(JSON.stringify({ output: OUTPUT, sha256: sha256File(OUTPUT), summary: packet.summary, byModel: packet.byModel }, null, 2));
 }
 
 if (require.main === module) main();
@@ -398,6 +404,7 @@ module.exports = {
   FULL_RECORD_FIELDS,
   REWRITE_IDS,
   PROTECTED_FIELDS,
+  buildPacket,
   fullRecord,
   hashValue,
   safeTrims,

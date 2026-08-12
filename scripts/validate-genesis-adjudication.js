@@ -9,6 +9,8 @@ const {
   FULL_RECORD_FIELDS,
   PROTECTED_FIELDS,
   REWRITE_IDS,
+  buildPacket,
+  fullRecord,
   hashValue,
 } = require('./build-genesis-adjudication');
 
@@ -50,6 +52,7 @@ function validatePacket(packet, snapshot, snapshotSha256) {
     const label = row.id || '<missing>';
     const source = snapshotById.get(row.id);
     if (!source) continue;
+    if (hashValue(row.before) !== hashValue(fullRecord(source))) errors.push(`${label}: before differs from frozen snapshot`);
     if (row.action !== expectedAction(row.id)) errors.push(`${label}: unexpected action ${row.action}`);
     if (row.beforeSha256 !== hashValue(row.before)) errors.push(`${label}: before hash mismatch`);
     if (row.proposalSha256 !== hashValue(row.proposal)) errors.push(`${label}: proposal hash mismatch`);
@@ -80,6 +83,10 @@ function validatePacket(packet, snapshot, snapshotSha256) {
       if (declared[action] !== rows.filter((row) => row.action === action).length) errors.push(`byModel.${model}.${action} mismatch`);
     }
     if (declared.total !== rows.length) errors.push(`byModel.${model}.total mismatch`);
+  }
+  const deterministic = buildPacket(snapshot, snapshotSha256);
+  if (JSON.stringify(packet) !== JSON.stringify(deterministic)) {
+    errors.push('packet differs from deterministic reviewed-evidence rebuild');
   }
   return errors;
 }
