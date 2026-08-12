@@ -36,7 +36,8 @@ export const ebayPartLinkResolver: LinkResolver = async (input): Promise<LinkCan
   });
   if (!result) return [];
   return result.listings.flatMap((listing) => {
-    const matched = listing.matchedPartNumbers.find((partNumber) => normalizePn(partNumber) === expected);
+    const evidence = listing.partNumberEvidence.find((entry) => normalizePn(entry.partNumber) === expected);
+    const matched = evidence?.partNumber;
     const productId = canonicalEbayItemId(listing.itemId);
     if (!matched || !productId) return [];
     return [{
@@ -46,6 +47,10 @@ export const ebayPartLinkResolver: LinkResolver = async (input): Promise<LinkCan
       matchedPartNumber: matched,
       productId,
       listingTitleHash: titleHash(listing.title),
+      observedListingTitle: listing.title,
+      matchedPartNumberSource: evidence!.source,
+      observedPartNumberField: evidence!.observedField,
+      observedPartNumberValue: evidence!.observedValue,
     }];
   });
 };

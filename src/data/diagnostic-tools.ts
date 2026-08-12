@@ -379,6 +379,26 @@ export function proceduresInSolution(solution: string): Procedure[] {
     .map(([p]) => p);
 }
 
+/** Keep browser scanner eligibility on the exact code set used by the audit. */
+export function diagnosticCodesForIssue(solution: string, dtcCodes: string[] | null | undefined): string[] {
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const shared = require('../lib/diagnostic-procedures') as {
+    inlineManufacturerCodes(value: string): string[];
+  };
+  return [...new Set([
+    ...(dtcCodes || []).map((code) => String(code).trim()).filter(Boolean),
+    ...shared.inlineManufacturerCodes(solution),
+  ])];
+}
+
+export interface DiagnosticToolSelection {
+  procedures: Procedure[];
+  codes: string[];
+  families: CodeFamily[];
+  hasUnknownCode: boolean;
+  tools: DiagnosticTool[];
+}
+
 /** Tools for a set of procedures, cheapest first, deduped. */
 function toolMatchesVehicleContext(tool: DiagnosticTool, context: DiagnosticVehicleContext): boolean {
   const engines = (context.engines || []).map((engine) => String(engine).toLowerCase());
@@ -409,4 +429,27 @@ export function toolsForProcedures(
     })
     .filter((tool) => toolMatchesVehicleContext(tool, context))
     .sort((a, b) => a.priceAnchor - b.priceAnchor);
+}
+
+/** Select exactly the auditable tools the public issue card may render. */
+export function diagnosticToolsForIssue(
+  solution: string,
+  dtcCodes: string[] | null | undefined,
+  context: DiagnosticVehicleContext = {},
+): DiagnosticToolSelection {
+  const procedures = proceduresInSolution(solution);
+  const codes = diagnosticCodesForIssue(solution, dtcCodes);
+  const parsedFamilies = codes.map(codeFamilyOf);
+  const hasUnknownCode = parsedFamilies.some((family) => family === null);
+  const families = [...new Set(
+    parsedFamilies.filter((family): family is CodeFamily => family !== null),
+  )];
+  const tools = toolsForProcedures(
+    procedures.filter((procedure) => procedure !== 'scan-codes'),
+    hasUnknownCode ? [] : families,
+    context,
+  );
+  const scanner = hasUnknownCode ? undefined : scannersForCodeFamilies(families)[0];
+  if (scanner && !tools.some((tool) => tool.id === scanner.id)) tools.push(scanner);
+  return { procedures, codes, families, hasUnknownCode, tools };
 }

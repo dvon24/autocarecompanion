@@ -236,7 +236,7 @@ export function VehicleDashboard({
                 <IssueCardExpanded
                   key={issue.id}
                   issue={issue}
-                  vehicle={{ ...vehicle, engine: vehicle.engine || specsSummary.engine || undefined }}
+                  vehicle={vehicle}
                   styled={styledTheme}
                   onAskAI={() => sendMessage('Tell me about the "' + issue.title + '" issue on my ' + vehicleDisplay + '. What parts do I need to fix it, what are owners using, and how much does it cost? Include part links.')}
                 />

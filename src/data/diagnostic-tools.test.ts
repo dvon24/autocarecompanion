@@ -2,6 +2,8 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import {
   diagnosticTools,
+  diagnosticCodesForIssue,
+  diagnosticToolsForIssue,
   codeFamilyOf,
   proceduresInSolution,
   scannersForCodeFamilies,
@@ -48,6 +50,23 @@ test('procedure matching is explicit and newly supported testers resolve by capa
   assert.equal(toolsForProcedures(['cooling-pressure-test'])[0]?.id, 'otc-6977-cooling-pressure');
   assert.equal(toolsForProcedures(['multimeter-basic'])[0]?.id, 'fluke-15b-plus');
   assert.equal(toolsForProcedures(['oil-pressure'])[0]?.id, 'otc-5610-oil-pressure');
+});
+
+test('browser scanner selection includes inline manufacturer codes used by the audit', () => {
+  const codes = diagnosticCodesForIssue('Retrieve Honda Code 22 before repair.', ['P0128']);
+  assert.deepEqual(codes, ['P0128', 'HONDA:22']);
+  assert.ok(codes.some((code) => codeFamilyOf(code) === null));
+});
+
+test('browser exposes only the audited scanner and suppresses unknown manufacturer-code coverage', () => {
+  assert.deepEqual(
+    diagnosticToolsForIssue('Pull DTCs before replacement.', ['P0128']).tools.map((tool) => tool.id),
+    ['ancel-ad310'],
+  );
+  assert.deepEqual(
+    diagnosticToolsForIssue('Retrieve Honda Code 22 before repair.', ['P0128']).tools,
+    [],
+  );
 });
 
 test('UI and audit recognize the same scan-code phrases and negation boundaries', () => {

@@ -71,6 +71,12 @@ export interface EbayListing {
   url: string;
   /** Exact part numbers observed on this listing's title or item specifics. */
   matchedPartNumbers: string[];
+  partNumberEvidence: Array<{
+    partNumber: string;
+    source: 'listing-title' | 'item-specifics';
+    observedField: string;
+    observedValue: string;
+  }>;
 }
 
 export interface EbayResolution {
@@ -161,7 +167,9 @@ function extractTitlePNs(title: string): string[] {
 interface BrowseSummary { itemId?: string; title?: string; itemWebUrl?: string; itemAffiliateWebUrl?: string; condition?: string; price?: { value?: string; currency?: string }; seller?: { username?: string } }
 interface BrowseItemDetail { localizedAspects?: Array<{ type?: string; name?: string; value?: string }> }
 
-async function fetchDetailPNs(token: string, itemId: string): Promise<string[]> {
+interface ObservedPartNumber { partNumber: string; observedField: string; observedValue: string }
+
+async function fetchDetailPNs(token: string, itemId: string): Promise<ObservedPartNumber[]> {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), EBAY_TIMEOUT_MS);
   try {
@@ -171,7 +179,7 @@ async function fetchDetailPNs(token: string, itemId: string): Promise<string[]> 
     });
     if (!res.ok) return [];
     const d = (await res.json()) as BrowseItemDetail;
-    const out: string[] = [];
+    const out: ObservedPartNumber[] = [];
     for (const a of d.localizedAspects || []) {
       if (a.name && a.value && PN_ASPECT_RE.test(a.name)) {
         // an aspect value can be a comma/slash list of numbers
@@ -180,7 +188,9 @@ async function fetchDetailPNs(token: string, itemId: string): Promise<string[]> 
           // Real auto part numbers contain a digit — require one so marketing
           // phrases in mislabeled aspect fields ("FRONTWINDOWWIPERS", "CLEANWINDOW")
           // don't masquerade as candidate PNs.
-          if (v && /\d/.test(v) && PN_VALUE_RE.test(v.replace(/-/g, ''))) out.push(v);
+          if (v && /\d/.test(v) && PN_VALUE_RE.test(v.replace(/-/g, ''))) {
+            out.push({ partNumber: v, observedField: String(a.name).trim(), observedValue: String(raw).trim() });
+          }
         }
       }
     }
@@ -244,11 +254,23 @@ export async function resolveEbay(
   // Pull item-specifics part numbers from the top listings in parallel.
   const ids = summaries.map((s) => s.itemId).filter((x): x is string => !!x).slice(0, INSPECT_N);
   const pnLists = await Promise.all(ids.map((id) => fetchDetailPNs(token, id)));
-  const idPNs = new Map<string, string[]>();
+  const idPNs = new Map<string, ObservedPartNumber[]>();
   ids.forEach((id, k) => idPNs.set(id, pnLists[k] || []));
   const listings: EbayListing[] = summaries.slice(0, INSPECT_N).flatMap((s) => {
     const url = s.itemAffiliateWebUrl || s.itemWebUrl || '';
     if (!url) return [];
+    const titlePartNumbers = extractTitlePNs(s.title || '');
+    const detailPartNumbers = s.itemId ? idPNs.get(s.itemId) || [] : [];
+    const partNumberEvidence = [
+      ...titlePartNumbers.map((partNumber) => ({
+        partNumber,
+        source: 'listing-title' as const,
+        observedField: 'title',
+        observedValue: String(s.title || '').slice(0, 140),
+      })),
+      ...detailPartNumbers.map((entry) => ({ ...entry, source: 'item-specifics' as const })),
+    ].filter((entry, index, values) => values.findIndex((candidate) =>
+      candidate.partNumber === entry.partNumber && candidate.source === entry.source) === index);
     return [{
       itemId: String(s.itemId || ''),
       title: String(s.title || '').slice(0, 140),
@@ -256,10 +278,8 @@ export async function resolveEbay(
       currency: s.price?.currency || 'USD',
       condition: String(s.condition || '').slice(0, 40),
       url,
-      matchedPartNumbers: [...new Set([
-        ...extractTitlePNs(s.title || ''),
-        ...(s.itemId ? idPNs.get(s.itemId) || [] : []),
-      ])],
+      matchedPartNumbers: [...new Set(partNumberEvidence.map((entry) => entry.partNumber))],
+      partNumberEvidence,
     }];
   });
 
@@ -274,7 +294,7 @@ export async function resolveEbay(
     const set = new Set<string>();
     for (const pn of extractTitlePNs(s.title || '')) set.add(pn);
     const dp = s.itemId ? idPNs.get(s.itemId) : null;
-    if (dp) for (const pn of dp) set.add(pn);
+    if (dp) for (const evidence of dp) set.add(evidence.partNumber);
     for (const pn of set) {
       if (!pnSellers.has(pn)) pnSellers.set(pn, new Set());
       pnSellers.get(pn)!.add(seller);

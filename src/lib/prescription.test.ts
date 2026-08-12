@@ -65,6 +65,9 @@ test('later Acura qualifiers and fault conditions do not negate their replacemen
   assert.deepEqual(actuator.map((part) => part.component), ['vtec actuator']);
   assert.equal(actuator[0]?.diagnosisDependent, true);
   assert.match(actuator[0]?.condition || '', /if it is not engaging/i);
+  const unpunctuated = extractPrescriptionComponents('If the actuator does not engage replace the actuator.');
+  assert.deepEqual(unpunctuated.map((part) => part.component), ['actuator']);
+  assert.equal(unpunctuated[0]?.diagnosisDependent, true);
 });
 
 test('handles "swap or replace"', () => {

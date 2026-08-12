@@ -120,10 +120,16 @@ function tokenMatch(a: string, b: string): boolean {
   return false;
 }
 
-function listMatches(declared: string[] | undefined, actual: string | null | undefined): boolean | null {
+function listMatches(
+  declared: string[] | undefined,
+  actual: string | null | undefined,
+  allowTokenContainment = false,
+): boolean | null {
   if (!declared || declared.length === 0) return null; // dimension not scoped
   if (!actual) return null; // nothing to test against — do not invent an exclusion
-  return declared.some((d) => tokenMatch(d, actual));
+  return declared.some((d) => allowTokenContainment
+    ? tokenMatch(d, actual)
+    : normalize(d) === normalize(actual));
 }
 
 function missingFitmentDimensions(
@@ -168,7 +174,7 @@ export function partFitsVehicle(fitment: PartFitment | undefined, vehicle: Fitme
   if (fitment.years && fitment.years.length > 0) {
     checks.push(vehicle.year == null ? null : fitment.years.includes(vehicle.year));
   }
-  if (fitment.engines?.length) checks.push(listMatches(fitment.engines, vehicle.engine));
+  if (fitment.engines?.length) checks.push(listMatches(fitment.engines, vehicle.engine, true));
   if (fitment.trims?.length) checks.push(listMatches(fitment.trims, vehicle.trim));
   if (fitment.drivetrains?.length) checks.push(listMatches(fitment.drivetrains, vehicle.drivetrain));
   if (fitment.transmissions?.length) checks.push(listMatches(fitment.transmissions, vehicle.transmission));

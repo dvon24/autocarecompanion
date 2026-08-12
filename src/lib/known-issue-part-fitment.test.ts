@@ -67,7 +67,8 @@ test('engine matching accepts a shorter declared value as a whole token run', ()
 test('trim matching does not let SE match SEL', () => {
   assert.equal(partFitsVehicle({ trims: ['SE'] }, { trim: 'SEL' }), 'excluded');
   assert.equal(partFitsVehicle({ trims: ['SE'] }, { trim: 'SE' }), 'fits');
-  assert.equal(partFitsVehicle({ trims: ['Limited'] }, { trim: 'Limited Platinum' }), 'fits');
+  assert.equal(partFitsVehicle({ trims: ['Limited'] }, { trim: 'Limited Platinum' }), 'excluded');
+  assert.equal(partFitsVehicle({ trims: ['Limited Platinum'] }, { trim: 'Limited Platinum' }), 'fits');
 });
 
 // The CR-V VTC actuator: one article spans two different actuators.
@@ -93,6 +94,12 @@ test('resolvePartNumber refuses the base number when scoped variants do not reso
   assert.deepEqual(resolvePartNumber(part, { year: 2005 }), {
     partNumber: null, scope: null, matched: false,
   });
+});
+
+test('specific drivetrain and trim scopes require exact values', () => {
+  assert.equal(partFitsVehicle({ drivetrains: ['SH-AWD'] }, { drivetrain: 'AWD' }), 'excluded');
+  assert.equal(partFitsVehicle({ trims: ['Type S'] }, { trim: 'S' }), 'excluded');
+  assert.equal(partFitsVehicle({ drivetrains: ['SH-AWD'] }, { drivetrain: 'SH-AWD' }), 'fits');
 });
 
 test('resolvePartNumber keeps the legacy base fallback when variants are unscoped', () => {

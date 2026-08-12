@@ -67,6 +67,15 @@ context: []
 
 ## Spec Change Log
 
+- 2026-08-12: Acura packet rebuilt after the first exact-commit review. The
+  corrected contract reconciles 70 issues and 151 component/application work
+  rows, persists a terminal proposal-or-hold disposition for every row, binds
+  raw eBay part-number evidence, shares diagnostic selection with the browser,
+  and prevents blocked completion artifacts from being escalated at apply
+  time. The audit is complete but remains release-blocked by five unsafe live
+  commerce claims and one unresolved authoritative engine context. No
+  production write or deployment is authorized.
+
 ## Verification
 
 **Commands:**

@@ -12,26 +12,65 @@
   "reviewedArtifactSha256": {
     "01-disposition-ledger.json": "91a453b0fd05c932d60bed6b9af8467ab0f21c3f89c35032a6d46542beb777af",
     "02-fitment-worklist.json": "3372f0836242c09051684b0c4ba484f584078242af133d8951e4c1687d69f174",
-    "03-showmetheparts-evidence.json": "da666cace34a83517cf2d89d73860702720c270948fccfea8da093f459473e89",
-    "04-part-proposals.json": "0b4dcc0b24509b1aca29f0246afa1c1801cf10f71624c766d0c02590d7d3bb75",
-    "05-direct-link-evidence.json": "28191a3f590169ca763f7fb640dfde6470c9db170be1744a4baed83182e19509"
+    "03-showmetheparts-evidence.json": "4efeb02a2c99231fd6fed3ccd6efb6c8f96952ac240709493ba231da612f7bac",
+    "04-part-proposals.json": "2a7cd8ca83c041682bd7f8f33ff203878931b55812b236eab7b3d4e7f9338beb",
+    "05-direct-link-evidence.json": "46824a05f2ecd4aceae05d07f7baa8a30257da24b66af07510c315ffd849fe45"
   },
   "proposalCount": 28,
   "partRowCount": 45,
   "tally": {
-    "approve": 6,
+    "approve": 4,
     "block_wrong_role": 14,
     "block_incomplete_scope": 5,
     "block_ambiguous": 4,
     "hold_no_exact_link": 4,
-    "hold_needs_manual": 12
+    "hold_needs_manual": 14
   },
   "reconciliation": {
     "sourceProposalCount": 28,
     "sourcePartRowCount": 45,
     "reviewedPartRowCount": 45,
+    "sourceIssueCount": 70,
+    "reviewedIssueCount": 70,
+    "sourceWorkItemCount": 151,
+    "reviewedWorkItemDispositionCount": 151,
+    "terminalWorkItemDispositionCount": 151,
+    "proposedWorkItemCount": 28,
+    "heldWorkItemCount": 123,
+    "workItemDispositionSha256": "11aa454b3e94966207a49d3b39e5537e4da042d33746d0668e444474742fb6ea",
+    "workItemDispositionReasonTally": {
+      "eligible-proposal": 28,
+      "fitment-confirmed": 5,
+      "fitment-no-catalog": 39,
+      "fitment-unmapped": 28,
+      "incomplete-model-or-engine-coverage": 6,
+      "no-matching-part-type": 12,
+      "no-primary": 14,
+      "unsupported-catalog-application-restriction": 19
+    },
+    "missingIssues": [],
+    "missingWorkItemDispositions": [],
+    "duplicateWorkItemDispositions": [],
     "missing": [],
     "duplicates": [],
+    "complete": true
+  },
+  "productIdentityReconciliation": {
+    "sourcePartRowCount": 45,
+    "reviewedPartRowCount": 45,
+    "exactProductLinkRowCount": 34,
+    "noExactProductLinkRowCount": 11,
+    "reviewedExactProductLinkRowCount": 34,
+    "listingTitleSourceCount": 15,
+    "itemSpecificsSourceCount": 19,
+    "observedListingTitlePresentCount": 34,
+    "recomputedTitleHashMatchCount": 34,
+    "matchedPartNumberMatchCount": 34,
+    "observedPartNumberFieldPresentCount": 34,
+    "observedPartNumberValuePresentCount": 34,
+    "observedPartNumberValueMatchCount": 34,
+    "urlProductIdMatchCount": 34,
+    "invalidRows": [],
     "complete": true
   },
   "existingClaimWorkRowCount": 5,
@@ -118,7 +157,7 @@
       "reviewedSourceEvidence": {
         "howToFix": "Replace the complete distributor; Cardone is named as an acceptable aftermarket unit.",
         "catalog": "ShowMeTheParts: Cardone 31-17407 Electronic Distributor, Integra, 1992-1993, 1.7L.",
-        "directLink": "eBay /itm/ exact-product-link; URL evidence includes Cardone 31-17407."
+        "directLink": "05 exact-product-link: eBay item 401988622225; observed listing title hash recomputes; matchedPartNumberSource is listing-title; observed title field/value contains 31-17407; URL /itm/ ID matches productIdentity."
       }
     },
     {
@@ -139,12 +178,12 @@
       "issueId": "acura-legend-timing-belt-interference-engine",
       "partIndex": 0,
       "partNumber": "95129K1",
-      "decision": "approve",
-      "reason": "The kit contains the prescribed timing belt and tensioner and is restricted to the only catalog-confirmed C27A cell, 1990 2.7L.",
+      "decision": "hold_needs_manual",
+      "reason": "The kit contains the prescribed timing belt and tensioner and is restricted to the catalog-confirmed 1990 2.7L cell, but the resolved listing title identifies GOODYEAR GTK0129 rather than Dayco 95129K1. The resolver reports 95129K1 only through item specifics, so this is not safe as an exact Dayco product link without manual listing verification or a replacement listing.",
       "reviewedSourceEvidence": {
         "howToFix": "Replace the timing belt and timing-belt service components at the stated interval.",
         "catalog": "ShowMeTheParts: Dayco 95129K1 Timing Belt Kit includes timing belt and camshaft belt tensioner for 1990 Legend 2.7L.",
-        "directLink": "eBay /itm/ exact-product-link; URL evidence includes Dayco 95129K1."
+        "directLink": "05 identity fields are internally consistent for eBay item 257484035894: title hash and URL /itm/ ID recompute, and raw item-specific 'Interchange Part Number' equals 95129K1. However, the observed title is 'Engine Timing Belt Kit-Component Kit GOODYEAR GTK0129', so exact Dayco 95129K1 product identity is not independently established."
       }
     },
     {
@@ -157,7 +196,7 @@
       "reviewedSourceEvidence": {
         "howToFix": "Replace the timing belt every 90,000 miles or 72 months.",
         "catalog": "ShowMeTheParts: Gates T129 Engine Timing Belt, 1990 Legend 2.7L; available-until-stock-depleted note retained in evidence.",
-        "directLink": "eBay /itm/ exact-product-link; URL evidence includes Gates T129."
+        "directLink": "05 exact-product-link: eBay item 336674963297; observed listing title hash recomputes and independently contains Gates T129; raw item-specific 'Manufacturer Part Number' equals T129; URL /itm/ ID matches productIdentity."
       }
     },
     {
@@ -183,7 +222,7 @@
       "reviewedSourceEvidence": {
         "howToFix": "Replace the timing belt every 90,000 miles or 72 months.",
         "catalog": "ShowMeTheParts: Gates T193 Engine Timing Belt, Legend 3.2L, 1991-1995.",
-        "directLink": "eBay /itm/ exact-product-link; URL evidence includes Gates T193."
+        "directLink": "05 exact-product-link: eBay item 164197786492; observed listing title hash recomputes and independently contains Gates T193; raw item-specific 'Manufacturer Part Number' equals T193; URL /itm/ ID matches productIdentity."
       }
     },
     {
@@ -196,7 +235,7 @@
       "reviewedSourceEvidence": {
         "howToFix": "Always replace the water pump during the timing-belt teardown.",
         "catalog": "ShowMeTheParts: Aisin WPH-008 Engine Water Pump, 1990 Legend 2.7L.",
-        "directLink": "eBay /itm/ exact-product-link; URL evidence includes Aisin WPH-008."
+        "directLink": "05 exact-product-link: eBay item 198524842627; observed listing title hash recomputes; matchedPartNumberSource is listing-title; observed title field/value contains WPH-008; URL /itm/ ID matches productIdentity."
       }
     },
     {
@@ -230,12 +269,12 @@
       "issueId": "acura-legend-timing-belt-interference-engine",
       "partIndex": 0,
       "partNumber": "95129K1",
-      "decision": "approve",
-      "reason": "The candidate kit explicitly includes the prescribed camshaft-belt tensioner and is scoped only to catalog-confirmed 1990 2.7L fitment.",
+      "decision": "hold_needs_manual",
+      "reason": "The candidate kit includes the prescribed camshaft-belt tensioner and is scoped to catalog-confirmed 1990 2.7L fitment, but the resolved listing title identifies GOODYEAR GTK0129 rather than Dayco 95129K1. The resolver reports 95129K1 only through item specifics, so the direct product identity needs manual verification or replacement.",
       "reviewedSourceEvidence": {
         "howToFix": "Always replace the timing-belt tensioner during the teardown.",
         "catalog": "ShowMeTheParts: Dayco 95129K1 includes a camshaft belt tensioner for 1990 Legend 2.7L.",
-        "directLink": "eBay /itm/ exact-product-link; URL evidence includes Dayco 95129K1."
+        "directLink": "05 identity fields are internally consistent for eBay item 257484035894: title hash and URL /itm/ ID recompute, and raw item-specific 'Interchange Part Number' equals 95129K1. However, the observed title is 'Engine Timing Belt Kit-Component Kit GOODYEAR GTK0129', so exact Dayco 95129K1 product identity is not independently established."
       }
     },
     {

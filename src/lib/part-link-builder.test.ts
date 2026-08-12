@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
+import { createHash } from 'node:crypto';
 import { buildPartLinks, acceptCandidate, type LinkResolver } from './part-link-builder';
 
 const ebayUrl = 'https://www.ebay.com/itm/227028512551';
@@ -11,7 +12,11 @@ const resolverReturning = (candidates: Array<{ vendor: string; url: string }>): 
     via: 'test',
     matchedPartNumber: input.partNumber,
     productId: c.url.match(/\/itm\/(\d+)/)?.[1] || `retailer-${index}`,
-    listingTitleHash: String(index + 1).repeat(64).slice(0, 64),
+    listingTitleHash: createHash('sha256').update(`${input.partNumber} verified product`).digest('hex'),
+    observedListingTitle: `${input.partNumber} verified product`,
+    matchedPartNumberSource: 'listing-title' as const,
+    observedPartNumberField: 'title',
+    observedPartNumberValue: `${input.partNumber} verified product`,
   }));
 
 test('accepts a real product URL and tags it', () => {
@@ -29,7 +34,11 @@ test('persists resolver-observed product identity in the built link', async () =
   assert.deepEqual(links[0]?.productIdentity, {
     matchedPartNumber: 'ABC-123',
     productId: '227028512551',
-    listingTitleHash: '1'.repeat(64),
+    listingTitleHash: createHash('sha256').update('ABC-123 verified product').digest('hex'),
+    observedListingTitle: 'ABC-123 verified product',
+    matchedPartNumberSource: 'listing-title',
+    observedPartNumberField: 'title',
+    observedPartNumberValue: 'ABC-123 verified product',
   });
 });
 
@@ -107,7 +116,8 @@ test('a throwing resolver is skipped, not fatal, and later ones still run', asyn
 test('rejects a product URL whose resolver identity does not match the requested part', async () => {
   const resolver: LinkResolver = async () => [{
     vendor: 'eBay', url: ebayUrl, via: 'test', matchedPartNumber: 'WRONG-123',
-    productId: '227028512551', listingTitleHash: 'a'.repeat(64),
+    productId: '227028512551', listingTitleHash: createHash('sha256').update('WRONG-123 product').digest('hex'),
+    observedListingTitle: 'WRONG-123 product', matchedPartNumberSource: 'listing-title',
   }];
   assert.deepEqual(await buildPartLinks({ partNumber: 'RIGHT-456' }, [resolver]), []);
 });

@@ -35,7 +35,7 @@ const TOOL_PRODUCT_URLS = Object.freeze({
 });
 
 const PROCEDURE_PATTERNS = Object.freeze([
-  ['parasitic-draw', /\b(?:perform|run|do|conduct) (?:an? )?parasitic (?:draw|drain)(?: test)?\b|\b(?:measure|test|check|diagnose) (?:for )?(?:the )?parasitic (?:draw|drain)\b|\bcurrent draw test\b|\blow-current (?:dc )?clamp meter\b/i],
+  ['parasitic-draw', /\b(?:perform(?:ing)?|run(?:ning)?|do(?:ing)?|conduct(?:ing)?) (?:an? )?parasitic (?:draw|drain)(?: test)?\b|\b(?:measure|test|check|diagnose) (?:for )?(?:the )?parasitic (?:draw|drain)\b|\bcurrent draw test\b|\blow-current (?:dc )?clamp meter\b/i],
   ['battery-state-of-health', /\b(?:perform|run|do|conduct) (?:an? )?battery (?:state[- ]of[- ]health|conductance|cca|internal resistance) test\b|\btest (?:the )?battery(?:'s)? (?:state[- ]of[- ]health|conductance|cca|internal resistance)\b/i],
   ['smoke-test', /\b(?:perform|run|do|conduct|use) (?:an? )?(?:automotive )?smoke test\b|\bsmoke[- ]test (?:the )?(?:evap|intake|vacuum|exhaust|turbo|boost|system)\b|\buse (?:an? )?(?:automotive )?smoke machine\b/i],
   ['fuel-pressure', /\b(?:perform|run|do|conduct) (?:an? )?fuel[- ]pressure test\b|\b(?:check|measure|test) (?:the )?fuel pressure (?:with|using)\b|\b(?:connect|install|use) (?:an? )?fuel[- ]pressure (?:tester|gauge)\b/i],
@@ -68,7 +68,7 @@ function matchedProceduresInClause(clause) {
 }
 
 const DIAGNOSTIC_ACTION = /\b(?:perform|run|do|conduct|use|connect|install|read|retrieve|scan|pull|test|check|measure|diagnose|multimeter|voltmeter|ohmmeter|scanner|scan tool|gauge|tester|meter)\b/i;
-const NEGATION_BEFORE_ACTION = /\b(?:do not|don't|dont|never|avoid|must not|should not|cannot|can't|cant|without|there is no reason to|it is unnecessary to)\b[^.!?;]{0,80}\b(?:perform|run|do|conduct|use|connect|install|read|retrieve|scan|pull|test|check|measure|diagnose)\b/i;
+const NEGATION_BEFORE_ACTION = /\b(?:(?:do not|don't|dont|never|avoid|must not|should not|cannot|can't|cant|without)\s+(?:directly\s+)?|there is no reason to\s+|it is unnecessary to\s+)(?:perform|run|do|conduct|use|connect|install|read|retrieve|scan|pull|test|check|measure|diagnose)\b/i;
 const NEGATION_AFTER_ACTION = /\b(?:test|check|measurement|procedure|multimeter|voltmeter|ohmmeter|scanner|scan tool|gauge|tester|meter)\b[^.!?;]{0,50}\b(?:is|are|was|were|would be|will be|should be|must be)?\s*(?:not required|not recommended|not needed|unnecessary|not appropriate|should not be used|must not be used|should not be connected|isn't needed|isnt needed|won't be needed|wont be needed|wouldn't be appropriate|wouldnt be appropriate|needn't be used|neednt be used)\b/i;
 
 function diagnosticProcedureIsNegated(clause) {

@@ -25,6 +25,7 @@
  * must stay cheap: a missing buy button costs a click, a wrong one costs trust.
  */
 import { isKnownIssueProductUrl, knownIssueAffiliateUrl, vendorMatchesProductUrl } from '@/lib/known-issue-commerce';
+import { createHash } from 'node:crypto';
 
 export interface LinkCandidate {
   vendor: string;
@@ -36,6 +37,10 @@ export interface LinkCandidate {
   /** Stable resolver-observed offer identity. Required for reviewed output. */
   productId?: string;
   listingTitleHash?: string;
+  observedListingTitle?: string;
+  matchedPartNumberSource?: 'listing-title' | 'item-specifics';
+  observedPartNumberField?: string;
+  observedPartNumberValue?: string;
 }
 
 export interface BuiltLink {
@@ -48,6 +53,10 @@ export interface BuiltLink {
     matchedPartNumber: string;
     productId: string;
     listingTitleHash: string;
+    observedListingTitle: string;
+    matchedPartNumberSource: 'listing-title' | 'item-specifics';
+    observedPartNumberField: string;
+    observedPartNumberValue: string;
   };
 }
 
@@ -125,11 +134,22 @@ export async function buildPartLinks(
     for (const candidate of candidates) {
       const expectedPartNumber = input.partNumber.toLowerCase().replace(/[^a-z0-9]/g, '');
       const matchedPartNumber = String(candidate.matchedPartNumber || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+      const observedListingTitle = String(candidate.observedListingTitle || '').trim();
+      const observedPartNumberField = String(candidate.observedPartNumberField || '').trim();
+      const observedPartNumberValue = String(candidate.observedPartNumberValue || '').trim();
+      const observedEvidenceNumber = observedPartNumberValue.toLowerCase().replace(/[^a-z0-9]/g, '');
       // URL shape proves only that this is a product page. The resolver must
       // also return identity evidence tying that listing to the requested PN.
       if (!matchedPartNumber || matchedPartNumber !== expectedPartNumber
         || !String(candidate.productId || '').trim()
-        || !/^[a-f0-9]{64}$/i.test(candidate.listingTitleHash || '')) continue;
+        || !observedListingTitle
+        || !observedPartNumberField
+        || !observedPartNumberValue
+        || !observedEvidenceNumber.includes(expectedPartNumber)
+        || !['listing-title', 'item-specifics'].includes(candidate.matchedPartNumberSource || '')
+        || (candidate.matchedPartNumberSource === 'listing-title'
+          && (observedPartNumberField !== 'title' || observedPartNumberValue !== observedListingTitle))
+        || createHash('sha256').update(observedListingTitle, 'utf8').digest('hex') !== candidate.listingTitleHash) continue;
       const link = acceptCandidate(candidate);
       if (!link) continue;
       const vendorKey = link.vendor.toLowerCase();
@@ -144,6 +164,10 @@ export async function buildPartLinks(
           matchedPartNumber: String(candidate.matchedPartNumber).trim(),
           productId: String(candidate.productId).trim(),
           listingTitleHash: String(candidate.listingTitleHash).toLowerCase(),
+          observedListingTitle: String(candidate.observedListingTitle).trim(),
+          matchedPartNumberSource: candidate.matchedPartNumberSource!,
+          observedPartNumberField,
+          observedPartNumberValue,
         },
       });
       if (out.length >= max) return out;

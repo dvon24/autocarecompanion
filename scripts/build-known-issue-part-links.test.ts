@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
+import { createHash } from 'node:crypto';
 import { resolveProposalLinks } from './build-known-issue-part-links';
 
 test('exact links attach to the staged part while repair role remains unapproved', async () => {
@@ -13,7 +14,11 @@ test('exact links attach to the staged part while repair role remains unapproved
     via: 'test',
     matchedPartNumber: '43526',
     productId: '123456789012',
-    listingTitleHash: 'a'.repeat(64),
+    listingTitleHash: createHash('sha256').update('Gates 43526 Engine Water Pump').digest('hex'),
+    observedListingTitle: 'Gates 43526 Engine Water Pump',
+    matchedPartNumberSource: 'listing-title',
+    observedPartNumberField: 'title',
+    observedPartNumberValue: 'Gates 43526 Engine Water Pump',
   }]);
   assert.equal(result.proposals[0]!.parts[0]!.verified, false);
   assert.equal(result.proposals[0]!.parts[0]!.buyLinks?.[0]?.linkType, 'product');

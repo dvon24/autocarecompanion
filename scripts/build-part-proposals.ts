@@ -172,13 +172,23 @@ async function main() {
 await loadArticles();
 const proposals: unknown[] = [];
 const skipped: Record<string, number> = {};
+const workItemDispositions: Array<{ workItemId: string; issueId: string; verdict: string; reasonCode: string }> = [];
+const hold = (r: Verdict, reasonCode: string) => {
+  skipped[reasonCode] = (skipped[reasonCode] || 0) + 1;
+  workItemDispositions.push({
+    workItemId: r.workItemId || r.prescriptionKey || r.id,
+    issueId: r.id,
+    verdict: 'hold',
+    reasonCode,
+  });
+};
 let structuredMissing = 0;
 
 for (const file of inputs) {
   const doc = JSON.parse(fs.readFileSync(file, 'utf8')) as { results: Verdict[] };
   for (const r of doc.results) {
     if (r.verdict !== 'discovered' && r.verdict !== 'absent') {
-      skipped[r.verdict] = (skipped[r.verdict] || 0) + 1;
+      hold(r, `fitment-${r.verdict}`);
       continue;
     }
 
@@ -217,17 +227,17 @@ for (const file of inputs) {
         }
       }
     }
-    if (candidateByKey.size === 0) { skipped['no-structured-candidates'] = (skipped['no-structured-candidates'] || 0) + 1; continue; }
+    if (candidateByKey.size === 0) { hold(r, 'no-structured-candidates'); continue; }
 
     if (!r.partTypeMatch || !['title', 'prescription'].includes(r.mappedFrom || '')) {
-      skipped['missing-or-risky-source-metadata'] = (skipped['missing-or-risky-source-metadata'] || 0) + 1;
+      hold(r, 'missing-or-risky-source-metadata');
       continue;
     }
     // Drop anything whose part_type is not actually the component in question.
     const target = r.partTypeMatch;
     const articleText = ARTICLE.get(r.id) || '';
     if (!articleText) {
-      skipped['missing-article-text'] = (skipped['missing-article-text'] || 0) + 1;
+      hold(r, 'missing-article-text');
       continue;
     }
 
@@ -241,7 +251,7 @@ for (const file of inputs) {
      * the article's judgment wins over the catalog's.
      */
     if (/\b(do not|don'?t|never)\s+(buy|purchase|order)\b/i.test(articleText)) {
-      skipped['article says do not buy'] = (skipped['article says do not buy'] || 0) + 1;
+      hold(r, 'article-says-do-not-buy');
       continue;
     }
     const relevant = [...candidateByKey.entries()].filter(([, c]) =>
@@ -250,7 +260,7 @@ for (const file of inputs) {
       // The vehicle had fitting parts, but none of them were this component.
       // Proposing the closest thing anyway is how an axle-bearing article ends
       // up recommending a wheel seal.
-      skipped['no-matching-part-type'] = (skipped['no-matching-part-type'] || 0) + 1;
+      hold(r, 'no-matching-part-type');
       continue;
     }
     for (const key of [...candidateByKey.keys()]) if (!relevant.some(([k]) => k === key)) candidateByKey.delete(key);
@@ -268,7 +278,7 @@ for (const file of inputs) {
       }
     }
     if (candidateByKey.size === 0) {
-      skipped['unsupported-catalog-application-restriction'] = (skipped['unsupported-catalog-application-restriction'] || 0) + 1;
+      hold(r, 'unsupported-catalog-application-restriction');
       continue;
     }
 
@@ -299,7 +309,7 @@ for (const file of inputs) {
       yearsByPart.set(key, new Set(coveredYears));
     }
     if (candidateByKey.size === 0) {
-      skipped['incomplete-model-or-engine-coverage'] = (skipped['incomplete-model-or-engine-coverage'] || 0) + 1;
+      hold(r, 'incomplete-model-or-engine-coverage');
       continue;
     }
 
@@ -323,8 +333,7 @@ for (const file of inputs) {
       const spansMultipleYears = [...candidateByKey.keys()]
         .some((key) => (yearsByPart.get(key)?.size || 0) > 1);
       if (!spansMultipleYears) {
-        skipped['year-sets-disagree (scope likely too broad)'] =
-          (skipped['year-sets-disagree (scope likely too broad)'] || 0) + 1;
+        hold(r, 'year-sets-disagree-scope-likely-too-broad');
         continue;
       }
       // Keep only parts the catalog confirmed in more than one sampled year.
@@ -339,7 +348,7 @@ for (const file of inputs) {
     // unscoped even when the catalog returned candidates for several engines.
     const engine = r.declaredEngine || r.engineMatch || null;
     const { primary, alternate, consideredCount } = recommendParts([...candidateByKey.values()], { engine });
-    if (!primary) { skipped['no-primary'] = (skipped['no-primary'] || 0) + 1; continue; }
+    if (!primary) { hold(r, 'no-primary'); continue; }
 
     // The catalog occasionally carries a placeholder where a part number should
     // be — "N/R" (no reference) among them. It is not orderable, not linkable,
@@ -350,7 +359,7 @@ for (const file of inputs) {
       return normalized.length >= 3 && !PLACEHOLDER.test(normalized);
     };
     if (!validPartNumber(primary.partNumber)) {
-      skipped['placeholder-part-number'] = (skipped['placeholder-part-number'] || 0) + 1;
+      hold(r, 'placeholder-part-number');
       continue;
     }
 
@@ -428,6 +437,12 @@ for (const file of inputs) {
         ...(alternate && validPartNumber(alternate.partNumber) ? [toPart(alternate, 'alternate')] : []),
       ],
     });
+    workItemDispositions.push({
+      workItemId: r.workItemId || r.prescriptionKey || r.id,
+      issueId: r.id,
+      verdict: 'proposed',
+      reasonCode: 'eligible-proposal',
+    });
   }
 }
 
@@ -435,6 +450,8 @@ fs.writeFileSync(outputFile, JSON.stringify({
   generatedFrom: inputs,
   guardrail: 'Catalog fitment only. Repair role unestablished; verified:false and no buy links until a human approves.',
   count: proposals.length,
+  workItemDispositionCount: workItemDispositions.length,
+  workItemDispositions: workItemDispositions.sort((left, right) => left.workItemId.localeCompare(right.workItemId)),
   proposals,
 }, null, 1));
 

@@ -38,6 +38,15 @@ const fixPartBuyLinkSchema = z.object({
   linkType: z.string().optional(),
   verified: z.boolean().optional(),
   affiliate: z.boolean().optional(),
+  productIdentity: z.object({
+    matchedPartNumber: z.string(),
+    productId: z.string(),
+    listingTitleHash: z.string(),
+    observedListingTitle: z.string(),
+    matchedPartNumberSource: z.enum(['listing-title', 'item-specifics']),
+    observedPartNumberField: z.string(),
+    observedPartNumberValue: z.string(),
+  }).optional(),
 });
 
 const fixPartFitmentSchema = z.object({

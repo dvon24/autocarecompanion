@@ -48,6 +48,11 @@ test('diagnostic negation binds to the procedure, not an unrelated later conditi
   assert.deepEqual(proceduresInSolution('Pull DTCs before replacement.'), ['scan-codes']);
   assert.deepEqual(proceduresInSolution('Do not pull codes with a scan tool.'), []);
   assert.deepEqual(proceduresInSolution('A scan tool is not required.'), []);
+  assert.deepEqual(
+    diagnosticDispositionsForIssue('Do not replace the battery before performing a parasitic draw test.', [])
+      .map((row) => row.toolId),
+    ['dc-clamp-meter-low-current'],
+  );
 });
 
 test('delegated, visual and ambiguous instructions get explicit non-commerce dispositions', () => {

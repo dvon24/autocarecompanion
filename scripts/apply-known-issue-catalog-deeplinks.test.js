@@ -200,7 +200,15 @@ function makeReleaseFixture() {
     'classification-ledger.json', 'checkpoint.json', 'diagnostic-tool-evidence.json',
   ];
   for (const file of requiredArtifacts) {
-    const value = file === '00-make-source.json' ? source : {};
+    const value = file === '00-make-source.json' ? source : file === '07-decision-patch.json' ? {
+      schemaVersion: 2,
+      patchKind: 'known-issues-catalog-deeplink-decisions',
+      auditComplete: true,
+      makeComplete: true,
+      releaseBlocked: false,
+      productionApplied: false,
+      releaseBlockers: [],
+    } : {};
     fs.writeFileSync(path.join(packetDirectory, file), `${JSON.stringify(value, null, 2)}\n`, 'utf8');
   }
   const manifestFile = path.join(packetDirectory, '08-guarded-manifest.json');
@@ -376,6 +384,26 @@ test('make release evidence recomputes manifest, completion, artifact, snapshot,
   } finally {
     fs.rmSync(fixture.projectRoot, { recursive: true, force: true });
   }
+});
+
+test('a blocked decision patch cannot be escalated by rewriting only COMPLETE and authorization', () => {
+  const fixture = makeReleaseFixture();
+  const patchFile = path.join(path.dirname(fixture.completionFile), '07-decision-patch.json');
+  const patch = JSON.parse(fs.readFileSync(patchFile, 'utf8'));
+  patch.makeComplete = false;
+  patch.releaseBlocked = true;
+  patch.releaseBlockers = [{ type: 'unsafe-existing-claim' }];
+  fs.writeFileSync(patchFile, JSON.stringify(patch));
+  const completion = JSON.parse(fs.readFileSync(fixture.completionFile, 'utf8'));
+  completion.artifactSha256['07-decision-patch.json'] = sha256File(patchFile);
+  const body = { ...completion };
+  delete body.completionHash;
+  completion.completionHash = canonicalHash(body);
+  fs.writeFileSync(fixture.completionFile, JSON.stringify(completion));
+  const authorization = JSON.parse(fs.readFileSync(fixture.authorizationFile, 'utf8'));
+  authorization.completionHash = completion.completionHash;
+  fs.writeFileSync(fixture.authorizationFile, JSON.stringify(authorization));
+  assert.throws(() => validateMakeReleaseEvidence(fixture), /Decision patch is not/);
 });
 
 test('make release evidence fails closed under binding mutations', async (t) => {

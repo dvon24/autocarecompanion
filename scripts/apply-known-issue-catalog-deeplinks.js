@@ -361,6 +361,18 @@ function validateMakeReleaseEvidence({
     projectRoot,
     'completion.commercePipelineImplementationSha256',
   );
+  const patch = loadJson(resolveBoundFile(completionDirectory, '07-decision-patch.json', 'decision patch'));
+  if (patch.schemaVersion !== 2
+    || patch.patchKind !== 'known-issues-catalog-deeplink-decisions'
+    || patch.auditComplete !== true
+    || patch.makeComplete !== true
+    || patch.releaseBlocked !== false
+    || patch.productionApplied !== false
+    || !Array.isArray(patch.releaseBlockers)
+    || patch.releaseBlockers.length !== 0
+    || completion.releaseBlocked !== patch.releaseBlocked) {
+    throw new Error('Decision patch is not an audit-complete, unblocked, unapplied release candidate.');
+  }
   const source = loadJson(resolveBoundFile(completionDirectory, '00-make-source.json', 'make source'));
   const { makeSourceHash, ...sourceBody } = source;
   if (hashValue(sourceBody) !== makeSourceHash

@@ -52,10 +52,10 @@ const REVIEWED_EXACT_ENGINE_MAPPINGS: readonly ReviewedExactEngineMapping[] = [
     engine: '2.7L V6 C27A',
     provenance: {
       artifact: `${ACURA_AUDIT_ROOT}/03-showmetheparts-evidence.json`,
-      artifactSha256: 'da666cace34a83517cf2d89d73860702720c270948fccfea8da093f459473e89',
+      artifactSha256: '4efeb02a2c99231fd6fed3ccd6efb6c8f96952ac240709493ba231da612f7bac',
       snapshotHash: 'c22aa18f11e2de2c789eebcb035ba8dbc530aadb783a5c86fe4a749eeabe908d',
       ymmtArtifact: 'public/data/ymmt.json',
-      ymmtArtifactSha256: '4590419b28b5edbfc28cd826f3ba0622463eefa9ecd855f3e1258bf2b3b80ad9',
+      ymmtArtifactSha256: 'a05b331834b6f4c71af58663a5a1f104e215bab2402c612026a1344386130139',
     },
   },
 ] as const;

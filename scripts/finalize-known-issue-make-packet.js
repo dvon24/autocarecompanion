@@ -355,7 +355,9 @@ function scopesOverlap(leftFitment, rightFitment) {
   return ['years', 'engines', 'trims', 'drivetrains', 'transmissions'].every((field) => {
     if (!left[field].length || !right[field].length) return true;
     if (field === 'years') return left[field].some((value) => right[field].includes(value));
-    return left[field].some((leftValue) => right[field].some((rightValue) => fitmentValuesMatch(leftValue, rightValue)));
+    return left[field].some((leftValue) => right[field].some((rightValue) => field === 'engines'
+      ? fitmentValuesMatch(leftValue, rightValue)
+      : normalizeFitmentValue(leftValue) === normalizeFitmentValue(rightValue)));
   });
 }
 
@@ -378,10 +380,24 @@ function validateExactProductLink(part, review) {
     }
     if (!vendorMatchesUrl(link.vendor, link.url)) throw new Error(`${reviewKey(review)}: vendor/link mismatch`);
     const identity = link.productIdentity;
+    const observedTitle = String(identity?.observedListingTitle || '').trim();
+    const observedField = String(identity?.observedPartNumberField || '').trim();
+    const observedValue = String(identity?.observedPartNumberValue || '').trim();
+    const observedEvidenceNumber = normalizedPartNumber(observedValue);
     if (normalizedPartNumber(identity?.matchedPartNumber) !== expected
-      || !/^[a-f0-9]{64}$/i.test(identity?.listingTitleHash || '')
+      || !['listing-title', 'item-specifics'].includes(identity?.matchedPartNumberSource)
+      || !observedTitle
+      || !observedField
+      || !observedValue
+      || !observedEvidenceNumber.includes(expected)
+      || crypto.createHash('sha256').update(observedTitle, 'utf8').digest('hex') !== identity?.listingTitleHash
       || !String(identity?.productId || '').trim()) {
       throw new Error(`${reviewKey(review)}: product identity evidence is missing or mismatched`);
+    }
+    if (identity.matchedPartNumberSource === 'listing-title'
+      && (observedField !== 'title' || observedValue !== observedTitle
+        || !normalizedPartNumber(observedTitle).includes(expected))) {
+      throw new Error(`${reviewKey(review)}: observed listing title does not contain the matched part number`);
     }
     const url = new URL(link.url);
     if (/(?:^|\.)ebay\./i.test(url.hostname)) {
@@ -499,6 +515,24 @@ function validatePacketSets(source, ledger, worklist, evidence, proposals, links
     'ledger/worklist rows',
   );
   if (proposals.count !== proposals.proposals.length || links.count !== links.proposals.length) throw new Error('Proposal counts mismatch');
+  if (proposals.workItemDispositionCount !== worklist.entries.length
+    || proposals.workItemDispositions?.length !== worklist.entries.length) {
+    throw new Error('Proposal work-item dispositions do not cover the fitment worklist');
+  }
+  assertSameSet(
+    worklist.entries.map((row) => row.workItemId),
+    proposals.workItemDispositions.map((row) => row.workItemId),
+    'worklist/proposal dispositions',
+  );
+  const proposedIds = new Set(proposals.proposals.map((row) => row.proposalId));
+  for (const disposition of proposals.workItemDispositions) {
+    if (!['proposed', 'hold'].includes(disposition.verdict) || !String(disposition.reasonCode || '').trim()) {
+      throw new Error(`${disposition.workItemId}: proposal disposition is not terminal`);
+    }
+    if ((disposition.verdict === 'proposed') !== proposedIds.has(disposition.workItemId)) {
+      throw new Error(`${disposition.workItemId}: proposal disposition does not match proposal membership`);
+    }
+  }
   assertSameSet(proposals.proposals.map((row) => row.proposalId), links.proposals.map((row) => row.proposalId), 'proposal/link proposals');
   const sourceRows = proposalRows(links.proposals);
   if (review.reconciliation?.complete !== true
@@ -511,6 +545,16 @@ function validatePacketSets(source, ledger, worklist, evidence, proposals, links
     throw new Error('Existing-claim review counts mismatch');
   }
   assertSameSet(existingWorkRows.map((row) => row.workItemId), (review.existingClaims || []).map((row) => row.workItemId), 'existing-claim review rows');
+  const existingByWorkItem = new Map(existingWorkRows.map((row) => [row.workItemId, row]));
+  for (const claim of review.existingClaims || []) {
+    const row = existingByWorkItem.get(claim.workItemId);
+    if (!row
+      || claim.issueId !== row.issueId
+      || normalizedPartNumber(claim.partNumber) !== normalizedPartNumber(row.partNumber)
+      || String(claim.engineWorkRow || '') !== String(row.declaredEngine || '')) {
+      throw new Error(`${claim.workItemId}: existing-claim review identity mismatch`);
+    }
+  }
   for (const file of REVIEWED_FILES) {
     if (!review.reviewedArtifacts.includes(file)) throw new Error(`Review did not bind ${file}`);
   }
@@ -744,10 +788,15 @@ function finalizePacket(inputs, options = {}) {
       reason: claim.reason,
     });
   }
+  const reviewedContextCovers = (proposal, part) => proposal.id === 'acura-legend-timing-belt-interference-engine'
+    && (part.fitment?.years || []).every((year) => year === 1990)
+    && (part.fitment?.engines || []).every((engine) => normalizeFitmentValue(engine) === '2.7l v6 c27a')
+    && !(part.fitment?.drivetrains || []).length
+    && !(part.fitment?.transmissions || []).length;
   const contextBlockers = approvedPrimary.flatMap(({ proposal, part }) => {
     const scopedDimensions = ['engines', 'drivetrains', 'transmissions']
       .filter((field) => (part.fitment?.[field] || []).length > 0);
-    return scopedDimensions.length ? [{
+    return scopedDimensions.length && !reviewedContextCovers(proposal, part) ? [{
       issueId: proposal.id,
       workItemId: proposal.proposalId,
       type: 'authoritative-selected-vehicle-context-required',

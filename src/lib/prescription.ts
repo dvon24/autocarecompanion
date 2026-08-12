@@ -27,7 +27,7 @@ const PRESCRIBE = /\b(?:replace|replacing|replacement of|install|installing|swap
  * replacing". These appear constantly in diagnostic guidance and each one names
  * a part the article is steering you AWAY from.
  */
-const NEGATED_BEFORE = /\b(?:before|after|prior to|instead of|rather than|without|avoid|unnecessar\w*|don'?t|do not|never|no need to|no need for|no reason to|no benefit in|little benefit in|not|no)\s+(?:\w+\s+){0,2}$/i;
+const NEGATED_BEFORE = /(?:\b(?:before|after|prior to|instead of|rather than|without|avoid|unnecessar\w*|don'?t|do not|never|no need to|no need for|no reason to|no benefit in|little benefit in)\s+(?:\w+\s+){0,2}|\b(?:not|no)\s+)$/i;
 // Post-object negation must describe the replacement instruction itself. A
 // later bare "not" often belongs to a qualifier ("not all four") or a fault
 // condition ("if the actuator is not engaging") and must not erase the buyable

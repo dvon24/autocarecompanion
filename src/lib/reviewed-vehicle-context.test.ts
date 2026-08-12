@@ -45,7 +45,10 @@ test('derives the 1990 Legend engine only from the pinned reviewed exact mapping
     [provenance.artifact, provenance.artifactSha256],
     [provenance.ymmtArtifact, provenance.ymmtArtifactSha256],
   ] as const) {
-    const actual = createHash('sha256').update(readFileSync(artifact)).digest('hex');
+    const bytes = readFileSync(artifact);
+    const actual = createHash('sha256')
+      .update(Buffer.from(bytes.toString('utf8').replace(/\r\n?/g, '\n'), 'utf8'))
+      .digest('hex');
     assert.equal(actual, expected, artifact);
   }
 });

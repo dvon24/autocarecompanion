@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-require-imports */
 const assert = require('node:assert/strict');
+const crypto = require('node:crypto');
 const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
@@ -108,12 +109,21 @@ function row(id, options = {}) {
 }
 
 function exactLink(partNumber, item = '123456789012') {
+  const observedListingTitle = `${partNumber} exact product`;
   return {
     vendor: 'eBay',
     url: `https://www.ebay.com/itm/${item}?_skw=${partNumber}`,
     linkType: 'product',
     verified: true,
-    productIdentity: { matchedPartNumber: partNumber, productId: item, listingTitleHash: 'a'.repeat(64) },
+    productIdentity: {
+      matchedPartNumber: partNumber,
+      productId: item,
+      listingTitleHash: crypto.createHash('sha256').update(observedListingTitle).digest('hex'),
+      observedListingTitle,
+      matchedPartNumberSource: 'listing-title',
+      observedPartNumberField: 'title',
+      observedPartNumberValue: observedListingTitle,
+    },
   };
 }
 
@@ -168,11 +178,23 @@ function fixture(recordCount = 70) {
     componentApplicationCount: 2,
     entries: [
       { workItemId: 'work-1', issueId: records[0].id, source: 'prescription', model: 'Example' },
-      { workItemId: 'existing-1', issueId: records[1].id, source: 'existing-fix-part', model: 'Example' },
+      {
+        workItemId: 'existing-1', issueId: records[1].id, source: 'existing-fix-part', model: 'Example',
+        partNumber: 'OLD-1', declaredEngine: '',
+      },
     ],
   };
   const evidence = { complete: true, progress: '2/2', results: [{ workItemId: 'work-1' }, { workItemId: 'existing-1' }] };
-  const proposals = { count: 1, proposals: [{ ...proposal, parts: proposal.parts.map((part) => ({ ...part, buyLinks: [] })) }] };
+  const workItemDispositions = [
+    { workItemId: 'existing-1', issueId: records[1].id, verdict: 'hold', reasonCode: 'fitment-confirmed' },
+    { workItemId: 'work-1', issueId: records[0].id, verdict: 'proposed', reasonCode: 'eligible-proposal' },
+  ];
+  const proposals = {
+    count: 1,
+    workItemDispositionCount: 2,
+    workItemDispositions,
+    proposals: [{ ...proposal, parts: proposal.parts.map((part) => ({ ...part, buyLinks: [] })) }],
+  };
   const links = { count: 1, proposals: [proposal] };
   const review = {
     schemaVersion: 2,
@@ -189,7 +211,10 @@ function fixture(recordCount = 70) {
     ],
     reconciliation: { complete: true, sourcePartRowCount: 3, reviewedPartRowCount: 3, missing: [], duplicates: [] },
     existingClaimWorkRowCount: 1,
-    existingClaims: [{ workItemId: 'existing-1', issueId: records[1].id, partNumber: 'OLD-1', verdict: 'block', reason: 'Existing claim needs explicit removal.' }],
+    existingClaims: [{
+      workItemId: 'existing-1', issueId: records[1].id, partNumber: 'OLD-1', engineWorkRow: '',
+      verdict: 'block', reason: 'Existing claim needs explicit removal.',
+    }],
   };
   const hold = {
     issueId: records[0].id,
@@ -388,8 +413,23 @@ test('scope overlap uses runtime-equivalent whole-token fitment matching', () =>
   assert.equal(fitmentValuesMatch('AWD', 'SH-AWD'), true);
   assert.equal(fitmentValuesMatch('SE', 'SEL'), false);
   assert.equal(scopesOverlap({ engines: ['3.5L'] }, { engines: ['3.5L V6'] }), true);
-  assert.equal(scopesOverlap({ drivetrains: ['AWD'] }, { drivetrains: ['SH-AWD'] }), true);
+  assert.equal(scopesOverlap({ drivetrains: ['AWD'] }, { drivetrains: ['SH-AWD'] }), false);
   assert.equal(scopesOverlap({ trims: ['SE'] }, { trims: ['SEL'] }), false);
+});
+
+test('existing-claim review identity is bound beyond a forgeable workItemId', () => {
+  const inputs = fixture();
+  inputs.review.existingClaims[0].issueId = 'acura-01';
+  inputs.review.existingClaims[0].partNumber = 'FAKE-1';
+  assert.throws(() => finalizePacket(inputs, inputs.options), /existing-claim review identity mismatch/);
+});
+
+test('every fitment work item must terminate in a proposal or an identity-bound hold', () => {
+  const inputs = fixture();
+  inputs.proposals.workItemDispositions.pop();
+  inputs.proposals.workItemDispositionCount -= 1;
+  inputs.options.recomputedProposals = JSON.parse(JSON.stringify(inputs.proposals));
+  assert.throws(() => finalizePacket(inputs, inputs.options), /do not cover the fitment worklist/);
 });
 
 test('review decision identity is bound to proposal and work item', async (t) => {
