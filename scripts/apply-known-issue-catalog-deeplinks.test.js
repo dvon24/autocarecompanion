@@ -17,6 +17,7 @@ const {
   hashValue,
   identityContinuityError,
   isIsoDate,
+  loadManifests,
   productUrlError,
   resolveKnownIssueConnectionString,
   snapshotFields,
@@ -31,6 +32,28 @@ const {
   reconcileSnapshot,
   summarizeReconciliation,
 } = require('./audit-known-issue-catalog-deeplinks');
+
+function reviewedBatchManifest(row = baseRow()) {
+  const manifest = fullRecordManifest(row, 'reviewed-complete-batch', 'no-commerce');
+  manifest.schemaVersion = 3;
+  manifest.sourceRef = 'origin/codex/example-audit';
+  manifest.sourceCommit = '1'.repeat(40);
+  manifest.baselineRef = 'origin/main';
+  manifest.baselineCommit = '2'.repeat(40);
+  manifest.packetSlug = 'example';
+  manifest.make = 'Example';
+  manifest.packetCount = 1;
+  manifest.packetRowCount = 2;
+  manifest.writeRowCount = 1;
+  manifest.heldRowCount = 1;
+  manifest.packets = [{
+    file: 'data/known-issue-example-car-adjudication-2026-08-12.json',
+    sha256: '3'.repeat(64),
+    model: 'Car',
+    summary: { total: 2 },
+  }];
+  return manifest;
+}
 
 test('explicit known-issue env file wins over conflicting ambient database variables', () => {
   const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'known-issue-env-'));
@@ -207,6 +230,38 @@ test('claim IDs cover every fixPart and commerce-bearing community entry', () =>
 
 test('a complete changed manifest validates', () => {
   assert.deepEqual(validateManifest(changedManifest()), []);
+});
+
+test('schema v3 binds packet provenance and exact batch completeness', () => {
+  const manifest = reviewedBatchManifest();
+  assert.deepEqual(validateManifest(manifest), []);
+
+  for (const field of ['packetCount', 'packetRowCount', 'writeRowCount', 'heldRowCount']) {
+    const mutated = structuredClone(manifest);
+    delete mutated[field];
+    assert.ok(validateManifest(mutated).some((error) => error.includes(field)), `${field} deletion must reject`);
+  }
+
+  const truncated = structuredClone(manifest);
+  truncated.issues = [];
+  assert.ok(validateManifest(truncated).some((error) => error.includes('writeRowCount')));
+
+  const provenance = structuredClone(manifest);
+  provenance.packets[0].summary.total = 1;
+  assert.ok(validateManifest(provenance).some((error) => error.includes('packetRowCount')));
+});
+
+test('the applicator loader rejects a truncated schema-v3 reviewed batch before DB access', () => {
+  const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'known-issue-reviewed-batch-'));
+  const file = path.join(directory, 'reviewed.json');
+  try {
+    const manifest = reviewedBatchManifest();
+    manifest.issues = [];
+    fs.writeFileSync(file, JSON.stringify(manifest), 'utf8');
+    assert.throws(() => loadManifests(['--manifest', file]), /issues must be a non-empty array|writeRowCount/);
+  } finally {
+    fs.rmSync(directory, { recursive: true, force: true });
+  }
 });
 
 test('a full-record manifest accepts an official investigation citation', () => {

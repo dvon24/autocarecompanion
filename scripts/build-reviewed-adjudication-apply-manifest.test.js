@@ -141,7 +141,8 @@ test('normalizes reviewed citation aliases to production schema values', () => {
   row.changedFields = row.changedFields.filter((field) => field !== 'citations');
   row.changedFields.push('citations');
   const after = buildReviewedAfterState(row, current);
-  assert.deepEqual(after.citations.map((citation) => citation.type), ['manufacturer', 'nhtsa']);
+  assert.deepEqual(after.citations.map((citation) => citation.type), ['manufacturer', 'recall']);
+  assert.notEqual(after.citations[1].type, 'nhtsa');
 });
 
 test('accepts make-wide and per-model adjudication packet filenames', () => {
@@ -149,6 +150,21 @@ test('accepts make-wide and per-model adjudication packet filenames', () => {
   assert.equal(isPacketFilename('data/known-issue-gmc-yukon-adjudication-2026-08-05.json', 'gmc'), true);
   assert.equal(isPacketFilename('data/known-issue-gmc-proposals-2026-08-05.json', 'gmc'), false);
   assert.equal(isPacketFilename('data/known-issue-chevrolet-adjudication-2026-08-05.json', 'gmc'), false);
+});
+
+test('the conservative Mercedes slug includes both Mercedes-Benz and Mercedes-Maybach packets', () => {
+  assert.equal(
+    isPacketFilename('data/known-issue-mercedes-benz-s-class-adjudication-2026-08-09.json', 'mercedes'),
+    true,
+  );
+  assert.equal(
+    isPacketFilename('data/known-issue-mercedes-maybach-s-class-adjudication-2026-08-09.json', 'mercedes'),
+    true,
+  );
+  assert.equal(
+    isPacketFilename('data/known-issue-mercury-sable-adjudication-2026-08-09.json', 'mercedes'),
+    false,
+  );
 });
 
 test('derives a missing packet total from exact rows and rejects a contradictory total', () => {

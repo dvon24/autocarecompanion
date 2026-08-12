@@ -40,7 +40,10 @@ const PRESERVED_LIVE_FIELDS = new Set(['fixParts', 'relatedIssueIds']);
 const IGNORED_PROPOSAL_FIELDS = new Set(['relatedIssueIds']);
 const DEFAULT_HOLD_ACTIONS = new Set(['keep_published_pending_source', 'hold', 'keep']);
 const CITATION_TYPE_ALIASES = new Map([
-  ['government', 'nhtsa'],
+  // The reviewed "government" citations in this batch are non-U.S. recall
+  // authorities. Calling them NHTSA would be false attribution; the catalog's
+  // schema has a truthful generic recall type for those records.
+  ['government', 'recall'],
   ['manufacturer-program', 'manufacturer'],
   ['program', 'manufacturer'],
   ['service-action', 'manufacturer'],
@@ -100,8 +103,14 @@ function git(args) {
   return execFileSync('git', args, { cwd: PROJECT_ROOT, encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 });
 }
 
-function packetFiles(sourceRef, slug) {
-  const changed = git(['diff', '--name-only', `origin/main...${sourceRef}`]).split(/\r?\n/).filter(Boolean);
+function resolveCommit(ref) {
+  const commit = git(['rev-parse', '--verify', `${ref}^{commit}`]).trim();
+  if (!/^[0-9a-f]{40}$/i.test(commit)) throw new Error(`Could not resolve ${ref} to a commit`);
+  return commit;
+}
+
+function packetFiles(baselineCommit, sourceCommit, slug) {
+  const changed = git(['diff', '--name-only', `${baselineCommit}...${sourceCommit}`]).split(/\r?\n/).filter(Boolean);
   const pattern = new RegExp(`^data/known-issue-${slug}(?:-.+)?-adjudication-\\d{4}-\\d{2}-\\d{2}\\.json$`);
   return changed.filter((file) => pattern.test(file)).sort();
 }
@@ -192,6 +201,7 @@ function buildReviewedAfterState(row, current) {
 async function main() {
   const args = process.argv.slice(2);
   const sourceRef = argValue(args, '--source-ref');
+  const baselineRef = argValue(args, '--baseline-ref', false) || 'origin/main';
   const make = argValue(args, '--make');
   const slug = argValue(args, '--slug');
   const batchId = argValue(args, '--batch-id');
@@ -206,15 +216,16 @@ async function main() {
   const excludedWriteIds = new Set((argValue(args, '--exclude-write-ids', false) || '')
     .split(',').map((value) => value.trim()).filter(Boolean));
 
-  git(['rev-parse', '--verify', sourceRef]);
-  const files = packetFiles(sourceRef, slug);
+  const sourceCommit = resolveCommit(sourceRef);
+  const baselineCommit = resolveCommit(baselineRef);
+  const files = packetFiles(baselineCommit, sourceCommit, slug);
   if (files.length === 0) throw new Error(`No ${make} adjudication packets found on ${sourceRef}`);
 
   const rows = [];
   const packetProvenance = [];
   const seenIds = new Set();
   for (const file of files) {
-    const packet = readPacket(sourceRef, file);
+    const packet = readPacket(sourceCommit, file);
     if (packet.status !== 'proposal-only' || packet.requiresIndependentApproval !== true || packet.make !== make) {
       throw new Error(`${file}: invalid proposal contract`);
     }
@@ -222,7 +233,7 @@ async function main() {
     const normalizedSummary = packetSummary(packet, file);
     packetProvenance.push({
       file,
-      sha256: normalizedFileHash(sourceRef, file),
+      sha256: normalizedFileHash(sourceCommit, file),
       model: packet.model,
       byModel: packet.byModel || null,
       frozenMakeValues: packet.frozenMakeValues || [packet.make],
@@ -305,12 +316,16 @@ async function main() {
   });
 
   const manifest = {
-    schemaVersion: 2,
+    schemaVersion: 3,
     auditScope: 'full-record',
     manifestKind: 'known-issues-catalog-deeplinks',
     batchId,
     generatedAt: new Date().toISOString(),
     sourceRef,
+    sourceCommit,
+    baselineRef,
+    baselineCommit,
+    packetSlug: slug,
     make,
     frozenMakeValues,
     frozenMakeCounts,
@@ -354,5 +369,5 @@ if (require.main === module) {
 
 module.exports = {
   CITATION_TYPE_ALIASES, actionSets, buildReviewedAfterState, changedFields, isPacketFilename, stableHash,
-  normalizedChangedFields, packetSummary, selectWrites,
+  normalizedChangedFields, packetFiles, packetSummary, resolveCommit, selectWrites,
 };

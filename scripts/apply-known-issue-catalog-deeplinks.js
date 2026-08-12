@@ -19,6 +19,7 @@ const DEFAULT_DECISIONS_DIR = path.join(PROJECT_ROOT, 'data', 'known-issues-cata
 const DEFAULT_RESULTS_DIR = path.join(PROJECT_ROOT, 'data', 'known-issues-catalog-deeplink-results');
 const DISPOSITIONS = new Set(['keep', 'replace', 'remove', 'recall-dealer', 'diagnosis-hold', 'no-commerce']);
 const HASH_RE = /^[a-f0-9]{64}$/;
+const GIT_OID_RE = /^[a-f0-9]{40}$/;
 const URL_FIELDS = ['affiliateUrl', 'affiliateLink', 'amazonLink'];
 const SEARCH_QUERY_KEYS = new Set(['q', 'k', '_nkw', 'query', 'keyword', 'keywords', 'search', 'searchterm', 'text']);
 const FULL_RECORD_FIELDS = Object.freeze([
@@ -116,7 +117,49 @@ function fullRecordHashes(row) {
 }
 
 function isFullRecordManifest(manifest) {
-  return Boolean(manifest && manifest.schemaVersion === 2 && manifest.auditScope === 'full-record');
+  return Boolean(manifest && [2, 3].includes(manifest.schemaVersion) && manifest.auditScope === 'full-record');
+}
+
+function validateReviewedBatchContract(manifest, errors) {
+  const requiredStrings = ['sourceRef', 'baselineRef', 'packetSlug', 'make'];
+  for (const field of requiredStrings) {
+    if (typeof manifest[field] !== 'string' || !manifest[field].trim()) errors.push(`schemaVersion 3 requires ${field}`);
+  }
+  for (const field of ['sourceCommit', 'baselineCommit']) {
+    if (!GIT_OID_RE.test(manifest[field] || '')) errors.push(`schemaVersion 3 requires valid ${field}`);
+  }
+  if (!Array.isArray(manifest.packets) || manifest.packets.length === 0) {
+    errors.push('schemaVersion 3 requires non-empty packets');
+    return;
+  }
+  const packetFiles = new Set();
+  let packetRows = 0;
+  for (const [index, packet] of manifest.packets.entries()) {
+    if (!packet || typeof packet !== 'object') {
+      errors.push(`packets[${index}] must be an object`);
+      continue;
+    }
+    if (typeof packet.file !== 'string' || !packet.file.trim() || packetFiles.has(packet.file)) {
+      errors.push(`packets[${index}].file must be unique and non-empty`);
+    } else packetFiles.add(packet.file);
+    if (!HASH_RE.test(packet.sha256 || '')) errors.push(`packets[${index}].sha256`);
+    const total = packet.summary && packet.summary.total;
+    if (!Number.isInteger(total) || total < 0) errors.push(`packets[${index}].summary.total`);
+    else packetRows += total;
+  }
+  if (!Number.isInteger(manifest.packetCount) || manifest.packetCount !== manifest.packets.length) {
+    errors.push('packetCount must equal packets.length');
+  }
+  if (!Number.isInteger(manifest.packetRowCount) || manifest.packetRowCount !== packetRows) {
+    errors.push('packetRowCount must equal packet summary totals');
+  }
+  if (!Number.isInteger(manifest.writeRowCount) || manifest.writeRowCount !== asArray(manifest.issues).length) {
+    errors.push('writeRowCount must equal issues.length');
+  }
+  if (!Number.isInteger(manifest.heldRowCount) || manifest.heldRowCount < 0
+    || manifest.heldRowCount + manifest.writeRowCount !== manifest.packetRowCount) {
+    errors.push('heldRowCount plus writeRowCount must equal packetRowCount');
+  }
 }
 
 function stableValue(value) {
@@ -363,11 +406,14 @@ function validateFullRecordIssue(issue, prefix, errors) {
 function validateManifest(manifest) {
   const errors = [];
   if (!manifest || typeof manifest !== 'object') return ['manifest must be an object'];
-  if (![1, 2].includes(manifest.schemaVersion)) errors.push('schemaVersion must be 1 or 2');
-  if (manifest.schemaVersion === 2 && manifest.auditScope !== 'full-record') errors.push('schemaVersion 2 requires auditScope full-record');
+  if (![1, 2, 3].includes(manifest.schemaVersion)) errors.push('schemaVersion must be 1, 2, or 3');
+  if ([2, 3].includes(manifest.schemaVersion) && manifest.auditScope !== 'full-record') {
+    errors.push(`schemaVersion ${manifest.schemaVersion} requires auditScope full-record`);
+  }
   if (manifest.manifestKind !== 'known-issues-catalog-deeplinks') errors.push('manifestKind');
   if (!/^[a-z0-9][a-z0-9._-]{2,100}$/i.test(manifest.batchId || '')) errors.push('batchId');
   if (!Array.isArray(manifest.issues) || manifest.issues.length === 0) errors.push('issues must be a non-empty array');
+  if (manifest.schemaVersion === 3) validateReviewedBatchContract(manifest, errors);
   const seenIds = new Set();
   for (const issue of asArray(manifest.issues)) {
     const prefix = issue && issue.id ? issue.id : '<missing-id>';
