@@ -27,6 +27,11 @@ const {
   vendorMatchesUrl,
 } = require('./apply-known-issue-catalog-deeplinks');
 const { buildManifest, componentKey } = require('./build-known-issue-deeplink-manifest');
+const {
+  COMMERCE_PIPELINE_IMPLEMENTATION_FILES,
+  DIAGNOSTIC_IMPLEMENTATION_FILES,
+  assertExactImplementationHashMap,
+} = require('./known-issue-completion-contract');
 
 const PROJECT_ROOT = path.resolve(__dirname, '..');
 const REVIEWED_FILES = [
@@ -47,49 +52,6 @@ const DIAGNOSTIC_ARTIFACT_FILES = [
   'classification-ledger.json',
   'checkpoint.json',
   'diagnostic-tool-evidence.json',
-];
-// These files form the end-to-end diagnostic rendering path: audit recognition,
-// exact tool registry/selection, selected-engine propagation, and the UI that
-// decides whether a tool link is rendered. COMPLETE.json binds their bytes so
-// a later code edit cannot silently inherit this review.
-const DIAGNOSTIC_IMPLEMENTATION_FILES = [
-  'src/lib/diagnostic-procedures.js',
-  'src/data/diagnostic-tools.ts',
-  'src/components/known-issues/IssueDiagnosticTools.tsx',
-  'src/components/known-issues/KnownIssueCard.tsx',
-  'src/components/known-issues/CategorySection.tsx',
-  'src/components/known-issues/ArticleIssuesList.tsx',
-  'src/app/garage/[id]/maintenance/page.tsx',
-  'src/components/vehicle/VehicleDashboard.tsx',
-];
-const COMMERCE_PIPELINE_IMPLEMENTATION_FILES = [
-  'src/lib/prescription.ts',
-  'src/lib/known-issue-fitment-worklist.ts',
-  'src/data/component-catalog-map.ts',
-  'scripts/build-fitment-worklist.ts',
-  'scripts/showmetheparts-known-issue-candidates.js',
-  'scripts/verify-parts-fitment.js',
-  'scripts/build-part-proposals.ts',
-  'src/lib/part-recommendation.ts',
-  'src/lib/part-proposal-coverage.ts',
-  'src/lib/part-type-evidence.ts',
-  'src/lib/catalog-candidate-safety.ts',
-  'scripts/build-known-issue-part-links.ts',
-  'src/lib/part-link-builder.ts',
-  'src/lib/ebay-part-link-resolver.ts',
-  'src/lib/ebay-resolver.ts',
-  'src/lib/known-issue-part-fitment.ts',
-  'src/lib/reviewed-vehicle-context.ts',
-  'src/lib/known-issue-commerce.ts',
-  'src/components/known-issues/KnownIssueCard.tsx',
-  'src/components/known-issues/CategorySection.tsx',
-  'src/components/known-issues/ArticleIssuesList.tsx',
-  'src/components/known-issues/KnownIssuesBriefing.tsx',
-  'src/components/vehicle/VehicleDashboard.tsx',
-  'src/components/vehicle/VisionResultCard.tsx',
-  'src/app/api/vision/route.ts',
-  'src/app/api/vision/identify/route.ts',
-  'scripts/build-known-issue-deeplink-manifest.js',
 ];
 const HASH_RE = /^[a-f0-9]{64}$/;
 const REVIEW_DECISIONS = new Set([
@@ -233,6 +195,21 @@ function validateMakeSource(source, make) {
 
 function normalizedPartNumber(value) {
   return String(value || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+}
+
+/**
+ * A listing may vary punctuation inside a part number, but the normalized
+ * number must still occupy one complete token.  Substring matching is unsafe:
+ * ABC-123 is not evidence for ABC-1234, XABC-123, or ABC-123X.
+ */
+function observedEvidenceHasExactPartNumber(observedValue, expectedPartNumber) {
+  const expected = normalizedPartNumber(expectedPartNumber);
+  if (!expected) return false;
+  const separatedCharacters = [...expected]
+    .map((character) => character.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'))
+    .join('[^a-z0-9]*');
+  return new RegExp(`(?:^|[^a-z0-9])${separatedCharacters}(?=$|[^a-z0-9])`, 'i')
+    .test(String(observedValue || ''));
 }
 
 function partNumberFor(part) {
@@ -467,20 +444,19 @@ function validateExactProductLink(part, review) {
     const observedTitle = String(identity?.observedListingTitle || '').trim();
     const observedField = String(identity?.observedPartNumberField || '').trim();
     const observedValue = String(identity?.observedPartNumberValue || '').trim();
-    const observedEvidenceNumber = normalizedPartNumber(observedValue);
     if (normalizedPartNumber(identity?.matchedPartNumber) !== expected
       || !['listing-title', 'item-specifics'].includes(identity?.matchedPartNumberSource)
       || !observedTitle
       || !observedField
       || !observedValue
-      || !observedEvidenceNumber.includes(expected)
+      || !observedEvidenceHasExactPartNumber(observedValue, expected)
       || crypto.createHash('sha256').update(observedTitle, 'utf8').digest('hex') !== identity?.listingTitleHash
       || !String(identity?.productId || '').trim()) {
       throw new Error(`${reviewKey(review)}: product identity evidence is missing or mismatched`);
     }
     if (identity.matchedPartNumberSource === 'listing-title'
       && (observedField !== 'title' || observedValue !== observedTitle
-        || !normalizedPartNumber(observedTitle).includes(expected))) {
+        || !observedEvidenceHasExactPartNumber(observedTitle, expected))) {
       throw new Error(`${reviewKey(review)}: observed listing title does not contain the matched part number`);
     }
     const url = new URL(link.url);
@@ -749,7 +725,11 @@ function validateDiagnosticInputs(source, commerceLedger, inputs, options = {}) 
   if (checkpoint.ledgerHash !== artifactSha256['classification-ledger.json']) {
     throw new Error('Diagnostic checkpoint ledgerHash mismatch');
   }
-  assertHashMap(options.implementationSha256, DIAGNOSTIC_IMPLEMENTATION_FILES, 'diagnostic implementation');
+  assertExactImplementationHashMap(
+    options.implementationSha256,
+    DIAGNOSTIC_IMPLEMENTATION_FILES,
+    'diagnostic implementation',
+  );
 
   const expectedScope = {
     issueCount: source.recordCount,
@@ -1017,8 +997,12 @@ function buildCompletionArtifact({
 }) {
   validateMakeSource(source, source.make);
   assertHashMap(artifactSha256, [...PACKET_FILES, ...DIAGNOSTIC_ARTIFACT_FILES], 'completion artifacts');
-  assertHashMap(implementationSha256, DIAGNOSTIC_IMPLEMENTATION_FILES, 'completion diagnostic implementation');
-  assertHashMap(
+  assertExactImplementationHashMap(
+    implementationSha256,
+    DIAGNOSTIC_IMPLEMENTATION_FILES,
+    'completion diagnostic implementation',
+  );
+  assertExactImplementationHashMap(
     commercePipelineImplementationSha256,
     COMMERCE_PIPELINE_IMPLEMENTATION_FILES,
     'completion commerce-pipeline implementation',
@@ -1079,7 +1063,7 @@ function buildCompletionArtifact({
   return { ...body, completionHash: canonicalHash(body) };
 }
 
-function reviewedRuntimeContextCovers(source, proposal, part, resolver) {
+function reviewedRuntimeContextCovers(source, proposal, part, resolver, projectRoot = PROJECT_ROOT) {
   const fitment = part.fitment || {};
   const scopedDimensions = ['engines', 'drivetrains', 'transmissions']
     .filter((field) => (fitment[field] || []).length > 0);
@@ -1092,16 +1076,78 @@ function reviewedRuntimeContextCovers(source, proposal, part, resolver) {
 
   const reviewedFile = (file, expected) => {
     if (!String(file || '').trim() || !HASH_RE.test(expected || '')) return null;
-    const absolute = path.resolve(PROJECT_ROOT, file);
-    const relative = path.relative(PROJECT_ROOT, absolute);
+    const absolute = path.resolve(projectRoot, file);
+    const relative = path.relative(projectRoot, absolute);
     if (!relative || relative.startsWith('..') || path.isAbsolute(relative) || !fs.existsSync(absolute)) return null;
     return sha256File(absolute) === expected ? absolute : null;
   };
+  const normalizedRelativePath = (file) => String(file || '').replace(/\\/g, '/').replace(/^\.\//, '');
+  const expectedCatalogArtifact = [
+    'data', 'known-issue-part-audit', source.makeKey, source.snapshotHash, '03-showmetheparts-evidence.json',
+  ].join('/');
+  const expectedYmmtArtifact = 'public/data/ymmt.json';
   const exactObjectKey = (record, wanted) => Object.keys(record || {})
     .find((key) => normalizeFitmentValue(key) === normalizeFitmentValue(wanted));
-  const candidateTrims = (fitment.trims || []).length
+  const candidateTrims = [...new Map(((fitment.trims || []).length
     ? fitment.trims
-    : proposal.articleScope.trims;
+    : proposal.articleScope.trims)
+    .map((trim) => [normalizeFitmentValue(trim), trim])).values()];
+
+  const engineApplicationMatches = (declared, catalogEngine) => {
+    if (fitmentValuesMatch(declared, catalogEngine)) return true;
+    const displacement = (value) => normalizeFitmentValue(value).match(/\b(\d+(?:\.\d+)?)\s*l\b/)?.[1] || '';
+    const configuration = (value) => normalizeFitmentValue(value)
+      .match(/\b(v\s*[468]|i\s*[346]|h\s*[46]|flat\s*[46]|w\s*(?:8|12))\b/)?.[1]?.replace(/\s/g, '') || '';
+    const declaredDisplacement = displacement(declared);
+    const catalogDisplacement = displacement(catalogEngine);
+    const declaredConfiguration = configuration(declared);
+    const catalogConfiguration = configuration(catalogEngine);
+    return Boolean(declaredDisplacement && catalogDisplacement
+      && declaredDisplacement === catalogDisplacement
+      && (!declaredConfiguration || !catalogConfiguration || declaredConfiguration === catalogConfiguration));
+  };
+
+  const catalogEvidenceCovers = (catalogEvidence, year, resolved) => {
+    if (catalogEvidence?.complete !== true || !Array.isArray(catalogEvidence.results)) return false;
+    const results = catalogEvidence.results.filter((row) => row.workItemId === proposal.proposalId
+      && row.id === proposal.id);
+    if (results.length !== 1) return false;
+    const result = results[0];
+    if (normalizeFitmentValue(result.articleScope?.make) !== normalizeFitmentValue(proposal.articleScope.make)
+      || normalizeFitmentValue(result.articleScope?.model) !== normalizeFitmentValue(proposal.articleScope.model)
+      || !(result.yearsChecked || []).includes(year)) return false;
+
+    const expectedPartNumber = normalizedPartNumber(partNumberFor(part));
+    const expectedSupplier = normalizeFitmentValue(part.supplier);
+    const candidates = (result.candidatesByYear?.[String(year)] || []).filter((candidate) =>
+      candidate && typeof candidate === 'object'
+      && normalizedPartNumber(candidate.partNumber) === expectedPartNumber
+      && normalizeFitmentValue(candidate.supplier) === expectedSupplier
+      && normalizeFitmentValue(candidate.catalogModel) === normalizeFitmentValue(proposal.articleScope.model));
+    if (!expectedPartNumber || !expectedSupplier || candidates.length !== 1) return false;
+    const candidate = candidates[0];
+    const models = result.catalogModelsByYear?.[String(year)] || [];
+    const applications = result.catalogApplicationsByYear?.[String(year)] || [];
+    if (!models.some((model) => normalizeFitmentValue(model) === normalizeFitmentValue(candidate.catalogModel))
+      || !candidate.engine
+      || !applications.some((application) => application === `${candidate.catalogModel}|${candidate.engine}`)) return false;
+
+    if ((fitment.engines || []).length) {
+      if (!resolved.engine
+        || !fitment.engines.some((declared) => fitmentValuesMatch(declared, resolved.engine))
+        || !fitmentValuesMatch(result.declaredEngine, resolved.engine)
+        || !engineApplicationMatches(resolved.engine, candidate.engine)) return false;
+    }
+    const applicationEvidence = [candidate.application, candidate.location, candidate.comment]
+      .filter(Boolean).join(' ');
+    if ((fitment.drivetrains || []).length
+      && !fitment.drivetrains.some((declared) => fitmentValuesMatch(declared, resolved.drivetrain))
+      || (fitment.drivetrains || []).length && !fitmentValuesMatch(resolved.drivetrain, applicationEvidence)) return false;
+    if ((fitment.transmissions || []).length
+      && !fitment.transmissions.some((declared) => fitmentValuesMatch(declared, resolved.transmission))
+      || (fitment.transmissions || []).length && !fitmentValuesMatch(resolved.transmission, applicationEvidence)) return false;
+    return true;
+  };
 
   for (const year of fitment.years) {
     const resolvedByTrim = new Map();
@@ -1117,9 +1163,18 @@ function reviewedRuntimeContextCovers(source, proposal, part, resolver) {
       });
       const provenance = resolved.engineProvenance;
       if (!exactScope || !provenance || provenance.snapshotHash !== source.snapshotHash) continue;
+      if (normalizedRelativePath(provenance.artifact) !== expectedCatalogArtifact
+        || normalizedRelativePath(provenance.ymmtArtifact) !== expectedYmmtArtifact) continue;
       const artifactFile = reviewedFile(provenance.artifact, provenance.artifactSha256);
       const ymmtFile = reviewedFile(provenance.ymmtArtifact, provenance.ymmtArtifactSha256);
       if (!artifactFile || !ymmtFile) continue;
+      let catalogEvidence;
+      try {
+        catalogEvidence = readJson(artifactFile);
+      } catch {
+        continue;
+      }
+      if (!catalogEvidenceCovers(catalogEvidence, year, resolved)) continue;
       resolvedByTrim.set(normalizeFitmentValue(trim), { resolved, provenance, ymmtFile });
     }
 
@@ -1136,9 +1191,8 @@ function reviewedRuntimeContextCovers(source, proposal, part, resolver) {
     const modelRows = makeKey ? yearRows[makeKey] : null;
     const modelKey = exactObjectKey(modelRows, proposal.articleScope.model);
     const selectableTrims = modelKey && Array.isArray(modelRows[modelKey]) ? modelRows[modelKey] : [];
-    const applicableTrims = candidateTrims.filter((trim) => selectableTrims.some(
-      (selectable) => normalizeFitmentValue(selectable) === normalizeFitmentValue(trim),
-    ));
+    const candidateTrimKeys = new Set(candidateTrims.map(normalizeFitmentValue));
+    const applicableTrims = selectableTrims.filter((trim) => candidateTrimKeys.has(normalizeFitmentValue(trim)));
     if (!applicableTrims.length) return false;
     for (const trim of applicableTrims) {
       const row = resolvedByTrim.get(normalizeFitmentValue(trim));

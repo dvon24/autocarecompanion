@@ -14,6 +14,10 @@ const {
   snapshotBodyHash,
   validateLedger,
 } = require('./build-known-issue-part-audit-ledger');
+const {
+  COMMERCE_PIPELINE_IMPLEMENTATION_FILES,
+  DIAGNOSTIC_IMPLEMENTATION_FILES,
+} = require('./known-issue-completion-contract');
 
 function record(id, make, solution, extra = {}) {
   return {
@@ -94,11 +98,14 @@ function markComplete(outputRoot, make, snapshotHash, projectRoot) {
       fs.writeFileSync(artifactFile, `${JSON.stringify(value, null, 2)}\n`, 'utf8');
     }
   }
-  const diagnosticFile = path.join(projectRoot, 'implementation', `${makeSlug}-diagnostic.js`);
-  const commerceFile = path.join(projectRoot, 'implementation', `${makeSlug}-commerce.js`);
-  fs.mkdirSync(path.dirname(diagnosticFile), { recursive: true });
-  fs.writeFileSync(diagnosticFile, `module.exports = '${makeSlug}-diagnostic';\n`, 'utf8');
-  fs.writeFileSync(commerceFile, `module.exports = '${makeSlug}-commerce';\n`, 'utf8');
+  for (const implementationFile of new Set([
+    ...DIAGNOSTIC_IMPLEMENTATION_FILES,
+    ...COMMERCE_PIPELINE_IMPLEMENTATION_FILES,
+  ])) {
+    const absolute = path.join(projectRoot, implementationFile);
+    fs.mkdirSync(path.dirname(absolute), { recursive: true });
+    if (!fs.existsSync(absolute)) fs.writeFileSync(absolute, `${implementationFile}\n`, 'utf8');
+  }
   const artifactSha256 = Object.fromEntries(artifactFiles.map((name) => [name, sha256File(path.join(directory, name))]));
   const completionBody = {
     schemaVersion: 2,
@@ -114,12 +121,14 @@ function markComplete(outputRoot, make, snapshotHash, projectRoot) {
     manifestFile: '08-guarded-manifest.json',
     manifestHash: artifactSha256['08-guarded-manifest.json'],
     artifactSha256,
-    diagnosticImplementationSha256: {
-      [`implementation/${makeSlug}-diagnostic.js`]: sha256File(diagnosticFile),
-    },
-    commercePipelineImplementationSha256: {
-      [`implementation/${makeSlug}-commerce.js`]: sha256File(commerceFile),
-    },
+    diagnosticImplementationSha256: Object.fromEntries(DIAGNOSTIC_IMPLEMENTATION_FILES.map((implementationFile) => [
+      implementationFile,
+      sha256File(path.join(projectRoot, implementationFile)),
+    ])),
+    commercePipelineImplementationSha256: Object.fromEntries(COMMERCE_PIPELINE_IMPLEMENTATION_FILES.map((implementationFile) => [
+      implementationFile,
+      sha256File(path.join(projectRoot, implementationFile)),
+    ])),
     diagnosticScope: { issueCount: 1, uncoveredDiagnosticInstructionCount: 0 },
     productionApplied: false,
     productionWriteAuthorized: false,
@@ -293,7 +302,7 @@ test('later-make gating recomputes prior artifact, implementation, and source bi
   await t.test('implementation drift', () => {
     const state = setup();
     try {
-      fs.writeFileSync(path.join(state.temp, 'implementation', 'acura-commerce.js'), 'mutated\n', 'utf8');
+      fs.writeFileSync(path.join(state.temp, COMMERCE_PIPELINE_IMPLEMENTATION_FILES[0]), 'mutated\n', 'utf8');
       assert.throws(() => advance(state), /commercePipelineImplementationSha256.*drifted on disk/);
     } finally {
       fs.rmSync(state.temp, { recursive: true, force: true });
@@ -321,6 +330,35 @@ test('later-make gating recomputes prior artifact, implementation, and source bi
       fs.rmSync(state.temp, { recursive: true, force: true });
     }
   });
+
+  for (const [field, requiredFiles] of [
+    ['diagnosticImplementationSha256', DIAGNOSTIC_IMPLEMENTATION_FILES],
+    ['commercePipelineImplementationSha256', COMMERCE_PIPELINE_IMPLEMENTATION_FILES],
+  ]) {
+    for (const mutation of ['missing', 'extra', 'renamed']) {
+      await t.test(`${field} rejects a ${mutation} key`, () => {
+        const state = setup();
+        try {
+          const completion = JSON.parse(fs.readFileSync(state.completeFile, 'utf8'));
+          const map = { ...completion[field] };
+          const first = requiredFiles[0];
+          if (mutation === 'missing') delete map[first];
+          if (mutation === 'extra') map['src/unreviewed-extra.ts'] = 'a'.repeat(64);
+          if (mutation === 'renamed') {
+            map[`${first}.renamed`] = map[first];
+            delete map[first];
+          }
+          completion[field] = map;
+          delete completion.completionHash;
+          completion.completionHash = canonicalHash(completion);
+          fs.writeFileSync(state.completeFile, `${JSON.stringify(completion, null, 2)}\n`, 'utf8');
+          assert.throws(() => advance(state), /exact required implementation keys/);
+        } finally {
+          fs.rmSync(state.temp, { recursive: true, force: true });
+        }
+      });
+    }
+  }
 });
 
 test('writes byte-identical deterministic artifacts on rerun', () => {

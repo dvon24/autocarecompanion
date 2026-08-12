@@ -15,7 +15,7 @@ import { trackAffiliateClick } from '@/lib/analytics';
 import { externalHttpUrl } from '@/lib/external-http-url';
 import { describeFitment, fitmentResolutionPrompt, isNarrowerThanArticle, resolvePartsForVehicle } from '@/lib/known-issue-part-fitment';
 import { resolveReviewedVehicleContext } from '@/lib/reviewed-vehicle-context';
-import { IssueDiagnosticTools } from '@/components/known-issues/IssueDiagnosticTools';
+import { IssueDiagnosticTools, issueHasDiagnosticToolInput } from '@/components/known-issues/IssueDiagnosticTools';
 
 type IssueRecommendation = NonNullable<CatalogKnownIssue['communityRecommendations']>[number];
 type IssueFixPart = NonNullable<CatalogKnownIssue['fixParts']>[number];
@@ -597,9 +597,9 @@ function IssueCardExpanded({ issue, vehicle, styled = true, onAskAI }: { issue: 
           {issue.dtcCodes && issue.dtcCodes.length > 0 && (<div className="py-3" style={dividerStyle}><p className="text-xs font-semibold uppercase mb-1.5 px-2 py-1 rounded inline-block" style={labelStyle}>Common error codes that may appear</p><div className="flex gap-1.5 flex-wrap mt-2">{issue.dtcCodes.map(code => (<Link key={code} href={'/known-issues/dtc/' + code.toLowerCase()} className="text-[10px] font-mono px-2.5 py-1 rounded-md hover:opacity-80 transition-opacity" style={{ backgroundColor: '#EFEDE6', color: '#3C313D' }}>{code}</Link>))}</div></div>)}
           {issue.symptoms && issue.symptoms.length > 0 && (<div className="py-3" style={dividerStyle}><p className="text-xs font-semibold uppercase mb-1.5 px-2 py-1 rounded inline-block" style={labelStyle}>Common Symptoms</p><ul className="space-y-1 mt-2">{issue.symptoms.map((s, i) => (<li key={i} className="text-xs flex gap-2" style={{ color: bodyColor }}><span style={{ color: '#9D9BA2' }}>&bull;</span><span>{s}</span></li>))}</ul></div>)}
           {issue.solution && (<div className="py-3" style={dividerStyle}><p className="text-xs font-semibold uppercase mb-1.5 px-2 py-1 rounded inline-block" style={labelStyle}>How to Fix</p><p className="text-xs leading-relaxed mt-2" style={{ color: bodyColor }}>{issue.solution}</p></div>)}
-          {issue.solution && (
+          {issueHasDiagnosticToolInput(issue.solution, issue.dtcCodes) && (
             <IssueDiagnosticTools
-              solution={issue.solution}
+              solution={issue.solution || ''}
               dtcCodes={issue.dtcCodes}
               engines={fitmentVehicle.engine ? [fitmentVehicle.engine] : issue.vehicleMatch.engines}
             />

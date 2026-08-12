@@ -28,6 +28,11 @@ interface IssueDiagnosticToolsProps {
   engines?: string[] | null;
 }
 
+/** Public renderers should mount the diagnostic resolver for either prose or codes. */
+export function issueHasDiagnosticToolInput(solution?: string | null, dtcCodes?: string[] | null) {
+  return Boolean(solution?.trim()) || Boolean(dtcCodes?.length);
+}
+
 export function IssueDiagnosticTools({ solution, dtcCodes, engines }: IssueDiagnosticToolsProps) {
   const { procedures, families, hasUnknownCode, tools } = diagnosticToolsForIssue(
     solution,

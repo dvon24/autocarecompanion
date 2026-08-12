@@ -19,6 +19,7 @@ import {
   type VehicleIdentity,
 } from '@/lib/known-issue-part-fitment';
 import { resolveReviewedVehicleContext } from '@/lib/reviewed-vehicle-context';
+import { relatedIssuePartsForVehicle } from '@/lib/vision-related-issue-parts';
 import type { IdentifiedPart, PartCategory, IssuePart } from '@/types/vision';
 import Anthropic from '@anthropic-ai/sdk';
 import sharp from 'sharp';
@@ -577,7 +578,10 @@ Return ONLY a JSON object:
   // TOP OF THE TRUST HIERARCHY: the matched issue's curated fixParts (human/DB-
   // verified, already affiliate-tagged). These are surfaced ABOVE the model/eBay
   // re-derivation — the diagnosis's own "everything you need" repair kit.
-  const relatedIssueParts: IssuePart[] = relatedIssue ? toIssueParts(fixPartsById.get(relatedIssue.id)) : [];
+  const relatedIssueParts: IssuePart[] = relatedIssuePartsForVehicle(
+    relatedIssue ? toIssueParts(fixPartsById.get(relatedIssue.id)) : [],
+    vehicleMismatch,
+  );
 
   return NextResponse.json({
     ok: true,

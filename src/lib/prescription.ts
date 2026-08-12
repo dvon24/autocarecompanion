@@ -21,9 +21,16 @@
 /** Verbs that introduce a part you buy. "Repair" and "service" do not qualify. */
 const PRESCRIBE = /\b(?:replace|replacing|replacement of|install|installing|swap(?:\s+or\s+replace)?)\b/gi;
 
+/** Imperative purchase/install verbs that name a buyable repair item. */
+const BUY_COMMAND = /\b(?:add|order|source|use)\b/gi;
+
 /** Passive/modal forms used by repair prose where the part precedes the verb. */
-const NEEDS_REPLACEMENT = /\b((?:(?:the|a|an)\s+)?[a-z0-9][a-z0-9/-]*(?:\s+[a-z0-9][a-z0-9/-]*){0,5})\s+(?:needs?|requires?)\s+(?:to be\s+)?(?:replaced|replacement)\b/gi;
 const MODAL_REQUIRES_REPLACEMENT = /\b(may|might|can|could)\s+require\s+((?:(?:the|a|an)\s+)?[a-z0-9][a-z0-9/-]*(?:\s+[a-z0-9][a-z0-9/-]*){0,5})\s+replacement\b/gi;
+const PART_BEFORE_REPLACEMENT = /\b(?:(?:needs?|requires?)\s+(?:hardware\s+)?replacement|(?:needs?|requires?)\s+to\s+be\s+replaced|(?:may|might|can|could|must|should|will)\s+(?:(?:need|require)s?\s+(?:hardware\s+)?replacement|be\s+replaced))\b/gi;
+const MODAL_NEEDS_OBJECT = /\b(may|might|can|could|must|should|will)\s+(?:need|needs|require|requires)\s+([^.;!?\u2013\u2014]{1,180})/gi;
+const NOUN_FIRST_MODAL_REPLACEMENT = /\breplacement\b([^.!?]{0,140}?)\b(may|might|can|could|must|should|will)\s+be\s+(?:required|needed)\b/gi;
+const REPLACEMENT_LIST = /\breplacement\s*:\s*([^.!?]+)/gi;
+const FIX_IS_PART = /\b(?:the\s+)?(?:only\s+)?(?:durable\s+|proper\s+|permanent\s+)?fix\s+is\s+([^.;!?\u2013\u2014]+)/gi;
 
 /**
  * A clause is NOT a prescription when the verb is negated or conditional:
@@ -43,9 +50,9 @@ const NON_PRESCRIPTIVE_BEFORE = /\b(?:cost|price|estimate|labor|time)\s+(?:for\s
 /** Words that qualify a part without identifying it. */
 const NOISE = new Set([
   'the', 'a', 'an', 'this', 'that', 'these', 'those', 'its', 'his', 'her', 'their',
-  'failed', 'faulty', 'bad', 'worn', 'old', 'new', 'entire', 'complete', 'whole',
+  'failed', 'faulty', 'bad', 'worn', 'rusted', 'old', 'new', 'fresh', 'entire', 'complete', 'whole', 'full',
   'affected', 'damaged', 'leaking', 'cracked', 'defective', 'original', 'oem', 'assembly',
-  'genuine', 'updated', 'revised', 'improved', 'correct', 'proper', 'both', 'all',
+  'genuine', 'updated', 'revised', 'improved', 'correct', 'proper', 'both', 'all', 'hardware',
   'any', 'each', 'one', 'two', 'four', 'six', 'eight',
   'again', 'usually', 'typically', 'often', 'simply', 'just',
 ]);
@@ -55,17 +62,17 @@ const NOISE = new Set([
 const VAGUE = new Set(['it', 'them', 'this', 'that', 'one', 'unit', 'part', 'component', 'item', 'piece']);
 
 /** Trailing words that start a new thought rather than continue the part name. */
-const STOP = /\b(?:with|using|per|as|if|when|where|after|before|then|to|for|on|in|at|from|of|under|because|since|which|that|they|is|are|run|diy|plus|along)\b/i;
-const NON_PART_ACTION = /^(?:replace|install|inspect|check|test|diagnos|clean|flush|bleed|verify|confirm|measure|machine|resurface|repair|service|reprogram|program|reset|tighten|remove)\b/i;
-const STANDALONE_PART = /^(?:pump|sensor|hub|mount|mounts|thermostat|radiator|condenser|compressor|alternator|starter|battery|belt|tensioner|pulley|bearing|seal|seals|gasket|gaskets|hose|hoses|filter|valve|module|switch|motor|actuator|solenoid|ignitor|coil|rotor|pads|caliper|cylinder|clutch|converter|manifold|injector|plugs|housing|bracket|kit|latch|blower|core|tank|cap|pipe|shaft|differential|turbo|intercooler|lifter|piston|transmission|distributor|dashboard|interlock)$/i;
+const STOP = /\b(?:with|without|using|per|as|if|when|where|after|before|then|to|for|on|in|at|from|of|under|because|since|which|that|they|is|are|run|diy|plus|along|by|during|while|into|through|around|about)\b/i;
+const NON_PART_ACTION = /^(?:replace|install|use|add|order|source|inspect|check|test|diagnos|clean|flush|bleed|verify|confirm|measure|machine|resurface|repair|service|reprogram|program|reset|tighten|remove)\b/i;
+const STANDALONE_PART = /^(?:pump|sensor|hub|mount|mounts|thermostat|radiator|condenser|compressor|alternator|starter|battery|belt|belts|tensioner|pulley|bearing|bearings|bushing|bushings|brush|brushes|bolt|bolts|clamp|clamps|tube|tubes|axle|axles|grommet|grommets|seal|seals|gasket|gaskets|hose|hoses|filter|valve|module|switch|motor|actuator|solenoid|ignitor|coil|rotor|pad|pads|caliper|cylinder|clutch|converter|manifold|injector|plug|plugs|housing|bracket|kit|latch|blower|core|tank|cap|pipe|shaft|differential|turbo|intercooler|lifter|piston|transmission|distributor|dashboard|interlock|idler|relay|relays|resistor|weatherstrip|weatherstripping|ring|rings)$/i;
 const SHARED_NOUN_QUALIFIER = /^(?:cam|crank|front|rear|upper|lower|left|right)$/i;
-const BUYABLE_NOUN_SOURCE = '(?:pump|sensor|hub|accumulator|thermostat|radiator|condenser|compressor|alternator|starter|battery|belt|tensioner|pulley|bearing|seal|gasket|hose|filter|valve|body|module|switch|motor|actuator|solenoid|ignitor|coil|rotor|pad|caliper|cylinder|clutch|converter|manifold|injector|plug|housing|bracket|kit|latch|blower|core|tank|cap|pipe|shaft|differential|turbo|intercooler|lifter|piston|ring|transmission|distributor|dashboard|interlock|wire|synchronizer|o-ring|relay|nut|mount|brush|modulator|engine|head|unit)(?:s|es)?';
+const BUYABLE_NOUN_SOURCE = '(?:pump|sensor|hub|accumulator|thermostat|radiator|condenser|compressor|alternator|starter|battery|belt|tensioner|pulley|bearing|bushing|brush|bolt|clamp|tube|axle|grommet|seal|gasket|hose|filter|valve|body|module|switch|motor|actuator|solenoid|ignitor|coil|rotor|pad|caliper|cylinder|clutch|converter|manifold|injector|plug|housing|bracket|kit|latch|blower|core|tank|cap|pipe|shaft|differential|turbo|intercooler|lifter|piston|ring|transmission|distributor|dashboard|interlock|wire|synchronizer|o-ring|relay|resistor|weatherstrip|weatherstripping|strip|nut|mount|modulator|engine|head|screen|idler|unit)(?:s|es)?';
 const BUYABLE_NOUN = new RegExp(`\\b${BUYABLE_NOUN_SOURCE}\\b`, 'i');
 const ANTECEDENT_PART = new RegExp(
   `\\b(?:the|a|an|this|that)\\s+((?:[a-z0-9][a-z0-9/-]*\\s+){0,5}?${BUYABLE_NOUN_SOURCE})\\b`,
   'gi',
 );
-const ANAPHORIC_OBJECT = /^(?:(?:the|this|that|a|an)\s+)?(?:it|them|this|that|one|unit|part|component|item|piece)?$/i;
+const ANAPHORIC_OBJECT = /^(?:(?:the|this|that|a|an)\s+)?(it|them|these|those|this|that|one|unit|part|component|item|piece)?(?:\s+(?:at|during|after|before)\b[\s\S]*)?$/i;
 
 export interface PrescribedRepairComponent {
   component: string;
@@ -122,11 +129,69 @@ function replacementCondition(text: string, index: number, after = ''): string |
 function normalizedComponent(raw: string): string {
   const phrase = cleanPhrase(raw);
   if (!phrase) return '';
+  if (/\b(?:control\s+(?:module|unit)|head\s+unit|screen\s+unit|omron\s+unit)$/i.test(phrase)) return phrase;
   const withoutArticle = raw.trim().replace(/^(?:the|a|an)\s+/i, '');
-  const rawLooksLikeAcronym = /^[^a-z]*[A-Z][A-Z0-9/-]{1,}\b/.test(withoutArticle);
+  const rawWithoutOem = withoutArticle.replace(/\bOEM\b/g, '').trim();
+  const rawLooksLikeAcronym = /^[A-Z][A-Z0-9/-]{1,}$/.test(rawWithoutOem)
+    || /\b[A-Z][A-Z0-9/-]{1,}$/.test(rawWithoutOem)
+    || /\b[A-Z][A-Z0-9/-]{1,}\s+(?:module|relay|sensor|pump|valve|unit|motor|assembly)\b/.test(rawWithoutOem);
+  if (/\b(?:ATF|PSF|coolant|fluid|oil|grease)\b/i.test(phrase)) return '';
+  if (/^[a-z0-9-]+\s+unit$/i.test(phrase)
+    && !/\b(?:control|head|screen|compressor|transfer|abs|alb|ccu|ecm|bcm|omron)\s+unit$/i.test(phrase)) return '';
   if (!BUYABLE_NOUN.test(phrase) && !rawLooksLikeAcronym) return '';
-  if (!phrase.includes(' ') && !STANDALONE_PART.test(phrase) && !rawLooksLikeAcronym) return '';
+  if (!phrase.includes(' ') && !phrase.includes('/') && !STANDALONE_PART.test(phrase) && !rawLooksLikeAcronym) return '';
   return phrase;
+}
+
+function replacementObjects(raw: string): string[] {
+  const withoutTail = raw
+    .replace(/\b(?:as a set|as an assembly|as one job|together)\b.*$/i, '')
+    .replace(/\s+replacement\b.*$/i, '')
+    .replace(/\([^)]*\)/g, ' ')
+    .replace(/\bas\s+(?:a|an|the)?\s*(?:complete|full|new)?\s*/i, ' ');
+  const withParts = withoutTail.match(/^([\s\S]*?)\s+with\s+([\s\S]+)$/i);
+  const objectText = withParts && normalizedComponent(withParts[2] || '')
+    ? withParts[2]!
+    : withoutTail.replace(/^\s*with\s+/i, '');
+  const objects = objectText.split(/\s*,\s*(?:and\s+)?|\s+(?:and|or)\s+|\s*\+\s*/i);
+
+  for (let index = 0; index + 1 < objects.length; index += 1) {
+    const qualifier = objects[index]!.trim().replace(/^(?:the|all|both)\s+/i, '');
+    const sharedNoun = objects[index + 1]!.trim().match(/\b(seals?|gaskets?|hoses?|belts?|pulleys?|bearings?|bushings?|tubes?)\b/i)?.[1];
+    if (SHARED_NOUN_QUALIFIER.test(qualifier) && sharedNoun) objects[index] = `${qualifier} ${sharedNoun}`;
+  }
+  return objects;
+}
+
+function precedingReplacementObject(text: string, index: number): string {
+  const prefix = text.slice(sentenceStart(text, index), index);
+  const clause = prefix.split(/[,;:\u2013\u2014]/).at(-1)?.trim() || prefix.trim();
+  return clause
+    .replace(/^(?:and|or|then|some|the|a|an)\s+/i, '')
+    .replace(/\b(?:hardware\s+)?$/i, '')
+    .trim();
+}
+
+function objectBeforeCostReplace(text: string, index: number): string {
+  const currentStart = sentenceStart(text, index);
+  const previousStart = currentStart > 0 ? sentenceStart(text, currentStart - 1) : 0;
+  const prefix = text.slice(previousStart, index);
+  const generic = normalizedComponent(prefix.match(new RegExp(`((?:[a-z0-9][a-z0-9/-]*\\s+){0,5}?${BUYABLE_NOUN_SOURCE})\\s+(?:is|are)\\b`, 'i'))?.[1] || '');
+  if (!generic) return '';
+  const candidates: string[] = [];
+  ANTECEDENT_PART.lastIndex = 0;
+  let match: RegExpExecArray | null;
+  while ((match = ANTECEDENT_PART.exec(prefix))) {
+    const candidate = normalizedComponent(match[1] || '');
+    if (candidate === generic || candidate.endsWith(` ${generic}`)) candidates.push(candidate);
+  }
+  return candidates.sort((a, b) => b.length - a.length)[0] || generic;
+}
+
+function imperativeCommand(text: string, index: number, verb: string): boolean {
+  if (/^[A-Z]/.test(verb)) return true;
+  const prefix = text.slice(sentenceStart(text, index), index);
+  return !prefix.trim() || /(?:[,;:\u2013\u2014]|\b(?:and|then|or))\s*$/i.test(prefix);
 }
 
 interface ReplacementAntecedent {
@@ -140,23 +205,70 @@ interface ReplacementAntecedent {
  * The search is limited to the current and immediately preceding sentence so
  * a bare "replace it" cannot borrow an unrelated part from the paragraph.
  */
-function nearestReplacementAntecedent(text: string, index: number): ReplacementAntecedent | undefined {
+function uniqueReplacementAntecedent(text: string, index: number): ReplacementAntecedent | undefined {
   const currentStart = sentenceStart(text, index);
   const previousStart = currentStart > 0 ? sentenceStart(text, currentStart - 1) : 0;
   const context = text.slice(previousStart, index);
-  let candidate: ReplacementAntecedent | undefined;
+  const explicitlyTested = context.match(
+    new RegExp(`\\b(?:test|inspect|check|diagnose)\\s+(?:the|a|an)?\\s*((?:[a-z0-9][a-z0-9/-]*\\s+){0,5}?${BUYABLE_NOUN_SOURCE})\\s+before\\s+replac`, 'i'),
+  );
+  if (explicitlyTested?.[1]) {
+    const component = normalizedComponent(explicitlyTested[1]);
+    if (component) return { component, evidenceStart: previousStart };
+  }
+  const explicitlyHandled = context.match(
+    new RegExp(`\\b(?:pull|remove)\\s+(?:the|a|an)?\\s*((?:[a-z0-9][a-z0-9/-]*\\s+){0,5}?${BUYABLE_NOUN_SOURCE})\\b`, 'i'),
+  );
+  if (explicitlyHandled?.[1]) {
+    const component = normalizedComponent(explicitlyHandled[1]);
+    if (component) return { component, evidenceStart: previousStart };
+  }
+  const candidates = new Map<string, ReplacementAntecedent>();
   ANTECEDENT_PART.lastIndex = 0;
   let match: RegExpExecArray | null;
   while ((match = ANTECEDENT_PART.exec(context))) {
     const component = normalizedComponent(match[1] || '');
     if (!component) continue;
-    const lead = context.slice(Math.max(0, match.index - 24), match.index);
-    const specific = component.includes(' ')
-      || /\b(?:test|inspect|check|diagnose|pull|remove)\s*$/i.test(lead);
-    if (!specific) continue;
-    candidate = { component, evidenceStart: previousStart };
+    candidates.set(component, { component, evidenceStart: previousStart });
   }
-  return candidate;
+  return candidates.size === 1 ? [...candidates.values()][0] : undefined;
+}
+
+function coordinatedAntecedentIsAmbiguous(text: string, index: number): boolean {
+  const currentStart = sentenceStart(text, index);
+  const previousStart = currentStart > 0 ? sentenceStart(text, currentStart - 1) : 0;
+  const context = text.slice(previousStart, index);
+  const explicitList = context.match(new RegExp(
+    `(?:the|a|an)\\s+((?:[a-z0-9][a-z0-9/-]*\\s+){0,4}?${BUYABLE_NOUN_SOURCE})\\s+(?:and|or)\\s+(?:the|a|an)?\\s*((?:[a-z0-9][a-z0-9/-]*\\s+){0,4}?${BUYABLE_NOUN_SOURCE})`,
+    'i',
+  ));
+  return Boolean(explicitList?.[1] && explicitList?.[2]);
+}
+
+function pluralReplacementAntecedent(text: string, index: number): ReplacementAntecedent | undefined {
+  const currentStart = sentenceStart(text, index);
+  const previousStart = currentStart > 0 ? sentenceStart(text, currentStart - 1) : 0;
+  const context = text.slice(previousStart, index);
+  const conditionalPlural = context.match(new RegExp(`\\bif\\s+(?:the\\s+)?((?:[a-z0-9/-]+\\s+){0,4}?${BUYABLE_NOUN_SOURCE})\\s+(?:are|were|have|become)\\b`, 'i'));
+  if (!conditionalPlural?.[1]) return undefined;
+  const component = normalizedComponent(conditionalPlural[1]);
+  return component ? { component, evidenceStart: previousStart } : undefined;
+}
+
+function uniqueAntecedentByHeadNoun(text: string, index: number, headNoun: string): ReplacementAntecedent | undefined {
+  const currentStart = sentenceStart(text, index);
+  const previousStart = currentStart > 0 ? sentenceStart(text, currentStart - 1) : 0;
+  const context = text.slice(previousStart, index);
+  const candidates = new Map<string, ReplacementAntecedent>();
+  ANTECEDENT_PART.lastIndex = 0;
+  let match: RegExpExecArray | null;
+  while ((match = ANTECEDENT_PART.exec(context))) {
+    const component = normalizedComponent(match[1] || '');
+    if (component && new RegExp(`(?:^|\\s)${headNoun}$`, 'i').test(component)) {
+      candidates.set(component, { component, evidenceStart: previousStart });
+    }
+  }
+  return candidates.size === 1 ? [...candidates.values()][0] : undefined;
 }
 
 interface IndexedPrescription extends PrescribedRepairComponent {
@@ -177,7 +289,9 @@ export function extractPrescriptionComponents(solution: string): PrescribedRepai
   let m: RegExpExecArray | null;
   while ((m = PRESCRIBE.exec(text))) {
     const before = text.slice(Math.max(0, m.index - 40), m.index);
-    if (NEGATED_BEFORE.test(before) || NON_PRESCRIPTIVE_BEFORE.test(before)) continue;
+    const sentenceBefore = text.slice(sentenceStart(text, m.index), m.index);
+    if (NEGATED_BEFORE.test(before) || NON_PRESCRIPTIVE_BEFORE.test(before)
+      || /\b(?:avoid|never)\b[\s\S]*$/i.test(sentenceBefore)) continue;
 
     // Truncate at the sentence boundary FIRST. "Replace crankshaft position
     // sensor. Inspect the connector." otherwise yields "crankshaft position
@@ -185,17 +299,7 @@ export function extractPrescriptionComponents(solution: string): PrescribedRepai
     const after = text.slice(m.index + m[0].length).split(/[.;!?\u2013\u2014]/)[0]!.slice(0, 300);
     if (NEGATED_REPLACEMENT_PREDICATE.test(after.replace(/\([^)]*\)/g, ' '))) continue;
     const condition = replacementCondition(text, m.index, after);
-    const objects = after
-      .replace(/\b(?:as a set|as an assembly|together)\b.*$/i, '')
-      .replace(/\([^)]*\)/g, ' ')
-      .replace(/\bas\s+(?:a|an|the)?\s*(?:complete|full|new)?\s*/i, ' ')
-      .split(/\s*,\s*(?:and\s+)?|\s+(?:and|or)\s+/i);
-
-    for (let index = 0; index + 1 < objects.length; index += 1) {
-      const qualifier = objects[index]!.trim().replace(/^(?:the|all|both)\s+/i, '');
-      const sharedNoun = objects[index + 1]!.trim().match(/\b(seals?|gaskets?|hoses?|belts?|pulleys?|bearings?)\b/i)?.[1];
-      if (SHARED_NOUN_QUALIFIER.test(qualifier) && sharedNoun) objects[index] = `${qualifier} ${sharedNoun}`;
-    }
+    const objects = replacementObjects(after);
 
     for (const object of objects) {
       if (NON_PART_ACTION.test(object.trim())) break;
@@ -216,10 +320,26 @@ export function extractPrescriptionComponents(solution: string): PrescribedRepai
     const anaphoricObject = after.replace(/\([^)]*\)/g, ' ').trim();
     const hasObjectAtThisVerb = found.some((item) => item.sourceIndex === m!.index);
     const clauseBefore = text.slice(sentenceStart(text, m.index), m.index);
+    const vagueReplacementObject = ANAPHORIC_OBJECT.test(anaphoricObject)
+      || /^(?:with\s+)?(?:oem\s+)?(?:[a-z0-9-]+\s+)?unit(?:\s+at\b[\s\S]*)?$/i.test(anaphoricObject);
     if (!hasObjectAtThisVerb
-      && ANAPHORIC_OBJECT.test(anaphoricObject)
+      && vagueReplacementObject
       && !/\b(?:not|no|rather than|instead of)(?:\s+[a-z0-9/-]+){0,3}\s*$/i.test(clauseBefore)) {
-      const antecedent = nearestReplacementAntecedent(text, m.index);
+      const plural = /^(?:them|these|those)$/.test(anaphoricObject.match(ANAPHORIC_OBJECT)?.[1]?.toLowerCase() || '');
+      const unit = /^(?:(?:the|this|that|a|an)\s+)?unit\b/i.test(anaphoricObject);
+      const costObject = /\bcosts?\b/i.test(clauseBefore) ? normalizedComponent(objectBeforeCostReplace(text, m.index)) : '';
+      const antecedent = costObject
+        ? {
+          component: costObject,
+          evidenceStart: sentenceStart(text, Math.max(0, sentenceStart(text, m.index) - 1)),
+        }
+        : plural
+          ? pluralReplacementAntecedent(text, m.index)
+        : unit
+          ? uniqueAntecedentByHeadNoun(text, m.index, 'unit')
+        : coordinatedAntecedentIsAmbiguous(text, m.index)
+          ? undefined
+          : uniqueReplacementAntecedent(text, m.index);
       if (antecedent) {
         found.push({
           component: antecedent.component,
@@ -232,23 +352,45 @@ export function extractPrescriptionComponents(solution: string): PrescribedRepai
     }
   }
 
-  NEEDS_REPLACEMENT.lastIndex = 0;
-  while ((m = NEEDS_REPLACEMENT.exec(text))) {
-    const rawObject = m[1] || '';
+  PART_BEFORE_REPLACEMENT.lastIndex = 0;
+  while ((m = PART_BEFORE_REPLACEMENT.exec(text))) {
+    const rawObject = precedingReplacementObject(text, m.index);
     const before = text.slice(Math.max(0, m.index - 40), m.index);
-    if (/^(?:no|not)\b|\b(?:not|may|might|can|could)$/i.test(rawObject.trim())
-      || /\b(?:is|are|was|were|to)\b/i.test(rawObject)
-      || NEGATED_BEFORE.test(before)) continue;
-    const component = normalizedComponent(rawObject);
-    if (!component) continue;
-    const condition = replacementCondition(text, m.index);
-    found.push({
-      component,
-      evidence: text.slice(sentenceStart(text, m.index), sentenceEnd(text, m.index)).trim(),
-      diagnosisDependent: Boolean(condition),
-      ...(condition ? { condition } : {}),
-      sourceIndex: m.index,
-    });
+    if (/^(?:no|not)\b/i.test(rawObject) || NEGATED_BEFORE.test(before)) continue;
+    const modal = m[0].match(/\b(may|might|can|could|must|should|will)\b/i)?.[1];
+    const condition = replacementCondition(text, m.index) || (modal ? `${modal} replacement` : undefined);
+    const listedComponents = replacementObjects(rawObject).map(normalizedComponent).filter(Boolean);
+    const components = listedComponents.length
+      ? listedComponents
+      : (!coordinatedAntecedentIsAmbiguous(text, m.index)
+        ? [uniqueReplacementAntecedent(text, m.index)?.component || ''].filter(Boolean)
+        : []);
+    for (const component of components) {
+      found.push({
+        component,
+        evidence: text.slice(sentenceStart(text, m.index), sentenceEnd(text, m.index)).trim(),
+        diagnosisDependent: Boolean(condition),
+        ...(condition ? { condition } : {}),
+        sourceIndex: m.index,
+      });
+    }
+  }
+
+  MODAL_NEEDS_OBJECT.lastIndex = 0;
+  while ((m = MODAL_NEEDS_OBJECT.exec(text))) {
+    const afterModal = (m[2] || '').split(/\b(?:because|since|while|but)\b/i)[0] || '';
+    for (const rawObject of replacementObjects(afterModal)) {
+      const component = normalizedComponent(rawObject);
+      if (!component) continue;
+      const condition = replacementCondition(text, m.index) || `${m[1]} need`;
+      found.push({
+        component,
+        evidence: text.slice(sentenceStart(text, m.index), sentenceEnd(text, m.index)).trim(),
+        diagnosisDependent: true,
+        condition,
+        sourceIndex: m.index,
+      });
+    }
   }
 
   MODAL_REQUIRES_REPLACEMENT.lastIndex = 0;
@@ -263,6 +405,88 @@ export function extractPrescriptionComponents(solution: string): PrescribedRepai
       condition,
       sourceIndex: m.index,
     });
+  }
+
+  NOUN_FIRST_MODAL_REPLACEMENT.lastIndex = 0;
+  while ((m = NOUN_FIRST_MODAL_REPLACEMENT.exec(text))) {
+    const replacementIndex = m.index;
+    const component = normalizedComponent(precedingReplacementObject(text, replacementIndex));
+    if (!component) continue;
+    const condition = replacementCondition(text, replacementIndex) || `${m[2]} be required`;
+    found.push({
+      component,
+      evidence: text.slice(sentenceStart(text, replacementIndex), sentenceEnd(text, replacementIndex)).trim(),
+      diagnosisDependent: true,
+      condition,
+      sourceIndex: replacementIndex,
+    });
+  }
+
+  REPLACEMENT_LIST.lastIndex = 0;
+  while ((m = REPLACEMENT_LIST.exec(text))) {
+    const before = text.slice(sentenceStart(text, m.index), m.index);
+    if (/\b(?:avoid|never|do not|don'?t|rather than|instead of)\b[\s\S]*$/i.test(before)) continue;
+    const heading = precedingReplacementObject(text, m.index);
+    const list = m[1] || '';
+    for (const rawObject of replacementObjects(list)) {
+      const component = normalizedComponent(rawObject);
+      if (!component) continue;
+      found.push({
+        component,
+        evidence: text.slice(sentenceStart(text, m.index), sentenceEnd(text, m.index)).trim(),
+        diagnosisDependent: false,
+        sourceIndex: m.index,
+      });
+    }
+    const headingComponent = normalizedComponent(heading);
+    if (headingComponent) {
+      found.push({
+        component: headingComponent,
+        evidence: text.slice(sentenceStart(text, m.index), sentenceEnd(text, m.index)).trim(),
+        diagnosisDependent: false,
+        sourceIndex: m.index,
+      });
+    }
+  }
+
+  FIX_IS_PART.lastIndex = 0;
+  while ((m = FIX_IS_PART.exec(text))) {
+    const condition = replacementCondition(text, m.index);
+    for (const rawObject of replacementObjects(m[1] || '')) {
+      const component = normalizedComponent(rawObject);
+      if (!component) continue;
+      found.push({
+        component,
+        evidence: text.slice(sentenceStart(text, m.index), sentenceEnd(text, m.index)).trim(),
+        diagnosisDependent: Boolean(condition),
+        ...(condition ? { condition } : {}),
+        sourceIndex: m.index,
+      });
+    }
+  }
+
+  BUY_COMMAND.lastIndex = 0;
+  while ((m = BUY_COMMAND.exec(text))) {
+    if (!imperativeCommand(text, m.index, m[0])) continue;
+    const after = text.slice(m.index + m[0].length).split(/[.;!?\u2013\u2014]/)[0]!.slice(0, 300);
+    if (NEGATED_REPLACEMENT_PREDICATE.test(after.replace(/\([^)]*\)/g, ' '))) continue;
+    const partNumberObject = after.match(/\bpart\s+number\s+[A-Z0-9-]+\s*\(([^)]+)\)/i)?.[1];
+    const condition = replacementCondition(text, m.index, after);
+    const commandObject = partNumberObject || after
+      .replace(/\s+\+\s+.*$/, '')
+      .replace(/\s+by\s+part\s+number\b.*$/i, '');
+    for (const rawObject of replacementObjects(commandObject)) {
+      if (NON_PART_ACTION.test(rawObject.trim())) break;
+      const component = normalizedComponent(rawObject);
+      if (!component) continue;
+      found.push({
+        component,
+        evidence: text.slice(sentenceStart(text, m.index), sentenceEnd(text, m.index)).trim(),
+        diagnosisDependent: Boolean(condition),
+        ...(condition ? { condition } : {}),
+        sourceIndex: m.index,
+      });
+    }
   }
 
   found.sort((a, b) => a.sourceIndex - b.sourceIndex);

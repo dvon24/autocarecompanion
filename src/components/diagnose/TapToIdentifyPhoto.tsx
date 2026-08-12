@@ -29,6 +29,8 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import type { IdentifiedPart, IssuePart, VendorKey } from '@/types/vision';
 import { ebayAffiliate } from '@/lib/ebay-affiliate';
 import { trackVisionBuyClick } from '@/lib/analytics';
+import { relatedIssuePartsForVehicle } from '@/lib/vision-related-issue-parts';
+import { visionVehicleRequestContext, type VisionVehicleInput } from '@/lib/vision-vehicle-context';
 
 interface SourcePoint { x: number; y: number }
 
@@ -43,12 +45,7 @@ interface ContentGeometry {
   natH: number;
 }
 
-export interface TapVehicle {
-  year?: number | string;
-  make?: string;
-  model?: string;
-  trim?: string;
-}
+export type TapVehicle = VisionVehicleInput;
 
 interface BoxPct { x: number; y: number; w: number; h: number }
 
@@ -244,9 +241,7 @@ export function TapToIdentifyPhoto({
           fullImageDataUrl: fullFrameDataUrl() || undefined,
           prompt,
           box,
-          vehicle: vehicle
-            ? { year: Number(vehicle.year) || undefined, make: vehicle.make, model: vehicle.model, trim: vehicle.trim }
-            : undefined,
+          vehicle: visionVehicleRequestContext(vehicle),
           queryHint: queryHint || undefined,
         }),
       });
@@ -257,7 +252,10 @@ export function TapToIdentifyPhoto({
       }
       const part = data.part as IdentifiedPart;
       const polygon = Array.isArray(data.polygon) && data.polygon.length >= 3 ? data.polygon : null;
-      const issueParts = Array.isArray(data.relatedIssueParts) ? (data.relatedIssueParts as IssuePart[]) : [];
+      const issueParts = relatedIssuePartsForVehicle(
+        Array.isArray(data.relatedIssueParts) ? (data.relatedIssueParts as IssuePart[]) : [],
+        data.vehicleMismatch === true,
+      );
       setSel({
         box: data.box || box,
         loading: false,

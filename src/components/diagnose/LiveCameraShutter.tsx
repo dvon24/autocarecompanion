@@ -1,6 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { visionVehicleRequestContext, type VisionVehicleInput } from '@/lib/vision-vehicle-context';
 import { VoiceMechanic, type VoiceMechanicHandle } from './VoiceMechanic';
 import { TapToIdentifyPhoto } from './TapToIdentifyPhoto';
 import type { IdentifiedPart, IssuePart } from '@/types/vision';
@@ -82,7 +83,8 @@ export function LiveCameraShutter({
   onPhoto: (file: File) => void;
   onVideo: (file: File, durationSec: number) => void;
   onClose?: () => void;
-  vehicle?: { year?: number; make?: string; model?: string; trim?: string };
+  /** Only dimensions selected or decoded for this exact vehicle belong here. */
+  vehicle?: Omit<VisionVehicleInput, 'year'> & { year?: number };
   vehicleLabel?: string;
   enableVoice?: boolean;
   /** Auto-start the voice mechanic on open (hub greeting). Public/anon flow
@@ -362,7 +364,7 @@ export function LiveCameraShutter({
           fullImageDataUrl: fullUrl,
           prompt: { kind: 'point', x: 50, y: 50 },
           vehicle: vehicle && vehicle.make && vehicle.model
-            ? { year: Number(vehicle.year) || undefined, make: vehicle.make, model: vehicle.model, trim: vehicle.trim }
+            ? visionVehicleRequestContext(vehicle)
             : undefined,
         }),
       });

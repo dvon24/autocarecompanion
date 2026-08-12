@@ -24,6 +24,11 @@ const {
   TOOL_PRODUCT_URLS,
   diagnosticDispositionsForIssue,
 } = require('../src/lib/diagnostic-procedures');
+const {
+  COMMERCE_PIPELINE_IMPLEMENTATION_FILES,
+  DIAGNOSTIC_IMPLEMENTATION_FILES,
+  assertExactImplementationHashMap,
+} = require('./known-issue-completion-contract');
 
 const PROJECT_ROOT = path.resolve(__dirname, '..');
 const DEFAULT_OUTPUT_ROOT = path.join(PROJECT_ROOT, 'data', 'known-issue-part-audit');
@@ -355,8 +360,6 @@ function requireCompleteCheckpoint(outputRoot, makeEntry, makes, snapshotHash, p
   const completionBody = { ...checkpoint };
   delete completionBody.completionHash;
   const completionHash = canonicalHash(completionBody);
-  const implementationHashes = Object.values(checkpoint.diagnosticImplementationSha256 || {});
-  const commerceImplementationHashes = Object.values(checkpoint.commercePipelineImplementationSha256 || {});
   const completionStateMatchesRelease = checkpoint.releaseBlocked === true
     ? checkpoint.completionState === 'AUDIT_COMPLETE_RELEASE_BLOCKED'
     : checkpoint.releaseBlocked === false
@@ -377,10 +380,6 @@ function requireCompleteCheckpoint(outputRoot, makeEntry, makes, snapshotHash, p
     || Object.keys(checkpoint.artifactSha256 || {}).some((file) => path.basename(file).toUpperCase() === 'COMPLETE.JSON')
     || !HASH_RE.test(checkpoint.completionHash || '')
     || checkpoint.completionHash !== completionHash
-    || implementationHashes.length === 0
-    || implementationHashes.some((hash) => !HASH_RE.test(hash || ''))
-    || commerceImplementationHashes.length === 0
-    || commerceImplementationHashes.some((hash) => !HASH_RE.test(hash || ''))
     || checkpoint.diagnosticScope?.issueCount !== checkpoint.issueCount
     || checkpoint.diagnosticScope?.uncoveredDiagnosticInstructionCount !== 0
     || checkpoint.productionApplied !== false
@@ -388,6 +387,16 @@ function requireCompleteCheckpoint(outputRoot, makeEntry, makes, snapshotHash, p
     throw new Error(`Cannot audit a later make: ${makeEntry.make} checkpoint is not a valid COMPLETE checkpoint.`);
   }
   try {
+    assertExactImplementationHashMap(
+      checkpoint.diagnosticImplementationSha256,
+      DIAGNOSTIC_IMPLEMENTATION_FILES,
+      'diagnosticImplementationSha256',
+    );
+    assertExactImplementationHashMap(
+      checkpoint.commercePipelineImplementationSha256,
+      COMMERCE_PIPELINE_IMPLEMENTATION_FILES,
+      'commercePipelineImplementationSha256',
+    );
     verifyDiskHashMap(checkpoint.artifactSha256, files.directory, 'artifactSha256');
     verifyDiskHashMap(checkpoint.diagnosticImplementationSha256, projectRoot, 'diagnosticImplementationSha256');
     verifyDiskHashMap(

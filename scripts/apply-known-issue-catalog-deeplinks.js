@@ -17,6 +17,11 @@ const crypto = require('crypto');
 const childProcess = require('child_process');
 const fs = require('fs');
 const path = require('path');
+const {
+  COMMERCE_PIPELINE_IMPLEMENTATION_FILES,
+  DIAGNOSTIC_IMPLEMENTATION_FILES,
+  assertExactImplementationHashMap,
+} = require('./known-issue-completion-contract');
 
 const PROJECT_ROOT = path.resolve(__dirname, '..');
 const DEFAULT_DECISIONS_DIR = path.join(PROJECT_ROOT, 'data', 'known-issues-catalog-deeplink-decisions');
@@ -354,6 +359,16 @@ function validateMakeReleaseEvidence({
     throw new Error('Completion does not match the manifest make/snapshot bindings.');
   }
 
+  assertExactImplementationHashMap(
+    completion.diagnosticImplementationSha256,
+    DIAGNOSTIC_IMPLEMENTATION_FILES,
+    'completion.diagnosticImplementationSha256',
+  );
+  assertExactImplementationHashMap(
+    completion.commercePipelineImplementationSha256,
+    COMMERCE_PIPELINE_IMPLEMENTATION_FILES,
+    'completion.commercePipelineImplementationSha256',
+  );
   assertDiskHashMap(completion.artifactSha256, completionDirectory, 'completion.artifactSha256');
   assertDiskHashMap(completion.diagnosticImplementationSha256, projectRoot, 'completion.diagnosticImplementationSha256');
   assertDiskHashMap(

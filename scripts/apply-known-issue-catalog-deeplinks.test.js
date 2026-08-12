@@ -31,6 +31,10 @@ const {
   vendorMatchesUrl,
 } = require('./apply-known-issue-catalog-deeplinks');
 const {
+  COMMERCE_PIPELINE_IMPLEMENTATION_FILES,
+  DIAGNOSTIC_IMPLEMENTATION_FILES,
+} = require('./known-issue-completion-contract');
+const {
   buildSnapshot,
   buildWorkPackets,
   filterSnapshotRecords,
@@ -213,11 +217,14 @@ function makeReleaseFixture() {
   }
   const manifestFile = path.join(packetDirectory, '08-guarded-manifest.json');
   fs.writeFileSync(manifestFile, `${JSON.stringify(manifest, null, 2)}\n`, 'utf8');
-  const diagnosticFile = path.join(projectRoot, 'implementation', 'diagnostic.js');
-  const commerceFile = path.join(projectRoot, 'implementation', 'commerce.js');
-  fs.mkdirSync(path.dirname(diagnosticFile), { recursive: true });
-  fs.writeFileSync(diagnosticFile, 'module.exports = "diagnostic";\n', 'utf8');
-  fs.writeFileSync(commerceFile, 'module.exports = "commerce";\n', 'utf8');
+  for (const implementationFile of new Set([
+    ...DIAGNOSTIC_IMPLEMENTATION_FILES,
+    ...COMMERCE_PIPELINE_IMPLEMENTATION_FILES,
+  ])) {
+    const absolute = path.join(projectRoot, implementationFile);
+    fs.mkdirSync(path.dirname(absolute), { recursive: true });
+    fs.writeFileSync(absolute, `${implementationFile}\n`, 'utf8');
+  }
   const artifactSha256 = Object.fromEntries(requiredArtifacts.map((file) => [
     file,
     sha256File(path.join(packetDirectory, file)),
@@ -236,8 +243,14 @@ function makeReleaseFixture() {
     manifestFile: '08-guarded-manifest.json',
     manifestHash: artifactSha256['08-guarded-manifest.json'],
     artifactSha256,
-    diagnosticImplementationSha256: { 'implementation/diagnostic.js': sha256File(diagnosticFile) },
-    commercePipelineImplementationSha256: { 'implementation/commerce.js': sha256File(commerceFile) },
+    diagnosticImplementationSha256: Object.fromEntries(DIAGNOSTIC_IMPLEMENTATION_FILES.map((implementationFile) => [
+      implementationFile,
+      sha256File(path.join(projectRoot, implementationFile)),
+    ])),
+    commercePipelineImplementationSha256: Object.fromEntries(COMMERCE_PIPELINE_IMPLEMENTATION_FILES.map((implementationFile) => [
+      implementationFile,
+      sha256File(path.join(projectRoot, implementationFile)),
+    ])),
     productionApplied: false,
     productionWriteAuthorized: false,
   };
@@ -474,6 +487,37 @@ test('make release evidence fails closed under binding mutations', async (t) => 
       fs.rmSync(fixture.projectRoot, { recursive: true, force: true });
     }
   });
+
+  for (const [field, requiredFiles] of [
+    ['diagnosticImplementationSha256', DIAGNOSTIC_IMPLEMENTATION_FILES],
+    ['commercePipelineImplementationSha256', COMMERCE_PIPELINE_IMPLEMENTATION_FILES],
+  ]) {
+    for (const mutation of ['missing', 'extra', 'renamed']) {
+      await t.test(`${field} rejects a ${mutation} key`, () => {
+        const fixture = makeReleaseFixture();
+        try {
+          const completionBody = JSON.parse(fs.readFileSync(fixture.completionFile, 'utf8'));
+          delete completionBody.completionHash;
+          const map = { ...completionBody[field] };
+          const first = requiredFiles[0];
+          if (mutation === 'missing') delete map[first];
+          if (mutation === 'extra') map['src/unreviewed-extra.ts'] = 'a'.repeat(64);
+          if (mutation === 'renamed') {
+            map[`${first}.renamed`] = map[first];
+            delete map[first];
+          }
+          completionBody[field] = map;
+          const completion = { ...completionBody, completionHash: canonicalHash(completionBody) };
+          fs.writeFileSync(fixture.completionFile, `${JSON.stringify(completion, null, 2)}\n`, 'utf8');
+          const authorization = { ...fixture.authorization, completionHash: completion.completionHash };
+          fs.writeFileSync(fixture.authorizationFile, `${JSON.stringify(authorization, null, 2)}\n`, 'utf8');
+          assert.throws(() => validateMakeReleaseEvidence(fixture), /exact required implementation keys/);
+        } finally {
+          fs.rmSync(fixture.projectRoot, { recursive: true, force: true });
+        }
+      });
+    }
+  }
 });
 
 test('--apply refuses before pool creation when release evidence is missing or legacy', async (t) => {

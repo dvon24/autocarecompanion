@@ -11,43 +11,43 @@
     "05-direct-link-evidence.json"
   ],
   "reviewedArtifactSha256": {
-    "01-disposition-ledger.json": "9ad495069594c4d6abe65e58f45127a133df20cc18d3e65b650577a0b22bd26e",
-    "02-fitment-worklist.json": "93f2d58952274b2e0623de6aaf5f998af492da42eaa0cb2e0ce9da605db16c27",
-    "03-showmetheparts-evidence.json": "5745a9134f37a26b798fef87330719d8cc436b61152174789ee94a9965973444",
-    "04-part-proposals.json": "803bd0818975fc92e5d02cd0642e7666ef7dc498f6e9fe06f5b136d17b77247b",
-    "05-direct-link-evidence.json": "a3ae842e2b1a1feaf7eec8c04c6c55865c4f30429a646b8ee66eb54d9d57927e"
+    "01-disposition-ledger.json": "f978add4ce1b6461ce66f60241e5213b749f4ad11ce0082261117377f278000a",
+    "02-fitment-worklist.json": "492a0b1d628b521806be17c1237534f95bafbf1d22eb62754a16982155e2281f",
+    "03-showmetheparts-evidence.json": "e7588b85874fd8d74f05468c0516c112daf5a09868e13f7c8dba108dec1c0c87",
+    "04-part-proposals.json": "e896e5b9674016bf6b90e1405bb9e7495e94bc4d11dfa2053337d9212ad30846",
+    "05-direct-link-evidence.json": "5bf7d06daa4ef921e04404ed6932ed4aa4b01f793eea84911f17c8d5fbaa9ce9"
   },
-  "proposalCount": 28,
-  "partRowCount": 45,
+  "proposalCount": 34,
+  "partRowCount": 54,
   "tally": {
-    "approve": 4,
-    "block_wrong_role": 14,
-    "block_incomplete_scope": 5,
+    "approve": 6,
+    "block_wrong_role": 17,
+    "block_incomplete_scope": 3,
     "block_ambiguous": 4,
-    "hold_no_exact_link": 4,
-    "hold_needs_manual": 14
+    "hold_no_exact_link": 8,
+    "hold_needs_manual": 16
   },
   "reconciliation": {
-    "sourceProposalCount": 28,
-    "sourcePartRowCount": 45,
-    "reviewedPartRowCount": 45,
+    "sourceProposalCount": 34,
+    "sourcePartRowCount": 54,
+    "reviewedPartRowCount": 54,
     "sourceIssueCount": 70,
     "reviewedIssueCount": 70,
-    "sourceWorkItemCount": 158,
-    "reviewedWorkItemDispositionCount": 158,
-    "terminalWorkItemDispositionCount": 158,
-    "proposedWorkItemCount": 28,
-    "heldWorkItemCount": 130,
-    "workItemDispositionSha256": "e15efb60440278042f1569f18adbae9d7bcd0139443d80d5d3dfca56444fd8e9",
+    "sourceWorkItemCount": 203,
+    "reviewedWorkItemDispositionCount": 203,
+    "terminalWorkItemDispositionCount": 203,
+    "proposedWorkItemCount": 34,
+    "heldWorkItemCount": 169,
+    "workItemDispositionSha256": "7e1381f42a24b10c13b2ab9a2b61115aa1768c80b13679b91f0f3f45d7c99239",
     "workItemDispositionReasonTally": {
-      "eligible-proposal": 28,
+      "eligible-proposal": 34,
       "fitment-confirmed": 5,
-      "fitment-no-catalog": 40,
-      "fitment-unmapped": 34,
+      "fitment-no-catalog": 35,
+      "fitment-unmapped": 82,
       "incomplete-model-or-engine-coverage": 6,
       "no-matching-part-type": 12,
-      "no-primary": 14,
-      "unsupported-catalog-application-restriction": 19
+      "no-primary": 11,
+      "unsupported-catalog-application-restriction": 18
     },
     "missingIssues": [],
     "missingWorkItemDispositions": [],
@@ -57,20 +57,20 @@
     "complete": true
   },
   "productIdentityReconciliation": {
-    "sourcePartRowCount": 45,
-    "reviewedPartRowCount": 45,
-    "exactProductLinkRowCount": 34,
-    "noExactProductLinkRowCount": 11,
-    "reviewedExactProductLinkRowCount": 34,
-    "listingTitleSourceCount": 15,
-    "itemSpecificsSourceCount": 19,
-    "observedListingTitlePresentCount": 34,
-    "recomputedTitleHashMatchCount": 34,
-    "matchedPartNumberMatchCount": 34,
-    "observedPartNumberFieldPresentCount": 34,
-    "observedPartNumberValuePresentCount": 34,
-    "observedPartNumberValueMatchCount": 34,
-    "urlProductIdMatchCount": 34,
+    "sourcePartRowCount": 54,
+    "reviewedPartRowCount": 54,
+    "exactProductLinkRowCount": 41,
+    "noExactProductLinkRowCount": 13,
+    "reviewedExactProductLinkRowCount": 41,
+    "listingTitleSourceCount": 18,
+    "itemSpecificsSourceCount": 23,
+    "observedListingTitlePresentCount": 41,
+    "recomputedTitleHashMatchCount": 41,
+    "matchedPartNumberMatchCount": 41,
+    "observedPartNumberFieldPresentCount": 41,
+    "observedPartNumberValuePresentCount": 41,
+    "observedPartNumberValueMatchCount": 41,
+    "urlProductIdMatchCount": 41,
     "invalidRows": [],
     "complete": true
   },
@@ -159,19 +159,6 @@
         "howToFix": "Replace the complete distributor; Cardone is named as an acceptable aftermarket unit.",
         "catalog": "ShowMeTheParts: Cardone 31-17407 Electronic Distributor, Integra, 1992-1993, 1.7L.",
         "directLink": "05 exact-product-link: eBay item 401988622225; observed listing title hash recomputes; matchedPartNumberSource is listing-title; observed title field/value contains 31-17407; URL /itm/ ID matches productIdentity."
-      }
-    },
-    {
-      "proposalId": "acura-integra-da-ignitor-module-failure--prescription-1-0--1-7l-b17a1",
-      "issueId": "acura-integra-da-ignitor-module-failure",
-      "partIndex": 0,
-      "partNumber": "31-17407",
-      "decision": "block_wrong_role",
-      "reason": "This work item prescribes cap and rotor replacement, but the candidate is a complete distributor; the exact listing does not cure the repair-role mismatch.",
-      "reviewedSourceEvidence": {
-        "howToFix": "Test and replace the ignitor if it has no pulse, and replace cap plus rotor preventively.",
-        "catalog": "ShowMeTheParts identifies 31-17407 as a complete Electronic Distributor, not a cap, rotor, or ignitor module.",
-        "directLink": "eBay /itm/ exact listing for 31-17407 exists, but it is the wrong repair object."
       }
     },
     {
@@ -604,68 +591,146 @@
       }
     },
     {
+      "proposalId": "acura-mdx-timing-belt-tensioner-2001--prescription-4-0--3-5l-j35a3-v6",
+      "issueId": "acura-mdx-timing-belt-tensioner-2001",
+      "partIndex": 0,
+      "partNumber": "40286",
+      "decision": "block_wrong_role",
+      "reason": "The article explicitly calls for a genuine Honda/Acura timing-belt kit; 40286 is a Continental timing belt only, not a genuine complete Honda/Acura kit.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Use a genuine Honda/Acura timing belt kit.",
+        "catalog": "ShowMeTheParts: Continental 40286 is an Engine Timing Belt for 2001-2002 MDX 3.5L, not a genuine Honda/Acura kit.",
+        "directLink": "The exact eBay 40286 page confirms the same non-genuine belt-only product, so identity evidence reinforces the role mismatch."
+      }
+    },
+    {
+      "proposalId": "acura-mdx-timing-belt-tensioner-2001--prescription-4-0--3-5l-j35a3-v6",
+      "issueId": "acura-mdx-timing-belt-tensioner-2001",
+      "partIndex": 1,
+      "partNumber": "95286K1",
+      "decision": "block_wrong_role",
+      "reason": "The article explicitly calls for a genuine Honda/Acura kit; 95286K1 is a Dayco kit, excludes the hydraulic actuator, and is not the prescribed genuine kit.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Use a genuine Honda/Acura timing belt kit.",
+        "catalog": "ShowMeTheParts: Dayco 95286K1 includes belt, tensioner, and idler but excludes the hydraulic actuator; it is not a genuine Honda/Acura kit.",
+        "directLink": "The exact eBay 95286K1 page confirms the Dayco product; exact identity cannot satisfy the genuine-kit instruction."
+      }
+    },
+    {
+      "proposalId": "acura-mdx-timing-belt-tensioner-2001--prescription-4-0--3-5l-j35a5-v6",
+      "issueId": "acura-mdx-timing-belt-tensioner-2001",
+      "partIndex": 0,
+      "partNumber": "40286",
+      "decision": "block_wrong_role",
+      "reason": "The article explicitly calls for a genuine Honda/Acura timing-belt kit; 40286 is a Continental timing belt only, and displacement-only catalog evidence also does not prove the J35A5 assignment.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Use a genuine Honda/Acura timing belt kit.",
+        "catalog": "ShowMeTheParts: Continental 40286 is an Engine Timing Belt for 2001-2002 MDX 3.5L with no J35A5 code and is not a genuine kit.",
+        "directLink": "The exact eBay 40286 page confirms a Continental belt-only product, not the prescribed genuine kit."
+      }
+    },
+    {
+      "proposalId": "acura-mdx-timing-belt-tensioner-2001--prescription-4-0--3-5l-j35a5-v6",
+      "issueId": "acura-mdx-timing-belt-tensioner-2001",
+      "partIndex": 1,
+      "partNumber": "95286K1",
+      "decision": "block_wrong_role",
+      "reason": "The article explicitly calls for a genuine Honda/Acura kit; 95286K1 is a Dayco kit that excludes the hydraulic actuator, and displacement-only evidence does not prove the J35A5 assignment.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Use a genuine Honda/Acura timing belt kit.",
+        "catalog": "ShowMeTheParts: Dayco 95286K1 is not genuine Honda/Acura, excludes the hydraulic actuator, and supplies no J35A5 code evidence.",
+        "directLink": "The exact eBay 95286K1 page confirms the Dayco identity; it cannot satisfy the genuine-kit prescription."
+      }
+    },
+    {
       "proposalId": "acura-rl-c35a-timing-belt-tensioner-interference--prescription-0-0--3-5l-v6-c35a",
       "issueId": "acura-rl-c35a-timing-belt-tensioner-interference",
       "partIndex": 0,
-      "partNumber": "WP279K1A",
-      "decision": "block_incomplete_scope",
-      "reason": "The combined work item requires belt, hydraulic tensioner, water pump, all front seals, and idler; this kit lists pump, belts, and tensioners but no front seals and does not establish the required hydraulic tensioner.",
+      "partNumber": "TB279",
+      "decision": "hold_needs_manual",
+      "reason": "The timing belt role and 1996-1999 RL 3.5L catalog fitment are supported, but the resolved listing title identifies a Bando TB279 while the proposal identifies Continental TB279. Item-specific interchange evidence cannot establish that the linked item is the proposed Continental product.",
       "reviewedSourceEvidence": {
-        "howToFix": "Replace timing belt, hydraulic tensioner, water pump, all front seals, and idler pulley as a complete kit.",
-        "catalog": "ShowMeTheParts: Dayco WP279K1A includes water pump, timing and balance-shaft belts, and belt tensioners; seals/hydraulic actuator are not listed.",
-        "directLink": "No exact product link; incomplete repair scope blocks the row independently."
+        "howToFix": "Replace the timing belt as one component of the complete service kit.",
+        "catalog": "ShowMeTheParts: Continental TB279 Engine Timing Belt, 1996-1999 RL 3.5L C35A.",
+        "directLink": "The exact-product candidate has PN TB279 in item specifics, but its observed title says Bando TB279; manual product-identity resolution or a replacement listing is required."
       }
     },
     {
       "proposalId": "acura-rl-c35a-timing-belt-tensioner-interference--prescription-0-0--3-5l-v6-c35a",
       "issueId": "acura-rl-c35a-timing-belt-tensioner-interference",
       "partIndex": 1,
-      "partNumber": "43133",
-      "decision": "block_incomplete_scope",
-      "reason": "A water pump alone cannot satisfy the combined complete-kit work item, which also requires belt, hydraulic tensioner, seals, and idler.",
+      "partNumber": "95279K1",
+      "decision": "hold_no_exact_link",
+      "reason": "The Dayco kit supplies the prescribed timing belt and catalog fitment covers the 1996-1999 RL 3.5L scope, but no exact direct product page was resolved.",
       "reviewedSourceEvidence": {
-        "howToFix": "Replace timing belt, hydraulic tensioner, water pump, all front seals, and idler pulley as a complete kit.",
-        "catalog": "ShowMeTheParts: Gates 43133 is only an Engine Water Pump for 1996-1999 RL 3.5L.",
-        "directLink": "Exact eBay 43133 listing exists, but it is incomplete for this combined prescription."
+        "howToFix": "Replace the timing belt as part of a complete belt, tensioner, pump, seals, and idler service.",
+        "catalog": "ShowMeTheParts: Dayco 95279K1 includes timing belt, balance-shaft belt, and belt tensioners for 1996-1999 RL 3.5L C35A.",
+        "directLink": "05 reports no exact-product link for 95279K1; no buy URL can be approved."
       }
     },
     {
       "proposalId": "acura-rl-c35a-timing-belt-tensioner-interference--prescription-1-0--3-5l-v6-c35a",
       "issueId": "acura-rl-c35a-timing-belt-tensioner-interference",
       "partIndex": 0,
-      "partNumber": "WP279K1A",
+      "partNumber": "T42144",
       "decision": "block_wrong_role",
-      "reason": "The extractor turned a warning against belt-only service into a separate purchase prescription; this duplicate candidate is not grounded in an affirmative standalone repair role for this work item.",
+      "reason": "The repair requires a hydraulic tensioner and explicitly calls for OEM Honda or Aisin; T42144 is identified only as a Gates timing-belt tensioner and the catalog does not establish a hydraulic actuator.",
       "reviewedSourceEvidence": {
-        "howToFix": "Never use generic timing-belt-only service; replacing the belt without pump or tensioner is warned against.",
-        "catalog": "ShowMeTheParts confirms WP279K1A fitment, but catalog fitment cannot convert negated prose into repair causality.",
-        "directLink": "No exact product link; negated-source role blocks the row independently."
-      }
-    },
-    {
-      "proposalId": "acura-rl-c35a-timing-belt-tensioner-interference--prescription-1-0--3-5l-v6-c35a",
-      "issueId": "acura-rl-c35a-timing-belt-tensioner-interference",
-      "partIndex": 1,
-      "partNumber": "43133",
-      "decision": "block_wrong_role",
-      "reason": "The extractor turned a warning against belt-only service into a separate purchase prescription; this water pump is redundant and not grounded in an affirmative standalone work item here.",
-      "reviewedSourceEvidence": {
-        "howToFix": "Never use generic timing-belt-only service; replacing the belt without pump or tensioner is warned against.",
-        "catalog": "ShowMeTheParts confirms Gates 43133 water-pump fitment, but it does not validate the negated extracted instruction.",
-        "directLink": "Exact eBay 43133 listing exists, but the source work item is invalid."
+        "howToFix": "Replace the hydraulic tensioner and insist on OEM Honda or Aisin rather than a generic aftermarket tensioner.",
+        "catalog": "ShowMeTheParts: Gates T42144 Engine Timing Belt Tensioner, 1996-1999 RL 3.5L; no hydraulic-assembly evidence.",
+        "directLink": "The eBay T42144 page is exact for the Gates tensioner, but exact identity does not cure the prescribed form and supplier-class mismatch."
       }
     },
     {
       "proposalId": "acura-rl-c35a-timing-belt-tensioner-interference--prescription-2-0--3-5l-v6-c35a",
       "issueId": "acura-rl-c35a-timing-belt-tensioner-interference",
       "partIndex": 0,
+      "partNumber": "WP279K1A",
+      "decision": "hold_no_exact_link",
+      "reason": "The kit includes the prescribed water pump and catalog fitment covers 1996-1999 RL 3.5L, but no exact direct product page was resolved.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the water pump during the complete timing service.",
+        "catalog": "ShowMeTheParts: Dayco WP279K1A includes water pump, timing belt, balance-shaft belt, and belt tensioners for 1996-1999 RL 3.5L C35A.",
+        "directLink": "05 reports no exact-product link for WP279K1A; no buy URL can be approved."
+      }
+    },
+    {
+      "proposalId": "acura-rl-c35a-timing-belt-tensioner-interference--prescription-2-0--3-5l-v6-c35a",
+      "issueId": "acura-rl-c35a-timing-belt-tensioner-interference",
+      "partIndex": 1,
+      "partNumber": "43133",
+      "decision": "approve",
+      "reason": "The Gates water pump directly fulfills the separately enumerated water-pump prescription, is scoped to catalog-confirmed 1996-1999 RL 3.5L fitment, and has an exact product listing.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the water pump as part of the complete timing service.",
+        "catalog": "ShowMeTheParts: Gates 43133 Engine Water Pump, 1996-1999 RL 3.5L C35A, timing-belt driven.",
+        "directLink": "05 exact-product-link: eBay item 397546486903; observed listing title identifies Gates 43133, item-specific Manufacturer Part Number equals 43133, and the URL product ID is bound in productIdentity."
+      }
+    },
+    {
+      "proposalId": "acura-rl-c35a-timing-belt-tensioner-interference--prescription-3-0--3-5l-v6-c35a",
+      "issueId": "acura-rl-c35a-timing-belt-tensioner-interference",
+      "partIndex": 0,
+      "partNumber": "SK0028",
+      "decision": "hold_needs_manual",
+      "reason": "The catalog says SK0028 supplies the prescribed camshaft and crankshaft seals for the RL, but the resolved listing title instead claims 1986-1990 Legend fitment. Interchange item specifics do not independently establish the linked product and RL application.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace all front seals during the complete timing service.",
+        "catalog": "ShowMeTheParts: Dayco SK0028 includes two camshaft seals and one crankshaft seal for 1996-1999 RL 3.5L C35A.",
+        "directLink": "The candidate item's observed title says it fits 1986-1990 Acura Legend, not RL; manual listing verification or a replacement exact listing is required."
+      }
+    },
+    {
+      "proposalId": "acura-rl-c35a-timing-belt-tensioner-interference--prescription-4-0--3-5l-v6-c35a",
+      "issueId": "acura-rl-c35a-timing-belt-tensioner-interference",
+      "partIndex": 0,
       "partNumber": "T42144",
       "decision": "block_wrong_role",
-      "reason": "The article specifically requires an OEM Honda or Aisin hydraulic tensioner and warns against cheap aftermarket tensioners; this Gates part is identified only as a belt tensioner, with no hydraulic assembly evidence.",
+      "reason": "The work item calls for an idler pulley, but T42144 is cataloged and listed as a timing-belt tensioner; it is not an idler-pulley part or kit.",
       "reviewedSourceEvidence": {
-        "howToFix": "Insist on the OEM Honda or Aisin tensioner; cheap aftermarket tensioners are warned against.",
-        "catalog": "ShowMeTheParts: Gates T42144 Engine Timing Belt Tensioner; no hydraulic-assembly identity and available-until-stock-depleted.",
-        "directLink": "Exact eBay T42144 listing exists, but it conflicts with the article's prescribed part form/brand class."
+        "howToFix": "Replace the idler pulley during the complete timing service.",
+        "catalog": "ShowMeTheParts: Gates T42144 Engine Timing Belt Tensioner, not an idler pulley.",
+        "directLink": "The exact eBay T42144 page is for the wrong repair object."
       }
     },
     {
@@ -731,6 +796,58 @@
         "howToFix": "Replace the serpentine belt if scored or damaged from the seized bearing.",
         "catalog": "ShowMeTheParts: Gates K060468, 2010-2014 TSX 3.5L; no extra application restrictions stated.",
         "directLink": "Exact eBay K060468 listing exists, but conditional diagnosis prevents blanket sale."
+      }
+    },
+    {
+      "proposalId": "acura-vigor-g25a1-timing-belt-interference--prescription-1-0--2-5l-i5-g25a1",
+      "issueId": "acura-vigor-g25a1-timing-belt-interference",
+      "partIndex": 0,
+      "partNumber": "T41020",
+      "decision": "block_wrong_role",
+      "reason": "The repair calls for a hydraulic tensioner and explicitly permits only OEM Honda or Aisin tensioners; T41020 is a Gates timing-belt tensioner with no hydraulic-actuator evidence.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Use a hydraulic tensioner, and use only OEM Honda or Aisin for the tensioner.",
+        "catalog": "ShowMeTheParts: Gates T41020 Engine Timing Belt Tensioner for 1992-1994 Vigor 2.5L; no hydraulic-assembly evidence.",
+        "directLink": "The exact eBay T41020 page confirms the Gates product; exact identity reinforces rather than resolves the prescribed form and supplier mismatch."
+      }
+    },
+    {
+      "proposalId": "acura-vigor-g25a1-timing-belt-interference--prescription-2-0--2-5l-i5-g25a1",
+      "issueId": "acura-vigor-g25a1-timing-belt-interference",
+      "partIndex": 0,
+      "partNumber": "WP211K1A",
+      "decision": "hold_no_exact_link",
+      "reason": "The Dayco kit includes the separately prescribed water pump and catalog fitment covers 1992-1994 Vigor 2.5L, but no exact direct product page was resolved.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the water pump during the full timing-kit service.",
+        "catalog": "ShowMeTheParts: Dayco WP211K1A includes water pump, timing belt, and camshaft belt tensioner for 1992-1994 Vigor 2.5L G25A1.",
+        "directLink": "05 reports no exact-product link for WP211K1A; no buy URL can be approved."
+      }
+    },
+    {
+      "proposalId": "acura-vigor-g25a1-timing-belt-interference--prescription-2-0--2-5l-i5-g25a1",
+      "issueId": "acura-vigor-g25a1-timing-belt-interference",
+      "partIndex": 1,
+      "partNumber": "41103",
+      "decision": "approve",
+      "reason": "The Gates water pump directly fulfills the separately enumerated water-pump prescription, is scoped to catalog-confirmed 1992-1994 Vigor 2.5L fitment, and has an exact product listing.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the water pump during the full timing-kit service; the OEM/Aisin-only warning is specifically directed at the tensioner.",
+        "catalog": "ShowMeTheParts: Gates 41103 Engine Water Pump, 1992-1994 Vigor 2.5L G25A1, timing-belt driven.",
+        "directLink": "05 exact-product-link: eBay item 206376753508; item-specific Manufacturer Part Number is 41103 and the observed title identifies Gates 41103."
+      }
+    },
+    {
+      "proposalId": "acura-vigor-g25a1-timing-belt-interference--prescription-4-0--2-5l-i5-g25a1",
+      "issueId": "acura-vigor-g25a1-timing-belt-interference",
+      "partIndex": 0,
+      "partNumber": "SK0045",
+      "decision": "hold_no_exact_link",
+      "reason": "The Dayco seal kit supplies the prescribed camshaft and crankshaft front seals and catalog fitment covers 1992-1994 Vigor 2.5L, but no exact direct product page was resolved.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace all front seals during the full timing-kit service.",
+        "catalog": "ShowMeTheParts: Dayco SK0045 includes camshaft and crankshaft seals for 1992-1994 Vigor 2.5L G25A1.",
+        "directLink": "05 reports no exact-product link for SK0045; no buy URL can be approved."
       }
     }
   ]

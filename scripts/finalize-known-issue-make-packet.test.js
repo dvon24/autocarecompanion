@@ -442,6 +442,20 @@ test('overlapping approved variants and non-product links fail closed', () => {
   assert.throws(() => finalizePacket(inputs, inputs.options), /not a verified product URL/);
 });
 
+test('persisted product identity requires an exact normalized part-number token', async (t) => {
+  const rejectsObservedValue = (value) => {
+    const inputs = fixture();
+    const link = inputs.links.proposals[0].parts[0].buyLinks[0];
+    link.productIdentity.observedListingTitle = value;
+    link.productIdentity.observedPartNumberValue = value;
+    link.productIdentity.listingTitleHash = crypto.createHash('sha256').update(value).digest('hex');
+    assert.throws(() => finalizePacket(inputs, inputs.options), /product identity evidence is missing or mismatched/);
+  };
+  await t.test('superstring', () => rejectsObservedValue('Exact ABC-1234 product'));
+  await t.test('prefix', () => rejectsObservedValue('Exact XABC-123 product'));
+  await t.test('suffix', () => rejectsObservedValue('Exact ABC-123X product'));
+});
+
 test('finalization derives make coverage from the frozen source rather than Acura constants', () => {
   const inputs = fixture(3);
   const result = finalizePacket(inputs, inputs.options);
@@ -519,30 +533,89 @@ test('diagnostic holds reconcile as an exact generic zero-or-many set', () => {
   assert.equal(finalizePacket(inputs, inputs.options).reconciliation.diagnosticReconciliation.holds.length, 0);
 });
 
-test('reviewed runtime context requires exact nonempty scope and hash-verifiable provenance', () => {
+test('reviewed runtime context requires exact catalog cells and every selectable YMMT cell', (t) => {
   const inputs = fixture();
+  inputs.source.makeKey = 'runtime-test';
+  const projectRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'au7o-runtime-context-'));
+  t.after(() => fs.rmSync(projectRoot, { recursive: true, force: true }));
   const proposal = inputs.links.proposals[0];
   proposal.articleScope = { make: 'Acura', model: 'Legend', trims: ['L', 'LS', 'GS'] };
   const part = proposal.parts[0];
-  part.fitment = { years: [1990], engines: ['2.7L V6 C27A'] };
-  const resolver = ({ trim }) => (['L', 'LS'].includes(trim) ? ({
-    year: 1990, make: 'Acura', model: 'Legend', trim, engine: '2.7L V6 C27A',
-    engineProvenance: {
-      artifact: 'package.json', artifactSha256: sha256File(path.join(__dirname, '..', 'package.json')),
+  Object.assign(part, { supplier: 'Aisin', aftermarketXref: ['WPH-008'] });
+  part.fitment = { years: [1990], engines: ['2.7L V6 C27A'], catalogModels: ['LEGEND'] };
+  const relativeArtifact = [
+    'data', 'known-issue-part-audit', inputs.source.makeKey, inputs.source.snapshotHash,
+    '03-showmetheparts-evidence.json',
+  ].join('/');
+  const artifact = path.join(projectRoot, relativeArtifact);
+  const ymmtArtifact = path.join(projectRoot, 'public/data/ymmt.json');
+  const unrelatedArtifact = path.join(projectRoot, 'package.json');
+  fs.mkdirSync(path.dirname(ymmtArtifact), { recursive: true });
+  fs.writeFileSync(ymmtArtifact, `${JSON.stringify({ 1990: { Acura: { Legend: ['L', 'LS'] } } }, null, 2)}\n`, 'utf8');
+  fs.writeFileSync(unrelatedArtifact, '{"name":"unrelated"}\n', 'utf8');
+  const catalogEvidence = {
+    complete: true,
+    results: [{
+      id: proposal.id,
+      workItemId: proposal.proposalId,
+      articleScope: { make: 'Acura', model: 'Legend' },
+      yearsChecked: [1990],
+      declaredEngine: '2.7L V6 C27A',
+      catalogModelsByYear: { 1990: ['LEGEND'] },
+      catalogApplicationsByYear: { 1990: ['LEGEND|V6 2.7L 2675cc'] },
+      candidatesByYear: { 1990: [{
+        supplier: 'Aisin', partNumber: 'WPH-008', catalogModel: 'LEGEND', engine: 'V6 2.7L 2675cc',
+        application: '', comment: '', location: '',
+      }] },
+    }],
+  };
+  const persistEvidence = () => {
+    fs.mkdirSync(path.dirname(artifact), { recursive: true });
+    fs.writeFileSync(artifact, `${JSON.stringify(catalogEvidence, null, 2)}\n`, 'utf8');
+    return {
+      artifact: relativeArtifact,
+      artifactSha256: sha256File(artifact),
       snapshotHash: inputs.source.snapshotHash,
-      ymmtArtifact: 'public/data/ymmt.json', ymmtArtifactSha256: sha256File(path.join(__dirname, '..', 'public/data/ymmt.json')),
-    },
-  }) : { year: 1990, make: 'Acura', model: 'Legend', trim, engine: null });
-  assert.equal(reviewedRuntimeContextCovers(inputs.source, proposal, part, resolver), true);
-  assert.equal(reviewedRuntimeContextCovers(inputs.source, { ...proposal, articleScope: { ...proposal.articleScope, trims: [] } }, part, resolver), false);
-  assert.equal(reviewedRuntimeContextCovers(inputs.source, proposal, part, ({ trim }) => ({ ...resolver({ trim }), engine: '3.0L V6' })), false);
-  assert.equal(reviewedRuntimeContextCovers(inputs.source, proposal, part, ({ trim }) => ({
-    ...resolver({ trim }), engineProvenance: { ...resolver({ trim }).engineProvenance, artifactSha256: '0'.repeat(64) },
+      ymmtArtifact: 'public/data/ymmt.json',
+      ymmtArtifactSha256: sha256File(ymmtArtifact),
+    };
+  };
+  const resolverWith = (provenance, options = {}) => ({ trim }) => (
+    ['L', 'LS'].includes(trim) && trim !== options.omitTrim ? ({
+      year: 1990,
+      make: 'Acura',
+      model: 'Legend',
+      trim,
+      engine: options.engine || '2.7L V6 C27A',
+      engineProvenance: provenance,
+    }) : { year: 1990, make: 'Acura', model: 'Legend', trim, engine: null }
+  );
+  const provenance = persistEvidence();
+  const resolver = resolverWith(provenance);
+  const covers = (reviewedProposal, reviewedPart, reviewedResolver) => reviewedRuntimeContextCovers(
+    inputs.source, reviewedProposal, reviewedPart, reviewedResolver, projectRoot,
+  );
+  assert.equal(covers(proposal, part, resolver), true);
+  assert.equal(covers({ ...proposal, articleScope: { ...proposal.articleScope, trims: [] } }, part, resolver), false);
+  assert.equal(covers(proposal, part, resolverWith(provenance, { omitTrim: 'LS' })), false);
+  assert.equal(covers(proposal, { ...part, fitment: { ...part.fitment, years: [1990, 1991] } }, resolver), false);
+  assert.equal(covers(proposal, part, resolverWith({
+    ...provenance,
+    artifact: 'package.json',
+    artifactSha256: sha256File(unrelatedArtifact),
   })), false);
-  assert.equal(reviewedRuntimeContextCovers(inputs.source, proposal, part, ({ trim }) => (
-    trim === 'LS' ? { year: 1990, make: 'Acura', model: 'Legend', trim, engine: null } : resolver({ trim })
-  )), false);
-  assert.equal(reviewedRuntimeContextCovers(inputs.source, proposal, { ...part, fitment: { ...part.fitment, years: [1990, 1991] } }, resolver), false);
+  assert.equal(covers(proposal, part, resolverWith({
+    ...provenance,
+    artifact: '../package.json',
+    artifactSha256: sha256File(unrelatedArtifact),
+  })), false);
+  assert.equal(covers(proposal, {
+    ...part, fitment: { ...part.fitment, engines: ['3.0L V6'] },
+  }, resolverWith(provenance, { engine: '3.0L V6' })), false);
+
+  catalogEvidence.results[0].catalogApplicationsByYear[1990] = [];
+  const omittedCellProvenance = persistEvidence();
+  assert.equal(covers(proposal, part, resolverWith(omittedCellProvenance)), false);
 });
 
 test('review decision identity is bound to proposal and work item', async (t) => {
@@ -617,6 +690,9 @@ test('diagnostic mutations fail closed before COMPLETE can be generated', async 
   await t.test('implementation binding omitted', () => {
     const inputs = fixture();
     delete inputs.options.implementationSha256[DIAGNOSTIC_IMPLEMENTATION_FILES[0]];
-    assert.throws(() => finalizePacket(inputs, inputs.options), /diagnostic implementation files set mismatch/);
+    assert.throws(
+      () => finalizePacket(inputs, inputs.options),
+      /diagnostic implementation must contain the exact required implementation keys/,
+    );
   });
 });

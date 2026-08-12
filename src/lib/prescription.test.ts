@@ -74,7 +74,7 @@ test('resolves a tested Acura ignitor when the later conditional replacement is 
   const parts = extractPrescriptionComponents(
     'Test the ignitor before replacing it. If no pulse: replace. Replace cap + rotor at the same time as a preventive measure.',
   );
-  assert.deepEqual(parts.map((part) => part.component), ['ignitor', 'cap rotor']);
+  assert.deepEqual(parts.map((part) => part.component), ['ignitor', 'cap', 'rotor']);
   assert.equal(parts[0]?.diagnosisDependent, true);
   assert.match(parts[0]?.condition || '', /if no pulse/i);
   assert.match(parts[0]?.evidence || '', /test the ignitor[\s\S]*if no pulse:\s*replace/i);
@@ -125,6 +125,78 @@ test('passive and anaphoric extraction remains fail-closed under negation', () =
   assert.deepEqual(extractPrescribedParts('No water pump needs replacement.'), []);
   assert.deepEqual(extractPrescribedParts('Test the ignition coil. Do not replace it.'), []);
   assert.deepEqual(extractPrescribedParts('Inspect the fan control unit rather than replace the unit.'), []);
+});
+
+test('extracts the omitted Acura imperative purchase and replace-with branches', () => {
+  const cl = extractPrescriptionComponents('Replacements/rebuilds may need a fresh torque converter. Add an aftermarket transmission cooler at rebuild time.');
+  assert.deepEqual(cl.map((part) => part.component), ['torque converter', 'aftermarket transmission cooler']);
+  assert.equal(cl[0]?.diagnosisDependent, true);
+
+  assert.deepEqual(
+    extractPrescribedParts('Order eight of Honda part number 91608-SJ6-003 (the clear grommet/seal pieces) from a Honda dealer. Then replace the old foam strip with new urethane weatherstripping.'),
+    ['clear grommet/seal pieces', 'urethane weatherstripping'],
+  );
+  assert.deepEqual(extractPrescribedParts('Replace with OEM Honda bolts (M10x1.25).'), ['honda bolts m10x1']);
+  assert.deepEqual(extractPrescribedParts('Or replace with OEM Omron unit ($50-100).'), ['omron unit']);
+  assert.deepEqual(extractPrescribedParts('Always replace the axle nut and use a new transaxle retaining ring.'), ['axle nut', 'transaxle retaining ring']);
+});
+
+test('extracts omitted Acura replacement lists and slash-separated assemblies', () => {
+  assert.deepEqual(
+    extractPrescribedParts('Rebuild the pump motor (clean commutator, replace brushes) or replace pump/accumulator assembly.'),
+    ['brushes', 'pump/accumulator'],
+  );
+  assert.deepEqual(extractPrescribedParts('If tubes are split, headliner removal is required to replace them.'), ['tubes']);
+  const slx = extractPrescriptionComponents('Once whine is pronounced, the only durable fix is a remanufactured rear axle assembly. If the case is whining, source the correct Borg-Warner rebuild kit by part number from the exact year and transmission.');
+  assert.deepEqual(slx.map((part) => part.component), ['remanufactured rear axle', 'borg-warner rebuild kit']);
+  assert.ok(slx.every((part) => part.diagnosisDependent));
+  assert.deepEqual(
+    extractPrescribedParts('Full timing kit replacement: belt + hydraulic tensioner + water pump + idler + all front seals + accessory belts as one job.'),
+    ['belt', 'hydraulic tensioner', 'water pump', 'idler', 'front seals', 'accessory belts', 'timing kit'],
+  );
+});
+
+test('extracts all Acura part-before-modal replacement forms', () => {
+  const cases = [
+    ['If reboots continue, the infotainment control module may need hardware replacement under warranty.', 'infotainment control module'],
+    ['If shudder persists, the torque converter assembly must be replaced.', 'torque converter'],
+    ['If reboots persist, the infotainment control unit may require replacement.', 'infotainment control unit'],
+    ['If freezing persists, the head unit may need replacement with revised hardware.', 'head unit'],
+  ] as const;
+  for (const [source, component] of cases) {
+    const parts = extractPrescriptionComponents(source);
+    assert.deepEqual(parts.map((part) => part.component), [component], source);
+    assert.equal(parts[0]?.diagnosisDependent, true, source);
+  }
+});
+
+test('covers next-make Alfa owner-buyable and noun-first replacement prose', () => {
+  assert.deepEqual(extractPrescribedParts('Replace worn bushings with polyurethane or spherical upgrades for improved longevity.'), ['bushings']);
+  const cases = [
+    ['A water-damaged BCM must be replaced and re-programmed.', 'water-damaged bcm'],
+    ['ECM replacement with updated software may be required.', 'ecm'],
+    ['If the issue recurs, the head unit hardware may need replacement under warranty.', 'head unit'],
+    ['ECM replacement with updated calibration may be needed for persistent cases.', 'ecm'],
+    ['If the onboard charger module has failed, it requires replacement.', 'onboard charger module'],
+  ] as const;
+  for (const [source, component] of cases) {
+    const parts = extractPrescriptionComponents(source);
+    assert.deepEqual(parts.map((part) => part.component), [component], source);
+    assert.equal(parts[0]?.diagnosisDependent, true, source);
+  }
+});
+
+test('holds a bare replacement pronoun when more than one antecedent is plausible', () => {
+  assert.deepEqual(extractPrescribedParts('Inspect the blower motor and resistor. If corroded, replace them.'), []);
+  assert.deepEqual(extractPrescribedParts('Inspect the pump and accumulator. Replace it.'), []);
+  assert.deepEqual(extractPrescribedParts('Test the ignitor before replacing it. If no pulse: replace.'), ['ignitor']);
+});
+
+test('does not turn fluids, workarounds, or explicit avoid-replacement prose into parts', () => {
+  assert.deepEqual(extractPrescribedParts('Use ONLY Honda PSF - no universal/ATF.'), []);
+  assert.deepEqual(extractPrescribedParts('Use a wired USB connection as a workaround for reliable CarPlay.'), []);
+  assert.deepEqual(extractPrescribedParts('Avoid full Acura CCU replacement: the rebuilt original works identically.'), []);
+  assert.deepEqual(extractPrescribedParts("Never use a generic 'timing belt only' service — replacing the belt without the water pump guarantees a second teardown."), []);
 });
 
 test('handles "swap or replace"', () => {
