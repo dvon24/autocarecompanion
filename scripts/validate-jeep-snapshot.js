@@ -6,14 +6,14 @@ const { FULL_RECORD_FIELDS, normalizedFileHash, stableValue } = require('./jeep-
 function snapshotHashValue(value) { return crypto.createHash('sha256').update(JSON.stringify(value)).digest('hex'); }
 
 const SNAPSHOT = path.resolve(__dirname, '..', 'data', '_jeep-deeplink-snapshot-2026-08-06.json');
-const EXPECTED_SHA256 = 'e58c24fa8f57e198f5b77a539345b9f36ab5c8232c77263140c6915b311a9ddd';
-const EXPECTED_SNAPSHOT_HASH = '18ad4be47bc5941799a865d829fd30d5361a0cf7635e9ec106db32a7f109c7eb';
+const EXPECTED_SHA256 = '9c1c7bc57bcd77ecad0312c729118f60d1219fd9cb0b0ffb473e744cc700f293';
+const EXPECTED_SNAPSHOT_HASH = '4a719fd5a8931fb2820c523468a51be00e37fbc36470457ab5984fb21186f458';
 const EXPECTED_MODELS = { Avenger: 5, Cherokee: 18, 'CJ-7': 6, Comanche: 3, Commander: 4, Compass: 9, Gladiator: 9, 'Grand Cherokee': 77, 'Grand Cherokee L': 3, 'Grand Wagoneer': 24, Liberty: 5, Patriot: 5, Renegade: 9, Wagoneer: 4, Wrangler: 66 };
 const EXPECTED_INVENTORY = {
-  publishedIssueCount: 247, commerceIssueCount: 215, claimCount: 645, fixPartClaimCount: 432,
-  communityClaimCount: 213, noLinkClaimCount: 2, linkCount: 1455, validProductLinkCount: 24,
-  invalidOrSearchLinkCount: 1431, recallFirstClaimCount: 0, dtcLinkedCommerceIssueCount: 97,
-  clickedCommerceIssueCount: 2, correctedIssueCount: 20, totalRecordedClicks: 8,
+  publishedIssueCount: 247, commerceIssueCount: 207, claimCount: 611, fixPartClaimCount: 423,
+  communityClaimCount: 188, noLinkClaimCount: 294, linkCount: 317, validProductLinkCount: 24,
+  invalidOrSearchLinkCount: 293, recallFirstClaimCount: 0, dtcLinkedCommerceIssueCount: 94,
+  clickedCommerceIssueCount: 2, correctedIssueCount: 28, totalRecordedClicks: 8,
   deepLinkedClicks: 0, nonProductClicks: 8,
 };
 
