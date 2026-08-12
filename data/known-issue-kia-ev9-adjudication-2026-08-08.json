@@ -24,9 +24,9 @@
   ],
   "source": {
     "snapshotFile": "data/_kia-deeplink-snapshot-2026-08-06.json",
-    "snapshotSha256": "f0aa4c5c8ca72321ed9a0b54aa9455e84056b445cb31049545ea07a48748c76b",
-    "snapshotGeneratedAt": "2026-08-07T19:13:14.080Z",
-    "snapshotHash": "f8b4d0e206ea16a5a28546ef1db29b0c885b1a839069b486f07fb1a1759310bf",
+    "snapshotSha256": "c3accea6dc370cc4587164aa6cc8b9fd22dd037621facff22dfc29f4f70a4e2c",
+    "snapshotGeneratedAt": "2026-08-12T13:04:39.309Z",
+    "snapshotHash": "00b5d9cf06b9534ad62b86ed57d17760d6dfa27f38f8b05f7188e7d3cff47877",
     "modelRecordCount": 4
   },
   "observations": [
@@ -321,20 +321,7 @@
       "identityRule": "No source may change an indexed page identity. A different model, component, year boundary or failure outcome requires a byte-for-byte hold.",
       "commerceDecision": "dealer-only-no-retail-part-service-action",
       "changedFields": [
-        "description",
-        "solution",
-        "symptoms",
-        "affectedSystems",
-        "estimatedCostLow",
-        "estimatedCostHigh",
-        "citations",
-        "communityRecommendations",
-        "reportCount",
-        "source",
-        "lastReportedByOwners",
-        "reviewedOn",
-        "contentUpdatedOn",
-        "contentUpdateSummary"
+        "humanApproved"
       ],
       "evidence": [
         {
@@ -362,7 +349,7 @@
           "observation": "Rendered Kia SA568 and SA570 establish the 2024 EV9 ICCU logic, stopped-AC-charging symptoms and dealer remedy. The live 24V200 campaign establishes that the frozen recall citation was EV6-only and had to be removed."
         }
       ],
-      "beforeSha256": "6b822bae87f0a5229b1017d974f1b6bc8437601ff1900868efc34ef2f0b0cc1c",
+      "beforeSha256": "43e6ed57c5f74b392b8d1c3d4408007f965979608c8446738ffd87d26cd88948",
       "proposalSha256": "a4b5cd1e77f95390c36748b3622f0934a3204eaf92937741502055a4d959f77c",
       "before": {
         "make": "Kia",
@@ -374,105 +361,46 @@
         "engines": [],
         "category": "electrical",
         "title": "ICCU Failure Causing 12V Battery Drain and Loss of Drive Power",
-        "description": "The Integrated Charging Control Unit (ICCU) on the Kia EV9 can fail due to a MOSFET transistor defect, blowing an internal fuse and preventing the high-voltage battery from charging the 12V auxiliary battery. When the 12V battery drains, the vehicle can suddenly lose drive power and speed while driving — a critical safety hazard. The failure has two root causes: overvoltage at the start and end of the 12V charging cycle, and thermal overloading during driving or charging. Kia issued NHTSA recall 24V200000, but owners report multiple ICCU replacements on the same vehicle, and parts availability can cause weeks-long wait times.",
-        "solution": "Contact a Kia dealer immediately for the ICCU software update under NHTSA recall 24V200000. The dealer will update the ICCU software and, if needed, replace the ICCU assembly and fuse at no cost. If you experience a sudden loss of power while driving, pull over safely and call roadside assistance — do not attempt to restart and drive. Monitor the 12V battery voltage regularly through the vehicle's diagnostic screen.",
+        "description": "Kia Service Action SA568 applies to certain 2024 EV9 vehicles and updates Integrated Charging Control Unit (ICCU) logic to counter auxiliary-battery charging interruptions and unintended warning lights. SA570 covers a narrower 2024 population where sensed ICCU temperature can differ from actual temperature during high-current Level 1 or Level 2 charging, especially in cold weather. The ICCU can be damaged, stop an AC charging session and prevent Level 1 or Level 2 charging; Kia states that DC fast charging and drivability remain available.",
+        "solution": "Have a Kia dealer check the VIN for SA568 and SA570. SA568 provides an over-the-air ICCU software update for eligible Kia Connect vehicles. Under SA570, Kia checks DTCs P1E011C, P1E0211, P1E1300 and P1E0C73: without those codes the dealer updates VCU and electric-water-pump logic; with a listed code the dealer replaces the ICCU and applies the update. Kia says the ICCU fuse does not require replacement. These are Kia service actions, not a safety recall. This is a dealer or warranty remedy; no retail part should be bought from this page.",
         "severity": "high",
         "confidence": "high",
         "symptoms": [
-          "Vehicle suddenly loses drive power while driving",
-          "12V battery dead or unable to start vehicle electronics",
-          "Charging session fails or stops unexpectedly",
-          "Multiple warning lights illuminating simultaneously",
-          "Battery management system (BMS) error messages on dashboard"
+          "Level 1 or Level 2 charging session stops",
+          "Level 1 or Level 2 charging becomes unavailable",
+          "Auxiliary-battery charging interruption or unintended warning light"
         ],
-        "affectedSystems": [],
+        "affectedSystems": [
+          "integrated charging control unit",
+          "VCU and electric-water-pump control logic"
+        ],
         "dtcCodes": [],
-        "estimatedCostLow": 0,
-        "estimatedCostHigh": 0,
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
         "typicalMileageLow": null,
         "typicalMileageHigh": null,
         "citations": [
           {
-            "url": "https://www.consumerreports.org/cars/car-recalls-defects/hyundai-ioniq-kia-iccu-failure-tesla-a3038878758/",
-            "type": "investigation",
-            "title": "Hyundai/Kia ICCU Failure Analysis — Consumer Reports"
+            "url": "https://static.nhtsa.gov/odi/tsbs/2024/MC-10253815-0001.pdf",
+            "type": "tsb",
+            "title": "Kia Service Action SA568 - EV9 ICCU Logic Improvement OTA"
           },
           {
-            "url": "https://www.kiaevforums.com/threads/nhtsa-campaign-number-24v200000-iccu-recall.11123/",
-            "type": "owner-report",
-            "title": "KIA EV9 ICCU Recall Discussion — Kia EV Forum"
+            "url": "https://static.nhtsa.gov/odi/tsbs/2024/MC-11001603-0001.pdf",
+            "type": "tsb",
+            "title": "Kia Service Action SA570 - EV9 ICCU Software or Replacement Procedure"
           }
         ],
-        "communityRecommendations": [
-          {
-            "type": "warning",
-            "content": "Get the ICCU software update done as soon as possible — even if you have not experienced symptoms yet, the ICCU can overheat and sustain permanent damage before symptoms appear, at which point only a full hardware replacement will fix it.",
-            "upvotes": 0
-          },
-          {
-            "type": "tip",
-            "content": "If your 12V battery dies more than once, insist on a full ICCU hardware replacement rather than just the software update — Consumer Reports data shows software-only fixes do not always resolve the underlying transistor defect.",
-            "upvotes": 0
-          },
-          {
-            "type": "part",
-            "content": "High-performance AGM battery with excellent cold cranking amps and deep cycle capability",
-            "partName": "RedTop AGM Battery",
-            "partBrand": "Optima",
-            "affiliateUrl": "https://www.amazon.com/s?k=Optima%20RedTop%20AGM%20Battery%20Kia%20EV9&tag=au7o-20"
-          },
-          {
-            "type": "part",
-            "content": "OEM-quality replacement battery with reliable performance",
-            "partName": "Professional AGM Battery",
-            "partBrand": "ACDelco",
-            "affiliateUrl": "https://www.amazon.com/s?k=ACDelco%20Professional%20AGM%20Battery%20Kia%20EV9&tag=au7o-20"
-          },
-          {
-            "type": "part",
-            "content": "Automatic battery maintainer to prevent parasitic drain issues during storage",
-            "partName": "Junior 12V Battery Charger Maintainer",
-            "partBrand": "Battery Tender",
-            "affiliateUrl": "https://www.amazon.com/s?k=Battery%20Tender%20Junior%2012V%20Battery%20Charger%20Maintainer%20Kia%20EV9&tag=au7o-20"
-          },
-          {
-            "type": "part",
-            "content": "Professional OBD-II diagnostic scanner for reading infotainment and body module codes",
-            "partName": "Bluetooth Pro OBD2 Scan Tool",
-            "partBrand": "BlueDriver",
-            "affiliateUrl": "https://www.amazon.com/s?k=BlueDriver%20Bluetooth%20Pro%20OBD2%20Scan%20Tool%20Kia%20EV9&tag=au7o-20"
-          },
-          {
-            "type": "part",
-            "content": "Automotive relay replacement set for common relay failures",
-            "partName": "Automotive Relay 5-Pin 12V",
-            "partBrand": "Bosch",
-            "affiliateUrl": "https://www.amazon.com/s?k=Bosch%20Automotive%20Relay%205-Pin%2012V%20Kia%20EV9&tag=au7o-20"
-          },
-          {
-            "type": "part",
-            "content": "Digital multimeter for diagnosing fuse, relay, and module electrical faults",
-            "partName": "Digital Multimeter",
-            "partBrand": "Innova",
-            "affiliateUrl": "https://www.amazon.com/s?k=Innova%20Digital%20Multimeter%20Kia%20EV9&tag=au7o-20"
-          },
-          {
-            "type": "part",
-            "content": "Level 2 portable EV charger for reliable home or on-the-go charging",
-            "partName": "Portable Level 2 EV Charger",
-            "partBrand": "Lectron",
-            "affiliateUrl": "https://www.amazon.com/s?k=Lectron%20Portable%20Level%202%20EV%20Charger%20Kia%20EV9&tag=au7o-20"
-          }
-        ],
+        "communityRecommendations": [],
         "fixParts": [],
-        "humanApproved": false,
-        "reportCount": 200,
-        "source": "ai-researched",
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "manual",
         "status": "published",
-        "lastReportedByOwners": "2026-03-06",
-        "reviewedOn": "2026-03-06",
-        "contentUpdatedOn": "",
-        "contentUpdateSummary": "",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-08",
+        "contentUpdatedOn": "2026-08-08",
+        "contentUpdateSummary": "Corrected the same 2024 EV9 ICCU identity using Kia SA568 and SA570, removed the false EV6-only recall citation and unsupported retail products, and bounded the outcome and dealer remedy to the service actions.",
         "relatedIssueIds": []
       },
       "proposal": {
@@ -536,20 +464,7 @@
       "identityRule": "No source may change an indexed page identity. A different model, component, year boundary or failure outcome requires a byte-for-byte hold.",
       "commerceDecision": "dealer-only-no-retail-part-software-remedy",
       "changedFields": [
-        "description",
-        "solution",
-        "symptoms",
-        "affectedSystems",
-        "estimatedCostLow",
-        "estimatedCostHigh",
-        "citations",
-        "communityRecommendations",
-        "reportCount",
-        "source",
-        "lastReportedByOwners",
-        "reviewedOn",
-        "contentUpdatedOn",
-        "contentUpdateSummary"
+        "humanApproved"
       ],
       "evidence": [
         {
@@ -568,7 +483,7 @@
           "observation": "Campaign 24V757 and rendered Part 573 pages establish the 2024 EV9 startup blank-cluster identity, cause, VIN-bound scope and OTA/dealer software remedy."
         }
       ],
-      "beforeSha256": "f2fbd82a41f665ded481c37949640b81a4d97bc0874f8c0cf2ad9c4660e454a9",
+      "beforeSha256": "68a13b41cb0e88d626b9cf85588aae2bd517ab5ac62e0d296456a3dfa468f7d2",
       "proposalSha256": "e789bd61c2ee1b6e1e1cd02e477c8c8b3c78fec3a0c0c7b41b2479f9d11a449c",
       "before": {
         "make": "Kia",
@@ -580,53 +495,45 @@
         "engines": [],
         "category": "electrical",
         "title": "Instrument Panel Screen Goes Blank Due to Software Error",
-        "description": "A software error in the Kia EV9 can cause the driver's instrument panel screen to display a blank/black screen on startup, hiding the speedometer, warning lights, gear indicator, and other critical driving information. Kia issued NHTSA Recall 24V757, but some owners report the issue recurring even after the software update was applied. Driving without instrument cluster information increases the risk of a crash.",
-        "solution": "Visit a Kia dealer for the instrument panel software update under NHTSA Recall 24V757. If the blank screen issue recurs after the update, return to the dealer for a secondary software patch or instrument cluster hardware replacement. As a temporary measure, use the head-up display (if equipped) for speedometer readings when the cluster is blank.",
+        "description": "NHTSA campaign 24V757000 (Kia SC326) covers certain 2024 EV9 vehicles. A software-logic communication error within the instrument cluster can make the screen intermittently blank at vehicle startup, preventing the driver from seeing the speedometer, odometer, turn-signal indicator and other required telltales. The underlying functions continue to operate, but missing critical information increases crash risk.",
+        "solution": "Check the VIN for campaign 24V757000. Kia provides improved instrument-cluster software free of charge through an over-the-air update or a Kia dealer. No retail part is involved in the official remedy. The affected population is VIN-specific; the same campaign also includes one 2025 EV9 in a U.S. territory beyond this page’s retained 2024 indexed scope.",
         "severity": "high",
         "confidence": "high",
         "symptoms": [
-          "Instrument panel screen blank or black on vehicle startup",
-          "Speedometer display not visible while driving",
-          "Warning lights and gear indicator not showing",
-          "Instrument cluster flickering or intermittently cutting out",
-          "Head-up display working normally while instrument panel is blank"
+          "Instrument cluster screen intermittently blank at startup",
+          "Speedometer, odometer or warning indicators not visible"
         ],
-        "affectedSystems": [],
+        "affectedSystems": [
+          "instrument-cluster software",
+          "cluster unit assembly"
+        ],
         "dtcCodes": [],
-        "estimatedCostLow": 0,
-        "estimatedCostHigh": 0,
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
         "typicalMileageLow": null,
         "typicalMileageHigh": null,
         "citations": [
           {
-            "url": "https://www.carcomplaints.com/Kia/EV9/2024/electrical/electrical_system.shtml",
-            "type": "owner-report",
-            "title": "KIA EV9 Electrical System Complaints — CarComplaints"
-          }
-        ],
-        "communityRecommendations": [
-          {
-            "type": "tip",
-            "content": "If your instrument panel goes blank while driving, do not panic — pull over safely and try cycling the vehicle off and on (press the power button twice). This often restores the display temporarily until the permanent software fix is applied.",
-            "upvotes": 0
+            "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=24V757000",
+            "type": "recall",
+            "title": "NHTSA Campaign 24V757000 - EV9 Instrument Cluster Screen May Fail"
           },
           {
-            "type": "part",
-            "content": "Professional OBD-II diagnostic scanner for reading infotainment and body module codes",
-            "partName": "Bluetooth Pro OBD2 Scan Tool",
-            "partBrand": "BlueDriver",
-            "affiliateUrl": "https://www.amazon.com/s?k=BlueDriver%20Bluetooth%20Pro%20OBD2%20Scan%20Tool%20Kia%20EV9&tag=au7o-20"
+            "url": "https://static.nhtsa.gov/odi/rcl/2024/RCLRPT-24V757-9102.PDF",
+            "type": "recall",
+            "title": "Part 573 Safety Recall Report 24V757"
           }
         ],
+        "communityRecommendations": [],
         "fixParts": [],
-        "humanApproved": false,
-        "reportCount": 130,
-        "source": "ai-researched",
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "manual",
         "status": "published",
-        "lastReportedByOwners": "2026-03-06",
-        "reviewedOn": "2026-03-06",
-        "contentUpdatedOn": "",
-        "contentUpdateSummary": "",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-08",
+        "contentUpdatedOn": "2026-08-08",
+        "contentUpdateSummary": "Rewrote the same 24V757 instrument-cluster identity from the visually inspected Part 573 report and removed owner-report recurrence, hardware-replacement and scanner-commerce claims.",
         "relatedIssueIds": []
       },
       "proposal": {
@@ -700,8 +607,8 @@
           "observation": "The frozen page cites placeholder Reddit and YouTube identifiers and combines several unrelated software outcomes across 2024-2026."
         }
       ],
-      "beforeSha256": "cd237f5afb4552848221222a9b498cbeda7830b0dbe01f60fdf763822069a2b6",
-      "proposalSha256": "cd237f5afb4552848221222a9b498cbeda7830b0dbe01f60fdf763822069a2b6",
+      "beforeSha256": "e3f6f2e51de9ec4fdddcd6cc90c37b088f78642c83401cbca2aa818f8a30f748",
+      "proposalSha256": "e3f6f2e51de9ec4fdddcd6cc90c37b088f78642c83401cbca2aa818f8a30f748",
       "before": {
         "make": "Kia",
         "model": "EV9",
@@ -748,15 +655,13 @@
             "type": "part",
             "content": "Professional OBD-II diagnostic scanner for reading infotainment and body module codes",
             "partName": "Bluetooth Pro OBD2 Scan Tool",
-            "partBrand": "BlueDriver",
-            "affiliateUrl": "https://www.amazon.com/s?k=BlueDriver%20Bluetooth%20Pro%20OBD2%20Scan%20Tool%20Kia%20EV9&tag=au7o-20"
+            "partBrand": "BlueDriver"
           },
           {
             "type": "part",
             "content": "Level 2 portable EV charger for reliable home or on-the-go charging",
             "partName": "Portable Level 2 EV Charger",
-            "partBrand": "Lectron",
-            "affiliateUrl": "https://www.amazon.com/s?k=Lectron%20Portable%20Level%202%20EV%20Charger%20Kia%20EV9&tag=au7o-20"
+            "partBrand": "Lectron"
           }
         ],
         "fixParts": [],
@@ -816,15 +721,13 @@
             "type": "part",
             "content": "Professional OBD-II diagnostic scanner for reading infotainment and body module codes",
             "partName": "Bluetooth Pro OBD2 Scan Tool",
-            "partBrand": "BlueDriver",
-            "affiliateUrl": "https://www.amazon.com/s?k=BlueDriver%20Bluetooth%20Pro%20OBD2%20Scan%20Tool%20Kia%20EV9&tag=au7o-20"
+            "partBrand": "BlueDriver"
           },
           {
             "type": "part",
             "content": "Level 2 portable EV charger for reliable home or on-the-go charging",
             "partName": "Portable Level 2 EV Charger",
-            "partBrand": "Lectron",
-            "affiliateUrl": "https://www.amazon.com/s?k=Lectron%20Portable%20Level%202%20EV%20Charger%20Kia%20EV9&tag=au7o-20"
+            "partBrand": "Lectron"
           }
         ],
         "fixParts": [],
@@ -847,21 +750,7 @@
       "identityRule": "No source may change an indexed page identity. A different model, component, year boundary or failure outcome requires a byte-for-byte hold.",
       "commerceDecision": "no-official-remedy-or-part-investigation-open",
       "changedFields": [
-        "description",
-        "solution",
-        "confidence",
-        "symptoms",
-        "affectedSystems",
-        "estimatedCostLow",
-        "estimatedCostHigh",
-        "citations",
-        "communityRecommendations",
-        "reportCount",
-        "source",
-        "lastReportedByOwners",
-        "reviewedOn",
-        "contentUpdatedOn",
-        "contentUpdateSummary"
+        "humanApproved"
       ],
       "evidence": [
         {
@@ -876,7 +765,7 @@
           "observation": "Rendered PE25004 pages establish five allegations covering 2024-2025 EV9 wiper stoppage during snow/ice, with no crash, injury, cause or remedy determination at opening."
         }
       ],
-      "beforeSha256": "3f6ba682d9b4edad5018c423838ed18a11ec77c52e512d8052638b5ee43b174c",
+      "beforeSha256": "5670c274fc9d56e02dfbf00ec2eb8b4e8a237da5a19190c99c90f1de438434ef",
       "proposalSha256": "005d4e0fed645e46cb5ee5f9f60b87100d77efa64c036f04a3a70cf114433d9d",
       "before": {
         "make": "Kia",
@@ -888,61 +777,39 @@
         "engines": [],
         "category": "electrical",
         "title": "Windshield Wipers Stopping During Snow and Ice Conditions",
-        "description": "NHTSA has opened a preliminary evaluation into 2024-2025 Kia EV9 models where the windshield wipers may stop operating while driving when snow or ice accumulates at the bottom of the windshield. The wiper motor appears to shut down when encountering resistance from ice buildup, leaving the driver without visibility in winter conditions. The issue may be related to the wiper motor's overcurrent protection being too sensitive.",
-        "solution": "If wipers stop during winter driving, pull over safely and manually clear ice and snow buildup from the base of the windshield and wiper arms before restarting the wipers. Contact a Kia dealer about any applicable software update for the wiper motor controller. Use the windshield defroster on high before activating wipers in heavy snow or ice conditions.",
+        "description": "On April 29, 2025, NHTSA opened Preliminary Evaluation PE25004 after receiving five owner questionnaires alleging that windshield wipers stopped while 2024-2025 EV9 vehicles were being driven with snow or ice accumulated on or near the bottom of the windshield. At opening, NHTSA reported no crashes, injuries or fatalities and had not determined a root cause or defect remedy.",
+        "solution": "PE25004 is an investigation, not a recall, and it identifies no official remedy or retail part. If the wipers stop or visibility becomes unsafe, pull over safely and do not continue until visibility is restored. Clear snow and ice only when safely stopped, document the event, contact Kia for inspection and check NHTSA for any later campaign or investigation update.",
         "severity": "high",
-        "confidence": "medium",
+        "confidence": "high",
         "symptoms": [
-          "Windshield wipers stop mid-stroke during snow or freezing rain",
-          "Wiper motor makes no sound when activated in cold conditions",
-          "Wipers work normally in rain but fail in snow or ice",
-          "Wipers resume working after manually clearing ice from windshield base",
-          "Wiper system warning or fault message on dashboard"
+          "Windshield wipers stop during snow or ice accumulation",
+          "Reduced visibility in winter weather"
         ],
-        "affectedSystems": [],
+        "affectedSystems": [
+          "windshield-wiper system"
+        ],
         "dtcCodes": [],
-        "estimatedCostLow": 0,
-        "estimatedCostHigh": 400,
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
         "typicalMileageLow": null,
         "typicalMileageHigh": null,
-        "citations": [],
-        "communityRecommendations": [
+        "citations": [
           {
-            "type": "tip",
-            "content": "Before driving in winter, run the defroster on maximum for 5-10 minutes and manually clear all ice from the windshield wiper rest area. This prevents the ice buildup that triggers the wiper motor shutdown.",
-            "upvotes": 0
-          },
-          {
-            "type": "part",
-            "content": "Professional Bluetooth OBD-II scanner for reading electrical system fault codes",
-            "partName": "Bluetooth Pro OBD2 Scan Tool",
-            "partBrand": "BlueDriver",
-            "affiliateUrl": "https://www.amazon.com/s?k=BlueDriver%20Bluetooth%20Pro%20OBD2%20Scan%20Tool%20Kia%20EV9&tag=au7o-20"
-          },
-          {
-            "type": "part",
-            "content": "Automotive digital multimeter for diagnosing electrical faults and testing circuits",
-            "partName": "3340 Automotive Digital Multimeter",
-            "partBrand": "Innova",
-            "affiliateUrl": "https://www.amazon.com/s?k=Innova%203340%20Automotive%20Digital%20Multimeter%20Kia%20EV9&tag=au7o-20"
-          },
-          {
-            "type": "part",
-            "content": "Electrical contact cleaner for restoring connections and preventing corrosion",
-            "partName": "QD Electronic Cleaner",
-            "partBrand": "CRC",
-            "affiliateUrl": "https://www.amazon.com/s?k=CRC%20QD%20Electronic%20Cleaner%20Kia%20EV9&tag=au7o-20"
+            "url": "https://static.nhtsa.gov/odi/inv/2025/INOA-PE25004-11072.pdf",
+            "type": "investigation",
+            "title": "NHTSA Preliminary Evaluation PE25004 - EV9 Windshield Wiper Failure"
           }
         ],
+        "communityRecommendations": [],
         "fixParts": [],
-        "humanApproved": false,
-        "reportCount": 55,
-        "source": "ai-researched",
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "manual",
         "status": "published",
-        "lastReportedByOwners": "2026-03-06",
-        "reviewedOn": "2026-03-06",
-        "contentUpdatedOn": "",
-        "contentUpdateSummary": "",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-08",
+        "contentUpdatedOn": "2026-08-08",
+        "contentUpdateSummary": "Bounded the same snow/ice wiper-failure identity to NHTSA PE25004, clearly labeled it as an open investigation rather than a recall and removed the unsupported motor-cause, software-remedy and commerce claims.",
         "relatedIssueIds": []
       },
       "proposal": {

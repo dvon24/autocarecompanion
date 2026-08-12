@@ -29,9 +29,9 @@
   ],
   "source": {
     "snapshotFile": "data/_kia-deeplink-snapshot-2026-08-06.json",
-    "snapshotSha256": "f0aa4c5c8ca72321ed9a0b54aa9455e84056b445cb31049545ea07a48748c76b",
-    "snapshotGeneratedAt": "2026-08-07T19:13:14.080Z",
-    "snapshotHash": "f8b4d0e206ea16a5a28546ef1db29b0c885b1a839069b486f07fb1a1759310bf",
+    "snapshotSha256": "c3accea6dc370cc4587164aa6cc8b9fd22dd037621facff22dfc29f4f70a4e2c",
+    "snapshotGeneratedAt": "2026-08-12T13:04:39.309Z",
+    "snapshotHash": "00b5d9cf06b9534ad62b86ed57d17760d6dfa27f38f8b05f7188e7d3cff47877",
     "modelRecordCount": 14
   },
   "observations": [
@@ -998,17 +998,7 @@
       "identityRule": "Preserve every indexed Telluride ID, title, category, year set, trim set, engine set and publication state while correcting false source scope, false campaign numbers, superseded remedies, false DTCs, unsafe advice and unsupported replacement or commerce claims.",
       "commerceDecision": "dealer-only-no-retail-part-safety-recall",
       "changedFields": [
-        "description",
-        "solution",
-        "severity",
-        "symptoms",
-        "affectedSystems",
-        "citations",
-        "humanApproved",
-        "source",
-        "reviewedOn",
-        "contentUpdatedOn",
-        "contentUpdateSummary"
+        "humanApproved"
       ],
       "evidence": [
         {
@@ -1042,7 +1032,7 @@
         },
         {
           "kind": "citation-commerce-relation-review",
-          "removedCitationCount": 3,
+          "removedCitationCount": 1,
           "removedCommerceCount": 0,
           "removedFixPartCount": 0,
           "removedRelatedIssueCount": 0,
@@ -1050,7 +1040,7 @@
           "observation": "Secondary, placeholder, missing-URL and search-style material is not carried into the proposal. Exact official sources remain only where vehicle and remedy scope match; no retail link is invented without an exact part number and fitment proof."
         }
       ],
-      "beforeSha256": "f254d00e7be4f00e961de0f5e9685e712a004e6e731cd4c2f98f3d0d18e90a10",
+      "beforeSha256": "838045e01dd884894c164fe77c18cd8d046c154de14eb499b4f33ba0c168831e",
       "proposalSha256": "27f4bdf5753836aef2e3512f30e129d9ec18527228879fbfc97cd4acac19d227",
       "before": {
         "make": "Kia",
@@ -1064,17 +1054,17 @@
         "engines": [],
         "category": "exterior",
         "title": "Door Belt Molding Delamination / Detachment (Recall SC347)",
-        "description": "On 2023-2025 Tellurides (built Oct 3, 2022 - Sep 18, 2024), the door belt molding face plate delaminates from the molding base because of insufficient adhesive applied at the supplier. The face plate works loose and can eventually fall off entirely while driving, becoming a road hazard for following traffic.",
-        "solution": "NHTSA recall 25V-494 / Kia campaign SC347 (201,149 vehicles). Dealers inspect and replace the belt-molding trim assemblies free of charge; the updated part adds mechanical retention rather than relying on adhesive alone. Owners reference SC347 with Kia at 1-800-333-4542.",
-        "severity": "medium",
+        "description": "NHTSA recall 25V494000 (Kia SC347) covers certain 2023-2025 Telluride vehicles. The door belt molding trim can delaminate and detach from the vehicle, creating a road hazard for other traffic.",
+        "solution": "Check the VIN for recall 25V494000/SC347. A Kia dealer inspects the belt molding trim assemblies and replaces them as necessary free of charge. Do not glue, tape or buy generic trim from this page in place of the VIN-specific recall remedy.",
+        "severity": "high",
         "confidence": "high",
         "symptoms": [
-          "Door window-line trim loose or lifting",
-          "Visible delamination of the molding face plate",
-          "Rattling or wind noise from the door trim",
-          "Trim piece partially or fully detached"
+          "Door belt molding trim appears loose, lifted or delaminated",
+          "Door belt molding trim detaches from the vehicle"
         ],
-        "affectedSystems": [],
+        "affectedSystems": [
+          "door belt molding trim assemblies"
+        ],
         "dtcCodes": [],
         "estimatedCostLow": null,
         "estimatedCostHigh": null,
@@ -1082,31 +1072,21 @@
         "typicalMileageHigh": null,
         "citations": [
           {
-            "url": "https://static.nhtsa.gov/odi/rcl/2025/RCLRPT-25V494-5788.pdf",
+            "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=25V494000",
             "type": "recall",
-            "title": "NHTSA Part 573 Safety Recall Report 25V-494 (Door Belt Molding)"
-          },
-          {
-            "url": "https://www.cars.com/articles/201000-kia-tellurides-recalled-for-molding-trim-513841/",
-            "type": "article",
-            "title": "201,000 Kia Tellurides Recalled for Molding Trim (Cars.com)"
-          },
-          {
-            "url": "https://www.carcomplaints.com/news/2025/kia-telluride-recall-door-trim.shtml",
-            "type": "article",
-            "title": "Kia Telluride Recall: 12,112 Reports of Missing Door Trim (CarComplaints.com)"
+            "title": "NHTSA Campaign 25V494000 - Telluride Door Belt Molding Detachment"
           }
         ],
         "communityRecommendations": [],
         "fixParts": [],
         "humanApproved": true,
         "reportCount": 0,
-        "source": "ai-researched",
+        "source": "manual",
         "status": "published",
         "lastReportedByOwners": "",
-        "reviewedOn": "2026-06-16",
-        "contentUpdatedOn": "",
-        "contentUpdateSummary": "",
+        "reviewedOn": "2026-08-08",
+        "contentUpdatedOn": "2026-08-08",
+        "contentUpdateSummary": "Official-source same-identity rewrite: 25V494/SC347 exactly supports the frozen 2023-2025 door-belt-molding detachment identity. Unsupported production dates, supplier-adhesive mechanics and mechanical-retention claims are removed.",
         "relatedIssueIds": []
       },
       "proposal": {
@@ -1165,20 +1145,7 @@
       "identityRule": "Preserve every indexed Telluride ID, title, category, year set, trim set, engine set and publication state while correcting false source scope, false campaign numbers, superseded remedies, false DTCs, unsafe advice and unsupported replacement or commerce claims.",
       "commerceDecision": "dealer-only-no-retail-part-safety-recall",
       "changedFields": [
-        "description",
-        "solution",
-        "symptoms",
-        "affectedSystems",
-        "estimatedCostLow",
-        "estimatedCostHigh",
-        "citations",
-        "communityRecommendations",
-        "humanApproved",
-        "reportCount",
-        "source",
-        "reviewedOn",
-        "contentUpdatedOn",
-        "contentUpdateSummary"
+        "humanApproved"
       ],
       "evidence": [
         {
@@ -1214,15 +1181,15 @@
         },
         {
           "kind": "citation-commerce-relation-review",
-          "removedCitationCount": 2,
-          "removedCommerceCount": 3,
+          "removedCitationCount": 1,
+          "removedCommerceCount": 0,
           "removedFixPartCount": 0,
           "removedRelatedIssueCount": 0,
           "verifiedOn": "2026-08-08",
           "observation": "Secondary, placeholder, missing-URL and search-style material is not carried into the proposal. Exact official sources remain only where vehicle and remedy scope match; no retail link is invented without an exact part number and fitment proof."
         }
       ],
-      "beforeSha256": "b781d9ed233f6a3ec8ab16bab80522b26e4541d15f1867f1fd3cdc000bccbb1e",
+      "beforeSha256": "06e3ec0433050fcb948ae84cbc142f1ac1c95b75b01dc190e7aa7c893b655e08",
       "proposalSha256": "27ed25447879d2f314027a9b8b9eaeceef47ec45237c4634e2453d2eddeb1ac3",
       "before": {
         "make": "Kia",
@@ -1238,67 +1205,38 @@
         "engines": [],
         "category": "drivetrain",
         "title": "Intermediate Shaft / Driveshaft Disengagement (Rollaway)",
-        "description": "The intermediate shaft and right front driveshaft may not be fully engaged, which can result in the vehicle rolling away while in PARK. The driveshaft can slip out of the intermediate shaft splines, disconnecting drive power from the transmission to the wheels. NHTSA recall covers 2020-2024 Tellurides. Dealers will update the electronic parking brake software and replace damaged intermediate shafts.",
-        "solution": "Check VIN for recall at owners.kia.com. Dealer will update the electronic parking brake (EPB) software so it engages automatically when driveshaft disengagement is detected, and replace any damaged intermediate shafts. Always use the parking brake on inclines as an extra precaution.",
+        "description": "NHTSA recall 24V214000 (Kia SC303) covers certain 2020-2024 Telluride vehicles. The intermediate shaft and right front driveshaft may not be fully engaged, which can allow the vehicle to roll away while in Park.",
+        "solution": "Check the VIN for recall 24V214000/SC303. Until repaired, manually engage the emergency parking brake before exiting. A Kia dealer updates the electronic parking-brake software and replaces a damaged intermediate shaft as necessary free of charge. Generic U-joints or carrier bearings are not this recall remedy.",
         "severity": "high",
         "confidence": "high",
         "symptoms": [
-          "Vehicle rolls when placed in PARK on an incline",
-          "Clicking noise from front axle area",
-          "Vibration or shudder during acceleration",
-          "Drivetrain warning light"
+          "Vehicle rolls after being placed in Park if the driveline disengages"
         ],
         "affectedSystems": [
-          "Drivetrain"
+          "intermediate shaft, right front driveshaft and electronic parking-brake logic"
         ],
         "dtcCodes": [],
-        "estimatedCostLow": 0,
-        "estimatedCostHigh": 800,
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
         "typicalMileageLow": null,
         "typicalMileageHigh": null,
         "citations": [
           {
-            "url": "https://www.consumerreports.org/cars/car-recalls-defects/kia-telluride-recalled-may-roll-away-when-put-in-park-a7222585228/",
-            "type": "media",
-            "title": "Almost Every Kia Telluride Recalled May Roll Away - Consumer Reports"
-          },
-          {
-            "url": "https://lemonlawfirm.com/kia-telluride-power-train-recall/",
-            "type": "media",
-            "title": "Kia Telluride Power Train Recall Driveshaft May Disengage - LemonLawFirm"
+            "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=24V214000",
+            "type": "recall",
+            "title": "NHTSA Campaign 24V214000 - Telluride Driveshaft Disengagement and Rollaway"
           }
         ],
-        "communityRecommendations": [
-          {
-            "type": "warning",
-            "content": "Always engage the parking brake, especially on inclines. Do not rely solely on the PARK position until the recall software update is performed",
-            "upvotes": 0,
-            "needsReview": false
-          },
-          {
-            "type": "part",
-            "content": "Spicer U-joint — OEM supplier for most domestic vehicles",
-            "partName": "Universal Joint",
-            "partBrand": "Spicer",
-            "affiliateUrl": "https://www.amazon.com/s?k=Spicer%20u-joint&tag=au7o-20"
-          },
-          {
-            "type": "part",
-            "content": "Anchor carrier bearing for driveshaft vibration fix",
-            "partName": "Driveshaft Carrier Bearing",
-            "partBrand": "Anchor",
-            "affiliateUrl": "https://www.amazon.com/s?k=Anchor%20driveshaft%20carrier%20bearing&tag=au7o-20"
-          }
-        ],
+        "communityRecommendations": [],
         "fixParts": [],
         "humanApproved": true,
-        "reportCount": 198,
-        "source": "ai-researched",
+        "reportCount": 0,
+        "source": "manual",
         "status": "published",
         "lastReportedByOwners": "2024-12-15",
-        "reviewedOn": "2026-02-23",
-        "contentUpdatedOn": "",
-        "contentUpdateSummary": "",
+        "reviewedOn": "2026-08-08",
+        "contentUpdatedOn": "2026-08-08",
+        "contentUpdateSummary": "Official-source same-identity rewrite: 24V214/SC303 exactly supports the frozen 2020-2024 intermediate-shaft/right-front-driveshaft disengagement and rollaway identity. Unsupported warning, noise, cost and unrelated driveline commerce are removed.",
         "relatedIssueIds": []
       },
       "proposal": {
@@ -1358,17 +1296,7 @@
       "identityRule": "Preserve every indexed Telluride ID, title, category, year set, trim set, engine set and publication state while correcting false source scope, false campaign numbers, superseded remedies, false DTCs, unsafe advice and unsupported replacement or commerce claims.",
       "commerceDecision": "dealer-only-no-retail-part-safety-recall",
       "changedFields": [
-        "description",
-        "solution",
-        "symptoms",
-        "affectedSystems",
-        "dtcCodes",
-        "citations",
-        "humanApproved",
-        "source",
-        "reviewedOn",
-        "contentUpdatedOn",
-        "contentUpdateSummary"
+        "humanApproved"
       ],
       "evidence": [
         {
@@ -1400,7 +1328,7 @@
         },
         {
           "kind": "citation-commerce-relation-review",
-          "removedCitationCount": 3,
+          "removedCitationCount": 1,
           "removedCommerceCount": 0,
           "removedFixPartCount": 0,
           "removedRelatedIssueCount": 0,
@@ -1408,7 +1336,7 @@
           "observation": "Secondary, placeholder, missing-URL and search-style material is not carried into the proposal. Exact official sources remain only where vehicle and remedy scope match; no retail link is invented without an exact part number and fitment proof."
         }
       ],
-      "beforeSha256": "f6d53c9f4b325b58f85b6967369a8e94accde20e0cf3dc55a8b6e555405ee88a",
+      "beforeSha256": "8c871f2270e898d9eb25d510100a2543f1e84b9199b140e668056519a3873497",
       "proposalSha256": "d460f5f02c4b5d130f383c42808c082e33ad7b9159fb9fe48417d82d7208f0cf",
       "before": {
         "make": "Kia",
@@ -1420,54 +1348,39 @@
         "engines": [],
         "category": "engine",
         "title": "Engine Valve Spring Fracture / Loss of Motive Power (3.8L V6, Recall SC296)",
-        "description": "On certain 2024 Tellurides (3.8L Lambda II V6 built Oct 1 - Dec 6, 2023), engine valve springs can fracture from fatigue cracking caused by supplier damage during manufacture. Owners report abnormal engine noise, rough running, and check-engine illumination before a spring breaks, which can cause sudden loss of power while driving and, in rare cases, a broken valve punching a hole in the engine block.",
-        "solution": "NHTSA recall 24V-077 / Kia campaign SC296 (~2,872 vehicles). Dealers replace the engine sub-assembly free of charge; in severe field cases this has meant complete engine swaps. Owners reference SC296 with Kia at 1-800-333-4542 to confirm VIN involvement.",
+        "description": "NHTSA recall 24V077000 (Kia SC296) covers certain 2024 Telluride vehicles. An engine valve spring may break while driving, causing loss of drive power and potentially creating a hole in the engine block; the latter also increases fire risk.",
+        "solution": "Check the VIN for recall 24V077000/SC296. If drive power is lost or smoke or fire appears, stop safely, shut the vehicle down and seek emergency assistance as appropriate. A Kia dealer replaces the engine sub-assembly free of charge. Do not infer generic P0300-series codes or a smaller retail repair from the recall.",
         "severity": "high",
         "confidence": "high",
         "symptoms": [
-          "Abnormal engine knocking or tapping noise",
-          "Engine running rough / misfire",
-          "Check engine light illuminated",
-          "Sudden loss of motive power while driving",
-          "In rare cases, hole in engine block / catastrophic failure"
+          "Loss of drive power while driving",
+          "Smoke or fire if a fractured spring leads to a hole in the engine block"
         ],
-        "affectedSystems": [],
-        "dtcCodes": [
-          "P0300",
-          "P0301",
-          "P0302"
+        "affectedSystems": [
+          "engine valve springs and engine sub-assembly"
         ],
+        "dtcCodes": [],
         "estimatedCostLow": null,
         "estimatedCostHigh": null,
         "typicalMileageLow": null,
         "typicalMileageHigh": null,
         "citations": [
           {
-            "url": "https://static.nhtsa.gov/odi/rcl/2024/RCLRPT-24V077-1532.PDF",
+            "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=24V077000",
             "type": "recall",
-            "title": "NHTSA Part 573 Safety Recall Report 24V-077 (Engine Valve Spring)"
-          },
-          {
-            "url": "https://kia.oemdtc.com/1001/sc296-engine-valve-spring-2024-kia-telluride",
-            "type": "tsb",
-            "title": "SC296 - Engine Valve Spring - 2024 Kia Telluride"
-          },
-          {
-            "url": "https://www.carcomplaints.com/news/2024/kia-telluride-valve-spring-recall-2024.shtml",
-            "type": "article",
-            "title": "Kia Telluride Valve Spring Recall Affects 2024 Model Year (CarComplaints.com)"
+            "title": "NHTSA Campaign 24V077000 - Telluride Valve-Spring Fracture"
           }
         ],
         "communityRecommendations": [],
         "fixParts": [],
         "humanApproved": true,
         "reportCount": 0,
-        "source": "ai-researched",
+        "source": "manual",
         "status": "published",
         "lastReportedByOwners": "",
-        "reviewedOn": "2026-06-16",
-        "contentUpdatedOn": "",
-        "contentUpdateSummary": "",
+        "reviewedOn": "2026-08-08",
+        "contentUpdatedOn": "2026-08-08",
+        "contentUpdateSummary": "Official-source same-identity rewrite: 24V077/SC296 exactly supports the frozen 2024 valve-spring fracture identity, loss-of-power/fire consequences and engine-subassembly remedy. Unverified supplier mechanism, field-report language and generic misfire DTCs are removed.",
         "relatedIssueIds": []
       },
       "proposal": {
@@ -1557,7 +1470,7 @@
           "observation": "Secondary, placeholder, missing-URL and search-style material is not carried into the proposal. Exact official sources remain only where vehicle and remedy scope match; no retail link is invented without an exact part number and fitment proof."
         }
       ],
-      "beforeSha256": "9ca2cf7caae799c0a38c8d60918bb9c633a901197964c02ab211c34c6980c9d7",
+      "beforeSha256": "9b4ff7648fd16d24a3e52dce58316b700f55119d22a55610f99424f5db943a9a",
       "proposalSha256": "6683ce996f6189f2f2077e86dbc252b60e58db095d9c37571092c0fcf2a51a0f",
       "before": {
         "make": "Kia",
@@ -1614,8 +1527,7 @@
             "type": "part",
             "content": "Interior trim removal tool set for dash and panel work",
             "partName": "Interior Trim Tool Set",
-            "partBrand": "MICTUNING",
-            "affiliateUrl": "https://www.amazon.com/s?k=interior%20trim%20removal%20tool%20set%20automotive&tag=au7o-20"
+            "partBrand": "MICTUNING"
           }
         ],
         "fixParts": [],
@@ -1681,17 +1593,7 @@
       "identityRule": "Preserve every indexed Telluride ID, title, category, year set, trim set, engine set and publication state while correcting false source scope, false campaign numbers, superseded remedies, false DTCs, unsafe advice and unsupported replacement or commerce claims.",
       "commerceDecision": "dealer-only-no-retail-part-safety-recall",
       "changedFields": [
-        "description",
-        "solution",
-        "severity",
-        "symptoms",
-        "affectedSystems",
-        "citations",
-        "humanApproved",
-        "source",
-        "reviewedOn",
-        "contentUpdatedOn",
-        "contentUpdateSummary"
+        "humanApproved"
       ],
       "evidence": [
         {
@@ -1723,7 +1625,7 @@
         },
         {
           "kind": "citation-commerce-relation-review",
-          "removedCitationCount": 3,
+          "removedCitationCount": 1,
           "removedCommerceCount": 0,
           "removedFixPartCount": 0,
           "removedRelatedIssueCount": 0,
@@ -1731,7 +1633,7 @@
           "observation": "Secondary, placeholder, missing-URL and search-style material is not carried into the proposal. Exact official sources remain only where vehicle and remedy scope match; no retail link is invented without an exact part number and fitment proof."
         }
       ],
-      "beforeSha256": "a3de50bc72a7df6c1c3b5afcf559f842e9a36bc90ef2ef19a3de8a9add2de683",
+      "beforeSha256": "2e7b66d8e41dd8096f9fe803346ff444cbb26c2c000db446190e7248e46d6bc5",
       "proposalSha256": "62964d764b86554cddefbdbf48e54b692690d6bf8e0b60129a91ddd41c916eda",
       "before": {
         "make": "Kia",
@@ -1743,17 +1645,17 @@
         "engines": [],
         "category": "brakes",
         "title": "Incorrect Spare Tire Impairing ABS and Traction Control (Recall SC355)",
-        "description": "Certain 2025 Tellurides (and 2026 Sorento) were shipped with an incorrectly sized spare tire. When that spare is installed, the wheel-speed difference can impair anti-lock braking (ABS) and traction control (TCS) operation, increasing crash risk. The vehicles fail to comply with FMVSS 110 (Tire Selection and Rims).",
-        "solution": "NHTSA recall 25V-722 / Kia campaign SC355. Dealers replace the spare wheel-and-tire assembly free of charge. Owner letters mailed Dec 3, 2025. Owners reference SC355 with Kia at 1-800-333-4542.",
-        "severity": "medium",
+        "description": "NHTSA recall 25V745000 (Kia SC355) covers certain 2025 Telluride vehicles equipped with an incorrect spare tire. If installed, the tire can impair anti-lock braking and traction control, and the vehicle does not comply with FMVSS 110.",
+        "solution": "Check the VIN for recall 25V745000/SC355 before relying on the spare. A Kia dealer replaces the spare wheel-and-tire assembly free of charge. The correct campaign is 25V745000, not the previously cited 25V722.",
+        "severity": "high",
         "confidence": "high",
         "symptoms": [
-          "Spare tire size does not match the road tires",
-          "ABS warning behavior when running on the spare",
-          "Traction/stability control faults with spare installed",
-          "Reduced braking control on the compact/incorrect spare"
+          "Incorrect spare tire identified by the VIN-specific recall",
+          "ABS or traction-control performance may be impaired while the incorrect spare is installed"
         ],
-        "affectedSystems": [],
+        "affectedSystems": [
+          "temporary spare wheel and tire, anti-lock braking and traction control"
+        ],
         "dtcCodes": [],
         "estimatedCostLow": null,
         "estimatedCostHigh": null,
@@ -1761,31 +1663,21 @@
         "typicalMileageHigh": null,
         "citations": [
           {
-            "url": "https://www.autoevolution.com/news/kia-recalls-certain-sorento-and-telluride-suvs-for-incorrect-spare-tire-260661.html",
-            "type": "article",
-            "title": "Kia Recalls Certain Sorento and Telluride SUVs for Incorrect Spare Tire (autoevolution)"
-          },
-          {
-            "url": "https://www.cars.com/research/kia-telluride-2025/recalls/",
-            "type": "article",
-            "title": "2025 Kia Telluride Recalls (Cars.com)"
-          },
-          {
-            "url": "https://www.thetruthaboutcars.com/cars/news-blog/recall-alert-2025-kia-telluride-and-2026-kia-sorento-45132196",
-            "type": "article",
-            "title": "Recall Alert: 2025 Kia Telluride and 2026 Kia Sorento (The Truth About Cars)"
+            "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=25V745000",
+            "type": "recall",
+            "title": "NHTSA Campaign 25V745000 - Telluride Incorrect Spare Tire"
           }
         ],
         "communityRecommendations": [],
         "fixParts": [],
         "humanApproved": true,
         "reportCount": 0,
-        "source": "ai-researched",
+        "source": "manual",
         "status": "published",
         "lastReportedByOwners": "",
-        "reviewedOn": "2026-06-16",
-        "contentUpdatedOn": "",
-        "contentUpdateSummary": "",
+        "reviewedOn": "2026-08-08",
+        "contentUpdatedOn": "2026-08-08",
+        "contentUpdateSummary": "Official-source same-identity rewrite: The frozen page cites the wrong campaign number. NHTSA 25V745/SC355, not 25V722, exactly supports the 2025 Telluride incorrect-spare identity and dealer replacement of the wheel-and-tire assembly.",
         "relatedIssueIds": []
       },
       "proposal": {
@@ -1844,7 +1736,6 @@
       "changedFields": [
         "description",
         "solution",
-        "severity",
         "confidence",
         "symptoms",
         "affectedSystems",
@@ -1906,7 +1797,7 @@
         }
       ],
       "beforeSha256": "ec537b92d4db402662a9d4986e7d5f608fc90d522c50a311f21e8967d3247cb0",
-      "proposalSha256": "f53b8e4eb777dfeeb844eb0760530b0d391eb50b9736c0f04f63b2cf61994161",
+      "proposalSha256": "d50753fbc6f6ef2bd7be6a9bb0d087cd5e1e19ec6fc3e0111d714e51126c8191",
       "before": {
         "make": "Kia",
         "model": "Telluride",
@@ -1981,7 +1872,7 @@
         "title": "Infotainment / UVO Touchscreen Freezing and Random Reboot",
         "description": "Kia TSB ELE320 applies to certain 2020-2022 Telluride vehicles with the fifth-generation AVN wide unit and addresses an inaccurate map location, a freezing AVN screen, or Google Maps/Waze delay through wired Apple CarPlay. It does not establish a 2020-2023 hardware defect causing random reboot loops, phantom touch, black screens or backup-camera loss.",
         "solution": "Identify the exact AVN unit and software version. For an ELE320-eligible symptom, follow Kia service information or the official Navigation Updater path and do not interrupt power during the update. Treat recurring reboot, touch, black-screen or rear-camera faults as separate diagnostic conditions; do not promise head-unit replacement from ELE320.",
-        "severity": "medium",
+        "severity": "low",
         "confidence": "medium",
         "symptoms": [
           "AVN 5.0 Wide screen freezes",
@@ -2026,7 +1917,6 @@
       "changedFields": [
         "description",
         "solution",
-        "severity",
         "confidence",
         "symptoms",
         "affectedSystems",
@@ -2060,8 +1950,8 @@
           "observation": "Secondary, placeholder, missing-URL and search-style material is not carried into the proposal. Exact official sources remain only where vehicle and remedy scope match; no retail link is invented without an exact part number and fitment proof."
         }
       ],
-      "beforeSha256": "216b7faf8975454def04483613f1c3d7c104ebe44cfbd49681302d9a24dd58cf",
-      "proposalSha256": "ee424ecaf105e5330541c057ac6e7d98309b597568e8c4130c2450d078c90454",
+      "beforeSha256": "f72c9a630ff64763c0a80f4033e8a743055c991810cbb67742fe6552241a2d6e",
+      "proposalSha256": "a45035e1b88a1fee790b355499bfbac71721a4800100b8540fdea8f58a19bac8",
       "before": {
         "make": "Kia",
         "model": "Telluride",
@@ -2123,15 +2013,13 @@
             "type": "part",
             "content": "High-quality synthetic oil helps reduce consumption and protect worn engines",
             "partName": "Extended Performance Full Synthetic Motor Oil",
-            "partBrand": "Mobil 1",
-            "affiliateUrl": "https://www.amazon.com/s?k=Kia%20Telluride%20Mobil%201%20Extended%20Performance%20Full%20Synthetic%20Motor%20Oil&tag=au7o-20"
+            "partBrand": "Mobil 1"
           },
           {
             "type": "part",
             "content": "Premium oil filter ensures proper filtration with high-mileage engines",
             "partName": "Oil Filter",
-            "partBrand": "Wix",
-            "affiliateUrl": "https://www.amazon.com/s?k=Kia%20Telluride%20Wix%20Oil%20Filter&tag=au7o-20"
+            "partBrand": "Wix"
           }
         ],
         "fixParts": [],
@@ -2169,7 +2057,7 @@
         "title": "Oil Dilution from Short Trip Driving (3.8L V6)",
         "description": "The frozen page assigns one short-trip fuel-dilution defect to every 2020-2025 Telluride 3.8L engine, but the complete official inventory reviewed here contains no exact Kia package establishing that population, contamination percentage, mileage interval or P0172/P0175 pattern. A rising oil level or fuel odor can indicate several fuel, ignition, combustion or crankcase faults.",
         "solution": "If the oil level is above full, smells strongly of fuel or the engine runs abnormally, avoid unnecessary driving and have the vehicle inspected for fuel, ignition, compression and crankcase causes. Follow the viscosity and severe-service interval in the current owner literature for the VIN. Do not attempt to evaporate fuel with a highway drive or prescribe a shorter interval, laboratory threshold, oil brand or filter from this page.",
-        "severity": "high",
+        "severity": "medium",
         "confidence": "low",
         "symptoms": [
           "Oil level rises above the full mark",
@@ -2241,7 +2129,7 @@
           "observation": "Secondary, placeholder, missing-URL and search-style material is not carried into the proposal. Exact official sources remain only where vehicle and remedy scope match; no retail link is invented without an exact part number and fitment proof."
         }
       ],
-      "beforeSha256": "db4b7edb38896929eb0cbbed1cdb2f22353e9a46e907881c42aa39450cb6b94f",
+      "beforeSha256": "7e9dde671d319afcda5440794292f9de412123f2f6a47ed2f4abcc5ed5411a9b",
       "proposalSha256": "e99530b2c07d7de60c3fad74ff9136beca0132f6b7396aab11d5436e5d0533f4",
       "before": {
         "make": "Kia",
@@ -2299,43 +2187,37 @@
             "type": "part",
             "content": "POR-15 rust preventive coating stops rust permanently",
             "partName": "Rust Preventive Coating",
-            "partBrand": "POR-15",
-            "affiliateUrl": "https://www.amazon.com/s?k=POR-15%20rust%20preventive%20coating&tag=au7o-20"
+            "partBrand": "POR-15"
           },
           {
             "type": "part",
             "content": "Rust-Oleum rust converter spray for treating corroded panels",
             "partName": "Rust Converter Spray",
-            "partBrand": "Rust-Oleum",
-            "affiliateUrl": "https://www.amazon.com/s?k=Rust-Oleum%20rust%20converter%20spray&tag=au7o-20"
+            "partBrand": "Rust-Oleum"
           },
           {
             "type": "part",
             "content": "StrongArm liftgate struts — easy bolt-on replacement",
             "partName": "Liftgate Support Struts",
-            "partBrand": "StrongArm",
-            "affiliateUrl": "https://www.amazon.com/s?k=StrongArm%20liftgate%20struts&tag=au7o-20"
+            "partBrand": "StrongArm"
           },
           {
             "type": "part",
             "content": "Sachs OE-quality liftgate gas struts",
             "partName": "Liftgate Gas Struts",
-            "partBrand": "Sachs",
-            "affiliateUrl": "https://www.amazon.com/s?k=Sachs%20liftgate%20gas%20struts&tag=au7o-20"
+            "partBrand": "Sachs"
           },
           {
             "type": "part",
             "content": "Dupli-Color touch-up paint kit for scratch and chip repair",
             "partName": "Touch-Up Paint Kit",
-            "partBrand": "Dupli-Color",
-            "affiliateUrl": "https://www.amazon.com/s?k=Dupli-Color%20touch%20up%20paint%20kit&tag=au7o-20"
+            "partBrand": "Dupli-Color"
           },
           {
             "type": "part",
             "content": "Dupli-Color clear coat finish for paint protection",
             "partName": "Clear Coat Spray",
-            "partBrand": "Dupli-Color",
-            "affiliateUrl": "https://www.amazon.com/s?k=Dupli-Color%20clear%20coat%20spray&tag=au7o-20"
+            "partBrand": "Dupli-Color"
           }
         ],
         "fixParts": [],
@@ -2402,21 +2284,7 @@
       "identityRule": "Preserve every indexed Telluride ID, title, category, year set, trim set, engine set and publication state while correcting false source scope, false campaign numbers, superseded remedies, false DTCs, unsafe advice and unsupported replacement or commerce claims.",
       "commerceDecision": "dealer-only-no-retail-part-safety-recall",
       "changedFields": [
-        "description",
-        "solution",
-        "symptoms",
-        "affectedSystems",
-        "dtcCodes",
-        "estimatedCostLow",
-        "estimatedCostHigh",
-        "citations",
-        "communityRecommendations",
-        "humanApproved",
-        "reportCount",
-        "source",
-        "reviewedOn",
-        "contentUpdatedOn",
-        "contentUpdateSummary"
+        "humanApproved"
       ],
       "evidence": [
         {
@@ -2452,15 +2320,15 @@
         },
         {
           "kind": "citation-commerce-relation-review",
-          "removedCitationCount": 2,
-          "removedCommerceCount": 2,
+          "removedCitationCount": 1,
+          "removedCommerceCount": 0,
           "removedFixPartCount": 0,
           "removedRelatedIssueCount": 0,
           "verifiedOn": "2026-08-08",
           "observation": "Secondary, placeholder, missing-URL and search-style material is not carried into the proposal. Exact official sources remain only where vehicle and remedy scope match; no retail link is invented without an exact part number and fitment proof."
         }
       ],
-      "beforeSha256": "5fba7a6dc49da8aeff8cea45c35fad297b4e3ba275a48a86cb8a8d2d645d75e1",
+      "beforeSha256": "54ba869f04086bd4c24b88bdf20e4d93469d5f34b627f04342c7ae7bdcf61eca",
       "proposalSha256": "20feb202387ec132aff2dc9c1f012f4845129642f8e43b689461beb01e10e2a7",
       "before": {
         "make": "Kia",
@@ -2476,62 +2344,39 @@
         "engines": [],
         "category": "safety",
         "title": "Front Power Seat Motor Overheating / Fire Risk",
-        "description": "The front power seat motor can overheat if the power seat slide knob becomes stuck, causing the motor to run continuously. This can result in a fire even while the vehicle is parked. NHTSA recall covers approximately 462,869 Tellurides from 2020-2024 model years. Kia dealers install a bracket for the power seat switch back covers and replace the seat slide knobs.",
-        "solution": "Check VIN for recall at owners.kia.com. Dealer will install a bracket for the power seat switch back covers and replace the seat slide knobs free of charge. Until repaired, do not leave anything under the front seats that could obstruct the seat slide mechanism.",
+        "description": "NHTSA recall 26V430000 (Kia SC374) covers certain 2020-2024 Telluride vehicles. A front power-seat motor may overheat because of a stuck slide knob or an improper earlier 24V407 repair, causing a fire while parked or driving. This recall replaces 24V407.",
+        "solution": "Check the VIN for recall 26V430000/SC374 and park outside and away from structures until the repair is complete. A Kia dealer installs an electronic fuse assembly free of charge. Vehicles already repaired under 24V407/SC316 still need the new remedy. P0217 and P0128 are unrelated engine codes and are not part of this seat recall.",
         "severity": "high",
         "confidence": "high",
         "symptoms": [
-          "Power seat moves on its own or does not respond",
-          "Seat slide knob feels stuck or difficult to move",
-          "Burning smell from under front seat",
-          "Smoke from seat area",
-          "Seat motor running continuously"
+          "Power-seat slide knob is stuck",
+          "Burning odor, smoke or fire near a front power seat"
         ],
         "affectedSystems": [
-          "Interior",
-          "Safety"
+          "front power-seat slide switch, motor circuit and electronic fuse protection"
         ],
-        "dtcCodes": [
-          "P0217",
-          "P0128"
-        ],
-        "estimatedCostLow": 0,
-        "estimatedCostHigh": 0,
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
         "typicalMileageLow": null,
         "typicalMileageHigh": null,
         "citations": [
           {
-            "url": "https://www.consumerreports.org/cars/car-recalls-defects/kia-telluride-recall-seat-fire-risk-park-outside-a5320796468/",
-            "type": "media",
-            "title": "Kia Telluride Recalled Fire Risk Park Outside - Consumer Reports"
-          },
-          {
-            "url": "https://www.wardsauto.com/news/archive-auto-kia-recalls-463k-telluride-suvs-faulty-seat-motor-switch-fire-risk/718477/",
-            "type": "media",
-            "title": "Kia recalls up to 463K Telluride seat motor fire risk - WardsAuto"
+            "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=26V430000",
+            "type": "recall",
+            "title": "NHTSA Campaign 26V430000 - Telluride Power-Seat Motor Fire Risk"
           }
         ],
-        "communityRecommendations": [
-          {
-            "type": "warning",
-            "content": "Do not leave objects under the front seats. Debris can jam the seat slide knob and cause the motor to overheat",
-            "upvotes": 0,
-            "needsReview": false
-          },
-          {
-            "type": "tip",
-            "content": "Check NHTSA.gov for active recalls — repairs are performed free at authorized dealers"
-          }
-        ],
+        "communityRecommendations": [],
         "fixParts": [],
         "humanApproved": true,
-        "reportCount": 356,
-        "source": "ai-researched",
+        "reportCount": 0,
+        "source": "manual",
         "status": "published",
         "lastReportedByOwners": "2025-01-28",
-        "reviewedOn": "2026-02-23",
-        "contentUpdatedOn": "",
-        "contentUpdateSummary": "",
+        "reviewedOn": "2026-08-08",
+        "contentUpdatedOn": "2026-08-08",
+        "contentUpdateSummary": "Official-source same-identity rewrite: Current NHTSA recall 26V430/SC374 supersedes 24V407 and replaces its bracket/knob remedy with an electronic fuse assembly; previously repaired vehicles need the new remedy. False engine DTCs and stale advice are removed.",
         "relatedIssueIds": []
       },
       "proposal": {
@@ -2594,7 +2439,6 @@
       "changedFields": [
         "description",
         "solution",
-        "severity",
         "confidence",
         "symptoms",
         "affectedSystems",
@@ -2628,8 +2472,8 @@
           "observation": "Secondary, placeholder, missing-URL and search-style material is not carried into the proposal. Exact official sources remain only where vehicle and remedy scope match; no retail link is invented without an exact part number and fitment proof."
         }
       ],
-      "beforeSha256": "2ebe01369a29b526ba32a2c4c2084e054a37a1de9f12b06dd5eefa29eee49877",
-      "proposalSha256": "3317f1a58b21ca93e3f69f0d5a9a4f3852474b1fe61ce5d92c0dd41faff754ef",
+      "beforeSha256": "1f7daab399bdec0d41f67ffd65aea68c67c5d0cc4adff45e5bd69d3bace407cf",
+      "proposalSha256": "f99dd43b8340a83f8880662496e07585a8e1d653e2787bd939ebf8ab8595f8d6",
       "before": {
         "make": "Kia",
         "model": "Telluride",
@@ -2686,8 +2530,7 @@
             "type": "part",
             "content": "Dorman seat motor — fixes stuck or slow power seats",
             "partName": "Power Seat Motor",
-            "partBrand": "Dorman",
-            "affiliateUrl": "https://www.amazon.com/s?k=Dorman%20power%20seat%20motor&tag=au7o-20"
+            "partBrand": "Dorman"
           }
         ],
         "fixParts": [],
@@ -2718,7 +2561,7 @@
         "title": "Third Row Seat Latch Jamming",
         "description": "The frozen page assigns third-row folding or latching complaints across 2020-2025 Tellurides to a stretched cable and bent striker, but the complete official inventory contains no exact Kia package establishing that cause, mileage range or repair. A seatback that does not latch is a passenger-safety condition, not a generic lubrication task.",
         "solution": "Do not carry a passenger in a seating position whose seatback will not latch securely. Remove cargo load from the seat, avoid bending the striker with tools, and have a Kia dealer or qualified seat/restraint technician inspect the latch, cable, release handle and striker. Do not apply lubricant or order a power-seat motor from this page.",
-        "severity": "high",
+        "severity": "low",
         "confidence": "low",
         "symptoms": [
           "Third-row seat will not fold or return to position",
@@ -2755,20 +2598,7 @@
       "identityRule": "Preserve every indexed Telluride ID, title, category, year set, trim set, engine set and publication state while correcting false source scope, false campaign numbers, superseded remedies, false DTCs, unsafe advice and unsupported replacement or commerce claims.",
       "commerceDecision": "dealer-only-no-retail-part-safety-recall",
       "changedFields": [
-        "description",
-        "solution",
-        "symptoms",
-        "affectedSystems",
-        "estimatedCostLow",
-        "estimatedCostHigh",
-        "citations",
-        "communityRecommendations",
-        "humanApproved",
-        "reportCount",
-        "source",
-        "reviewedOn",
-        "contentUpdatedOn",
-        "contentUpdateSummary"
+        "humanApproved"
       ],
       "evidence": [
         {
@@ -2802,15 +2632,15 @@
         },
         {
           "kind": "citation-commerce-relation-review",
-          "removedCitationCount": 3,
-          "removedCommerceCount": 7,
+          "removedCitationCount": 1,
+          "removedCommerceCount": 0,
           "removedFixPartCount": 0,
           "removedRelatedIssueCount": 0,
           "verifiedOn": "2026-08-08",
           "observation": "Secondary, placeholder, missing-URL and search-style material is not carried into the proposal. Exact official sources remain only where vehicle and remedy scope match; no retail link is invented without an exact part number and fitment proof."
         }
       ],
-      "beforeSha256": "4a784e31277d4eb5293a51e9ff8a15a7899f9798a0dcf3c5e2ccc51628e5af84",
+      "beforeSha256": "b1c5b0c23acf34090a2bd43b2f5f500736e8811f7627db590b19ced37a32331a",
       "proposalSha256": "481bcf114a80f74708c74e60d3c97a6a34b929229d19e01ad3a28a1b6cae4588",
       "before": {
         "make": "Kia",
@@ -2824,100 +2654,39 @@
         "engines": [],
         "category": "electrical",
         "title": "Tow Hitch Wiring Harness Module Fire Risk",
-        "description": "Tellurides equipped with a Genuine Kia 4-pin tow hitch harness (factory or dealer-installed accessory) can experience an electrical short on the tow hitch harness module PCB due to debris and moisture accumulation. Chloride and tin contamination on the circuit board, combined with moisture intrusion over time, creates a resistive fault that can cause an engine compartment fire. NHTSA Recall 22V-626 covers approximately 36,000 vehicles. Kia advises parking outside until repair is completed.",
-        "solution": "Check VIN for Recall 22V-626 immediately. Dealer will inspect and replace the tow hitch harness assembly, install a new fuse with different capacity, and add a wiring harness extension to prevent moisture intrusion into the tow hitch module. All repairs performed free of charge. Park outside and away from structures until repair is complete.",
+        "description": "NHTSA recall 22V626000 (Kia SC247) covers certain 2020-2022 Telluride vehicles potentially equipped with a Genuine Kia four-pin tow-hitch harness. Debris and moisture on the harness-module circuit board can cause an electrical short and a fire while parked or driving.",
+        "solution": "Check the VIN and whether the Kia four-pin harness was installed. Until recall 22V626000/SC247 is completed, park outside and away from structures. A Kia dealer installs a new fuse and wiring-harness extension and inspects and replaces the tow-hitch harness assembly as necessary free of charge. Do not attempt generic wiring repairs from this page.",
         "severity": "high",
         "confidence": "high",
         "symptoms": [
-          "Burning smell near rear of vehicle",
-          "Trailer lights malfunction intermittently",
-          "Melted or discolored wiring near tow hitch module",
-          "Smoke from rear cargo area",
-          "Vehicle fire near tow hitch wiring"
+          "Burning odor, smoke or fire near the tow-hitch harness module",
+          "Tow-hitch harness electrical malfunction requiring immediate inspection"
         ],
         "affectedSystems": [
-          "Electrical"
+          "Genuine Kia four-pin tow-hitch harness module, fuse and wiring extension"
         ],
         "dtcCodes": [],
-        "estimatedCostLow": 0,
-        "estimatedCostHigh": 0,
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
         "typicalMileageLow": null,
         "typicalMileageHigh": null,
         "citations": [
           {
-            "url": "https://static.nhtsa.gov/odi/rcl/2022/RCRN-22V626-8150.pdf",
-            "type": "nhtsa",
-            "title": "NHTSA Recall 22V-626 4-pin Tow Hitch Harness Fire"
-          },
-          {
-            "url": "https://tellurideforum.org/threads/recall-22v-626-4-pin-tow-hitch-harness-fire.12183/page-5",
-            "type": "forum",
-            "title": "Recall 22V-626 4-pin Tow Hitch Harness Fire - Telluride Forums"
-          },
-          {
-            "url": "https://www.consumerreports.org/cars/car-recalls-defects/hyundai-palisade-kia-telluride-recalled-for-fire-risk-a7840847806/",
-            "type": "media",
-            "title": "Hyundai Palisade Kia Telluride Recalled Trailer Hitch Fire - Consumer Reports"
+            "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=22V626000",
+            "type": "recall",
+            "title": "NHTSA Campaign 22V626000 - Telluride Tow-Hitch Harness Fire Risk"
           }
         ],
-        "communityRecommendations": [
-          {
-            "type": "warning",
-            "content": "NHTSA issued a Park Outside advisory for this recall. Do not park in a garage until the recall repair is completed",
-            "upvotes": 0,
-            "needsReview": false
-          },
-          {
-            "type": "tip",
-            "content": "Even if you did not order the tow package, check whether a 4-pin harness was installed by the dealer as part of pre-delivery prep",
-            "upvotes": 0,
-            "needsReview": false
-          },
-          {
-            "type": "part",
-            "content": "Premium electrical tape for wiring repairs and harness wrapping",
-            "partName": "Super 33+ Vinyl Electrical Tape",
-            "partBrand": "3M",
-            "affiliateUrl": "https://www.amazon.com/s?k=3M%20Super%2033%2B%20Vinyl%20Electrical%20Tape%20Kia%20Telluride&tag=au7o-20"
-          },
-          {
-            "type": "part",
-            "content": "Split wire loom tubing to protect repaired or exposed wiring harnesses",
-            "partName": "Split Wire Loom Tubing",
-            "partBrand": "DEI",
-            "affiliateUrl": "https://www.amazon.com/s?k=DEI%20Split%20Wire%20Loom%20Tubing%20Kia%20Telluride&tag=au7o-20"
-          },
-          {
-            "type": "part",
-            "content": "Weatherproof terminal connector kit for reliable wiring repairs",
-            "partName": "Automotive Terminal Connector Kit",
-            "partBrand": "Molex",
-            "affiliateUrl": "https://www.amazon.com/s?k=Molex%20Automotive%20Terminal%20Connector%20Kit%20Kia%20Telluride&tag=au7o-20"
-          },
-          {
-            "type": "part",
-            "content": "Automotive relay replacement set for common relay failures",
-            "partName": "Automotive Relay 5-Pin 12V",
-            "partBrand": "Bosch",
-            "affiliateUrl": "https://www.amazon.com/s?k=Bosch%20Automotive%20Relay%205-Pin%2012V%20Kia%20Telluride&tag=au7o-20"
-          },
-          {
-            "type": "part",
-            "content": "Digital multimeter for diagnosing fuse, relay, and module electrical faults",
-            "partName": "Digital Multimeter",
-            "partBrand": "Innova",
-            "affiliateUrl": "https://www.amazon.com/s?k=Innova%20Digital%20Multimeter%20Kia%20Telluride&tag=au7o-20"
-          }
-        ],
+        "communityRecommendations": [],
         "fixParts": [],
         "humanApproved": true,
-        "reportCount": 287,
-        "source": "ai-researched",
+        "reportCount": 0,
+        "source": "manual",
         "status": "published",
         "lastReportedByOwners": "2024-10-05",
-        "reviewedOn": "2026-02-23",
-        "contentUpdatedOn": "",
-        "contentUpdateSummary": "",
+        "reviewedOn": "2026-08-08",
+        "contentUpdatedOn": "2026-08-08",
+        "contentUpdateSummary": "Official-source same-identity rewrite: 22V626/SC247 exactly supports the frozen 2020-2022 Genuine Kia four-pin tow-harness fire-risk identity, park-outside warning and dealer remedy. Generic wiring, tape, relay and diagnostic-tool commerce are removed.",
         "relatedIssueIds": []
       },
       "proposal": {
@@ -2978,7 +2747,6 @@
       "changedFields": [
         "description",
         "solution",
-        "severity",
         "confidence",
         "symptoms",
         "affectedSystems",
@@ -3041,8 +2809,8 @@
           "observation": "Secondary, placeholder, missing-URL and search-style material is not carried into the proposal. Exact official sources remain only where vehicle and remedy scope match; no retail link is invented without an exact part number and fitment proof."
         }
       ],
-      "beforeSha256": "81f57aa149d906c75ea11fdee33cf8a8294baa1149274b0aa605f4bd6d4ab170",
-      "proposalSha256": "6c40f0a43fd8e94ae1a105f0d0c0cabbb7b147973275877bba3e049318c371c2",
+      "beforeSha256": "f51482ab1e6d566aa8b2d003e86184899b664cc28c45dbbbd798b71eb7ad3793",
+      "proposalSha256": "445960f1495e031accc6263d8533d6bdfea4a480ef4b3d08edb7c959182e93da",
       "before": {
         "make": "Kia",
         "model": "Telluride",
@@ -3103,15 +2871,13 @@
             "type": "part",
             "content": "Trim removal tool set for body panel work without damage",
             "partName": "Trim Removal Tool Set",
-            "partBrand": "MICTUNING",
-            "affiliateUrl": "https://www.amazon.com/s?k=trim%20removal%20tool%20set%20automotive&tag=au7o-20"
+            "partBrand": "MICTUNING"
           },
           {
             "type": "part",
             "content": "Bondo body filler for dent and panel repair",
             "partName": "Body Filler Kit",
-            "partBrand": "Bondo",
-            "affiliateUrl": "https://www.amazon.com/s?k=Bondo%20body%20filler%20kit&tag=au7o-20"
+            "partBrand": "Bondo"
           }
         ],
         "fixParts": [],
@@ -3144,7 +2910,7 @@
         "title": "Premature Windshield Cracking",
         "description": "A November 2019 Kia customer-satisfaction initiative reported that some early Telluride customers experienced a road-debris chip followed by extensive cracking within a short period, preventing chip repair. Kia asked dealers to inspect affected windshields and offered goodwill support while investigating. The notice explicitly says it was not a campaign; it does not establish the frozen 2021-2025 scope, a 46-percent rate, a lower-corner pattern or a glass-thickness/tempering cause.",
         "solution": "If a crack obstructs vision or is spreading, limit use and arrange prompt professional inspection. Ask a Kia dealer whether the original goodwill initiative or any current assistance applies to the VIN, and document the chip and crack before replacement. Do not assume insurance terms, aftermarket-glass durability or protective-film effectiveness from this page.",
-        "severity": "medium",
+        "severity": "low",
         "confidence": "low",
         "symptoms": [
           "Road-debris chip is followed by extensive cracking before the chip can be repaired",

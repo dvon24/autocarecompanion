@@ -340,6 +340,7 @@ function proposalFor(row) {
     contentUpdateSummary: (card.action === 'rewrite_same_identity' ? 'Official-source same-identity rewrite: ' : 'Targeted accuracy and safety cleanup: ') + card.reason,
     relatedIssueIds: [],
   });
+  proposal.severity = row.severity;
   return proposal;
 }
 function evidenceFor(row) {

@@ -188,13 +188,13 @@ function stamp(proposal, summary) {
 function rewriteProposal(row) {
   const proposal = fullRecord(row);
   Object.assign(proposal, { description: REWRITE_CARD.description, solution: REWRITE_CARD.solution, severity: REWRITE_CARD.severity, confidence: REWRITE_CARD.confidence, symptoms: clone(REWRITE_CARD.symptoms), affectedSystems: clone(REWRITE_CARD.affectedSystems), dtcCodes: [], citations: clone(REWRITE_CARD.citations), communityRecommendations: [], fixParts: [], estimatedCostLow: 0, estimatedCostHigh: 0, typicalMileageLow: null, typicalMileageHigh: null, relatedIssueIds: [] });
+  proposal.severity = row.severity;
   return stamp(proposal, REWRITE_CARD.summary);
 }
 function cleanupProposal(row) {
   const card = CLEANUP_CARDS[row.id];
   const proposal = fullRecord(row);
   Object.assign(proposal, { description: card.description, solution: card.solution, confidence: row.id === IDS.fca ? 'high' : 'low', symptoms: [], affectedSystems: clone(card.systems), dtcCodes: clone(card.dtcCodes || []), citations: clone(card.citations || []), communityRecommendations: [], fixParts: [], estimatedCostLow: null, estimatedCostHigh: null, typicalMileageLow: null, typicalMileageHigh: null, relatedIssueIds: [] });
-  if (card.clearTrims) proposal.trims = [];
   return stamp(proposal, `Targeted accuracy and safety cleanup only: ${card.reason}`);
 }
 function actionFor(id) { return id === REWRITE_ID ? 'rewrite_same_identity' : 'targeted_safety_cleanup_pending_source'; }

@@ -28,9 +28,9 @@
   ],
   "source": {
     "snapshotFile": "data/_kia-deeplink-snapshot-2026-08-06.json",
-    "snapshotSha256": "f0aa4c5c8ca72321ed9a0b54aa9455e84056b445cb31049545ea07a48748c76b",
-    "snapshotGeneratedAt": "2026-08-07T19:13:14.080Z",
-    "snapshotHash": "f8b4d0e206ea16a5a28546ef1db29b0c885b1a839069b486f07fb1a1759310bf",
+    "snapshotSha256": "c3accea6dc370cc4587164aa6cc8b9fd22dd037621facff22dfc29f4f70a4e2c",
+    "snapshotGeneratedAt": "2026-08-12T13:04:39.309Z",
+    "snapshotHash": "00b5d9cf06b9534ad62b86ed57d17760d6dfa27f38f8b05f7188e7d3cff47877",
     "modelRecordCount": 6
   },
   "observations": [
@@ -679,18 +679,7 @@
       "identityRule": "No Korean secondary report may be stretched into a primary-source rewrite. Known incorrect dates or unsafe high-cost prescriptions receive correction without changing indexed identity.",
       "commerceDecision": "dealer-only-no-retail-part-korean-safety-recall",
       "changedFields": [
-        "description",
-        "solution",
-        "symptoms",
-        "affectedSystems",
-        "estimatedCostLow",
-        "estimatedCostHigh",
-        "citations",
-        "humanApproved",
-        "source",
-        "reviewedOn",
-        "contentUpdatedOn",
-        "contentUpdateSummary"
+        "humanApproved"
       ],
       "evidence": [
         {
@@ -706,7 +695,7 @@
           "observation": "MOLIT's recall-center announcement establishes 220,059 Ray vehicles, inadequate ECU software, possible engine shutdown while driving and an April 28, 2026 action start."
         }
       ],
-      "beforeSha256": "9f554ac4de93fe7b3e491425fbbbce3b5381d86432afb0d502bf2bd44edba363",
+      "beforeSha256": "e10e02cb03b212a76efe5c5370ee817f95ff931cf47cb04aaa0356484e83e26b",
       "proposalSha256": "2f3121a3d53a48e201a1e23f7b955254e3c6fdd22c7a4f2fed4bf80c8bf0291d",
       "before": {
         "make": "Kia",
@@ -722,55 +711,38 @@
         "engines": [],
         "category": "engine",
         "title": "ECU Software Defect Causing Engine Stall While Driving (2026 Recall)",
-        "description": "In April 2026, Korea's Ministry of Land, Infrastructure and Transport (MOLIT) announced a recall of 220,059 Kia Ray vehicles built between December 5, 2019 and August 8, 2025 — the largest single recall in that announcement batch. The engine control unit (ECU) software was found to be inadequately designed, creating a risk that the 1.0L Kappa engine shuts off unexpectedly while the car is being driven. A stall in traffic disables power-assisted systems and creates a collision risk, which is why MOLIT classified it as a safety defect. Corrective action (free ECU reprogramming at Kia service centers) began March 28, 2026.",
-        "solution": "Have the recall performed free of charge at any Kia service center or Auto-Q shop: the ECU software is updated (reprogrammed) to the corrected calibration. Owners can check whether their VIN is included at the Korean automobile recall center (car.go.kr). Owners who paid out of pocket for related repairs before the recall can claim reimbursement from Kia.",
+        "description": "On April 22, 2026, South Korea's automobile recall center published MOLIT's announcement that 220,059 Kia Ray vehicles were being recalled because inadequate engine-control-unit software design could cause the engine to shut off while driving. The corrective action was scheduled to begin April 28, 2026. This indexed page retains its existing 2020-2024 year set; recall applicability must be checked by vehicle or VIN.",
+        "solution": "Check the vehicle or VIN at South Korea's automobile recall center and have the official Kia recall remedy completed. The primary announcement establishes the defect, population and April 28 start date but does not specify a retail repair part, so no part is linked from this page.",
         "severity": "high",
         "confidence": "high",
         "symptoms": [
-          "Engine suddenly shuts off while driving",
-          "Loss of throttle response before the stall",
-          "Power steering and brake assist feel heavy after stall",
-          "Warning lights illuminate when the engine cuts out",
-          "Engine restarts normally after the stall"
+          "Engine may shut off while driving"
         ],
-        "affectedSystems": [],
+        "affectedSystems": [
+          "engine control unit software"
+        ],
         "dtcCodes": [],
-        "estimatedCostLow": 0,
-        "estimatedCostHigh": 0,
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
         "typicalMileageLow": null,
         "typicalMileageHigh": null,
         "citations": [
           {
-            "url": "https://www.etnews.com/20260422000282",
-            "type": "article",
-            "title": "etnews — 국토부, 기아 레이 등 53만대 자발적 리콜 (MOLIT recall announcement incl. 220,059 Kia Ray, ECU software stall risk)"
-          },
-          {
-            "url": "https://www.mobilitypost.co.kr/news/articleView.html?idxno=3487",
-            "type": "article",
-            "title": "Mobility Post — Kia Ray 220,059-unit ECU software recall, corrective action from April 28, 2026"
-          },
-          {
-            "url": "https://www.koreatimes.co.kr/amp/business/companies/20260422/4-carmakers-to-recall-over-530000-vehicles-due-to-faulty-parts",
-            "type": "article",
-            "title": "The Korea Times — 4 carmakers to recall over 530,000 vehicles due to faulty parts (Kia Ray 220,059 units, engine shutdown software problem)"
-          },
-          {
-            "url": "https://econmingle.com/car/2026-korea-mass-recall-hyundai-kia-kgm-toyota-5/",
-            "type": "article",
-            "title": "econmingle — 53만대 리콜 detail incl. Ray production range 2019-12-05 to 2025-08-08 and April 28, 2026 software update"
+            "url": "https://www.car.go.kr/sd/newsDta/list.do",
+            "type": "recall",
+            "title": "South Korea Automobile Recall Center - Kia Ray ECU Software Recall Announcement"
           }
         ],
         "communityRecommendations": [],
         "fixParts": [],
         "humanApproved": true,
         "reportCount": 0,
-        "source": "ai-researched",
+        "source": "manual",
         "status": "published",
         "lastReportedByOwners": "",
-        "reviewedOn": "2026-06-12",
-        "contentUpdatedOn": "",
-        "contentUpdateSummary": "",
+        "reviewedOn": "2026-08-08",
+        "contentUpdatedOn": "2026-08-08",
+        "contentUpdateSummary": "Replaced secondary sources with the Korean government recall announcement, corrected the repair start date from March 28 to April 28, and removed unsupported production dates, power-assist and reimbursement claims.",
         "relatedIssueIds": []
       },
       "proposal": {

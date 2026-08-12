@@ -16,9 +16,9 @@
   ],
   "source": {
     "snapshotFile": "data/_kia-deeplink-snapshot-2026-08-06.json",
-    "snapshotSha256": "f0aa4c5c8ca72321ed9a0b54aa9455e84056b445cb31049545ea07a48748c76b",
-    "snapshotGeneratedAt": "2026-08-07T19:13:14.080Z",
-    "snapshotHash": "f8b4d0e206ea16a5a28546ef1db29b0c885b1a839069b486f07fb1a1759310bf",
+    "snapshotSha256": "c3accea6dc370cc4587164aa6cc8b9fd22dd037621facff22dfc29f4f70a4e2c",
+    "snapshotGeneratedAt": "2026-08-12T13:04:39.309Z",
+    "snapshotHash": "00b5d9cf06b9534ad62b86ed57d17760d6dfa27f38f8b05f7188e7d3cff47877",
     "modelRecordCount": 21
   },
   "observations": [
@@ -311,22 +311,7 @@
       "identityRule": "No source may change an indexed page identity. A different model, component, year boundary or failure outcome requires a byte-for-byte hold.",
       "commerceDecision": "removed-unverified-commerce-from-proposal",
       "changedFields": [
-        "trims",
-        "engines",
-        "description",
-        "solution",
-        "confidence",
-        "symptoms",
-        "affectedSystems",
-        "estimatedCostLow",
-        "estimatedCostHigh",
-        "citations",
-        "fixParts",
-        "humanApproved",
-        "source",
-        "reviewedOn",
-        "contentUpdatedOn",
-        "contentUpdateSummary"
+        "humanApproved"
       ],
       "evidence": [
         {
@@ -340,7 +325,7 @@
           "observation": "Rendered SC273 page 1 establishes certain 2022-2023 non-GT EV6 brake-lamp logic during rapid i-Pedal regenerative deceleration."
         }
       ],
-      "beforeSha256": "3ffba663ef78aafcfddb0d67b187de015a2fca2f3ac84ecd8cd216c74b9820c3",
+      "beforeSha256": "9d393f7e38d54a7cdd80a63f1cb4ca1b3aff7f1782d85038d50ddd2b0054bf42",
       "proposalSha256": "4ce133381d43e0f1d530be47ee5c633454c1528eb93ebc5eba8185649cb6c7a7",
       "before": {
         "make": "Kia",
@@ -349,83 +334,43 @@
           2022,
           2023
         ],
-        "trims": [
-          "Light",
-          "Wind",
-          "GT-Line"
-        ],
-        "engines": [
-          "58 kWh RWD (125 kW)",
-          "77.4 kWh RWD (168 kW)",
-          "77.4 kWh AWD (239 kW)"
-        ],
+        "trims": [],
+        "engines": [],
         "category": "safety",
         "title": "Brake Lights Fail to Illuminate During i-Pedal / One-Pedal Regenerative Deceleration (Campaign SC273A)",
-        "description": "On early EV6s, using strong regenerative braking (i-Pedal / one-pedal mode) can decelerate the car firmly — even to a full stop — without illuminating the brake lights, unless the driver fully lifts off the accelerator. Consumer Reports independently confirmed the 2022 EV6 Wind AWD did not light its brake lamps under high deceleration. Because trailing drivers get no warning, this materially raises rear-end collision risk and generated numerous NHTSA complaints filed under brakes/exterior-lighting/electrical.",
-        "solution": "Kia issued voluntary service campaign SC273A (VCU software logic upgrade) for certain 2022-2023 EV6 non-GT trims. The update changes the brake-light trigger from 'accelerator fully released' to a deceleration-rate threshold (~0.13 g), so the lamps now illuminate during hard regen even if your foot is still on the pedal. It is a free dealer software flash — check your VIN at owners.kia.com and have it applied. Until updated, drivers can reduce risk by not relying on aggressive one-pedal stops in traffic.",
+        "description": "Kia voluntary service campaign SC273 applies to certain 2022-2023 EV6 vehicles other than the GT. During rapid regenerative deceleration in i-Pedal mode, the original Vehicle Control Unit logic may not illuminate the brake lamps unless the accelerator is fully released, reducing warning to following drivers.",
+        "solution": "Have a Kia retailer check the VIN for SC273 and confirm the latest VCU software. The campaign repair updates the VCU logic so the brake lamps illuminate during qualifying rapid regenerative deceleration. The software update is performed through Kia’s diagnostic system; eligibility is VIN-specific.",
         "severity": "high",
-        "confidence": "medium",
+        "confidence": "high",
         "symptoms": [
-          "Brake lights stay off while decelerating firmly in i-Pedal mode",
-          "Car slows or stops without rear lamps lighting",
-          "Tailgaters / near rear-end incidents during regen braking"
+          "Brake lamps do not illuminate during rapid i-Pedal regenerative deceleration"
         ],
-        "affectedSystems": [],
+        "affectedSystems": [
+          "Vehicle Control Unit software",
+          "brake-lamp control logic"
+        ],
         "dtcCodes": [],
-        "estimatedCostLow": 0,
-        "estimatedCostHigh": 0,
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
         "typicalMileageLow": null,
         "typicalMileageHigh": null,
         "citations": [
           {
-            "url": "https://www.consumerreports.org/cars/car-safety/brake-lights-can-fail-to-provide-fair-warning-on-some-evs-a9533519285/",
-            "type": "article",
-            "title": "Brake Lights Can Fail to Provide Fair Warning on Some EVs — Consumer Reports"
-          },
-          {
-            "url": "https://www.kiaevforums.com/threads/important-ev6-regen-brake-light-fix-available-in-the-usa-info-and-test.8933/",
-            "type": "forum",
-            "title": "Important EV6 Regen Brake Light Fix Available in the USA! — Kia EV Forum"
-          },
-          {
-            "url": "https://m.carcomplaints.com/Kia/EV6/2022/brakes/service_brakes.shtml",
-            "type": "article",
-            "title": "2022 Kia EV6 Service Brakes Problems — CarComplaints"
+            "url": "https://static.nhtsa.gov/odi/tsbs/2023/MC-10241180-0001.pdf",
+            "type": "tsb",
+            "title": "Kia SC273 Rev. 1 - VCU Software Logic Upgrade"
           }
         ],
         "communityRecommendations": [],
-        "fixParts": [
-          {
-            "note": "No physical parts required. SC273A is a free dealer VCU software reflash for 2022-2023 EV6 (built Nov 17 2021 - May 30 2023). The update changes the brake-light trigger from 'accelerator fully released' to a deceleration-rate threshold (~0.13 g) so brake lamps illuminate during hard i-Pedal/one-peda",
-            "buyLinks": [
-              {
-                "url": "https://www.amazon.com/s?k=VCU%20(Vehicle%20Control%20Unit)%20software%20logic%20upgrade%20%E2%80%94%20Campaign%20SC273A&tag=au7o-20",
-                "vendor": "Amazon"
-              },
-              {
-                "url": "https://www.rockauto.com/en/partsearch/?q=VCU%20(Vehicle%20Control%20Unit)%20software%20logic%20upgrade%20%E2%80%94%20Campaign%20SC273A",
-                "vendor": "RockAuto"
-              },
-              {
-                "url": "https://www.ebay.com/sch/i.html?_nkw=VCU%20(Vehicle%20Control%20Unit)%20software%20logic%20upgrade%20%E2%80%94%20Campaign%20SC273A",
-                "vendor": "eBay"
-              }
-            ],
-            "priceLow": 0,
-            "component": "VCU (Vehicle Control Unit) software logic upgrade — Campaign SC273A",
-            "priceHigh": 0,
-            "oemPartNumber": "",
-            "aftermarketXref": []
-          }
-        ],
+        "fixParts": [],
         "humanApproved": true,
         "reportCount": 0,
-        "source": "ai-researched",
+        "source": "manual",
         "status": "published",
         "lastReportedByOwners": "",
-        "reviewedOn": "2026-07-03",
-        "contentUpdatedOn": "",
-        "contentUpdateSummary": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Rewrote the same SC273 brake-lamp identity from the visually inspected Kia campaign and removed secondary claims, the unsupported deceleration threshold and software commerce.",
         "relatedIssueIds": []
       },
       "proposal": {
@@ -624,8 +569,8 @@
           "observation": "The frozen page lacks usable primary citation URLs; model recall inventory is a boundary check and does not prove the broader claim."
         }
       ],
-      "beforeSha256": "6471b2dc18a2c846a487051d5530c40742eee6faf802536a5f3cf2541aa9fb91",
-      "proposalSha256": "6471b2dc18a2c846a487051d5530c40742eee6faf802536a5f3cf2541aa9fb91",
+      "beforeSha256": "055413c0e100e9a2884752b988e7c73c066746ccc3f54b933b805e74ad6734e4",
+      "proposalSha256": "055413c0e100e9a2884752b988e7c73c066746ccc3f54b933b805e74ad6734e4",
       "before": {
         "make": "Kia",
         "model": "EV6",
@@ -684,8 +629,7 @@
             "type": "part",
             "content": "Level 2 portable EV charger for reliable home or on-the-go charging",
             "partName": "Portable Level 2 EV Charger",
-            "partBrand": "Lectron",
-            "affiliateUrl": "https://www.amazon.com/s?k=Lectron%20Portable%20Level%202%20EV%20Charger%20Kia%20EV6&tag=au7o-20"
+            "partBrand": "Lectron"
           }
         ],
         "fixParts": [],
@@ -759,8 +703,7 @@
             "type": "part",
             "content": "Level 2 portable EV charger for reliable home or on-the-go charging",
             "partName": "Portable Level 2 EV Charger",
-            "partBrand": "Lectron",
-            "affiliateUrl": "https://www.amazon.com/s?k=Lectron%20Portable%20Level%202%20EV%20Charger%20Kia%20EV6&tag=au7o-20"
+            "partBrand": "Lectron"
           }
         ],
         "fixParts": [],
@@ -793,8 +736,8 @@
           "observation": "The complete EV6 recall inventory does not independently prove this broader owner-report, diagnostic, repair or commerce page."
         }
       ],
-      "beforeSha256": "e7fb8ebf5668e823489511f7ac2cff08a5cb95369d6a87c8bd765773cd6320f9",
-      "proposalSha256": "e7fb8ebf5668e823489511f7ac2cff08a5cb95369d6a87c8bd765773cd6320f9",
+      "beforeSha256": "63bf690014e91b55ccc4bbec05e12743be4435c1f10bf745d384442406e11919",
+      "proposalSha256": "63bf690014e91b55ccc4bbec05e12743be4435c1f10bf745d384442406e11919",
       "before": {
         "make": "Kia",
         "model": "EV6",
@@ -857,16 +800,8 @@
             "note": "AWD EV6 high-voltage electric A/C compressor assembly (compressor + integrated piping/inverter), 2022-2024. Confirmed on Kia OEM catalogs and OEM eBay listings. HV electric compressors are dealer/OEM only — no legitimate aftermarket cross-reference exists. Verify exact PN by VIN before ordering; nat",
             "buyLinks": [
               {
-                "url": "https://www.amazon.com/s?k=Kia%20EV6%20Electric%20A%2FC%20compressor%20unit&tag=au7o-20",
-                "vendor": "Amazon"
-              },
-              {
                 "url": "https://www.rockauto.com/en/partsearch/?partnum=977E1-CV200",
                 "vendor": "RockAuto"
-              },
-              {
-                "url": "https://www.ebay.com/sch/i.html?_nkw=977E1-CV200",
-                "vendor": "eBay"
               }
             ],
             "priceLow": 700,
@@ -879,16 +814,8 @@
             "note": "Later service/superseding compressor PN that appears on some 2023 EV6 AWD builds (confirmed as 'NEW OEM Kia AC Compressor 977E1-CV450 fits Kia EV6 AWD 2023'). OEM-only. Confirm which PN your VIN calls out — CV200 vs CV450 differs by build.",
             "buyLinks": [
               {
-                "url": "https://www.amazon.com/s?k=Kia%20EV6%20Electric%20A%2FC%20compressor&tag=au7o-20",
-                "vendor": "Amazon"
-              },
-              {
                 "url": "https://www.rockauto.com/en/partsearch/?partnum=977E1-CV450",
                 "vendor": "RockAuto"
-              },
-              {
-                "url": "https://www.ebay.com/sch/i.html?_nkw=977E1-CV450",
-                "vendor": "eBay"
               }
             ],
             "priceLow": 800,
@@ -901,16 +828,8 @@
             "note": "RWD EV6 electric A/C compressor, 2022-2024. MSRP ~$1,039-$1,093, street ~$705-$721. Included because the fix says verify by VIN — RWD builds use this bare-compressor PN rather than the 977E1 AWD assembly. OEM-only.",
             "buyLinks": [
               {
-                "url": "https://www.amazon.com/s?k=Kia%20EV6%20A%2FC%20compressor&tag=au7o-20",
-                "vendor": "Amazon"
-              },
-              {
                 "url": "https://www.rockauto.com/en/partsearch/?partnum=97729-CV200",
                 "vendor": "RockAuto"
-              },
-              {
-                "url": "https://www.ebay.com/sch/i.html?_nkw=97729-CV200",
-                "vendor": "eBay"
               }
             ],
             "priceLow": 700,
@@ -923,16 +842,8 @@
             "note": "Evaporator core, 2022-2025 EV6. Only needed if the refrigerant-pressure check finds a leak at the evaporator (secondary to the compressor). MSRP ~$496, street ~$332-$340. Confirmed on Kia OEM catalogs.",
             "buyLinks": [
               {
-                "url": "https://www.amazon.com/s?k=Kia%20EV6%20A%2FC%20evaporator%20core&tag=au7o-20",
-                "vendor": "Amazon"
-              },
-              {
                 "url": "https://www.rockauto.com/en/partsearch/?partnum=97139-CV000",
                 "vendor": "RockAuto"
-              },
-              {
-                "url": "https://www.ebay.com/sch/i.html?_nkw=97139-CV000",
-                "vendor": "eBay"
               }
             ],
             "priceLow": 330,
@@ -1014,16 +925,8 @@
             "note": "AWD EV6 high-voltage electric A/C compressor assembly (compressor + integrated piping/inverter), 2022-2024. Confirmed on Kia OEM catalogs and OEM eBay listings. HV electric compressors are dealer/OEM only — no legitimate aftermarket cross-reference exists. Verify exact PN by VIN before ordering; nat",
             "buyLinks": [
               {
-                "url": "https://www.amazon.com/s?k=Kia%20EV6%20Electric%20A%2FC%20compressor%20unit&tag=au7o-20",
-                "vendor": "Amazon"
-              },
-              {
                 "url": "https://www.rockauto.com/en/partsearch/?partnum=977E1-CV200",
                 "vendor": "RockAuto"
-              },
-              {
-                "url": "https://www.ebay.com/sch/i.html?_nkw=977E1-CV200",
-                "vendor": "eBay"
               }
             ],
             "priceLow": 700,
@@ -1036,16 +939,8 @@
             "note": "Later service/superseding compressor PN that appears on some 2023 EV6 AWD builds (confirmed as 'NEW OEM Kia AC Compressor 977E1-CV450 fits Kia EV6 AWD 2023'). OEM-only. Confirm which PN your VIN calls out — CV200 vs CV450 differs by build.",
             "buyLinks": [
               {
-                "url": "https://www.amazon.com/s?k=Kia%20EV6%20Electric%20A%2FC%20compressor&tag=au7o-20",
-                "vendor": "Amazon"
-              },
-              {
                 "url": "https://www.rockauto.com/en/partsearch/?partnum=977E1-CV450",
                 "vendor": "RockAuto"
-              },
-              {
-                "url": "https://www.ebay.com/sch/i.html?_nkw=977E1-CV450",
-                "vendor": "eBay"
               }
             ],
             "priceLow": 800,
@@ -1058,16 +953,8 @@
             "note": "RWD EV6 electric A/C compressor, 2022-2024. MSRP ~$1,039-$1,093, street ~$705-$721. Included because the fix says verify by VIN — RWD builds use this bare-compressor PN rather than the 977E1 AWD assembly. OEM-only.",
             "buyLinks": [
               {
-                "url": "https://www.amazon.com/s?k=Kia%20EV6%20A%2FC%20compressor&tag=au7o-20",
-                "vendor": "Amazon"
-              },
-              {
                 "url": "https://www.rockauto.com/en/partsearch/?partnum=97729-CV200",
                 "vendor": "RockAuto"
-              },
-              {
-                "url": "https://www.ebay.com/sch/i.html?_nkw=97729-CV200",
-                "vendor": "eBay"
               }
             ],
             "priceLow": 700,
@@ -1080,16 +967,8 @@
             "note": "Evaporator core, 2022-2025 EV6. Only needed if the refrigerant-pressure check finds a leak at the evaporator (secondary to the compressor). MSRP ~$496, street ~$332-$340. Confirmed on Kia OEM catalogs.",
             "buyLinks": [
               {
-                "url": "https://www.amazon.com/s?k=Kia%20EV6%20A%2FC%20evaporator%20core&tag=au7o-20",
-                "vendor": "Amazon"
-              },
-              {
                 "url": "https://www.rockauto.com/en/partsearch/?partnum=97139-CV000",
                 "vendor": "RockAuto"
-              },
-              {
-                "url": "https://www.ebay.com/sch/i.html?_nkw=97139-CV000",
-                "vendor": "eBay"
               }
             ],
             "priceLow": 330,
@@ -1271,7 +1150,7 @@
       "id": "kia-ev6-forward-collision-avoidance-assist-phantom-braking-false-war",
       "model": "EV6",
       "action": "keep_published_pending_source",
-      "reason": "The frozen 2022-2025 \"Forward Collision-Avoidance Assist (FCA) Phantom Braking / False Warnings\" page has 2 citation(s) from www.kia.com, theweeklydriver.com, but no exact OEM or government primary package establishing its complete year, vehicle, mechanism, diagnostic and repair scope. It also carries 2 part recommendation(s) and 6 search-style commerce link(s) without exact source-to-fitment proof. The indexed row remains byte-for-byte unchanged.",
+      "reason": "The frozen 2022-2025 \"Forward Collision-Avoidance Assist (FCA) Phantom Braking / False Warnings\" page has 2 citation(s) from www.kia.com, theweeklydriver.com, but no exact OEM or government primary package establishing its complete year, vehicle, mechanism, diagnostic and repair scope. It also carries 2 part recommendation(s) and 2 search-style commerce link(s) without exact source-to-fitment proof. The indexed row remains byte-for-byte unchanged.",
       "identityRule": "No source may change an indexed page identity. A different model, component, year boundary or failure outcome requires a byte-for-byte hold.",
       "commerceDecision": "unchanged-commerce-pending-exact-source-and-fitment",
       "changedFields": [],
@@ -1283,8 +1162,8 @@
           "observation": "The complete EV6 recall inventory does not independently prove this broader owner-report, diagnostic, repair or commerce page."
         }
       ],
-      "beforeSha256": "49634d7657ba3515eefca1bda10a0b0258a08e1f45bc7db9ee70cea96098ba28",
-      "proposalSha256": "49634d7657ba3515eefca1bda10a0b0258a08e1f45bc7db9ee70cea96098ba28",
+      "beforeSha256": "05956e8e72c2eef7b25a18d4f165a2978dc2f67664a6cb1e8fae0878f04ca2cf",
+      "proposalSha256": "05956e8e72c2eef7b25a18d4f165a2978dc2f67664a6cb1e8fae0878f04ca2cf",
       "before": {
         "make": "Kia",
         "model": "EV6",
@@ -1342,16 +1221,8 @@
             "note": "Verified OEM PN for 2022-2024 Kia EV6 forward ACC/FCA radar (behind front bumper/emblem). This is a replacement part ONLY if cleaning + recalibration + software update do not resolve phantom braking and the radar is confirmed faulty — the documented first-line fix is keeping the bumper radar cover c",
             "buyLinks": [
               {
-                "url": "https://www.amazon.com/s?k=Kia%20EV6%20Front%20radar%20sensor&tag=au7o-20",
-                "vendor": "Amazon"
-              },
-              {
                 "url": "https://www.rockauto.com/en/partsearch/?partnum=99110-CV000",
                 "vendor": "RockAuto"
-              },
-              {
-                "url": "https://www.ebay.com/sch/i.html?_nkw=99110-CV000",
-                "vendor": "eBay"
               }
             ],
             "priceLow": 480,
@@ -1364,16 +1235,8 @@
             "note": "Verified OEM PN for 2022-2024 Kia EV6 windshield-mounted front view camera (mounts behind rearview mirror; feeds FCA). Replacement part ONLY if a fouled/misaligned or faulty camera persists after cleaning the windshield camera area and dealer recalibration/software update. Forward-camera recalibrati",
             "buyLinks": [
               {
-                "url": "https://www.amazon.com/s?k=Kia%20EV6%20Front%20view%20camera&tag=au7o-20",
-                "vendor": "Amazon"
-              },
-              {
                 "url": "https://www.rockauto.com/en/partsearch/?partnum=99211-CV200",
                 "vendor": "RockAuto"
-              },
-              {
-                "url": "https://www.ebay.com/sch/i.html?_nkw=99211-CV200",
-                "vendor": "eBay"
               }
             ],
             "priceLow": 320,
@@ -1450,16 +1313,8 @@
             "note": "Verified OEM PN for 2022-2024 Kia EV6 forward ACC/FCA radar (behind front bumper/emblem). This is a replacement part ONLY if cleaning + recalibration + software update do not resolve phantom braking and the radar is confirmed faulty — the documented first-line fix is keeping the bumper radar cover c",
             "buyLinks": [
               {
-                "url": "https://www.amazon.com/s?k=Kia%20EV6%20Front%20radar%20sensor&tag=au7o-20",
-                "vendor": "Amazon"
-              },
-              {
                 "url": "https://www.rockauto.com/en/partsearch/?partnum=99110-CV000",
                 "vendor": "RockAuto"
-              },
-              {
-                "url": "https://www.ebay.com/sch/i.html?_nkw=99110-CV000",
-                "vendor": "eBay"
               }
             ],
             "priceLow": 480,
@@ -1472,16 +1327,8 @@
             "note": "Verified OEM PN for 2022-2024 Kia EV6 windshield-mounted front view camera (mounts behind rearview mirror; feeds FCA). Replacement part ONLY if a fouled/misaligned or faulty camera persists after cleaning the windshield camera area and dealer recalibration/software update. Forward-camera recalibrati",
             "buyLinks": [
               {
-                "url": "https://www.amazon.com/s?k=Kia%20EV6%20Front%20view%20camera&tag=au7o-20",
-                "vendor": "Amazon"
-              },
-              {
                 "url": "https://www.rockauto.com/en/partsearch/?partnum=99211-CV200",
                 "vendor": "RockAuto"
-              },
-              {
-                "url": "https://www.ebay.com/sch/i.html?_nkw=99211-CV200",
-                "vendor": "eBay"
               }
             ],
             "priceLow": 320,
@@ -1506,7 +1353,7 @@
       "id": "kia-ev6-front-suspension-clunk-knock-over-bumps",
       "model": "EV6",
       "action": "keep_published_pending_source",
-      "reason": "The frozen 2022-2025 \"Front Suspension Clunk / Knock Over Bumps (Sway-Bar Links and Strut Mounts)\" page has 3 citation(s) from www.kiaevforums.com, repairpal.com, but no exact OEM or government primary package establishing its complete year, vehicle, mechanism, diagnostic and repair scope. It also carries 5 part recommendation(s) and 15 search-style commerce link(s) without exact source-to-fitment proof. The indexed row remains byte-for-byte unchanged.",
+      "reason": "The frozen 2022-2025 \"Front Suspension Clunk / Knock Over Bumps (Sway-Bar Links and Strut Mounts)\" page has 3 citation(s) from www.kiaevforums.com, repairpal.com, but no exact OEM or government primary package establishing its complete year, vehicle, mechanism, diagnostic and repair scope. It also carries 5 part recommendation(s) and 5 search-style commerce link(s) without exact source-to-fitment proof. The indexed row remains byte-for-byte unchanged.",
       "identityRule": "No source may change an indexed page identity. A different model, component, year boundary or failure outcome requires a byte-for-byte hold.",
       "commerceDecision": "unchanged-commerce-pending-exact-source-and-fitment",
       "changedFields": [],
@@ -1518,8 +1365,8 @@
           "observation": "The complete EV6 recall inventory does not independently prove this broader owner-report, diagnostic, repair or commerce page."
         }
       ],
-      "beforeSha256": "a06bdadd0ac948aa3df55ac93ea3e92fc16c390b33c5dcc1eb851b1182ecf95e",
-      "proposalSha256": "a06bdadd0ac948aa3df55ac93ea3e92fc16c390b33c5dcc1eb851b1182ecf95e",
+      "beforeSha256": "3702f0719248ab55f386fb32145a48aa69f3a79e28cc3fa8d5a2149f70968dec",
+      "proposalSha256": "3702f0719248ab55f386fb32145a48aa69f3a79e28cc3fa8d5a2149f70968dec",
       "before": {
         "make": "Kia",
         "model": "EV6",
@@ -1580,16 +1427,8 @@
             "note": "Kia OEM 'LINK ASSY-FRONT STAB', LH, confirmed fitment for 2022-2024 Kia EV6 (all motor configs) via kiapartsnow. CV000-series PN is E-GMP/EV6-specific — correct-era for this 2022-2025 issue. Pricing MSRP ~$66-89, sale ~$46-61. Worn front sway-bar links are the most common cause of the EV6 over-bump ",
             "buyLinks": [
               {
-                "url": "https://www.amazon.com/s?k=Kia%20EV6%20Front%20stabilizer&tag=au7o-20",
-                "vendor": "Amazon"
-              },
-              {
                 "url": "https://www.rockauto.com/en/partsearch/?partnum=54830-CV000",
                 "vendor": "RockAuto"
-              },
-              {
-                "url": "https://www.ebay.com/sch/i.html?_nkw=54830-CV000",
-                "vendor": "eBay"
               }
             ],
             "priceLow": 46,
@@ -1602,16 +1441,8 @@
             "note": "Kia OEM 'LINK ASSY-FRONT STAB', RH counterpart to 54830-CV000, confirmed for 2022-2024 EV6 (all motor configs) via kiapartsnow (~$54 sale / $78.25 MSRP). EV6/E-GMP-specific PN, correct era. Best-practice to replace both LH (54830-CV000) and RH (54831-CV000) links together even if only one is audibly",
             "buyLinks": [
               {
-                "url": "https://www.amazon.com/s?k=Kia%20EV6%20Front%20stabilizer&tag=au7o-20",
-                "vendor": "Amazon"
-              },
-              {
                 "url": "https://www.rockauto.com/en/partsearch/?partnum=54831-CV000",
                 "vendor": "RockAuto"
-              },
-              {
-                "url": "https://www.ebay.com/sch/i.html?_nkw=54831-CV000",
-                "vendor": "eBay"
               }
             ],
             "priceLow": 54,
@@ -1624,16 +1455,8 @@
             "note": "Kia OEM 'INSULATOR ASSY-STRUT' (front strut top mount), confirmed for 2022-2024 Kia EV6 across multiple dealers (Tasca, GenuineKiaParts, KiaPartsOnline). GI-suffix is an EV6-family code (matches EV6 front sway bar 54810-GI010). Correct-era part. Replaced when the clunk traces to a worn/knocking stru",
             "buyLinks": [
               {
-                "url": "https://www.amazon.com/s?k=Kia%20EV6%20Front%20strut%20top%20mount%20%2F%20insulator&tag=au7o-20",
-                "vendor": "Amazon"
-              },
-              {
                 "url": "https://www.rockauto.com/en/partsearch/?partnum=54610-GI000",
                 "vendor": "RockAuto"
-              },
-              {
-                "url": "https://www.ebay.com/sch/i.html?_nkw=54610-GI000",
-                "vendor": "eBay"
               }
             ],
             "priceLow": 75,
@@ -1646,16 +1469,8 @@
             "note": "Kia OEM front LH complete strut/shock, 2022-2025 EV6. CRITICAL VIN/trim split: 54650-CV400 is the base (non-ECS) strut; 54650-CVAC0 fits cars with Electronically Controlled Suspension (GT / adaptive). GT and some option packages use different suffixes (e.g. -XG200). Verify by VIN which suspension yo",
             "buyLinks": [
               {
-                "url": "https://www.amazon.com/s?k=Kia%20EV6%20Front%20strut%20assembly&tag=au7o-20",
-                "vendor": "Amazon"
-              },
-              {
                 "url": "https://www.rockauto.com/en/partsearch/?partnum=54650-CV400",
                 "vendor": "RockAuto"
-              },
-              {
-                "url": "https://www.ebay.com/sch/i.html?_nkw=54650-CV400",
-                "vendor": "eBay"
               }
             ],
             "priceLow": 200,
@@ -1670,16 +1485,8 @@
             "note": "Kia OEM front RH complete strut/shock, 2022-2025 EV6, RH counterpart to 54650-CV400. Same VIN/ECS caveat: 54651-CV400 = base (non-ECS); 54651-CVAC0 = Electronically Controlled Suspension. Confirm suspension type by VIN. When a strut is replaced for the clunk, the top mount (54610-GI000) is typically",
             "buyLinks": [
               {
-                "url": "https://www.amazon.com/s?k=Kia%20EV6%20Front%20strut%20assembly&tag=au7o-20",
-                "vendor": "Amazon"
-              },
-              {
                 "url": "https://www.rockauto.com/en/partsearch/?partnum=54651-CV400",
                 "vendor": "RockAuto"
-              },
-              {
-                "url": "https://www.ebay.com/sch/i.html?_nkw=54651-CV400",
-                "vendor": "eBay"
               }
             ],
             "priceLow": 200,
@@ -1761,16 +1568,8 @@
             "note": "Kia OEM 'LINK ASSY-FRONT STAB', LH, confirmed fitment for 2022-2024 Kia EV6 (all motor configs) via kiapartsnow. CV000-series PN is E-GMP/EV6-specific — correct-era for this 2022-2025 issue. Pricing MSRP ~$66-89, sale ~$46-61. Worn front sway-bar links are the most common cause of the EV6 over-bump ",
             "buyLinks": [
               {
-                "url": "https://www.amazon.com/s?k=Kia%20EV6%20Front%20stabilizer&tag=au7o-20",
-                "vendor": "Amazon"
-              },
-              {
                 "url": "https://www.rockauto.com/en/partsearch/?partnum=54830-CV000",
                 "vendor": "RockAuto"
-              },
-              {
-                "url": "https://www.ebay.com/sch/i.html?_nkw=54830-CV000",
-                "vendor": "eBay"
               }
             ],
             "priceLow": 46,
@@ -1783,16 +1582,8 @@
             "note": "Kia OEM 'LINK ASSY-FRONT STAB', RH counterpart to 54830-CV000, confirmed for 2022-2024 EV6 (all motor configs) via kiapartsnow (~$54 sale / $78.25 MSRP). EV6/E-GMP-specific PN, correct era. Best-practice to replace both LH (54830-CV000) and RH (54831-CV000) links together even if only one is audibly",
             "buyLinks": [
               {
-                "url": "https://www.amazon.com/s?k=Kia%20EV6%20Front%20stabilizer&tag=au7o-20",
-                "vendor": "Amazon"
-              },
-              {
                 "url": "https://www.rockauto.com/en/partsearch/?partnum=54831-CV000",
                 "vendor": "RockAuto"
-              },
-              {
-                "url": "https://www.ebay.com/sch/i.html?_nkw=54831-CV000",
-                "vendor": "eBay"
               }
             ],
             "priceLow": 54,
@@ -1805,16 +1596,8 @@
             "note": "Kia OEM 'INSULATOR ASSY-STRUT' (front strut top mount), confirmed for 2022-2024 Kia EV6 across multiple dealers (Tasca, GenuineKiaParts, KiaPartsOnline). GI-suffix is an EV6-family code (matches EV6 front sway bar 54810-GI010). Correct-era part. Replaced when the clunk traces to a worn/knocking stru",
             "buyLinks": [
               {
-                "url": "https://www.amazon.com/s?k=Kia%20EV6%20Front%20strut%20top%20mount%20%2F%20insulator&tag=au7o-20",
-                "vendor": "Amazon"
-              },
-              {
                 "url": "https://www.rockauto.com/en/partsearch/?partnum=54610-GI000",
                 "vendor": "RockAuto"
-              },
-              {
-                "url": "https://www.ebay.com/sch/i.html?_nkw=54610-GI000",
-                "vendor": "eBay"
               }
             ],
             "priceLow": 75,
@@ -1827,16 +1610,8 @@
             "note": "Kia OEM front LH complete strut/shock, 2022-2025 EV6. CRITICAL VIN/trim split: 54650-CV400 is the base (non-ECS) strut; 54650-CVAC0 fits cars with Electronically Controlled Suspension (GT / adaptive). GT and some option packages use different suffixes (e.g. -XG200). Verify by VIN which suspension yo",
             "buyLinks": [
               {
-                "url": "https://www.amazon.com/s?k=Kia%20EV6%20Front%20strut%20assembly&tag=au7o-20",
-                "vendor": "Amazon"
-              },
-              {
                 "url": "https://www.rockauto.com/en/partsearch/?partnum=54650-CV400",
                 "vendor": "RockAuto"
-              },
-              {
-                "url": "https://www.ebay.com/sch/i.html?_nkw=54650-CV400",
-                "vendor": "eBay"
               }
             ],
             "priceLow": 200,
@@ -1851,16 +1626,8 @@
             "note": "Kia OEM front RH complete strut/shock, 2022-2025 EV6, RH counterpart to 54650-CV400. Same VIN/ECS caveat: 54651-CV400 = base (non-ECS); 54651-CVAC0 = Electronically Controlled Suspension. Confirm suspension type by VIN. When a strut is replaced for the clunk, the top mount (54610-GI000) is typically",
             "buyLinks": [
               {
-                "url": "https://www.amazon.com/s?k=Kia%20EV6%20Front%20strut%20assembly&tag=au7o-20",
-                "vendor": "Amazon"
-              },
-              {
                 "url": "https://www.rockauto.com/en/partsearch/?partnum=54651-CV400",
                 "vendor": "RockAuto"
-              },
-              {
-                "url": "https://www.ebay.com/sch/i.html?_nkw=54651-CV400",
-                "vendor": "eBay"
               }
             ],
             "priceLow": 200,
@@ -1899,8 +1666,8 @@
           "observation": "The frozen page lacks usable primary citation URLs; model recall inventory is a boundary check and does not prove the broader claim."
         }
       ],
-      "beforeSha256": "becc66cdd8794c2023fab9484d927e4b78924dd708673d666c1a6b5f4e5faeed",
-      "proposalSha256": "becc66cdd8794c2023fab9484d927e4b78924dd708673d666c1a6b5f4e5faeed",
+      "beforeSha256": "d71afe093ed77864a313c5160842e6604ab349beee73c393ba24ffa9013e2744",
+      "proposalSha256": "d71afe093ed77864a313c5160842e6604ab349beee73c393ba24ffa9013e2744",
       "before": {
         "make": "Kia",
         "model": "EV6",
@@ -1960,15 +1727,13 @@
             "type": "part",
             "content": "Prestone coolant flush kit for complete cooling system service",
             "partName": "Coolant Flush Kit",
-            "partBrand": "Prestone",
-            "affiliateUrl": "https://www.amazon.com/s?k=Prestone%20coolant%20flush%20kit&tag=au7o-20"
+            "partBrand": "Prestone"
           },
           {
             "type": "part",
             "content": "Stant thermostat — preventive replacement during coolant service",
             "partName": "Thermostat",
-            "partBrand": "Stant",
-            "affiliateUrl": "https://www.amazon.com/s?k=Stant%20thermostat&tag=au7o-20"
+            "partBrand": "Stant"
           }
         ],
         "fixParts": [],
@@ -2041,15 +1806,13 @@
             "type": "part",
             "content": "Prestone coolant flush kit for complete cooling system service",
             "partName": "Coolant Flush Kit",
-            "partBrand": "Prestone",
-            "affiliateUrl": "https://www.amazon.com/s?k=Prestone%20coolant%20flush%20kit&tag=au7o-20"
+            "partBrand": "Prestone"
           },
           {
             "type": "part",
             "content": "Stant thermostat — preventive replacement during coolant service",
             "partName": "Thermostat",
-            "partBrand": "Stant",
-            "affiliateUrl": "https://www.amazon.com/s?k=Stant%20thermostat&tag=au7o-20"
+            "partBrand": "Stant"
           }
         ],
         "fixParts": [],
@@ -2072,22 +1835,7 @@
       "identityRule": "No source may change an indexed page identity. A different model, component, year boundary or failure outcome requires a byte-for-byte hold.",
       "commerceDecision": "removed-unverified-commerce-from-proposal",
       "changedFields": [
-        "description",
-        "solution",
-        "symptoms",
-        "affectedSystems",
-        "dtcCodes",
-        "estimatedCostLow",
-        "estimatedCostHigh",
-        "citations",
-        "communityRecommendations",
-        "humanApproved",
-        "reportCount",
-        "source",
-        "lastReportedByOwners",
-        "reviewedOn",
-        "contentUpdatedOn",
-        "contentUpdateSummary"
+        "humanApproved"
       ],
       "evidence": [
         {
@@ -2105,7 +1853,7 @@
           "observation": "Campaign 24V867 and rendered Part 573 pages establish the 2022-2024 EV6 ICCU/12V failure identity, remedy and explicit replacement of 24V200."
         }
       ],
-      "beforeSha256": "e469a8478a3da86a6b758c30dde370e1f15dee5f62031187eccde7ff6ad4d147",
+      "beforeSha256": "1636814538af5dc5a6d7191d09ff4e6545c8c58a052c7b58e7c4925c150f67a6",
       "proposalSha256": "148af2a32458771b80e92f25c8aecb15c56e32ae26fe3f5cfdb5f7c730fbe1f9",
       "before": {
         "make": "Kia",
@@ -2119,127 +1867,48 @@
         "engines": [],
         "category": "electrical",
         "title": "ICCU Failure and 12V Battery Drain",
-        "description": "The Integrated Charging Control Unit (ICCU) in the 2022-2024 EV6 can malfunction and stop charging the 12V battery from the main high-voltage battery pack. This causes the 12V battery to drain, resulting in a no-start condition and loss of drive power. NHTSA recall covers affected vehicles. The ICCU is responsible for converting high-voltage DC to 12V DC and managing Vehicle-to-Load (V2L) functionality. Lemon law firms report receiving nearly 200 calls per month for EV6 ICCU issues.",
-        "solution": "Check VIN for ICCU recall at owners.kia.com. Dealer replaces the ICCU module free of charge ($1,500-2,500 part if out of warranty). Proactively replace the OEM 12V battery with a high-quality AGM battery (Optima D51R or equivalent) after 2 years. Some owners report that removing Kia Connect app integration and performing a system reset reduced 12V drain between ICCU failures.",
+        "description": "NHTSA campaign 24V867000 (Kia SC327) covers all 2022-2023 and certain 2024 EV6 vehicles. Transient high voltage and thermal cycling can damage the Integrated Charging Control Unit, preventing it from charging the 12-volt battery. Continued driving after warnings may cause progressive power reduction and eventual loss of motive power.",
+        "solution": "Check the VIN for campaign 24V867000. Kia dealers inspect the ICCU and replace the ICCU and its fuse if necessary, then install improved software that further optimizes thermal management and peak voltage. The recall repair is free. Campaign 24V867 expands and replaces 24V200, so vehicles repaired under the earlier recall need the newer remedy.",
         "severity": "high",
         "confidence": "high",
         "symptoms": [
-          "12V battery low warning on dashboard",
-          "Vehicle will not start or power on",
-          "Loss of drive power while driving",
-          "Auxiliary systems (lights, radio) malfunction",
-          "Multiple 12V battery replacements needed",
-          "V2L (Vehicle-to-Load) stops working"
+          "Check Electric Vehicle System warning",
+          "Charging-system or master warning light",
+          "Power-down (turtle) warning",
+          "Progressive reduction or loss of motive power"
         ],
         "affectedSystems": [
-          "Electrical"
+          "Integrated Charging Control Unit",
+          "ICCU fuse",
+          "12-volt battery charging"
         ],
-        "dtcCodes": [
-          "P0401",
-          "P0402",
-          "P0403",
-          "P0404"
-        ],
-        "estimatedCostLow": 0,
-        "estimatedCostHigh": 2500,
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
         "typicalMileageLow": null,
         "typicalMileageHigh": null,
         "citations": [
           {
-            "url": "https://recharged.com/articles/kia-ev6-iccu-recall-fix",
-            "type": "media",
-            "title": "Kia EV6 ICCU Recall Fix Owners Guide - Recharged"
+            "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=24V867000",
+            "type": "recall",
+            "title": "NHTSA Campaign 24V867000 - ICCU May Fail and Discharge 12V Battery"
           },
           {
-            "url": "https://www.consumerreports.org/cars/car-recalls-defects/hyundai-ioniq-kia-iccu-failure-tesla-a3038878758/",
-            "type": "media",
-            "title": "Hyundai and Kia Charging Unit Issues - Consumer Reports"
-          },
-          {
-            "url": "https://getvoltest.com/blogs/news/hyundai-kia-iccu-recall-explained-why-208-000-evs-were-recalled-twice",
-            "type": "media",
-            "title": "Hyundai Kia ICCU Recall Explained 208K EVs Recalled Twice - Voltest"
+            "url": "https://static.nhtsa.gov/odi/rcl/2024/RCLRPT-24V867-8124.PDF",
+            "type": "recall",
+            "title": "Part 573 Safety Recall Report 24V867"
           }
         ],
-        "communityRecommendations": [
-          {
-            "type": "tip",
-            "content": "Replace the OEM 12V battery with a quality AGM battery (like Optima D51R) after 2 years regardless of condition. The OEM battery is undersized for the electronics demand",
-            "upvotes": 0,
-            "needsReview": false
-          },
-          {
-            "type": "tip",
-            "content": "If you get a 12V battery warning, drive to the dealer immediately rather than shutting off the car. Once off, it may not restart",
-            "upvotes": 0,
-            "needsReview": false
-          },
-          {
-            "type": "part",
-            "content": "High-performance AGM battery with excellent cold cranking amps and deep cycle capability",
-            "partName": "RedTop AGM Battery",
-            "partBrand": "Optima",
-            "affiliateUrl": "https://www.amazon.com/s?k=Optima%20RedTop%20AGM%20Battery%20Kia%20EV6&tag=au7o-20"
-          },
-          {
-            "type": "part",
-            "content": "OEM-quality replacement battery with reliable performance",
-            "partName": "Professional AGM Battery",
-            "partBrand": "ACDelco",
-            "affiliateUrl": "https://www.amazon.com/s?k=ACDelco%20Professional%20AGM%20Battery%20Kia%20EV6&tag=au7o-20"
-          },
-          {
-            "type": "part",
-            "content": "Automatic battery maintainer to prevent parasitic drain issues during storage",
-            "partName": "Junior 12V Battery Charger Maintainer",
-            "partBrand": "Battery Tender",
-            "affiliateUrl": "https://www.amazon.com/s?k=Battery%20Tender%20Junior%2012V%20Battery%20Charger%20Maintainer%20Kia%20EV6&tag=au7o-20"
-          },
-          {
-            "type": "part",
-            "content": "OEM-quality starter motor for reliable engine cranking",
-            "partName": "Starter Motor",
-            "partBrand": "Denso",
-            "affiliateUrl": "https://www.amazon.com/s?k=Denso%20Starter%20Motor%20Kia%20EV6&tag=au7o-20"
-          },
-          {
-            "type": "part",
-            "content": "Remanufactured starter with gear reduction for improved cranking performance",
-            "partName": "Remanufactured Starter Motor",
-            "partBrand": "Remy",
-            "affiliateUrl": "https://www.amazon.com/s?k=Remy%20Remanufactured%20Starter%20Motor%20Kia%20EV6&tag=au7o-20"
-          },
-          {
-            "type": "part",
-            "content": "Automotive relay replacement set for common relay failures",
-            "partName": "Automotive Relay 5-Pin 12V",
-            "partBrand": "Bosch",
-            "affiliateUrl": "https://www.amazon.com/s?k=Bosch%20Automotive%20Relay%205-Pin%2012V%20Kia%20EV6&tag=au7o-20"
-          },
-          {
-            "type": "part",
-            "content": "Digital multimeter for diagnosing fuse, relay, and module electrical faults",
-            "partName": "Digital Multimeter",
-            "partBrand": "Innova",
-            "affiliateUrl": "https://www.amazon.com/s?k=Innova%20Digital%20Multimeter%20Kia%20EV6&tag=au7o-20"
-          },
-          {
-            "type": "part",
-            "content": "Level 2 portable EV charger for reliable home or on-the-go charging",
-            "partName": "Portable Level 2 EV Charger",
-            "partBrand": "Lectron",
-            "affiliateUrl": "https://www.amazon.com/s?k=Lectron%20Portable%20Level%202%20EV%20Charger%20Kia%20EV6&tag=au7o-20"
-          }
-        ],
+        "communityRecommendations": [],
         "fixParts": [],
         "humanApproved": true,
-        "reportCount": 678,
-        "source": "ai-researched",
+        "reportCount": 0,
+        "source": "manual",
         "status": "published",
-        "lastReportedByOwners": "2025-02-15",
-        "reviewedOn": "2026-02-23",
-        "contentUpdatedOn": "",
-        "contentUpdateSummary": "",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Bounded the same ICCU/12V identity to current campaign 24V867, documented its supersession of 24V200 and removed unsupported owner-report, cost and commerce claims.",
         "relatedIssueIds": []
       },
       "proposal": {
@@ -2440,21 +2109,7 @@
       "identityRule": "No source may change an indexed page identity. A different model, component, year boundary or failure outcome requires a byte-for-byte hold.",
       "commerceDecision": "removed-unverified-commerce-from-proposal",
       "changedFields": [
-        "trims",
-        "engines",
-        "description",
-        "solution",
-        "severity",
-        "symptoms",
-        "affectedSystems",
-        "estimatedCostLow",
-        "estimatedCostHigh",
-        "citations",
-        "humanApproved",
-        "source",
-        "reviewedOn",
-        "contentUpdatedOn",
-        "contentUpdateSummary"
+        "humanApproved"
       ],
       "evidence": [
         {
@@ -2476,7 +2131,7 @@
           "observation": "Rendered ELE283, ELE295 and SC311 pages establish EV6 charge-inlet temperature/connection-related Level 2 interruptions and the VCMS software remedy."
         }
       ],
-      "beforeSha256": "a6b5b7052a0cdcfc270ee2f0a5beedbcd48e80121e44986ebe169e6d97853473",
+      "beforeSha256": "4392223766674976cb4c69dd266e2b90731542befffe2ef96060f81c58511738",
       "proposalSha256": "f4b22f920aa7d46b6e68e4abef7250e2df31852ab98c6e8939a1ed60efb4f501",
       "before": {
         "make": "Kia",
@@ -2485,68 +2140,55 @@
           2022,
           2023
         ],
-        "trims": [
-          "Light",
-          "Wind",
-          "GT-Line",
-          "GT",
-          "Standard Range RWD",
-          "Long Range RWD",
-          "Long Range AWD"
-        ],
-        "engines": [
-          "Standard Range RWD (single motor)",
-          "Long Range RWD (single motor)",
-          "Long Range AWD (dual motor)",
-          "GT (dual motor)"
-        ],
+        "trims": [],
+        "engines": [],
         "category": "electrical",
         "title": "Level 2 AC Home Charging Interruptions from Charge-Handle Overheating (TSB ELE283 / ELE295)",
-        "description": "Distinct from the cold-weather DC fast-charge speed cap, many EV6 owners cannot reliably complete a Level 2 (240V AC) home charge. The onboard charging logic (VCMS) monitors the temperature of the charge connector/inlet, and when the handle warms up during a normal 40-48A session the car aborts charging and displays messages such as 'Charge interrupted' or 'The charging for EV6 failed. Please check vehicle.' Vehicles advertised to accept 48-50A frequently fail around 40A, forcing owners to dial their EVSE back to ~36A to finish a charge. Kia issued software TSBs ELE283 (production Nov 2021-Dec 2022) and ELE295 ('VCMS Battery Charging Logic Improvement') that revise the charging management logic, but many owners report the update simply throttles charge current rather than curing the root cause, and some report the handle still runs hot to the touch. Note these are voluntary TSBs, not recalls, so dealers apply them only when the owner complains. Multiple owners report repeated dealer visits without resolution.",
-        "solution": "Have the dealer apply the latest VCMS/onboard-charger software updates (TSB ELE283 or ELE295, whichever matches the production range) which revise the charge-current/thermal logic; verify the ICCU/onboard charger is not also flagged. As a workaround, reduce the EVSE output current (e.g., to 32-36A) so the connector stays cooler and the session completes, ensure the wall connector plug and receptacle are fully seated and not corroded/undersized, and confirm the home circuit and EVSE are rated for the requested amperage. Persistent failures after the software updates warrant inspection of the charge inlet/connector and, if present, the onboard charger/ICCU.",
-        "severity": "medium",
+        "description": "Kia bulletins ELE283 and ELE295 address interrupted or inoperable high-voltage-battery charging caused by excessive temperature at the EV6 combo-charger inlet. Kia later opened voluntary campaign SC311 for certain EV6 vehicles that can experience interrupted Level 2 charging or reduced charging speed when a damaged charging-cable connector degrades the electrical connection.",
+        "solution": "Have a Kia retailer inspect the charge inlet and cable connector and check the VIN for SC311 and the applicable VCMS software update. Dealers install improved VCMS ECU software under SC311 free of charge. Do not use a connector that is visibly damaged, deformed, wet or contaminated; connector or inlet damage requires inspection rather than an aftermarket workaround.",
+        "severity": "high",
         "confidence": "high",
         "symptoms": [
-          "'Charge interrupted' or 'The charging for EV6 failed. Please check vehicle' message during home Level 2 charging",
-          "Charging stops on its own before the target state of charge is reached",
-          "Fails to sustain 48-50A; typically drops out around 40A",
-          "Charge connector/handle becomes noticeably hot",
-          "Must lower EVSE amperage to ~36A to complete a charge",
-          "Repeated overnight charge failures leaving the car uncharged in the morning"
+          "Level 2 charging stops unexpectedly",
+          "Reduced Level 2 charging speed",
+          "Charging unavailable after the inlet becomes hot"
         ],
-        "affectedSystems": [],
+        "affectedSystems": [
+          "combo-charger inlet module",
+          "Vehicle Charging Management System software"
+        ],
         "dtcCodes": [],
-        "estimatedCostLow": 0,
-        "estimatedCostHigh": 400,
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
         "typicalMileageLow": null,
         "typicalMileageHigh": null,
         "citations": [
           {
-            "url": "https://lemberglaw.com/kia-ev6-charging-problems/",
-            "type": "article",
-            "title": "Kia EV6 Charging Problem | EV6 Not Charging or Charging Unsuccessful (Lemberg Law)"
+            "url": "https://static.nhtsa.gov/odi/tsbs/2023/MC-10230617-0001.pdf",
+            "type": "tsb",
+            "title": "Kia TSB ELE283 - VCMS Battery Charging Logic Improvement"
           },
           {
-            "url": "https://www.kiaevforums.com/threads/ele295-vcms-battery-charging-logic-improvement.8131/",
-            "type": "forum",
-            "title": "ELE295 VCMS Battery Charging Logic Improvement - Kia EV Forum"
+            "url": "https://static.nhtsa.gov/odi/tsbs/2023/MC-10236661-0001.pdf",
+            "type": "tsb",
+            "title": "Kia TSB ELE295 - EV6 GT VCMS Battery Charging Logic Improvement"
           },
           {
-            "url": "https://www.kiaevforums.com/threads/charge-interrupted-using-my-level-2-charger.9188/",
-            "type": "forum",
-            "title": "'Charge interrupted' using my level 2 charger - Kia EV Forum"
+            "url": "https://static.nhtsa.gov/odi/tsbs/2024/MC-11000537-0001.pdf",
+            "type": "tsb",
+            "title": "Kia Voluntary Service Campaign SC311"
           }
         ],
         "communityRecommendations": [],
         "fixParts": [],
         "humanApproved": true,
         "reportCount": 0,
-        "source": "ai-researched",
+        "source": "manual",
         "status": "published",
         "lastReportedByOwners": "",
-        "reviewedOn": "2026-07-08",
-        "contentUpdatedOn": "",
-        "contentUpdateSummary": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Rewrote the same Level 2 interruption/charge-inlet-temperature identity from ELE283, ELE295 and current SC311 while retaining the indexed 2022-2023 years and removing unverified commerce and costs.",
         "relatedIssueIds": []
       },
       "proposal": {
@@ -2886,7 +2528,7 @@
       "id": "kia-ev6-power-tailgate-liftgate-intermittently-stops-working",
       "model": "EV6",
       "action": "keep_published_pending_source",
-      "reason": "The frozen 2022-2025 \"Power Tailgate / Liftgate Intermittently Stops Working\" page has 3 citation(s) from www.kiaevforums.com, www.kia-forums.com, but no exact OEM or government primary package establishing its complete year, vehicle, mechanism, diagnostic and repair scope. It also carries 4 part recommendation(s) and 12 search-style commerce link(s) without exact source-to-fitment proof. The indexed row remains byte-for-byte unchanged.",
+      "reason": "The frozen 2022-2025 \"Power Tailgate / Liftgate Intermittently Stops Working\" page has 3 citation(s) from www.kiaevforums.com, www.kia-forums.com, but no exact OEM or government primary package establishing its complete year, vehicle, mechanism, diagnostic and repair scope. It also carries 4 part recommendation(s) and 4 search-style commerce link(s) without exact source-to-fitment proof. The indexed row remains byte-for-byte unchanged.",
       "identityRule": "No source may change an indexed page identity. A different model, component, year boundary or failure outcome requires a byte-for-byte hold.",
       "commerceDecision": "unchanged-commerce-pending-exact-source-and-fitment",
       "changedFields": [],
@@ -2898,8 +2540,8 @@
           "observation": "The complete EV6 recall inventory does not independently prove this broader owner-report, diagnostic, repair or commerce page."
         }
       ],
-      "beforeSha256": "b157f24ca8d48f8a549cc4c8a1d91f104b8af5b8cea6fc58a366fc5dd14a676a",
-      "proposalSha256": "b157f24ca8d48f8a549cc4c8a1d91f104b8af5b8cea6fc58a366fc5dd14a676a",
+      "beforeSha256": "283ff9a312dc691735d1fba0feb6bec019215f5b047c649a5ea4cfc09c00c75b",
+      "proposalSha256": "283ff9a312dc691735d1fba0feb6bec019215f5b047c649a5ea4cfc09c00c75b",
       "before": {
         "make": "Kia",
         "model": "EV6",
@@ -2960,16 +2602,8 @@
             "note": "Right-side powered lift cylinder (integrated spindle drive motor) for EV6 with power/hands-free tailgate — the primary suspect when an over-current fault makes the system read a false obstruction. Confirmed fitment 2022-2025 EV6 via Kia parts catalogs. NOTE: models WITHOUT the powered gate use the p",
             "buyLinks": [
               {
-                "url": "https://www.amazon.com/s?k=Kia%20EV6%20Power%20liftgate%20cylinder%20%2F%20spindle%20strut&tag=au7o-20",
-                "vendor": "Amazon"
-              },
-              {
                 "url": "https://www.rockauto.com/en/partsearch/?partnum=81841-CV100",
                 "vendor": "RockAuto"
-              },
-              {
-                "url": "https://www.ebay.com/sch/i.html?_nkw=81841-CV100",
-                "vendor": "eBay"
               }
             ],
             "priceLow": 300,
@@ -2985,16 +2619,8 @@
             "note": "Left-side powered lift cylinder (integrated spindle drive motor), EV6 2022-2025. Pairs with 81841-CV100. Non-powered version is 81831-CV000 (~$70-120) for gates without the motorized/hands-free feature — confirm by VIN. Replace the specific side/motor flagged for over-current; pair replacement commo",
             "buyLinks": [
               {
-                "url": "https://www.amazon.com/s?k=Kia%20EV6%20Power%20liftgate%20cylinder%20%2F%20spindle%20strut&tag=au7o-20",
-                "vendor": "Amazon"
-              },
-              {
                 "url": "https://www.rockauto.com/en/partsearch/?partnum=81831-CV100",
                 "vendor": "RockAuto"
-              },
-              {
-                "url": "https://www.ebay.com/sch/i.html?_nkw=81831-CV100",
-                "vendor": "eBay"
               }
             ],
             "priceLow": 300,
@@ -3010,16 +2636,8 @@
             "note": "Power Tail Gate Lift Module for EV6 2022-2024, confirmed via OEM/eBay listings. This ECU runs the current-based anti-pinch/obstruction logic; when a reset only holds ~48h and struts test good, the module (or its grounds/connectors) is the next suspect. Genuine/OEM only — no true aftermarket equivale",
             "buyLinks": [
               {
-                "url": "https://www.amazon.com/s?k=Kia%20EV6%20Power%20tailgate%20lift%20control%20module&tag=au7o-20",
-                "vendor": "Amazon"
-              },
-              {
                 "url": "https://www.rockauto.com/en/partsearch/?partnum=81870-CV100",
                 "vendor": "RockAuto"
-              },
-              {
-                "url": "https://www.ebay.com/sch/i.html?_nkw=81870-CV100",
-                "vendor": "eBay"
               }
             ],
             "priceLow": 150,
@@ -3034,16 +2652,8 @@
             "note": "Rear liftgate power lock/latch actuator, EV6 2022-2025, confirmed via OEM catalogs and eBay. Replace if the latch/cinch is the fault preventing auto-close. Base variant 81800-CV000 exists for lower trims — verify by VIN.",
             "buyLinks": [
               {
-                "url": "https://www.amazon.com/s?k=Kia%20EV6%20Tailgate%20lock%20%2F%20latch%20actuator&tag=au7o-20",
-                "vendor": "Amazon"
-              },
-              {
                 "url": "https://www.rockauto.com/en/partsearch/?partnum=81800-CV100",
                 "vendor": "RockAuto"
-              },
-              {
-                "url": "https://www.ebay.com/sch/i.html?_nkw=81800-CV100",
-                "vendor": "eBay"
               }
             ],
             "priceLow": 80,
@@ -3125,16 +2735,8 @@
             "note": "Right-side powered lift cylinder (integrated spindle drive motor) for EV6 with power/hands-free tailgate — the primary suspect when an over-current fault makes the system read a false obstruction. Confirmed fitment 2022-2025 EV6 via Kia parts catalogs. NOTE: models WITHOUT the powered gate use the p",
             "buyLinks": [
               {
-                "url": "https://www.amazon.com/s?k=Kia%20EV6%20Power%20liftgate%20cylinder%20%2F%20spindle%20strut&tag=au7o-20",
-                "vendor": "Amazon"
-              },
-              {
                 "url": "https://www.rockauto.com/en/partsearch/?partnum=81841-CV100",
                 "vendor": "RockAuto"
-              },
-              {
-                "url": "https://www.ebay.com/sch/i.html?_nkw=81841-CV100",
-                "vendor": "eBay"
               }
             ],
             "priceLow": 300,
@@ -3150,16 +2752,8 @@
             "note": "Left-side powered lift cylinder (integrated spindle drive motor), EV6 2022-2025. Pairs with 81841-CV100. Non-powered version is 81831-CV000 (~$70-120) for gates without the motorized/hands-free feature — confirm by VIN. Replace the specific side/motor flagged for over-current; pair replacement commo",
             "buyLinks": [
               {
-                "url": "https://www.amazon.com/s?k=Kia%20EV6%20Power%20liftgate%20cylinder%20%2F%20spindle%20strut&tag=au7o-20",
-                "vendor": "Amazon"
-              },
-              {
                 "url": "https://www.rockauto.com/en/partsearch/?partnum=81831-CV100",
                 "vendor": "RockAuto"
-              },
-              {
-                "url": "https://www.ebay.com/sch/i.html?_nkw=81831-CV100",
-                "vendor": "eBay"
               }
             ],
             "priceLow": 300,
@@ -3175,16 +2769,8 @@
             "note": "Power Tail Gate Lift Module for EV6 2022-2024, confirmed via OEM/eBay listings. This ECU runs the current-based anti-pinch/obstruction logic; when a reset only holds ~48h and struts test good, the module (or its grounds/connectors) is the next suspect. Genuine/OEM only — no true aftermarket equivale",
             "buyLinks": [
               {
-                "url": "https://www.amazon.com/s?k=Kia%20EV6%20Power%20tailgate%20lift%20control%20module&tag=au7o-20",
-                "vendor": "Amazon"
-              },
-              {
                 "url": "https://www.rockauto.com/en/partsearch/?partnum=81870-CV100",
                 "vendor": "RockAuto"
-              },
-              {
-                "url": "https://www.ebay.com/sch/i.html?_nkw=81870-CV100",
-                "vendor": "eBay"
               }
             ],
             "priceLow": 150,
@@ -3199,16 +2785,8 @@
             "note": "Rear liftgate power lock/latch actuator, EV6 2022-2025, confirmed via OEM catalogs and eBay. Replace if the latch/cinch is the fault preventing auto-close. Base variant 81800-CV000 exists for lower trims — verify by VIN.",
             "buyLinks": [
               {
-                "url": "https://www.amazon.com/s?k=Kia%20EV6%20Tailgate%20lock%20%2F%20latch%20actuator&tag=au7o-20",
-                "vendor": "Amazon"
-              },
-              {
                 "url": "https://www.rockauto.com/en/partsearch/?partnum=81800-CV100",
                 "vendor": "RockAuto"
-              },
-              {
-                "url": "https://www.ebay.com/sch/i.html?_nkw=81800-CV100",
-                "vendor": "eBay"
               }
             ],
             "priceLow": 80,
@@ -3362,22 +2940,7 @@
       "identityRule": "No source may change an indexed page identity. A different model, component, year boundary or failure outcome requires a byte-for-byte hold.",
       "commerceDecision": "removed-unverified-commerce-from-proposal",
       "changedFields": [
-        "trims",
-        "engines",
-        "description",
-        "solution",
-        "confidence",
-        "symptoms",
-        "affectedSystems",
-        "estimatedCostLow",
-        "estimatedCostHigh",
-        "citations",
-        "fixParts",
-        "humanApproved",
-        "source",
-        "reviewedOn",
-        "contentUpdatedOn",
-        "contentUpdateSummary"
+        "humanApproved"
       ],
       "evidence": [
         {
@@ -3396,7 +2959,7 @@
           "observation": "Rendered 24V057 pages establish certain 2023 EV6 vehicles, improper heat treatment, rear inner drive-shaft assembly 49560-GI000 and free replacement."
         }
       ],
-      "beforeSha256": "12bee89eff7b08b6a787bb0957c81a3737a6cad83bd33e2d5097cefa27c15749",
+      "beforeSha256": "eca0a95f76174713d71ef60ed0ec454e0d8355fcea1ff7a7a6a55aa59f5b8e8e",
       "proposalSha256": "8829155e038bd970279a66474c4e0d4a1f5cde58f16128d36915f9ee971dcfff",
       "before": {
         "make": "Kia",
@@ -3404,129 +2967,48 @@
         "years": [
           2023
         ],
-        "trims": [
-          "Wind",
-          "GT-Line",
-          "Light Long Range"
-        ],
-        "engines": [
-          "77.4 kWh RWD (168 kW)",
-          "77.4 kWh AWD (239 kW)"
-        ],
+        "trims": [],
+        "engines": [],
         "category": "drivetrain",
         "title": "Rear Inner Drive Shaft Fracture from Improperly Heat-Treated Axle (Recall SC295 / 24V-057)",
-        "description": "A supplier manufacturing error left the rear inner drive shaft (half-shaft) on a batch of 2023 EV6s improperly heat-treated. The under-hardened shaft can fracture under load, causing an abrupt loss of drive power while the vehicle is moving. Kia recalled 1,243 U.S. vehicles (roughly 1,000 EV6 plus Niro EVs) built in a narrow window — EV6 units produced January 26 through April 8, 2023. This is a distinct recall from the ICCU/12V campaign and specifically targets the mechanical driveshaft, not the electronics.",
-        "solution": "Covered under NHTSA recall 24V-057 (Kia campaign SC295) — dealers inspect the build date/VIN and replace the affected rear inner drive shaft with a correctly heat-treated unit at no charge. Owner notification letters mailed March 28, 2024. For out-of-recall or out-of-warranty replacement, the EV6 rear axle/half-shaft assembly is the relevant part (confirm exact PN by VIN — the front drive-shaft assemblies are 49500CV000 / 49500CV100, but the recalled part is the rear inner shaft, so verify the rear PN with a dealer before ordering). If you feel a driveline shudder or clunk under acceleration, stop driving and have the VIN checked immediately.",
+        "description": "NHTSA campaign 24V057000 (Kia SC295) covers certain 2023 EV6 vehicles built from January 26 through April 8, 2023. A supplier manufacturing error may have left the rear inner drive shaft improperly heat-treated. The shaft can break under load, causing loss of motive power and increasing crash risk.",
+        "solution": "Check the VIN for campaign 24V057000. Kia dealers replace the affected rear inner drive shaft with a properly heat-treated shaft free of charge. The official EV6 recall component is the rear inner drive-shaft assembly, part number 49560-GI000; retail front or rear half-shaft listings are not proof of recall fitment.",
         "severity": "high",
-        "confidence": "medium",
+        "confidence": "high",
         "symptoms": [
-          "Sudden loss of drive power / propulsion while driving",
-          "Driveline shudder or clunk under acceleration or load",
-          "Grinding or knocking from the rear axle",
-          "Warning chimes and reduced-power fail-safe mode"
+          "Loss of motive power if the shaft fractures",
+          "No advance warning identified by the recall"
         ],
-        "affectedSystems": [],
+        "affectedSystems": [
+          "rear inner drive-shaft assembly"
+        ],
         "dtcCodes": [],
-        "estimatedCostLow": 0,
-        "estimatedCostHigh": 900,
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
         "typicalMileageLow": null,
         "typicalMileageHigh": null,
         "citations": [
           {
+            "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=24V057000",
+            "type": "recall",
+            "title": "NHTSA Campaign 24V057000 - Improperly Heat-Treated Drive Shaft"
+          },
+          {
             "url": "https://static.nhtsa.gov/odi/rcl/2024/RCLRPT-24V057-9009.PDF",
             "type": "recall",
-            "title": "NHTSA Part 573 Safety Recall Report 24V-057 (rear inner drive shaft)"
-          },
-          {
-            "url": "https://insideevs.com/news/707768/kia-ev6-niro-ev-recall-drive-shaft/",
-            "type": "article",
-            "title": "Kia recalls EV6 and Niro EV for improperly heat-treated driveshafts"
-          },
-          {
-            "url": "https://www.kiaevforums.com/threads/new-recall-2023-ev6-driveshaft.10676/",
-            "type": "forum",
-            "title": "NEW RECALL 2023 EV6 DRIVESHAFT — Kia EV Forum"
+            "title": "Part 573 Safety Recall Report 24V057"
           }
         ],
         "communityRecommendations": [],
-        "fixParts": [
-          {
-            "note": "Recall remedy component: rear drive-axle (half-shaft) assembly for the 2023 EV6 (CV platform, AWD), left/driver side. Verified as a live rear drive-axle listing across OEM dealers (~$976 MSRP, ~$660 discounted). Under recall SC295/NHTSA 24V-057 the affected side's shaft is replaced FREE by a Kia dea",
-            "buyLinks": [
-              {
-                "url": "https://www.amazon.com/s?k=Kia%20EV6%20Rear%20inner%20drive%20shaft%20%2F%20half-shaft&tag=au7o-20",
-                "vendor": "Amazon"
-              },
-              {
-                "url": "https://www.rockauto.com/en/partsearch/?partnum=49800-CV100",
-                "vendor": "RockAuto"
-              },
-              {
-                "url": "https://www.ebay.com/sch/i.html?_nkw=49800-CV100",
-                "vendor": "eBay"
-              }
-            ],
-            "priceLow": 650,
-            "component": "Rear inner drive shaft / half-shaft assembly — Left (driver) side (SC295 / 24V-057 recall remedy part)",
-            "priceHigh": 980,
-            "oemPartNumber": "49800-CV100",
-            "aftermarketXref": []
-          },
-          {
-            "note": "Right/passenger-side counterpart of the rear drive-axle (half-shaft) assembly for the 2023 EV6 (CV platform, AWD). Verified live rear drive-axle listing at multiple OEM dealers (~$1,026.75 MSRP, ~$676.73 discounted). Same recall remedy as the LH shaft — replaced free under SC295/24V-057; confirm whi",
-            "buyLinks": [
-              {
-                "url": "https://www.amazon.com/s?k=Kia%20EV6%20Rear%20inner%20drive%20shaft%20%2F%20half-shaft&tag=au7o-20",
-                "vendor": "Amazon"
-              },
-              {
-                "url": "https://www.rockauto.com/en/partsearch/?partnum=49801-CV100",
-                "vendor": "RockAuto"
-              },
-              {
-                "url": "https://www.ebay.com/sch/i.html?_nkw=49801-CV100",
-                "vendor": "eBay"
-              }
-            ],
-            "priceLow": 676,
-            "component": "Rear inner drive shaft / half-shaft assembly — Right (passenger) side (SC295 / 24V-057 recall remedy part)",
-            "priceHigh": 1027,
-            "oemPartNumber": "49801-CV100",
-            "aftermarketXref": []
-          },
-          {
-            "note": "Captured because the FIX text explicitly names these front assemblies (49500-CV000 / 49500-CV100). Both are VERIFIED real EV6 (CV) FRONT drive-axle part numbers (49500-CV000 = 2022-2024, 49500-CV100 = 2023-2025). IMPORTANT: these are the FRONT shafts and are NOT the SC295/24V-057 recall remedy — tha",
-            "buyLinks": [
-              {
-                "url": "https://www.amazon.com/s?k=Kia%20EV6%20Front%20drive%20shaft&tag=au7o-20",
-                "vendor": "Amazon"
-              },
-              {
-                "url": "https://www.rockauto.com/en/partsearch/?partnum=49500-CV000",
-                "vendor": "RockAuto"
-              },
-              {
-                "url": "https://www.ebay.com/sch/i.html?_nkw=49500-CV000",
-                "vendor": "eBay"
-              }
-            ],
-            "priceLow": 600,
-            "component": "Front drive shaft (half-shaft) assembly — reference only (NOT the recall part)",
-            "priceHigh": 1000,
-            "oemPartNumber": "49500-CV000",
-            "aftermarketXref": [
-              "49500-CV100"
-            ]
-          }
-        ],
+        "fixParts": [],
         "humanApproved": true,
         "reportCount": 0,
-        "source": "ai-researched",
+        "source": "manual",
         "status": "published",
         "lastReportedByOwners": "",
-        "reviewedOn": "2026-07-03",
-        "contentUpdatedOn": "",
-        "contentUpdateSummary": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Corrected the same 24V057 driveshaft identity to the official rear-inner-shaft component and 49560-GI000 part number, while removing three misleading retail parts and secondary claims.",
         "relatedIssueIds": []
       },
       "proposal": {
@@ -3596,8 +3078,8 @@
           "observation": "The frozen page lacks usable primary citation URLs; model recall inventory is a boundary check and does not prove the broader claim."
         }
       ],
-      "beforeSha256": "0c4ed7b71db14fb51c1542134b8bb11ab25410bbf53fdc4dc8c9fe20b79e5726",
-      "proposalSha256": "0c4ed7b71db14fb51c1542134b8bb11ab25410bbf53fdc4dc8c9fe20b79e5726",
+      "beforeSha256": "0ec76e10cfb8cbdc52dd39e1b45dc7247164722dd137cf7c6de175c05c6e03cc",
+      "proposalSha256": "0ec76e10cfb8cbdc52dd39e1b45dc7247164722dd137cf7c6de175c05c6e03cc",
       "before": {
         "make": "Kia",
         "model": "EV6",
@@ -3650,15 +3132,13 @@
             "type": "part",
             "content": "Mobil 1 75W-90 synthetic gear oil for differential and transfer case",
             "partName": "Synthetic Gear Oil 75W-90",
-            "partBrand": "Mobil 1",
-            "affiliateUrl": "https://www.amazon.com/s?k=Mobil%201%2075W-90%20synthetic%20gear%20oil&tag=au7o-20"
+            "partBrand": "Mobil 1"
           },
           {
             "type": "part",
             "content": "Fel-Pro gasket kit for drivetrain service",
             "partName": "Gasket Kit",
-            "partBrand": "Fel-Pro",
-            "affiliateUrl": "https://www.amazon.com/s?k=Fel-Pro%20drivetrain%20gasket%20kit&tag=au7o-20"
+            "partBrand": "Fel-Pro"
           }
         ],
         "fixParts": [],
@@ -3728,15 +3208,13 @@
             "type": "part",
             "content": "Mobil 1 75W-90 synthetic gear oil for differential and transfer case",
             "partName": "Synthetic Gear Oil 75W-90",
-            "partBrand": "Mobil 1",
-            "affiliateUrl": "https://www.amazon.com/s?k=Mobil%201%2075W-90%20synthetic%20gear%20oil&tag=au7o-20"
+            "partBrand": "Mobil 1"
           },
           {
             "type": "part",
             "content": "Fel-Pro gasket kit for drivetrain service",
             "partName": "Gasket Kit",
-            "partBrand": "Fel-Pro",
-            "affiliateUrl": "https://www.amazon.com/s?k=Fel-Pro%20drivetrain%20gasket%20kit&tag=au7o-20"
+            "partBrand": "Fel-Pro"
           }
         ],
         "fixParts": [],
@@ -3910,7 +3388,7 @@
       "id": "kia-ev6-severe-highway-vibration-from-loose-acoustic-foam-inside-oe",
       "model": "EV6",
       "action": "keep_published_pending_source",
-      "reason": "The frozen 2022-2025 \"Severe Highway Vibration from Loose Acoustic Foam Inside OE Tires\" page has 3 citation(s) from www.kiaownersclub.co.uk, www.kiaevforums.com, but no exact OEM or government primary package establishing its complete year, vehicle, mechanism, diagnostic and repair scope. It also carries 1 part recommendation(s) and 3 search-style commerce link(s) without exact source-to-fitment proof. The indexed row remains byte-for-byte unchanged.",
+      "reason": "The frozen 2022-2025 \"Severe Highway Vibration from Loose Acoustic Foam Inside OE Tires\" page has 3 citation(s) from www.kiaownersclub.co.uk, www.kiaevforums.com, but no exact OEM or government primary package establishing its complete year, vehicle, mechanism, diagnostic and repair scope. It also carries 1 part recommendation(s) and 1 search-style commerce link(s) without exact source-to-fitment proof. The indexed row remains byte-for-byte unchanged.",
       "identityRule": "No source may change an indexed page identity. A different model, component, year boundary or failure outcome requires a byte-for-byte hold.",
       "commerceDecision": "unchanged-commerce-pending-exact-source-and-fitment",
       "changedFields": [],
@@ -3922,8 +3400,8 @@
           "observation": "The complete EV6 recall inventory does not independently prove this broader owner-report, diagnostic, repair or commerce page."
         }
       ],
-      "beforeSha256": "f6ff99a7b20212ca2da49b0de4f6ad35f5a2aab058809266302889c1d2b7b1ff",
-      "proposalSha256": "f6ff99a7b20212ca2da49b0de4f6ad35f5a2aab058809266302889c1d2b7b1ff",
+      "beforeSha256": "59ff5103b262486c75b74efd1a3c8bae86a80318f59486f8be7062d12e61590e",
+      "proposalSha256": "59ff5103b262486c75b74efd1a3c8bae86a80318f59486f8be7062d12e61590e",
       "before": {
         "make": "Kia",
         "model": "EV6",
@@ -3984,16 +3462,8 @@
             "note": "PRIMARY fix is LABOR, not a part: have the shop dismount and inspect for detached/loose internal acoustic foam and remove it (or a single new tire) before condemning wheels/suspension. This part is only needed if the affected tire's foam cannot be cleared. 03594820000 is the Continental factory arti",
             "buyLinks": [
               {
-                "url": "https://www.amazon.com/s?k=Kia%20EV6%20OE%20noise-reduction&tag=au7o-20",
-                "vendor": "Amazon"
-              },
-              {
                 "url": "https://www.rockauto.com/en/partsearch/?partnum=03594820000",
                 "vendor": "RockAuto"
-              },
-              {
-                "url": "https://www.ebay.com/sch/i.html?_nkw=03594820000",
-                "vendor": "eBay"
               }
             ],
             "priceLow": 250,
@@ -4077,16 +3547,8 @@
             "note": "PRIMARY fix is LABOR, not a part: have the shop dismount and inspect for detached/loose internal acoustic foam and remove it (or a single new tire) before condemning wheels/suspension. This part is only needed if the affected tire's foam cannot be cleared. 03594820000 is the Continental factory arti",
             "buyLinks": [
               {
-                "url": "https://www.amazon.com/s?k=Kia%20EV6%20OE%20noise-reduction&tag=au7o-20",
-                "vendor": "Amazon"
-              },
-              {
                 "url": "https://www.rockauto.com/en/partsearch/?partnum=03594820000",
                 "vendor": "RockAuto"
-              },
-              {
-                "url": "https://www.ebay.com/sch/i.html?_nkw=03594820000",
-                "vendor": "eBay"
               }
             ],
             "priceLow": 250,
@@ -4119,16 +3581,7 @@
       "identityRule": "No source may change an indexed page identity. A different model, component, year boundary or failure outcome requires a byte-for-byte hold.",
       "commerceDecision": "removed-unverified-commerce-from-proposal",
       "changedFields": [
-        "description",
-        "solution",
-        "symptoms",
-        "affectedSystems",
-        "citations",
-        "humanApproved",
-        "source",
-        "reviewedOn",
-        "contentUpdatedOn",
-        "contentUpdateSummary"
+        "humanApproved"
       ],
       "evidence": [
         {
@@ -4146,7 +3599,7 @@
           "observation": "Rendered 22V322 pages establish the 2022 EV6 SCU software rollaway identity, repair and level-ground advisory."
         }
       ],
-      "beforeSha256": "c3610b8b426ee35ec727b0f09713b56e9c430bede4fb8e915d8a166290d8be35",
+      "beforeSha256": "2df3ef93ceaf9b2bcbcff209bddda03bcdbc5c410450511d868c8c7f195496cb",
       "proposalSha256": "940547cd29453242192ef8daeef179a2e4c33b41286d22afb7db40bca56b084a",
       "before": {
         "make": "Kia",
@@ -4158,16 +3611,18 @@
         "engines": [],
         "category": "safety",
         "title": "Shift-by-Wire Rollaway Risk in Park (SCU Software Defect)",
-        "description": "On 2022 EV6s, a voltage fluctuation in the Shifter Control Unit (SCU) while the vehicle is off and in Park can affect the command to the parking pawl actuator, temporarily disengaging the parking mechanism and allowing the car to roll away. NHTSA recall 22V322 covers 2022 EV6 units built Nov 17, 2021 through Apr 7, 2022.",
-        "solution": "Recall 22V322 (Kia internal SC236). Dealers reflash the Shifter Control Unit software free of charge so the SCU cannot disengage the parking mechanism inadvertently with the vehicle off. Until repaired, park on level ground and avoid inclines. Verify completion via VIN at nhtsa.gov.",
+        "description": "NHTSA campaign 22V322000 (Kia SC236) covers certain 2022 EV6 vehicles built from November 17, 2021 through April 7, 2022. A voltage fluctuation while the vehicle is off and parked can affect the Shifter Control Unit command to the parking-pawl actuator, temporarily disengaging the parking mechanism and allowing the vehicle to roll away.",
+        "solution": "Check the VIN for campaign 22V322000. Kia dealers update the Shifter Control Unit software free of charge so the controller does not allow the parking pawl to move out of Park. Until repaired, Kia recommends parking on level ground and avoiding slopes or inclined surfaces whenever possible.",
         "severity": "high",
         "confidence": "high",
         "symptoms": [
-          "Vehicle rolls after being shifted to Park and powered off",
-          "Park pawl fails to hold on an incline",
-          "Park/rollaway warning behavior after power-down"
+          "Vehicle rolls after being placed in Park",
+          "No advance warning identified by the recall"
         ],
-        "affectedSystems": [],
+        "affectedSystems": [
+          "Shifter Control Unit software",
+          "parking-pawl actuator control"
+        ],
         "dtcCodes": [],
         "estimatedCostLow": null,
         "estimatedCostHigh": null,
@@ -4175,31 +3630,26 @@
         "typicalMileageHigh": null,
         "citations": [
           {
-            "url": "https://static.nhtsa.gov/odi/rcl/2022/RCMN-22V322-3891.pdf",
+            "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=22V322000",
             "type": "recall",
-            "title": "NHTSA Recall 22V322 — Kia EV6 Shifter Control Unit software / rollaway"
+            "title": "NHTSA Campaign 22V322000 - EV6 Rollaway Risk"
           },
           {
-            "url": "https://www.greencarcongress.com/2022/05/20220518-ioniqev6.html",
+            "url": "https://static.nhtsa.gov/odi/rcl/2022/RCLRPT-22V322-1584.PDF",
             "type": "recall",
-            "title": "Hyundai, Kia recalling 2022 Ioniq 5 and EV6 over shifter control software error (rollaway)"
-          },
-          {
-            "url": "https://kia.oemdtc.com/694/sc236-shifter-control-unit-2022-kia-ev6",
-            "type": "recall",
-            "title": "Shifter Control Unit (SCU) Logic Improvement (SC236) - 2022 Kia EV6"
+            "title": "Part 573 Safety Recall Report 22V322"
           }
         ],
         "communityRecommendations": [],
         "fixParts": [],
         "humanApproved": true,
         "reportCount": 0,
-        "source": "ai-researched",
+        "source": "manual",
         "status": "published",
         "lastReportedByOwners": "",
-        "reviewedOn": "2026-06-17",
-        "contentUpdatedOn": "",
-        "contentUpdateSummary": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Rewrote the same 22V322 rollaway identity from the visually inspected Part 573 report and retained Kia’s level-ground advisory without adding parts or commerce.",
         "relatedIssueIds": []
       },
       "proposal": {
@@ -4270,8 +3720,8 @@
           "observation": "The complete EV6 recall inventory does not independently prove this broader owner-report, diagnostic, repair or commerce page."
         }
       ],
-      "beforeSha256": "3139ddfa659ed6abd94bc7ec635c17ab559973f2a1514f3924defd27f381f82e",
-      "proposalSha256": "3139ddfa659ed6abd94bc7ec635c17ab559973f2a1514f3924defd27f381f82e",
+      "beforeSha256": "8e3401a259f987b5581d47a3f7785b60420c5a165972d093d2f1dfadde45bd49",
+      "proposalSha256": "8e3401a259f987b5581d47a3f7785b60420c5a165972d093d2f1dfadde45bd49",
       "before": {
         "make": "Kia",
         "model": "EV6",
@@ -4335,16 +3785,8 @@
             "note": "Confirmed genuine Kia PN for 2022-2024 EV6, laminated acoustic-film windshield with front-view camera, rain sensor and auto-defog provisions but NO head-up display. OEM discount sellers (KiaPartsNow/OEMPartsOnline) list ~$600-905; dealer MSRP higher. Aftermarket cross-refs are OEE (Pilkington/XYG/Fu",
             "buyLinks": [
               {
-                "url": "https://www.amazon.com/s?k=Kia%20EV6%20Windshield%20glass&tag=au7o-20",
-                "vendor": "Amazon"
-              },
-              {
                 "url": "https://www.rockauto.com/en/partsearch/?partnum=86111CV110",
                 "vendor": "RockAuto"
-              },
-              {
-                "url": "https://www.ebay.com/sch/i.html?_nkw=86111CV110",
-                "vendor": "eBay"
               }
             ],
             "priceLow": 600,
@@ -4363,16 +3805,8 @@
             "note": "Confirmed genuine Kia PN for 2022-2024 EV6 equipped with head-up display (TFT-LCD HUD) — the HUD wedge/PVB interlayer variant. KiaPartsNow ~$1,234; Kia MSRP ~$1,820. Do NOT substitute the base 86111CV110 on a HUD-equipped car (HUD ghosting). Also requires ADAS forward-camera recalibration after repl",
             "buyLinks": [
               {
-                "url": "https://www.amazon.com/s?k=Kia%20EV6%20Windshield%20glass&tag=au7o-20",
-                "vendor": "Amazon"
-              },
-              {
                 "url": "https://www.rockauto.com/en/partsearch/?partnum=86111CV130",
                 "vendor": "RockAuto"
-              },
-              {
-                "url": "https://www.ebay.com/sch/i.html?_nkw=86111CV130",
-                "vendor": "eBay"
               }
             ],
             "priceLow": 1233,
@@ -4460,16 +3894,8 @@
             "note": "Confirmed genuine Kia PN for 2022-2024 EV6, laminated acoustic-film windshield with front-view camera, rain sensor and auto-defog provisions but NO head-up display. OEM discount sellers (KiaPartsNow/OEMPartsOnline) list ~$600-905; dealer MSRP higher. Aftermarket cross-refs are OEE (Pilkington/XYG/Fu",
             "buyLinks": [
               {
-                "url": "https://www.amazon.com/s?k=Kia%20EV6%20Windshield%20glass&tag=au7o-20",
-                "vendor": "Amazon"
-              },
-              {
                 "url": "https://www.rockauto.com/en/partsearch/?partnum=86111CV110",
                 "vendor": "RockAuto"
-              },
-              {
-                "url": "https://www.ebay.com/sch/i.html?_nkw=86111CV110",
-                "vendor": "eBay"
               }
             ],
             "priceLow": 600,
@@ -4488,16 +3914,8 @@
             "note": "Confirmed genuine Kia PN for 2022-2024 EV6 equipped with head-up display (TFT-LCD HUD) — the HUD wedge/PVB interlayer variant. KiaPartsNow ~$1,234; Kia MSRP ~$1,820. Do NOT substitute the base 86111CV110 on a HUD-equipped car (HUD ghosting). Also requires ADAS forward-camera recalibration after repl",
             "buyLinks": [
               {
-                "url": "https://www.amazon.com/s?k=Kia%20EV6%20Windshield%20glass&tag=au7o-20",
-                "vendor": "Amazon"
-              },
-              {
                 "url": "https://www.rockauto.com/en/partsearch/?partnum=86111CV130",
                 "vendor": "RockAuto"
-              },
-              {
-                "url": "https://www.ebay.com/sch/i.html?_nkw=86111CV130",
-                "vendor": "eBay"
               }
             ],
             "priceLow": 1233,

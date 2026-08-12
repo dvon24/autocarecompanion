@@ -6,8 +6,8 @@ const { FULL_RECORD_FIELDS, normalizedFileHash, stableValue } = require('./kia-a
 function snapshotHashValue(value) { return crypto.createHash('sha256').update(JSON.stringify(value)).digest('hex'); }
 
 const SNAPSHOT = path.resolve(__dirname, '..', 'data', '_kia-deeplink-snapshot-2026-08-06.json');
-const EXPECTED_SHA256 = 'f0aa4c5c8ca72321ed9a0b54aa9455e84056b445cb31049545ea07a48748c76b';
-const EXPECTED_SNAPSHOT_HASH = 'f8b4d0e206ea16a5a28546ef1db29b0c885b1a839069b486f07fb1a1759310bf';
+const EXPECTED_SHA256 = 'c3accea6dc370cc4587164aa6cc8b9fd22dd037621facff22dfc29f4f70a4e2c';
+const EXPECTED_SNAPSHOT_HASH = '00b5d9cf06b9534ad62b86ed57d17760d6dfa27f38f8b05f7188e7d3cff47877';
 const EXPECTED_MODELS = {
   Amanti: 5, Borrego: 4, Cadenza: 3, Carnival: 26, EV6: 21, EV9: 4, Forte: 10,
   K5: 24, K900: 5, Morning: 6, Niro: 10, Optima: 13, Ray: 6, Rio: 14, Sedona: 5,
@@ -15,10 +15,10 @@ const EXPECTED_MODELS = {
   Telluride: 14,
 };
 const EXPECTED_INVENTORY = {
-  publishedIssueCount: 247, commerceIssueCount: 152, claimCount: 330, fixPartClaimCount: 57,
-  communityClaimCount: 273, noLinkClaimCount: 0, linkCount: 444, validProductLinkCount: 0,
-  invalidOrSearchLinkCount: 444, recallFirstClaimCount: 0, dtcLinkedCommerceIssueCount: 58,
-  clickedCommerceIssueCount: 4, correctedIssueCount: 0, totalRecordedClicks: 6,
+  publishedIssueCount: 247, commerceIssueCount: 119, claimCount: 257, fixPartClaimCount: 59,
+  communityClaimCount: 198, noLinkClaimCount: 199, linkCount: 59, validProductLinkCount: 7,
+  invalidOrSearchLinkCount: 52, recallFirstClaimCount: 0, dtcLinkedCommerceIssueCount: 40,
+  clickedCommerceIssueCount: 3, correctedIssueCount: 53, totalRecordedClicks: 6,
   deepLinkedClicks: 0, nonProductClicks: 6,
 };
 

@@ -25,9 +25,9 @@
   ],
   "source": {
     "snapshotFile": "data/_kia-deeplink-snapshot-2026-08-06.json",
-    "snapshotSha256": "f0aa4c5c8ca72321ed9a0b54aa9455e84056b445cb31049545ea07a48748c76b",
-    "snapshotGeneratedAt": "2026-08-07T19:13:14.080Z",
-    "snapshotHash": "f8b4d0e206ea16a5a28546ef1db29b0c885b1a839069b486f07fb1a1759310bf",
+    "snapshotSha256": "c3accea6dc370cc4587164aa6cc8b9fd22dd037621facff22dfc29f4f70a4e2c",
+    "snapshotGeneratedAt": "2026-08-12T13:04:39.309Z",
+    "snapshotHash": "00b5d9cf06b9534ad62b86ed57d17760d6dfa27f38f8b05f7188e7d3cff47877",
     "modelRecordCount": 8
   },
   "observations": [
@@ -527,7 +527,6 @@
       "changedFields": [
         "description",
         "solution",
-        "severity",
         "confidence",
         "symptoms",
         "affectedSystems",
@@ -593,7 +592,7 @@
         }
       ],
       "beforeSha256": "05a43d8c863f4770c18b7172562336be6c72900efcaf65378de943e3c08ef482",
-      "proposalSha256": "1a62c868599fd2a5781a2bc344d9ca6bda37d45e16a63ff1cf59f5b8ffa49f64",
+      "proposalSha256": "f4255f6234edf0b9d5c60cde1a7ec6cddc0002197b60e17d0fab5c3f345a4434",
       "before": {
         "make": "Kia",
         "model": "Soul",
@@ -681,7 +680,7 @@
         "title": "7-Speed Dual-Clutch (DCT) Judder and Premature Clutch Failure",
         "description": "Kia TSB TRA083 documents clutch judder on limited 1.6L turbo Soul populations: PS vehicles built August 8-October 27, 2016 and SK3 vehicles built November 24, 2018-April 2, 2020. It defines judder through a KDS creep-driving measurement. The frozen page overgeneralizes that evidence to every indexed 2017-2020 vehicle and cites TRA098, an Optima-only anti-judder update.",
         "solution": "Verify the VIN, production date, transmission hardware and symptom before repair. For a TRA083-eligible vehicle, a Kia dealer or qualified DCT technician performs the KDS judder measurement and replaces the dual-clutch assembly with the bulletin-required TCU procedure only when indicated. Do not apply Optima Event 541, diagnose P0810 or assume every 2017-2020 Soul shares one failure cause from this page.",
-        "severity": "medium",
+        "severity": "high",
         "confidence": "medium",
         "symptoms": [
           "Body vibration or judder while accelerating from a stop requires production-date and KDS verification"
@@ -934,22 +933,7 @@
       "identityRule": "Preserve every indexed Soul ID, title, category, year set, trim set, engine set and publication state while correcting false source scope, false DTCs, unsafe advice and unsupported replacement claims.",
       "commerceDecision": "dealer-only-no-retail-part-safety-recall-and-vin-bound-follow-up",
       "changedFields": [
-        "description",
-        "solution",
-        "symptoms",
-        "affectedSystems",
-        "dtcCodes",
-        "estimatedCostLow",
-        "estimatedCostHigh",
-        "citations",
-        "communityRecommendations",
-        "humanApproved",
-        "reportCount",
-        "source",
-        "reviewedOn",
-        "contentUpdatedOn",
-        "contentUpdateSummary",
-        "relatedIssueIds"
+        "humanApproved"
       ],
       "evidence": [
         {
@@ -1007,14 +991,14 @@
         },
         {
           "kind": "citation-commerce-relation-review",
-          "removedCitationCount": 4,
-          "removedCommerceCount": 3,
-          "removedRelatedIssueCount": 3,
+          "removedCitationCount": 2,
+          "removedCommerceCount": 0,
+          "removedRelatedIssueCount": 0,
           "verifiedOn": "2026-08-08",
           "observation": "Secondary, missing-URL, wrong-model and search-style material is not carried into the proposal. Exact official sources are retained only where their vehicle and remedy scope matches."
         }
       ],
-      "beforeSha256": "99e54f7d0255dc3983248f58ba698597da2acbdd317b1360af95474776b7ce16",
+      "beforeSha256": "399e7a5632bd5d8c9919a8f1c5101f81b40c23947936311b479ead62c4ba6269",
       "proposalSha256": "fde98b41cf7b5c88f607af99f79b6b10306cd7b745bdb42b68f2ed21305caf08",
       "before": {
         "make": "Kia",
@@ -1032,88 +1016,47 @@
         ],
         "category": "engine",
         "title": "Catalytic Converter Overheating and Engine Piston Damage",
-        "description": "The 1.6L GDI engine in 2012-2016 Souls can produce excessively high exhaust gas temperatures that damage the catalytic converter. The damaged converter can cause abnormal engine combustion, leading to piston damage and connecting rod failure. NHTSA recall covers over 350,000 vehicles. Kia will inspect and replace the engine if damage is found.",
-        "solution": "Check VIN for recall eligibility. Dealer will inspect the catalytic converter and engine for damage. If catalytic converter is damaged, it is replaced free of charge. If piston or connecting rod damage is found, complete engine replacement is performed under recall. Dealer also installs KSDS (Knock Sensor Detection System) software.",
+        "description": "NHTSA recall 19V120000 (Kia SC176) covers 2012-2016 Soul vehicles with the 1.6L GDI engine. Excessive exhaust-gas temperature can damage the catalytic converter, leading to abnormal combustion, piston damage, connecting-rod failure, stall or fire. Kia’s later SC176Y bulletin addresses certain previously repaired vehicles with P0420, with or without a P030X misfire code.",
+        "solution": "Check the VIN and campaign history with Kia. SC176 calls for the Catalytic Overheating Protection ECU update and replacement of a damaged converter or engine as necessary, free of charge. For an eligible SC176Y vehicle with P0420, the dealer follows Kia’s compression-test flow before choosing converter or engine replacement. Do not infer P0430 or purchase radiator, coolant or generic exhaust parts from this page.",
         "severity": "high",
         "confidence": "high",
         "symptoms": [
-          "Check engine light with catalyst efficiency codes (P0420)",
-          "Rattling noise from catalytic converter area",
-          "Engine misfires and rough running",
-          "Loss of power during acceleration",
-          "Sulfur smell from exhaust",
-          "Knocking noise from engine (if piston damage has occurred)"
+          "Malfunction indicator lamp with P0420",
+          "Loss of power, abnormal combustion or engine damage"
         ],
         "affectedSystems": [
-          "Engine",
-          "Exhaust"
+          "1.6L GDI catalytic converter, ECU protection logic and engine"
         ],
         "dtcCodes": [
-          "P0420",
-          "P0430"
+          "P0420"
         ],
-        "estimatedCostLow": 0,
-        "estimatedCostHigh": 6000,
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
         "typicalMileageLow": null,
         "typicalMileageHigh": null,
         "citations": [
           {
-            "url": "https://www.kiasoulforums.com/threads/2015-kia-soul-engine-issues-failed-cat-converter-but-something-tells-me-im-being-jerked-around-here.118947/",
-            "type": "forum",
-            "title": "2015 Kia Soul Engine Issues Failed cat converter - Kia Soul Forums"
+            "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=19V120000",
+            "type": "recall",
+            "title": "NHTSA Campaign 19V120000 - Soul Catalytic-Converter Overheating"
           },
           {
-            "url": "https://www.kiasoulforums.com/threads/blown-engine-due-to-catalytic-convertor.119663/",
-            "type": "forum",
-            "title": "Blown Engine Due to Catalytic Convertor - Kia Soul Forums"
-          },
-          {
-            "url": "https://www.kiasoulforums.com/threads/the-dreaded-soul-catalytic-converter-issue.123027/",
-            "type": "forum",
-            "title": "The Dreaded Soul Catalytic Converter Issue - Kia Soul Forums"
-          },
-          {
-            "url": "https://www.kiasoulforums.com/threads/failed-catalytic-converter-recall-repair-now-engine-combustion-failure.120907/",
-            "type": "forum",
-            "title": "FAILED CATALYTIC CONVERTER NOW ENGINE COMBUSTION FAILURE - Kia Soul Forums"
+            "url": "https://static.nhtsa.gov/odi/tsbs/2024/MC-11009076-0001.pdf",
+            "type": "tsb",
+            "title": "Kia SC176Y - Soul Catalytic-Converter and Engine Inspection"
           }
         ],
-        "communityRecommendations": [
-          {
-            "type": "warning",
-            "content": "If you hear any knocking from the engine, stop driving and have the vehicle towed. Continuing to drive can cause catastrophic connecting rod failure",
-            "upvotes": 0,
-            "needsReview": false
-          },
-          {
-            "type": "part",
-            "content": "Premium radiator provides improved cooling capacity",
-            "partName": "Aluminum Radiator",
-            "partBrand": "Mishimoto",
-            "affiliateUrl": "https://www.amazon.com/s?k=Kia%20Soul%20Mishimoto%20Aluminum%20Radiator&tag=au7o-20"
-          },
-          {
-            "type": "part",
-            "content": "Pre-mixed coolant ready for top-off or full flush",
-            "partName": "Extended Life Antifreeze Coolant",
-            "partBrand": "Prestone",
-            "affiliateUrl": "https://www.amazon.com/s?k=Kia%20Soul%20Prestone%20Extended%20Life%20Antifreeze%20Coolant&tag=au7o-20"
-          }
-        ],
+        "communityRecommendations": [],
         "fixParts": [],
         "humanApproved": true,
-        "reportCount": 678,
-        "source": "ai-researched",
+        "reportCount": 0,
+        "source": "manual",
         "status": "published",
         "lastReportedByOwners": "2024-07-20",
-        "reviewedOn": "2026-02-23",
-        "contentUpdatedOn": "",
-        "contentUpdateSummary": "",
-        "relatedIssueIds": [
-          "kia-sorento-catalytic-converter-failure",
-          "kia-sorento-theta-ii-engine-seizure",
-          "kia-seltos-piston-ring-oil-consumption"
-        ]
+        "reviewedOn": "2026-08-08",
+        "contentUpdatedOn": "2026-08-08",
+        "contentUpdateSummary": "Official-source same-identity rewrite: 19V120/SC176 exactly supports the 2012-2016 1.6L GDI identity, and SC176Y supplies the later VIN-bound P0420 inspection path. P0430 and unrelated radiator/coolant commerce are removed.",
+        "relatedIssueIds": []
       },
       "proposal": {
         "make": "Kia",
@@ -1217,7 +1160,7 @@
           "observation": "Secondary, missing-URL, wrong-model and search-style material is not carried into the proposal. Exact official sources are retained only where their vehicle and remedy scope matches."
         }
       ],
-      "beforeSha256": "5c94c286d0f29fa936d5ba7e8cfb704e3bcb8675ece05e77ff2477971c63086a",
+      "beforeSha256": "addff1331aa9861a7203a57bf83b6cf92b14d6036bea72d57962ff25cb88505f",
       "proposalSha256": "a6061f1333a4bcc6ab3701d315cad2715bb5fcd333cda84e3072978f583cfb5c",
       "before": {
         "make": "Kia",
@@ -1275,15 +1218,13 @@
             "type": "part",
             "content": "Mobil 1 75W-90 synthetic gear oil for differential and transfer case",
             "partName": "Synthetic Gear Oil 75W-90",
-            "partBrand": "Mobil 1",
-            "affiliateUrl": "https://www.amazon.com/s?k=Mobil%201%2075W-90%20synthetic%20gear%20oil&tag=au7o-20"
+            "partBrand": "Mobil 1"
           },
           {
             "type": "part",
             "content": "Fel-Pro gasket kit for drivetrain service",
             "partName": "Gasket Kit",
-            "partBrand": "Fel-Pro",
-            "affiliateUrl": "https://www.amazon.com/s?k=Fel-Pro%20drivetrain%20gasket%20kit&tag=au7o-20"
+            "partBrand": "Fel-Pro"
           }
         ],
         "fixParts": [],
@@ -1354,18 +1295,7 @@
       "identityRule": "Preserve every indexed Soul ID, title, category, year set, trim set, engine set and publication state while correcting false source scope, false DTCs, unsafe advice and unsupported replacement claims.",
       "commerceDecision": "dealer-only-no-retail-part-steering-fitment-and-calibration",
       "changedFields": [
-        "description",
-        "solution",
-        "symptoms",
-        "affectedSystems",
-        "estimatedCostLow",
-        "estimatedCostHigh",
-        "citations",
-        "humanApproved",
-        "source",
-        "reviewedOn",
-        "contentUpdatedOn",
-        "contentUpdateSummary"
+        "humanApproved"
       ],
       "evidence": [
         {
@@ -1412,14 +1342,14 @@
         },
         {
           "kind": "citation-commerce-relation-review",
-          "removedCitationCount": 3,
+          "removedCitationCount": 2,
           "removedCommerceCount": 0,
           "removedRelatedIssueCount": 0,
           "verifiedOn": "2026-08-08",
           "observation": "Secondary, missing-URL, wrong-model and search-style material is not carried into the proposal. Exact official sources are retained only where their vehicle and remedy scope matches."
         }
       ],
-      "beforeSha256": "145a64374523bdff62c3d23a84efbf1360b5b3733430d39a0a786f925b97f696",
+      "beforeSha256": "8f443e5b5407f446fa7bf35e0a30016a6e661023b0d9226a333953c8bdaa668d",
       "proposalSha256": "8a7115a74c73451902237ea449a0157448eb5bd4e627c43e2b71e3f6af8fbaac",
       "before": {
         "make": "Kia",
@@ -1442,48 +1372,43 @@
         ],
         "category": "steering",
         "title": "Motor-Driven Power Steering (MDPS) Flexible Coupling Noise",
-        "description": "The flexible coupler inside the column-mounted electric power steering (MDPS) wears prematurely, producing a clicking, ticking, or clunking noise from the steering column when turning left/right, especially while stopped or at low speed. Kia acknowledged the premature wear via TSB CHA-074 and extended the New Vehicle Limited Warranty for the MDPS flexible coupling on 2012-2013 Souls from 5yr/60k to 10 years/unlimited miles (WTY013), with reimbursement available for prior repairs.",
-        "solution": "Replace the MDPS flexible coupling with the improved part per TSB CHA-074; covered free under the 2012-2013 MDPS warranty extension (WTY013) where applicable. Severe cases may need the MDPS column/motor assembly.",
+        "description": "Kia TSB CHA074 covers 2010-2013 Soul vehicles in its listed production range and attributes a knock or click while turning at a stop to premature wear of the MDPS motor’s flexible coupling. Kia WTY013 separately extended flexible-coupling coverage to 10 years/unlimited mileage for 2012-2013 Soul vehicles; it does not extend every other MDPS component or the 2010-2011 vehicles.",
+        "solution": "Have the noise diagnosed against CHA074 and the exact VIN. If premature coupling wear is confirmed, follow Kia’s Soul-specific procedure to replace only the improved flexible coupling. Check WTY013 eligibility for a 2012-2013 vehicle. Do not order a generic coupler or replace the full MDPS column without the current Kia parts catalog, fitment and steering-service procedure.",
         "severity": "medium",
         "confidence": "high",
         "symptoms": [
-          "Clicking/ticking/clunk from steering column when turning",
-          "Noise worst when stopped or at low speed",
-          "Notchy steering feel"
+          "Clicking or knocking from the MDPS while turning the steering wheel at a stop"
         ],
-        "affectedSystems": [],
+        "affectedSystems": [
+          "column-mounted MDPS motor flexible coupling"
+        ],
         "dtcCodes": [],
-        "estimatedCostLow": 150,
-        "estimatedCostHigh": 2000,
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
         "typicalMileageLow": null,
         "typicalMileageHigh": null,
         "citations": [
           {
+            "url": "https://static.nhtsa.gov/odi/tsbs/2019/MC-10159268-0001.pdf",
+            "type": "tsb",
+            "title": "Kia TSB CHA074 - Soul MDPS Flexible Coupling Replacement"
+          },
+          {
             "url": "https://static.nhtsa.gov/odi/tsbs/2019/MC-10159272-0001.pdf",
             "type": "tsb",
-            "title": "WTY013 2012-2013 MY Soul MDPS Flexible Coupling Warranty Extension (NHTSA)"
-          },
-          {
-            "url": "https://www.kiasoulforums.com/threads/motor-driven-power-steering-mdps-flexible-coupling-warranty-extension-notice.114551/",
-            "type": "forum",
-            "title": "Motor Driven Power Steering (MDPS) Flexible Coupling / Warranty Extension Notice"
-          },
-          {
-            "url": "https://www.go-parts.com/garage/steering-shaft-kia-soul-2010-2013",
-            "type": "article",
-            "title": "2010-2013 Kia Soul Steering: Decoding the Click, the Coupler, and the Shaft (Go-Parts)"
+            "title": "Kia WTY013 - 2012-2013 Soul MDPS Warranty Extension"
           }
         ],
         "communityRecommendations": [],
         "fixParts": [],
         "humanApproved": true,
         "reportCount": 0,
-        "source": "ai-researched",
+        "source": "manual",
         "status": "published",
         "lastReportedByOwners": "",
-        "reviewedOn": "2026-07-08",
-        "contentUpdatedOn": "",
-        "contentUpdateSummary": "",
+        "reviewedOn": "2026-08-08",
+        "contentUpdatedOn": "2026-08-08",
+        "contentUpdateSummary": "Official-source same-identity rewrite: CHA074 exactly supports 2010-2013 Soul coupling wear and replacement. WTY013 extends only 2012-2013 coverage, so the warranty boundary is made explicit and the whole-column fallback is removed.",
         "relatedIssueIds": []
       },
       "proposal": {
@@ -1557,7 +1482,6 @@
       "changedFields": [
         "description",
         "solution",
-        "severity",
         "confidence",
         "symptoms",
         "affectedSystems",
@@ -1589,7 +1513,7 @@
         }
       ],
       "beforeSha256": "823ca4d21deebbf8826af734188bd889512521d0601c936ac2c3081f4816222b",
-      "proposalSha256": "962e3d76b93c93e057750912c6b3821d38e49f4a6e0034b455315708b8da1bef",
+      "proposalSha256": "e5d0d6f6182b85c6238ac40da143b703c6a17e1ea172ed6bdac62279138cdcb4",
       "before": {
         "make": "Kia",
         "model": "Soul",
@@ -1689,7 +1613,7 @@
         "title": "Panoramic Sunroof Spontaneous Shattering",
         "description": "The frozen page asserts one spontaneous panoramic-roof defect across 2014-2020 Soul vehicles and adds NHTSA-investigation and lawsuit conclusions, but no exact Soul primary package appears in the 494 manufacturer communications or 15 recall campaigns reviewed here. The three frozen citations are secondary and do not establish one all-year failure mechanism.",
         "solution": "Stop using the roof if the glass is cracked or unstable, keep occupants away from loose fragments and arrange glass or dealer inspection. Document the VIN, glass markings, impact evidence and failure conditions for an insurance or manufacturer claim. Do not apply aftermarket film or assume a manufacturing defect, road-debris cause or recall eligibility from this page alone.",
-        "severity": "medium",
+        "severity": "high",
         "confidence": "low",
         "symptoms": [
           "Cracked or shattered roof glass",
@@ -1725,22 +1649,7 @@
       "identityRule": "Preserve every indexed Soul ID, title, category, year set, trim set, engine set and publication state while correcting false source scope, false DTCs, unsafe advice and unsupported replacement claims.",
       "commerceDecision": "dealer-only-no-retail-part-engine-safety-and-vin-bound-coverage",
       "changedFields": [
-        "description",
-        "solution",
-        "symptoms",
-        "affectedSystems",
-        "dtcCodes",
-        "estimatedCostLow",
-        "estimatedCostHigh",
-        "citations",
-        "communityRecommendations",
-        "humanApproved",
-        "reportCount",
-        "source",
-        "reviewedOn",
-        "contentUpdatedOn",
-        "contentUpdateSummary",
-        "relatedIssueIds"
+        "humanApproved"
       ],
       "evidence": [
         {
@@ -1794,14 +1703,14 @@
         },
         {
           "kind": "citation-commerce-relation-review",
-          "removedCitationCount": 3,
-          "removedCommerceCount": 4,
-          "removedRelatedIssueCount": 5,
+          "removedCitationCount": 2,
+          "removedCommerceCount": 0,
+          "removedRelatedIssueCount": 0,
           "verifiedOn": "2026-08-08",
           "observation": "Secondary, missing-URL, wrong-model and search-style material is not carried into the proposal. Exact official sources are retained only where their vehicle and remedy scope matches."
         }
       ],
-      "beforeSha256": "7c6fd89301fcd5b6d31d5ddace99aa04cd2e925f39e390d5893ac5c9dfeb1839",
+      "beforeSha256": "8a413c59db98ea45997b8d37a4a896736009cd6f16e5ec0e3d2e228dc74d9459",
       "proposalSha256": "d15a2a6ab71edec2b3174ba26f95373a45f97666b9a93b44d65bf1e1e4f08ec8",
       "before": {
         "make": "Kia",
@@ -1818,90 +1727,48 @@
         ],
         "category": "engine",
         "title": "Piston Oil Ring Defect and Excessive Oil Consumption",
-        "description": "The 2.0L Nu MPI engine in 2020-2023 Souls may have incorrectly manufactured piston oil rings that do not properly scrape oil from the cylinder walls. This causes excessive oil consumption, potential oil starvation, and eventual engine damage. NHTSA recall covers approximately 137,000 Soul and Seltos vehicles. Kia dealers install PNSS (Piston-ring Noise Sensing System) software and replace the engine if damage is found.",
-        "solution": "Check VIN for recall eligibility at owners.kia.com. Dealer will install PNSS software to detect abnormal engine noise from piston ring wear. If oil consumption exceeds 1 quart per 1,000 miles or engine noise is detected, the engine is replaced free of charge. Monitor oil level weekly between changes.",
+        "description": "NHTSA recall 21V259000 (Kia SC209) covers certain 2020-2021 Soul vehicles with 2.0L Nu MPI engines whose piston oil rings may not have been properly heat-treated. Kia communication 11017169/SST082 indexes a later PNSS vibration-inspection process to certain 2020-2023 Soul vehicles and describes ring-related cylinder-wall damage, increased oil consumption, abnormal noise, oil-pressure warning and P1327. That later bulletin does not make every 2022-2023 vehicle part of recall 21V259.",
+        "solution": "Check the VIN for SC209 or the current Kia PNSS program and monitor the oil level using the owner-manual procedure. A Kia dealer uses the VIN-driven KDS inspection; eligible recall vehicles receive inspection, PNSS software and engine replacement when necessary. Do not promise a one-quart-per-1,000-mile threshold, apply recall coverage to every 2022-2023 Soul, infer P0420/P0171/P0174 or buy oil and filters as a remedy for damaged rings.",
         "severity": "high",
         "confidence": "high",
         "symptoms": [
-          "Oil level drops rapidly between changes",
-          "Blue or gray smoke from exhaust",
-          "Engine knocking or ticking noise",
-          "Low oil pressure warning light",
-          "Rough idle or misfires due to oil fouled spark plugs"
+          "Increasing oil consumption",
+          "Abnormal engine noise or P1327",
+          "Oil-pressure warning light"
         ],
         "affectedSystems": [
-          "Engine"
+          "2.0L Nu MPI piston oil rings, cylinder walls and PNSS diagnostics"
         ],
         "dtcCodes": [
-          "P0420",
-          "P0171",
-          "P0174"
+          "P1327"
         ],
-        "estimatedCostLow": 0,
-        "estimatedCostHigh": 5500,
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
         "typicalMileageLow": null,
         "typicalMileageHigh": null,
         "citations": [
           {
-            "url": "https://www.kiasoulforums.com/threads/oil-burning-possible-piston-ring-recall-concerning-solutions.119370/",
-            "type": "forum",
-            "title": "Oil Burning Possible Piston Ring Recall - Kia Soul Forums"
+            "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=21V259000",
+            "type": "recall",
+            "title": "NHTSA Campaign 21V259000 - Soul Piston Oil Rings"
           },
           {
-            "url": "https://static.nhtsa.gov/odi/rcl/2021/RCLRPT-21V259-6845.PDF",
-            "type": "nhtsa",
-            "title": "NHTSA Safety Recall Report 21V-259 Piston Oil Rings"
-          },
-          {
-            "url": "https://www.consumerreports.org/cars/car-recalls-defects/kia-seltos-and-soul-recalled-due-to-engine-trouble-a3066302542/",
-            "type": "media",
-            "title": "Kia Seltos and Soul Recalled Due to Engine Trouble - Consumer Reports"
+            "url": "https://static.nhtsa.gov/odi/tsbs/2025/MC-11017169-0001.pdf",
+            "type": "tsb",
+            "title": "Kia TSB SST082 - Piston Noise Sensing System Inspection"
           }
         ],
-        "communityRecommendations": [
-          {
-            "type": "tip",
-            "content": "Check oil level at every fuel fill-up. Do not wait for the warning light - by then significant engine damage may have already occurred",
-            "upvotes": 0,
-            "needsReview": false
-          },
-          {
-            "type": "tip",
-            "content": "Keep all oil purchase receipts and document oil level with dated photos at each check. Kia may require proof of maintenance for warranty claims",
-            "upvotes": 0,
-            "needsReview": false
-          },
-          {
-            "type": "part",
-            "content": "High-quality synthetic oil helps reduce consumption and protect worn engines",
-            "partName": "Extended Performance Full Synthetic Motor Oil",
-            "partBrand": "Mobil 1",
-            "affiliateUrl": "https://www.amazon.com/s?k=Kia%20Soul%20Mobil%201%20Extended%20Performance%20Full%20Synthetic%20Motor%20Oil&tag=au7o-20"
-          },
-          {
-            "type": "part",
-            "content": "Premium oil filter ensures proper filtration with high-mileage engines",
-            "partName": "Oil Filter",
-            "partBrand": "Wix",
-            "affiliateUrl": "https://www.amazon.com/s?k=Kia%20Soul%20Wix%20Oil%20Filter&tag=au7o-20"
-          }
-        ],
+        "communityRecommendations": [],
         "fixParts": [],
         "humanApproved": true,
-        "reportCount": 345,
-        "source": "ai-researched",
+        "reportCount": 0,
+        "source": "manual",
         "status": "published",
         "lastReportedByOwners": "2025-02-05",
-        "reviewedOn": "2026-02-23",
-        "contentUpdatedOn": "",
-        "contentUpdateSummary": "",
-        "relatedIssueIds": [
-          "kia-seltos-piston-ring-oil-consumption",
-          "kia-forte-engine-knocking-nu-gdi",
-          "kia-sorento-theta-ii-engine-seizure",
-          "hyundai-tucson-oil-consumption-2011",
-          "kia-seltos-isg-oil-pump-overheat"
-        ]
+        "reviewedOn": "2026-08-08",
+        "contentUpdatedOn": "2026-08-08",
+        "contentUpdateSummary": "Official-source same-identity rewrite: 21V259/SC209 supports 2020-2021 recall coverage, while NHTSA communication 11017169/SST082 supports a VIN-driven PNSS inspection identity through 2023. The frozen 2022-2023 recall promise, one-quart threshold and unrelated DTCs are removed.",
+        "relatedIssueIds": []
       },
       "proposal": {
         "make": "Kia",
@@ -1970,20 +1837,7 @@
       "identityRule": "Preserve every indexed Soul ID, title, category, year set, trim set, engine set and publication state while correcting false source scope, false DTCs, unsafe advice and unsupported replacement claims.",
       "commerceDecision": "dealer-only-no-retail-part-critical-steering-recall",
       "changedFields": [
-        "description",
-        "solution",
-        "symptoms",
-        "affectedSystems",
-        "estimatedCostLow",
-        "estimatedCostHigh",
-        "citations",
-        "communityRecommendations",
-        "humanApproved",
-        "reportCount",
-        "source",
-        "reviewedOn",
-        "contentUpdatedOn",
-        "contentUpdateSummary"
+        "humanApproved"
       ],
       "evidence": [
         {
@@ -2016,14 +1870,14 @@
         },
         {
           "kind": "citation-commerce-relation-review",
-          "removedCitationCount": 3,
-          "removedCommerceCount": 3,
+          "removedCitationCount": 1,
+          "removedCommerceCount": 0,
           "removedRelatedIssueCount": 0,
           "verifiedOn": "2026-08-08",
           "observation": "Secondary, missing-URL, wrong-model and search-style material is not carried into the proposal. Exact official sources are retained only where their vehicle and remedy scope matches."
         }
       ],
-      "beforeSha256": "aa78080606f9cd55cf5cd9d2e9b858e54f49dde52de84189760594d9e2ff6dba",
+      "beforeSha256": "0addc47f0ba2566fad5e9fee9b342a829c5b781e5bd674b124c515e40d6566b5",
       "proposalSha256": "8ccaa5ef72ad414752667d0c273977f85b1ec62170c5d9d1c9c4fbfe80865719",
       "before": {
         "make": "Kia",
@@ -2037,72 +1891,38 @@
         "engines": [],
         "category": "suspension",
         "title": "Steering Pinion Gear Separation (Loss of Steering)",
-        "description": "A faulty pinion plug in the steering rack can cause the pinion gear to separate from the steering assembly, resulting in a complete loss of steering control while driving. NHTSA recall covers approximately 340,000 Soul vehicles. This is a critical safety defect requiring immediate attention.",
-        "solution": "Check VIN for recall immediately. Dealer will inspect the steering rack pinion plug and replace the steering gear assembly if necessary, free of charge. This is a critical safety recall - do not delay repair.",
+        "description": "NHTSA recall 17V608000 (Kia SC155) covers 2014-2016 Soul vehicles. The pinion plug may allow the pinion gear to separate from the steering-gear assembly, causing loss of steering and increasing crash risk. The campaign supersedes 14V332 and 15V736, including vehicles previously repaired under those campaigns.",
+        "solution": "Check the VIN for recall 17V608000 and arrange prompt Kia dealer service. The dealer inspects and secures the pinion plug or replaces the steering-gear assembly as necessary, free of charge. If steering control changes, stop safely and arrange towing. Do not buy tie-rod ends or a remanufactured rack as a substitute for the recall remedy.",
         "severity": "high",
         "confidence": "high",
         "symptoms": [
-          "Steering wheel suddenly becomes loose or disconnected",
-          "Complete loss of steering control",
-          "Clunking noise from steering rack before failure",
-          "Steering play increases gradually"
+          "Increased steering play or loss of steering control may occur"
         ],
         "affectedSystems": [
-          "Steering"
+          "steering-gear pinion plug and pinion gear"
         ],
         "dtcCodes": [],
-        "estimatedCostLow": 0,
-        "estimatedCostHigh": 0,
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
         "typicalMileageLow": null,
         "typicalMileageHigh": null,
         "citations": [
           {
-            "url": "https://www.kiasoulforums.com/threads/kia-soul-steering-recall-take-two.102665/",
-            "type": "forum",
-            "title": "Kia Soul Forums: Kia Soul Steering Recall Take Two"
-          },
-          {
-            "url": "https://www.aboutlawsuits.com/kia-soul-steering-recall-90030/",
-            "type": "media",
-            "title": "AboutLawsuits: Kia Soul Recall Issued Due to Steering Failure Risk"
-          },
-          {
-            "url": "https://static.nhtsa.gov/odi/rcl/2017/RCRIT-17V608-6107.pdf",
-            "type": "nhtsa",
-            "title": "NHTSA RCRIT-17V608: Kia Soul Safety Recall Campaign"
+            "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=17V608000",
+            "type": "recall",
+            "title": "NHTSA Campaign 17V608000 - Soul Steering Pinion Plug"
           }
         ],
-        "communityRecommendations": [
-          {
-            "type": "warning",
-            "content": "This is a critical safety defect. If you notice any increase in steering play or clunking from the steering rack, stop driving and have the vehicle towed to a dealer",
-            "upvotes": 0,
-            "needsReview": false
-          },
-          {
-            "type": "part",
-            "content": "Inner and outer tie rod ends for steering precision restoration",
-            "partName": "Tie Rod End",
-            "partBrand": "Moog",
-            "affiliateUrl": "https://www.amazon.com/s?k=Moog%20tie%20rod%20end%20Kia%20Soul&tag=au7o-20"
-          },
-          {
-            "type": "part",
-            "content": "Remanufactured power steering rack for complete steering system repair",
-            "partName": "Remanufactured Steering Rack",
-            "partBrand": "Cardone",
-            "affiliateUrl": "https://www.amazon.com/s?k=Cardone%20steering%20rack%20Kia%20Soul&tag=au7o-20"
-          }
-        ],
+        "communityRecommendations": [],
         "fixParts": [],
         "humanApproved": true,
-        "reportCount": 267,
-        "source": "ai-researched",
+        "reportCount": 0,
+        "source": "manual",
         "status": "published",
         "lastReportedByOwners": "2024-04-10",
-        "reviewedOn": "2026-02-23",
-        "contentUpdatedOn": "",
-        "contentUpdateSummary": "",
+        "reviewedOn": "2026-08-08",
+        "contentUpdatedOn": "2026-08-08",
+        "contentUpdateSummary": "Official-source same-identity rewrite: 17V608/SC155 exactly supports the 2014-2016 Soul pinion-plug identity and superseding remedy. Tie-rod and remanufactured-rack search commerce are not the recall repair.",
         "relatedIssueIds": []
       },
       "proposal": {

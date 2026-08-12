@@ -4,11 +4,11 @@ const { FULL_RECORD_FIELDS, fullRecord, hashValue, normalizedFileHash, stableVal
 const {
   CAMPAIGN_SOURCES, CLEANUP_CARDS, CLEANUP_IDS, DEFERRED_CAMPAIGNS, EXPECTED_COMPLETE_RECALL_INVENTORY,
   EXPECTED_FLAT_RECALL_INVENTORY, EXPECTED_PRE_2010_RECALL_INVENTORY, FLAT_RECALL_SOURCE, IDS, MFR_COMMUNICATIONS_SOURCE, OUTPUT: PACKET,
-  PDF_SOURCES, REWRITE_CARD, REWRITE_ID, SNAPSHOT, actionFor, cleanupProposal, evidenceFor, reasonFor, rewriteProposal,
+  PDF_SOURCES, REWRITE_ID, SNAPSHOT, actionFor, cleanupProposal, evidenceFor, reasonFor, rewriteProposal,
 } = require('./build-kia-rio-adjudication');
 
 const EXPECTED_SUMMARY = { rewrite_same_identity: 1, targeted_safety_cleanup_pending_source: 13, total: 14 };
-const IMMUTABLE_FIELDS = ['make', 'model', 'years', 'category', 'title', 'status'];
+const IMMUTABLE_FIELDS = ['make', 'model', 'years', 'trims', 'engines', 'category', 'title', 'severity', 'status'];
 function equal(a, b) { return JSON.stringify(stableValue(a)) === JSON.stringify(stableValue(b)); }
 
 function validatePacket(packet, snapshot, expectedSnapshotSha256 = normalizedFileHash(SNAPSHOT)) {
@@ -59,7 +59,7 @@ function validatePacket(packet, snapshot, expectedSnapshotSha256 = normalizedFil
   const injector = byId.get(IDS.injector);
   if (!/normal/i.test(injector?.proposal?.description || '') || !/Do not replace all four injectors/i.test(injector?.proposal?.solution || '') || !/mechanical injector cleaning/i.test(injector?.proposal?.solution || '')) errors.push('injector corrective safety mismatch');
   const fca = byId.get(IDS.fca);
-  if (!equal(fca?.proposal?.dtcCodes, ['C160649']) || !equal(fca?.proposal?.trims, []) || !/does not establish false braking alerts/i.test(fca?.proposal?.description || '')) errors.push('FCA boundary correction mismatch');
+  if (!equal(fca?.proposal?.dtcCodes, ['C160649']) || !equal(fca?.proposal?.trims, fca?.before?.trims) || !/does not establish false braking alerts/i.test(fca?.proposal?.description || '')) errors.push('FCA boundary correction mismatch');
   const ivt = byId.get(IDS.ivt);
   if (!/2020MY/.test(ivt?.proposal?.description || '') || !/Do not apply the 2020-only SA476/i.test(ivt?.proposal?.solution || '') || !equal(ivt?.proposal?.dtcCodes, [])) errors.push('IVT year-boundary mismatch');
   const camera = byId.get(IDS.camera);

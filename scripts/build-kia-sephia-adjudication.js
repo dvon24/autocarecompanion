@@ -115,6 +115,7 @@ function proposalFor(row) {
     contentUpdateSummary: `Targeted accuracy and safety cleanup: ${card.reason}`,
     relatedIssueIds: [],
   });
+  proposal.severity = row.severity;
   return proposal;
 }
 function evidenceFor(row) {

@@ -30,9 +30,9 @@
   ],
   "source": {
     "snapshotFile": "data/_kia-deeplink-snapshot-2026-08-06.json",
-    "snapshotSha256": "f0aa4c5c8ca72321ed9a0b54aa9455e84056b445cb31049545ea07a48748c76b",
-    "snapshotGeneratedAt": "2026-08-07T19:13:14.080Z",
-    "snapshotHash": "f8b4d0e206ea16a5a28546ef1db29b0c885b1a839069b486f07fb1a1759310bf",
+    "snapshotSha256": "c3accea6dc370cc4587164aa6cc8b9fd22dd037621facff22dfc29f4f70a4e2c",
+    "snapshotGeneratedAt": "2026-08-12T13:04:39.309Z",
+    "snapshotHash": "00b5d9cf06b9534ad62b86ed57d17760d6dfa27f38f8b05f7188e7d3cff47877",
     "modelRecordCount": 10
   },
   "observations": [
@@ -423,20 +423,7 @@
       "identityRule": "No source may change an indexed page identity. A different model, component, year boundary or failure outcome requires a byte-for-byte hold.",
       "commerceDecision": "dealer-only-no-retail-part-safety-recall",
       "changedFields": [
-        "trims",
-        "engines",
-        "description",
-        "solution",
-        "symptoms",
-        "affectedSystems",
-        "estimatedCostLow",
-        "estimatedCostHigh",
-        "citations",
-        "humanApproved",
-        "source",
-        "reviewedOn",
-        "contentUpdatedOn",
-        "contentUpdateSummary"
+        "humanApproved"
       ],
       "evidence": [
         {
@@ -456,7 +443,7 @@
           "observation": "23V652 and the complete recall inventory establish the 2010-2013 Forte HECU fire identity; 21V331 contains no Forte row."
         }
       ],
-      "beforeSha256": "70d72ee876beeb66ec9aa55b7dce67dc6c15578f38c818fe8143471b325d4e53",
+      "beforeSha256": "124e5fee81794ef1863fd06e7545176814c239dc77fec5bd780d3e1e1b9196be",
       "proposalSha256": "1acf6f6a3652624b5218354a3edd56ff2d1f7ab6550ea139b8329faebd58699e",
       "before": {
         "make": "Kia",
@@ -467,62 +454,50 @@
           2012,
           2013
         ],
-        "trims": [
-          "LX",
-          "EX",
-          "SX",
-          "Koup"
-        ],
-        "engines": [
-          "2.0L I4",
-          "2.4L Theta II I4"
-        ],
+        "trims": [],
+        "engines": [],
         "category": "brakes",
         "title": "ABS/HECU Brake-Fluid Leak Causing Electrical Short and Engine-Bay Fire",
-        "description": "Brake fluid can leak internally inside the Hydraulic Electronic Control Unit (HECU) of the anti-lock brake system, causing an electrical short that can ignite an engine-compartment fire even while parked and off. Kia advised owners to park outside and away from structures until repaired. On the first-generation Forte this is covered by NHTSA recall 21V331. This is a fire risk independent of the engine recalls.",
-        "solution": "Under safety recall 21V331, dealers inspect the HECU for leaking brake fluid, replace the HECU if leaking, and install a new multi-fuse (30A instead of 40A) in the HECU circuit to prevent an over-current condition, free of charge. Out of warranty, a leaking HECU/ABS module is replaced and the brake system bled.",
+        "description": "NHTSA recall 23V652000 (Kia SC284) covers certain 2010-2013 Forte and Forte Koup vehicles equipped with Electronic Stability Control. The Hydraulic Electronic Control Unit (HECU) may experience an electrical short that can cause an engine-compartment fire while the vehicle is parked or being driven. Kia and NHTSA advise affected owners to park outdoors and away from structures until the recall is completed.",
+        "solution": "Check the VIN for recall 23V652000. A Kia dealer installs new lower-amperage fuse or fuses to prevent an overcurrent condition in the HECU circuit, free of charge. This proposal does not recommend a retail HECU or fuse because the campaign remedy is VIN-specific and dealer-installed. If the ABS or malfunction light illuminates, or there is a burning smell or smoke, stop safely, turn the engine off and arrange towing to a Kia dealer.",
         "severity": "high",
         "confidence": "high",
         "symptoms": [
-          "ABS warning light",
-          "Burning/electrical smell from engine bay",
-          "Smoke from engine compartment",
-          "Fire while parked or driving",
-          "Brake fluid loss"
+          "ABS or malfunction warning light",
+          "Burning or melting smell",
+          "Smoke from engine compartment"
         ],
-        "affectedSystems": [],
+        "affectedSystems": [
+          "hydraulic electronic control unit",
+          "HECU electrical circuit and recall fuse"
+        ],
         "dtcCodes": [],
-        "estimatedCostLow": 0,
-        "estimatedCostHigh": 1200,
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
         "typicalMileageLow": null,
         "typicalMileageHigh": null,
         "citations": [
           {
-            "url": "https://static.nhtsa.gov/odi/rcl/2021/RCLRPT-21V331-5686.PDF",
+            "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=23V652000",
             "type": "recall",
-            "title": "Part 573 Safety Recall Report 21V-331 (HECU brake fire, multi-fuse remedy) - NHTSA"
+            "title": "NHTSA Campaign 23V652000 - Forte HECU Fire Risk"
           },
           {
-            "url": "https://www.nhtsa.gov/press-releases/consumer-alert-kia-and-hyundai-park-outside",
-            "type": "nhtsa",
-            "title": "Consumer Alert: Kia and Hyundai Fire Risk - Park Outside (NHTSA)"
-          },
-          {
-            "url": "https://www.kia-forums.com/threads/new-recall-21v331-abs-fuse-replacement.352373/",
-            "type": "forum",
-            "title": "New Recall (21V331) - ABS fuse replacement (Kia Forums)"
+            "url": "https://static.nhtsa.gov/odi/rcl/2023/RCLRPT-23V652-3815.PDF",
+            "type": "recall",
+            "title": "Part 573 Safety Recall Report 23V652"
           }
         ],
         "communityRecommendations": [],
         "fixParts": [],
         "humanApproved": true,
         "reportCount": 0,
-        "source": "ai-researched",
+        "source": "manual",
         "status": "published",
         "lastReportedByOwners": "",
-        "reviewedOn": "2026-07-08",
-        "contentUpdatedOn": "",
-        "contentUpdateSummary": "",
+        "reviewedOn": "2026-08-08",
+        "contentUpdatedOn": "2026-08-08",
+        "contentUpdateSummary": "Corrected the same HECU fire identity to Forte recall 23V652, removed the false prior campaign citation and unsupported HECU-replacement and fuse-amperage details, and retained the indexed page identity.",
         "relatedIssueIds": []
       },
       "proposal": {
@@ -589,20 +564,7 @@
       "identityRule": "No source may change an indexed page identity. A different model, component, year boundary or failure outcome requires a byte-for-byte hold.",
       "commerceDecision": "dealer-only-no-retail-part-safety-recalls",
       "changedFields": [
-        "trims",
-        "engines",
-        "description",
-        "solution",
-        "symptoms",
-        "affectedSystems",
-        "estimatedCostLow",
-        "estimatedCostHigh",
-        "citations",
-        "humanApproved",
-        "source",
-        "reviewedOn",
-        "contentUpdatedOn",
-        "contentUpdateSummary"
+        "humanApproved"
       ],
       "evidence": [
         {
@@ -632,7 +594,7 @@
           "observation": "Rendered SC165 and SC226 establish the retained 2010-2013 and 2017-2018 ACU failure groups, distinct causes and dealer remedies."
         }
       ],
-      "beforeSha256": "b51d9589e70e17ceb95a7fcbbe2e2fbc9822a4b032b1196b3e6461a276350bd5",
+      "beforeSha256": "b0590301f2b150387f82c417d103478d443461ea2fb0afacb34476674b8e28e7",
       "proposalSha256": "aa3197fac72ed0f86a7001949237b4937193f88cebc305fe4134396136348776",
       "before": {
         "make": "Kia",
@@ -645,63 +607,61 @@
           2017,
           2018
         ],
-        "trims": [
-          "LX",
-          "EX",
-          "SX",
-          "S",
-          "Koup"
-        ],
-        "engines": [
-          "1.8L Nu I4",
-          "2.0L Nu GDI I4",
-          "2.4L Theta II I4"
-        ],
+        "trims": [],
+        "engines": [],
         "category": "safety",
         "title": "Airbag Control Unit Electrical Fault - Airbags May Not Deploy in a Crash",
-        "description": "The Airbag Control Unit (ACU) can suffer an internal electrical fault. On 2010-2013 cars the ACU's ASIC chip is susceptible to electrical overstress during a frontal crash (recall SC165 / 18V363), and on 2017-2018 cars the ACU cover can contact and damage a circuit-board chip (recall SC226). Either fault can deactivate the frontal airbags and seatbelt pretensioners so they fail to deploy in a collision.",
-        "solution": "Dealers inspect and reprogram or replace the airbag control unit under the applicable recall at no charge. Owners of affected earlier models were also eligible for reimbursement/compensation under the related class-action settlement.",
+        "description": "Two Kia safety recalls match this page’s retained year groups. Under 18V363000 (SC165), the airbag control unit in certain 2010-2013 Forte vehicles can suffer electrical overstress during a frontal crash, preventing the frontal airbags and seatbelt pretensioners from deploying. Under 22V031000 (SC226), the ACU cover in certain 2017-2018 Forte vehicles can contact a memory chip, illuminate the airbag warning light with DTC B1620 and deactivate the airbags.",
+        "solution": "Check the VIN for both recalls. For 18V363000, Kia installs an extension wire-harness kit between the ACU and vehicle harness. For 22V031000, Kia updates ACU software when B1620 is absent and replaces the ACU when B1620 is present. Both remedies are free and VIN-specific. No retail airbag-control part should be purchased from this page. If the airbag warning light stays on, follow Kia’s recall instructions and arrange dealer diagnosis.",
         "severity": "high",
         "confidence": "high",
         "symptoms": [
-          "Airbag warning light illuminated",
-          "Airbags fail to deploy in a crash",
-          "Seatbelt pretensioners fail to activate",
-          "SRS fault stored"
+          "Airbag warning light remains illuminated",
+          "DTC B1620 on later recall population",
+          "Airbags or pretensioners may not deploy in a crash"
         ],
-        "affectedSystems": [],
+        "affectedSystems": [
+          "airbag control unit",
+          "frontal airbags",
+          "seatbelt pretensioners"
+        ],
         "dtcCodes": [],
-        "estimatedCostLow": 0,
-        "estimatedCostHigh": 900,
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
         "typicalMileageLow": null,
         "typicalMileageHigh": null,
         "citations": [
           {
-            "url": "https://static.nhtsa.gov/odi/rcl/2018/RMISC-18V363-9433.pdf",
+            "url": "https://static.nhtsa.gov/odi/rcl/2018/RCRIT-18V363-8649.pdf",
             "type": "recall",
-            "title": "SC165 Airbag Control Unit Safety Recall Q&A (NHTSA 18V363)"
+            "title": "Kia SC165 - ACU Extension Wire Harness Installation"
           },
           {
-            "url": "https://kia.oemdtc.com/662/sc226-acu-cover-contact-2017-2019-kia-sedona-soul-soul-ev-2017-2018-forte-2017-forte-koup/",
+            "url": "https://static.nhtsa.gov/odi/rcl/2022/RCRIT-22V031-2809.pdf",
             "type": "recall",
-            "title": "SC226 ACU Cover Contact - 2017-2018 Forte & 2017 Forte Koup (Kia OEMDTC)"
+            "title": "Kia SC226 - ACU Software Update or Replacement"
           },
           {
-            "url": "https://www.consumerreports.org/cars/car-recalls-defects/kia-cars-minivans-recalled-for-airbags-that-might-not-deploy-a2922392173/",
+            "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=18V363000",
             "type": "recall",
-            "title": "Kia Cars/Minivans Recalled for Airbags That Might Not Deploy (Consumer Reports)"
+            "title": "NHTSA Campaign 18V363000"
+          },
+          {
+            "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=22V031000",
+            "type": "recall",
+            "title": "NHTSA Campaign 22V031000"
           }
         ],
         "communityRecommendations": [],
         "fixParts": [],
         "humanApproved": true,
         "reportCount": 0,
-        "source": "ai-researched",
+        "source": "manual",
         "status": "published",
         "lastReportedByOwners": "",
-        "reviewedOn": "2026-07-08",
-        "contentUpdatedOn": "",
-        "contentUpdateSummary": "",
+        "reviewedOn": "2026-08-08",
+        "contentUpdatedOn": "2026-08-08",
+        "contentUpdateSummary": "Separated the same airbag-nondeployment identity into the exact SC165 and SC226 year groups and dealer remedies, removed class-action and secondary-source claims, and preserved the indexed title and years.",
         "relatedIssueIds": []
       },
       "proposal": {
@@ -1133,8 +1093,8 @@
           "observation": "Kia SC199 covers a VIN-bound 2019-2020 Forte population with specified DTCs and lack or delay of acceleration from slippage, not a general 2019-2024 chain-and-pulley shudder identity. The frozen page also names unsupported DTCs, a 60% success rate, an Amazon search URL and fluid part 45280-2F100, while Kia’s fluid guide identifies SP-CVT1 as UM018 CH130. The row remains frozen and blocks application."
         }
       ],
-      "beforeSha256": "9a9cf13fff35319c405182a6ac13a9fca8efc95a4ececb16245d18a9a94e5c82",
-      "proposalSha256": "9a9cf13fff35319c405182a6ac13a9fca8efc95a4ececb16245d18a9a94e5c82",
+      "beforeSha256": "2c0913ba57ac87a79ea7e987432e5fb737ad79ceb194da1ce08113b51333dc11",
+      "proposalSha256": "2c0913ba57ac87a79ea7e987432e5fb737ad79ceb194da1ce08113b51333dc11",
       "before": {
         "make": "Kia",
         "model": "Forte",
@@ -1200,8 +1160,7 @@
             "partName": "CVT Fluid",
             "partBrand": "Kia OEM",
             "partNumber": "45280-2F100",
-            "needsReview": false,
-            "affiliateUrl": "https://www.amazon.com/s?k=Kia%20OEM%2045280-2F100&tag=au7o-20"
+            "needsReview": false
           }
         ],
         "fixParts": [],
@@ -1284,8 +1243,7 @@
             "partName": "CVT Fluid",
             "partBrand": "Kia OEM",
             "partNumber": "45280-2F100",
-            "needsReview": false,
-            "affiliateUrl": "https://www.amazon.com/s?k=Kia%20OEM%2045280-2F100&tag=au7o-20"
+            "needsReview": false
           }
         ],
         "fixParts": [],
@@ -1327,8 +1285,8 @@
           "observation": "Recall 20V750 supports only 2014-2015 Forte with 2.0L Nu GDI, not this page’s 2014-2018 oil-consumption and piston-ring identity. The inspected recall says the fire cause was undetermined, and the frozen page adds unsupported oil-consumption thresholds, unrelated DTCs and search commerce. The row remains frozen and blocks application."
         }
       ],
-      "beforeSha256": "fbf282201851f6079ad73717f356970cad57befe33fcbe805432bacc12c5a7dc",
-      "proposalSha256": "fbf282201851f6079ad73717f356970cad57befe33fcbe805432bacc12c5a7dc",
+      "beforeSha256": "2e266bd2d22bf053cdf87c81425a3212aeef76a0e08be1b7fae26a3d54b26766",
+      "proposalSha256": "2e266bd2d22bf053cdf87c81425a3212aeef76a0e08be1b7fae26a3d54b26766",
       "before": {
         "make": "Kia",
         "model": "Forte",
@@ -1406,15 +1364,13 @@
             "type": "part",
             "content": "High-quality synthetic oil helps reduce consumption and protect worn engines",
             "partName": "Extended Performance Full Synthetic Motor Oil",
-            "partBrand": "Mobil 1",
-            "affiliateUrl": "https://www.amazon.com/s?k=Kia%20Forte%20Mobil%201%20Extended%20Performance%20Full%20Synthetic%20Motor%20Oil&tag=au7o-20"
+            "partBrand": "Mobil 1"
           },
           {
             "type": "part",
             "content": "Premium oil filter ensures proper filtration with high-mileage engines",
             "partName": "Oil Filter",
-            "partBrand": "Wix",
-            "affiliateUrl": "https://www.amazon.com/s?k=Kia%20Forte%20Wix%20Oil%20Filter&tag=au7o-20"
+            "partBrand": "Wix"
           }
         ],
         "fixParts": [],
@@ -1508,15 +1464,13 @@
             "type": "part",
             "content": "High-quality synthetic oil helps reduce consumption and protect worn engines",
             "partName": "Extended Performance Full Synthetic Motor Oil",
-            "partBrand": "Mobil 1",
-            "affiliateUrl": "https://www.amazon.com/s?k=Kia%20Forte%20Mobil%201%20Extended%20Performance%20Full%20Synthetic%20Motor%20Oil&tag=au7o-20"
+            "partBrand": "Mobil 1"
           },
           {
             "type": "part",
             "content": "Premium oil filter ensures proper filtration with high-mileage engines",
             "partName": "Oil Filter",
-            "partBrand": "Wix",
-            "affiliateUrl": "https://www.amazon.com/s?k=Kia%20Forte%20Wix%20Oil%20Filter&tag=au7o-20"
+            "partBrand": "Wix"
           }
         ],
         "fixParts": [],
@@ -1542,22 +1496,7 @@
       "identityRule": "No source may change an indexed page identity. A different model, component, year boundary or failure outcome requires a byte-for-byte hold.",
       "commerceDecision": "dealer-only-no-retail-part-technical-bulletin",
       "changedFields": [
-        "description",
-        "solution",
-        "severity",
-        "symptoms",
-        "affectedSystems",
-        "estimatedCostLow",
-        "estimatedCostHigh",
-        "citations",
-        "communityRecommendations",
-        "humanApproved",
-        "reportCount",
-        "source",
-        "lastReportedByOwners",
-        "reviewedOn",
-        "contentUpdatedOn",
-        "contentUpdateSummary"
+        "humanApproved"
       ],
       "evidence": [
         {
@@ -1572,7 +1511,7 @@
           "observation": "Rendered CHA121 establishes 2019-2024 Forte intermittent steering-turn noise and replacement of both front strut bearings and upper spring pads."
         }
       ],
-      "beforeSha256": "cbceb0399dfcf543780ec334e3905d42155f563df67d288beca8737f757fbb02",
+      "beforeSha256": "8895a6b90eaf36b2c19ac86e4a2c34cedb065825c529ae0877a58fa446cdd1f2",
       "proposalSha256": "af6104fb753acfeb2bba53aecd962c72e5e6bc30a8d67543057eea5744747780",
       "before": {
         "make": "Kia",
@@ -1589,66 +1528,40 @@
         "engines": [],
         "category": "suspension",
         "title": "Front Strut Bearing and Upper Spring Pad Noise/Failure",
-        "description": "The 3rd generation Forte (2019-2024) develops a creaking, popping, or groaning noise from the front suspension when turning the steering wheel, particularly at low speeds and over bumps. The front strut bearing and upper spring pad deteriorate prematurely. Kia issued a TSB to replace both components with updated parts. The issue is especially prevalent in colder climates.",
-        "solution": "Have dealer check for Kia TSB addressing front strut bearing and upper spring pad replacement on 2019-2024 Forte. Replacement of both strut mount bearings and upper spring pads ($50-80 per side in parts). Labor is approximately 1.5-2 hours per side. Some owners combine with strut replacement for a more complete refresh.",
-        "severity": "low",
+        "description": "Kia bulletin CHA121 applies to certain 2019-2024 Forte vehicles and documents an intermittent front-suspension noise while turning the steering wheel, whether the vehicle is moving or stationary. Kia’s procedure replaces the front strut bearing and upper spring pad on both front strut assemblies. The bulletin describes a noise repair, not a safety recall or proof of complete strut failure.",
+        "solution": "Ask a Kia dealer or qualified suspension shop to confirm bulletin CHA121 applies and to inspect both front strut assemblies. The bulletin replaces both front strut bearings and upper spring pads and requires new locking nuts during reassembly. This proposal does not recommend a retail part because the repair is production- and fitment-specific and requires strut disassembly, correct torque and verification after repair.",
+        "severity": "medium",
         "confidence": "high",
         "symptoms": [
-          "Creaking or groaning noise when turning steering wheel",
-          "Popping sound over bumps from front suspension",
-          "Noise most noticeable at low speeds and during parking",
-          "Sound more pronounced in cold weather",
-          "Steering feels rough when turning slowly"
+          "Intermittent front suspension noise while turning",
+          "Noise while steering when moving or stationary"
         ],
         "affectedSystems": [
-          "Suspension"
+          "front strut bearings",
+          "upper spring pads"
         ],
         "dtcCodes": [],
-        "estimatedCostLow": 200,
-        "estimatedCostHigh": 600,
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
         "typicalMileageLow": null,
         "typicalMileageHigh": null,
         "citations": [
           {
+            "url": "https://static.nhtsa.gov/odi/tsbs/2024/MC-10248691-0001.pdf",
             "type": "tsb",
-            "title": "Kia TSB: Front Strut Bearing/Upper Spring Pad Replacement (2019-2024 Forte)"
-          },
-          {
-            "type": "forum",
-            "title": "KiaForums.com - Forte front end creaking fix"
+            "title": "Kia TSB CHA121 - Front Strut Bearing and Spring Pad Replacement"
           }
         ],
-        "communityRecommendations": [
-          {
-            "type": "tip",
-            "content": "If doing this repair yourself, replace strut bearings AND upper spring pads together. Doing one without the other usually results in the noise returning",
-            "upvotes": 0,
-            "needsReview": false
-          },
-          {
-            "type": "part",
-            "content": "Quality replacement struts for ride comfort and handling restoration",
-            "partName": "Quick-Strut Complete Assembly",
-            "partBrand": "Monroe",
-            "affiliateUrl": "https://www.amazon.com/s?k=Monroe%20Quick-Strut%20Kia%20Forte&tag=au7o-20"
-          },
-          {
-            "type": "part",
-            "content": "Strut mount and bearing for noise-free strut operation",
-            "partName": "Strut Mount Assembly",
-            "partBrand": "Moog",
-            "affiliateUrl": "https://www.amazon.com/s?k=Moog%20strut%20mount%20Kia%20Forte&tag=au7o-20"
-          }
-        ],
+        "communityRecommendations": [],
         "fixParts": [],
         "humanApproved": true,
-        "reportCount": 367,
-        "source": "ai-researched",
+        "reportCount": 0,
+        "source": "manual",
         "status": "published",
-        "lastReportedByOwners": "2025-01-10",
-        "reviewedOn": "2026-02-23",
-        "contentUpdatedOn": "",
-        "contentUpdateSummary": "",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-08",
+        "contentUpdatedOn": "2026-08-08",
+        "contentUpdateSummary": "Bounded the same 2019-2024 front-strut noise identity to Kia CHA121, removed unsupported cold-climate prevalence, cost and aftermarket commerce, and retained all indexed routing fields.",
         "relatedIssueIds": [
           "kia-k5-front-suspension-strut-mount-bearing-noise-creak-pop-while-turning"
         ]
@@ -1728,8 +1641,8 @@
           "observation": "Kia BOD055 addresses headlamp condensation on all models and says most fogging is normal and needs no replacement; it does not establish this combined 2019-2023 headlight-and-taillight identity, recurrence rate, LED-board damage, updated seal design, RTV resealing advice or the unrelated P0401-P0404 DTCs. The row remains frozen and blocks application."
         }
       ],
-      "beforeSha256": "a31f44263af73cc6b49018393132030f72f9a622f00ed13c24f838fbe972a9f9",
-      "proposalSha256": "a31f44263af73cc6b49018393132030f72f9a622f00ed13c24f838fbe972a9f9",
+      "beforeSha256": "7c67438a4d7b0100d65533a8e486883f576cae289521e0d9f7015573a740b53d",
+      "proposalSha256": "7c67438a4d7b0100d65533a8e486883f576cae289521e0d9f7015573a740b53d",
       "before": {
         "make": "Kia",
         "model": "Forte",
@@ -1787,8 +1700,7 @@
             "partName": "Ultra Grey RTV Silicone Gasket Maker",
             "partBrand": "Permatex",
             "partNumber": "82195",
-            "needsReview": false,
-            "affiliateUrl": "https://www.amazon.com/s?k=Permatex%2082195&tag=au7o-20"
+            "needsReview": false
           }
         ],
         "fixParts": [],
@@ -1863,8 +1775,7 @@
             "partName": "Ultra Grey RTV Silicone Gasket Maker",
             "partBrand": "Permatex",
             "partNumber": "82195",
-            "needsReview": false,
-            "affiliateUrl": "https://www.amazon.com/s?k=Permatex%2082195&tag=au7o-20"
+            "needsReview": false
           }
         ],
         "fixParts": [],

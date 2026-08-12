@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-require-imports */
 const fs = require('node:fs');
 const path = require('node:path');
-const { normalizedFileHash } = require('./kia-adjudication-utils');
+const { normalizedFileHash, stableValue } = require('./kia-adjudication-utils');
 
 const ROOT = path.resolve(__dirname, '..');
 const DATA = path.join(ROOT, 'data');
@@ -17,7 +17,8 @@ const NON_APPLY_ACTIONS = new Set([
   'remove_unverifiable_citations_and_search_commerce_pending_source',
   'targeted_safety_cleanup_pending_source',
 ]);
-const IDENTITY_FIELDS = ['make', 'model', 'title', 'category', 'status'];
+const IDENTITY_FIELDS = ['make', 'model', 'title', 'category', 'severity', 'years', 'trims', 'engines', 'status'];
+function equal(left, right) { return JSON.stringify(stableValue(left)) === JSON.stringify(stableValue(right)); }
 
 function packetFiles() {
   return fs.readdirSync(DATA).filter((file) => PACKET_PATTERN.test(file)).sort();
@@ -44,7 +45,7 @@ function buildReconciliation() {
         beforeSha256: row.beforeSha256,
         proposalSha256: row.proposalSha256,
         changedFields: row.changedFields,
-        identityPreserved: IDENTITY_FIELDS.every((field) => row.before[field] === row.proposal[field]),
+        identityPreserved: IDENTITY_FIELDS.every((field) => equal(row.before[field], row.proposal[field])),
         statusPreserved: row.before.status === 'published' && row.proposal.status === 'published',
       });
     }

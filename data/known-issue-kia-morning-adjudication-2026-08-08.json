@@ -28,9 +28,9 @@
   ],
   "source": {
     "snapshotFile": "data/_kia-deeplink-snapshot-2026-08-06.json",
-    "snapshotSha256": "f0aa4c5c8ca72321ed9a0b54aa9455e84056b445cb31049545ea07a48748c76b",
-    "snapshotGeneratedAt": "2026-08-07T19:13:14.080Z",
-    "snapshotHash": "f8b4d0e206ea16a5a28546ef1db29b0c885b1a839069b486f07fb1a1759310bf",
+    "snapshotSha256": "c3accea6dc370cc4587164aa6cc8b9fd22dd037621facff22dfc29f4f70a4e2c",
+    "snapshotGeneratedAt": "2026-08-12T13:04:39.309Z",
+    "snapshotHash": "00b5d9cf06b9534ad62b86ed57d17760d6dfa27f38f8b05f7188e7d3cff47877",
     "modelRecordCount": 6
   },
   "observations": [
@@ -926,18 +926,7 @@
       "identityRule": "No source may change an indexed page identity. Cross-market evidence, a different generation, an unsupported year or a different failure mechanism requires a byte-for-byte hold.",
       "commerceDecision": "dealer-only-no-retail-part-korean-emissions-recall",
       "changedFields": [
-        "description",
-        "solution",
-        "symptoms",
-        "affectedSystems",
-        "estimatedCostLow",
-        "estimatedCostHigh",
-        "citations",
-        "humanApproved",
-        "source",
-        "reviewedOn",
-        "contentUpdatedOn",
-        "contentUpdateSummary"
+        "humanApproved"
       ],
       "evidence": [
         {
@@ -953,7 +942,7 @@
           "observation": "The Ministry of Environment page establishes the affected Morning variants, production dates, plastic-needle wear, oil entry into the intake, white smoke and free steel-needle replacement."
         }
       ],
-      "beforeSha256": "0c9ef58f21bbdd090d0bb98b7130b20a1e93ab61d039b2b8bb8fca994023d33d",
+      "beforeSha256": "902f3aa595650bc7ac67e9127babfba6fce0b4894832255acdab1ce1360ba847",
       "proposalSha256": "56d70e9f8ee5a2ec5ef6b8b6049dcf422390dcf142eec35f72eb61471ddca7c7",
       "before": {
         "make": "Kia",
@@ -966,50 +955,39 @@
         "engines": [],
         "category": "engine",
         "title": "PCV Valve Plastic Needle Wear — Oil Ingestion and White Exhaust Smoke (Government-Ordered Recall)",
-        "description": "On the 1.0L Kappa engine in Morning and Ray vehicles built between January 17, 2011 and July 16, 2012 (196,950 vehicles total), the PCV (positive crankcase ventilation) valve used a plastic needle with poor durability. As the needle wears, the valve no longer regulates blow-by gas correctly and engine oil is drawn into the intake manifold, where it burns with fuel and produces white exhaust smoke with elevated particulate emissions. Korea's Ministry of Environment ordered a corrective recall in March 2014, replacing the plastic valve with a steel one. Beyond the smoke, unaddressed valves cause gradual engine-oil consumption and intake fouling.",
-        "solution": "Free replacement of the plastic PCV valve with a steel-needle PCV valve at Kia service centers under the March 2014 campaign. Outside the campaign, replacing the PCV valve is an inexpensive repair; also check and top up engine oil, and clean the intake/throttle body if heavy oil ingestion has occurred. Owners of 2011-2012 cars showing white smoke should confirm the steel valve was fitted.",
+        "description": "South Korea's Ministry of Environment states that Kia recalled Morning 1.0 gasoline and Morning 1.0 Bi-Fuel vehicles produced from January 17, 2011 through July 16, 2012 because the plastic needle in the positive crankcase ventilation (PCV) valve could wear. The worn valve can allow engine oil into the intake manifold, where it burns with fuel and can produce white exhaust smoke and increased particulate emissions. The cited total of 196,950 vehicles covers four Morning and Ray variants together, not Morning alone.",
+        "solution": "Confirm campaign completion with a Kia service center. The government notice says Kia service centers and partners inspect and replace the PCV valve free of charge, changing the needle material from plastic to steel. This is a Korean-market campaign repair with vehicle-specific applicability, so no retail PCV valve is linked from this page.",
         "severity": "medium",
         "confidence": "high",
         "symptoms": [
-          "White smoke from the exhaust, especially under acceleration",
-          "Engine oil level drops between services",
-          "Burning-oil smell",
-          "Oily residue in the intake/throttle body",
-          "Rough idle"
+          "White exhaust smoke"
         ],
-        "affectedSystems": [],
+        "affectedSystems": [
+          "positive crankcase ventilation valve",
+          "intake manifold"
+        ],
         "dtcCodes": [],
-        "estimatedCostLow": 0,
-        "estimatedCostHigh": 100,
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
         "typicalMileageLow": null,
         "typicalMileageHigh": null,
         "citations": [
           {
-            "url": "https://www.waterjournal.co.kr/news/articleView.html?idxno=19371",
-            "type": "article",
-            "title": "[환경부] 기아차 레이·모닝 20만대 리콜 명령 — 워터저널 (Water Journal)"
-          },
-          {
-            "url": "https://www.motorgraph.com/news/articleView.html?idxno=1996",
-            "type": "article",
-            "title": "기아차 모닝·레이 20만대 리콜…미세먼지 등 흰색 가스 배출 — 모터그래프 (Motorgraph)"
-          },
-          {
-            "url": "https://www.mirae-biz.com/news/articleView.html?idxno=8381",
-            "type": "article",
-            "title": "레이 1.0 가솔린, PCV 밸브 결함…20만대 리콜 — 미래경제 (Mirae-biz)"
+            "url": "https://me.go.kr/home/web/board/read.do?boardCategoryId=39&boardId=343514&boardMasterId=1&decorator=&maxIndexPages=10&maxPageItems=10&menuId=&orgCd=&pagerOffset=10050&searchKey=&searchValue=",
+            "type": "recall",
+            "title": "South Korea Ministry of Environment - Kia Morning and Ray PCV Valve Recall"
           }
         ],
         "communityRecommendations": [],
         "fixParts": [],
         "humanApproved": true,
         "reportCount": 0,
-        "source": "ai-researched",
+        "source": "manual",
         "status": "published",
         "lastReportedByOwners": "",
-        "reviewedOn": "2026-06-14",
-        "contentUpdatedOn": "",
-        "contentUpdateSummary": "",
+        "reviewedOn": "2026-08-08",
+        "contentUpdatedOn": "2026-08-08",
+        "contentUpdateSummary": "Bounded the same PCV-valve identity to the official Korean recall, corrected the 196,950 figure to the combined four-variant population, and removed unsupported Kappa naming, secondary citations, extra symptoms and retail-repair advice.",
         "relatedIssueIds": []
       },
       "proposal": {
