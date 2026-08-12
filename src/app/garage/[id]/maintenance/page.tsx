@@ -655,6 +655,7 @@ export default function MaintenancePage() {
                           make: vehicle.make,
                           model: vehicle.model,
                           trim: vehicle.trim ?? undefined,
+                          engine: vehicleSpecs?.engine,
                         }}
                         vehicleId={vehicle.id}
                         userFix={getFixForIssue(issue.id)}

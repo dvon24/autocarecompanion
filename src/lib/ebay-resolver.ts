@@ -67,6 +67,8 @@ export interface EbayListing {
   condition: string;
   /** Affiliate-tagged (EPN) when EBAY_CAMPAIGN_ID is set, else the plain item URL. */
   url: string;
+  /** Exact part numbers observed on this listing's title or item specifics. */
+  matchedPartNumbers: string[];
 }
 
 export interface EbayResolution {
@@ -237,19 +239,26 @@ export async function resolveEbay(
     }
   }
 
-  const listings: EbayListing[] = summaries.slice(0, INSPECT_N).map((s) => ({
-    title: String(s.title || '').slice(0, 140),
-    price: s.price?.value ? Number(s.price.value) : null,
-    currency: s.price?.currency || 'USD',
-    condition: String(s.condition || '').slice(0, 40),
-    url: s.itemAffiliateWebUrl || s.itemWebUrl || '',
-  })).filter((l) => l.url);
-
   // Pull item-specifics part numbers from the top listings in parallel.
   const ids = summaries.map((s) => s.itemId).filter((x): x is string => !!x).slice(0, INSPECT_N);
   const pnLists = await Promise.all(ids.map((id) => fetchDetailPNs(token, id)));
   const idPNs = new Map<string, string[]>();
   ids.forEach((id, k) => idPNs.set(id, pnLists[k] || []));
+  const listings: EbayListing[] = summaries.slice(0, INSPECT_N).flatMap((s) => {
+    const url = s.itemAffiliateWebUrl || s.itemWebUrl || '';
+    if (!url) return [];
+    return [{
+      title: String(s.title || '').slice(0, 140),
+      price: s.price?.value ? Number(s.price.value) : null,
+      currency: s.price?.currency || 'USD',
+      condition: String(s.condition || '').slice(0, 40),
+      url,
+      matchedPartNumbers: [...new Set([
+        ...extractTitlePNs(s.title || ''),
+        ...(s.itemId ? idPNs.get(s.itemId) || [] : []),
+      ])],
+    }];
+  });
 
   // Count DISTINCT SELLERS per PN — pulled from BOTH structured item-specifics
   // AND the title (sellers routinely put "OEM 84243751" right in the title).

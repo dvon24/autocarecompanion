@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "known-issue-make-completion",
+  "status": "COMPLETE",
+  "completionState": "REVIEW_READY_NOT_APPLIED",
+  "snapshotHash": "c22aa18f11e2de2c789eebcb035ba8dbc530aadb783a5c86fe4a749eeabe908d",
+  "makeSourceHash": "0ad64fb7c24ed71366109b31404c6b11f4d794a8def7ca55f3a06850baab5228",
+  "make": "Acura",
+  "makeKey": "acura",
+  "issueCount": 70,
+  "manifestFile": "08-guarded-manifest.json",
+  "manifestHash": "de6203f07c0c9263577335e009b3a5a47e328989e4d5837e88d6d9ee23491921",
+  "artifactSha256": {
+    "00-make-source.json": "a1f69107cdad861b2324532e62926eaa533c26001d6c1c47e767ca76ff38a3f6",
+    "01-disposition-ledger.json": "28149917dbb0e8b65eb0804b679050b5c8be7711bee79f19838ac1e389e78cc1",
+    "02-fitment-worklist.json": "b0ce8c677d2a19196e61eae4d2abba69e3ec26a4f6c39e94ea2aa8b2f65080a1",
+    "03-showmetheparts-evidence.json": "eb8a94eab713679e8a8805ab0ec4083cf1878a00cf4565390a56761bdde27e0f",
+    "04-part-proposals.json": "0b4dcc0b24509b1aca29f0246afa1c1801cf10f71624c766d0c02590d7d3bb75",
+    "05-direct-link-evidence.json": "98327dc30b02dccfabb81cacc446c2627ffdd84d86ee952d5ddc58a2083a6203",
+    "06-independent-review.json": "28b8ef8e92e57256e36c199061265263f0e227b1d884c8948698007734543920",
+    "07-decision-patch.json": "8176763fe6083d47917e151792660497bb1b30911dbb0c176b16a30397fe42e7",
+    "08-guarded-manifest.json": "de6203f07c0c9263577335e009b3a5a47e328989e4d5837e88d6d9ee23491921",
+    "classification-ledger.json": "531cc75a7cc1256c89995059ae3db208f8898c40e10e453ee1c34ea4f096abcf",
+    "checkpoint.json": "9c8d5680e01de76580baa8915a095eb2fccb6fc56b1f5b296665efb985514cc3",
+    "diagnostic-tool-evidence.json": "3a299be1f526024e53496bc3f2c88bb4a3bae72f10e2028b6ff3a72f2fd5fab3"
+  },
+  "diagnosticImplementationSha256": {
+    "src/lib/diagnostic-procedures.js": "cf00cada105ca024e4de039808286155c568fc42ec35b51654ca51216a06e345",
+    "src/data/diagnostic-tools.ts": "07c8348e80bb18a9f4c2dc8347bc74f9987e3ed9dd311975f8da62d089652567",
+    "src/components/known-issues/IssueDiagnosticTools.tsx": "8d314b695b6985bdf0ad9bcd8579ea8c97c0954eef5b7b5fa8c3f661fb384b84",
+    "src/components/known-issues/KnownIssueCard.tsx": "26122344899de2a84d210d2b92f0f7cf5f326d29b2751fc0330322b0f197e52e",
+    "src/components/known-issues/CategorySection.tsx": "515f207949aaf1c8875de16a19b1172b12ea61f53781b4f6fffa672abdde4c67",
+    "src/components/known-issues/ArticleIssuesList.tsx": "16b3bed0a478e08a407435d76e720287a32c37e1753f758a517f826d81747636",
+    "src/app/garage/[id]/maintenance/page.tsx": "f8ca4cc0eee666519cf9e38baf5b3249328d37b10e1443a4b105e91f3c159c5e",
+    "src/components/vehicle/VehicleDashboard.tsx": "8c19ca38b53f3e94437d96168e6005542a2b35089ae10517b6f7c37a0e1e0a62"
+  },
+  "diagnosticScope": {
+    "issueCount": 70,
+    "issuesWithDtcCodes": 16,
+    "uniqueDtcCount": 31,
+    "solutionInstructionCount": 37,
+    "dtcDispositionCount": 16,
+    "toolLinkedDispositionCount": 20,
+    "procedureNoToolDispositionCount": 32,
+    "unresolvedToolHoldCount": 1,
+    "uncoveredDiagnosticInstructionCount": 0
+  },
+  "explicitDiagnosticHold": {
+    "issueId": "acura-integra-dc-vtec-oil-pressure-switch-code22",
+    "procedure": "scan-codes",
+    "excerpt": "22, P1259",
+    "reasonCode": "manufacturer-code-capability-unverified",
+    "toolId": null,
+    "productUrl": null
+  },
+  "productionApplied": false,
+  "productionWriteAuthorized": false
+}

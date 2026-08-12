@@ -32,6 +32,25 @@ export const communityRecommendationSchema = z.object({
  * PN-precise with validated buy-links built from the verified part number.
  * The au7o differentiator (problem -> proven fix -> the exact part to buy).
  */
+const fixPartBuyLinkSchema = z.object({
+  vendor: z.string(),
+  url: z.string(),
+  linkType: z.string().optional(),
+  verified: z.boolean().optional(),
+  affiliate: z.boolean().optional(),
+});
+
+const fixPartFitmentSchema = z.object({
+  years: z.array(z.number()).optional(),
+  engines: z.array(z.string()).optional(),
+  trims: z.array(z.string()).optional(),
+  /** Required for Challenger-style RWD/AWD and manual/automatic splits. */
+  drivetrains: z.array(z.string()).optional(),
+  transmissions: z.array(z.string()).optional(),
+  /** Catalog aliases covered during research. Audit evidence only. */
+  catalogModels: z.array(z.string()).optional(),
+});
+
 export const fixPartSchema = z.object({
   component: z.string(),
   oemPartNumber: z.string().nullable().optional().default(''),
@@ -39,13 +58,7 @@ export const fixPartSchema = z.object({
   priceLow: z.number().nullable().optional(),
   priceHigh: z.number().nullable().optional(),
   note: z.string().optional().default(''),
-  buyLinks: z.array(z.object({
-    vendor: z.string(),
-    url: z.string(),
-    linkType: z.string().optional(),
-    verified: z.boolean().optional(),
-    affiliate: z.boolean().optional(),
-  })).optional().default([]),
+  buyLinks: z.array(fixPartBuyLinkSchema).optional().default([]),
   /**
    * FITMENT SCOPE — which vehicles WITHIN the article's span this exact part fits.
    *
@@ -59,14 +72,7 @@ export const fixPartSchema = z.object({
    * already in the catalog behaves, so adding this field changes nothing until a
    * part is deliberately scoped.
    */
-  fitment: z.object({
-    years: z.array(z.number()).optional(),
-    engines: z.array(z.string()).optional(),
-    trims: z.array(z.string()).optional(),
-    /** Catalog aliases covered during research. Audit evidence only: the
-     * proposal builder still requires one PN to cover every resolved alias. */
-    catalogModels: z.array(z.string()).optional(),
-  }).optional(),
+  fitment: fixPartFitmentSchema.optional(),
   // ── record-store audit fields (from the parts-audit persist) ──
   /**
    * Year/engine/package-keyed PN rows when fitment splits (TIPM-style).
@@ -76,12 +82,11 @@ export const fixPartSchema = z.object({
   variants: z.array(z.object({
     scope: z.string(),
     oemPartNumber: z.string(),
+    component: z.string().optional(),
+    aftermarketXref: z.array(z.string()).optional(),
     note: z.string().optional().default(''),
-    fitment: z.object({
-      years: z.array(z.number()).optional(),
-      engines: z.array(z.string()).optional(),
-      trims: z.array(z.string()).optional(),
-    }).optional(),
+    buyLinks: z.array(fixPartBuyLinkSchema).optional().default([]),
+    fitment: fixPartFitmentSchema.optional(),
   })).optional().default([]),
   /** True when this issue is recall-covered → the primary CTA is a free VIN check. */
   recallFirst: z.boolean().optional(),

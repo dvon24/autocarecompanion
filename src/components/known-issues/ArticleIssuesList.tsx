@@ -9,6 +9,7 @@ import { CategorySection } from './CategorySection';
 import { SeverityFilter } from './SeverityFilter';
 import { AdSlot } from '@/components/ads/AdSlot';
 import { filterableKnownIssueTrims, knownIssueMatchesTrim } from '@/lib/known-issue-trim-filter';
+import { getVehicleSpecs } from '@/lib/maintenance';
 
 export interface RelatedIssueVehicle {
   slug: string;
@@ -45,13 +46,16 @@ export function ArticleIssuesList({ issues, make, model, initialYear, allYears, 
   // without a stale useState initializer or an extra effect render.
   const yearFilter = initialYear ?? null;
 
-  // Get user's selected trim if it matches this article's make/model
-  const userTrim = useMemo(() => {
+  // A garage selection may scope commerce only on its own make/model page.
+  // Keeping the identity check here prevents a selected Charger from silently
+  // supplying its R/T trim to a Challenger article.
+  const selectedArticleVehicle = useMemo(() => {
     if (!selectedVehicle) return null;
     if (selectedVehicle.make.toLowerCase() !== make.toLowerCase()) return null;
     if (selectedVehicle.model.toLowerCase() !== model.toLowerCase()) return null;
-    return selectedVehicle.trim || null;
+    return selectedVehicle;
   }, [selectedVehicle, make, model]);
+  const userTrim = selectedArticleVehicle?.trim || null;
 
   // Auto-set year filter from user's vehicle selection
   useMemo(() => {
@@ -77,6 +81,12 @@ export function ArticleIssuesList({ issues, make, model, initialYear, allYears, 
   }, [issues]);
 
   const [trimFilter, setTrimFilter] = useState<string | null>(userTrim);
+
+  // AppContext restores after hydration, so the matching selected trim can
+  // arrive after the initial useState value was chosen.
+  useEffect(() => {
+    setTrimFilter(userTrim);
+  }, [userTrim]);
 
   // Back-to-top arrow that rides the right edge of the cards (Devon wanted it
   // on the cards, not pinned to the window corner). Shown once you've scrolled
@@ -117,11 +127,19 @@ export function ArticleIssuesList({ issues, make, model, initialYear, allYears, 
     return sortedCategories.map(cat => ({ category: cat, issues: groups[cat]! }));
   }, [filteredIssues]);
 
-  // Build vehicleInfo using selected year or max year
+  // Build the exact commerce vehicle. A URL year wins; otherwise a matching
+  // selected garage vehicle supplies its year. We intentionally do not use the
+  // article's maximum year as a pretend selection. Engine is derived only when
+  // both year and trim are known; an unresolved dimension must hide scoped
+  // links rather than borrowing the first engine in the specs table.
   const vehicleInfo = useMemo(() => {
-    const year = yearFilter ?? Math.max(...issues.flatMap(i => i.vehicleMatch.years));
-    return { year, make, model };
-  }, [issues, make, model, yearFilter]);
+    const year = yearFilter ?? selectedArticleVehicle?.year ?? null;
+    const trim = trimFilter || undefined;
+    const engine = year !== null && trim
+      ? getVehicleSpecs({ year, make, model, trim })?.engine
+      : undefined;
+    return { year, make, model, trim, engine };
+  }, [make, model, selectedArticleVehicle, trimFilter, yearFilter]);
 
   return (
     <>

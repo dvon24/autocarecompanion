@@ -20,12 +20,11 @@
  */
 import fs from 'fs';
 import { config } from 'dotenv';
-import { Pool } from 'pg';
 import { recommendParts, type PartCandidate } from '../src/lib/part-recommendation';
 import { formatYearRange } from '../src/lib/known-issue-part-fitment';
 import { fullyCoveredYears } from '../src/lib/part-proposal-coverage';
 import { candidateQualifiersAppearInArticle } from '../src/lib/part-type-evidence';
-import { assertFreshCatalogRestrictionFields, hasUnrepresentableCatalogScope } from '../src/lib/catalog-candidate-safety';
+import { assertFreshCatalogRestrictionFields, parseCatalogScope, type ParsedCatalogScope } from '../src/lib/catalog-candidate-safety';
 
 config({ path: '.env.local' });
 
@@ -33,6 +32,11 @@ type FitmentCandidate = PartCandidate & { catalogModel?: string; location?: stri
 
 interface Verdict {
   id: string;
+  workItemId?: string;
+  component?: string;
+  prescriptionKey?: string | null;
+  repairRoleEvidence?: string | null;
+  articleScope?: { make?: string; model?: string; years?: number[]; trims?: string[]; engines?: string[]; drivetrains?: string[]; transmissions?: string[] } | null;
   vehicle: string;
   verdict: string;
   yearsChecked: number[];
@@ -40,6 +44,7 @@ interface Verdict {
   partTypeMatch?: string;
   mappedFrom?: string;
   engineMatch?: string | null;
+  declaredEngine?: string | null;
   catalogModelsByYear?: Record<string, string[]>;
   catalogApplicationsByYear?: Record<string, string[]>;
   /** Set by the fitment pass when the part-type query had to be loosened. */
@@ -47,9 +52,21 @@ interface Verdict {
   notes?: string[];
 }
 
-const inputs = process.argv.slice(2).filter((a) => !a.startsWith('--'));
+const args = process.argv.slice(2);
+const flagValue = (flag: string, fallback = '') => {
+  const index = args.indexOf(flag);
+  return index >= 0 && args[index + 1] ? args[index + 1]! : fallback;
+};
+const valuedFlags = new Set(['--snapshot', '--out']);
+const inputs: string[] = [];
+for (let index = 0; index < args.length; index += 1) {
+  if (valuedFlags.has(args[index]!)) { index += 1; continue; }
+  if (!args[index]!.startsWith('--')) inputs.push(args[index]!);
+}
+const snapshotFile = flagValue('--snapshot');
+const outputFile = flagValue('--out', 'data/_part-proposals.json');
 if (inputs.length === 0) {
-  console.error('usage: build-part-proposals.ts <verdicts.json> [more.json ...]');
+  console.error('usage: build-part-proposals.ts <verdicts.json> [more.json ...] --snapshot <frozen.json> [--out file]');
   process.exit(1);
 }
 
@@ -142,18 +159,13 @@ async function loadArticles() {
     const doc = JSON.parse(fs.readFileSync(file, 'utf8')) as { results: Verdict[] };
     for (const r of doc.results) ids.add(r.id);
   }
-  const pool = new Pool({ connectionString: process.env.DATABASE_URL, max: 2 });
-  pool.on('error', () => {});
-  try {
-    const { rows } = await pool.query('select id, title, solution from "KnownIssue" where id = any($1)', [[...ids]]);
-    for (const r of rows) ARTICLE.set(
-      r.id,
-      `${r.title} ${r.solution}`,
-    );
-  } catch (e) {
-    console.warn('WARN could not load article text — qualifier check disabled:', (e as Error).message);
+  if (!snapshotFile) throw new Error('--snapshot is required; proposal generation never rereads live KnownIssue rows');
+  const snapshot = JSON.parse(fs.readFileSync(snapshotFile, 'utf8')) as { records?: Array<{ id: string; title?: string; solution?: string }> };
+  for (const row of snapshot.records || []) {
+    if (ids.has(row.id)) ARTICLE.set(row.id, `${row.title || ''} ${row.solution || ''}`);
   }
-  await pool.end();
+  const missing = [...ids].filter((id) => !ARTICLE.has(id));
+  if (missing.length) throw new Error(`frozen snapshot is missing ${missing.length} reviewed issue ids`);
 }
 
 async function main() {
@@ -177,6 +189,7 @@ for (const file of inputs) {
     const modelsByPartYear = new Map<string, Map<number, Set<string>>>();
     const applicationsByPartYear = new Map<string, Map<number, Set<string>>>();
     const restrictionsByPart = new Map<string, Array<{ application: string; comment: string; location: string }>>();
+    const parsedScopesByPart = new Map<string, ParsedCatalogScope[]>();
     const candidateByKey = new Map<string, FitmentCandidate>();
     for (const [year, list] of Object.entries(r.candidatesByYear || {})) {
       for (const entry of list as Array<FitmentCandidate | string>) {
@@ -243,11 +256,14 @@ for (const file of inputs) {
     for (const key of [...candidateByKey.keys()]) if (!relevant.some(([k]) => k === key)) candidateByKey.delete(key);
     for (const key of [...candidateByKey.keys()]) {
       const restrictions = restrictionsByPart.get(key) || [];
-      // Application/comment text can encode trim, VIN, drivetrain, package,
-      // dimensions, WITH/WITHOUT equipment and other catalog-only scope. Our
-      // public fitment contract cannot enforce arbitrary prose restrictions,
-      // so mentioning one in the article is not enough to make the part safe.
-      if (restrictions.some(hasUnrepresentableCatalogScope)) {
+      const parsed = restrictions.map((restriction) => parseCatalogScope(restriction, {
+        trims: r.articleScope?.trims || [],
+      }));
+      parsedScopesByPart.set(key, parsed);
+      // Parsed trims/drivetrain/transmission become machine-enforceable scope.
+      // Side, VIN, package, equipment and other residual restrictions remain a
+      // hold; they are never widened into an article-wide recommendation.
+      if (parsed.some((scope) => scope.unparsedRestrictions.length > 0)) {
         candidateByKey.delete(key);
       }
     }
@@ -321,7 +337,7 @@ for (const file of inputs) {
     // the query by engine where the article named one.
     // Do not invent engine scope from API ordering. An unscoped article remains
     // unscoped even when the catalog returned candidates for several engines.
-    const engine = r.engineMatch || null;
+    const engine = r.declaredEngine || r.engineMatch || null;
     const { primary, alternate, consideredCount } = recommendParts([...candidateByKey.values()], { engine });
     if (!primary) { skipped['no-primary'] = (skipped['no-primary'] || 0) + 1; continue; }
 
@@ -344,10 +360,16 @@ for (const file of inputs) {
     };
 
     const toPart = (p: NonNullable<typeof primary>, role: 'primary' | 'alternate') => {
+      const partKey = `${p.supplier}|${p.partNumber}`.toLowerCase();
       const years = scopeFor(p.supplier, p.partNumber);
       const catalogModels = [...new Set(
         years.flatMap((year) => r.catalogModelsByYear?.[String(year)] || []),
       )].sort();
+      const parsedScopes = parsedScopesByPart.get(partKey) || [];
+      const trims = [...new Set(parsedScopes.flatMap((scope) => scope.trims))].sort();
+      const drivetrains = [...new Set(parsedScopes.flatMap((scope) => scope.drivetrains))].sort();
+      const transmissions = [...new Set(parsedScopes.flatMap((scope) => scope.transmissions))].sort();
+      const catalogNotes = [...new Set(parsedScopes.flatMap((scope) => scope.catalogNotes))].filter(Boolean).sort();
       return {
         role,
         component: p.partType || 'Replacement part',
@@ -358,12 +380,16 @@ for (const file of inputs) {
         note: [
           `${p.supplier} ${p.partNumber}.`,
           `Catalog-confirmed fitment for ${formatYearRange(years)}${engine ? ` ${engine}` : ''}.`,
+          catalogNotes.length ? `Catalog evidence: ${catalogNotes.join(' / ')}` : '',
           p.note ? `${p.note}.` : '',
           'Fitment only — repair role not established.',
         ].filter(Boolean).join(' '),
         fitment: {
           years,
           ...(engine ? { engines: [engine] } : {}),
+          ...(trims.length ? { trims } : {}),
+          ...(drivetrains.length ? { drivetrains } : {}),
+          ...(transmissions.length ? { transmissions } : {}),
           ...(catalogModels.length ? { catalogModels } : {}),
         },
         buyLinks: [],
@@ -373,7 +399,11 @@ for (const file of inputs) {
     };
 
     proposals.push({
+      proposalId: r.workItemId || r.prescriptionKey || r.id,
       id: r.id,
+      component: r.component || r.partTypeMatch,
+      repairRoleEvidence: r.repairRoleEvidence || null,
+      articleScope: r.articleScope || null,
       vehicle: r.vehicle,
       yearsChecked: r.yearsChecked,
       consideredCount,
@@ -401,7 +431,7 @@ for (const file of inputs) {
   }
 }
 
-fs.writeFileSync('data/_part-proposals.json', JSON.stringify({
+fs.writeFileSync(outputFile, JSON.stringify({
   generatedFrom: inputs,
   guardrail: 'Catalog fitment only. Repair role unestablished; verified:false and no buy links until a human approves.',
   count: proposals.length,
@@ -412,7 +442,7 @@ const withAlternate = (proposals as Array<{ parts: unknown[] }>).filter((p) => p
 console.log(`proposals: ${proposals.length}  (with an alternate: ${withAlternate})`);
 console.log('skipped:', JSON.stringify(skipped));
 if (structuredMissing) console.log(`NOTE: ${structuredMissing} candidate rows were display strings — re-run the verifier to get structured candidates.`);
-console.log('report: data/_part-proposals.json');
+console.log(`report: ${outputFile}`);
 }
 
 main().catch((e) => { console.error('ERR', e.message); process.exit(1); });

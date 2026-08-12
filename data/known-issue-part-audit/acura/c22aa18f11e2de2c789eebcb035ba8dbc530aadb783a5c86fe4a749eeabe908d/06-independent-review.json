@@ -1,0 +1,697 @@
+{
+  "schemaVersion": 2,
+  "artifactKind": "known-issue-part-independent-review",
+  "snapshotHash": "c22aa18f11e2de2c789eebcb035ba8dbc530aadb783a5c86fe4a749eeabe908d",
+  "reviewedArtifacts": [
+    "01-disposition-ledger.json",
+    "02-fitment-worklist.json",
+    "03-showmetheparts-evidence.json",
+    "04-part-proposals.json",
+    "05-direct-link-evidence.json"
+  ],
+  "reviewedArtifactSha256": {
+    "01-disposition-ledger.json": "28149917dbb0e8b65eb0804b679050b5c8be7711bee79f19838ac1e389e78cc1",
+    "02-fitment-worklist.json": "b0ce8c677d2a19196e61eae4d2abba69e3ec26a4f6c39e94ea2aa8b2f65080a1",
+    "03-showmetheparts-evidence.json": "eb8a94eab713679e8a8805ab0ec4083cf1878a00cf4565390a56761bdde27e0f",
+    "04-part-proposals.json": "0b4dcc0b24509b1aca29f0246afa1c1801cf10f71624c766d0c02590d7d3bb75",
+    "05-direct-link-evidence.json": "98327dc30b02dccfabb81cacc446c2627ffdd84d86ee952d5ddc58a2083a6203"
+  },
+  "proposalCount": 28,
+  "partRowCount": 45,
+  "tally": {
+    "approve": 6,
+    "block_wrong_role": 14,
+    "block_incomplete_scope": 5,
+    "block_ambiguous": 4,
+    "hold_no_exact_link": 4,
+    "hold_needs_manual": 12
+  },
+  "reconciliation": {
+    "sourceProposalCount": 28,
+    "sourcePartRowCount": 45,
+    "reviewedPartRowCount": 45,
+    "missing": [],
+    "duplicates": [],
+    "complete": true
+  },
+  "existingClaimWorkRowCount": 5,
+  "uniqueExistingClaimCount": 3,
+  "existingClaimTally": {
+    "preserve": 0,
+    "block": 5
+  },
+  "existingClaims": [
+    {
+      "workItemId": "acura-integra-dc-timing-belt-interference-failure--existing-fix-part-0-0--b18b1",
+      "issueId": "acura-integra-dc-timing-belt-interference-failure",
+      "partNumber": "TB184K1",
+      "engineWorkRow": "B18B1",
+      "verdict": "block",
+      "reason": "The live unscoped claim is labeled as the repair kit, but the article requires a complete kit with water pump and warns that LS and GSR belt/pump combinations differ; TB184K1 explicitly excludes the water pump and catalog applications prove only LS/RS/GS/Special Edition, not a safe all-engine claim.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace belt, tensioner, spring, water pump, seals, and applicable balance-shaft belt; do not mix LS and GSR water pumps/belts.",
+        "catalog": "ShowMeTheParts: Continental TB184K1 is a kit without water pump; applications LS/RS/GS/Special Edition on 1994-2001 Integra 1.8L, with no engine-code matrix.",
+        "directLink": "Existing eBay /itm/ URL is an exact Continental TB184K1 product link, but exact identity does not resolve incomplete contents or missing scope."
+      }
+    },
+    {
+      "workItemId": "acura-integra-dc-timing-belt-interference-failure--existing-fix-part-0-0--b18c1",
+      "issueId": "acura-integra-dc-timing-belt-interference-failure",
+      "partNumber": "TB184K1",
+      "engineWorkRow": "B18C1",
+      "verdict": "block",
+      "reason": "The live claim has no variants and would be shown for B18C1, but ShowMeTheParts does not list GSR for TB184K1 and the article explicitly says the VTEC GSR uses a different belt and 22-tooth pump; the kit also excludes the required water pump.",
+      "reviewedSourceEvidence": {
+        "howToFix": "B18C1 GSR uses its own belt and 22-tooth pump; do not mix it with LS components.",
+        "catalog": "ShowMeTheParts: TB184K1 applications omit GSR and the kit is explicitly without water pump.",
+        "directLink": "Existing eBay /itm/ URL is an exact Continental TB184K1 product link, but it cannot be preserved for the unproven B18C1 scope."
+      }
+    },
+    {
+      "workItemId": "acura-integra-dc-timing-belt-interference-failure--existing-fix-part-0-0--b18c5",
+      "issueId": "acura-integra-dc-timing-belt-interference-failure",
+      "partNumber": "TB184K1",
+      "engineWorkRow": "B18C5",
+      "verdict": "block",
+      "reason": "The live claim has no variants and would be shown for B18C5, but the catalog provides no B18C5/Type R application evidence and the kit explicitly omits the water pump required by the article.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Use a complete engine-appropriate timing service kit and do not mix the different belt/pump combinations.",
+        "catalog": "ShowMeTheParts: TB184K1 applications omit Type R and expose only generic 1.8L plus non-Type-R trims; kit does not include water pump.",
+        "directLink": "Existing eBay /itm/ URL is an exact Continental TB184K1 product link, but the B18C5 scope and complete-kit role are unsupported."
+      }
+    },
+    {
+      "workItemId": "acura-mdx-vcm-related-oil-consumption-spark-plug-fouling-motor-mount-f--existing-fix-part-0-0--j37a1",
+      "issueId": "acura-mdx-vcm-related-oil-consumption-spark-plug-fouling-motor-mount-f",
+      "partNumber": "9619",
+      "engineWorkRow": "J37A1",
+      "verdict": "block",
+      "reason": "Bosch 9619 fits and is the right product type, but the article prescribes plugs only when they are oil-fouled; the existing unconditional card has no diagnosis gate and therefore becomes a blanket sale.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace any oil-fouled plugs, making replacement conditional on inspection.",
+        "catalog": "ShowMeTheParts: Bosch 9619 double-iridium spark plug, 2010-2013 MDX 3.7L; no application restrictions beyond preset gap.",
+        "directLink": "Existing eBay /itm/ URL is an exact Bosch 9619 product link; conditional repair role remains unresolved."
+      }
+    },
+    {
+      "workItemId": "acura-vigor-g25a1-timing-belt-interference--existing-fix-part-0-0--2-5l-i5-g25a1",
+      "issueId": "acura-vigor-g25a1-timing-belt-interference",
+      "partNumber": "PP211LK2",
+      "engineWorkRow": "2.5L I5 G25A1",
+      "verdict": "block",
+      "reason": "The Continental kit fits and includes pump/seals, but the article mandates OEM Honda or Aisin for the tensioner and describes a complete job including hydraulic tensioner, idler, and accessory belts; the catalog does not establish those contents for PP211LK2.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Use a full kit and only OEM Honda or Aisin tensioner; cheap/import-brand tensioners are explicitly rejected.",
+        "catalog": "ShowMeTheParts: Continental PP211LK2 kit with water pump and seals for 1992-1994 Vigor 2.5L; no hydraulic-tensioner/idler/accessory-belt contents stated.",
+        "directLink": "Existing eBay /itm/ URL is an exact Continental PP211LK2 product link, but exact identity conflicts with the prescribed tensioner class and unproven kit contents."
+      }
+    }
+  ],
+  "decisions": [
+    {
+      "proposalId": "acura-integra-da-distributor-internal-oil-leak--prescription-0-0--1-7l-b17a1",
+      "issueId": "acura-integra-da-distributor-internal-oil-leak",
+      "partIndex": 0,
+      "partNumber": "31-17407",
+      "decision": "approve",
+      "reason": "The article explicitly prescribes a complete distributor; the Cardone distributor is scoped only to the catalog-confirmed 1992-1993 1.7L variant and has an exact direct listing.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the complete distributor; Cardone is named as an acceptable aftermarket unit.",
+        "catalog": "ShowMeTheParts: Cardone 31-17407 Electronic Distributor, Integra, 1992-1993, 1.7L.",
+        "directLink": "eBay /itm/ exact-product-link; URL evidence includes Cardone 31-17407."
+      }
+    },
+    {
+      "proposalId": "acura-integra-da-ignitor-module-failure--prescription-0-0--1-7l-b17a1",
+      "issueId": "acura-integra-da-ignitor-module-failure",
+      "partIndex": 0,
+      "partNumber": "31-17407",
+      "decision": "block_wrong_role",
+      "reason": "This work item prescribes cap and rotor replacement, but the candidate is a complete distributor; the exact listing does not cure the repair-role mismatch.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Test and replace the ignitor if it has no pulse, and replace cap plus rotor preventively.",
+        "catalog": "ShowMeTheParts identifies 31-17407 as a complete Electronic Distributor, not a cap, rotor, or ignitor module.",
+        "directLink": "eBay /itm/ exact listing for 31-17407 exists, but it is the wrong repair object."
+      }
+    },
+    {
+      "proposalId": "acura-legend-timing-belt-interference-engine--prescription-0-0--2-7l-v6-c27a",
+      "issueId": "acura-legend-timing-belt-interference-engine",
+      "partIndex": 0,
+      "partNumber": "95129K1",
+      "decision": "approve",
+      "reason": "The kit contains the prescribed timing belt and tensioner and is restricted to the only catalog-confirmed C27A cell, 1990 2.7L.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the timing belt and timing-belt service components at the stated interval.",
+        "catalog": "ShowMeTheParts: Dayco 95129K1 Timing Belt Kit includes timing belt and camshaft belt tensioner for 1990 Legend 2.7L.",
+        "directLink": "eBay /itm/ exact-product-link; URL evidence includes Dayco 95129K1."
+      }
+    },
+    {
+      "proposalId": "acura-legend-timing-belt-interference-engine--prescription-0-0--2-7l-v6-c27a",
+      "issueId": "acura-legend-timing-belt-interference-engine",
+      "partIndex": 1,
+      "partNumber": "T129",
+      "decision": "approve",
+      "reason": "The Gates timing belt directly fulfills this component prescription and is restricted to catalog-confirmed 1990 2.7L fitment.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the timing belt every 90,000 miles or 72 months.",
+        "catalog": "ShowMeTheParts: Gates T129 Engine Timing Belt, 1990 Legend 2.7L; available-until-stock-depleted note retained in evidence.",
+        "directLink": "eBay /itm/ exact-product-link; URL evidence includes Gates T129."
+      }
+    },
+    {
+      "proposalId": "acura-legend-timing-belt-interference-engine--prescription-0-0--3-2l-v6-c32a",
+      "issueId": "acura-legend-timing-belt-interference-engine",
+      "partIndex": 0,
+      "partNumber": "95193K1",
+      "decision": "hold_no_exact_link",
+      "reason": "Repair role and 1991-1995 3.2L catalog fitment are supported, but no exact product page was resolved.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the timing belt and timing-belt service components at the stated interval.",
+        "catalog": "ShowMeTheParts: Dayco 95193K1 Timing Belt Kit for Legend 3.2L, 1991-1995.",
+        "directLink": "05 artifact reports no-exact-product-link; no buy URL emitted."
+      }
+    },
+    {
+      "proposalId": "acura-legend-timing-belt-interference-engine--prescription-0-0--3-2l-v6-c32a",
+      "issueId": "acura-legend-timing-belt-interference-engine",
+      "partIndex": 1,
+      "partNumber": "T193",
+      "decision": "approve",
+      "reason": "The Gates timing belt directly fulfills this prescription across the catalog-confirmed 1991-1995 3.2L cells.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the timing belt every 90,000 miles or 72 months.",
+        "catalog": "ShowMeTheParts: Gates T193 Engine Timing Belt, Legend 3.2L, 1991-1995.",
+        "directLink": "eBay /itm/ exact-product-link; URL evidence includes Gates T193."
+      }
+    },
+    {
+      "proposalId": "acura-legend-timing-belt-interference-engine--prescription-1-0--2-7l-v6-c27a",
+      "issueId": "acura-legend-timing-belt-interference-engine",
+      "partIndex": 0,
+      "partNumber": "WPH-008",
+      "decision": "approve",
+      "reason": "The article explicitly requires the water pump during timing-belt service, and this pump is narrowly scoped to catalog-confirmed 1990 2.7L fitment.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Always replace the water pump during the timing-belt teardown.",
+        "catalog": "ShowMeTheParts: Aisin WPH-008 Engine Water Pump, 1990 Legend 2.7L.",
+        "directLink": "eBay /itm/ exact-product-link; URL evidence includes Aisin WPH-008."
+      }
+    },
+    {
+      "proposalId": "acura-legend-timing-belt-interference-engine--prescription-1-0--2-7l-v6-c27a",
+      "issueId": "acura-legend-timing-belt-interference-engine",
+      "partIndex": 1,
+      "partNumber": "WP129K1A",
+      "decision": "hold_no_exact_link",
+      "reason": "The water-pump timing kit matches the repair role and 1990 2.7L scope, but there is no exact product page.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the water pump and timing-belt components together.",
+        "catalog": "ShowMeTheParts: Dayco WP129K1A kit includes water pump, timing belt, and camshaft belt tensioner for 1990 Legend 2.7L.",
+        "directLink": "05 artifact reports no-exact-product-link; no buy URL emitted."
+      }
+    },
+    {
+      "proposalId": "acura-legend-timing-belt-interference-engine--prescription-1-0--3-2l-v6-c32a",
+      "issueId": "acura-legend-timing-belt-interference-engine",
+      "partIndex": 0,
+      "partNumber": "WP193K1A",
+      "decision": "hold_no_exact_link",
+      "reason": "The kit supports the water-pump role only for the catalog-confirmed 1993-1995 3.2L subset, which the proposal preserves, but no exact product page was found.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the water pump and timing-belt components together.",
+        "catalog": "ShowMeTheParts: Dayco WP193K1A kit with water pump, one outlet tube, Legend 3.2L, 1993-1995.",
+        "directLink": "05 artifact reports no-exact-product-link; no buy URL emitted."
+      }
+    },
+    {
+      "proposalId": "acura-legend-timing-belt-interference-engine--prescription-2-0--2-7l-v6-c27a",
+      "issueId": "acura-legend-timing-belt-interference-engine",
+      "partIndex": 0,
+      "partNumber": "95129K1",
+      "decision": "approve",
+      "reason": "The candidate kit explicitly includes the prescribed camshaft-belt tensioner and is scoped only to catalog-confirmed 1990 2.7L fitment.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Always replace the timing-belt tensioner during the teardown.",
+        "catalog": "ShowMeTheParts: Dayco 95129K1 includes a camshaft belt tensioner for 1990 Legend 2.7L.",
+        "directLink": "eBay /itm/ exact-product-link; URL evidence includes Dayco 95129K1."
+      }
+    },
+    {
+      "proposalId": "acura-legend-timing-belt-interference-engine--prescription-2-0--2-7l-v6-c27a",
+      "issueId": "acura-legend-timing-belt-interference-engine",
+      "partIndex": 1,
+      "partNumber": "T129",
+      "decision": "block_wrong_role",
+      "reason": "T129 is a timing belt only and does not supply the tensioner required by this work item.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Always replace the timing-belt tensioner.",
+        "catalog": "ShowMeTheParts identifies Gates T129 as Engine Timing Belt; its evidence does not include a tensioner.",
+        "directLink": "An exact eBay T129 listing exists, but it is an exact listing for the wrong repair role."
+      }
+    },
+    {
+      "proposalId": "acura-legend-timing-belt-interference-engine--prescription-2-0--3-2l-v6-c32a",
+      "issueId": "acura-legend-timing-belt-interference-engine",
+      "partIndex": 0,
+      "partNumber": "95193K1",
+      "decision": "hold_no_exact_link",
+      "reason": "The kit includes the prescribed camshaft-belt tensioner and fits the 1991-1995 3.2L scope, but no exact product page was resolved.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Always replace the timing-belt tensioner.",
+        "catalog": "ShowMeTheParts: Dayco 95193K1 includes a camshaft belt tensioner for Legend 3.2L, 1991-1995.",
+        "directLink": "05 artifact reports no-exact-product-link; no buy URL emitted."
+      }
+    },
+    {
+      "proposalId": "acura-legend-timing-belt-interference-engine--prescription-2-0--3-2l-v6-c32a",
+      "issueId": "acura-legend-timing-belt-interference-engine",
+      "partIndex": 1,
+      "partNumber": "T193",
+      "decision": "block_wrong_role",
+      "reason": "T193 is a timing belt only and does not supply the tensioner required by this work item.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Always replace the timing-belt tensioner.",
+        "catalog": "ShowMeTheParts identifies Gates T193 as Engine Timing Belt; its evidence does not include a tensioner.",
+        "directLink": "An exact eBay T193 listing exists, but it is an exact listing for the wrong repair role."
+      }
+    },
+    {
+      "proposalId": "acura-legend-timing-belt-interference-engine--prescription-3-0--2-7l-v6-c27a",
+      "issueId": "acura-legend-timing-belt-interference-engine",
+      "partIndex": 0,
+      "partNumber": "16149",
+      "decision": "block_wrong_role",
+      "reason": "The prescription defines front seals as crank, cam, and balance-shaft seals; this is only an unspecified timing-cover seal and does not establish one of those required roles.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace all front seals: crank, cam, and balance shaft.",
+        "catalog": "ShowMeTheParts calls SKF 16149 Engine Timing Cover Seal and provides dimensions, but no crank/cam/balance-shaft identity.",
+        "directLink": "An exact eBay 16149 listing exists, but product identity does not match the prescribed set."
+      }
+    },
+    {
+      "proposalId": "acura-legend-timing-belt-interference-engine--prescription-3-0--2-7l-v6-c27a",
+      "issueId": "acura-legend-timing-belt-interference-engine",
+      "partIndex": 1,
+      "partNumber": "SK0028",
+      "decision": "block_incomplete_scope",
+      "reason": "The proposed front-seal kit contains camshaft and crankshaft seals but the article also mandates the balance-shaft seal, which the catalog contents do not include.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace all front seals: crank, cam, and balance shaft.",
+        "catalog": "ShowMeTheParts: Dayco SK0028 includes two camshaft seals and a crankshaft seal; no balance-shaft seal is listed.",
+        "directLink": "Exact eBay SK0028 listing exists, but the kit is incomplete for the stated prescription."
+      }
+    },
+    {
+      "proposalId": "acura-legend-timing-belt-interference-engine--prescription-3-0--3-2l-v6-c32a",
+      "issueId": "acura-legend-timing-belt-interference-engine",
+      "partIndex": 0,
+      "partNumber": "16471",
+      "decision": "block_wrong_role",
+      "reason": "The prescription defines front seals as crank, cam, and balance-shaft seals; this is only an unspecified timing-cover seal and does not establish one of those required roles.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace all front seals: crank, cam, and balance shaft.",
+        "catalog": "ShowMeTheParts calls SKF 16471 Engine Timing Cover Seal and provides dimensions, but no crank/cam/balance-shaft identity.",
+        "directLink": "An exact eBay 16471 listing exists, but product identity does not match the prescribed set."
+      }
+    },
+    {
+      "proposalId": "acura-legend-timing-belt-interference-engine--prescription-3-0--3-2l-v6-c32a",
+      "issueId": "acura-legend-timing-belt-interference-engine",
+      "partIndex": 1,
+      "partNumber": "SK0031",
+      "decision": "block_incomplete_scope",
+      "reason": "The proposed front-seal kit contains camshaft and crankshaft seals but the article also mandates the balance-shaft seal, which the catalog contents do not include.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace all front seals: crank, cam, and balance shaft.",
+        "catalog": "ShowMeTheParts: Dayco SK0031 includes two camshaft seals and a crankshaft seal; no balance-shaft seal is listed.",
+        "directLink": "Exact eBay SK0031 listing exists, but the kit is incomplete for the stated prescription."
+      }
+    },
+    {
+      "proposalId": "acura-legend-timing-belt-interference-engine--prescription-4-0--2-7l-v6-c27a",
+      "issueId": "acura-legend-timing-belt-interference-engine",
+      "partIndex": 0,
+      "partNumber": "T41015",
+      "decision": "block_wrong_role",
+      "reason": "The work item calls for an idler pulley, but T41015 is a timing-belt tensioner and its catalog evidence does not identify an idler.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the idler pulley during timing-belt service.",
+        "catalog": "ShowMeTheParts: Gates T41015 Engine Timing Belt Tensioner, not an idler pulley.",
+        "directLink": "No exact product link; role mismatch blocks the row independently."
+      }
+    },
+    {
+      "proposalId": "acura-legend-timing-belt-interference-engine--prescription-4-0--3-2l-v6-c32a",
+      "issueId": "acura-legend-timing-belt-interference-engine",
+      "partIndex": 0,
+      "partNumber": "T41021",
+      "decision": "block_wrong_role",
+      "reason": "The work item calls for an idler pulley, but T41021 is a timing-belt tensioner and its catalog evidence does not identify an idler.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the idler pulley during timing-belt service.",
+        "catalog": "ShowMeTheParts: Gates T41021 Engine Timing Belt Tensioner, not an idler pulley.",
+        "directLink": "An exact eBay T41021 listing exists, but it is for the wrong repair role."
+      }
+    },
+    {
+      "proposalId": "acura-mdx-timing-belt-tensioner-2001--prescription-0-0--3-5l-j35a3-v6",
+      "issueId": "acura-mdx-timing-belt-tensioner-2001",
+      "partIndex": 0,
+      "partNumber": "40286",
+      "decision": "hold_needs_manual",
+      "reason": "The belt role is correct, but the catalog proves only 2001-2002 MDX 3.5L and does not prove the proposal's J35A3 engine-code assignment while the packet separately assigns the same cells to J35A5.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the timing belt as part of the complete service kit.",
+        "catalog": "ShowMeTheParts: Continental 40286, 2001-2002 MDX, V6 3.5L 3471cc; no engine code.",
+        "directLink": "Exact eBay 40286 listing exists; unresolved engine-code matrix still requires manual review."
+      }
+    },
+    {
+      "proposalId": "acura-mdx-timing-belt-tensioner-2001--prescription-0-0--3-5l-j35a3-v6",
+      "issueId": "acura-mdx-timing-belt-tensioner-2001",
+      "partIndex": 1,
+      "partNumber": "95286K1",
+      "decision": "hold_needs_manual",
+      "reason": "The kit supports the timing-belt role, but displacement-only evidence cannot prove the J35A3 engine-code assignment and the same cells are duplicated under J35A5.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace timing belt, tensioner, water pump, and idlers as a complete kit.",
+        "catalog": "ShowMeTheParts: Dayco 95286K1 for 2001-2002 MDX 3.5L; no engine code, and hydraulic actuator is not included.",
+        "directLink": "Exact eBay 95286K1 listing exists; manual engine/kit-scope check is still required."
+      }
+    },
+    {
+      "proposalId": "acura-mdx-timing-belt-tensioner-2001--prescription-0-0--3-5l-j35a5-v6",
+      "issueId": "acura-mdx-timing-belt-tensioner-2001",
+      "partIndex": 0,
+      "partNumber": "40286",
+      "decision": "hold_needs_manual",
+      "reason": "The belt role is correct, but the catalog proves only 2001-2002 MDX 3.5L and does not prove this J35A5 engine-code assignment; the same product/cells are also assigned to J35A3.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the timing belt as part of the complete service kit.",
+        "catalog": "ShowMeTheParts: Continental 40286, 2001-2002 MDX, V6 3.5L 3471cc; no J35A5 evidence.",
+        "directLink": "Exact eBay 40286 listing exists; unresolved engine-code matrix still requires manual review."
+      }
+    },
+    {
+      "proposalId": "acura-mdx-timing-belt-tensioner-2001--prescription-0-0--3-5l-j35a5-v6",
+      "issueId": "acura-mdx-timing-belt-tensioner-2001",
+      "partIndex": 1,
+      "partNumber": "95286K1",
+      "decision": "hold_needs_manual",
+      "reason": "The kit supports the timing-belt role, but displacement-only evidence cannot prove this J35A5 assignment and the same cells are duplicated under J35A3.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace timing belt, tensioner, water pump, and idlers as a complete kit.",
+        "catalog": "ShowMeTheParts: Dayco 95286K1 for 2001-2002 MDX 3.5L; no J35A5 evidence, and hydraulic actuator is not included.",
+        "directLink": "Exact eBay 95286K1 listing exists; manual engine/kit-scope check is still required."
+      }
+    },
+    {
+      "proposalId": "acura-mdx-timing-belt-tensioner-2001--prescription-1-0--3-5l-j35a3-v6",
+      "issueId": "acura-mdx-timing-belt-tensioner-2001",
+      "partIndex": 0,
+      "partNumber": "T41090",
+      "decision": "hold_needs_manual",
+      "reason": "The part is a timing-belt tensioner, but catalog evidence is displacement-only, excludes the hydraulic assembly, and cannot prove this J35A3 engine-code assignment against the duplicated J35A5 proposal.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Never reuse the old timing-belt tensioner.",
+        "catalog": "ShowMeTheParts: Gates T41090, 2001-2002 MDX 3.5L; does not include cam tensioner hydraulic assembly; no engine code.",
+        "directLink": "Exact eBay T41090 listing exists; manual engine and required-tensioner-form check is needed."
+      }
+    },
+    {
+      "proposalId": "acura-mdx-timing-belt-tensioner-2001--prescription-1-0--3-5l-j35a3-v6",
+      "issueId": "acura-mdx-timing-belt-tensioner-2001",
+      "partIndex": 1,
+      "partNumber": "ALT16324",
+      "decision": "hold_needs_manual",
+      "reason": "The part is a timing-belt tensioner, but 2003-2006 displacement-only evidence cannot prove J35A3 and explicitly excludes the hydraulic assembly; there is also no exact product page.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Never reuse the old timing-belt tensioner.",
+        "catalog": "ShowMeTheParts: ALT16324, 2003-2006 MDX 3.5L; does not include cam tensioner hydraulic assembly; no engine code.",
+        "directLink": "No exact product link; manual engine and required-tensioner-form review takes precedence."
+      }
+    },
+    {
+      "proposalId": "acura-mdx-timing-belt-tensioner-2001--prescription-1-0--3-5l-j35a5-v6",
+      "issueId": "acura-mdx-timing-belt-tensioner-2001",
+      "partIndex": 0,
+      "partNumber": "T41090",
+      "decision": "hold_needs_manual",
+      "reason": "The part is a timing-belt tensioner, but 2001-2002 displacement-only evidence cannot prove J35A5 and explicitly excludes the hydraulic assembly; the same cells are duplicated under J35A3.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Never reuse the old timing-belt tensioner.",
+        "catalog": "ShowMeTheParts: Gates T41090, 2001-2002 MDX 3.5L; does not include cam tensioner hydraulic assembly; no engine code.",
+        "directLink": "Exact eBay T41090 listing exists; manual engine and required-tensioner-form check is needed."
+      }
+    },
+    {
+      "proposalId": "acura-mdx-timing-belt-tensioner-2001--prescription-1-0--3-5l-j35a5-v6",
+      "issueId": "acura-mdx-timing-belt-tensioner-2001",
+      "partIndex": 1,
+      "partNumber": "ALT16324",
+      "decision": "hold_needs_manual",
+      "reason": "The part is a timing-belt tensioner, but displacement-only evidence cannot prove this J35A5 assignment and explicitly excludes the hydraulic assembly; there is also no exact product page.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Never reuse the old timing-belt tensioner.",
+        "catalog": "ShowMeTheParts: ALT16324, 2003-2006 MDX 3.5L; does not include cam tensioner hydraulic assembly; no engine code.",
+        "directLink": "No exact product link; manual engine and required-tensioner-form review takes precedence."
+      }
+    },
+    {
+      "proposalId": "acura-mdx-timing-belt-tensioner-2001--prescription-2-0--3-5l-j35a3-v6",
+      "issueId": "acura-mdx-timing-belt-tensioner-2001",
+      "partIndex": 0,
+      "partNumber": "TKH-001",
+      "decision": "hold_needs_manual",
+      "reason": "The complete-kit role is appropriate, but ShowMeTheParts proves only 2001-2002 MDX 3.5L and cannot substantiate the J35A3 code while the same cells are also assigned to J35A5.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace timing belt, tensioner, water pump, and idlers as a complete kit.",
+        "catalog": "ShowMeTheParts: Aisin TKH-001 Timing Belt Kit with Water Pump, 2001-2002 MDX 3.5L; no engine code.",
+        "directLink": "Exact eBay TKH-001 listing exists; manual engine-code matrix check remains."
+      }
+    },
+    {
+      "proposalId": "acura-mdx-timing-belt-tensioner-2001--prescription-2-0--3-5l-j35a3-v6",
+      "issueId": "acura-mdx-timing-belt-tensioner-2001",
+      "partIndex": 1,
+      "partNumber": "WP286K1C",
+      "decision": "hold_needs_manual",
+      "reason": "The complete kit contains the prescribed components, but displacement-only evidence cannot substantiate the J35A3 engine code while the same fitment cells are duplicated under J35A5.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace timing belt, tensioner, water pump, and idlers as a complete kit.",
+        "catalog": "ShowMeTheParts: Dayco WP286K1C includes pump, belt, hydraulic actuator, tensioner, and idler for 2001-2002 MDX 3.5L; no engine code.",
+        "directLink": "Exact eBay WP286K1C listing exists; manual engine-code matrix check remains."
+      }
+    },
+    {
+      "proposalId": "acura-mdx-timing-belt-tensioner-2001--prescription-2-0--3-5l-j35a5-v6",
+      "issueId": "acura-mdx-timing-belt-tensioner-2001",
+      "partIndex": 0,
+      "partNumber": "TKH-001",
+      "decision": "hold_needs_manual",
+      "reason": "The complete-kit role is appropriate, but ShowMeTheParts proves only 2001-2002 MDX 3.5L and cannot substantiate J35A5; the same cells are also assigned to J35A3.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace timing belt, tensioner, water pump, and idlers as a complete kit.",
+        "catalog": "ShowMeTheParts: Aisin TKH-001 Timing Belt Kit with Water Pump, 2001-2002 MDX 3.5L; no J35A5 evidence.",
+        "directLink": "Exact eBay TKH-001 listing exists; manual engine-code matrix check remains."
+      }
+    },
+    {
+      "proposalId": "acura-mdx-timing-belt-tensioner-2001--prescription-2-0--3-5l-j35a5-v6",
+      "issueId": "acura-mdx-timing-belt-tensioner-2001",
+      "partIndex": 1,
+      "partNumber": "WP286K1C",
+      "decision": "hold_needs_manual",
+      "reason": "The complete kit contains the prescribed components, but displacement-only evidence cannot substantiate J35A5 while the same fitment cells are duplicated under J35A3.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace timing belt, tensioner, water pump, and idlers as a complete kit.",
+        "catalog": "ShowMeTheParts: Dayco WP286K1C complete kit for 2001-2002 MDX 3.5L; no J35A5 evidence.",
+        "directLink": "Exact eBay WP286K1C listing exists; manual engine-code matrix check remains."
+      }
+    },
+    {
+      "proposalId": "acura-mdx-timing-belt-tensioner-2001--prescription-3-0--3-5l-j35a3-v6",
+      "issueId": "acura-mdx-timing-belt-tensioner-2001",
+      "partIndex": 0,
+      "partNumber": "T41090",
+      "decision": "block_wrong_role",
+      "reason": "The work item calls for all idler pulleys, but T41090 is a timing-belt tensioner and explicitly does not include the hydraulic assembly; it is not identified as an idler kit.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace all idler pulleys as part of the complete kit.",
+        "catalog": "ShowMeTheParts: Gates T41090 Engine Timing Belt Tensioner, not an idler-pulley kit.",
+        "directLink": "Exact eBay T41090 listing exists, but it is for the wrong repair role."
+      }
+    },
+    {
+      "proposalId": "acura-mdx-timing-belt-tensioner-2001--prescription-3-0--3-5l-j35a3-v6",
+      "issueId": "acura-mdx-timing-belt-tensioner-2001",
+      "partIndex": 1,
+      "partNumber": "ALT16324",
+      "decision": "block_wrong_role",
+      "reason": "The work item calls for all idler pulleys, but ALT16324 is a timing-belt tensioner and is not identified as an idler kit.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace all idler pulleys as part of the complete kit.",
+        "catalog": "ShowMeTheParts: ALT16324 Engine Timing Belt Tensioner; does not include hydraulic assembly; not an idler-pulley kit.",
+        "directLink": "No exact product link; role mismatch blocks the row independently."
+      }
+    },
+    {
+      "proposalId": "acura-mdx-timing-belt-tensioner-2001--prescription-3-0--3-5l-j35a5-v6",
+      "issueId": "acura-mdx-timing-belt-tensioner-2001",
+      "partIndex": 0,
+      "partNumber": "T41090",
+      "decision": "block_wrong_role",
+      "reason": "The work item calls for all idler pulleys, but T41090 is a timing-belt tensioner and is not identified as an idler kit.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace all idler pulleys as part of the complete kit.",
+        "catalog": "ShowMeTheParts: Gates T41090 Engine Timing Belt Tensioner, not an idler-pulley kit.",
+        "directLink": "Exact eBay T41090 listing exists, but it is for the wrong repair role."
+      }
+    },
+    {
+      "proposalId": "acura-mdx-timing-belt-tensioner-2001--prescription-3-0--3-5l-j35a5-v6",
+      "issueId": "acura-mdx-timing-belt-tensioner-2001",
+      "partIndex": 1,
+      "partNumber": "ALT16324",
+      "decision": "block_wrong_role",
+      "reason": "The work item calls for all idler pulleys, but ALT16324 is a timing-belt tensioner and is not identified as an idler kit.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace all idler pulleys as part of the complete kit.",
+        "catalog": "ShowMeTheParts: ALT16324 Engine Timing Belt Tensioner; not an idler-pulley kit.",
+        "directLink": "No exact product link; role mismatch blocks the row independently."
+      }
+    },
+    {
+      "proposalId": "acura-rl-c35a-timing-belt-tensioner-interference--prescription-0-0--3-5l-v6-c35a",
+      "issueId": "acura-rl-c35a-timing-belt-tensioner-interference",
+      "partIndex": 0,
+      "partNumber": "WP279K1A",
+      "decision": "block_incomplete_scope",
+      "reason": "The combined work item requires belt, hydraulic tensioner, water pump, all front seals, and idler; this kit lists pump, belts, and tensioners but no front seals and does not establish the required hydraulic tensioner.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace timing belt, hydraulic tensioner, water pump, all front seals, and idler pulley as a complete kit.",
+        "catalog": "ShowMeTheParts: Dayco WP279K1A includes water pump, timing and balance-shaft belts, and belt tensioners; seals/hydraulic actuator are not listed.",
+        "directLink": "No exact product link; incomplete repair scope blocks the row independently."
+      }
+    },
+    {
+      "proposalId": "acura-rl-c35a-timing-belt-tensioner-interference--prescription-0-0--3-5l-v6-c35a",
+      "issueId": "acura-rl-c35a-timing-belt-tensioner-interference",
+      "partIndex": 1,
+      "partNumber": "43133",
+      "decision": "block_incomplete_scope",
+      "reason": "A water pump alone cannot satisfy the combined complete-kit work item, which also requires belt, hydraulic tensioner, seals, and idler.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace timing belt, hydraulic tensioner, water pump, all front seals, and idler pulley as a complete kit.",
+        "catalog": "ShowMeTheParts: Gates 43133 is only an Engine Water Pump for 1996-1999 RL 3.5L.",
+        "directLink": "Exact eBay 43133 listing exists, but it is incomplete for this combined prescription."
+      }
+    },
+    {
+      "proposalId": "acura-rl-c35a-timing-belt-tensioner-interference--prescription-1-0--3-5l-v6-c35a",
+      "issueId": "acura-rl-c35a-timing-belt-tensioner-interference",
+      "partIndex": 0,
+      "partNumber": "WP279K1A",
+      "decision": "block_wrong_role",
+      "reason": "The extractor turned a warning against belt-only service into a separate purchase prescription; this duplicate candidate is not grounded in an affirmative standalone repair role for this work item.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Never use generic timing-belt-only service; replacing the belt without pump or tensioner is warned against.",
+        "catalog": "ShowMeTheParts confirms WP279K1A fitment, but catalog fitment cannot convert negated prose into repair causality.",
+        "directLink": "No exact product link; negated-source role blocks the row independently."
+      }
+    },
+    {
+      "proposalId": "acura-rl-c35a-timing-belt-tensioner-interference--prescription-1-0--3-5l-v6-c35a",
+      "issueId": "acura-rl-c35a-timing-belt-tensioner-interference",
+      "partIndex": 1,
+      "partNumber": "43133",
+      "decision": "block_wrong_role",
+      "reason": "The extractor turned a warning against belt-only service into a separate purchase prescription; this water pump is redundant and not grounded in an affirmative standalone work item here.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Never use generic timing-belt-only service; replacing the belt without pump or tensioner is warned against.",
+        "catalog": "ShowMeTheParts confirms Gates 43133 water-pump fitment, but it does not validate the negated extracted instruction.",
+        "directLink": "Exact eBay 43133 listing exists, but the source work item is invalid."
+      }
+    },
+    {
+      "proposalId": "acura-rl-c35a-timing-belt-tensioner-interference--prescription-2-0--3-5l-v6-c35a",
+      "issueId": "acura-rl-c35a-timing-belt-tensioner-interference",
+      "partIndex": 0,
+      "partNumber": "T42144",
+      "decision": "block_wrong_role",
+      "reason": "The article specifically requires an OEM Honda or Aisin hydraulic tensioner and warns against cheap aftermarket tensioners; this Gates part is identified only as a belt tensioner, with no hydraulic assembly evidence.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Insist on the OEM Honda or Aisin tensioner; cheap aftermarket tensioners are warned against.",
+        "catalog": "ShowMeTheParts: Gates T42144 Engine Timing Belt Tensioner; no hydraulic-assembly identity and available-until-stock-depleted.",
+        "directLink": "Exact eBay T42144 listing exists, but it conflicts with the article's prescribed part form/brand class."
+      }
+    },
+    {
+      "proposalId": "acura-rsx-ac-compressor-clutch-2002--prescription-2-0--2-0l-k20a2-i4",
+      "issueId": "acura-rsx-ac-compressor-clutch-2002",
+      "partIndex": 0,
+      "partNumber": "K070669",
+      "decision": "block_ambiguous",
+      "reason": "The belt is prescribed only if inspection finds damage; the packet supplies no damage determination, and displacement-only catalog data cannot independently prove the K20A2/Type-S engine-trim pairing.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the serpentine belt and tensioner if damaged.",
+        "catalog": "ShowMeTheParts: Gates K070669, 2005-2006 RSX 2.0L, application Type-S; no K20A2 code.",
+        "directLink": "Exact eBay K070669 listing exists, but conditional diagnosis prevents blanket sale."
+      }
+    },
+    {
+      "proposalId": "acura-rsx-ac-compressor-clutch-2002--prescription-2-0--2-0l-k20a3-i4",
+      "issueId": "acura-rsx-ac-compressor-clutch-2002",
+      "partIndex": 0,
+      "partNumber": "K070669",
+      "decision": "block_ambiguous",
+      "reason": "The belt is prescribed only if damaged, and the same Type-S-only catalog row is assigned to K20A3 without engine-code evidence; both diagnosis and engine-trim identity are unresolved.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the serpentine belt and tensioner if damaged.",
+        "catalog": "ShowMeTheParts: Gates K070669, 2005-2006 RSX 2.0L, application Type-S; no K20A3 code.",
+        "directLink": "Exact eBay K070669 listing exists, but conditional diagnosis and engine-trim ambiguity prevent sale."
+      }
+    },
+    {
+      "proposalId": "acura-tsx-ac-compressor-clutch-2004--prescription-2-0--2-4l-k24a2-i4",
+      "issueId": "acura-tsx-ac-compressor-clutch-2004",
+      "partIndex": 0,
+      "partNumber": "K070677",
+      "decision": "block_incomplete_scope",
+      "reason": "The proposal pairs K24A2 with 2009-2014 solely from generic 2.4L evidence; the catalog does not prove that engine-code/year matrix, and the packet separately assigns the same cells to K24Z3.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the serpentine belt only if scored or damaged by the seized bearing.",
+        "catalog": "ShowMeTheParts: Gates K070677, 2009-2014 TSX 2.4L; no K24A2 code and no engine-year disambiguation.",
+        "directLink": "Exact eBay K070677 listing exists, but the proposed engine/year scope is unproven."
+      }
+    },
+    {
+      "proposalId": "acura-tsx-ac-compressor-clutch-2004--prescription-2-0--2-4l-k24z3-i4",
+      "issueId": "acura-tsx-ac-compressor-clutch-2004",
+      "partIndex": 0,
+      "partNumber": "K070677",
+      "decision": "block_ambiguous",
+      "reason": "The catalog supports 2009-2014 TSX 2.4L fitment, but the article recommends belt replacement only after damage is observed; no inspection result exists for a blanket buy link.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the serpentine belt if scored or damaged from the seized bearing.",
+        "catalog": "ShowMeTheParts: Gates K070677, 2009-2014 TSX 2.4L; no extra application restrictions stated.",
+        "directLink": "Exact eBay K070677 listing exists, but conditional diagnosis prevents blanket sale."
+      }
+    },
+    {
+      "proposalId": "acura-tsx-ac-compressor-clutch-2004--prescription-2-0--3-5l-j35z6-v6",
+      "issueId": "acura-tsx-ac-compressor-clutch-2004",
+      "partIndex": 0,
+      "partNumber": "K060468",
+      "decision": "block_ambiguous",
+      "reason": "The catalog supports the narrowed 2010-2014 TSX 3.5L cells, but the article recommends belt replacement only if scored or damaged and no diagnosis result is present.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the serpentine belt if scored or damaged from the seized bearing.",
+        "catalog": "ShowMeTheParts: Gates K060468, 2010-2014 TSX 3.5L; no extra application restrictions stated.",
+        "directLink": "Exact eBay K060468 listing exists, but conditional diagnosis prevents blanket sale."
+      }
+    }
+  ]
+}

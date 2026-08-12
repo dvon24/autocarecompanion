@@ -13,7 +13,7 @@ import type { KnownIssue as CatalogKnownIssue } from '@/schemas/knownIssue.schem
 import { getKnownIssueCommerce, hasKnownIssueCommerce, knownIssueAffiliateUrl } from '@/lib/known-issue-commerce';
 import { trackAffiliateClick } from '@/lib/analytics';
 import { externalHttpUrl } from '@/lib/external-http-url';
-import { describeFitment, isNarrowerThanArticle, partCanBeShownForVehicle } from '@/lib/known-issue-part-fitment';
+import { describeFitment, isNarrowerThanArticle, resolvePartsForVehicle } from '@/lib/known-issue-part-fitment';
 
 type IssueRecommendation = NonNullable<CatalogKnownIssue['communityRecommendations']>[number];
 type IssueFixPart = NonNullable<CatalogKnownIssue['fixParts']>[number];
@@ -214,7 +214,13 @@ export function VehicleDashboard({
               <p className="text-sm text-gray-400">No documented issues for this vehicle.</p>
             ) : (
               issues.map(issue => (
-                <IssueCardExpanded key={issue.id} issue={issue} vehicle={vehicle} styled={styledTheme} onAskAI={() => sendMessage('Tell me about the "' + issue.title + '" issue on my ' + vehicleDisplay + '. What parts do I need to fix it, what are owners using, and how much does it cost? Include part links.')} />
+                <IssueCardExpanded
+                  key={issue.id}
+                  issue={issue}
+                  vehicle={{ ...vehicle, engine: vehicle.engine || specsSummary.engine || undefined }}
+                  styled={styledTheme}
+                  onAskAI={() => sendMessage('Tell me about the "' + issue.title + '" issue on my ' + vehicleDisplay + '. What parts do I need to fix it, what are owners using, and how much does it cost? Include part links.')}
+                />
               ))
             )}
           </div>
@@ -537,8 +543,18 @@ function IssueCardExpanded({ issue, vehicle, styled = true, onAskAI }: { issue: 
   const [expanded, setExpanded] = useState(false);
   const sevColor = 'border border-[#C9C0B1] bg-[#EFEDE6] text-[#0B1220]';
   const { fixParts: gatedParts, ownerGuidance } = getKnownIssueCommerce(issue);
-  const fitmentVehicle = { year: vehicle.year, trim: vehicle.trim || null, engine: vehicle.engine || null };
-  const fixParts = gatedParts.filter((part) => partCanBeShownForVehicle(part.fitment, fitmentVehicle));
+  const fitmentVehicle = {
+    year: vehicle.year,
+    make: vehicle.make,
+    model: vehicle.model,
+    trim: vehicle.trim || null,
+    engine: vehicle.engine || null,
+  };
+  const resolved = resolvePartsForVehicle(gatedParts, fitmentVehicle, issue.vehicleMatch);
+  const { fixParts } = getKnownIssueCommerce({
+    fixParts: resolved.parts,
+    communityRecommendations: [],
+  });
   const citations = issue.citations || [];
   const makeModel = issue.vehicleMatch?.make && issue.vehicleMatch?.model ? issue.vehicleMatch.make + ' ' + issue.vehicleMatch.model : '';
   const searchQuery = encodeURIComponent(makeModel + ' ' + issue.title);

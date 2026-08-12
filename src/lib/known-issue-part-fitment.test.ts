@@ -8,7 +8,11 @@ import {
   describeFitment,
   isNarrowerThanArticle,
   partCanBeShownForVehicle,
+  resolvePartForVehicle,
+  resolvePartsForVehicle,
+  vehicleIdentityMatches,
 } from './known-issue-part-fitment';
+import { getKnownIssueCommerce } from './known-issue-commerce';
 
 test('an unscoped part stays unscoped — never a silent "fits"', () => {
   assert.equal(partFitsVehicle(undefined, { year: 2015 }), 'unscoped');
@@ -80,7 +84,7 @@ test('resolvePartNumber picks the variant that claims the vehicle', () => {
   assert.equal(resolvePartNumber(part, { year: 2008 }).partNumber, '14310-RZA-003');
 });
 
-test('resolvePartNumber refuses the base number when scoped variants exclude the vehicle', () => {
+test('resolvePartNumber refuses the base number when scoped variants do not resolve', () => {
   const part = {
     oemPartNumber: '14310-RZA-003',
     variants: [{ oemPartNumber: '14310-R40-A02', scope: '2010-2011', fitment: { years: [2010, 2011] } }],
@@ -127,4 +131,139 @@ test('isNarrowerThanArticle flags the case the reader needs to see', () => {
   assert.equal(isNarrowerThanArticle(undefined, article), false);
   assert.equal(isNarrowerThanArticle({ engines: ['3.6L V6'] }, article), true);
   assert.equal(isNarrowerThanArticle({ trims: ['Sport'] }, article), true);
+});
+
+const earlyPumpLink = {
+  vendor: 'eBay',
+  url: 'https://www.ebay.com/itm/111111111111',
+  linkType: 'product',
+  verified: true,
+};
+const latePumpLink = {
+  vendor: 'eBay',
+  url: 'https://www.ebay.com/itm/222222222222',
+  linkType: 'product',
+  verified: true,
+};
+
+const challengerPump = {
+  component: 'Engine water pump',
+  verified: true,
+  oemPartNumber: 'UNIVERSAL-MUST-NOT-LEAK',
+  buyLinks: [{ ...earlyPumpLink, url: 'https://www.ebay.com/itm/999999999999' }],
+  variants: [
+    {
+      scope: '2009-2010 5.7L R/T',
+      oemPartNumber: '53022095AJ',
+      fitment: { years: [2009, 2010], engines: ['5.7L V8'], trims: ['R/T'] },
+      buyLinks: [earlyPumpLink],
+    },
+    {
+      scope: '2011-2023 5.7L R/T',
+      oemPartNumber: 'WPCH-707V',
+      fitment: { years: [2011, 2012, 2013], engines: ['5.7L V8'], trims: ['R/T'] },
+      buyLinks: [latePumpLink],
+    },
+  ],
+};
+
+test('Challenger split resolves only the one year/engine/trim variant and its own link', () => {
+  const selected = resolvePartForVehicle(challengerPump, {
+    year: 2012,
+    make: 'Dodge',
+    model: 'Challenger',
+    engine: '5.7L V8 HEMI',
+    trim: 'R/T',
+  }, { make: 'Dodge', model: 'Challenger' });
+
+  assert.equal(selected?.oemPartNumber, 'WPCH-707V');
+  assert.deepEqual(selected?.buyLinks, [latePumpLink]);
+  assert.equal(selected?.fitment?.years?.includes(2009), false);
+});
+
+test('a selected variant link still passes through the canonical commerce gate', () => {
+  const selected = resolvePartForVehicle(challengerPump, {
+    year: 2012,
+    make: 'Dodge',
+    model: 'Challenger',
+    engine: '5.7L V8',
+    trim: 'R/T',
+  }, { make: 'Dodge', model: 'Challenger' });
+  assert.ok(selected);
+  const { fixParts } = getKnownIssueCommerce({
+    fixParts: [selected] as never,
+    communityRecommendations: [],
+  });
+  assert.deepEqual(fixParts[0]?.buyLinks, [latePumpLink]);
+});
+
+test('Challenger variant resolution fails closed for unknown or wrong engine and trim', () => {
+  assert.equal(resolvePartForVehicle(challengerPump, {
+    year: 2012, make: 'Dodge', model: 'Challenger', trim: 'R/T',
+  }, { make: 'Dodge', model: 'Challenger' }), null);
+  assert.equal(resolvePartForVehicle(challengerPump, {
+    year: 2012, make: 'Dodge', model: 'Challenger', engine: '3.6L V6', trim: 'R/T',
+  }, { make: 'Dodge', model: 'Challenger' }), null);
+  assert.equal(resolvePartForVehicle(challengerPump, {
+    year: 2012, make: 'Dodge', model: 'Challenger', engine: '5.7L V8', trim: 'SXT',
+  }, { make: 'Dodge', model: 'Challenger' }), null);
+});
+
+test('overlapping compatible variants are ambiguous and expose no link', () => {
+  const ambiguous = {
+    ...challengerPump,
+    variants: [
+      ...challengerPump.variants,
+      {
+        scope: 'overlapping 2012 row',
+        oemPartNumber: 'OTHER-PUMP',
+        fitment: { years: [2012], engines: ['5.7L V8'], trims: ['R/T'] },
+        buyLinks: [earlyPumpLink],
+      },
+    ],
+  };
+  assert.equal(resolvePartForVehicle(ambiguous, {
+    year: 2012, make: 'Dodge', model: 'Challenger', engine: '5.7L V8', trim: 'R/T',
+  }, { make: 'Dodge', model: 'Challenger' }), null);
+});
+
+test('make/model identity guard rejects a selected Charger on a Challenger issue', () => {
+  assert.equal(vehicleIdentityMatches(
+    { make: 'Dodge', model: 'Charger' },
+    { make: 'Dodge', model: 'Challenger' },
+  ), false);
+  assert.equal(resolvePartForVehicle(challengerPump, {
+    year: 2012, make: 'Dodge', model: 'Charger', engine: '5.7L V8', trim: 'R/T',
+  }, { make: 'Dodge', model: 'Challenger' }), null);
+});
+
+test('unknown drivetrain or transmission hides a scoped Challenger variant', () => {
+  const driveshaft = {
+    component: 'Rear driveshaft',
+    variants: [{
+      scope: 'RWD manual',
+      oemPartNumber: 'CHALLENGER-MT',
+      fitment: { years: [2015], drivetrains: ['RWD'], transmissions: ['6-speed manual'] },
+      buyLinks: [earlyPumpLink],
+    }],
+  };
+  const identity = { make: 'Dodge', model: 'Challenger' };
+  const base = { year: 2015, make: 'Dodge', model: 'Challenger' };
+
+  assert.equal(resolvePartForVehicle(driveshaft, base, identity), null);
+  assert.equal(resolvePartForVehicle(driveshaft, { ...base, drivetrain: 'RWD' }, identity), null);
+  assert.equal(
+    resolvePartForVehicle(driveshaft, {
+      ...base, drivetrain: 'RWD', transmission: '6-speed manual',
+    }, identity)?.oemPartNumber,
+    'CHALLENGER-MT',
+  );
+});
+
+test('resolvePartsForVehicle reports hidden alternatives for renderer guidance', () => {
+  const result = resolvePartsForVehicle([challengerPump], {
+    year: 2012, make: 'Dodge', model: 'Challenger', trim: 'R/T',
+  }, { make: 'Dodge', model: 'Challenger' });
+  assert.deepEqual(result.parts, []);
+  assert.equal(result.hiddenCount, 1);
 });

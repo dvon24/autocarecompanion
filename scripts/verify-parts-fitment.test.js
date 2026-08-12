@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-require-imports */
 const assert = require('node:assert/strict');
 const test = require('node:test');
-const { looserPartTypeTier, resolveModels, selectOrderedCategory, serializeCandidate } = require('./verify-parts-fitment');
+const { looserPartTypeTier, resolveModels, selectOrderedCategory, serializeCandidate, verifyEntry } = require('./verify-parts-fitment');
 
 test('verifier output preserves every catalog restriction channel', () => {
   const projected = serializeCandidate({
@@ -46,4 +46,15 @@ test('ordered category fallback never pools a lower-priority category', () => {
   ], ['primary', 'fallback'], 'water pump');
   assert.equal(result.usedCategory, 'primary');
   assert.deepEqual(result.matched.map((entry) => entry.part.part_number), ['primary-1']);
+});
+
+test('fitment evidence preserves the exact How-to-Fix repair-role sentence', async () => {
+  const result = await verifyEntry({
+    id: 'acura-example', workItemId: 'acura-example--pump', prescriptionKey: 'pump',
+    make: 'Acura', model: 'Example', years: [2001], component: 'water pump',
+    repairRoleEvidence: 'Replace the water pump only after a failed pressure test.',
+    mappingStatus: 'unmapped', productMatch: [], partTypeMatch: 'water pump',
+  });
+  assert.equal(result.repairRoleEvidence, 'Replace the water pump only after a failed pressure test.');
+  assert.equal(result.verdict, 'unmapped');
 });

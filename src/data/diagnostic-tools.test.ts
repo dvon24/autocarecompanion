@@ -8,6 +8,7 @@ import {
   toolsForProcedures,
 } from './diagnostic-tools';
 import { isKnownIssueProductUrl } from '@/lib/known-issue-commerce';
+import { TOOL_PRODUCT_URLS } from '@/lib/diagnostic-procedures';
 
 test('every linked diagnostic tool uses a guarded product URL', () => {
   for (const tool of diagnosticTools) {
@@ -33,13 +34,47 @@ test('scan procedure filtering cannot reintroduce an incapable scanner', () => {
   assert.ok(tools.every((tool) => tool.codeFamilies.includes('U')));
 });
 
-test('unsupported procedure mentions are not claimed as covered', () => {
+test('procedure matching is explicit and newly supported testers resolve by capability', () => {
   assert.deepEqual(proceduresInSolution('Blue smoke test after startup.'), []);
-  assert.deepEqual(proceduresInSolution('Perform a cooling-system pressure test.'), []);
+  assert.deepEqual(proceduresInSolution('Low fuel pressure can cause a stall.'), []);
+  assert.deepEqual(proceduresInSolution('Perform a cooling-system pressure test.'), ['cooling-pressure-test']);
   assert.deepEqual(proceduresInSolution('Perform a battery load test.'), []);
   assert.deepEqual(proceduresInSolution('Load-test the battery.'), []);
   assert.deepEqual(proceduresInSolution('Perform a battery state-of-health test.'), ['battery-state-of-health']);
   assert.equal(toolsForProcedures(['battery-state-of-health'])[0]?.id, 'battery-conductance-tester');
+  assert.equal(toolsForProcedures(['smoke-test'])[0]?.id, 'autoline-hypersmoke');
+  assert.equal(toolsForProcedures(['fuel-pressure'], [], { engines: ['2.4L gasoline port-injection I4'] })[0]?.id, 'otc-5630-fuel-pressure');
+  assert.equal(toolsForProcedures(['compression-test'], [], { engines: ['3.5L gasoline V6'] })[0]?.id, 'otc-5606-compression');
+  assert.equal(toolsForProcedures(['cooling-pressure-test'])[0]?.id, 'otc-6977-cooling-pressure');
+  assert.equal(toolsForProcedures(['multimeter-basic'])[0]?.id, 'fluke-15b-plus');
+  assert.equal(toolsForProcedures(['oil-pressure'])[0]?.id, 'otc-5610-oil-pressure');
+});
+
+test('gasoline-only pressure and compression tools fail closed on unsafe or unknown engines', () => {
+  assert.deepEqual(toolsForProcedures(['fuel-pressure']), []);
+  assert.deepEqual(toolsForProcedures(['fuel-pressure'], [], { engines: ['2.0L gasoline direct-injection I4'] }), []);
+  assert.deepEqual(toolsForProcedures(['fuel-pressure'], [], { engines: ['3.0L turbodiesel V6'] }), []);
+  assert.deepEqual(toolsForProcedures(['compression-test']), []);
+  assert.deepEqual(toolsForProcedures(['compression-test'], [], { engines: ['3.0L diesel V6'] }), []);
+  assert.equal(
+    toolsForProcedures(['compression-test'], [], { engines: ['2.0L gasoline spark-ignition I4'] })[0]?.id,
+    'otc-5606-compression',
+  );
+});
+
+test('snapshot ledger and UI registry use the same exact product URL per tool id', () => {
+  const toolsById = new Map(diagnosticTools.map((tool) => [tool.id, tool]));
+  for (const [toolId, productUrl] of Object.entries(TOOL_PRODUCT_URLS)) {
+    assert.equal(toolsById.get(toolId)?.productUrl, productUrl, toolId);
+  }
+});
+
+test('explicit tool procedures are recognized without inferring from symptoms', () => {
+  assert.deepEqual(proceduresInSolution('Use an automotive smoke machine to locate the EVAP leak.'), ['smoke-test']);
+  assert.deepEqual(proceduresInSolution('Test fuel pressure with a mechanical gauge.'), ['fuel-pressure']);
+  assert.deepEqual(proceduresInSolution('Perform an engine compression test.'), ['compression-test']);
+  assert.deepEqual(proceduresInSolution('Use a digital multimeter to check continuity.'), ['multimeter-basic']);
+  assert.deepEqual(proceduresInSolution('Install a mechanical oil pressure gauge to verify pressure.'), ['oil-pressure']);
 });
 
 test('a parasitic-drain symptom mention is not a test prescription', () => {

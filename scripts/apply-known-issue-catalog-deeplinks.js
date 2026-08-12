@@ -380,7 +380,22 @@ function validateFullRecordIssue(issue, prefix, errors) {
   const continuityError = identityContinuityError(issue);
   if (continuityError) errors.push(`${prefix}: ${continuityError}`);
   if (!Array.isArray(after.citations) || after.citations.length === 0) errors.push(`${prefix}: after.citations must be non-empty`);
-  else after.citations.forEach((citation, index) => validateCitation(citation, `${prefix}: after.citations[${index}]`, errors));
+  else {
+    // Historical published rows include citation categories that predate the
+    // current enum (notably `article`). A keyed commerce merge must preserve
+    // those records byte-for-byte, and should not be forced into an unrelated
+    // evidence rewrite. Grandfather only the unchanged array: any citation
+    // mutation re-enables strict current-schema validation.
+    const citationsAreFrozen = fullRecordHashes(after).citationsHash === issue.before.citationsHash;
+    after.citations.forEach((citation, index) => {
+      if (citationsAreFrozen && citation && typeof citation === 'object' && !CITATION_TYPES.has(citation.type)) {
+        const withoutLegacyType = { ...citation, type: 'manual' };
+        validateCitation(withoutLegacyType, `${prefix}: after.citations[${index}]`, errors);
+      } else {
+        validateCitation(citation, `${prefix}: after.citations[${index}]`, errors);
+      }
+    });
+  }
   if (!Array.isArray(after.communityRecommendations)) errors.push(`${prefix}: after.communityRecommendations must be an array`);
   if (!Array.isArray(after.fixParts)) errors.push(`${prefix}: after.fixParts must be an array`);
   for (const [index, rec] of asArray(after.communityRecommendations).entries()) {

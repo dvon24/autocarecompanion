@@ -99,5 +99,12 @@ public/swe-worker-*
 !/data/_volvo-deeplink-snapshot-2026-08-11.json
 !/data/_volvo-status-inventory-2026-08-11.json
 !/data/known-issue-volvo-make-audit-2026-08-11.json
+!/data/known-issue-part-audit/
+!/data/known-issue-part-audit/**
+# The one-time global production export is local evidence (tens of MB). Only
+# the derived per-make packet/ledger/checkpoints belong in source control.
+/data/known-issue-part-audit/*/pending/
+# Superseded pre-contract Acura scratch output used a truncated snapshot hash.
+/data/known-issue-part-audit/acura/c22aa18f11e2/
 
 /src/generated/prisma

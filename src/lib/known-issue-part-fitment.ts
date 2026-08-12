@@ -24,14 +24,55 @@ export interface PartFitment {
   years?: number[];
   engines?: string[];
   trims?: string[];
+  drivetrains?: string[];
+  transmissions?: string[];
   catalogModels?: string[];
 }
 
 export interface FitmentVehicle {
   year?: number | null;
+  make?: string | null;
+  model?: string | null;
   engine?: string | null;
   trim?: string | null;
+  drivetrain?: string | null;
+  transmission?: string | null;
 }
+
+export interface VehicleIdentity {
+  make?: string | null;
+  model?: string | null;
+}
+
+export interface PartBuyLink {
+  vendor: string;
+  url: string;
+  linkType?: string;
+  verified?: boolean;
+  affiliate?: boolean;
+}
+
+export interface PartVariant {
+  scope?: string;
+  component?: string;
+  oemPartNumber?: string | null;
+  aftermarketXref?: string[];
+  note?: string;
+  buyLinks?: PartBuyLink[];
+  fitment?: PartFitment;
+}
+
+export interface ResolvablePart {
+  component?: string;
+  oemPartNumber?: string | null;
+  aftermarketXref?: string[];
+  note?: string;
+  buyLinks?: PartBuyLink[];
+  fitment?: PartFitment;
+  variants?: PartVariant[];
+}
+
+export type VehicleResolvedPart<T extends ResolvablePart> = T & ResolvablePart;
 
 export type FitmentVerdict =
   /** A declared scope covers this vehicle. */
@@ -73,6 +114,20 @@ function listMatches(declared: string[] | undefined, actual: string | null | und
 }
 
 /**
+ * A selected vehicle from another article must never unlock commerce here.
+ * Identity uses normalized equality rather than substring matching: an Accord
+ * is not an Accord Crosstour, and a Challenger is not a Charger.
+ */
+export function vehicleIdentityMatches(vehicle: FitmentVehicle, expected: VehicleIdentity | undefined): boolean {
+  if (!expected) return true;
+  const expectedMake = normalize(expected.make || '');
+  const expectedModel = normalize(expected.model || '');
+  if (expectedMake && normalize(vehicle.make || '') !== expectedMake) return false;
+  if (expectedModel && normalize(vehicle.model || '') !== expectedModel) return false;
+  return true;
+}
+
+/**
  * Resolve one part against one vehicle.
  *
  * A part is `excluded` as soon as ANY declared dimension rejects the vehicle —
@@ -86,12 +141,10 @@ export function partFitsVehicle(fitment: PartFitment | undefined, vehicle: Fitme
   if (fitment.years && fitment.years.length > 0) {
     checks.push(vehicle.year == null ? null : fitment.years.includes(vehicle.year));
   }
-  if (fitment.engines && fitment.engines.length > 0) {
-    checks.push(listMatches(fitment.engines, vehicle.engine));
-  }
-  if (fitment.trims && fitment.trims.length > 0) {
-    checks.push(listMatches(fitment.trims, vehicle.trim));
-  }
+  if (fitment.engines?.length) checks.push(listMatches(fitment.engines, vehicle.engine));
+  if (fitment.trims?.length) checks.push(listMatches(fitment.trims, vehicle.trim));
+  if (fitment.drivetrains?.length) checks.push(listMatches(fitment.drivetrains, vehicle.drivetrain));
+  if (fitment.transmissions?.length) checks.push(listMatches(fitment.transmissions, vehicle.transmission));
 
   if (checks.length === 0) return 'unscoped';
   if (checks.some((check) => check === false)) return 'excluded';
@@ -111,7 +164,8 @@ export function partIsEligibleForVehicle(
   vehicle: FitmentVehicle,
 ): boolean {
   const hasDeclaredScope = Boolean(
-    fitment?.years?.length || fitment?.engines?.length || fitment?.trims?.length,
+    fitment?.years?.length || fitment?.engines?.length || fitment?.trims?.length
+      || fitment?.drivetrains?.length || fitment?.transmissions?.length,
   );
   return !hasDeclaredScope || partFitsVehicle(fitment, vehicle) === 'fits';
 }
@@ -127,7 +181,59 @@ export function partCanBeShownForVehicle(fitment: PartFitment | undefined, vehic
   if (fitment.years?.length && vehicle.year == null) return false;
   if (fitment.engines?.length && !vehicle.engine) return false;
   if (fitment.trims?.length && !vehicle.trim) return false;
+  if (fitment.drivetrains?.length && !vehicle.drivetrain) return false;
+  if (fitment.transmissions?.length && !vehicle.transmission) return false;
   return partFitsVehicle(fitment, vehicle) !== 'excluded';
+}
+
+/**
+ * Resolve a stored repair part for one exact selected vehicle.
+ *
+ * Variant rows are exclusive. Exactly one must match, otherwise the whole part
+ * is hidden. In particular, base buy links are never inherited by a variant:
+ * doing that would turn a correctly split Challenger pump into another
+ * universal link. The selected variant's links are subsequently passed through
+ * the normal product-URL commerce gate by each renderer.
+ */
+export function resolvePartForVehicle<T extends ResolvablePart>(
+  part: T,
+  vehicle: FitmentVehicle,
+  expectedIdentity?: VehicleIdentity,
+): VehicleResolvedPart<T> | null {
+  if (!vehicleIdentityMatches(vehicle, expectedIdentity)) return null;
+  if (!partCanBeShownForVehicle(part.fitment, vehicle)) return null;
+
+  const variants = part.variants || [];
+  if (variants.length === 0) return part as VehicleResolvedPart<T>;
+
+  const compatible = variants.filter((variant) =>
+    partCanBeShownForVehicle(variant.fitment, vehicle)
+      && partFitsVehicle(variant.fitment, vehicle) === 'fits');
+  if (compatible.length !== 1) return null;
+
+  const variant = compatible[0]!;
+  return {
+    ...part,
+    ...(variant.component ? { component: variant.component } : {}),
+    ...(variant.oemPartNumber !== undefined ? { oemPartNumber: variant.oemPartNumber } : {}),
+    ...(variant.aftermarketXref !== undefined ? { aftermarketXref: variant.aftermarketXref } : {}),
+    ...(variant.note !== undefined ? { note: variant.note } : {}),
+    fitment: variant.fitment,
+    // A variant is one independently reviewed offer. Never leak a base or
+    // sibling variant link into it when its own link evidence is absent.
+    buyLinks: variant.buyLinks || [],
+  } as VehicleResolvedPart<T>;
+}
+
+export function resolvePartsForVehicle<T extends ResolvablePart>(
+  parts: readonly T[],
+  vehicle: FitmentVehicle,
+  expectedIdentity?: VehicleIdentity,
+): { parts: VehicleResolvedPart<T>[]; hiddenCount: number } {
+  const resolved = parts
+    .map((part) => resolvePartForVehicle(part, vehicle, expectedIdentity))
+    .filter((part): part is VehicleResolvedPart<T> => part !== null);
+  return { parts: resolved, hiddenCount: parts.length - resolved.length };
 }
 
 /**
@@ -136,8 +242,9 @@ export function partCanBeShownForVehicle(fitment: PartFitment | undefined, vehic
  * `14310-RZA-003` for 2007-09 and `14310-R40-A02` for 2010-11 and a single PN
  * is wrong for half its readers.
  *
- * Unscoped legacy records retain the base part number. Once any machine-readable
- * scope is declared, an unmatched vehicle receives no part number.
+ * Machine-readable variant rows are exclusive: exactly one must match. Zero
+ * and overlapping matches both return no number. Entirely unscoped legacy
+ * variant rows retain main's base-number fallback until they can be audited.
  */
 export function resolvePartNumber(
   part: {
@@ -148,25 +255,29 @@ export function resolvePartNumber(
   vehicle: FitmentVehicle,
 ): { partNumber: string | null; scope: string | null; matched: boolean } {
   const variants = part.variants || [];
-  for (const variant of variants) {
-    if (partFitsVehicle(variant.fitment, vehicle) === 'fits') {
+  const hasScopedVariant = variants.some((variant) => Boolean(
+    variant.fitment?.years?.length || variant.fitment?.engines?.length || variant.fitment?.trims?.length
+      || variant.fitment?.drivetrains?.length || variant.fitment?.transmissions?.length,
+  ));
+  if (hasScopedVariant) {
+    const compatible = variants.filter((variant) =>
+      partCanBeShownForVehicle(variant.fitment, vehicle)
+        && partFitsVehicle(variant.fitment, vehicle) === 'fits');
+    if (compatible.length === 1) {
+      const variant = compatible[0]!;
       return { partNumber: variant.oemPartNumber, scope: variant.scope || null, matched: true };
     }
+    return { partNumber: null, scope: null, matched: false };
   }
 
-  const hasScopedVariant = variants.some((variant) => Boolean(
-    variant.fitment?.years?.length || variant.fitment?.engines?.length || variant.fitment?.trims?.length,
-  ));
   const hasScopedBase = Boolean(
-    part.fitment?.years?.length || part.fitment?.engines?.length || part.fitment?.trims?.length,
+    part.fitment?.years?.length || part.fitment?.engines?.length || part.fitment?.trims?.length
+      || part.fitment?.drivetrains?.length || part.fitment?.transmissions?.length,
   );
-  if (hasScopedBase && partFitsVehicle(part.fitment, vehicle) === 'fits') {
-    return { partNumber: part.oemPartNumber || null, scope: describeFitment(part.fitment) || null, matched: true };
-  }
-  // Once any PN is deliberately scoped, an unmatched vehicle must not inherit
-  // the legacy base number. That fallback is exactly how a correct PN for one
-  // year range gets sold to the rest of the article's readers.
-  if (hasScopedVariant || hasScopedBase) {
+  if (hasScopedBase) {
+    if (partCanBeShownForVehicle(part.fitment, vehicle) && partFitsVehicle(part.fitment, vehicle) === 'fits') {
+      return { partNumber: part.oemPartNumber || null, scope: describeFitment(part.fitment) || null, matched: true };
+    }
     return { partNumber: null, scope: null, matched: false };
   }
   return { partNumber: part.oemPartNumber || null, scope: null, matched: false };
@@ -199,6 +310,8 @@ export function describeFitment(fitment: PartFitment | undefined): string {
   if (fitment.years?.length) parts.push(formatYearRange(fitment.years));
   if (fitment.engines?.length) parts.push(fitment.engines.join(' / '));
   if (fitment.trims?.length) parts.push(fitment.trims.join(' / '));
+  if (fitment.drivetrains?.length) parts.push(fitment.drivetrains.join(' / '));
+  if (fitment.transmissions?.length) parts.push(fitment.transmissions.join(' / '));
   return parts.join(' · ');
 }
 
@@ -209,7 +322,8 @@ export function describeFitment(fitment: PartFitment | undefined): string {
  */
 export function isNarrowerThanArticle(fitment: PartFitment | undefined, articleYears: number[]): boolean {
   if (!fitment) return false;
-  if (fitment.engines?.length || fitment.trims?.length) return true;
+  if (fitment.engines?.length || fitment.trims?.length
+    || fitment.drivetrains?.length || fitment.transmissions?.length) return true;
   if (!fitment.years?.length || articleYears.length === 0) return false;
   const scoped = new Set(fitment.years);
   return articleYears.some((y) => !scoped.has(y));

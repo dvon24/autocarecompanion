@@ -1,0 +1,1100 @@
+{
+  "schemaVersion": 2,
+  "patchKind": "known-issues-catalog-deeplink-decisions",
+  "batchId": "acura-parts-c22aa18f11e2",
+  "snapshotHash": "c22aa18f11e2de2c789eebcb035ba8dbc530aadb783a5c86fe4a749eeabe908d",
+  "makeSourceHash": "0ad64fb7c24ed71366109b31404c6b11f4d794a8def7ca55f3a06850baab5228",
+  "status": "REVIEW_READY_RECONCILED",
+  "makeComplete": true,
+  "productionApplied": false,
+  "diagnosticReconciliation": {
+    "status": "RECONCILED_WITH_EXPLICIT_HOLD",
+    "artifactSha256": {
+      "classification-ledger.json": "531cc75a7cc1256c89995059ae3db208f8898c40e10e453ee1c34ea4f096abcf",
+      "checkpoint.json": "9c8d5680e01de76580baa8915a095eb2fccb6fc56b1f5b296665efb985514cc3",
+      "diagnostic-tool-evidence.json": "3a299be1f526024e53496bc3f2c88bb4a3bae72f10e2028b6ff3a72f2fd5fab3"
+    },
+    "implementationSha256": {
+      "src/lib/diagnostic-procedures.js": "cf00cada105ca024e4de039808286155c568fc42ec35b51654ca51216a06e345",
+      "src/data/diagnostic-tools.ts": "07c8348e80bb18a9f4c2dc8347bc74f9987e3ed9dd311975f8da62d089652567",
+      "src/components/known-issues/IssueDiagnosticTools.tsx": "8d314b695b6985bdf0ad9bcd8579ea8c97c0954eef5b7b5fa8c3f661fb384b84",
+      "src/components/known-issues/KnownIssueCard.tsx": "26122344899de2a84d210d2b92f0f7cf5f326d29b2751fc0330322b0f197e52e",
+      "src/components/known-issues/CategorySection.tsx": "515f207949aaf1c8875de16a19b1172b12ea61f53781b4f6fffa672abdde4c67",
+      "src/components/known-issues/ArticleIssuesList.tsx": "16b3bed0a478e08a407435d76e720287a32c37e1753f758a517f826d81747636",
+      "src/app/garage/[id]/maintenance/page.tsx": "f8ca4cc0eee666519cf9e38baf5b3249328d37b10e1443a4b105e91f3c159c5e",
+      "src/components/vehicle/VehicleDashboard.tsx": "8c19ca38b53f3e94437d96168e6005542a2b35089ae10517b6f7c37a0e1e0a62"
+    },
+    "scope": {
+      "issueCount": 70,
+      "issuesWithDtcCodes": 16,
+      "uniqueDtcCount": 31,
+      "solutionInstructionCount": 37,
+      "dtcDispositionCount": 16,
+      "toolLinkedDispositionCount": 20,
+      "procedureNoToolDispositionCount": 32,
+      "unresolvedToolHoldCount": 1,
+      "uncoveredDiagnosticInstructionCount": 0
+    },
+    "hold": {
+      "issueId": "acura-integra-dc-vtec-oil-pressure-switch-code22",
+      "procedure": "scan-codes",
+      "excerpt": "22, P1259",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    }
+  },
+  "decisions": [
+    {
+      "id": "acura-integra-da-distributor-internal-oil-leak",
+      "disposition": "replace",
+      "decision": "Keyed-merge only independently approved primary parts with exact direct-product links.",
+      "evidence": [
+        {
+          "label": "Distributor exact product",
+          "url": "https://www.ebay.com/itm/401988622225?fits=Year%3A1992%7CEngine+-+Liter_Display%3A1.7L%7CModel%3AIntegra%7CMake%3AAcura&_skw=1992+Acura+Integra+1.7L+Cardone+31-17407+Distributor&hash=item5d98639791%3Ag%3AdmYAAOSw-%7Etd7AE2&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049"
+        }
+      ],
+      "mergeFixParts": [
+        {
+          "component": "Distributor",
+          "part": {
+            "component": "Distributor",
+            "oemPartNumber": "",
+            "aftermarketXref": [
+              "31-17407"
+            ],
+            "note": "Cardone 31-17407. The article explicitly prescribes a complete distributor; the Cardone distributor is scoped only to the catalog-confirmed 1992-1993 1.7L variant and has an exact direct listing.",
+            "buyLinks": [
+              {
+                "vendor": "eBay",
+                "url": "https://www.ebay.com/itm/401988622225?fits=Year%3A1992%7CEngine+-+Liter_Display%3A1.7L%7CModel%3AIntegra%7CMake%3AAcura&_skw=1992+Acura+Integra+1.7L+Cardone+31-17407+Distributor&hash=item5d98639791%3Ag%3AdmYAAOSw-%7Etd7AE2&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049",
+                "linkType": "product",
+                "verified": true,
+                "affiliate": true
+              }
+            ],
+            "fitment": {
+              "years": [
+                1992,
+                1993
+              ],
+              "engines": [
+                "1.7L B17A1"
+              ],
+              "catalogModels": [
+                "INTEGRA"
+              ]
+            },
+            "variants": [],
+            "verified": true,
+            "provenance": "ShowMeTheParts fitment + independent review acura-integra-da-distributor-internal-oil-leak--prescription-0-0--1-7l-b17a1 (acura-integra-da-distributor-internal-oil-leak--prescription-0-0--1-7l-b17a1::0)"
+          }
+        }
+      ],
+      "contentUpdatedOn": "2026-08-12",
+      "contentUpdateSummary": "Added independently reviewed, vehicle-scoped repair-part links."
+    },
+    {
+      "id": "acura-legend-timing-belt-interference-engine",
+      "disposition": "replace",
+      "decision": "Keyed-merge only independently approved primary parts with exact direct-product links.",
+      "evidence": [
+        {
+          "label": "Engine Timing Belt Kit exact product",
+          "url": "https://www.ebay.com/itm/257484035894?fits=Year%3A1990%7CEngine+-+Liter_Display%3A2.7L%7CModel%3ALegend%7CMake%3AAcura&_skw=1990+Acura+Legend+2.7L+Dayco+95129K1+Engine+Timing+Belt+Kit&hash=item3bf33e9736%3Ag%3AKfMAAeSwU9Bp888E&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049"
+        },
+        {
+          "label": "Engine Water Pump exact product",
+          "url": "https://www.ebay.com/itm/198524842627?fits=Year%3A1990%7CEngine+-+Liter_Display%3A2.7L%7CModel%3ALegend%7CMake%3AAcura&_skw=1990+Acura+Legend+2.7L+Aisin+WPH-008+Engine+Water+Pump&hash=item2e3900b283%3Ai%3A198524842627&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049"
+        }
+      ],
+      "mergeFixParts": [
+        {
+          "component": "Engine Timing Belt Kit",
+          "part": {
+            "component": "Engine Timing Belt Kit",
+            "oemPartNumber": "",
+            "aftermarketXref": [
+              "95129K1"
+            ],
+            "note": "Dayco 95129K1. The kit contains the prescribed timing belt and tensioner and is restricted to the only catalog-confirmed C27A cell, 1990 2.7L.",
+            "buyLinks": [
+              {
+                "vendor": "eBay",
+                "url": "https://www.ebay.com/itm/257484035894?fits=Year%3A1990%7CEngine+-+Liter_Display%3A2.7L%7CModel%3ALegend%7CMake%3AAcura&_skw=1990+Acura+Legend+2.7L+Dayco+95129K1+Engine+Timing+Belt+Kit&hash=item3bf33e9736%3Ag%3AKfMAAeSwU9Bp888E&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049",
+                "linkType": "product",
+                "verified": true,
+                "affiliate": true
+              }
+            ],
+            "fitment": {
+              "years": [
+                1990
+              ],
+              "engines": [
+                "2.7L V6 C27A"
+              ],
+              "catalogModels": [
+                "LEGEND"
+              ]
+            },
+            "variants": [],
+            "verified": true,
+            "provenance": "ShowMeTheParts fitment + independent review acura-legend-timing-belt-interference-engine--prescription-0-0--2-7l-v6-c27a (acura-legend-timing-belt-interference-engine--prescription-0-0--2-7l-v6-c27a::0, acura-legend-timing-belt-interference-engine--prescription-2-0--2-7l-v6-c27a::0)"
+          }
+        },
+        {
+          "component": "Engine Water Pump",
+          "part": {
+            "component": "Engine Water Pump",
+            "oemPartNumber": "",
+            "aftermarketXref": [
+              "WPH-008"
+            ],
+            "note": "Aisin WPH-008. The article explicitly requires the water pump during timing-belt service, and this pump is narrowly scoped to catalog-confirmed 1990 2.7L fitment.",
+            "buyLinks": [
+              {
+                "vendor": "eBay",
+                "url": "https://www.ebay.com/itm/198524842627?fits=Year%3A1990%7CEngine+-+Liter_Display%3A2.7L%7CModel%3ALegend%7CMake%3AAcura&_skw=1990+Acura+Legend+2.7L+Aisin+WPH-008+Engine+Water+Pump&hash=item2e3900b283%3Ai%3A198524842627&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049",
+                "linkType": "product",
+                "verified": true,
+                "affiliate": true
+              }
+            ],
+            "fitment": {
+              "years": [
+                1990
+              ],
+              "engines": [
+                "2.7L V6 C27A"
+              ],
+              "catalogModels": [
+                "LEGEND"
+              ]
+            },
+            "variants": [],
+            "verified": true,
+            "provenance": "ShowMeTheParts fitment + independent review acura-legend-timing-belt-interference-engine--prescription-1-0--2-7l-v6-c27a (acura-legend-timing-belt-interference-engine--prescription-1-0--2-7l-v6-c27a::0)"
+          }
+        }
+      ],
+      "contentUpdatedOn": "2026-08-12",
+      "contentUpdateSummary": "Added independently reviewed, vehicle-scoped repair-part links."
+    }
+  ],
+  "removalProposals": [
+    {
+      "issueId": "acura-integra-dc-timing-belt-interference-failure",
+      "workItemId": "acura-integra-dc-timing-belt-interference-failure--existing-fix-part-0-0--b18b1",
+      "partNumber": "TB184K1",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The live unscoped claim is labeled as the repair kit, but the article requires a complete kit with water pump and warns that LS and GSR belt/pump combinations differ; TB184K1 explicitly excludes the water pump and catalog applications prove only LS/RS/GS/Special Edition, not a safe all-engine claim."
+    },
+    {
+      "issueId": "acura-integra-dc-timing-belt-interference-failure",
+      "workItemId": "acura-integra-dc-timing-belt-interference-failure--existing-fix-part-0-0--b18c1",
+      "partNumber": "TB184K1",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The live claim has no variants and would be shown for B18C1, but ShowMeTheParts does not list GSR for TB184K1 and the article explicitly says the VTEC GSR uses a different belt and 22-tooth pump; the kit also excludes the required water pump."
+    },
+    {
+      "issueId": "acura-integra-dc-timing-belt-interference-failure",
+      "workItemId": "acura-integra-dc-timing-belt-interference-failure--existing-fix-part-0-0--b18c5",
+      "partNumber": "TB184K1",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The live claim has no variants and would be shown for B18C5, but the catalog provides no B18C5/Type R application evidence and the kit explicitly omits the water pump required by the article."
+    },
+    {
+      "issueId": "acura-mdx-vcm-related-oil-consumption-spark-plug-fouling-motor-mount-f",
+      "workItemId": "acura-mdx-vcm-related-oil-consumption-spark-plug-fouling-motor-mount-f--existing-fix-part-0-0--j37a1",
+      "partNumber": "9619",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "Bosch 9619 fits and is the right product type, but the article prescribes plugs only when they are oil-fouled; the existing unconditional card has no diagnosis gate and therefore becomes a blanket sale."
+    },
+    {
+      "issueId": "acura-vigor-g25a1-timing-belt-interference",
+      "workItemId": "acura-vigor-g25a1-timing-belt-interference--existing-fix-part-0-0--2-5l-i5-g25a1",
+      "partNumber": "PP211LK2",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The Continental kit fits and includes pump/seals, but the article mandates OEM Honda or Aisin for the tensioner and describes a complete job including hydraulic tensioner, idler, and accessory belts; the catalog does not establish those contents for PP211LK2."
+    }
+  ],
+  "reconciliation": {
+    "schemaVersion": 2,
+    "artifactKind": "known-issue-make-parts-reconciliation",
+    "snapshotHash": "c22aa18f11e2de2c789eebcb035ba8dbc530aadb783a5c86fe4a749eeabe908d",
+    "makeSourceHash": "0ad64fb7c24ed71366109b31404c6b11f4d794a8def7ca55f3a06850baab5228",
+    "status": "REVIEW_READY_RECONCILED",
+    "makeComplete": true,
+    "productionApplied": false,
+    "diagnosticReconciliation": {
+      "status": "RECONCILED_WITH_EXPLICIT_HOLD",
+      "artifactSha256": {
+        "classification-ledger.json": "531cc75a7cc1256c89995059ae3db208f8898c40e10e453ee1c34ea4f096abcf",
+        "checkpoint.json": "9c8d5680e01de76580baa8915a095eb2fccb6fc56b1f5b296665efb985514cc3",
+        "diagnostic-tool-evidence.json": "3a299be1f526024e53496bc3f2c88bb4a3bae72f10e2028b6ff3a72f2fd5fab3"
+      },
+      "implementationSha256": {
+        "src/lib/diagnostic-procedures.js": "cf00cada105ca024e4de039808286155c568fc42ec35b51654ca51216a06e345",
+        "src/data/diagnostic-tools.ts": "07c8348e80bb18a9f4c2dc8347bc74f9987e3ed9dd311975f8da62d089652567",
+        "src/components/known-issues/IssueDiagnosticTools.tsx": "8d314b695b6985bdf0ad9bcd8579ea8c97c0954eef5b7b5fa8c3f661fb384b84",
+        "src/components/known-issues/KnownIssueCard.tsx": "26122344899de2a84d210d2b92f0f7cf5f326d29b2751fc0330322b0f197e52e",
+        "src/components/known-issues/CategorySection.tsx": "515f207949aaf1c8875de16a19b1172b12ea61f53781b4f6fffa672abdde4c67",
+        "src/components/known-issues/ArticleIssuesList.tsx": "16b3bed0a478e08a407435d76e720287a32c37e1753f758a517f826d81747636",
+        "src/app/garage/[id]/maintenance/page.tsx": "f8ca4cc0eee666519cf9e38baf5b3249328d37b10e1443a4b105e91f3c159c5e",
+        "src/components/vehicle/VehicleDashboard.tsx": "8c19ca38b53f3e94437d96168e6005542a2b35089ae10517b6f7c37a0e1e0a62"
+      },
+      "scope": {
+        "issueCount": 70,
+        "issuesWithDtcCodes": 16,
+        "uniqueDtcCount": 31,
+        "solutionInstructionCount": 37,
+        "dtcDispositionCount": 16,
+        "toolLinkedDispositionCount": 20,
+        "procedureNoToolDispositionCount": 32,
+        "unresolvedToolHoldCount": 1,
+        "uncoveredDiagnosticInstructionCount": 0
+      },
+      "hold": {
+        "issueId": "acura-integra-dc-vtec-oil-pressure-switch-code22",
+        "procedure": "scan-codes",
+        "excerpt": "22, P1259",
+        "reasonCode": "manufacturer-code-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      }
+    },
+    "counts": {
+      "issueCount": 70,
+      "reviewedProposalPartRows": 45,
+      "approvedRows": 6,
+      "selectedPrimaryRows": 4,
+      "excludedApprovedNonPrimaryRows": 2,
+      "heldProposalRows": 39,
+      "blockedExistingClaimRows": 5,
+      "changedIssueCount": 2,
+      "mergedStablePartCount": 3,
+      "manifestIssueCount": 2,
+      "overlappingSelectedScopeCount": 0
+    },
+    "inputSha256": {
+      "00-make-source.json": "a1f69107cdad861b2324532e62926eaa533c26001d6c1c47e767ca76ff38a3f6",
+      "01-disposition-ledger.json": "28149917dbb0e8b65eb0804b679050b5c8be7711bee79f19838ac1e389e78cc1",
+      "02-fitment-worklist.json": "b0ce8c677d2a19196e61eae4d2abba69e3ec26a4f6c39e94ea2aa8b2f65080a1",
+      "03-showmetheparts-evidence.json": "eb8a94eab713679e8a8805ab0ec4083cf1878a00cf4565390a56761bdde27e0f",
+      "04-part-proposals.json": "0b4dcc0b24509b1aca29f0246afa1c1801cf10f71624c766d0c02590d7d3bb75",
+      "05-direct-link-evidence.json": "98327dc30b02dccfabb81cacc446c2627ffdd84d86ee952d5ddc58a2083a6203",
+      "06-independent-review.json": "28b8ef8e92e57256e36c199061265263f0e227b1d884c8948698007734543920",
+      "classification-ledger.json": "531cc75a7cc1256c89995059ae3db208f8898c40e10e453ee1c34ea4f096abcf",
+      "checkpoint.json": "9c8d5680e01de76580baa8915a095eb2fccb6fc56b1f5b296665efb985514cc3",
+      "diagnostic-tool-evidence.json": "3a299be1f526024e53496bc3f2c88bb4a3bae72f10e2028b6ff3a72f2fd5fab3"
+    },
+    "reviewRows": [
+      {
+        "proposalId": "acura-integra-da-distributor-internal-oil-leak--prescription-0-0--1-7l-b17a1",
+        "partIndex": 0,
+        "issueId": "acura-integra-da-distributor-internal-oil-leak",
+        "partNumber": "31-17407",
+        "verdict": "approve",
+        "reconciliationStatus": "selected-primary",
+        "reason": "The article explicitly prescribes a complete distributor; the Cardone distributor is scoped only to the catalog-confirmed 1992-1993 1.7L variant and has an exact direct listing."
+      },
+      {
+        "proposalId": "acura-integra-da-ignitor-module-failure--prescription-0-0--1-7l-b17a1",
+        "partIndex": 0,
+        "issueId": "acura-integra-da-ignitor-module-failure",
+        "partNumber": "31-17407",
+        "verdict": "block_wrong_role",
+        "reconciliationStatus": "held",
+        "reason": "This work item prescribes cap and rotor replacement, but the candidate is a complete distributor; the exact listing does not cure the repair-role mismatch."
+      },
+      {
+        "proposalId": "acura-legend-timing-belt-interference-engine--prescription-0-0--2-7l-v6-c27a",
+        "partIndex": 0,
+        "issueId": "acura-legend-timing-belt-interference-engine",
+        "partNumber": "95129K1",
+        "verdict": "approve",
+        "reconciliationStatus": "selected-primary",
+        "reason": "The kit contains the prescribed timing belt and tensioner and is restricted to the only catalog-confirmed C27A cell, 1990 2.7L."
+      },
+      {
+        "proposalId": "acura-legend-timing-belt-interference-engine--prescription-0-0--2-7l-v6-c27a",
+        "partIndex": 1,
+        "issueId": "acura-legend-timing-belt-interference-engine",
+        "partNumber": "T129",
+        "verdict": "approve",
+        "reconciliationStatus": "excluded-non-primary",
+        "reason": "The Gates timing belt directly fulfills this component prescription and is restricted to catalog-confirmed 1990 2.7L fitment."
+      },
+      {
+        "proposalId": "acura-legend-timing-belt-interference-engine--prescription-0-0--3-2l-v6-c32a",
+        "partIndex": 0,
+        "issueId": "acura-legend-timing-belt-interference-engine",
+        "partNumber": "95193K1",
+        "verdict": "hold_no_exact_link",
+        "reconciliationStatus": "held",
+        "reason": "Repair role and 1991-1995 3.2L catalog fitment are supported, but no exact product page was resolved."
+      },
+      {
+        "proposalId": "acura-legend-timing-belt-interference-engine--prescription-0-0--3-2l-v6-c32a",
+        "partIndex": 1,
+        "issueId": "acura-legend-timing-belt-interference-engine",
+        "partNumber": "T193",
+        "verdict": "approve",
+        "reconciliationStatus": "excluded-non-primary",
+        "reason": "The Gates timing belt directly fulfills this prescription across the catalog-confirmed 1991-1995 3.2L cells."
+      },
+      {
+        "proposalId": "acura-legend-timing-belt-interference-engine--prescription-1-0--2-7l-v6-c27a",
+        "partIndex": 0,
+        "issueId": "acura-legend-timing-belt-interference-engine",
+        "partNumber": "WPH-008",
+        "verdict": "approve",
+        "reconciliationStatus": "selected-primary",
+        "reason": "The article explicitly requires the water pump during timing-belt service, and this pump is narrowly scoped to catalog-confirmed 1990 2.7L fitment."
+      },
+      {
+        "proposalId": "acura-legend-timing-belt-interference-engine--prescription-1-0--2-7l-v6-c27a",
+        "partIndex": 1,
+        "issueId": "acura-legend-timing-belt-interference-engine",
+        "partNumber": "WP129K1A",
+        "verdict": "hold_no_exact_link",
+        "reconciliationStatus": "held",
+        "reason": "The water-pump timing kit matches the repair role and 1990 2.7L scope, but there is no exact product page."
+      },
+      {
+        "proposalId": "acura-legend-timing-belt-interference-engine--prescription-1-0--3-2l-v6-c32a",
+        "partIndex": 0,
+        "issueId": "acura-legend-timing-belt-interference-engine",
+        "partNumber": "WP193K1A",
+        "verdict": "hold_no_exact_link",
+        "reconciliationStatus": "held",
+        "reason": "The kit supports the water-pump role only for the catalog-confirmed 1993-1995 3.2L subset, which the proposal preserves, but no exact product page was found."
+      },
+      {
+        "proposalId": "acura-legend-timing-belt-interference-engine--prescription-2-0--2-7l-v6-c27a",
+        "partIndex": 0,
+        "issueId": "acura-legend-timing-belt-interference-engine",
+        "partNumber": "95129K1",
+        "verdict": "approve",
+        "reconciliationStatus": "selected-primary",
+        "reason": "The candidate kit explicitly includes the prescribed camshaft-belt tensioner and is scoped only to catalog-confirmed 1990 2.7L fitment."
+      },
+      {
+        "proposalId": "acura-legend-timing-belt-interference-engine--prescription-2-0--2-7l-v6-c27a",
+        "partIndex": 1,
+        "issueId": "acura-legend-timing-belt-interference-engine",
+        "partNumber": "T129",
+        "verdict": "block_wrong_role",
+        "reconciliationStatus": "held",
+        "reason": "T129 is a timing belt only and does not supply the tensioner required by this work item."
+      },
+      {
+        "proposalId": "acura-legend-timing-belt-interference-engine--prescription-2-0--3-2l-v6-c32a",
+        "partIndex": 0,
+        "issueId": "acura-legend-timing-belt-interference-engine",
+        "partNumber": "95193K1",
+        "verdict": "hold_no_exact_link",
+        "reconciliationStatus": "held",
+        "reason": "The kit includes the prescribed camshaft-belt tensioner and fits the 1991-1995 3.2L scope, but no exact product page was resolved."
+      },
+      {
+        "proposalId": "acura-legend-timing-belt-interference-engine--prescription-2-0--3-2l-v6-c32a",
+        "partIndex": 1,
+        "issueId": "acura-legend-timing-belt-interference-engine",
+        "partNumber": "T193",
+        "verdict": "block_wrong_role",
+        "reconciliationStatus": "held",
+        "reason": "T193 is a timing belt only and does not supply the tensioner required by this work item."
+      },
+      {
+        "proposalId": "acura-legend-timing-belt-interference-engine--prescription-3-0--2-7l-v6-c27a",
+        "partIndex": 0,
+        "issueId": "acura-legend-timing-belt-interference-engine",
+        "partNumber": "16149",
+        "verdict": "block_wrong_role",
+        "reconciliationStatus": "held",
+        "reason": "The prescription defines front seals as crank, cam, and balance-shaft seals; this is only an unspecified timing-cover seal and does not establish one of those required roles."
+      },
+      {
+        "proposalId": "acura-legend-timing-belt-interference-engine--prescription-3-0--2-7l-v6-c27a",
+        "partIndex": 1,
+        "issueId": "acura-legend-timing-belt-interference-engine",
+        "partNumber": "SK0028",
+        "verdict": "block_incomplete_scope",
+        "reconciliationStatus": "held",
+        "reason": "The proposed front-seal kit contains camshaft and crankshaft seals but the article also mandates the balance-shaft seal, which the catalog contents do not include."
+      },
+      {
+        "proposalId": "acura-legend-timing-belt-interference-engine--prescription-3-0--3-2l-v6-c32a",
+        "partIndex": 0,
+        "issueId": "acura-legend-timing-belt-interference-engine",
+        "partNumber": "16471",
+        "verdict": "block_wrong_role",
+        "reconciliationStatus": "held",
+        "reason": "The prescription defines front seals as crank, cam, and balance-shaft seals; this is only an unspecified timing-cover seal and does not establish one of those required roles."
+      },
+      {
+        "proposalId": "acura-legend-timing-belt-interference-engine--prescription-3-0--3-2l-v6-c32a",
+        "partIndex": 1,
+        "issueId": "acura-legend-timing-belt-interference-engine",
+        "partNumber": "SK0031",
+        "verdict": "block_incomplete_scope",
+        "reconciliationStatus": "held",
+        "reason": "The proposed front-seal kit contains camshaft and crankshaft seals but the article also mandates the balance-shaft seal, which the catalog contents do not include."
+      },
+      {
+        "proposalId": "acura-legend-timing-belt-interference-engine--prescription-4-0--2-7l-v6-c27a",
+        "partIndex": 0,
+        "issueId": "acura-legend-timing-belt-interference-engine",
+        "partNumber": "T41015",
+        "verdict": "block_wrong_role",
+        "reconciliationStatus": "held",
+        "reason": "The work item calls for an idler pulley, but T41015 is a timing-belt tensioner and its catalog evidence does not identify an idler."
+      },
+      {
+        "proposalId": "acura-legend-timing-belt-interference-engine--prescription-4-0--3-2l-v6-c32a",
+        "partIndex": 0,
+        "issueId": "acura-legend-timing-belt-interference-engine",
+        "partNumber": "T41021",
+        "verdict": "block_wrong_role",
+        "reconciliationStatus": "held",
+        "reason": "The work item calls for an idler pulley, but T41021 is a timing-belt tensioner and its catalog evidence does not identify an idler."
+      },
+      {
+        "proposalId": "acura-mdx-timing-belt-tensioner-2001--prescription-0-0--3-5l-j35a3-v6",
+        "partIndex": 0,
+        "issueId": "acura-mdx-timing-belt-tensioner-2001",
+        "partNumber": "40286",
+        "verdict": "hold_needs_manual",
+        "reconciliationStatus": "held",
+        "reason": "The belt role is correct, but the catalog proves only 2001-2002 MDX 3.5L and does not prove the proposal's J35A3 engine-code assignment while the packet separately assigns the same cells to J35A5."
+      },
+      {
+        "proposalId": "acura-mdx-timing-belt-tensioner-2001--prescription-0-0--3-5l-j35a3-v6",
+        "partIndex": 1,
+        "issueId": "acura-mdx-timing-belt-tensioner-2001",
+        "partNumber": "95286K1",
+        "verdict": "hold_needs_manual",
+        "reconciliationStatus": "held",
+        "reason": "The kit supports the timing-belt role, but displacement-only evidence cannot prove the J35A3 engine-code assignment and the same cells are duplicated under J35A5."
+      },
+      {
+        "proposalId": "acura-mdx-timing-belt-tensioner-2001--prescription-0-0--3-5l-j35a5-v6",
+        "partIndex": 0,
+        "issueId": "acura-mdx-timing-belt-tensioner-2001",
+        "partNumber": "40286",
+        "verdict": "hold_needs_manual",
+        "reconciliationStatus": "held",
+        "reason": "The belt role is correct, but the catalog proves only 2001-2002 MDX 3.5L and does not prove this J35A5 engine-code assignment; the same product/cells are also assigned to J35A3."
+      },
+      {
+        "proposalId": "acura-mdx-timing-belt-tensioner-2001--prescription-0-0--3-5l-j35a5-v6",
+        "partIndex": 1,
+        "issueId": "acura-mdx-timing-belt-tensioner-2001",
+        "partNumber": "95286K1",
+        "verdict": "hold_needs_manual",
+        "reconciliationStatus": "held",
+        "reason": "The kit supports the timing-belt role, but displacement-only evidence cannot prove this J35A5 assignment and the same cells are duplicated under J35A3."
+      },
+      {
+        "proposalId": "acura-mdx-timing-belt-tensioner-2001--prescription-1-0--3-5l-j35a3-v6",
+        "partIndex": 0,
+        "issueId": "acura-mdx-timing-belt-tensioner-2001",
+        "partNumber": "T41090",
+        "verdict": "hold_needs_manual",
+        "reconciliationStatus": "held",
+        "reason": "The part is a timing-belt tensioner, but catalog evidence is displacement-only, excludes the hydraulic assembly, and cannot prove this J35A3 engine-code assignment against the duplicated J35A5 proposal."
+      },
+      {
+        "proposalId": "acura-mdx-timing-belt-tensioner-2001--prescription-1-0--3-5l-j35a3-v6",
+        "partIndex": 1,
+        "issueId": "acura-mdx-timing-belt-tensioner-2001",
+        "partNumber": "ALT16324",
+        "verdict": "hold_needs_manual",
+        "reconciliationStatus": "held",
+        "reason": "The part is a timing-belt tensioner, but 2003-2006 displacement-only evidence cannot prove J35A3 and explicitly excludes the hydraulic assembly; there is also no exact product page."
+      },
+      {
+        "proposalId": "acura-mdx-timing-belt-tensioner-2001--prescription-1-0--3-5l-j35a5-v6",
+        "partIndex": 0,
+        "issueId": "acura-mdx-timing-belt-tensioner-2001",
+        "partNumber": "T41090",
+        "verdict": "hold_needs_manual",
+        "reconciliationStatus": "held",
+        "reason": "The part is a timing-belt tensioner, but 2001-2002 displacement-only evidence cannot prove J35A5 and explicitly excludes the hydraulic assembly; the same cells are duplicated under J35A3."
+      },
+      {
+        "proposalId": "acura-mdx-timing-belt-tensioner-2001--prescription-1-0--3-5l-j35a5-v6",
+        "partIndex": 1,
+        "issueId": "acura-mdx-timing-belt-tensioner-2001",
+        "partNumber": "ALT16324",
+        "verdict": "hold_needs_manual",
+        "reconciliationStatus": "held",
+        "reason": "The part is a timing-belt tensioner, but displacement-only evidence cannot prove this J35A5 assignment and explicitly excludes the hydraulic assembly; there is also no exact product page."
+      },
+      {
+        "proposalId": "acura-mdx-timing-belt-tensioner-2001--prescription-2-0--3-5l-j35a3-v6",
+        "partIndex": 0,
+        "issueId": "acura-mdx-timing-belt-tensioner-2001",
+        "partNumber": "TKH-001",
+        "verdict": "hold_needs_manual",
+        "reconciliationStatus": "held",
+        "reason": "The complete-kit role is appropriate, but ShowMeTheParts proves only 2001-2002 MDX 3.5L and cannot substantiate the J35A3 code while the same cells are also assigned to J35A5."
+      },
+      {
+        "proposalId": "acura-mdx-timing-belt-tensioner-2001--prescription-2-0--3-5l-j35a3-v6",
+        "partIndex": 1,
+        "issueId": "acura-mdx-timing-belt-tensioner-2001",
+        "partNumber": "WP286K1C",
+        "verdict": "hold_needs_manual",
+        "reconciliationStatus": "held",
+        "reason": "The complete kit contains the prescribed components, but displacement-only evidence cannot substantiate the J35A3 engine code while the same fitment cells are duplicated under J35A5."
+      },
+      {
+        "proposalId": "acura-mdx-timing-belt-tensioner-2001--prescription-2-0--3-5l-j35a5-v6",
+        "partIndex": 0,
+        "issueId": "acura-mdx-timing-belt-tensioner-2001",
+        "partNumber": "TKH-001",
+        "verdict": "hold_needs_manual",
+        "reconciliationStatus": "held",
+        "reason": "The complete-kit role is appropriate, but ShowMeTheParts proves only 2001-2002 MDX 3.5L and cannot substantiate J35A5; the same cells are also assigned to J35A3."
+      },
+      {
+        "proposalId": "acura-mdx-timing-belt-tensioner-2001--prescription-2-0--3-5l-j35a5-v6",
+        "partIndex": 1,
+        "issueId": "acura-mdx-timing-belt-tensioner-2001",
+        "partNumber": "WP286K1C",
+        "verdict": "hold_needs_manual",
+        "reconciliationStatus": "held",
+        "reason": "The complete kit contains the prescribed components, but displacement-only evidence cannot substantiate J35A5 while the same fitment cells are duplicated under J35A3."
+      },
+      {
+        "proposalId": "acura-mdx-timing-belt-tensioner-2001--prescription-3-0--3-5l-j35a3-v6",
+        "partIndex": 0,
+        "issueId": "acura-mdx-timing-belt-tensioner-2001",
+        "partNumber": "T41090",
+        "verdict": "block_wrong_role",
+        "reconciliationStatus": "held",
+        "reason": "The work item calls for all idler pulleys, but T41090 is a timing-belt tensioner and explicitly does not include the hydraulic assembly; it is not identified as an idler kit."
+      },
+      {
+        "proposalId": "acura-mdx-timing-belt-tensioner-2001--prescription-3-0--3-5l-j35a3-v6",
+        "partIndex": 1,
+        "issueId": "acura-mdx-timing-belt-tensioner-2001",
+        "partNumber": "ALT16324",
+        "verdict": "block_wrong_role",
+        "reconciliationStatus": "held",
+        "reason": "The work item calls for all idler pulleys, but ALT16324 is a timing-belt tensioner and is not identified as an idler kit."
+      },
+      {
+        "proposalId": "acura-mdx-timing-belt-tensioner-2001--prescription-3-0--3-5l-j35a5-v6",
+        "partIndex": 0,
+        "issueId": "acura-mdx-timing-belt-tensioner-2001",
+        "partNumber": "T41090",
+        "verdict": "block_wrong_role",
+        "reconciliationStatus": "held",
+        "reason": "The work item calls for all idler pulleys, but T41090 is a timing-belt tensioner and is not identified as an idler kit."
+      },
+      {
+        "proposalId": "acura-mdx-timing-belt-tensioner-2001--prescription-3-0--3-5l-j35a5-v6",
+        "partIndex": 1,
+        "issueId": "acura-mdx-timing-belt-tensioner-2001",
+        "partNumber": "ALT16324",
+        "verdict": "block_wrong_role",
+        "reconciliationStatus": "held",
+        "reason": "The work item calls for all idler pulleys, but ALT16324 is a timing-belt tensioner and is not identified as an idler kit."
+      },
+      {
+        "proposalId": "acura-rl-c35a-timing-belt-tensioner-interference--prescription-0-0--3-5l-v6-c35a",
+        "partIndex": 0,
+        "issueId": "acura-rl-c35a-timing-belt-tensioner-interference",
+        "partNumber": "WP279K1A",
+        "verdict": "block_incomplete_scope",
+        "reconciliationStatus": "held",
+        "reason": "The combined work item requires belt, hydraulic tensioner, water pump, all front seals, and idler; this kit lists pump, belts, and tensioners but no front seals and does not establish the required hydraulic tensioner."
+      },
+      {
+        "proposalId": "acura-rl-c35a-timing-belt-tensioner-interference--prescription-0-0--3-5l-v6-c35a",
+        "partIndex": 1,
+        "issueId": "acura-rl-c35a-timing-belt-tensioner-interference",
+        "partNumber": "43133",
+        "verdict": "block_incomplete_scope",
+        "reconciliationStatus": "held",
+        "reason": "A water pump alone cannot satisfy the combined complete-kit work item, which also requires belt, hydraulic tensioner, seals, and idler."
+      },
+      {
+        "proposalId": "acura-rl-c35a-timing-belt-tensioner-interference--prescription-1-0--3-5l-v6-c35a",
+        "partIndex": 0,
+        "issueId": "acura-rl-c35a-timing-belt-tensioner-interference",
+        "partNumber": "WP279K1A",
+        "verdict": "block_wrong_role",
+        "reconciliationStatus": "held",
+        "reason": "The extractor turned a warning against belt-only service into a separate purchase prescription; this duplicate candidate is not grounded in an affirmative standalone repair role for this work item."
+      },
+      {
+        "proposalId": "acura-rl-c35a-timing-belt-tensioner-interference--prescription-1-0--3-5l-v6-c35a",
+        "partIndex": 1,
+        "issueId": "acura-rl-c35a-timing-belt-tensioner-interference",
+        "partNumber": "43133",
+        "verdict": "block_wrong_role",
+        "reconciliationStatus": "held",
+        "reason": "The extractor turned a warning against belt-only service into a separate purchase prescription; this water pump is redundant and not grounded in an affirmative standalone work item here."
+      },
+      {
+        "proposalId": "acura-rl-c35a-timing-belt-tensioner-interference--prescription-2-0--3-5l-v6-c35a",
+        "partIndex": 0,
+        "issueId": "acura-rl-c35a-timing-belt-tensioner-interference",
+        "partNumber": "T42144",
+        "verdict": "block_wrong_role",
+        "reconciliationStatus": "held",
+        "reason": "The article specifically requires an OEM Honda or Aisin hydraulic tensioner and warns against cheap aftermarket tensioners; this Gates part is identified only as a belt tensioner, with no hydraulic assembly evidence."
+      },
+      {
+        "proposalId": "acura-rsx-ac-compressor-clutch-2002--prescription-2-0--2-0l-k20a2-i4",
+        "partIndex": 0,
+        "issueId": "acura-rsx-ac-compressor-clutch-2002",
+        "partNumber": "K070669",
+        "verdict": "block_ambiguous",
+        "reconciliationStatus": "held",
+        "reason": "The belt is prescribed only if inspection finds damage; the packet supplies no damage determination, and displacement-only catalog data cannot independently prove the K20A2/Type-S engine-trim pairing."
+      },
+      {
+        "proposalId": "acura-rsx-ac-compressor-clutch-2002--prescription-2-0--2-0l-k20a3-i4",
+        "partIndex": 0,
+        "issueId": "acura-rsx-ac-compressor-clutch-2002",
+        "partNumber": "K070669",
+        "verdict": "block_ambiguous",
+        "reconciliationStatus": "held",
+        "reason": "The belt is prescribed only if damaged, and the same Type-S-only catalog row is assigned to K20A3 without engine-code evidence; both diagnosis and engine-trim identity are unresolved."
+      },
+      {
+        "proposalId": "acura-tsx-ac-compressor-clutch-2004--prescription-2-0--2-4l-k24a2-i4",
+        "partIndex": 0,
+        "issueId": "acura-tsx-ac-compressor-clutch-2004",
+        "partNumber": "K070677",
+        "verdict": "block_incomplete_scope",
+        "reconciliationStatus": "held",
+        "reason": "The proposal pairs K24A2 with 2009-2014 solely from generic 2.4L evidence; the catalog does not prove that engine-code/year matrix, and the packet separately assigns the same cells to K24Z3."
+      },
+      {
+        "proposalId": "acura-tsx-ac-compressor-clutch-2004--prescription-2-0--2-4l-k24z3-i4",
+        "partIndex": 0,
+        "issueId": "acura-tsx-ac-compressor-clutch-2004",
+        "partNumber": "K070677",
+        "verdict": "block_ambiguous",
+        "reconciliationStatus": "held",
+        "reason": "The catalog supports 2009-2014 TSX 2.4L fitment, but the article recommends belt replacement only after damage is observed; no inspection result exists for a blanket buy link."
+      },
+      {
+        "proposalId": "acura-tsx-ac-compressor-clutch-2004--prescription-2-0--3-5l-j35z6-v6",
+        "partIndex": 0,
+        "issueId": "acura-tsx-ac-compressor-clutch-2004",
+        "partNumber": "K060468",
+        "verdict": "block_ambiguous",
+        "reconciliationStatus": "held",
+        "reason": "The catalog supports the narrowed 2010-2014 TSX 3.5L cells, but the article recommends belt replacement only if scored or damaged and no diagnosis result is present."
+      }
+    ],
+    "removalProposals": [
+      {
+        "issueId": "acura-integra-dc-timing-belt-interference-failure",
+        "workItemId": "acura-integra-dc-timing-belt-interference-failure--existing-fix-part-0-0--b18b1",
+        "partNumber": "TB184K1",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The live unscoped claim is labeled as the repair kit, but the article requires a complete kit with water pump and warns that LS and GSR belt/pump combinations differ; TB184K1 explicitly excludes the water pump and catalog applications prove only LS/RS/GS/Special Edition, not a safe all-engine claim."
+      },
+      {
+        "issueId": "acura-integra-dc-timing-belt-interference-failure",
+        "workItemId": "acura-integra-dc-timing-belt-interference-failure--existing-fix-part-0-0--b18c1",
+        "partNumber": "TB184K1",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The live claim has no variants and would be shown for B18C1, but ShowMeTheParts does not list GSR for TB184K1 and the article explicitly says the VTEC GSR uses a different belt and 22-tooth pump; the kit also excludes the required water pump."
+      },
+      {
+        "issueId": "acura-integra-dc-timing-belt-interference-failure",
+        "workItemId": "acura-integra-dc-timing-belt-interference-failure--existing-fix-part-0-0--b18c5",
+        "partNumber": "TB184K1",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The live claim has no variants and would be shown for B18C5, but the catalog provides no B18C5/Type R application evidence and the kit explicitly omits the water pump required by the article."
+      },
+      {
+        "issueId": "acura-mdx-vcm-related-oil-consumption-spark-plug-fouling-motor-mount-f",
+        "workItemId": "acura-mdx-vcm-related-oil-consumption-spark-plug-fouling-motor-mount-f--existing-fix-part-0-0--j37a1",
+        "partNumber": "9619",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "Bosch 9619 fits and is the right product type, but the article prescribes plugs only when they are oil-fouled; the existing unconditional card has no diagnosis gate and therefore becomes a blanket sale."
+      },
+      {
+        "issueId": "acura-vigor-g25a1-timing-belt-interference",
+        "workItemId": "acura-vigor-g25a1-timing-belt-interference--existing-fix-part-0-0--2-5l-i5-g25a1",
+        "partNumber": "PP211LK2",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The Continental kit fits and includes pump/seals, but the article mandates OEM Honda or Aisin for the tensioner and describes a complete job including hydraulic tensioner, idler, and accessory belts; the catalog does not establish those contents for PP211LK2."
+      }
+    ],
+    "issueCoverage": [
+      {
+        "issueId": "acura-cl-3-0cl-1997-1999-transmission-slipping",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "acura-cl-tl-1997-1999-ignition-switch-interlock-recall",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "acura-ilx-dct-shudder-2013",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "acura-ilx-infotainment-lag-2016",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "acura-integra-b-series-motor-mount-failure",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "acura-integra-da-cv-axle-outer-boot-tear",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "acura-integra-da-distributor-internal-oil-leak",
+        "disposition": "buyable",
+        "commerceAction": "guarded-fixparts-change"
+      },
+      {
+        "issueId": "acura-integra-da-ignitor-module-failure",
+        "disposition": "buyable",
+        "commerceAction": "proposal-held"
+      },
+      {
+        "issueId": "acura-integra-da-motorized-passive-shoulder-belt-failure",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "acura-integra-da-passenger-cowl-water-leak-blower-motor",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "acura-integra-da-pgm-fi-main-relay-hot-no-start",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "acura-integra-da-rear-quarter-rocker-panel-rust",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "acura-integra-da-rear-wheel-bearing-hum",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "acura-integra-dc-automatic-transmission-shift-solenoid",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "acura-integra-dc-distributor-internal-failure",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "acura-integra-dc-ignition-switch-contact-pitting",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "acura-integra-dc-rear-lca-bolt-seizure",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "acura-integra-dc-timing-belt-interference-failure",
+        "disposition": "buyable",
+        "commerceAction": "existing-claim-removal-held"
+      },
+      {
+        "issueId": "acura-integra-dc-vtec-oil-pressure-switch-code22",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "acura-integra-infotainment-bugs-2023",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "acura-integra-turbo-heat-soak-2023",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "acura-legend-alb-abs-pump-motor-overrun-accumulator-failure",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "acura-legend-c32a1-head-gasket-failure-rear-cylinders-due-to-open-deck-vi",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "acura-legend-fan-control-unit-cracked-solder-joints-cause-cooling-fan-c-c",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "acura-legend-fan-control-unit-defective-solder-1991-1993",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "acura-legend-pgm-fi-main-relay-solder-cracks-cause-hot-soak-no-start",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "acura-legend-power-steering-high-pressure-hose-crimp-leak-internal-hose-s",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "acura-legend-sunroof-drain-tube-clogs-cause-footwell-trunk-water-leaks",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "acura-legend-timing-belt-interference-engine",
+        "disposition": "buyable",
+        "commerceAction": "guarded-fixparts-change"
+      },
+      {
+        "issueId": "acura-legend-valve-cover-gasket-spark-plug-tube-seal-oil-leaks",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "acura-mdx-auto-idle-stop-failure-to-restart",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "acura-mdx-dual-screen-infotainment-freezes-slow-boots-reboots",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "acura-mdx-fuel-pump-impeller-deformation-causing-stall",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "acura-mdx-infotainment-reboot-2014",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "acura-mdx-power-steering-high-pressure-hose-cracking-rack-morning-sick",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "acura-mdx-timing-belt-tensioner-2001",
+        "disposition": "buyable",
+        "commerceAction": "proposal-held"
+      },
+      {
+        "issueId": "acura-mdx-torque-converter-lock-up-clutch-judder-20-60-mph",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "acura-mdx-torque-converter-shudder-2014",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "acura-mdx-vcm-related-oil-consumption-spark-plug-fouling-motor-mount-f",
+        "disposition": "buyable",
+        "commerceAction": "existing-claim-removal-held"
+      },
+      {
+        "issueId": "acura-mdx-zf-9-speed-transmission-hesitation-hard-shifts-stalling",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "acura-nsx-abs-alb-modulator-failure-1991-1999",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "acura-nsx-climate-control-display-pixel-fade",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "acura-nsx-snap-ring-transmission-1991-1992",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "acura-nsx-t-targa-roof-seal-wind-noise-water-leak",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "acura-rdx-ac-compressor-failure-2013",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "acura-rdx-infotainment-reboot-2019",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "acura-rdx-transmission-harsh-shift-2019",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "acura-rdx-turbo-oil-consumption-2019",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "acura-rl-c35a-distributor-shaft-seal-oil-leak",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "acura-rl-c35a-timing-belt-tensioner-interference",
+        "disposition": "buyable",
+        "commerceAction": "proposal-held"
+      },
+      {
+        "issueId": "acura-rl-shawd-system-noise-2005",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "acura-rsx-3rd-gear-synchro-grind-2002",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "acura-rsx-ac-compressor-clutch-2002",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "proposal-held"
+      },
+      {
+        "issueId": "acura-slx-consumer-reports-rollover-rating-1996",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "acura-slx-rear-differential-transfer-case-trooper-inheritance",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "acura-tl-1999-5at-transmission-failure-start",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "acura-tl-auto-trans-3rd-gear-2004",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "acura-tl-brake-pedal-vibration-and-2009",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "acura-tl-dashboard-crack-2004",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "acura-tl-oil-consumption-and-fouled-2009",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "acura-tl-power-steering-hose-leak-2004",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "acura-tl-sh-awd-rear-differential-whine-2009",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "acura-tl-takata-front-airbag-inflator-2009",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "acura-tlx-9speed-shudder-2015",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "acura-tlx-brake-noise-aspec-2018",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "acura-tlx-infotainment-lag-crash-2015",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "acura-tsx-ac-compressor-clutch-2004",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "proposal-held"
+      },
+      {
+        "issueId": "acura-vigor-g25a1-timing-belt-interference",
+        "disposition": "buyable",
+        "commerceAction": "existing-claim-removal-held"
+      },
+      {
+        "issueId": "acura-zdx-charging-speed-inconsistency-2024",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "acura-zdx-software-ota-bugs-2024",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      }
+    ]
+  }
+}

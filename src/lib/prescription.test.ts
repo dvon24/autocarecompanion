@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { extractPrescribedParts } from './prescription';
+import { extractPrescribedParts, extractPrescriptionComponents } from './prescription';
 
 // Every case below is real solution text from the catalog whose article was
 // given the WRONG part when the title alone drove the choice.
@@ -17,6 +17,43 @@ test('reads a part named only in the solution', () => {
 test('keeps the first of several prescribed parts', () => {
   const p = extractPrescribedParts('Replace the camshaft synchronizer AND the camshaft position sensor as a set.');
   assert.equal(p[0], 'camshaft synchronizer');
+});
+
+test('enumerates every owner-buyable component in one repair clause', () => {
+  assert.deepEqual(
+    extractPrescribedParts('Replace the camshaft synchronizer and the camshaft position sensor as a set.'),
+    ['camshaft synchronizer', 'camshaft position sensor'],
+  );
+  assert.deepEqual(
+    extractPrescribedParts('Replace the water pump, thermostat, and upper radiator hose.'),
+    ['water pump', 'thermostat', 'upper radiator hose'],
+  );
+});
+
+test('keeps repair-role evidence and diagnosis conditions per component', () => {
+  const parts = extractPrescriptionComponents('If testing confirms low pressure, replace the fuel pump and fuel pump relay.');
+  assert.deepEqual(parts.map((part) => part.component), ['fuel pump', 'fuel pump relay']);
+  assert.ok(parts.every((part) => part.diagnosisDependent));
+  assert.match(parts[0]!.condition || '', /if testing confirms/i);
+  assert.match(parts[0]!.evidence, /replace the fuel pump/i);
+});
+
+test('stops enumerating when the next coordinated phrase is an inspection', () => {
+  assert.deepEqual(
+    extractPrescribedParts('Replace the water pump and inspect the timing cover and belt.'),
+    ['water pump'],
+  );
+});
+
+test('a parenthetical warning about cheap alternatives does not negate replacement', () => {
+  assert.deepEqual(
+    extractPrescribedParts('Replace the complete OEM distributor assembly (avoid cheap aftermarket units).'),
+    ['distributor'],
+  );
+  assert.deepEqual(
+    extractPrescribedParts('Replace the ignition switch electrical portion (not the cylinder or lock).'),
+    ['ignition switch electrical portion'],
+  );
 });
 
 test('handles "swap or replace"', () => {

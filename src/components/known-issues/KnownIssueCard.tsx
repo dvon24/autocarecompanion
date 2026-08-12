@@ -11,7 +11,7 @@ import { triggerHaptic } from '@/hooks/useHaptic';
 import { IssueFix } from '@/hooks/useIssueFixes';
 import { trackAffiliateClick } from '@/lib/analytics';
 import { getKnownIssueCommerce, hasKnownIssueCommerce, knownIssueAffiliateUrl } from '@/lib/known-issue-commerce';
-import { partCanBeShownForVehicle, describeFitment, isNarrowerThanArticle } from '@/lib/known-issue-part-fitment';
+import { describeFitment, isNarrowerThanArticle, resolvePartsForVehicle } from '@/lib/known-issue-part-fitment';
 import { formatOwnerReportCount } from '@/lib/owner-report-count';
 import { IssueDiagnosticTools } from './IssueDiagnosticTools';
 
@@ -87,7 +87,7 @@ interface RelatedIssueVehicle {
 interface KnownIssueCardProps {
   issue: KnownIssue;
   vehicleInfo?: {
-    year: number;
+    year?: number | null;
     make: string;
     model: string;
     trim?: string;
@@ -190,11 +190,21 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
   // the catalog today, so this only takes effect once a part is scoped.
   const fitmentVehicle = {
     year: vehicleInfo?.year ?? null,
+    make: vehicleInfo?.make ?? null,
+    model: vehicleInfo?.model ?? null,
     trim: vehicleInfo?.trim ?? null,
     engine: vehicleInfo?.engine ?? null,
   };
-  const fixParts = gatedParts.filter((part) => partCanBeShownForVehicle(part.fitment, fitmentVehicle));
-  const excludedPartCount = gatedParts.length - fixParts.length;
+  const resolved = resolvePartsForVehicle(gatedParts, fitmentVehicle, issue.vehicleMatch);
+  // Variant links live below variants[], so run the canonical commerce gate a
+  // second time after selecting one variant. URL shape, vendor identity,
+  // verified-link and recall-first rules therefore apply exactly as they do to
+  // a non-variant part.
+  const { fixParts } = getKnownIssueCommerce({
+    fixParts: resolved.parts,
+    communityRecommendations: [],
+  });
+  const excludedPartCount = resolved.hiddenCount;
   const hasPartRecommendations = hasKnownIssueCommerce(fixParts);
   const contentUpdateDate = formatContentUpdatedOn(issue.contentUpdatedOn);
   const contentUpdateSummary = issue.contentUpdateSummary?.trim();
@@ -521,7 +531,11 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
               need a compression test AND a gasket, and the tool claim
               ("the procedure needs this") is separate from the part claim
               ("this repairs your car"). */}
-          <IssueDiagnosticTools solution={issue.solution} dtcCodes={issue.dtcCodes} />
+          <IssueDiagnosticTools
+            solution={issue.solution}
+            dtcCodes={issue.dtcCodes}
+            engines={vehicleInfo?.engine ? [vehicleInfo.engine] : issue.vehicleMatch.engines}
+          />
 
           {/* Public commerce lives in this one canonical section. Search and
               category links have already been removed by getKnownIssueCommerce. */}
@@ -841,9 +855,9 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
       </div>
 
       {/* Report Modal */}
-      {showReportModal && vehicleInfo && (
+      {showReportModal && vehicleInfo && vehicleInfo.year != null && (
         <ReportIssueModal
-          vehicleInfo={vehicleInfo}
+          vehicleInfo={{ ...vehicleInfo, year: vehicleInfo.year }}
           existingIssueId={issue.id}
           existingIssueTitle={issue.title}
           onClose={() => setShowReportModal(false)}

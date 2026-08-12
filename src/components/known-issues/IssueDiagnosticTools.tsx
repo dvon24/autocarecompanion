@@ -31,9 +31,11 @@ interface IssueDiagnosticToolsProps {
   solution: string;
   /** Codes on the issue, so a page naming one also gets a scanner that reads it. */
   dtcCodes?: string[] | null;
+  /** Selected engine first; otherwise the article's declared engine scope. */
+  engines?: string[] | null;
 }
 
-export function IssueDiagnosticTools({ solution, dtcCodes }: IssueDiagnosticToolsProps) {
+export function IssueDiagnosticTools({ solution, dtcCodes, engines }: IssueDiagnosticToolsProps) {
   const procedures = proceduresInSolution(solution);
   const nonemptyCodes = (dtcCodes || []).map((code) => String(code).trim()).filter(Boolean);
   const parsedFamilies = nonemptyCodes.map(codeFamilyOf);
@@ -41,7 +43,11 @@ export function IssueDiagnosticTools({ solution, dtcCodes }: IssueDiagnosticTool
   const families = [...new Set(
     parsedFamilies.filter((family): family is CodeFamily => family !== null),
   )];
-  const tools: DiagnosticTool[] = [...toolsForProcedures(procedures, hasUnknownCode ? [] : families)];
+  const tools: DiagnosticTool[] = [...toolsForProcedures(
+    procedures,
+    hasUnknownCode ? [] : families,
+    { engines: engines || [] },
+  )];
 
   // If the issue names codes, the reader also needs something that can READ
   // them — and for a body or network code that is emphatically not a $20 reader.
@@ -53,7 +59,15 @@ export function IssueDiagnosticTools({ solution, dtcCodes }: IssueDiagnosticTool
   // Whether the ARTICLE asked for a test, versus us offering a reader because
   // the page happens to name a code. The two justify different claims.
   const matchedProcedure = procedures.some((procedure) => procedure !== 'scan-codes');
-  const hasAffiliateLinks = tools.some((tool) => Boolean(tool.productUrl));
+  const hasAmazonAffiliateLinks = tools.some((tool) => {
+    if (!tool.productUrl) return false;
+    try {
+      const host = new URL(tool.productUrl).hostname.toLowerCase();
+      return host === 'amazon.com' || host.endsWith('.amazon.com');
+    } catch {
+      return false;
+    }
+  });
   const hasScannerRecommendation = tools.some((tool) => tool.kind === 'scanner');
 
   return (
@@ -113,7 +127,7 @@ export function IssueDiagnosticTools({ solution, dtcCodes }: IssueDiagnosticTool
         ))}
       </ul>
 
-      {hasAffiliateLinks && (
+      {hasAmazonAffiliateLinks && (
         <p className="mt-2 text-[11px] font-medium text-[#64748B]">
           As an Amazon Associate, we earn from qualifying purchases. Prices are approximate and may vary.
         </p>

@@ -1,0 +1,2881 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "known-issue-part-classification-ledger",
+  "snapshotHash": "c22aa18f11e2de2c789eebcb035ba8dbc530aadb783a5c86fe4a749eeabe908d",
+  "make": "Acura",
+  "makeKey": "acura",
+  "makeIndex": 0,
+  "totalMakes": 54,
+  "issueCount": 70,
+  "classifications": [
+    "buyable",
+    "diagnosis-dependent",
+    "recall/dealer",
+    "service/tool/fluid",
+    "no-commerce"
+  ],
+  "counts": {
+    "buyable": 23,
+    "diagnosis-dependent": 7,
+    "recall/dealer": 6,
+    "service/tool/fluid": 22,
+    "no-commerce": 12
+  },
+  "diagnosticSummary": {
+    "issueWithDtcCount": 16,
+    "uniqueDtcCount": 31,
+    "instructionCount": 37,
+    "dtcDispositionCount": 16,
+    "toolLinkedCount": 20,
+    "procedureNoToolCount": 32,
+    "unresolvedToolHoldCount": 1
+  },
+  "unclassifiedCount": 0,
+  "zeroUnclassified": true,
+  "rows": [
+    {
+      "issueId": "acura-cl-3-0cl-1997-1999-transmission-slipping",
+      "make": "Acura",
+      "model": "CL",
+      "years": [
+        1997,
+        1998,
+        1999
+      ],
+      "trims": [
+        "3.0CL"
+      ],
+      "engines": [
+        "3.0L V6 J30A1"
+      ],
+      "title": "3.0CL automatic transmission slips and fails — flush is forbidden, filter is not serviceable",
+      "howToFix": "If symptoms appear, immediately switch to ONLY Acura/Honda ATF (never Dextron substitute) and start a regular drain-and-refill schedule at every engine oil change interval (6 months). Do NOT power-flush — this transmission has effectively no serviceable filter and pressurized flushing forces debris through tight passages. If slipping has already started, a transmission specialist (not a quick-lube) needs to drop the pan to check for clutch material in the fluid. Once debris is visible, only a rebuild fixes it ($2,500-3,500). Replacements/rebuilds may need a fresh torque converter — the original is a known weak point. Add an aftermarket transmission cooler at rebuild time; the factory cooling is undersized.",
+      "dtcCodes": [
+        "P0700",
+        "P0730",
+        "P0731",
+        "P0734"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "professional-or-dealer-test",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-delegates-procedure",
+          "excerpt": "If slipping has already started, a transmission specialist (not a quick-lube) needs to drop the pan to check for clutch material in the fluid."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0700, P0730, P0731, P0734"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "acura-cl-tl-1997-1999-ignition-switch-interlock-recall",
+      "make": "Acura",
+      "model": "CL",
+      "years": [
+        1998,
+        1999
+      ],
+      "trims": [
+        "2.2CL",
+        "2.3CL",
+        "3.0CL"
+      ],
+      "engines": [
+        "2.2L F22B1",
+        "2.3L F23A",
+        "3.0L V6 J30A"
+      ],
+      "title": "Ignition cylinder wear → shift interlock fails → rollaway risk (NHTSA recall 03V423000, 2003)",
+      "howToFix": "Check VIN at owners.acura.com/recalls or NHTSA recall lookup to confirm whether your specific car was included. If yes, schedule the free dealer fix — they replace the interlock assembly in about 30 min. If your dealer claims the recall is 'closed' or 'no longer covered,' escalate to American Honda Customer Service (800-382-2238) — safety recalls have no expiration date under federal law (49 CFR §573.6). If you can't get to a dealer, ALWAYS verify the shifter is fully in Park and the parking brake is set before removing the key. This is not a workaround — it's a discipline check that protects you while you arrange the free repair.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Check VIN at owners.acura.com/recalls or NHTSA recall lookup to confirm whether your specific car was included."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "professional-or-dealer-test",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-delegates-procedure",
+          "excerpt": "If you can't get to a dealer, ALWAYS verify the shifter is fully in Park and the parking brake is set before removing the key."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "acura-cl-tl-1997-1999-ignition-switch-interlock-recall--prescription--0--2-2l-f22b1",
+        "acura-cl-tl-1997-1999-ignition-switch-interlock-recall--prescription--0--2-3l-f23a",
+        "acura-cl-tl-1997-1999-ignition-switch-interlock-recall--prescription--0--3-0l-v6-j30a"
+      ]
+    },
+    {
+      "issueId": "acura-ilx-dct-shudder-2013",
+      "make": "Acura",
+      "model": "ILX",
+      "years": [
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022
+      ],
+      "trims": [
+        "Base",
+        "Premium",
+        "Technology"
+      ],
+      "engines": [
+        "2.4L K24W I4"
+      ],
+      "title": "8-Speed DCT Shudder and Low-Speed Jerking",
+      "howToFix": "Update the DCT software to the latest Acura calibration which improves low-speed clutch engagement. Perform a DCT fluid change with genuine Honda DCTF. In severe cases, the clutch pack assembly needs replacement. Acura extended warranty coverage on the DCT to 7 years/100,000 miles due to widespread complaints.",
+      "dtcCodes": [
+        "P0700",
+        "P0780"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0700, P0780"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "acura-ilx-infotainment-lag-2016",
+      "make": "Acura",
+      "model": "ILX",
+      "years": [
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022
+      ],
+      "trims": [
+        "A-Spec",
+        "Base",
+        "Premium",
+        "Technology"
+      ],
+      "engines": [
+        "2.4L K24W7 I4"
+      ],
+      "title": "Infotainment System Lag and Unresponsive Touchscreen",
+      "howToFix": "Update infotainment firmware to the latest available version. Perform a factory reset to clear cached data. Reduce the number of paired Bluetooth devices to three or fewer. If the touchscreen digitizer has failed, the lower screen unit needs replacement.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "acura-integra-b-series-motor-mount-failure",
+      "make": "Acura",
+      "model": "Integra",
+      "years": [
+        1990,
+        1991,
+        1992,
+        1993,
+        1994,
+        1995,
+        1996,
+        1997,
+        1998,
+        1999,
+        2000,
+        2001
+      ],
+      "trims": [
+        "GS",
+        "GS-R",
+        "LS",
+        "RS",
+        "Type R (1997-1998, 2000-2001)"
+      ],
+      "engines": [
+        "1.7L B17A1",
+        "1.8L B18A1",
+        "1.8L B18B1",
+        "1.8L B18C1",
+        "1.8L B18C5"
+      ],
+      "title": "Engine motor mounts crack and collapse — drivetrain vibration + clunk on shifts",
+      "howToFix": "Replace mounts one at a time as they fail, not all four preemptively (the front and side mounts can last 200k+). Diagnose by having a helper rev the engine in neutral while you look — a healthy mount holds the engine still; a dead one lets the engine rock 1-2 inches. Common pattern: rear mount + passenger-side mount are the first two to need replacement, and both are visible from above without lifting. Aftermarket options range from cheap rubber ($30 each) to Energy Suspension polyurethane ($60-100, transmits more vibration but lasts forever) to Innovative Mounts billet ($100-200, used for tracked cars). For a daily-driver Integra, OEM Honda rubber or Cardone is the right balance. Total cost replacing rear + side: $80-300 in parts, 2-3 hours of labor.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Diagnose by having a helper rev the engine in neutral while you look — a healthy mount holds the engine still;"
+        }
+      ],
+      "existingCommerceClaimIds": [
+        "communityRecommendations:0"
+      ],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "acura-integra-da-cv-axle-outer-boot-tear",
+      "make": "Acura",
+      "model": "Integra",
+      "years": [
+        1990,
+        1991,
+        1992,
+        1993
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Outer CV joint boot tears leading to joint failure and clicking",
+      "howToFix": "\nIf the boot has just torn and no elements got into the joint, regreasing and rebooting can work — a $10 boot kit vs. a $60 replacement axle is the tradeoff.\n \nReman axles run around $50 each and boot kits about $25 — AutoZone and similar carry both for the 1992 Integra 1.8L DOHC.\n \nPack outer CV joint boot with molybdenum disulfide grease, lube the spider and inside bore of rollers, ensure rollers are aligned with marks made at disassembly and install with the high side of rollers facing outward.\n Use new boot clamps (low-profile metal bands included in kit). Most owners simply swap the full reman half-shaft for under $100/side — quicker than rebooting. Always replace the axle nut and use a new transaxle retaining ring.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [
+        "communityRecommendations:1"
+      ],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 3,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "acura-integra-da-cv-axle-outer-boot-tear--prescription--0--all-engines",
+        "acura-integra-da-cv-axle-outer-boot-tear--prescription--1--all-engines",
+        "acura-integra-da-cv-axle-outer-boot-tear--prescription--2--all-engines"
+      ]
+    },
+    {
+      "issueId": "acura-integra-da-distributor-internal-oil-leak",
+      "make": "Acura",
+      "model": "Integra",
+      "years": [
+        1990,
+        1991,
+        1992,
+        1993,
+        1994,
+        1995,
+        1996,
+        1997,
+        1998,
+        1999,
+        2000,
+        2001
+      ],
+      "trims": [
+        "GS",
+        "GS-R",
+        "LS",
+        "RS"
+      ],
+      "engines": [
+        "1.7L B17A1",
+        "1.8L B18A1"
+      ],
+      "title": "Distributor internal shaft seal fails, oil leaks into cap and causes misfires + stalling",
+      "howToFix": "Replace the complete distributor. OEM Honda distributors are pricey ($350-500+) but reliable; aftermarket units from Cardone, A1 Cardone, or Spectra Premium are $80-150 and work fine for non-track use. While the distributor is out, also replace the cap, rotor, and ignition wires — they're cheap and replacing them at the same time saves a labor cycle. After install, time the engine to factory spec (16°±2° BTDC at idle with timing-adjust connector unplugged). Do NOT just clean the cap and call it done — the oil keeps coming and you'll be back in 6 weeks. If you're keeping the car long-term, the Honda OEM distributor outlasts aftermarket 2:1.",
+      "dtcCodes": [
+        "P0300",
+        "P0301",
+        "P0302",
+        "P0303",
+        "P0304"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0300, P0301, P0302, P0303, P0304"
+        }
+      ],
+      "existingCommerceClaimIds": [
+        "communityRecommendations:0"
+      ],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 4,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "acura-integra-da-distributor-internal-oil-leak--prescription--0--1-7l-b17a1",
+        "acura-integra-da-distributor-internal-oil-leak--prescription--0--1-8l-b18a1",
+        "acura-integra-da-distributor-internal-oil-leak--prescription--1--1-7l-b17a1",
+        "acura-integra-da-distributor-internal-oil-leak--prescription--1--1-8l-b18a1",
+        "acura-integra-da-distributor-internal-oil-leak--prescription--2--1-7l-b17a1",
+        "acura-integra-da-distributor-internal-oil-leak--prescription--2--1-8l-b18a1",
+        "acura-integra-da-distributor-internal-oil-leak--prescription--3--1-7l-b17a1",
+        "acura-integra-da-distributor-internal-oil-leak--prescription--3--1-8l-b18a1"
+      ]
+    },
+    {
+      "issueId": "acura-integra-da-ignitor-module-failure",
+      "make": "Acura",
+      "model": "Integra",
+      "years": [
+        1990,
+        1991,
+        1992,
+        1993
+      ],
+      "trims": [
+        "GS",
+        "GS-R",
+        "LS",
+        "RS"
+      ],
+      "engines": [
+        "1.7L B17A1",
+        "1.8L B18A1"
+      ],
+      "title": "Ignitor / ignition control module inside the distributor fails — intermittent or no-start",
+      "howToFix": "Test the ignitor before replacing — a multimeter check at the coil primary terminals while cranking will confirm whether the module is sending pulse to the coil. If no pulse: replace. OEM Honda module $80-150, aftermarket (Beck Arnley, Delphi) $30-80. The module sits inside the distributor cap; replacement requires removing the cap and rotor, unscrewing 2 mounting screws, and transferring the heat sink if present (Civic/Integra units may require heat sink #30121-PM5-A02 for correct fitment). Inspect the inside of the distributor cap and rotor for moisture or corrosion while you're in there — a cracked cap allows water in and causes premature module failure on the replacement. Replace cap + rotor at the same time as a preventive measure.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "tool-linked",
+          "procedure": "multimeter-basic",
+          "toolId": "fluke-15b-plus",
+          "productUrl": "https://www.fluke.com/en-us/product/electrical-testing/digital-multimeters/fluke-15b-plus",
+          "reasonCode": "explicit-procedure-tool-matched",
+          "excerpt": "Test the ignitor before replacing — a multimeter check at the coil primary terminals while cranking will confirm whether the module is sending pulse to the coil."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Inspect the inside of the distributor cap and rotor for moisture or corrosion while you're in there — a cracked cap allows water in and causes premature module failure on the replacement."
+        }
+      ],
+      "existingCommerceClaimIds": [
+        "communityRecommendations:0"
+      ],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "acura-integra-da-ignitor-module-failure--prescription--0--1-7l-b17a1",
+        "acura-integra-da-ignitor-module-failure--prescription--0--1-8l-b18a1"
+      ]
+    },
+    {
+      "issueId": "acura-integra-da-motorized-passive-shoulder-belt-failure",
+      "make": "Acura",
+      "model": "Integra",
+      "years": [
+        1990,
+        1991,
+        1992,
+        1993
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Motorized passive shoulder belt sticks on track or fails to move",
+      "howToFix": "\nThe seat-belt fuses are under the hood on the passenger-side shock tower — the fuse-box cover labels them; pull and inspect the passive motor L and R fuses (30A each) first.\n \nManually unstick the belt by locating the rod with a hex-head fitting on the motor, then use a screwdriver/Allen key to drive the seat-belt motor manually to the rear position before closing the door.\n \nAmerican Acura/Honda has a policy of offering a lifetime warranty on the functional components of their seat belts — as long as the vehicle is an American-market car, has not been in a collision, and the belt assembly has not been modified, American Acura will fix it at their cost; if the dealer refuses, phone Acura Client Relations at (800) 382-2238.\n Note that Honda Canada does not honor this policy.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "pull and inspect the passive motor L and R fuses (30A each) first."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "acura-integra-da-passenger-cowl-water-leak-blower-motor",
+      "make": "Acura",
+      "model": "Integra",
+      "years": [
+        1990,
+        1991,
+        1992,
+        1993
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Passenger-side cowl seal leak floods blower motor and floor pan",
+      "howToFix": "\nOrder eight of Honda part number 91608-SJ6-003 (the clear grommet/seal pieces) from a Honda or Acura dealer — they are inexpensive at roughly $2.50 each.\n Remove the wiper arms (14mm) and the black plastic cowl, clear out all leaf debris from the drainage channels, then replace the old foam strip with new urethane weatherstripping and reinstall with the new grommets. \nRemove the wipers, pop the 7-8 pins, undo the pins along the perimeter under the hood, clean out the drainage paths, scrape out the old weather stripping, and replace with 1/4\" wide, 1/2\" thick urethane weather stripping for a permanent fix.\n If the blower motor or resistor has already corroded, replace those at the same time.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "acura-integra-da-pgm-fi-main-relay-hot-no-start",
+      "make": "Acura",
+      "model": "Integra",
+      "years": [
+        1990,
+        1991,
+        1992,
+        1993
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "PGM-FI main relay solder joint cracks cause hot-weather no-start",
+      "howToFix": "\nReplacing the main relay is one of the easiest repairs on the Integra; it is located under the driver's-side dash, near the hood release lever and to the right of the parking brake pedal — unbolt the mounting bracket (10mm), unplug the harness, and plug in the new relay.\n \nUse a quality replacement — the DA-chassis OEM part number is typically 39400-PM6-003 (verify with your VIN at an Acura dealer or parts store, as several supersessions exist). Reputable aftermarket cross-references include Standard Motor Products RY-passenger-style relays, Beck/Arnley, and Denso. Expect to pay $25-$80 for the part and avoid the cheapest generic relays — reliability matters.\n \nResoldering the cracked joints on the existing relay's circuit board has been done successfully by many owners, but requires skill with a soldering iron and may not be permanent — a new aftermarket relay is the more reliable repair.\n",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "professional-or-dealer-test",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-delegates-procedure",
+          "excerpt": "Use a quality replacement — the DA-chassis OEM part number is typically 39400-PM6-003 (verify with your VIN at an Acura dealer or parts store, as several supersessions exist)."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "acura-integra-da-pgm-fi-main-relay-hot-no-start--prescription--0--all-engines"
+      ]
+    },
+    {
+      "issueId": "acura-integra-da-rear-quarter-rocker-panel-rust",
+      "make": "Acura",
+      "model": "Integra",
+      "years": [
+        1990,
+        1991,
+        1992,
+        1993
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Rear quarter panel and rocker panel rust-through behind wheel arch protectors",
+      "howToFix": "\nAll G2 Integras came with rear wheel arch protectors — pull them off as preventive maintenance; Acura wanted around $40-$50 each for them new.\n For early rust, cut out affected metal with at least one inch of clean margin, treat the inner frame with a rust converter such as POR-15, and weld in patch panels (92-95 Civic patch panels can be modified to fit). \nProper repair is to replace the complete rear quarter — body shop estimates run around $4000 for both sides with paint; DIY gutting/stripping can drop it closer to $2000-$3500.\n Aftermarket wheel arch and quarter patch panels are available from Mill Supply and other restoration vendors.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "acura-integra-da-rear-wheel-bearing-hum",
+      "make": "Acura",
+      "model": "Integra",
+      "years": [
+        1990,
+        1991,
+        1992,
+        1993
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Rear wheel bearing hum from press-in hub assembly",
+      "howToFix": "\nThis is an advanced DIY job. Some owners replace the rear as a complete pre-pressed hub assembly (commonly $80-$120 from aftermarket suppliers), which avoids press work; others source just the bearing/race and press it into the spindle/knuckle using a hydraulic shop press (or have a machine shop do it). Front bearings on the DA always require pressing into the knuckle.\n Quality replacement brands include SKF, Timken, FAG, Koyo and NSK (the latter two are often OEM suppliers to Honda).\n Rear bearings are a bit more expensive but easier to access than the fronts.\n Budget $40-$120 per bearing/assembly plus press/labor; total shop cost typically $200-$450 per corner.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [
+        "communityRecommendations:2"
+      ],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "acura-integra-dc-automatic-transmission-shift-solenoid",
+      "make": "Acura",
+      "model": "Integra",
+      "years": [
+        1994,
+        1995,
+        1996,
+        1997,
+        1998,
+        1999
+      ],
+      "trims": [
+        "GS",
+        "LS",
+        "RS",
+        "Special Edition"
+      ],
+      "engines": [
+        "B18B1"
+      ],
+      "title": "4-speed automatic: shift solenoid failure causes D4 light flash, missed shifts, and limp mode",
+      "howToFix": "Drain-and-fill with Honda ATF-Z1/DW-1 (NEVER use generic Dexron — it will destroy the clutches). \nThe transmission fluid in the Integra 4AT's are supposed to be changed every 3 years/36,000 mi. It can cook and wear out just like the oil in your engine.\n Pull codes with a Honda jumper or scan tool; the lock-up and shift solenoids are external, three-bolt parts accessible from the engine bay and often just need cleaning. \nA screwed up lock-up solenoid will give you a general CEL #70 (Automatic Transaxle); the solenoid is totally accessible from the engine bay and costs less than $200 to replace. It's held in place by three bolts.\n",
+      "dtcCodes": [
+        "P0740",
+        "P0780",
+        "P1298",
+        "P1660"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "Pull codes with a Honda jumper or scan tool;"
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0740, P0780, P1298, P1660"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "acura-integra-dc-distributor-internal-failure",
+      "make": "Acura",
+      "model": "Integra",
+      "years": [
+        1994,
+        1995,
+        1996,
+        1997,
+        1998,
+        1999
+      ],
+      "trims": [],
+      "engines": [
+        "B18B1",
+        "B18C1",
+        "B18C5"
+      ],
+      "title": "Internal distributor failure causing stalling, no-start, and misfires",
+      "howToFix": "Pull DTCs first — codes P1381 (cylinder position sensor) and Code 22 commonly originate inside the distributor. \nP1381 is the cylinder position sensor code, located inside the distributor.\n Replace the complete OEM distributor assembly (avoid cheap aftermarket — many fail within months). OBD1 (94-95) and OBD2 (96-99) distributors are not interchangeable. \nIt is worth noting that the distributor plugs are different for each obd generation. So the obd1, and obd2 have different harness plugs.\n Budget $250-550 for a quality unit installed.",
+      "dtcCodes": [
+        "P1361",
+        "P1362",
+        "P1381",
+        "P1382"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "Pull DTCs first — codes P1381 (cylinder position sensor) and Code 22 commonly originate inside the distributor."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P1361, P1362, P1381, P1382"
+        }
+      ],
+      "existingCommerceClaimIds": [
+        "communityRecommendations:0"
+      ],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "acura-integra-dc-ignition-switch-contact-pitting",
+      "make": "Acura",
+      "model": "Integra",
+      "years": [
+        1994,
+        1995,
+        1996,
+        1997,
+        1998,
+        1999
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Ignition switch contact pitting causes engine to die when key released",
+      "howToFix": "Replace the ignition switch electrical portion (not the cylinder/lock) — it unbolts from the back of the steering column lock housing with two screws. OEM Honda part is the most reliable choice. \nThe issue is starting the car and it dies as soon as you let go of the key. After research, it became obvious it was an ignition switch issue.\n Check the under-hood main fuse and the ignition fuses before condemning the switch. Budget $50-150 for parts and 1 hour labor.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Check the under-hood main fuse and the ignition fuses before condemning the switch."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "acura-integra-dc-rear-lca-bolt-seizure",
+      "make": "Acura",
+      "model": "Integra",
+      "years": [
+        1994,
+        1995,
+        1996,
+        1997,
+        1998,
+        1999,
+        2000,
+        2001
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Rear lower control arm bolts seize and shear inside bushing sleeves",
+      "howToFix": "Soak bolts with penetrating fluid (PB Blaster/Kroil) for days before attempting removal; heat the bushing sleeve with a torch. If the bolt shears, the only fix is to cut the bushing out and drill/punch the remaining sleeve from the subframe ear. \nWhen you are down there and replacing rusted bolts, if they are rusted on bad enough you might have to break the welded nut they go into on the front side of the subframe and trailing arms. You can get matching sized nuts and washers.\n Replace with OEM Honda bolts (M10x1.25, ~$4-9 each from the dealer). \nDiameter = 10mm, Pitch = 1.25.\n",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "acura-integra-dc-timing-belt-interference-failure",
+      "make": "Acura",
+      "model": "Integra",
+      "years": [
+        1994,
+        1995,
+        1996,
+        1997,
+        1998,
+        1999,
+        2000,
+        2001
+      ],
+      "trims": [],
+      "engines": [
+        "B18B1",
+        "B18C1",
+        "B18C5"
+      ],
+      "title": "Timing belt failure on interference B18 engine bends valves",
+      "howToFix": "Replace the complete timing belt kit: belt, tensioner, tensioner spring, water pump, cam and crank seals, and balance shaft belt where applicable.\nNon-VTEC LS (B18B1) timing belt part numbers are 14400-P7J-004 or 14400-PR4-A01, paired with the 19-tooth water pump 19200-P75-003 / 19200-PT5-000 / 19200-PT5-003. The VTEC GSR (B18C1) uses timing belt 14400-P72-004 / 14400-P72-014 paired with a 22-tooth water pump.\nDo NOT mix LS and GSR water pumps — the tooth counts differ (19T vs 22T) and the belts are different lengths.\nProfessional cost for preventive replacement: approximately $350-600. Post-failure repair (valve job / head rebuild) can reach $2,000-3,000+.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [
+        "communityRecommendations:0",
+        "fixParts:0"
+      ],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 7,
+      "existingFixPartCount": 1,
+      "workItemIds": [
+        "acura-integra-dc-timing-belt-interference-failure--existing-fix-part--0--b18b1",
+        "acura-integra-dc-timing-belt-interference-failure--existing-fix-part--0--b18c1",
+        "acura-integra-dc-timing-belt-interference-failure--existing-fix-part--0--b18c5",
+        "acura-integra-dc-timing-belt-interference-failure--prescription--0--b18b1",
+        "acura-integra-dc-timing-belt-interference-failure--prescription--0--b18c1",
+        "acura-integra-dc-timing-belt-interference-failure--prescription--0--b18c5",
+        "acura-integra-dc-timing-belt-interference-failure--prescription--1--b18b1",
+        "acura-integra-dc-timing-belt-interference-failure--prescription--1--b18c1",
+        "acura-integra-dc-timing-belt-interference-failure--prescription--1--b18c5",
+        "acura-integra-dc-timing-belt-interference-failure--prescription--2--b18b1",
+        "acura-integra-dc-timing-belt-interference-failure--prescription--2--b18c1",
+        "acura-integra-dc-timing-belt-interference-failure--prescription--2--b18c5",
+        "acura-integra-dc-timing-belt-interference-failure--prescription--3--b18b1",
+        "acura-integra-dc-timing-belt-interference-failure--prescription--3--b18c1",
+        "acura-integra-dc-timing-belt-interference-failure--prescription--3--b18c5",
+        "acura-integra-dc-timing-belt-interference-failure--prescription--4--b18b1",
+        "acura-integra-dc-timing-belt-interference-failure--prescription--4--b18c1",
+        "acura-integra-dc-timing-belt-interference-failure--prescription--4--b18c5",
+        "acura-integra-dc-timing-belt-interference-failure--prescription--5--b18b1",
+        "acura-integra-dc-timing-belt-interference-failure--prescription--5--b18c1",
+        "acura-integra-dc-timing-belt-interference-failure--prescription--5--b18c5",
+        "acura-integra-dc-timing-belt-interference-failure--prescription--6--b18b1",
+        "acura-integra-dc-timing-belt-interference-failure--prescription--6--b18c1",
+        "acura-integra-dc-timing-belt-interference-failure--prescription--6--b18c5"
+      ]
+    },
+    {
+      "issueId": "acura-integra-dc-vtec-oil-pressure-switch-code22",
+      "make": "Acura",
+      "model": "Integra",
+      "years": [
+        1994,
+        1995,
+        1996,
+        1997,
+        1998,
+        1999,
+        2000,
+        2001
+      ],
+      "trims": [
+        "GS-R",
+        "Type R"
+      ],
+      "engines": [
+        "B18C1",
+        "B18C5"
+      ],
+      "title": "VTEC oil pressure switch failure (Code 22 / P1259) on GS-R and Type R",
+      "howToFix": "Verify oil level and condition first — \nif the code is still present after checking, make sure there is plenty of oil and then reset the ECU\n. The switch is the green-plug sensor on top of the VTEC solenoid; replace with OEM Honda part. \nReplace the switch. It's the green plug located on the vtec solenoid.\n If the code returns after replacement, install a mechanical oil pressure gauge — \na worn oil pump or internal leak can cause low pressure that triggers the code; an oil pressure gauge will confirm\n. Switch is ~$70 OEM.",
+      "dtcCodes": [
+        "22",
+        "P1259"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Verify oil level and condition first — if the code is still present after checking, make sure there is plenty of oil and then reset the ECU ."
+        },
+        {
+          "source": "solution",
+          "status": "tool-linked",
+          "procedure": "oil-pressure",
+          "toolId": "otc-5610-oil-pressure",
+          "productUrl": "https://www.otctools.com/products/transmissionengine-oil-pressure-kit",
+          "reasonCode": "explicit-procedure-tool-matched",
+          "excerpt": "If the code returns after replacement, install a mechanical oil pressure gauge — a worn oil pump or internal leak can cause low pressure that triggers the code;"
+        },
+        {
+          "source": "solution",
+          "status": "tool-linked",
+          "procedure": "oil-pressure",
+          "toolId": "otc-5610-oil-pressure",
+          "productUrl": "https://www.otctools.com/products/transmissionengine-oil-pressure-kit",
+          "reasonCode": "explicit-procedure-tool-matched",
+          "excerpt": "an oil pressure gauge will confirm ."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "unresolved-tool-hold",
+          "procedure": "scan-codes",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "manufacturer-code-capability-unverified",
+          "excerpt": "22, P1259"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "acura-integra-dc-vtec-oil-pressure-switch-code22--prescription--0--b18c1",
+        "acura-integra-dc-vtec-oil-pressure-switch-code22--prescription--0--b18c5"
+      ]
+    },
+    {
+      "issueId": "acura-integra-infotainment-bugs-2023",
+      "make": "Acura",
+      "model": "Integra",
+      "years": [
+        2023,
+        2024,
+        2025
+      ],
+      "trims": [
+        "A-Spec",
+        "A-Spec Technology",
+        "Base",
+        "Type S"
+      ],
+      "engines": [
+        "1.5L L15CA Turbo I4",
+        "2.0L K20C1 Turbo I4"
+      ],
+      "title": "Infotainment System Software Bugs and Wireless CarPlay Drops",
+      "howToFix": "Update to the latest infotainment firmware from an Acura dealer. Forget and re-pair the phone via Bluetooth and CarPlay settings. Use a wired USB connection as a workaround for reliable CarPlay. Reset the infotainment to factory defaults if issues persist after the firmware update.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "acura-integra-turbo-heat-soak-2023",
+      "make": "Acura",
+      "model": "Integra",
+      "years": [
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "trims": [
+        "A-Spec",
+        "A-Spec Technology",
+        "Type S"
+      ],
+      "engines": [
+        "1.5L L15CA Turbo I4",
+        "2.0L K20C1 Turbo I4"
+      ],
+      "title": "Turbo Heat Soak and Power Loss in Hot Weather",
+      "howToFix": "Allow 2-3 minutes of gentle driving between spirited runs to cool the intake charge. Ensure the intercooler fins are clean and unobstructed by debris. Aftermarket intercooler upgrades significantly reduce heat soak on the 1.5T. The Type S 2.0T is less affected due to its larger factory intercooler but still benefits from airflow improvements.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "acura-legend-timing-belt-interference-engine",
+      "make": "Acura",
+      "model": "Legend",
+      "years": [
+        1990,
+        1991,
+        1992,
+        1993,
+        1994,
+        1995
+      ],
+      "trims": [
+        "Coupe L",
+        "Coupe LS",
+        "GS",
+        "L",
+        "LS"
+      ],
+      "engines": [
+        "2.7L V6 C27A",
+        "3.2L V6 C32A"
+      ],
+      "title": "Timing belt must be replaced at 90,000 mi / 72 months — interference engine eats valves if it snaps",
+      "howToFix": "Replace the timing belt every 90,000 miles OR 72 months — and treat the 72-month limit as the binding one on cars over 15 years old, regardless of mileage. The job is a full front-of-engine teardown: remove crank pulley, front cover, all accessory belts. While you're in there, ALWAYS replace the water pump, timing belt tensioner, all front seals (crank, cam, balance shaft), and idler pulley as a kit — the labor to replace any one of them later is 90% of the timing belt labor. Use OEM Mitsuboshi/Bando belts from Acura or top-tier aftermarket (Aisin, Gates Powergrip). Expect $600-1,000 in parts and $500-900 in labor at an independent. Skip the dealer ($1,500-2,000+) unless they're running a special.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [
+        "communityRecommendations:1"
+      ],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 6,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "acura-legend-timing-belt-interference-engine--prescription--0--2-7l-v6-c27a",
+        "acura-legend-timing-belt-interference-engine--prescription--0--3-2l-v6-c32a",
+        "acura-legend-timing-belt-interference-engine--prescription--1--2-7l-v6-c27a",
+        "acura-legend-timing-belt-interference-engine--prescription--1--3-2l-v6-c32a",
+        "acura-legend-timing-belt-interference-engine--prescription--2--2-7l-v6-c27a",
+        "acura-legend-timing-belt-interference-engine--prescription--2--3-2l-v6-c32a",
+        "acura-legend-timing-belt-interference-engine--prescription--3--2-7l-v6-c27a",
+        "acura-legend-timing-belt-interference-engine--prescription--3--3-2l-v6-c32a",
+        "acura-legend-timing-belt-interference-engine--prescription--4--2-7l-v6-c27a",
+        "acura-legend-timing-belt-interference-engine--prescription--4--3-2l-v6-c32a",
+        "acura-legend-timing-belt-interference-engine--prescription--5--2-7l-v6-c27a",
+        "acura-legend-timing-belt-interference-engine--prescription--5--3-2l-v6-c32a"
+      ]
+    },
+    {
+      "issueId": "acura-legend-alb-abs-pump-motor-overrun-accumulator-failure",
+      "make": "Acura",
+      "model": "Legend",
+      "years": [
+        1991,
+        1992,
+        1993,
+        1994,
+        1995
+      ],
+      "trims": [],
+      "engines": [
+        "C32A1",
+        "C32A2",
+        "C32A6"
+      ],
+      "title": "ALB/ABS Pump Motor Overrun and Accumulator Failure",
+      "howToFix": "Rebuild the pump motor (clean commutator, replace brushes — DIY for $30) or replace pump/accumulator assembly. Verify brake fluid is at MAX line first since low fluid triggers identical symptoms.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Verify brake fluid is at MAX line first since low fluid triggers identical symptoms."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "acura-legend-c32a1-head-gasket-failure-rear-cylinders-due-to-open-deck-vi",
+      "make": "Acura",
+      "model": "Legend",
+      "years": [
+        1991,
+        1992,
+        1993,
+        1994,
+        1995
+      ],
+      "trims": [],
+      "engines": [
+        "C32A",
+        "C32A1"
+      ],
+      "title": "C32A1 Head Gasket Failure at Rear Cylinders (#3 and #6) Due to Open-Deck Vibration",
+      "howToFix": "Replace head gaskets with updated multi-layer steel (MLS) gaskets, resurface heads, and torque to spec. A long-term fix sometimes pursued in the enthusiast community is swapping to a later C-series engine (e.g., C35A from a 1996+ RL) which uses improved gasket technology.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "acura-legend-c32a1-head-gasket-failure-rear-cylinders-due-to-open-deck-vi--prescription--0--c32a",
+        "acura-legend-c32a1-head-gasket-failure-rear-cylinders-due-to-open-deck-vi--prescription--0--c32a1"
+      ]
+    },
+    {
+      "issueId": "acura-legend-fan-control-unit-cracked-solder-joints-cause-cooling-fan-c-c",
+      "make": "Acura",
+      "model": "Legend",
+      "years": [
+        1991,
+        1992,
+        1993
+      ],
+      "trims": [],
+      "engines": [
+        "C32A1"
+      ],
+      "title": "Fan Control Unit Cracked Solder Joints (Service News B98-05-00) Cause Cooling Fan and A/C Compressor to Operate Erratically or Not at All",
+      "howToFix": "Pull the fan control unit from under the passenger carpet and reflow the cracked solder joints (10+ joints typically affected) with a soldering iron, or replace the unit. DIY repair is well documented and effectively free.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "acura-legend-fan-control-unit-defective-solder-1991-1993",
+      "make": "Acura",
+      "model": "Legend",
+      "years": [
+        1991,
+        1992,
+        1993,
+        1994,
+        1995
+      ],
+      "trims": [
+        "Coupe L",
+        "Coupe LS",
+        "GS",
+        "L",
+        "LS"
+      ],
+      "engines": [
+        "3.2L V6 C32A"
+      ],
+      "title": "Fan control unit circuit board (under passenger area) has defective solder — intermittent A/C, eventual no-compressor (Acura TSB 95-020)",
+      "howToFix": "Pull back the passenger-side front carpet (slide passenger seat fully back, lift carpet edge from the door sill, fold forward). The fan control unit is a black box screwed to the floor — unplug the connectors and remove. Inspection with a magnifier shows the cracked solder joints on the trace(s) for compressor relay control. Re-flow the joints with a soldering iron and a small amount of fresh solder. Total cost: $0 in parts, 1 hour of labor. Replacement units are scarce and expensive ($150-300 used) so the solder-repair is the standard fix. Acura specialists and Honda forums have documented the exact joints — search 'Acura Legend fan control unit solder' for board photos showing the failure points.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Inspection with a magnifier shows the cracked solder joints on the trace(s) for compressor relay control."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "acura-legend-pgm-fi-main-relay-solder-cracks-cause-hot-soak-no-start",
+      "make": "Acura",
+      "model": "Legend",
+      "years": [
+        1991,
+        1992,
+        1993,
+        1994,
+        1995
+      ],
+      "trims": [],
+      "engines": [
+        "C32A1",
+        "C32A6"
+      ],
+      "title": "PGM-FI Main Relay Solder Cracks Cause Hot-Soak No-Start",
+      "howToFix": "Pull the relay, open the case, reflow all solder joints with a fine-tip iron (free fix). Or replace with OEM Omron unit ($50-100). Aftermarket relays often fail again quickly.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "acura-legend-power-steering-high-pressure-hose-crimp-leak-internal-hose-s",
+      "make": "Acura",
+      "model": "Legend",
+      "years": [
+        1991,
+        1992,
+        1993,
+        1994,
+        1995
+      ],
+      "trims": [],
+      "engines": [
+        "C32A1",
+        "C32A2",
+        "C32A6"
+      ],
+      "title": "Power Steering High-Pressure Hose Crimp Leak and Internal Hose Sloughing",
+      "howToFix": "Replace the high-pressure hose with OEM Honda part and flush the entire PS system with fresh Honda PSF (NOT generic ATF or universal PSF — Honda systems specifically require Honda PSF). Replace return hose at the same time.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "acura-legend-power-steering-high-pressure-hose-crimp-leak-internal-hose-s--prescription--0--c32a1",
+        "acura-legend-power-steering-high-pressure-hose-crimp-leak-internal-hose-s--prescription--0--c32a2",
+        "acura-legend-power-steering-high-pressure-hose-crimp-leak-internal-hose-s--prescription--0--c32a6"
+      ]
+    },
+    {
+      "issueId": "acura-legend-sunroof-drain-tube-clogs-cause-footwell-trunk-water-leaks",
+      "make": "Acura",
+      "model": "Legend",
+      "years": [
+        1991,
+        1992,
+        1993,
+        1994,
+        1995
+      ],
+      "trims": [],
+      "engines": [
+        "C32A1",
+        "C32A1 Type II"
+      ],
+      "title": "Sunroof Drain Tube Clogs Cause Footwell and Trunk Water Leaks",
+      "howToFix": "Open the sunroof and locate the four drain holes at the corners of the tray. Clear with compressed air or thin trimmer line, then flush with water. If tubes are split, headliner removal is required to replace them.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "acura-legend-valve-cover-gasket-spark-plug-tube-seal-oil-leaks",
+      "make": "Acura",
+      "model": "Legend",
+      "years": [
+        1991,
+        1992,
+        1993,
+        1994,
+        1995
+      ],
+      "trims": [],
+      "engines": [
+        "C32A1",
+        "C32A5"
+      ],
+      "title": "Valve Cover Gasket and Spark Plug Tube Seal Oil Leaks (Especially Rear Bank)",
+      "howToFix": "Replace both valve cover gaskets, all six spark plug tube seals, and the half-moon seals at the same time. Use OEM Honda gaskets — aftermarket gaskets often leak again within 30k miles.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 3,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "acura-legend-valve-cover-gasket-spark-plug-tube-seal-oil-leaks--prescription--0--c32a1",
+        "acura-legend-valve-cover-gasket-spark-plug-tube-seal-oil-leaks--prescription--0--c32a5",
+        "acura-legend-valve-cover-gasket-spark-plug-tube-seal-oil-leaks--prescription--1--c32a1",
+        "acura-legend-valve-cover-gasket-spark-plug-tube-seal-oil-leaks--prescription--1--c32a5",
+        "acura-legend-valve-cover-gasket-spark-plug-tube-seal-oil-leaks--prescription--2--c32a1",
+        "acura-legend-valve-cover-gasket-spark-plug-tube-seal-oil-leaks--prescription--2--c32a5"
+      ]
+    },
+    {
+      "issueId": "acura-mdx-power-steering-high-pressure-hose-cracking-rack-morning-sick",
+      "make": "Acura",
+      "model": "MDX",
+      "years": [
+        2001,
+        2002,
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013
+      ],
+      "trims": [],
+      "engines": [
+        "J35A3",
+        "J35A5",
+        "J37A1"
+      ],
+      "title": "Power Steering High-Pressure Hose Cracking and Rack 'Morning Sickness' (2001-2013 MDX)",
+      "howToFix": "Replace high-pressure hose with OEM (~$150 part, ~3 hrs labor; subframe must be lowered). Use ONLY Honda PSF - no universal/ATF. For morning sickness, replace the steering rack with a reman unit; do not band-aid with stop-leak additives.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "acura-mdx-power-steering-high-pressure-hose-cracking-rack-morning-sick--prescription--0--j35a3",
+        "acura-mdx-power-steering-high-pressure-hose-cracking-rack-morning-sick--prescription--0--j35a5",
+        "acura-mdx-power-steering-high-pressure-hose-cracking-rack-morning-sick--prescription--0--j37a1"
+      ]
+    },
+    {
+      "issueId": "acura-mdx-timing-belt-tensioner-2001",
+      "make": "Acura",
+      "model": "MDX",
+      "years": [
+        2001,
+        2002,
+        2003,
+        2004,
+        2005,
+        2006
+      ],
+      "trims": [
+        "Base",
+        "Touring"
+      ],
+      "engines": [
+        "3.5L J35A3 V6",
+        "3.5L J35A5 V6"
+      ],
+      "title": "Timing Belt Tensioner and Water Pump Failure",
+      "howToFix": "Replace the timing belt, tensioner, water pump, and all idler pulleys as a complete kit at 105,000 miles or 7 years, whichever comes first. Use a genuine Honda/Acura timing belt kit. Never reuse the old tensioner even if it appears functional. This is a critical interference engine — a broken belt destroys the valves.",
+      "dtcCodes": [
+        "P0340",
+        "P0341"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0340, P0341"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 4,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "acura-mdx-timing-belt-tensioner-2001--prescription--0--3-5l-j35a3-v6",
+        "acura-mdx-timing-belt-tensioner-2001--prescription--0--3-5l-j35a5-v6",
+        "acura-mdx-timing-belt-tensioner-2001--prescription--1--3-5l-j35a3-v6",
+        "acura-mdx-timing-belt-tensioner-2001--prescription--1--3-5l-j35a5-v6",
+        "acura-mdx-timing-belt-tensioner-2001--prescription--2--3-5l-j35a3-v6",
+        "acura-mdx-timing-belt-tensioner-2001--prescription--2--3-5l-j35a5-v6",
+        "acura-mdx-timing-belt-tensioner-2001--prescription--3--3-5l-j35a3-v6",
+        "acura-mdx-timing-belt-tensioner-2001--prescription--3--3-5l-j35a5-v6"
+      ]
+    },
+    {
+      "issueId": "acura-mdx-vcm-related-oil-consumption-spark-plug-fouling-motor-mount-f",
+      "make": "Acura",
+      "model": "MDX",
+      "years": [
+        2010,
+        2011,
+        2012,
+        2013
+      ],
+      "trims": [],
+      "engines": [
+        "J37A1"
+      ],
+      "title": "VCM-Related Oil Consumption, Spark Plug Fouling and Motor Mount Failure (J37 VCM Engine)",
+      "howToFix": "Replace failed hydraulic motor mounts (front + rear) and any oil-fouled plugs. Many owners install a VCM Tuner / S-VCM Controller to lock the engine in 6-cylinder mode and prevent recurrence. Monitor oil level monthly.",
+      "dtcCodes": [
+        "P0301",
+        "P0302",
+        "P0303",
+        "P3400"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Monitor oil level monthly."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0301, P0302, P0303, P3400"
+        }
+      ],
+      "existingCommerceClaimIds": [
+        "fixParts:0"
+      ],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 3,
+      "existingFixPartCount": 1,
+      "workItemIds": [
+        "acura-mdx-vcm-related-oil-consumption-spark-plug-fouling-motor-mount-f--existing-fix-part--0--j37a1",
+        "acura-mdx-vcm-related-oil-consumption-spark-plug-fouling-motor-mount-f--prescription--0--j37a1",
+        "acura-mdx-vcm-related-oil-consumption-spark-plug-fouling-motor-mount-f--prescription--1--j37a1",
+        "acura-mdx-vcm-related-oil-consumption-spark-plug-fouling-motor-mount-f--prescription--2--j37a1"
+      ]
+    },
+    {
+      "issueId": "acura-mdx-torque-converter-lock-up-clutch-judder-20-60-mph",
+      "make": "Acura",
+      "model": "MDX",
+      "years": [
+        2012,
+        2013,
+        2014,
+        2015
+      ],
+      "trims": [],
+      "engines": [
+        "J35Y4",
+        "J35Y5"
+      ],
+      "title": "Torque Converter Lock-Up Clutch Judder at 20-60 mph (2012-2015 MDX)",
+      "howToFix": "Have dealer perform TSB 16-062: update PGM-FI software then triple-drain-and-fill the ATF with Honda DW-1/ATF-DW1. Follow-up TSB 16-063 covers repeat cases needing additional flushes. Avoid universal/aftermarket ATF. Note: TSB itself does NOT extend powertrain warranty — coverage depends on standard 5yr/60k powertrain warranty status.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "acura-mdx-dual-screen-infotainment-freezes-slow-boots-reboots",
+      "make": "Acura",
+      "model": "MDX",
+      "years": [
+        2014,
+        2015,
+        2016
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Dual-Screen Infotainment Freezes, Slow Boots and Reboots (2014-2016 MDX)",
+      "howToFix": "Have dealer install latest infotainment software update (TSB 15-001 v3.00.2304 for 2014; later versions for 2015-2016 via update disc/AcuraLink). Perform a soft reset by holding the audio power/volume knob for 10-15 seconds. For CarPlay-equipped 2018+, unplug USB if backup camera sticks. Updates are typically free during the original 4yr/50k bumper-to-bumper warranty; out-of-warranty cost varies by dealer.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "acura-mdx-infotainment-reboot-2014",
+      "make": "Acura",
+      "model": "MDX",
+      "years": [
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020
+      ],
+      "trims": [
+        "Advance",
+        "Technology"
+      ],
+      "engines": [
+        "3.5L J35Y5 V6"
+      ],
+      "title": "Infotainment System Random Reboots",
+      "howToFix": "Update to the latest infotainment firmware from an Acura dealer. Reset the system to factory defaults and clear cached data. If reboots continue, the infotainment control module may need hardware replacement under an extended warranty program.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "acura-mdx-auto-idle-stop-failure-to-restart",
+      "make": "Acura",
+      "model": "MDX",
+      "years": [
+        2016,
+        2017,
+        2018,
+        2019,
+        2020
+      ],
+      "trims": [],
+      "engines": [
+        "J35Y5"
+      ],
+      "title": "Auto Idle-Stop Failure to Restart (2016-2020 MDX)",
+      "howToFix": "Have dealer perform the PGM-FI idle-stop software update plus starter / starter relay inspection per Honda's 2023 service campaign (covered 10 years). To avoid recurrence, defeat Idle-Stop with the dash button each drive or install an aftermarket auto-disable module.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "professional-or-dealer-test",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-delegates-procedure",
+          "excerpt": "Have dealer perform the PGM-FI idle-stop software update plus starter / starter relay inspection per Honda's 2023 service campaign (covered 10 years)."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "acura-mdx-auto-idle-stop-failure-to-restart--prescription--0--j35y5"
+      ]
+    },
+    {
+      "issueId": "acura-mdx-torque-converter-shudder-2014",
+      "make": "Acura",
+      "model": "MDX",
+      "years": [
+        2016,
+        2017,
+        2018,
+        2019,
+        2020
+      ],
+      "trims": [
+        "A-Spec",
+        "Advance",
+        "Base",
+        "Technology"
+      ],
+      "engines": [
+        "3.5L J35Y5 V6"
+      ],
+      "title": "ZF 9-Speed Automatic Transmission Shudder and Harsh Shifting",
+      "howToFix": "Update the TCM software to the latest Acura calibration that modifies torque converter lockup strategy. Perform a complete ATF drain and refill with Honda DW-1. If shudder persists after software update and fluid change, the torque converter assembly must be replaced.",
+      "dtcCodes": [
+        "P0700",
+        "P0740"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0700, P0740"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "acura-mdx-zf-9-speed-transmission-hesitation-hard-shifts-stalling",
+      "make": "Acura",
+      "model": "MDX",
+      "years": [
+        2016,
+        2017,
+        2018,
+        2019
+      ],
+      "trims": [],
+      "engines": [
+        "J35Y4",
+        "J35Y5"
+      ],
+      "title": "ZF 9-Speed Transmission Hesitation, Hard Shifts and Stalling (2016-2019 MDX)",
+      "howToFix": "Have dealer apply latest TCM/PGM-FI software updates first (covered by powertrain warranty). If symptoms persist, request fluid replacement and dealer escalation; document everything for lemon-law/class-action relief. Avoid jerky throttle inputs while cold.",
+      "dtcCodes": [
+        "P0729",
+        "P0732",
+        "P0734",
+        "P2820"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0729, P0732, P0734, P2820"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "acura-mdx-fuel-pump-impeller-deformation-causing-stall",
+      "make": "Acura",
+      "model": "MDX",
+      "years": [
+        2018,
+        2019,
+        2020
+      ],
+      "trims": [],
+      "engines": [
+        "J30Y1",
+        "J35Y5"
+      ],
+      "title": "Fuel Pump Impeller Deformation Causing Stall (NHTSA Recall 23V-858)",
+      "howToFix": "Free recall remedy under NHTSA 23V-858 - dealer replaces the fuel pump module with a redesigned part. Check VIN at nhtsa.gov/recalls or owners.acura.com and schedule replacement immediately if not yet completed.",
+      "dtcCodes": [
+        "P0087",
+        "P0230",
+        "P0627"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Check VIN at nhtsa.gov/recalls or owners.acura.com and schedule replacement immediately if not yet completed."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0087, P0230, P0627"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "acura-nsx-abs-alb-modulator-failure-1991-1999",
+      "make": "Acura",
+      "model": "NSX",
+      "years": [
+        1991,
+        1992,
+        1993,
+        1994,
+        1995,
+        1996,
+        1997,
+        1998,
+        1999
+      ],
+      "trims": [
+        "Base",
+        "T"
+      ],
+      "engines": [
+        "3.0L V6 C30A",
+        "3.2L V6 C32B"
+      ],
+      "title": "ALB/ABS modulator pump times out and pressure sensor fails on NA1 NSX (1991-1999)",
+      "howToFix": "Three repair paths, from cheap to expensive. (1) DIY O-ring rebuild with the SOS or egmCarTech kit ($105-200), which replaces the brake-fluid-resistant O-rings inside the modulator; the kit includes a bleeder T-wrench and 28-piece O-ring set. (2) Professional rebuild by a specialist (AutoECU, ScienceofSpeed, etc.) for around $795 — they pull the unit, replace O-rings and the pump motor brushes if worn. (3) Dealer full-assembly replacement at $2,100-2,600. There is also a documented upgrade path to swap the 1991-1999 NA1 modulator for the 2000-2005 NA2 unit using the SOS conversion kit, which simplifies the system and improves long-term reliability. Before any repair, check that the failure isn't simply rodent damage to the pump motor wires under the car — a blown ALB fuse from chewed wires presents the same way and costs $10 to fix.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Before any repair, check that the failure isn't simply rodent damage to the pump motor wires under the car — a blown ALB fuse from chewed wires presents the same way and costs $10 to fix."
+        }
+      ],
+      "existingCommerceClaimIds": [
+        "communityRecommendations:0"
+      ],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 3,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "acura-nsx-abs-alb-modulator-failure-1991-1999--prescription--0--3-0l-v6-c30a",
+        "acura-nsx-abs-alb-modulator-failure-1991-1999--prescription--0--3-2l-v6-c32b",
+        "acura-nsx-abs-alb-modulator-failure-1991-1999--prescription--1--3-0l-v6-c30a",
+        "acura-nsx-abs-alb-modulator-failure-1991-1999--prescription--1--3-2l-v6-c32b",
+        "acura-nsx-abs-alb-modulator-failure-1991-1999--prescription--2--3-0l-v6-c30a",
+        "acura-nsx-abs-alb-modulator-failure-1991-1999--prescription--2--3-2l-v6-c32b"
+      ]
+    },
+    {
+      "issueId": "acura-nsx-climate-control-display-pixel-fade",
+      "make": "Acura",
+      "model": "NSX",
+      "years": [
+        1991,
+        1992,
+        1993,
+        1994,
+        1995,
+        1996,
+        1997,
+        1998,
+        1999
+      ],
+      "trims": [
+        "Base",
+        "T"
+      ],
+      "engines": [
+        "3.0L V6 C30A",
+        "3.2L V6 C32B"
+      ],
+      "title": "Climate control unit display pixel fade and dead buttons (1991-1999 NA1)",
+      "howToFix": "Mail-in CCU repair from an NSX specialist is the standard fix. ScienceofSpeed, AutoTechRescue, SpeedoFix, NSXe-repair, and ModuleRepairPro all offer rebuild service for around $150-300 with 1-3 day turnaround. Removal is a 20-30 minute job at home — pop the armrest, shift knob, ashtray, and center console trim, then four screws hold the CCU. Reinstallation requires no programming or coding. Avoid full Acura CCU replacement: even when available, the part is over $1,000 and the rebuilt original works identically. Common rebuild scope: LCD module, all rubber button pads, electrolytic capacitors C1/C2/C3 on the main board, and reflow on heat-stressed solder joints.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [
+        "communityRecommendations:0"
+      ],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "acura-nsx-snap-ring-transmission-1991-1992",
+      "make": "Acura",
+      "model": "NSX",
+      "years": [
+        1991,
+        1992
+      ],
+      "trims": [
+        "Base"
+      ],
+      "engines": [
+        "3.0L V6 C30A"
+      ],
+      "title": "Snap-ring transmission failure on 1991-1992 NSX (serial range J4A4-1003542 to J4A4-1005978)",
+      "howToFix": "Two paths: (1) Acura dealer transmission replacement runs about $7,000-7,500 in parts and labor — this swaps the entire assembly. (2) An NSX specialist (ScienceofSpeed, NSX Modified, etc.) can rebuild the existing transmission and replace the upper case half for around $2,500-4,675 depending on shop and gear set choice, saving $3,000-4,500 vs dealer. Preventive repair before failure (replacing the upper case while gears are still intact) is about 10 hours labor + $700 parts. If the snap ring has already shattered, debris in the gear oil mandates a full teardown — do not just refill and drive. Honda's original goodwill program tapered off sharply in 1999, so post-2000 repairs are owner-paid.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [
+        "communityRecommendations:3"
+      ],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "acura-nsx-t-targa-roof-seal-wind-noise-water-leak",
+      "make": "Acura",
+      "model": "NSX",
+      "years": [
+        1995,
+        1996,
+        1997,
+        1998,
+        1999
+      ],
+      "trims": [
+        "T"
+      ],
+      "engines": [
+        "3.0L V6 C30A (1995-1996)",
+        "3.2L V6 C32B (1997-1999)"
+      ],
+      "title": "Targa roof gaskets harden, wind noise increases and water leaks under heavy rain",
+      "howToFix": "Two stages. PREVENTIVE: clean the gaskets monthly with isopropyl alcohol, then apply Honda Shin-Etsu silicone grease (P/N 08798-9013) — this is the same grease used on the door weatherstripping and prevents drying-out. A small tube ($15-25) lasts years. If gaskets are already cracked or compression-set, REPLACE: OEM Honda Targa seals run $300-500 for the set. Use the exact butyl tape (0.5mm) and EPT sealer (3.0mm) called out in the service manual, plus sealant #08712-0004. Most NSX owners use an NSX specialist (ScienceofSpeed, Driving Ambition, NSX Modified) for the install — $400-700 in labor — rather than DIY, because the alignment determines water-tightness and a mis-bedded seal leaks worse than the old one.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [
+        "communityRecommendations:0"
+      ],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "acura-nsx-t-targa-roof-seal-wind-noise-water-leak--prescription--0--3-0l-v6-c30a-1995-1996",
+        "acura-nsx-t-targa-roof-seal-wind-noise-water-leak--prescription--0--3-2l-v6-c32b-1997-1999"
+      ]
+    },
+    {
+      "issueId": "acura-rdx-ac-compressor-failure-2013",
+      "make": "Acura",
+      "model": "RDX",
+      "years": [
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018
+      ],
+      "trims": [
+        "AcuraWatch Plus",
+        "Base",
+        "Technology"
+      ],
+      "engines": [
+        "3.5L J35Z2 V6",
+        "3.5L V6"
+      ],
+      "title": "AC Compressor Clutch and Bearing Failure",
+      "howToFix": "Replace the AC compressor assembly with a new unit — clutch-only repairs on this model tend to fail again within a year. Replace the receiver/drier and expansion valve at the same time. Evacuate and recharge the system with the correct amount of R-134a refrigerant. Inspect the serpentine belt for damage from the seized clutch.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Inspect the serpentine belt for damage from the seized clutch."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "acura-rdx-ac-compressor-failure-2013--prescription--0--3-5l-j35z2-v6",
+        "acura-rdx-ac-compressor-failure-2013--prescription--0--3-5l-v6",
+        "acura-rdx-ac-compressor-failure-2013--prescription--1--3-5l-j35z2-v6",
+        "acura-rdx-ac-compressor-failure-2013--prescription--1--3-5l-v6"
+      ]
+    },
+    {
+      "issueId": "acura-rdx-infotainment-reboot-2019",
+      "make": "Acura",
+      "model": "RDX",
+      "years": [
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ],
+      "trims": [
+        "A-Spec",
+        "Advance",
+        "Base",
+        "Technology"
+      ],
+      "engines": [
+        "2.0L K20C6 Turbo I4"
+      ],
+      "title": "True Touchpad Interface Infotainment Reboots and Lag",
+      "howToFix": "Update to the latest infotainment firmware which improves touchpad responsiveness and reduces reboot frequency. Recalibrate the touchpad through the system settings menu. If reboots persist, the infotainment control unit may require replacement under Acura warranty extension.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "acura-rdx-transmission-harsh-shift-2019",
+      "make": "Acura",
+      "model": "RDX",
+      "years": [
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "trims": [
+        "A-Spec",
+        "Advance",
+        "Base",
+        "PMC",
+        "Technology"
+      ],
+      "engines": [
+        "2.0L K20C6 Turbo I4"
+      ],
+      "title": "Transmission Harsh Shifting and Hesitation from Stop",
+      "howToFix": "Update the TCM calibration to the latest Acura software revision, which improves cold-shift quality and reduces the hesitation from stop. Perform a transmission fluid change with Honda Type 3.0 fluid. Allow the adaptive learning to recalibrate for 500 miles after the update.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "acura-rdx-turbo-oil-consumption-2019",
+      "make": "Acura",
+      "model": "RDX",
+      "years": [
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "trims": [
+        "A-Spec",
+        "Advance",
+        "Base",
+        "PMC",
+        "Technology"
+      ],
+      "engines": [
+        "2.0L K20C6 Turbo I4",
+        "2.0L Turbocharged"
+      ],
+      "title": "2.0T Engine Oil Dilution from Direct Injection Fuel Wash",
+      "howToFix": "Monitor oil level monthly with the dipstick and top off as needed between changes. Use only 0W-20 full synthetic oil meeting Honda HTO-06 specification. If consumption exceeds 1 quart per 2,000 miles, request an oil consumption test at the dealer. Acura may replace piston rings under warranty if consumption is documented as excessive.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Monitor oil level monthly with the dipstick and top off as needed between changes."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "professional-or-dealer-test",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-delegates-procedure",
+          "excerpt": "If consumption exceeds 1 quart per 2,000 miles, request an oil consumption test at the dealer."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "acura-rdx-turbo-oil-consumption-2019--prescription--0--2-0l-k20c6-turbo-i4",
+        "acura-rdx-turbo-oil-consumption-2019--prescription--0--2-0l-turbocharged"
+      ]
+    },
+    {
+      "issueId": "acura-rl-c35a-distributor-shaft-seal-oil-leak",
+      "make": "Acura",
+      "model": "RL",
+      "years": [
+        1996,
+        1997,
+        1998,
+        1999,
+        2000,
+        2001,
+        2002,
+        2003,
+        2004
+      ],
+      "trims": [
+        "Base"
+      ],
+      "engines": [
+        "3.5L V6 C35A"
+      ],
+      "title": "Distributor shaft seal leaks oil into cap, causes misfires (P0300-P0304) on 3.5L C35A",
+      "howToFix": "There is no replaceable seal inside the distributor — the seal is between the rotating shaft and the bearing inside the cast housing. The only fix is replacing the whole distributor assembly. OEM Honda runs $400-700; Cardone remanufactured runs $150-250. While the distributor is out, also replace the distributor cap, rotor, and ignition wires — they're cheap and you're already at the parts. Inspect the cap and rotor on the old unit for oil contamination to confirm distributor was the source. If you also see leaks elsewhere (figure-8 cooler seal, oil filter housing), address those at the same time — they share access path. Total job: 2-3 hours independent shop.",
+      "dtcCodes": [
+        "P0300",
+        "P0301",
+        "P0302",
+        "P0303",
+        "P0304",
+        "P0305",
+        "P0306"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Inspect the cap and rotor on the old unit for oil contamination to confirm distributor was the source."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0300, P0301, P0302, P0303, P0304, P0305, P0306"
+        }
+      ],
+      "existingCommerceClaimIds": [
+        "communityRecommendations:0"
+      ],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 4,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "acura-rl-c35a-distributor-shaft-seal-oil-leak--prescription--0--3-5l-v6-c35a",
+        "acura-rl-c35a-distributor-shaft-seal-oil-leak--prescription--1--3-5l-v6-c35a",
+        "acura-rl-c35a-distributor-shaft-seal-oil-leak--prescription--2--3-5l-v6-c35a",
+        "acura-rl-c35a-distributor-shaft-seal-oil-leak--prescription--3--3-5l-v6-c35a"
+      ]
+    },
+    {
+      "issueId": "acura-rl-c35a-timing-belt-tensioner-interference",
+      "make": "Acura",
+      "model": "RL",
+      "years": [
+        1996,
+        1997,
+        1998,
+        1999
+      ],
+      "trims": [
+        "Base"
+      ],
+      "engines": [
+        "3.5L V6 C35A"
+      ],
+      "title": "Timing belt + hydraulic tensioner replacement at 90k mi / 72 months — interference engine",
+      "howToFix": "Replace the timing belt + hydraulic tensioner + water pump + all front seals + idler pulley as a complete kit. Aisin sells a TKH-022 complete kit covering all of these for ~$200-300 — vs $1,200-1,800 in labor at an independent shop. Insist on the OEM Honda OR Aisin tensioner specifically — cheap aftermarket tensioners are the #1 cause of premature post-replacement failures on this engine. Total at indie shop: $1,400-2,000. Dealer: $2,000-2,800. Never use a generic 'timing belt only' service — replacing the belt without the water pump or tensioner is a guarantee of a second teardown within 30,000 miles.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [
+        "communityRecommendations:0"
+      ],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 3,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "acura-rl-c35a-timing-belt-tensioner-interference--prescription--0--3-5l-v6-c35a",
+        "acura-rl-c35a-timing-belt-tensioner-interference--prescription--1--3-5l-v6-c35a",
+        "acura-rl-c35a-timing-belt-tensioner-interference--prescription--2--3-5l-v6-c35a"
+      ]
+    },
+    {
+      "issueId": "acura-rl-shawd-system-noise-2005",
+      "make": "Acura",
+      "model": "RL",
+      "years": [
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012
+      ],
+      "trims": [
+        "Advance",
+        "Base",
+        "Technology"
+      ],
+      "engines": [
+        "3.5L J35A8 V6",
+        "3.7L J37A4 V6"
+      ],
+      "title": "SH-AWD Torque Transfer Unit / Rear Differential Clutch Noise",
+      "howToFix": "Drain and refill the rear differential with Honda Dual Pump II fluid — do NOT use conventional gear oil. If noise persists after fluid change, the rear differential unit needs rebuilding with new clutch packs. Replace the electromagnetic actuators if they are not engaging properly. Regular fluid changes every 30,000 miles prevent premature clutch pack wear.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "acura-rsx-3rd-gear-synchro-grind-2002",
+      "make": "Acura",
+      "model": "RSX",
+      "years": [
+        2002,
+        2003,
+        2004,
+        2005,
+        2006
+      ],
+      "trims": [
+        "Base",
+        "Type-S"
+      ],
+      "engines": [
+        "2.0L K20A2 I4",
+        "2.0L K20A3 I4"
+      ],
+      "title": "3rd Gear Synchro Grind on Manual Transmission",
+      "howToFix": "Replace the 3rd gear synchronizer assembly with the updated Honda brass synchro set. Flush and refill the transmission with Honda MTF — do NOT use any other fluid. For Type-S models seeing track use, consider upgrading to carbon-lined synchros from a performance supplier. Change MTF every 30,000 miles.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "acura-rsx-3rd-gear-synchro-grind-2002--prescription--0--2-0l-k20a2-i4",
+        "acura-rsx-3rd-gear-synchro-grind-2002--prescription--0--2-0l-k20a3-i4"
+      ]
+    },
+    {
+      "issueId": "acura-rsx-ac-compressor-clutch-2002",
+      "make": "Acura",
+      "model": "RSX",
+      "years": [
+        2002,
+        2003,
+        2004,
+        2005,
+        2006
+      ],
+      "trims": [
+        "Base",
+        "Type-S"
+      ],
+      "engines": [
+        "2.0L K20A2 I4",
+        "2.0L K20A3 I4"
+      ],
+      "title": "AC Compressor Clutch Bearing Failure",
+      "howToFix": "Replace the AC compressor clutch assembly or the full compressor. Replace the serpentine belt and tensioner if damaged. Evacuate and recharge the system. Use a Denso or OEM replacement compressor for best longevity.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 4,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "acura-rsx-ac-compressor-clutch-2002--prescription--0--2-0l-k20a2-i4",
+        "acura-rsx-ac-compressor-clutch-2002--prescription--0--2-0l-k20a3-i4",
+        "acura-rsx-ac-compressor-clutch-2002--prescription--1--2-0l-k20a2-i4",
+        "acura-rsx-ac-compressor-clutch-2002--prescription--1--2-0l-k20a3-i4",
+        "acura-rsx-ac-compressor-clutch-2002--prescription--2--2-0l-k20a2-i4",
+        "acura-rsx-ac-compressor-clutch-2002--prescription--2--2-0l-k20a3-i4",
+        "acura-rsx-ac-compressor-clutch-2002--prescription--3--2-0l-k20a2-i4",
+        "acura-rsx-ac-compressor-clutch-2002--prescription--3--2-0l-k20a3-i4"
+      ]
+    },
+    {
+      "issueId": "acura-slx-consumer-reports-rollover-rating-1996",
+      "make": "Acura",
+      "model": "SLX",
+      "years": [
+        1996,
+        1997,
+        1998,
+        1999
+      ],
+      "trims": [
+        "Base",
+        "Premium"
+      ],
+      "engines": [
+        "3.2L V6 6VD1",
+        "3.5L V6 6VE1"
+      ],
+      "title": "Consumer Reports rated the 1996 SLX 'Not Acceptable' for rollover risk in low-speed turns",
+      "howToFix": "There is no mechanical fix because there's no mechanical defect — the Consumer Reports finding was a stability characteristic, not a failed part. Buyers and owners should: (1) know the vehicle's center of gravity is high; avoid emergency lane-change maneuvers above 35 mph if possible. (2) Keep the suspension and tires in spec — worn shocks and underinflated tires make rollover more likely on any tall SUV. (3) Use the OEM-spec tire size; oversized off-road tires raise the center of gravity further. (4) Modern stability control didn't exist on the SLX — drive accordingly. Used-buyer tip: the SLX/Trooper market is depressed permanently because of this story, which makes well-maintained examples a relative bargain — but go in eyes-open about the handling envelope.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "acura-slx-rear-differential-transfer-case-trooper-inheritance",
+      "make": "Acura",
+      "model": "SLX",
+      "years": [
+        1996,
+        1997,
+        1998,
+        1999
+      ],
+      "trims": [
+        "Base",
+        "Premium"
+      ],
+      "engines": [
+        "3.2L V6 6VD1",
+        "3.5L V6 6VE1"
+      ],
+      "title": "Rear differential whine + transfer case (BW4422) failures inherited from Isuzu Trooper platform",
+      "howToFix": "REAR DIFF: If whine is noticed early, change the gear oil to fresh 80W-90 GL-5 and run a friction modifier. This will not stop existing wear but can slow it. Once whine is pronounced, the only durable fix is a remanufactured rear axle assembly ($800-1,400) or a rebuild of the existing ring and pinion ($1,200-2,000 at a specialist). TRANSFER CASE: Verify the manufacturer-spec fluid is being used — DO NOT default to motor oil or ATF without confirming. Check fluid level every oil change. If the case is whining or has external leaks, source the correct Borg-Warner rebuild kit by part number from your vehicle's exact model year + transmission combination — multiple BW transfer case variants were used across SLX/Trooper years and the parts are NOT interchangeable.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "prohibited-or-negated-test",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prohibits-tool-recommendation",
+          "excerpt": "TRANSFER CASE: Verify the manufacturer-spec fluid is being used — DO NOT default to motor oil or ATF without confirming."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Check fluid level every oil change."
+        }
+      ],
+      "existingCommerceClaimIds": [
+        "communityRecommendations:1"
+      ],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "acura-tl-1999-5at-transmission-failure-start",
+      "make": "Acura",
+      "model": "TL",
+      "years": [
+        1999
+      ],
+      "trims": [
+        "3.2TL"
+      ],
+      "engines": [
+        "3.2L V6 J32A1"
+      ],
+      "title": "1999 3.2TL 5-speed auto was the start of the famous Acura V6 transmission failures",
+      "howToFix": "If you own a 1999 TL with the 5AT and it's slipping, flaring on shifts, or showing harsh 1-2 / 2-3 changes: STOP driving aggressively immediately. The damage compounds quickly. Get a transmission specialist (not a dealer) to drop the pan and check for clutch material in the fluid. If found, the only durable fix is a rebuilt transmission ($2,500-4,000) — not a fluid change, not a solenoid swap. The original Honda warranty extension to 7/100k expired in 2006, so out-of-pocket cost is now on the owner. Many owners install an aftermarket transmission cooler with the rebuild — the original spec is undersized for the load and contributed to the failure pattern. Avoid 'flush' services — pressurized flushes on a worn transmission accelerate failure by dislodging clutch debris.",
+      "dtcCodes": [
+        "P0700",
+        "P0730",
+        "P0731",
+        "P0732",
+        "P0733",
+        "P0734"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "professional-or-dealer-test",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-delegates-procedure",
+          "excerpt": "Get a transmission specialist (not a dealer) to drop the pan and check for clutch material in the fluid."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0700, P0730, P0731, P0732, P0733, P0734"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "acura-tl-1999-5at-transmission-failure-start--prescription--0--3-2l-v6-j32a1"
+      ]
+    },
+    {
+      "issueId": "acura-tl-auto-trans-3rd-gear-2004",
+      "make": "Acura",
+      "model": "TL",
+      "years": [
+        2004,
+        2005,
+        2006,
+        2007,
+        2008
+      ],
+      "trims": [
+        "Base",
+        "Type-S"
+      ],
+      "engines": [
+        "3.2L J32A3 V6",
+        "3.5L J35A8 V6"
+      ],
+      "title": "Automatic Transmission 3rd Gear Failure",
+      "howToFix": "Rebuild or replace the transmission with upgraded 3rd gear clutch pack and updated valve body. Use only Honda DW-1 ATF. Install an aftermarket transmission cooler to reduce operating temperatures. Change ATF every 30,000 miles to extend the life of the rebuilt unit.",
+      "dtcCodes": [
+        "P0700",
+        "P0730",
+        "P0780"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0700, P0730, P0780"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 3,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "acura-tl-auto-trans-3rd-gear-2004--prescription--0--3-2l-j32a3-v6",
+        "acura-tl-auto-trans-3rd-gear-2004--prescription--0--3-5l-j35a8-v6",
+        "acura-tl-auto-trans-3rd-gear-2004--prescription--1--3-2l-j32a3-v6",
+        "acura-tl-auto-trans-3rd-gear-2004--prescription--1--3-5l-j35a8-v6",
+        "acura-tl-auto-trans-3rd-gear-2004--prescription--2--3-2l-j32a3-v6",
+        "acura-tl-auto-trans-3rd-gear-2004--prescription--2--3-5l-j35a8-v6"
+      ]
+    },
+    {
+      "issueId": "acura-tl-dashboard-crack-2004",
+      "make": "Acura",
+      "model": "TL",
+      "years": [
+        2004,
+        2005,
+        2006,
+        2007,
+        2008
+      ],
+      "trims": [
+        "Base",
+        "Type-S"
+      ],
+      "engines": [
+        "3.2L J32A3 V6",
+        "3.5L J35A8 V6"
+      ],
+      "title": "Dashboard Surface Cracking and Melting",
+      "howToFix": "Replace the dashboard assembly with a new unit — Acura extended a warranty program covering dashboard replacement at no cost for affected VINs. Contact your Acura dealer to check eligibility. Aftermarket dashboard covers can mitigate the cosmetic issue but do not fix the underlying material degradation. Use a windshield sunshade to slow progression.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "professional-or-dealer-test",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-delegates-procedure",
+          "excerpt": "Contact your Acura dealer to check eligibility."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "acura-tl-dashboard-crack-2004--prescription--0--3-2l-j32a3-v6",
+        "acura-tl-dashboard-crack-2004--prescription--0--3-5l-j35a8-v6"
+      ]
+    },
+    {
+      "issueId": "acura-tl-power-steering-hose-leak-2004",
+      "make": "Acura",
+      "model": "TL",
+      "years": [
+        2004,
+        2005,
+        2006,
+        2007,
+        2008
+      ],
+      "trims": [
+        "Base",
+        "Type-S"
+      ],
+      "engines": [
+        "3.2L J32A3 V6",
+        "3.5L J35A8 V6"
+      ],
+      "title": "Power Steering High-Pressure Hose Leak",
+      "howToFix": "Replace the high-pressure power steering hose assembly. Use a genuine Honda/Acura replacement hose with updated crimp fittings. Flush the power steering system with Honda PSF and bleed air from the system. Inspect the power steering pump for damage from running low on fluid.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Inspect the power steering pump for damage from running low on fluid."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "acura-tl-power-steering-hose-leak-2004--prescription--0--3-2l-j32a3-v6",
+        "acura-tl-power-steering-hose-leak-2004--prescription--0--3-5l-j35a8-v6"
+      ]
+    },
+    {
+      "issueId": "acura-tl-brake-pedal-vibration-and-2009",
+      "make": "Acura",
+      "model": "TL",
+      "years": [
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Brake Pedal Vibration and Premature Front Brake Rotor Warping",
+      "howToFix": "Inspect rotor thickness variation, pad condition, caliper slide movement, and wheel torque. Replace or machine rotors if within spec, install quality pads, and service caliper hardware to prevent uneven pad contact. Proper wheel lug torque and a careful pad bedding procedure help reduce recurrence.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Inspect rotor thickness variation, pad condition, caliper slide movement, and wheel torque."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "acura-tl-brake-pedal-vibration-and-2009--prescription--0--all-engines"
+      ]
+    },
+    {
+      "issueId": "acura-tl-oil-consumption-and-fouled-2009",
+      "make": "Acura",
+      "model": "TL",
+      "years": [
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014
+      ],
+      "trims": [
+        "SH-AWD"
+      ],
+      "engines": [
+        "3.7L V6 J37"
+      ],
+      "title": "Oil Consumption and Fouled Spark Plugs on 3.7L V6",
+      "howToFix": "Monitor oil level closely and document consumption over a measured interval. Diagnosis typically includes checking for external leaks, inspecting plugs for oil fouling, and performing the manufacturer oil consumption test procedure. Repairs may involve updated pistons/rings under prior warranty programs or ongoing oil top-offs if consumption is mild and the vehicle is outside assistance coverage.",
+      "dtcCodes": [
+        "P0300",
+        "P0301",
+        "P0302",
+        "P0303",
+        "P0304",
+        "P0305",
+        "P0306"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Monitor oil level closely and document consumption over a measured interval."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Diagnosis typically includes checking for external leaks, inspecting plugs for oil fouling, and performing the manufacturer oil consumption test procedure."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0300, P0301, P0302, P0303, P0304, P0305, P0306"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "acura-tl-sh-awd-rear-differential-whine-2009",
+      "make": "Acura",
+      "model": "TL",
+      "years": [
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014
+      ],
+      "trims": [
+        "SH-AWD"
+      ],
+      "engines": [],
+      "title": "SH-AWD Rear Differential Whine or Groan from Fluid Breakdown",
+      "howToFix": "Confirm the noise source with a road test, checking whether it changes during turns or under light throttle. Drain and refill the rear differential with the specified Acura fluid, sometimes with multiple fluid changes if the fluid is badly degraded. If noise persists, inspect for internal differential wear, axle issues, or bearing damage.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Confirm the noise source with a road test, checking whether it changes during turns or under light throttle."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "If noise persists, inspect for internal differential wear, axle issues, or bearing damage."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "acura-tl-takata-front-airbag-inflator-2009",
+      "make": "Acura",
+      "model": "TL",
+      "years": [
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Takata Front Airbag Inflator Rupture Recall",
+      "howToFix": "Verify recall completion by VIN through Acura or NHTSA. If open, the fix is replacement of the affected inflator or airbag module at no charge through an Acura dealer. Owners should not delay recall service, especially in high-humidity regions where inflator degradation risk was emphasized.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Verify recall completion by VIN through Acura or NHTSA."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "acura-tl-takata-front-airbag-inflator-2009--prescription--0--all-engines"
+      ]
+    },
+    {
+      "issueId": "acura-tlx-9speed-shudder-2015",
+      "make": "Acura",
+      "model": "TLX",
+      "years": [
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020
+      ],
+      "trims": [
+        "A-Spec",
+        "Advance",
+        "Base",
+        "Technology"
+      ],
+      "engines": [
+        "3.5L J35Y6 V6"
+      ],
+      "title": "9-Speed Automatic Transmission Shudder and Harsh Shifting",
+      "howToFix": "Perform a transmission fluid drain and refill with Honda DW-1 ATF. Update the transmission control module (TCM) to the latest calibration from Acura, which improves shift logic and torque converter lockup mapping. Severe cases may require torque converter replacement.",
+      "dtcCodes": [
+        "P0700",
+        "P0730"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0700, P0730"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "acura-tlx-infotainment-lag-crash-2015",
+      "make": "Acura",
+      "model": "TLX",
+      "years": [
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020
+      ],
+      "trims": [
+        "A-Spec",
+        "Advance",
+        "Base",
+        "Technology"
+      ],
+      "engines": [
+        "2.4L K24W7 I4",
+        "3.5L J35Y6 V6"
+      ],
+      "title": "Infotainment System Lag, Freezing, and Crashes",
+      "howToFix": "Update infotainment firmware to the latest version via USB or dealer update. If freezing persists after the update, the head unit may need replacement with the revised hardware. Performing a factory reset can temporarily resolve lag but the issue typically returns.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "acura-tlx-brake-noise-aspec-2018",
+      "make": "Acura",
+      "model": "TLX",
+      "years": [
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "trims": [
+        "A-Spec",
+        "Type S",
+        "Type S PMC"
+      ],
+      "engines": [
+        "2.4L K24W7 I4",
+        "3.0L V6 Turbo",
+        "3.5L J35Y6 V6"
+      ],
+      "title": "Type S Brembo Front Brake Squeal and Premature Pad Wear",
+      "howToFix": "Clean and re-lubricate the caliper slide pins with high-temperature silicone grease. Replace the OEM pads with a ceramic compound pad that offers similar performance with less noise. Apply anti-squeal shims if missing from the factory. Inspect and replace caliper bracket hardware if corroded.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Inspect and replace caliper bracket hardware if corroded."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "acura-tlx-brake-noise-aspec-2018--prescription--0--2-4l-k24w7-i4",
+        "acura-tlx-brake-noise-aspec-2018--prescription--0--3-0l-v6-turbo",
+        "acura-tlx-brake-noise-aspec-2018--prescription--0--3-5l-j35y6-v6",
+        "acura-tlx-brake-noise-aspec-2018--prescription--1--2-4l-k24w7-i4",
+        "acura-tlx-brake-noise-aspec-2018--prescription--1--3-0l-v6-turbo",
+        "acura-tlx-brake-noise-aspec-2018--prescription--1--3-5l-j35y6-v6"
+      ]
+    },
+    {
+      "issueId": "acura-tsx-ac-compressor-clutch-2004",
+      "make": "Acura",
+      "model": "TSX",
+      "years": [
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014
+      ],
+      "trims": [
+        "Base",
+        "Special Edition",
+        "Technology"
+      ],
+      "engines": [
+        "2.4L K24A2 I4",
+        "2.4L K24Z3 I4",
+        "3.5L J35Z6 V6"
+      ],
+      "title": "AC Compressor Clutch Failure",
+      "howToFix": "Replace the AC compressor clutch assembly or the entire compressor unit. Replace the serpentine belt if scored or damaged from the seized bearing. Evacuate and recharge the AC system. Install a new receiver/drier to prevent moisture contamination.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 3,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "acura-tsx-ac-compressor-clutch-2004--prescription--0--2-4l-k24a2-i4",
+        "acura-tsx-ac-compressor-clutch-2004--prescription--0--2-4l-k24z3-i4",
+        "acura-tsx-ac-compressor-clutch-2004--prescription--0--3-5l-j35z6-v6",
+        "acura-tsx-ac-compressor-clutch-2004--prescription--1--2-4l-k24a2-i4",
+        "acura-tsx-ac-compressor-clutch-2004--prescription--1--2-4l-k24z3-i4",
+        "acura-tsx-ac-compressor-clutch-2004--prescription--1--3-5l-j35z6-v6",
+        "acura-tsx-ac-compressor-clutch-2004--prescription--2--2-4l-k24a2-i4",
+        "acura-tsx-ac-compressor-clutch-2004--prescription--2--2-4l-k24z3-i4",
+        "acura-tsx-ac-compressor-clutch-2004--prescription--2--3-5l-j35z6-v6"
+      ]
+    },
+    {
+      "issueId": "acura-vigor-g25a1-timing-belt-interference",
+      "make": "Acura",
+      "model": "Vigor",
+      "years": [
+        1992,
+        1993,
+        1994
+      ],
+      "trims": [
+        "GS",
+        "LS"
+      ],
+      "engines": [
+        "2.5L I5 G25A1"
+      ],
+      "title": "Timing belt + water pump + tensioner at 90k mi — G25A1 is interference, valves bend if it snaps",
+      "howToFix": "Full timing kit replacement: belt + hydraulic tensioner + water pump + idler + all front seals + accessory belts as one job. A complete Aisin or Allied Motor Parts kit for the G25A1 runs $150-250. Labor at an independent: $400-700. Total: $550-950. Dealer: $1,000-1,500. The job takes ~6-8 hours because the 5-cylinder is longitudinally mounted and accessory removal is fiddlier than a transverse V6. ONLY use the OEM Honda tensioner or Aisin — the import-brand tensioners on AliExpress / cheap Amazon kits routinely fail within 10k miles on this engine.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [
+        "communityRecommendations:0",
+        "fixParts:0"
+      ],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 1,
+      "workItemIds": [
+        "acura-vigor-g25a1-timing-belt-interference--existing-fix-part--0--2-5l-i5-g25a1"
+      ]
+    },
+    {
+      "issueId": "acura-zdx-charging-speed-inconsistency-2024",
+      "make": "Acura",
+      "model": "ZDX",
+      "years": [
+        2024,
+        2025,
+        2026
+      ],
+      "trims": [
+        "A-Spec",
+        "Type S"
+      ],
+      "engines": [
+        "Electric (Dual Motor)",
+        "Electric (Single Motor)"
+      ],
+      "title": "DC Fast Charging Speed Inconsistency",
+      "howToFix": "Precondition the battery by using the \"Precondition for DC Fast Charging\" feature in the infotainment system before arriving at a charger. Charge between 10-80% SoC for optimal speeds — the charging rate drops significantly above 80%. Avoid DC fast charging immediately after extended highway driving at high speeds. Acura continues to push OTA calibration updates to improve charging curve behavior.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "acura-zdx-software-ota-bugs-2024",
+      "make": "Acura",
+      "model": "ZDX",
+      "years": [
+        2024,
+        2025,
+        2026
+      ],
+      "trims": [
+        "A-Spec",
+        "Type S"
+      ],
+      "engines": [
+        "Electric (Dual Motor)",
+        "Electric (Single Motor)"
+      ],
+      "title": "Software and OTA Update Bugs",
+      "howToFix": "Keep the vehicle connected to Wi-Fi overnight to allow OTA updates to download and install completely. Perform a full system reset through the Settings menu if the touchscreen becomes unresponsive. Contact Acura Connected Services if OTA updates fail — the dealer can force-push updates via their diagnostic tools. Disable and re-enable the Acura app integration to restore remote connectivity.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "professional-or-dealer-test",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-delegates-procedure",
+          "excerpt": "Contact Acura Connected Services if OTA updates fail — the dealer can force-push updates via their diagnostic tools."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    }
+  ]
+}

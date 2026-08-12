@@ -75,23 +75,31 @@ export const COMPONENT_CATALOG_MAP: ComponentMapping[] = [
   // ── drive belt / timing ──
   { pattern: /\btiming chain\b/i, productMatch: ['valve train components', 'engine components'], partTypeMatch: 'timing chain' },
   { pattern: /\btiming belt\b/i, productMatch: 'belts hoses tensioners', partTypeMatch: 'timing belt' },
-  { pattern: /\b(tensioner|idler pulley)\b/i, productMatch: 'belts hoses tensioners', partTypeMatch: 'tensioner' },
+  { pattern: /\bbalance shaft belt\b/i, productMatch: 'belts hoses tensioners', partTypeMatch: 'balance shaft belt' },
+  { pattern: /\b(tensioner|idler pulleys?)\b/i, productMatch: 'belts hoses tensioners', partTypeMatch: 'tensioner' },
   { pattern: /\b(serpentine belt|drive belt|accessory belt)\b/i, productMatch: 'belts hoses tensioners', partTypeMatch: 'belt' },
 
   // ── engine internals / sealing ──
-  { pattern: /\bhead gasket\b/i, productMatch: ['gaskets sealing systems-engine', 'engine service'], partTypeMatch: 'head gasket' },
+  { pattern: /\bhead gaskets?\b/i, productMatch: ['gaskets sealing systems-engine', 'engine service'], partTypeMatch: 'head gasket' },
   { pattern: /\b(intake manifold)\b/i, productMatch: ['gaskets sealing systems-engine', 'engine components'], partTypeMatch: 'intake manifold' },
   { pattern: /\bexhaust manifold\b/i, productMatch: ['exhaust manifolds', 'gaskets sealing systems-engine', 'exhaust'], partTypeMatch: 'exhaust manifold' },
   { pattern: /\bvalve cover\b/i, productMatch: 'gaskets sealing systems-engine', partTypeMatch: 'valve cover gasket' },
   { pattern: /\b(oil pan)\b/i, productMatch: ['engine components', 'gaskets sealing systems-engine'], partTypeMatch: 'oil pan' },
   { pattern: /\b(lifter|valve lifter|tappet)\b/i, productMatch: 'valve train components', partTypeMatch: 'lifter' },
   { pattern: /\b(rear main seal|crankshaft seal|camshaft seal)\b/i, productMatch: 'gaskets sealing systems-engine', partTypeMatch: 'seal' },
+  { pattern: /\b(crank seals?|cam seals?|front seals?|half.?moon seals?)\b/i, productMatch: 'gaskets sealing systems-engine', partTypeMatch: 'seal' },
+  { pattern: /\bo-?rings?\b/i, productMatch: ['gaskets sealing systems-engine', 'engine service'], partTypeMatch: 'o-ring' },
   { pattern: /\bpcv\b|\bcrankcase vent/i, productMatch: 'crankcase ventilation system', partTypeMatch: 'valve' },
 
   // ── fuel / ignition / emissions ──
   { pattern: /\b(fuel injector|injector)\b/i, productMatch: 'fuel injection system components', partTypeMatch: 'fuel injector' },
   { pattern: /\b(ignition coil|coil pack)\b/i, productMatch: 'ignition', partTypeMatch: 'ignition coil' },
   { pattern: /\bspark plug\b/i, productMatch: 'ignition', partTypeMatch: 'spark plug' },
+  { pattern: /\bignition switch(?: electrical portion)?\b/i, productMatch: 'ignition', partTypeMatch: 'ignition switch', engineIndependent: true },
+  { pattern: /\b(distributor cap|cap rotor|distributor rotor)\b/i, productMatch: 'ignition', partTypeMatch: 'distributor' },
+  { pattern: /\bdistributor\b/i, productMatch: 'ignition', partTypeMatch: 'distributor' },
+  { pattern: /\b(ignition wires?|spark plug wires?)\b/i, productMatch: 'ignition', partTypeMatch: 'spark plug wire' },
+  { pattern: /\b(main relay|fuel pump relay|ignition relay)\b/i, productMatch: 'ignition', partTypeMatch: 'relay', engineIndependent: true },
   { pattern: /\bcatalytic converter\b/i, productMatch: 'catalytic converter', partTypeMatch: 'catalytic converter' },
   { pattern: /\begr\b/i, productMatch: 'egr related components', partTypeMatch: 'egr valve' },
   // Generic EVAP leaks have several possible causes (cap, hose, canister,
@@ -119,6 +127,9 @@ export const COMPONENT_CATALOG_MAP: ComponentMapping[] = [
     unless: /\b(a\/?c|air.?condition\w*|compressor|refrigerant|hvac)\b/i,
   },
   { pattern: /\btransmission (solenoid|valve body)\b/i, productMatch: 'automatic trans components', partTypeMatch: 'solenoid' },
+  { pattern: /\bvalve body\b/i, productMatch: 'automatic trans components', partTypeMatch: 'valve body' },
+  { pattern: /\b(synchronizer|synchro)\b/i, productMatch: ['manual trans components', 'clutch components'], partTypeMatch: 'synchronizer' },
+  { pattern: /\btransmission cooler\b/i, productMatch: 'radiators coolers related components', partTypeMatch: 'transmission oil cooler', engineIndependent: true },
   { pattern: /\b(differential|ring and pinion)\b/i, productMatch: 'differential', partTypeMatch: 'differential', engineIndependent: true },
 
   // ── suspension / steering / brakes ──
@@ -130,6 +141,7 @@ export const COMPONENT_CATALOG_MAP: ComponentMapping[] = [
   { pattern: /\b(coil spring|leaf spring)\b/i, productMatch: 'suspension springs components', partTypeMatch: 'spring', engineIndependent: true },
   { pattern: /\bbrake (rotor|disc)\b/i, productMatch: 'brake drums rotors', partTypeMatch: 'rotor', engineIndependent: true },
   { pattern: /\bbrake pad\b/i, productMatch: 'brake pads shoes', partTypeMatch: 'brake pad', engineIndependent: true },
+  { pattern: /\b(?:quality )?pads\b/i, productMatch: 'brake pads shoes', partTypeMatch: 'brake pad', engineIndependent: true },
   { pattern: /\b(brake caliper|caliper)\b/i, productMatch: 'brake calipers', partTypeMatch: 'caliper', engineIndependent: true },
   { pattern: /\b(master cylinder|wheel cylinder)\b/i, productMatch: 'brake hydraulics', partTypeMatch: 'cylinder', engineIndependent: true },
 
@@ -138,9 +150,10 @@ export const COMPONENT_CATALOG_MAP: ComponentMapping[] = [
   { pattern: /\bstarter\b/i, productMatch: 'starter components', partTypeMatch: 'starter' },
   { pattern: /\b(blower motor resistor)\b/i, productMatch: ['hvac', 'a/c condenser evaporator'], partTypeMatch: 'blower motor resistor', engineIndependent: true },
   { pattern: /\bblower motor\b/i, productMatch: ['hvac', 'a/c condenser evaporator'], partTypeMatch: 'blower motor', engineIndependent: true },
-  { pattern: /\b(a\/?c compressor|air conditioning compressor)\b/i, productMatch: 'a/c clutch compressor', partTypeMatch: 'compressor' },
+  { pattern: /\b(a\/?c compressor|air conditioning compressor|full compressor|compressor unit)\b/i, productMatch: 'a/c clutch compressor', partTypeMatch: 'compressor' },
   { pattern: /\b(condenser)\b/i, productMatch: 'a/c condenser evaporator', partTypeMatch: 'condenser', engineIndependent: true },
   { pattern: /\bevaporator\b/i, productMatch: 'a/c condenser evaporator', partTypeMatch: 'evaporator', engineIndependent: true },
+  { pattern: /\bexpansion valve\b/i, productMatch: ['a/c condenser evaporator', 'hvac'], partTypeMatch: 'expansion valve', engineIndependent: true },
   { pattern: /\b(heater core)\b/i, productMatch: ['hvac', 'radiators coolers related components'], partTypeMatch: 'heater core', engineIndependent: true },
   { pattern: /\b(window regulator)\b/i, productMatch: 'glass windows related components', partTypeMatch: 'window regulator', engineIndependent: true },
   { pattern: /\b(door latch|door lock actuator)\b/i, productMatch: 'body-doors', partTypeMatch: 'latch', engineIndependent: true },
@@ -167,9 +180,12 @@ export const COMPONENT_CATALOG_MAP: ComponentMapping[] = [
   { pattern: /\b(flex pipe|exhaust pipe)\b/i, productMatch: 'exhaust', partTypeMatch: 'exhaust pipe', engineIndependent: true },
   { pattern: /\b(door hinge|hinge pin)\b/i, productMatch: 'body-doors', partTypeMatch: 'hinge', engineIndependent: true },
   { pattern: /\b(motor mount|engine mount|transmission mount)\b/i, productMatch: 'engine components', partTypeMatch: 'mount' },
+  { pattern: /\b(?:hydraulic )?(?:motor|engine|transmission) mounts?\b/i, productMatch: 'engine components', partTypeMatch: 'mount' },
   { pattern: /\b(throttle body)\b/i, productMatch: 'fuel injection system components', partTypeMatch: 'throttle body' },
   { pattern: /\b(turbocharger|turbo)\b/i, productMatch: ['turbocharger supercharger ram air', 'engine components'], partTypeMatch: 'turbocharger' },
+  { pattern: /\bpiston rings?\b/i, productMatch: 'engine components', partTypeMatch: 'piston ring' },
   { pattern: /\b(power steering (hose|line))\b/i, productMatch: 'power steering hoses pumps', partTypeMatch: 'hose' },
+  { pattern: /\b(high.?pressure hoses?|return hoses?)\b/i, productMatch: 'power steering hoses pumps', partTypeMatch: 'hose' },
   // Rack-and-pinion and recirculating-ball steering are different catalog
   // entries and one query cannot reach both. The catalog files a rack as
   // "Rack and Pinion Assembly" — the word "steering" never appears in it — so
@@ -191,6 +207,7 @@ export const COMPONENT_CATALOG_MAP: ComponentMapping[] = [
   { pattern: /\b(window motor|power window)\b/i, productMatch: 'glass windows related components', partTypeMatch: 'window motor', engineIndependent: true },
   { pattern: /\b(wiper motor)\b/i, productMatch: 'windshield wiper arm blades', partTypeMatch: 'wiper motor', engineIndependent: true },
   { pattern: /\b(abs (module|pump|hecu))\b/i, productMatch: 'abs components', partTypeMatch: 'abs', engineIndependent: true },
+  { pattern: /\b(?:abs|alb|na1) modulator\b/i, productMatch: 'abs components', partTypeMatch: 'abs modulator', engineIndependent: true },
   { pattern: /\b(oil cooler)\b/i, productMatch: 'radiators coolers related components', partTypeMatch: 'oil cooler' },
   { pattern: /\b(u.?joint|universal joint|driveshaft)\b/i, productMatch: 'c/v axles boots', partTypeMatch: 'universal joint', engineIndependent: true },
   { pattern: /\b(hub assembly|wheel hub)\b/i, productMatch: 'wheel bearings seals', partTypeMatch: 'hub', engineIndependent: true },

@@ -13,6 +13,7 @@ import fs from 'fs';
 import { Pool } from 'pg';
 import { mapComponent } from '../src/data/component-catalog-map';
 import { extractPrescribedParts } from '../src/lib/prescription';
+import { buildFitmentPacket, type FrozenIssueRecord } from '../src/lib/known-issue-fitment-worklist';
 
 config({ path: '.env.local' });
 
@@ -21,6 +22,8 @@ if (!make) { console.error('usage: build-fitment-worklist.ts <Make> [--out file]
 const outFlag = process.argv.indexOf('--out');
 const slug = make.toLowerCase().replace(/[^a-z0-9]+/g, '-');
 const outFile = outFlag > 0 ? process.argv[outFlag + 1] : `data/_${slug}-fitment-input.json`;
+const snapshotFlag = process.argv.indexOf('--snapshot');
+const snapshotFile = snapshotFlag > 0 ? process.argv[snapshotFlag + 1] : '';
 
 // Same conservative prescribes-a-part test used by scripts/audit-deeplink-gap.js,
 // so the worklist and the gap number describe the same set of issues.
@@ -48,7 +51,48 @@ function prescribesAFix(solution: string): boolean {
   return PART.test(s) && extractPrescribedParts(s).length > 0;
 }
 
-(async () => {
+if (snapshotFile) (async () => {
+  const snapshot = JSON.parse(fs.readFileSync(snapshotFile, 'utf8')) as {
+    snapshotKind: string;
+    snapshotHash: string;
+    records: FrozenIssueRecord[];
+  };
+  if (snapshot.snapshotKind !== 'known-issues-catalog-deeplinks') throw new Error('Invalid frozen snapshot kind');
+  if (!/^[a-f0-9]{64}$/i.test(snapshot.snapshotHash || '')) throw new Error('Frozen snapshot has no valid snapshotHash');
+  const packet = buildFitmentPacket(snapshot.records, make);
+  if (!packet.ledger.length) throw new Error(`Frozen snapshot has no published ${make} issues`);
+  const outputDir = outFlag > 0
+    ? null
+    : `data/known-issue-part-audit/${slug}/${snapshot.snapshotHash}`;
+  const worklistFile = outputDir ? `${outputDir}/02-fitment-worklist.json` : outFile;
+  const ledgerFile = outputDir ? `${outputDir}/01-disposition-ledger.json` : `${outFile}.ledger.json`;
+  fs.mkdirSync(outputDir || '.', { recursive: true });
+  fs.writeFileSync(worklistFile, JSON.stringify({
+    schemaVersion: 1,
+    artifactKind: 'known-issue-fitment-worklist',
+    snapshotHash: snapshot.snapshotHash,
+    make,
+    guardrail: 'Catalog fitment proves application only; repair-role evidence requires independent review.',
+    issueCount: packet.ledger.length,
+    componentApplicationCount: packet.entries.length,
+    entries: packet.entries,
+  }, null, 2));
+  fs.writeFileSync(ledgerFile, JSON.stringify({
+    schemaVersion: 1,
+    artifactKind: 'known-issue-make-disposition-ledger',
+    snapshotHash: snapshot.snapshotHash,
+    make,
+    issueCount: packet.ledger.length,
+    issues: packet.ledger,
+  }, null, 2));
+  console.log(`${make}: ${packet.ledger.length} published | ${packet.entries.length} component/application rows`);
+  console.log(`  worklist : ${worklistFile}`);
+  console.log(`  ledger   : ${ledgerFile}`);
+})().catch((e) => { console.error('ERR', e.message); process.exit(1); });
+
+// Legacy live-database mode remains available only when an explicit frozen
+// snapshot was not supplied. Make packets always use the branch above.
+if (!snapshotFile) (async () => {
   const pool = new Pool({ connectionString: process.env.DATABASE_URL, max: 2 });
   pool.on('error', () => {});
   const { rows } = await pool.query(

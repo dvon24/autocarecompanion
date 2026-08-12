@@ -23,10 +23,11 @@ interface CategorySectionProps {
   defaultExpanded?: boolean;
   defaultCardExpanded?: boolean;
   vehicleInfo?: {
-    year: number;
+    year?: number | null;
     make: string;
     model: string;
     trim?: string;
+    engine?: string;
   };
   relatedByIssueId?: Record<string, RelatedIssueVehicle[]>;
   /** See KnownIssueCard.linkableDtcCodes — pass-through. */

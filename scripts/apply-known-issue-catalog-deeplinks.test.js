@@ -310,6 +310,20 @@ test('schema v2 requires every public field plus published human approval', () =
   assert.ok(validateManifest(notPublished).some((error) => /status must remain published/.test(error)));
 });
 
+test('schema v2 grandfathers only byte-preserved legacy citation types', () => {
+  const row = baseRow();
+  row.citations = [{ type: 'article', title: 'Legacy published source', url: 'https://example.com/product/12345' }];
+  const unchanged = fullRecordManifest(row);
+  assert.deepEqual(validateManifest(unchanged), []);
+
+  const changed = fullRecordManifest(row);
+  changed.issues[0].after.citations = [
+    ...changed.issues[0].after.citations,
+    { type: 'article', title: 'New unsupported source', url: 'https://example.com/product/67890' },
+  ];
+  assert.ok(validateManifest(changed).some((error) => /after\.citations\[0\]\.type/.test(error)));
+});
+
 test('schema v2 never archives a published issue through the catalog audit', () => {
   const archivedRemoval = fullRecordManifest(baseRow(), 'archive-duplicate', 'remove');
   archivedRemoval.issues[0].after.status = 'archived';

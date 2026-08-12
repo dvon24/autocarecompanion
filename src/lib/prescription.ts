@@ -27,14 +27,15 @@ const PRESCRIBE = /\b(?:replace|replacing|replacement of|install|installing|swap
  * replacing". These appear constantly in diagnostic guidance and each one names
  * a part the article is steering you AWAY from.
  */
-const NEGATED_BEFORE = /\b(?:before|prior to|instead of|rather than|without|avoid|unnecessar\w*|don'?t|do not|never|no need to|no need for|no reason to|no benefit in|little benefit in|not|no)\s+(?:\w+\s+){0,2}$/i;
+const NEGATED_BEFORE = /\b(?:before|after|prior to|instead of|rather than|without|avoid|unnecessar\w*|don'?t|do not|never|no need to|no need for|no reason to|no benefit in|little benefit in|not|no)\s+(?:\w+\s+){0,2}$/i;
 const NEGATED_AFTER = /\b(?:is|are|was|were|be|seems?|remains?)?\s*(?:not|never)\b|\b(?:unnecessar\w*|avoid\w*|prohibit\w*|inadvis\w*|contraindicat\w*|unwarrant\w*|not\s+(?:recommended|required|needed|advised|appropriate)|little\s+benefit)\b/i;
+const NON_PRESCRIPTIVE_BEFORE = /\b(?:cost|price|estimate|labor|time)\s+(?:for\s+)?$/i;
 
 /** Words that qualify a part without identifying it. */
 const NOISE = new Set([
   'the', 'a', 'an', 'this', 'that', 'these', 'those', 'its', 'his', 'her', 'their',
   'failed', 'faulty', 'bad', 'worn', 'old', 'new', 'entire', 'complete', 'whole',
-  'affected', 'damaged', 'leaking', 'cracked', 'defective', 'original', 'oem',
+  'affected', 'damaged', 'leaking', 'cracked', 'defective', 'original', 'oem', 'assembly',
   'genuine', 'updated', 'revised', 'improved', 'correct', 'proper', 'both', 'all',
   'any', 'each', 'one', 'two', 'four', 'six', 'eight',
   'again', 'usually', 'typically', 'often', 'simply', 'just',
@@ -45,7 +46,18 @@ const NOISE = new Set([
 const VAGUE = new Set(['it', 'them', 'this', 'that', 'one', 'unit', 'part', 'component', 'item', 'piece']);
 
 /** Trailing words that start a new thought rather than continue the part name. */
-const STOP = /\b(?:and|with|using|per|as|if|when|after|before|then|to|for|on|in|at|from|because|since|which|that|plus|along)\b/i;
+const STOP = /\b(?:with|using|per|as|if|when|where|after|before|then|to|for|on|in|at|from|of|under|because|since|which|that|they|is|are|run|diy|plus|along)\b/i;
+const NON_PART_ACTION = /^(?:replace|install|inspect|check|test|diagnos|clean|flush|bleed|verify|confirm|measure|machine|resurface|repair|service|reprogram|program|reset|tighten|remove)\b/i;
+const STANDALONE_PART = /^(?:pump|sensor|hub|mount|mounts|thermostat|radiator|condenser|compressor|alternator|starter|battery|belt|tensioner|pulley|bearing|seal|seals|gasket|gaskets|hose|hoses|filter|valve|module|switch|motor|actuator|solenoid|coil|rotor|pads|caliper|cylinder|clutch|converter|manifold|injector|plugs|housing|bracket|kit|latch|blower|core|tank|cap|pipe|shaft|differential|turbo|intercooler|lifter|piston|transmission|distributor|dashboard|interlock)$/i;
+const SHARED_NOUN_QUALIFIER = /^(?:cam|crank|front|rear|upper|lower|left|right)$/i;
+const BUYABLE_NOUN = /\b(?:pump|sensor|hub|accumulator|thermostat|radiator|condenser|compressor|alternator|starter|battery|belt|tensioner|pulley|bearing|seal|gasket|hose|filter|valve|body|module|switch|motor|actuator|solenoid|coil|rotor|pad|caliper|cylinder|clutch|converter|manifold|injector|plug|housing|bracket|kit|latch|blower|core|tank|cap|pipe|shaft|differential|turbo|intercooler|lifter|piston|ring|transmission|distributor|dashboard|interlock|wire|synchronizer|o-ring|relay|nut|mount|brush|modulator|engine|head)(?:s|es)?\b/i;
+
+export interface PrescribedRepairComponent {
+  component: string;
+  evidence: string;
+  diagnosisDependent: boolean;
+  condition?: string;
+}
 
 function cleanPhrase(raw: string): string {
   const words = raw
@@ -58,13 +70,14 @@ function cleanPhrase(raw: string): string {
 
   const out: string[] = [];
   for (const w of words) {
+    if ((STOP.test(w) || VAGUE.has(w)) && out.length === 0) return '';
     if (STOP.test(w) && out.length > 0) break;   // stop at a new clause
     if (NOISE.has(w)) continue;
     out.push(w);
     // Part names are short. Beyond four significant words we are collecting
     // sentence, not part, and every extra token over-constrains the catalog
     // query into returning nothing.
-    if (out.length >= 4) break;
+    if (out.length >= 6) break;
   }
   return out.join(' ').trim();
 }
@@ -74,33 +87,67 @@ function cleanPhrase(raw: string): string {
  * Returns [] when the solution only diagnoses — which is a real answer, not a
  * failure: plenty of issues have no part to sell.
  */
-export function extractPrescribedParts(solution: string): string[] {
+export function extractPrescriptionComponents(solution: string): PrescribedRepairComponent[] {
   const text = String(solution || '');
   if (!text) return [];
 
-  const found: string[] = [];
+  const found: PrescribedRepairComponent[] = [];
   PRESCRIBE.lastIndex = 0;
   let m: RegExpExecArray | null;
   while ((m = PRESCRIBE.exec(text))) {
     const before = text.slice(Math.max(0, m.index - 40), m.index);
-    if (NEGATED_BEFORE.test(before)) continue;
+    if (NEGATED_BEFORE.test(before) || NON_PRESCRIPTIVE_BEFORE.test(before)) continue;
 
     // Truncate at the sentence boundary FIRST. "Replace crankshaft position
     // sensor. Inspect the connector." otherwise yields "crankshaft position
     // sensor inspect", which queries nothing.
-    const after = text
-      .slice(m.index + m[0].length, m.index + m[0].length + 90)
-      .split(/[.;!?]/)[0]!;
-    if (NEGATED_AFTER.test(after)) continue;
-    const phrase = cleanPhrase(after);
-    if (!phrase) continue;
+    const after = text.slice(m.index + m[0].length).split(/[.;!?\u2013\u2014]/)[0]!.slice(0, 300);
+    if (NEGATED_AFTER.test(after.replace(/\([^)]*\)/g, ' '))) continue;
+    const sentenceStart = Math.max(
+      text.lastIndexOf('.', m.index - 1),
+      text.lastIndexOf(';', m.index - 1),
+      text.lastIndexOf('!', m.index - 1),
+      text.lastIndexOf('?', m.index - 1),
+    ) + 1;
+    const beforeInSentence = text.slice(sentenceStart, m.index).trim();
+    const condition = beforeInSentence.match(/\b(?:if|when|once|only after|after)\b[\s\S]*$/i)?.[0]?.trim()
+      || after.match(/\b(?:if|when|only if|only when)\b[\s\S]*$/i)?.[0]?.trim();
+    const objects = after
+      .replace(/\b(?:as a set|as an assembly|together)\b.*$/i, '')
+      .replace(/\([^)]*\)/g, ' ')
+      .replace(/\bas\s+(?:a|an|the)?\s*(?:complete|full|new)?\s*/i, ' ')
+      .split(/\s*,\s*(?:and\s+)?|\s+(?:and|or)\s+/i);
+
+    for (let index = 0; index + 1 < objects.length; index += 1) {
+      const qualifier = objects[index]!.trim().replace(/^(?:the|all|both)\s+/i, '');
+      const sharedNoun = objects[index + 1]!.trim().match(/\b(seals?|gaskets?|hoses?|belts?|pulleys?|bearings?)\b/i)?.[1];
+      if (SHARED_NOUN_QUALIFIER.test(qualifier) && sharedNoun) objects[index] = `${qualifier} ${sharedNoun}`;
+    }
+
+    for (const object of objects) {
+      if (NON_PART_ACTION.test(object.trim())) break;
+      const phrase = cleanPhrase(object);
+      if (!phrase) continue;
     // A single word is usually too vague ("replace it") — but not always: an
     // acronym IS the part name, and "replacing the FPDM" is the most precise
     // prescription in its whole article.
-    if (!phrase.includes(' ') && VAGUE.has(phrase)) continue;
-    found.push(phrase);
+      const rawLooksLikeAcronym = /^[^a-z]*[A-Z][A-Z0-9/-]{1,}\b/.test(object.trim().replace(/^(?:the|a|an)\s+/i, ''));
+      if (!BUYABLE_NOUN.test(phrase) && !rawLooksLikeAcronym) continue;
+      if (!phrase.includes(' ') && !STANDALONE_PART.test(phrase) && !rawLooksLikeAcronym) continue;
+      found.push({
+        component: phrase,
+        evidence: `${m[0]}${after}`.trim(),
+        diagnosisDependent: Boolean(condition),
+        ...(condition ? { condition } : {}),
+      });
+    }
   }
 
-  // De-duplicate, preserving order of appearance.
-  return [...new Set(found)];
+  const unique = new Map<string, PrescribedRepairComponent>();
+  for (const item of found) if (!unique.has(item.component)) unique.set(item.component, item);
+  return [...unique.values()];
+}
+
+export function extractPrescribedParts(solution: string): string[] {
+  return extractPrescriptionComponents(solution).map((item) => item.component);
 }

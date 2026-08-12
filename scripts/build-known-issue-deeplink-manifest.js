@@ -43,6 +43,30 @@ function indexesForClaimIds(ids, prefix) {
   }));
 }
 
+function componentKey(value) {
+  return String(value || '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+}
+
+function mergeFixParts(existing, merges) {
+  const out = clone(existing || []);
+  for (const merge of merges || []) {
+    if (!merge || typeof merge !== 'object' || !merge.part || typeof merge.part !== 'object') {
+      throw new Error('mergeFixParts entries require a part object');
+    }
+    const wanted = componentKey(merge.component || merge.part.component);
+    if (!wanted) throw new Error('mergeFixParts entries require a component key');
+    if (componentKey(merge.part.component) !== wanted) {
+      throw new Error(`mergeFixParts component mismatch: ${merge.component} vs ${merge.part.component}`);
+    }
+    const matches = out.map((part, index) => componentKey(part && part.component) === wanted ? index : -1)
+      .filter((index) => index >= 0);
+    if (matches.length > 1) throw new Error(`mergeFixParts component is ambiguous: ${wanted}`);
+    if (matches.length === 1) out[matches[0]] = clone(merge.part);
+    else out.push(clone(merge.part));
+  }
+  return out;
+}
+
 function applyDecision(record, decision, schemaVersion = 1) {
   const after = baseAfter(record, schemaVersion);
   const dropCommunity = indexesForClaimIds(decision.dropCommunityClaimIds, 'communityRecommendations');
@@ -55,7 +79,11 @@ function applyDecision(record, decision, schemaVersion = 1) {
     after.fixParts = after.fixParts.map((part, index) => clear.has(index) ? { ...part, buyLinks: [] } : part);
   }
   if (decision.replaceCommunityRecommendations) after.communityRecommendations = clone(decision.replaceCommunityRecommendations);
+  if (decision.replaceFixParts && decision.mergeFixParts) {
+    throw new Error(`Decision ${decision.id || '(unknown)'} cannot combine replaceFixParts and mergeFixParts`);
+  }
   if (decision.replaceFixParts) after.fixParts = clone(decision.replaceFixParts);
+  if (decision.mergeFixParts) after.fixParts = mergeFixParts(after.fixParts, decision.mergeFixParts);
   if (decision.title !== undefined) after.title = decision.title;
   if (decision.years !== undefined) after.years = clone(decision.years);
   if (decision.trims !== undefined) after.trims = clone(decision.trims);
@@ -148,4 +176,4 @@ if (require.main === module) {
   }
 }
 
-module.exports = { applyDecision, baseAfter, buildManifest };
+module.exports = { applyDecision, baseAfter, buildManifest, componentKey, mergeFixParts };

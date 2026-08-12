@@ -55,6 +55,9 @@ const PROJECT_ROOT = path.resolve(__dirname, '..');
 require('dotenv').config({ path: path.join(PROJECT_ROOT, '.env.local') });
 
 const CACHE_FILE = path.join(PROJECT_ROOT, 'data', '_smtp-cache.json');
+const SEED_CACHE_FILE = process.env.SHOWMETHEPARTS_SEED_CACHE
+  ? path.resolve(process.env.SHOWMETHEPARTS_SEED_CACHE)
+  : '';
 
 /** Part numbers are printed inconsistently (K750744, K-750744, k750744). */
 function normalizePn(value) {
@@ -64,7 +67,10 @@ function normalizePn(value) {
 // ── a resumable cache, so a re-run costs almost nothing ───────────────────────
 let cache = {};
 try { cache = JSON.parse(fs.readFileSync(CACHE_FILE, 'utf8')); } catch { cache = {}; }
+let seedCache = {};
+try { seedCache = SEED_CACHE_FILE ? JSON.parse(fs.readFileSync(SEED_CACHE_FILE, 'utf8')) : {}; } catch { seedCache = {}; }
 let cacheDirty = false;
+const inFlight = new Map();
 
 function saveCache() {
   if (!cacheDirty) return;
@@ -75,10 +81,16 @@ function saveCache() {
 
 async function lookup(key, params, itemTag) {
   if (cache[key]) return cache[key];
-  const items = parseItems(await requestXml(params), itemTag);
-  cache[key] = items;
-  cacheDirty = true;
-  return items;
+  if (seedCache[key]) return seedCache[key];
+  if (inFlight.has(key)) return inFlight.get(key);
+  const pending = (async () => {
+    const items = parseItems(await requestXml(params), itemTag);
+    cache[key] = items;
+    cacheDirty = true;
+    return items;
+  })();
+  inFlight.set(key, pending);
+  try { return await pending; } finally { inFlight.delete(key); }
 }
 
 const norm = (value) => String(value || '').toLowerCase().replace(/[^a-z0-9]/g, '');
@@ -395,14 +407,37 @@ async function fittingPartsForModel({ year, makeRow, modelRow, productMatch, eng
   return { covered: true, reason: '', parts: out, rawCount, usedCategory, usedTier, resolvedEngines };
 }
 
-async function verifyEntry(entry, yearCap) {
-  // Sample ACROSS the span, not the first N. Taking the earliest years only
-  // would test a 1990-1997 article exclusively at 1990-1992 and then report a
-  // `fitment.years` that silently excludes most of the article's own range.
+async function verifyEntry(entry) {
+  if (entry.mappingStatus === 'unmapped' || !Array.isArray(entry.productMatch) || entry.productMatch.length === 0) {
+    return {
+      id: entry.id,
+      workItemId: entry.workItemId || entry.prescriptionKey || entry.id,
+      prescriptionKey: entry.prescriptionKey || null,
+      component: entry.component || entry.partTypeMatch || '',
+      repairRoleEvidence: entry.repairRoleEvidence || entry.prescription || null,
+      articleScope: entry.articleScope || null,
+      existingFixParts: Array.isArray(entry.existingFixParts) ? entry.existingFixParts : [],
+      vehicle: `${entry.years?.[0] || '?'} ${entry.make} ${entry.model}`,
+      quotedPartNumber: entry.partNumber || '',
+      verdict: 'unmapped',
+      fitmentYears: [],
+      yearsChecked: [],
+      partTypeTierUsed: '',
+      partTypeMatch: entry.partTypeMatch || '',
+      mappedFrom: entry.mappedFrom || entry.source || 'prescription',
+      engineMatch: entry.engineMatch || null,
+      catalogModelsByYear: {},
+      catalogApplicationsByYear: {},
+      candidatesByYear: {},
+      notes: ['No reviewed component-to-catalog mapping; no catalog request was made.'],
+    };
+  }
+  // A published fitment claim is only as complete as the years we actually
+  // queried. Older versions sampled long spans, which made an unqueried year
+  // look equivalent to a catalog-confirmed year. The make-by-make audit is
+  // exhaustive: every declared year is queried and any API gap stays visible.
   const allYears = [...new Set(entry.years || [])].sort((a, b) => a - b);
-  const years = allYears.length <= yearCap
-    ? allYears
-    : Array.from({ length: yearCap }, (_, i) => allYears[Math.round((i * (allYears.length - 1)) / (yearCap - 1))]);
+  const years = allYears;
   const target = normalizePn(entry.partNumber);
   const fitmentYears = [];
   const candidatesByYear = {};
@@ -461,6 +496,12 @@ async function verifyEntry(entry, yearCap) {
 
   return {
     id: entry.id,
+    workItemId: entry.workItemId || entry.prescriptionKey || entry.id,
+    prescriptionKey: entry.prescriptionKey || null,
+    component: entry.component || entry.partTypeMatch || '',
+    repairRoleEvidence: entry.repairRoleEvidence || entry.prescription || null,
+    articleScope: entry.articleScope || null,
+    existingFixParts: Array.isArray(entry.existingFixParts) ? entry.existingFixParts : [],
     vehicle: `${years[0] || '?'} ${entry.make} ${entry.model}`,
     quotedPartNumber: entry.partNumber,
     verdict,
@@ -469,8 +510,9 @@ async function verifyEntry(entry, yearCap) {
     // Empty when the article's own wording matched the catalog as written.
     partTypeTierUsed,
     partTypeMatch: entry.partTypeMatch,
-    mappedFrom: entry.mappedFrom,
+    mappedFrom: entry.mappedFrom || entry.source || 'prescription',
     engineMatch: entry.engineMatch || null,
+    declaredEngine: entry.declaredEngine || null,
     catalogModelsByYear,
     catalogApplicationsByYear,
     candidatesByYear,
@@ -487,39 +529,47 @@ async function main() {
   const inFile = arg('--in', 'data/_fitment-worklist.json');
   const outFile = arg('--out', 'data/_fitment-verdicts.json');
   const limit = Number(arg('--limit', '0')) || Infinity;
-  const yearCap = Number(arg('--year-cap', '6'));
+  const concurrency = Math.max(1, Math.min(8, Number(arg('--concurrency', '4')) || 4));
+  if (args.includes('--year-cap')) {
+    throw new Error('--year-cap sampling is disabled: make audits must query every declared year');
+  }
 
   const worklist = JSON.parse(fs.readFileSync(path.resolve(PROJECT_ROOT, inFile), 'utf8'));
   const entries = (Array.isArray(worklist) ? worklist : worklist.entries).slice(0, limit);
-  console.log(`verifying ${entries.length} parts, up to ${yearCap} years each`);
+  console.log(`verifying ${entries.length} component prescriptions across every declared year`);
 
-  const results = [];
+  const results = new Array(entries.length);
   const writeReport = () => {
-    const tally = results.reduce((acc, r) => ({ ...acc, [r.verdict]: (acc[r.verdict] || 0) + 1 }), {});
+    const completed = results.filter(Boolean);
+    const tally = completed.reduce((acc, r) => ({ ...acc, [r.verdict]: (acc[r.verdict] || 0) + 1 }), {});
     fs.writeFileSync(path.resolve(PROJECT_ROOT, outFile), JSON.stringify({
       checkedAt: new Date().toISOString(),
       source: 'ShowMeTheParts subscription API',
       guardrail: 'Catalog fitment proves the part FITS. It never proves the part REPAIRS the issue.',
-      complete: results.length === entries.length,
-      progress: `${results.length}/${entries.length}`,
+      complete: completed.length === entries.length,
+      progress: `${completed.length}/${entries.length}`,
       tally,
-      results,
+      results: completed,
     }, null, 1));
     return tally;
   };
 
-  for (const [index, entry] of entries.entries()) {
-    const result = await verifyEntry(entry, yearCap);
-    results.push(result);
-    saveCache();
-    // Write after every entry. A long run WILL be interrupted, and losing an
-    // hour of catalog lookups to a kill signal is avoidable.
-    writeReport();
-    console.log(
-      `  [${index + 1}/${entries.length}] ${result.verdict.padEnd(10)} ${entry.partNumber || '(none)'} — ${result.vehicle}` +
-      (result.verdict === 'confirmed' ? ` (fits ${result.fitmentYears.join(', ')})` : ''),
-    );
-  }
+  let nextIndex = 0;
+  const worker = async () => {
+    while (nextIndex < entries.length) {
+      const index = nextIndex++;
+      const entry = entries[index];
+      const result = await verifyEntry(entry);
+      results[index] = result;
+      saveCache();
+      writeReport();
+      console.log(
+        `  [${index + 1}/${entries.length}] ${result.verdict.padEnd(10)} ${entry.partNumber || '(none)'} — ${result.vehicle}` +
+        (result.verdict === 'confirmed' ? ` (fits ${result.fitmentYears.join(', ')})` : ''),
+      );
+    }
+  };
+  await Promise.all(Array.from({ length: Math.min(concurrency, entries.length) }, worker));
 
   const tally = writeReport();
   saveCache();
@@ -545,4 +595,4 @@ function serializeCandidate(p) {
   };
 }
 
-module.exports = { looserPartTypeTier, resolveModels, selectOrderedCategory, serializeCandidate };
+module.exports = { looserPartTypeTier, resolveModels, selectOrderedCategory, serializeCandidate, verifyEntry };

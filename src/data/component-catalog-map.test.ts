@@ -109,3 +109,23 @@ test('an A/C compressor clutch is not a transmission clutch', () => {
 test('a real clutch article still maps to a clutch', () => {
   assert.equal(mapComponent('Manual Transmission Clutch Judder')?.partTypeMatch, 'clutch');
 });
+
+test('Acura repair components map to catalog families without a generic fallback', () => {
+  assert.equal(mapComponent('crank seals')?.partTypeMatch, 'seal');
+  assert.equal(mapComponent('O-rings')?.partTypeMatch, 'o-ring');
+  assert.equal(mapComponent('ignition wires')?.partTypeMatch, 'spark plug wire');
+  assert.equal(mapComponent('main relay')?.partTypeMatch, 'relay');
+  assert.equal(mapComponent('transmission valve body')?.partTypeMatch, 'solenoid');
+  assert.equal(mapComponent('aftermarket transmission cooler')?.partTypeMatch, 'transmission oil cooler');
+  assert.equal(mapComponent('power steering return hose')?.partTypeMatch, 'hose');
+  assert.equal(mapComponent('A/C expansion valve')?.partTypeMatch, 'expansion valve');
+  assert.equal(mapComponent('balance shaft belt')?.partTypeMatch, 'balance shaft belt');
+  assert.equal(mapComponent('idler pulleys kit')?.partTypeMatch, 'tensioner');
+  assert.equal(mapComponent('head gaskets')?.partTypeMatch, 'head gasket');
+  assert.equal(mapComponent('ignition switch electrical portion')?.partTypeMatch, 'ignition switch');
+  assert.equal(mapComponent('hydraulic motor mounts')?.partTypeMatch, 'mount');
+  assert.equal(mapComponent('1991-1999 NA1 modulator')?.partTypeMatch, 'abs modulator');
+  assert.equal(mapComponent('piston rings')?.partTypeMatch, 'piston ring');
+  assert.equal(mapComponent('quality pads')?.partTypeMatch, 'brake pad');
+  assert.equal(mapComponent('full compressor')?.partTypeMatch, 'compressor');
+});

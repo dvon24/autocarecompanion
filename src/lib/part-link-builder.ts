@@ -47,6 +47,11 @@ export interface BuildInput {
   partNumber: string;
   supplier?: string;
   component?: string;
+  make?: string;
+  model?: string;
+  year?: number;
+  engine?: string;
+  trim?: string;
   /** True when the issue is covered by an open recall with a free remedy. */
   recallFirst?: boolean;
 }

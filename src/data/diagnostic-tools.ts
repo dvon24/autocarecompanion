@@ -45,7 +45,8 @@ export type Procedure =
   | 'fuel-pressure'
   | 'compression-test'
   | 'cooling-pressure-test'
-  | 'multimeter-basic';
+  | 'multimeter-basic'
+  | 'oil-pressure';
 
 export type ToolKind = 'scanner' | 'meter' | 'tester';
 
@@ -181,7 +182,7 @@ export const diagnosticTools: DiagnosticTool[] = [
       'Also reads DC volts for voltage-drop testing',
     ],
     codeFamilies: [],
-    procedures: ['parasitic-draw', 'multimeter-basic'],
+    procedures: ['parasitic-draw'],
     tier: 'midrange',
     productUrl: 'https://www.amazon.com/UNI-T-Digital-Handheld-Resistance-Capacitance/dp/B0188WD1NE?tag=au7o-20',
   },
@@ -203,6 +204,120 @@ export const diagnosticTools: DiagnosticTool[] = [
     procedures: ['battery-state-of-health'],
     tier: 'budget',
     productUrl: 'https://www.amazon.com/ANCEL-BA101-Professional-Automotive-Motorcycle/dp/B01M0ARG3X?tag=au7o-20',
+  },
+  {
+    id: 'autoline-hypersmoke',
+    kind: 'tester',
+    name: 'AutoLine Pro HyperSmoke Automotive Smoke Machine',
+    brand: 'AutoLine Pro',
+    priceRange: '$60–$150',
+    priceAnchor: 70,
+    description:
+      'A direct-from-manufacturer smoke machine for leak tests explicitly prescribed by an article. Its EVAP mode is regulated to 0–1 PSI; higher-pressure modes are for intake, exhaust and boost diagnostics, not sealed EVAP systems.',
+    features: [
+      'Smoke-tests EVAP, vacuum, intake and exhaust leaks',
+      'Dedicated 0–1 PSI EVAP mode',
+      'Built-in compressor and 12 V power',
+    ],
+    codeFamilies: [],
+    procedures: ['smoke-test'],
+    tier: 'midrange',
+    productUrl: 'https://www.autolinepro.com/products/autoline-pro-hypersmoke-machine',
+  },
+  {
+    id: 'otc-5630-fuel-pressure',
+    kind: 'tester',
+    name: 'OTC 5630 Fuel Pressure Tester Kit',
+    brand: 'OTC Tools',
+    priceRange: 'See retailer',
+    priceAnchor: 90,
+    description:
+      'A 0–100 psi mechanical tester for gasoline fuel-system pressure checks. It is not a diesel, flex-fuel or direct-injection high-pressure-rail tester; the article must explicitly call for a compatible fuel-pressure test.',
+    features: [
+      '0–100 psi / 0–700 kPa gauge',
+      'Pressure-relief valve and brass fittings',
+      'For compatible low-pressure gasoline fuel systems',
+    ],
+    codeFamilies: [],
+    procedures: ['fuel-pressure'],
+    tier: 'midrange',
+    productUrl: 'https://www.otctools.com/products/fuel-pressure-tester-kit',
+  },
+  {
+    id: 'otc-5606-compression',
+    kind: 'tester',
+    name: 'OTC 5606 Compression Tester Kit',
+    brand: 'OTC Tools',
+    priceRange: 'See retailer',
+    priceAnchor: 130,
+    description:
+      'A gasoline-engine compression tester with 10, 12, 14 and 18 mm adapters. It must not be presented for diesel compression or as a substitute for a cylinder leak-down test.',
+    features: [
+      '0–300 psi / 0–2100 kPa gauge',
+      'Adapters for common gasoline spark-plug threads',
+      'Long flexible hose for confined engine bays',
+    ],
+    codeFamilies: [],
+    procedures: ['compression-test'],
+    tier: 'midrange',
+    productUrl: 'https://www.otctools.com/products/compression-tester-kit',
+  },
+  {
+    id: 'otc-6977-cooling-pressure',
+    kind: 'tester',
+    name: 'OTC 6977 Universal Cooling System Pressure Test Kit',
+    brand: 'OTC Tools',
+    priceRange: 'See retailer',
+    priceAnchor: 280,
+    description:
+      'A cooling-system pressure tester that connects through supplied hose and cap adapters. The owner still has to confirm an included adapter matches the vehicle before purchase.',
+    features: [
+      'Hand pump with integrated pressure gauge',
+      'Four hose adapters plus radiator-cap adapter',
+      'Schrader-valve fittings reduce spray at disconnect',
+    ],
+    codeFamilies: [],
+    procedures: ['cooling-pressure-test'],
+    tier: 'advanced',
+    productUrl: 'https://www.otctools.com/products/universal-cooling-system-pressure-test-kit',
+  },
+  {
+    id: 'fluke-15b-plus',
+    kind: 'meter',
+    name: 'Fluke 15B+ Digital Multimeter',
+    brand: 'Fluke',
+    priceRange: '$130–$150',
+    priceAnchor: 136,
+    description:
+      'A general-purpose digital multimeter for article-prescribed voltage, current, resistance and continuity checks. It is not an oscilloscope and should not be inferred for waveform diagnosis the article does not name.',
+    features: [
+      'AC/DC voltage and current measurement',
+      'Resistance, continuity and frequency checks',
+      'Includes test leads',
+    ],
+    codeFamilies: [],
+    procedures: ['multimeter-basic'],
+    tier: 'midrange',
+    productUrl: 'https://www.fluke.com/en-us/product/electrical-testing/digital-multimeters/fluke-15b-plus',
+  },
+  {
+    id: 'otc-5610-oil-pressure',
+    kind: 'tester',
+    name: 'OTC 5610 Transmission/Engine Oil Pressure Kit',
+    brand: 'OTC Tools',
+    priceRange: 'See retailer',
+    priceAnchor: 250,
+    description:
+      'A mechanical oil-pressure kit with high- and low-pressure gauges and 13 adapters. The owner must confirm the correct engine-port adapter and factory pressure specification before connecting it.',
+    features: [
+      '0–100 psi and 0–400 psi gauges',
+      'Thirteen adapters for domestic and import applications',
+      'Supports static and road testing when safely installed',
+    ],
+    codeFamilies: [],
+    procedures: ['oil-pressure'],
+    tier: 'advanced',
+    productUrl: 'https://www.otctools.com/products/transmissionengine-oil-pressure-kit',
   },
 ];
 
@@ -230,15 +345,23 @@ export function codeFamilyOf(code: string): CodeFamily | null {
     : null;
 }
 
+export interface DiagnosticVehicleContext {
+  engines?: string[];
+}
+
 /**
  * Procedures a solution calls for, read from its own wording. Deliberately
  * conservative: an unmatched solution surfaces no tool rather than a guess.
  */
 const PROCEDURE_PATTERNS: Array<[Procedure, RegExp]> = [
   ['parasitic-draw', /\b(?:perform|run|do|conduct) (?:an? )?parasitic (?:draw|drain)(?: test)?\b|\b(?:measure|test|check|diagnose) (?:for )?(?:the )?parasitic (?:draw|drain)\b|\bcurrent draw test\b|\blow-current (?:dc )?clamp meter\b/i],
-  ['battery-state-of-health', /\b(?:perform|run|do|conduct) (?:an? )?battery (?:state[- ]of[- ]health|conductance|cca|internal resistance) test\b|\btest (?:the )?battery (?:state[- ]of[- ]health|conductance|cca|internal resistance)\b/i],
-  // Unsupported procedures intentionally have no matcher until a verified tool
-  // exists. Recognizing them while rendering nothing creates false coverage.
+  ['battery-state-of-health', /\b(?:perform|run|do|conduct) (?:an? )?battery (?:state[- ]of[- ]health|conductance|cca|internal resistance) test\b|\btest (?:the )?battery(?:'s)? (?:state[- ]of[- ]health|conductance|cca|internal resistance)\b/i],
+  ['smoke-test', /\b(?:perform|run|do|conduct|use) (?:an? )?(?:automotive )?smoke test\b|\bsmoke[- ]test (?:the )?(?:evap|intake|vacuum|exhaust|turbo|boost|system)\b|\buse (?:an? )?(?:automotive )?smoke machine\b/i],
+  ['fuel-pressure', /\b(?:perform|run|do|conduct) (?:an? )?fuel[- ]pressure test\b|\b(?:check|measure|test) (?:the )?fuel pressure (?:with|using)\b|\b(?:connect|install|use) (?:an? )?fuel[- ]pressure (?:tester|gauge)\b/i],
+  ['compression-test', /\b(?:perform|run|do|conduct) (?:an? )?(?:engine |cylinder )?compression test\b|\b(?:check|measure|test) (?:the )?(?:engine |cylinder )?compression (?:with|using)\b|\buse (?:an? )?compression tester\b/i],
+  ['cooling-pressure-test', /\b(?:perform|run|do|conduct) (?:an? )?(?:cooling[- ]system|coolant|radiator) pressure test\b|\bpressure[- ]test (?:the )?(?:cooling system|radiator)\b|\buse (?:an? )?(?:cooling[- ]system|coolant|radiator) pressure tester\b/i],
+  ['multimeter-basic', /\b(?:test|check|measure|verify|diagnose)[^.!?;]{0,80}\b(?:with|using) (?:an? )?(?:digital )?multimeter\b|\b(?:multimeter|voltmeter|ohmmeter) (?:check|test|measurement)\b|\buse (?:an? )?(?:digital )?(?:multimeter|voltmeter|ohmmeter)\b/i],
+  ['oil-pressure', /\b(?:perform|run|do|conduct) (?:an? )?(?:mechanical )?oil[- ]pressure test\b|\b(?:check|measure|test) (?:the )?oil pressure (?:with|using)\b|\b(?:connect|install|use) (?:an? )?(?:mechanical )?oil[- ]pressure (?:tester|gauge)\b|\boil[- ]pressure gauge (?:will|can) confirm\b/i],
   ['scan-codes', /\b(?:use|connect|diagnose with) (?:an? )?(?:scan tool|scanner)\b|\b(?:read|retrieve|scan for) (?:the )?(?:stored )?(?:fault )?codes\b/i],
 ];
 
@@ -252,7 +375,26 @@ export function proceduresInSolution(solution: string): Procedure[] {
 }
 
 /** Tools for a set of procedures, cheapest first, deduped. */
-export function toolsForProcedures(procedures: Procedure[], families: CodeFamily[] = []): DiagnosticTool[] {
+function toolMatchesVehicleContext(tool: DiagnosticTool, context: DiagnosticVehicleContext): boolean {
+  const engines = (context.engines || []).map((engine) => String(engine).toLowerCase());
+  if (tool.id === 'otc-5606-compression') {
+    return engines.length > 0
+      && engines.every((engine) => /\b(?:gasoline|petrol|spark[- ]ignition)\b/.test(engine))
+      && engines.every((engine) => !/\b(?:diesel|tdi|turbodiesel|electric|bev|fuel cell)\b/.test(engine));
+  }
+  if (tool.id === 'otc-5630-fuel-pressure') {
+    return engines.length > 0
+      && engines.every((engine) => /\b(?:gasoline|petrol|port[- ]injection|carburet)/.test(engine))
+      && engines.every((engine) => !/\b(?:diesel|tdi|turbodiesel|direct[- ]injection|gdi|fsi|flex[- ]fuel|e85)\b/.test(engine));
+  }
+  return true;
+}
+
+export function toolsForProcedures(
+  procedures: Procedure[],
+  families: CodeFamily[] = [],
+  context: DiagnosticVehicleContext = {},
+): DiagnosticTool[] {
   const wanted = new Set(procedures);
   return diagnosticTools
     .filter((t) => {
@@ -260,5 +402,6 @@ export function toolsForProcedures(procedures: Procedure[], families: CodeFamily
       if (t.kind !== 'scanner') return true;
       return families.length > 0 && families.every((family) => t.codeFamilies.includes(family));
     })
+    .filter((tool) => toolMatchesVehicleContext(tool, context))
     .sort((a, b) => a.priceAnchor - b.priceAnchor);
 }
