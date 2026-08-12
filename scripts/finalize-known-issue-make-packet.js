@@ -80,9 +80,28 @@ const COMMERCE_PIPELINE_IMPLEMENTATION_FILES = [
   'src/lib/ebay-resolver.ts',
   'src/lib/known-issue-part-fitment.ts',
   'src/lib/reviewed-vehicle-context.ts',
+  'src/lib/known-issue-commerce.ts',
+  'src/components/known-issues/KnownIssueCard.tsx',
+  'src/components/known-issues/CategorySection.tsx',
+  'src/components/known-issues/ArticleIssuesList.tsx',
+  'src/components/known-issues/KnownIssuesBriefing.tsx',
+  'src/components/vehicle/VehicleDashboard.tsx',
+  'src/components/vehicle/VisionResultCard.tsx',
+  'src/app/api/vision/route.ts',
+  'src/app/api/vision/identify/route.ts',
   'scripts/build-known-issue-deeplink-manifest.js',
 ];
 const HASH_RE = /^[a-f0-9]{64}$/;
+const REVIEW_DECISIONS = new Set([
+  'approve',
+  'block_wrong_role',
+  'block_incomplete_scope',
+  'block_ambiguous',
+  'hold_no_exact_link',
+  'hold_needs_manual',
+]);
+const EXISTING_CLAIM_VERDICTS = new Set(['preserve', 'block']);
+const REVIEW_EVIDENCE_FIELDS = ['howToFix', 'catalog', 'directLink'];
 const REVIEW_READY_STATUS = 'REVIEW_READY_RECONCILED';
 const REVIEW_BLOCKED_STATUS = 'REVIEW_READY_BLOCKED_EXISTING_CLAIMS';
 
@@ -226,6 +245,71 @@ function reviewKey(row) {
 
 function proposalRows(proposals) {
   return proposals.flatMap((proposal) => proposal.parts.map((part, partIndex) => ({ proposal, part, partIndex })));
+}
+
+function expectedLinkInput(proposal, part) {
+  const partNumber = String(part.aftermarketXref?.[0] || '').trim();
+  const years = part.fitment?.years || [];
+  return {
+    partNumber,
+    supplier: part.supplier,
+    component: part.component,
+    make: proposal.articleScope?.make,
+    model: proposal.articleScope?.model,
+    year: years[0],
+    engine: part.fitment?.engines?.[0],
+    ...(part.fitment?.trims?.length === 1 ? { trim: part.fitment.trims[0] } : {}),
+  };
+}
+
+function validateProposalLinkBinding(proposals, links) {
+  const normalizedLinks = clone(links);
+  delete normalizedLinks.linkGuardrail;
+  delete normalizedLinks.linkEvidence;
+  normalizedLinks.generatedFrom = clone(proposals.generatedFrom);
+  for (const proposal of normalizedLinks.proposals || []) {
+    for (const part of proposal.parts || []) part.buyLinks = [];
+  }
+  if (!sameJson(normalizedLinks, proposals)) {
+    throw new Error('04/05 structural binding mismatch: only buyLinks and link evidence may be added');
+  }
+  if (!String(links.linkGuardrail || '').trim()
+    || path.basename(String(links.generatedFrom || '').replace(/\\/g, '/')) !== '04-part-proposals.json') {
+    throw new Error('05 direct-link provenance is invalid');
+  }
+  const rows = proposalRows(links.proposals || []);
+  if (!Array.isArray(links.linkEvidence) || links.linkEvidence.length !== rows.length) {
+    throw new Error('05 link evidence does not cover every proposal part row');
+  }
+  const evidenceByKey = new Map();
+  for (const row of links.linkEvidence) {
+    const key = `${row.proposalId}::${row.partIndex}`;
+    if (evidenceByKey.has(key)) throw new Error(`${key}: duplicate link evidence`);
+    evidenceByKey.set(key, row);
+  }
+  for (const { proposal, part, partIndex } of rows) {
+    const key = `${proposal.proposalId}::${partIndex}`;
+    const evidence = evidenceByKey.get(key);
+    if (!evidence || evidence.issueId !== proposal.id
+      || !sameJson(evidence.input, expectedLinkInput(proposal, part))
+      || !sameJson(evidence.links, part.buyLinks || [])) {
+      throw new Error(`${key}: link evidence identity mismatch`);
+    }
+    const hasLinks = (part.buyLinks || []).length > 0;
+    if (!['exact-product-link', 'no-exact-product-link'].includes(evidence.result)
+      || (evidence.result === 'exact-product-link') !== hasLinks) {
+      throw new Error(`${key}: link evidence result mismatch`);
+    }
+  }
+}
+
+function requireReviewEvidence(row, label) {
+  if (!String(row.reason || '').trim()) throw new Error(`${label}: review reason is required`);
+  for (const field of REVIEW_EVIDENCE_FIELDS) {
+    if (!String(row.reviewedSourceEvidence?.[field] || '').trim()) {
+      throw new Error(`${label}: reviewedSourceEvidence.${field} is required`);
+    }
+  }
 }
 
 function normalizedScope(fitment = {}) {
@@ -495,8 +579,14 @@ function consolidateCandidates(candidates) {
 
 function validatePacketSets(source, ledger, worklist, evidence, proposals, links, review) {
   const snapshotHash = source.snapshotHash;
-  for (const [label, artifact] of [['ledger', ledger], ['worklist', worklist], ['review', review]]) {
+  for (const [label, artifact] of [['ledger', ledger], ['worklist', worklist]]) {
     if (artifact.snapshotHash !== snapshotHash) throw new Error(`${label} snapshotHash mismatch`);
+  }
+  if (review?.schemaVersion !== 2
+    || review.artifactKind !== 'known-issue-part-independent-review'
+    || review.snapshotHash !== snapshotHash
+    || String(review.make || '').toLowerCase() !== String(source.make).toLowerCase()) {
+    throw new Error('Independent review schema/make/snapshot binding mismatch');
   }
   if (ledger.issueCount !== source.recordCount || ledger.issues.length !== source.recordCount) {
     throw new Error(`${source.make} finalization requires exact ${source.recordCount}-issue coverage`);
@@ -533,12 +623,26 @@ function validatePacketSets(source, ledger, worklist, evidence, proposals, links
       throw new Error(`${disposition.workItemId}: proposal disposition does not match proposal membership`);
     }
   }
+  validateProposalLinkBinding(proposals, links);
   assertSameSet(proposals.proposals.map((row) => row.proposalId), links.proposals.map((row) => row.proposalId), 'proposal/link proposals');
   const sourceRows = proposalRows(links.proposals);
-  if (review.reconciliation?.complete !== true
+  if (review.proposalCount !== links.proposals.length || review.partRowCount !== sourceRows.length
+    || review.reconciliation?.complete !== true
     || review.reconciliation.sourcePartRowCount !== sourceRows.length
+    || review.reconciliation.reviewedPartRowCount !== sourceRows.length
     || review.decisions.length !== sourceRows.length) throw new Error('Independent review reconciliation is incomplete');
   assertSameSet(sourceRows.map(({ proposal, partIndex }) => `${proposal.proposalId}::${partIndex}`), review.decisions.map(reviewKey), 'proposal/review rows');
+  for (const decision of review.decisions) {
+    if (!REVIEW_DECISIONS.has(decision.decision)
+      || !Number.isInteger(decision.partIndex) || decision.partIndex < 0
+      || !String(decision.partNumber || '').trim()) {
+      throw new Error(`${reviewKey(decision)}: invalid independent-review decision`);
+    }
+    requireReviewEvidence(decision, reviewKey(decision));
+  }
+  const decisionTally = Object.fromEntries([...REVIEW_DECISIONS]
+    .map((decision) => [decision, review.decisions.filter((row) => row.decision === decision).length]));
+  if (!sameJson(review.tally, decisionTally)) throw new Error('Independent-review decision tally mismatch');
   const existingWorkRows = worklist.entries.filter((row) => row.source === 'existing-fix-part');
   if ((review.existingClaimWorkRowCount || 0) !== existingWorkRows.length
     || (review.existingClaims || []).length !== existingWorkRows.length) {
@@ -548,12 +652,22 @@ function validatePacketSets(source, ledger, worklist, evidence, proposals, links
   const existingByWorkItem = new Map(existingWorkRows.map((row) => [row.workItemId, row]));
   for (const claim of review.existingClaims || []) {
     const row = existingByWorkItem.get(claim.workItemId);
-    if (!row
+    if (!EXISTING_CLAIM_VERDICTS.has(claim.verdict)
+      || !row
       || claim.issueId !== row.issueId
       || normalizedPartNumber(claim.partNumber) !== normalizedPartNumber(row.partNumber)
       || String(claim.engineWorkRow || '') !== String(row.declaredEngine || '')) {
       throw new Error(`${claim.workItemId}: existing-claim review identity mismatch`);
     }
+    requireReviewEvidence(claim, `${claim.workItemId}: existing claim`);
+  }
+  const uniqueExistingClaims = new Set(existingWorkRows.map((row) =>
+    `${row.issueId}::${normalizedPartNumber(row.partNumber)}`));
+  const existingClaimTally = Object.fromEntries([...EXISTING_CLAIM_VERDICTS]
+    .map((verdict) => [verdict, (review.existingClaims || []).filter((row) => row.verdict === verdict).length]));
+  if (review.uniqueExistingClaimCount !== uniqueExistingClaims.size
+    || !sameJson(review.existingClaimTally, existingClaimTally)) {
+    throw new Error('Existing-claim review reconciliation mismatch');
   }
   for (const file of REVIEWED_FILES) {
     if (!review.reviewedArtifacts.includes(file)) throw new Error(`Review did not bind ${file}`);
@@ -649,19 +763,25 @@ function validateDiagnosticInputs(source, commerceLedger, inputs, options = {}) 
     uncoveredDiagnosticInstructionCount: 0,
   };
   assertObjectValues(diagnosticEvidence.scope, expectedScope, 'diagnostic evidence scope');
-  if (summary.unresolvedToolHoldCount !== 1 || diagnosticEvidence.holds?.length !== 1) {
-    throw new Error(`${source.make} diagnostic reconciliation requires exactly one explicit hold`);
-  }
   const heldRows = classification.rows.flatMap((row) => (row.diagnosticDispositions || [])
     .filter((disposition) => disposition.status === 'unresolved-tool-hold')
     .map((disposition) => ({ issueId: row.issueId, ...disposition })));
-  const evidenceHold = diagnosticEvidence.holds[0];
-  const ledgerHold = heldRows[0];
-  for (const field of ['issueId', 'procedure', 'excerpt', 'reasonCode', 'toolId', 'productUrl']) {
-    if (evidenceHold[field] !== ledgerHold[field]) throw new Error(`Diagnostic hold ${field} mismatch`);
+  const evidenceHolds = diagnosticEvidence.holds || [];
+  if (heldRows.length !== summary.unresolvedToolHoldCount
+    || evidenceHolds.length !== summary.unresolvedToolHoldCount) {
+    throw new Error(`${source.make} diagnostic unresolved-hold count mismatch`);
   }
+  const holdIdentity = (hold) => canonicalHash(Object.fromEntries(
+    ['issueId', 'source', 'procedure', 'excerpt', 'reasonCode', 'toolId', 'productUrl']
+      .map((field) => [field, hold[field] ?? null]),
+  ));
+  assertSameSet(heldRows.map(holdIdentity), evidenceHolds.map(holdIdentity), 'classification/diagnostic holds');
 
-  const reviewedTools = [...(diagnosticEvidence.acuraToolLinks || []), ...(diagnosticEvidence.reusableReviewedTools || [])];
+  if (!Array.isArray(diagnosticEvidence.makeToolLinks)
+    || !Array.isArray(diagnosticEvidence.reusableReviewedTools)) {
+    throw new Error('Diagnostic evidence must provide generic makeToolLinks and reusableReviewedTools arrays');
+  }
+  const reviewedTools = [...diagnosticEvidence.makeToolLinks, ...diagnosticEvidence.reusableReviewedTools];
   const toolsById = new Map(reviewedTools.map((tool) => [tool.toolId, tool]));
   if (toolsById.size !== reviewedTools.length) throw new Error('Diagnostic evidence contains duplicate tool IDs');
   for (const disposition of classification.rows.flatMap((row) => row.diagnosticDispositions || [])) {
@@ -672,11 +792,11 @@ function validateDiagnosticInputs(source, commerceLedger, inputs, options = {}) 
     }
   }
   return {
-    status: 'RECONCILED_WITH_EXPLICIT_HOLD',
+    status: 'RECONCILED',
     artifactSha256,
     implementationSha256: clone(options.implementationSha256),
     scope: expectedScope,
-    hold: clone(evidenceHold),
+    holds: clone(evidenceHolds),
   };
 }
 
@@ -788,15 +908,11 @@ function finalizePacket(inputs, options = {}) {
       reason: claim.reason,
     });
   }
-  const reviewedContextCovers = (proposal, part) => proposal.id === 'acura-legend-timing-belt-interference-engine'
-    && (part.fitment?.years || []).every((year) => year === 1990)
-    && (part.fitment?.engines || []).every((engine) => normalizeFitmentValue(engine) === '2.7l v6 c27a')
-    && !(part.fitment?.drivetrains || []).length
-    && !(part.fitment?.transmissions || []).length;
+  const resolveContext = options.resolveReviewedVehicleContext || runtimeContextResolver();
   const contextBlockers = approvedPrimary.flatMap(({ proposal, part }) => {
     const scopedDimensions = ['engines', 'drivetrains', 'transmissions']
       .filter((field) => (part.fitment?.[field] || []).length > 0);
-    return scopedDimensions.length && !reviewedContextCovers(proposal, part) ? [{
+    return scopedDimensions.length && !reviewedRuntimeContextCovers(source, proposal, part, resolveContext) ? [{
       issueId: proposal.id,
       workItemId: proposal.proposalId,
       type: 'authoritative-selected-vehicle-context-required',
@@ -916,7 +1032,7 @@ function buildCompletionArtifact({
     || patch.auditComplete !== true || patch.makeComplete !== !releaseBlocked
     || patch.releaseBlocked !== releaseBlocked || patch.productionApplied !== false
     || patch.reconciliation?.status !== expectedStatus
-    || patch.reconciliation?.diagnosticReconciliation?.status !== 'RECONCILED_WITH_EXPLICIT_HOLD') {
+    || patch.reconciliation?.diagnosticReconciliation?.status !== 'RECONCILED') {
     throw new Error('Completion patch is not fully reconciled and review-ready');
   }
   const manifestErrors = validateManifest(manifest);
@@ -956,11 +1072,89 @@ function buildCompletionArtifact({
     diagnosticImplementationSha256: clone(implementationSha256),
     commercePipelineImplementationSha256: clone(commercePipelineImplementationSha256),
     diagnosticScope: clone(patch.reconciliation.diagnosticReconciliation.scope),
-    explicitDiagnosticHold: clone(patch.reconciliation.diagnosticReconciliation.hold),
+    diagnosticHolds: clone(patch.reconciliation.diagnosticReconciliation.holds),
     productionApplied: false,
     productionWriteAuthorized: false,
   };
   return { ...body, completionHash: canonicalHash(body) };
+}
+
+function reviewedRuntimeContextCovers(source, proposal, part, resolver) {
+  const fitment = part.fitment || {};
+  const scopedDimensions = ['engines', 'drivetrains', 'transmissions']
+    .filter((field) => (fitment[field] || []).length > 0);
+  if (!scopedDimensions.length) return true;
+  if (typeof resolver !== 'function'
+    || !String(proposal.articleScope?.make || '').trim()
+    || !String(proposal.articleScope?.model || '').trim()
+    || !(fitment.years || []).length
+    || !(proposal.articleScope?.trims || []).length) return false;
+
+  const reviewedFile = (file, expected) => {
+    if (!String(file || '').trim() || !HASH_RE.test(expected || '')) return null;
+    const absolute = path.resolve(PROJECT_ROOT, file);
+    const relative = path.relative(PROJECT_ROOT, absolute);
+    if (!relative || relative.startsWith('..') || path.isAbsolute(relative) || !fs.existsSync(absolute)) return null;
+    return sha256File(absolute) === expected ? absolute : null;
+  };
+  const exactObjectKey = (record, wanted) => Object.keys(record || {})
+    .find((key) => normalizeFitmentValue(key) === normalizeFitmentValue(wanted));
+  const candidateTrims = (fitment.trims || []).length
+    ? fitment.trims
+    : proposal.articleScope.trims;
+
+  for (const year of fitment.years) {
+    const resolvedByTrim = new Map();
+    for (const trim of candidateTrims) {
+      const resolved = resolver({ year, make: proposal.articleScope.make, model: proposal.articleScope.model, trim });
+      if (!resolved || resolved.year !== year
+        || normalizeFitmentValue(resolved.make) !== normalizeFitmentValue(proposal.articleScope.make)
+        || normalizeFitmentValue(resolved.model) !== normalizeFitmentValue(proposal.articleScope.model)
+        || normalizeFitmentValue(resolved.trim) !== normalizeFitmentValue(trim)) continue;
+      const exactScope = scopedDimensions.every((field) => {
+        const actual = field === 'engines' ? resolved.engine : field === 'drivetrains' ? resolved.drivetrain : resolved.transmission;
+        return actual && (fitment[field] || []).some((declared) => fitmentValuesMatch(declared, actual));
+      });
+      const provenance = resolved.engineProvenance;
+      if (!exactScope || !provenance || provenance.snapshotHash !== source.snapshotHash) continue;
+      const artifactFile = reviewedFile(provenance.artifact, provenance.artifactSha256);
+      const ymmtFile = reviewedFile(provenance.ymmtArtifact, provenance.ymmtArtifactSha256);
+      if (!artifactFile || !ymmtFile) continue;
+      resolvedByTrim.set(normalizeFitmentValue(trim), { resolved, provenance, ymmtFile });
+    }
+
+    const first = resolvedByTrim.values().next().value;
+    if (!first) return false;
+    let ymmt;
+    try {
+      ymmt = readJson(first.ymmtFile);
+    } catch {
+      return false;
+    }
+    const yearRows = ymmt[String(year)] || {};
+    const makeKey = exactObjectKey(yearRows, proposal.articleScope.make);
+    const modelRows = makeKey ? yearRows[makeKey] : null;
+    const modelKey = exactObjectKey(modelRows, proposal.articleScope.model);
+    const selectableTrims = modelKey && Array.isArray(modelRows[modelKey]) ? modelRows[modelKey] : [];
+    const applicableTrims = candidateTrims.filter((trim) => selectableTrims.some(
+      (selectable) => normalizeFitmentValue(selectable) === normalizeFitmentValue(trim),
+    ));
+    if (!applicableTrims.length) return false;
+    for (const trim of applicableTrims) {
+      const row = resolvedByTrim.get(normalizeFitmentValue(trim));
+      if (!row) return false;
+      if (row.provenance.artifact !== first.provenance.artifact
+        || row.provenance.artifactSha256 !== first.provenance.artifactSha256
+        || row.provenance.ymmtArtifact !== first.provenance.ymmtArtifact
+        || row.provenance.ymmtArtifactSha256 !== first.provenance.ymmtArtifactSha256) return false;
+    }
+  }
+  return true;
+}
+
+function runtimeContextResolver() {
+  require('tsx/cjs');
+  return require('../src/lib/reviewed-vehicle-context.ts').resolveReviewedVehicleContext;
 }
 
 function argValue(args, flag, fallback = '') {
@@ -1103,6 +1297,7 @@ module.exports = {
   finalizePacket,
   scopesOverlap,
   fitmentValuesMatch,
+  reviewedRuntimeContextCovers,
   sha256File,
   validateDiagnosticInputs,
   validateRecomputedFitment,

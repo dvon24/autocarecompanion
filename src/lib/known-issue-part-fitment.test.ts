@@ -60,6 +60,22 @@ test('legacy unscoped parts remain eligible while scoped exclusions stay hidden'
 test('engine matching accepts a shorter declared value as a whole token run', () => {
   assert.equal(partFitsVehicle({ engines: ['5.0L'] }, { engine: '5.0L V8' }), 'fits');
   assert.equal(partFitsVehicle({ engines: ['3.3T'] }, { engine: '5.0L V8' }), 'excluded');
+  assert.equal(partFitsVehicle({ engines: ['5.0L V8'] }, { engine: '5.0L V8 gasoline' }), 'fits');
+});
+
+test('engine matching rejects contradictory fuel and powertrain qualifiers', () => {
+  assert.equal(partFitsVehicle(
+    { engines: ['3.0L V6 gasoline'] },
+    { engine: '3.0L V6 diesel' },
+  ), 'excluded');
+  assert.equal(partFitsVehicle(
+    { engines: ['2.0L I4 hybrid'] },
+    { engine: '2.0L I4 gasoline' },
+  ), 'excluded');
+  assert.equal(partFitsVehicle(
+    { engines: ['electric'] },
+    { engine: 'fuel cell electric' },
+  ), 'excluded');
 });
 
 // Guards the substring bug called out in the trim filter: "SE" must not match

@@ -120,6 +120,29 @@ function tokenMatch(a: string, b: string): boolean {
   return false;
 }
 
+type PowertrainQualifier = 'gasoline' | 'diesel' | 'hybrid' | 'electric' | 'fuel-cell';
+
+/**
+ * A shorter displacement/configuration label may abbreviate a longer engine
+ * label, but it must never bridge an explicit fuel or powertrain conflict.
+ */
+function powertrainQualifier(value: string): PowertrainQualifier | null {
+  const normalized = normalize(value);
+  if (/\b(?:fuel cell|fcev|hydrogen)\b/.test(normalized)) return 'fuel-cell';
+  if (/\b(?:plug in hybrid|phev|hybrid|hev)\b/.test(normalized)) return 'hybrid';
+  if (/\b(?:battery electric|electric|bev|ev)\b/.test(normalized)) return 'electric';
+  if (/\b(?:turbodiesel|diesel|tdi|cdi|crdi)\b/.test(normalized)) return 'diesel';
+  if (/\b(?:gasoline|petrol|gas|flex fuel|e85)\b/.test(normalized)) return 'gasoline';
+  return null;
+}
+
+function engineTokenMatch(declared: string, actual: string): boolean {
+  const declaredQualifier = powertrainQualifier(declared);
+  const actualQualifier = powertrainQualifier(actual);
+  if (declaredQualifier && actualQualifier && declaredQualifier !== actualQualifier) return false;
+  return tokenMatch(declared, actual);
+}
+
 function listMatches(
   declared: string[] | undefined,
   actual: string | null | undefined,
@@ -128,7 +151,7 @@ function listMatches(
   if (!declared || declared.length === 0) return null; // dimension not scoped
   if (!actual) return null; // nothing to test against — do not invent an exclusion
   return declared.some((d) => allowTokenContainment
-    ? tokenMatch(d, actual)
+    ? engineTokenMatch(d, actual)
     : normalize(d) === normalize(actual));
 }
 

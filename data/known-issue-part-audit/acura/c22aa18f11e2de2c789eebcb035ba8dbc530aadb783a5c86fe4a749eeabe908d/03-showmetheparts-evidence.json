@@ -1,16 +1,124 @@
 {
- "checkedAt": "2026-08-12T21:13:39.922Z",
+ "checkedAt": "2026-08-12T22:06:26.621Z",
  "source": "ShowMeTheParts subscription API",
  "guardrail": "Catalog fitment proves the part FITS. It never proves the part REPAIRS the issue.",
  "complete": true,
- "progress": "151/151",
+ "progress": "158/158",
  "tally": {
-  "unmapped": 28,
+  "no-catalog": 40,
+  "unmapped": 34,
   "discovered": 79,
-  "no-catalog": 39,
   "confirmed": 5
  },
  "results": [
+  {
+   "id": "acura-ilx-dct-shudder-2013",
+   "workItemId": "acura-ilx-dct-shudder-2013--prescription-0-0--2-4l-k24w-i4",
+   "prescriptionKey": "prescription--0--0",
+   "component": "clutch pack",
+   "repairRoleEvidence": "In severe cases, the clutch pack assembly needs replacement.",
+   "articleScope": {
+    "make": "Acura",
+    "model": "ILX",
+    "years": [
+     2016,
+     2017,
+     2018,
+     2019,
+     2020,
+     2021,
+     2022
+    ],
+    "trims": [
+     "Base",
+     "Technology",
+     "Premium"
+    ],
+    "engines": [
+     "2.4L K24W I4"
+    ],
+    "drivetrains": [],
+    "transmissions": []
+   },
+   "existingFixParts": [],
+   "vehicle": "2016 Acura ILX",
+   "quotedPartNumber": "",
+   "verdict": "no-catalog",
+   "fitmentYears": [],
+   "yearsChecked": [
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022
+   ],
+   "partTypeTierUsed": "",
+   "partTypeMatch": "clutch",
+   "mappedFrom": "prescription",
+   "engineMatch": "2.4L",
+   "declaredEngine": "2.4L K24W I4",
+   "catalogModelsByYear": {},
+   "catalogApplicationsByYear": {},
+   "candidatesByYear": {},
+   "notes": [
+    "2016: no product category matching [\"clutch components\"]",
+    "2017: no product category matching [\"clutch components\"]",
+    "2018: no product category matching [\"clutch components\"]",
+    "2019: no product category matching [\"clutch components\"]",
+    "2020: no product category matching [\"clutch components\"]",
+    "2021: no product category matching [\"clutch components\"]",
+    "2022: no product category matching [\"clutch components\"]"
+   ]
+  },
+  {
+   "id": "acura-ilx-infotainment-lag-2016",
+   "workItemId": "acura-ilx-infotainment-lag-2016--prescription-0-0--2-4l-k24w7-i4",
+   "prescriptionKey": "prescription--0--0",
+   "component": "lower screen unit",
+   "repairRoleEvidence": "If the touchscreen digitizer has failed, the lower screen unit needs replacement.",
+   "articleScope": {
+    "make": "Acura",
+    "model": "ILX",
+    "years": [
+     2016,
+     2017,
+     2018,
+     2019,
+     2020,
+     2021,
+     2022
+    ],
+    "trims": [
+     "Base",
+     "Technology",
+     "Premium",
+     "A-Spec"
+    ],
+    "engines": [
+     "2.4L K24W7 I4"
+    ],
+    "drivetrains": [],
+    "transmissions": []
+   },
+   "existingFixParts": [],
+   "vehicle": "2016 Acura ILX",
+   "quotedPartNumber": "",
+   "verdict": "unmapped",
+   "fitmentYears": [],
+   "yearsChecked": [],
+   "partTypeTierUsed": "",
+   "partTypeMatch": "lower screen unit",
+   "mappedFrom": "prescription",
+   "engineMatch": "2.4L",
+   "catalogModelsByYear": {},
+   "catalogApplicationsByYear": {},
+   "candidatesByYear": {},
+   "notes": [
+    "No reviewed component-to-catalog mapping; no catalog request was made."
+   ]
+  },
   {
    "id": "acura-integra-b-series-motor-mount-failure",
    "workItemId": "acura-integra-b-series-motor-mount-failure--prescription-0-0--1-8l-b18a1",
@@ -5841,6 +5949,96 @@
    "id": "acura-integra-da-ignitor-module-failure",
    "workItemId": "acura-integra-da-ignitor-module-failure--prescription-0-0--1-8l-b18a1",
    "prescriptionKey": "prescription--0--0",
+   "component": "ignitor",
+   "repairRoleEvidence": "Test the ignitor before replacing — a multimeter check at the coil primary terminals while cranking will confirm whether the module is sending pulse to the coil. If no pulse: replace.",
+   "articleScope": {
+    "make": "Acura",
+    "model": "Integra",
+    "years": [
+     1990,
+     1991,
+     1992,
+     1993
+    ],
+    "trims": [
+     "RS",
+     "LS",
+     "GS",
+     "GS-R"
+    ],
+    "engines": [
+     "1.8L B18A1",
+     "1.7L B17A1"
+    ],
+    "drivetrains": [],
+    "transmissions": []
+   },
+   "existingFixParts": [],
+   "vehicle": "1990 Acura Integra",
+   "quotedPartNumber": "",
+   "verdict": "unmapped",
+   "fitmentYears": [],
+   "yearsChecked": [],
+   "partTypeTierUsed": "",
+   "partTypeMatch": "ignitor",
+   "mappedFrom": "prescription",
+   "engineMatch": "1.8L",
+   "catalogModelsByYear": {},
+   "catalogApplicationsByYear": {},
+   "candidatesByYear": {},
+   "notes": [
+    "No reviewed component-to-catalog mapping; no catalog request was made."
+   ]
+  },
+  {
+   "id": "acura-integra-da-ignitor-module-failure",
+   "workItemId": "acura-integra-da-ignitor-module-failure--prescription-0-0--1-7l-b17a1",
+   "prescriptionKey": "prescription--0--0",
+   "component": "ignitor",
+   "repairRoleEvidence": "Test the ignitor before replacing — a multimeter check at the coil primary terminals while cranking will confirm whether the module is sending pulse to the coil. If no pulse: replace.",
+   "articleScope": {
+    "make": "Acura",
+    "model": "Integra",
+    "years": [
+     1990,
+     1991,
+     1992,
+     1993
+    ],
+    "trims": [
+     "RS",
+     "LS",
+     "GS",
+     "GS-R"
+    ],
+    "engines": [
+     "1.8L B18A1",
+     "1.7L B17A1"
+    ],
+    "drivetrains": [],
+    "transmissions": []
+   },
+   "existingFixParts": [],
+   "vehicle": "1990 Acura Integra",
+   "quotedPartNumber": "",
+   "verdict": "unmapped",
+   "fitmentYears": [],
+   "yearsChecked": [],
+   "partTypeTierUsed": "",
+   "partTypeMatch": "ignitor",
+   "mappedFrom": "prescription",
+   "engineMatch": "1.7L",
+   "catalogModelsByYear": {},
+   "catalogApplicationsByYear": {},
+   "candidatesByYear": {},
+   "notes": [
+    "No reviewed component-to-catalog mapping; no catalog request was made."
+   ]
+  },
+  {
+   "id": "acura-integra-da-ignitor-module-failure",
+   "workItemId": "acura-integra-da-ignitor-module-failure--prescription-1-0--1-8l-b18a1",
+   "prescriptionKey": "prescription--1--0",
    "component": "cap rotor",
    "repairRoleEvidence": "Replace cap + rotor at the same time as a preventive measure",
    "articleScope": {
@@ -6154,8 +6352,8 @@
   },
   {
    "id": "acura-integra-da-ignitor-module-failure",
-   "workItemId": "acura-integra-da-ignitor-module-failure--prescription-0-0--1-7l-b17a1",
-   "prescriptionKey": "prescription--0--0",
+   "workItemId": "acura-integra-da-ignitor-module-failure--prescription-1-0--1-7l-b17a1",
+   "prescriptionKey": "prescription--1--0",
    "component": "cap rotor",
    "repairRoleEvidence": "Replace cap + rotor at the same time as a preventive measure",
    "articleScope": {
@@ -6411,6 +6609,52 @@
    "yearsChecked": [],
    "partTypeTierUsed": "",
    "partTypeMatch": "rear pre-pressed hub",
+   "mappedFrom": "prescription",
+   "engineMatch": null,
+   "catalogModelsByYear": {},
+   "catalogApplicationsByYear": {},
+   "candidatesByYear": {},
+   "notes": [
+    "No reviewed component-to-catalog mapping; no catalog request was made."
+   ]
+  },
+  {
+   "id": "acura-integra-dc-automatic-transmission-shift-solenoid",
+   "workItemId": "acura-integra-dc-automatic-transmission-shift-solenoid--prescription-0-0--b18b1",
+   "prescriptionKey": "prescription--0--0",
+   "component": "lock-up solenoid",
+   "repairRoleEvidence": "A screwed up lock-up solenoid will give you a general CEL #70 (Automatic Transaxle); the solenoid is totally accessible from the engine bay and costs less than $200 to replace.",
+   "articleScope": {
+    "make": "Acura",
+    "model": "Integra",
+    "years": [
+     1994,
+     1995,
+     1996,
+     1997,
+     1998,
+     1999
+    ],
+    "trims": [
+     "LS",
+     "GS",
+     "RS",
+     "Special Edition"
+    ],
+    "engines": [
+     "B18B1"
+    ],
+    "drivetrains": [],
+    "transmissions": []
+   },
+   "existingFixParts": [],
+   "vehicle": "1994 Acura Integra",
+   "quotedPartNumber": "",
+   "verdict": "unmapped",
+   "fitmentYears": [],
+   "yearsChecked": [],
+   "partTypeTierUsed": "",
+   "partTypeMatch": "lock-up solenoid",
    "mappedFrom": "prescription",
    "engineMatch": null,
    "catalogModelsByYear": {},
@@ -107258,6 +107502,44 @@
    "notes": []
   },
   {
+   "id": "acura-legend-fan-control-unit-cracked-solder-joints-cause-cooling-fan-c-c",
+   "workItemId": "acura-legend-fan-control-unit-cracked-solder-joints-cause-cooling-fan-c-c--prescription-0-0--c32a1",
+   "prescriptionKey": "prescription--0--0",
+   "component": "fan control unit",
+   "repairRoleEvidence": "Pull the fan control unit from under the passenger carpet and reflow the cracked solder joints (10+ joints typically affected) with a soldering iron, or replace the unit.",
+   "articleScope": {
+    "make": "Acura",
+    "model": "Legend",
+    "years": [
+     1991,
+     1992,
+     1993
+    ],
+    "trims": [],
+    "engines": [
+     "C32A1"
+    ],
+    "drivetrains": [],
+    "transmissions": []
+   },
+   "existingFixParts": [],
+   "vehicle": "1991 Acura Legend",
+   "quotedPartNumber": "",
+   "verdict": "unmapped",
+   "fitmentYears": [],
+   "yearsChecked": [],
+   "partTypeTierUsed": "",
+   "partTypeMatch": "fan control unit",
+   "mappedFrom": "prescription",
+   "engineMatch": null,
+   "catalogModelsByYear": {},
+   "catalogApplicationsByYear": {},
+   "candidatesByYear": {},
+   "notes": [
+    "No reviewed component-to-catalog mapping; no catalog request was made."
+   ]
+  },
+  {
    "id": "acura-legend-power-steering-high-pressure-hose-crimp-leak-internal-hose-s",
    "workItemId": "acura-legend-power-steering-high-pressure-hose-crimp-leak-internal-hose-s--prescription-0-0--c32a1",
    "prescriptionKey": "prescription--0--0",
@@ -152558,6 +152840,52 @@
     "2006: no part-type match for \"hose\" (0 parts in category)",
     "2007: no part-type match for \"hose\" (0 parts in category)",
     "2008: no part-type match for \"hose\" (0 parts in category)"
+   ]
+  },
+  {
+   "id": "acura-tlx-9speed-shudder-2015",
+   "workItemId": "acura-tlx-9speed-shudder-2015--prescription-0-0--3-5l-j35y6-v6",
+   "prescriptionKey": "prescription--0--0",
+   "component": "torque converter",
+   "repairRoleEvidence": "Severe cases may require torque converter replacement.",
+   "articleScope": {
+    "make": "Acura",
+    "model": "TLX",
+    "years": [
+     2015,
+     2016,
+     2017,
+     2018,
+     2019,
+     2020
+    ],
+    "trims": [
+     "Base",
+     "Technology",
+     "Advance",
+     "A-Spec"
+    ],
+    "engines": [
+     "3.5L J35Y6 V6"
+    ],
+    "drivetrains": [],
+    "transmissions": []
+   },
+   "existingFixParts": [],
+   "vehicle": "2015 Acura TLX",
+   "quotedPartNumber": "",
+   "verdict": "unmapped",
+   "fitmentYears": [],
+   "yearsChecked": [],
+   "partTypeTierUsed": "",
+   "partTypeMatch": "torque converter",
+   "mappedFrom": "prescription",
+   "engineMatch": "3.5L",
+   "catalogModelsByYear": {},
+   "catalogApplicationsByYear": {},
+   "candidatesByYear": {},
+   "notes": [
+    "No reviewed component-to-catalog mapping; no catalog request was made."
    ]
   },
   {

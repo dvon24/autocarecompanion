@@ -70,6 +70,63 @@ test('later Acura qualifiers and fault conditions do not negate their replacemen
   assert.equal(unpunctuated[0]?.diagnosisDependent, true);
 });
 
+test('resolves a tested Acura ignitor when the later conditional replacement is anaphoric', () => {
+  const parts = extractPrescriptionComponents(
+    'Test the ignitor before replacing it. If no pulse: replace. Replace cap + rotor at the same time as a preventive measure.',
+  );
+  assert.deepEqual(parts.map((part) => part.component), ['ignitor', 'cap rotor']);
+  assert.equal(parts[0]?.diagnosisDependent, true);
+  assert.match(parts[0]?.condition || '', /if no pulse/i);
+  assert.match(parts[0]?.evidence || '', /test the ignitor[\s\S]*if no pulse:\s*replace/i);
+});
+
+test('extracts passive and modal Acura replacement prescriptions with their conditions', () => {
+  const clutch = extractPrescriptionComponents(
+    'Update the DCT software. In severe cases, the clutch pack assembly needs replacement.',
+  );
+  assert.deepEqual(clutch.map((part) => part.component), ['clutch pack']);
+  assert.equal(clutch[0]?.diagnosisDependent, true);
+  assert.match(clutch[0]?.condition || '', /severe cases/i);
+  assert.match(clutch[0]?.evidence || '', /clutch pack assembly needs replacement/i);
+
+  const screen = extractPrescriptionComponents(
+    'Perform a factory reset. If the touchscreen digitizer has failed, the lower screen unit needs replacement.',
+  );
+  assert.deepEqual(screen.map((part) => part.component), ['lower screen unit']);
+  assert.equal(screen[0]?.diagnosisDependent, true);
+  assert.match(screen[0]?.condition || '', /if the touchscreen digitizer has failed/i);
+
+  const converter = extractPrescriptionComponents(
+    'Update the transmission control module. Severe cases may require torque converter replacement.',
+  );
+  assert.deepEqual(converter.map((part) => part.component), ['torque converter']);
+  assert.equal(converter[0]?.diagnosisDependent, true);
+  assert.match(converter[0]?.condition || '', /severe cases/i);
+});
+
+test('resolves cost-to-replace and vague-unit wording to the nearest specific Acura component', () => {
+  const solenoid = extractPrescriptionComponents(
+    'A screwed up lock-up solenoid will give you a general CEL #70; the solenoid is accessible and costs less than $200 to replace.',
+  );
+  assert.deepEqual(solenoid.map((part) => part.component), ['lock-up solenoid']);
+  assert.equal(solenoid[0]?.diagnosisDependent, false);
+  assert.match(solenoid[0]?.evidence || '', /lock-up solenoid[\s\S]*costs less than \$200 to replace/i);
+
+  const fanUnit = extractPrescriptionComponents(
+    'Pull the fan control unit from under the passenger carpet and reflow the cracked solder joints, or replace the unit.',
+  );
+  assert.deepEqual(fanUnit.map((part) => part.component), ['fan control unit']);
+  assert.equal(fanUnit[0]?.diagnosisDependent, false);
+  assert.match(fanUnit[0]?.evidence || '', /fan control unit[\s\S]*replace the unit/i);
+});
+
+test('passive and anaphoric extraction remains fail-closed under negation', () => {
+  assert.deepEqual(extractPrescribedParts('The water pump does not need replacement.'), []);
+  assert.deepEqual(extractPrescribedParts('No water pump needs replacement.'), []);
+  assert.deepEqual(extractPrescribedParts('Test the ignition coil. Do not replace it.'), []);
+  assert.deepEqual(extractPrescribedParts('Inspect the fan control unit rather than replace the unit.'), []);
+});
+
 test('handles "swap or replace"', () => {
   const p = extractPrescribedParts('Swap or replace the failed GDI injector (intake manifold removal required).');
   assert.ok(p[0]?.includes('gdi injector'), `got ${JSON.stringify(p)}`);

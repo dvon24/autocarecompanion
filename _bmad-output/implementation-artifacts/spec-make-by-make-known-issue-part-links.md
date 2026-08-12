@@ -4,7 +4,7 @@ type: 'feature'
 created: '2026-08-12'
 status: 'in-review'
 baseline_commit: '013e4ef338fc3d2c42b8cc39f5fde43d6203755e'
-review_loop_iteration: 0
+review_loop_iteration: 2
 context: []
 ---
 
@@ -68,13 +68,22 @@ context: []
 ## Spec Change Log
 
 - 2026-08-12: Acura packet rebuilt after the first exact-commit review. The
-  corrected contract reconciles 70 issues and 151 component/application work
+  corrected contract reconciles 70 issues and 158 component/application work
   rows, persists a terminal proposal-or-hold disposition for every row, binds
   raw eBay part-number evidence, shares diagnostic selection with the browser,
   and prevents blocked completion artifacts from being escalated at apply
   time. The audit is complete but remains release-blocked by five unsafe live
   commerce claims and one unresolved authoritative engine context. No
   production write or deployment is authorized.
+- 2026-08-13: The second exact-commit review found seven omitted conditional,
+  passive, or anaphoric repair branches plus public-renderer and artifact-chain
+  gaps. The parser now covers all seven as proposal-or-hold rows; the Vision,
+  KnownIssueCard, and VehicleDashboard paths use the same fail-closed variant
+  and diagnostic contracts; 04/05/06 are structurally bound; diagnostic holds
+  are generic zero-or-many; and reviewed runtime context must cover every
+  selectable YMMT cell with hash-pinned evidence. The independently reviewed
+  outcome remains 4 approvals, 41 held/blocked candidate rows, 5 blocked
+  existing claims, 2 guarded manifest rows, and zero production authority.
 
 ## Verification
 

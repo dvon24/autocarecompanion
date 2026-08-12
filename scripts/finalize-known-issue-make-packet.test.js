@@ -22,6 +22,7 @@ const {
   consolidateCandidates,
   fitmentValuesMatch,
   finalizePacket,
+  reviewedRuntimeContextCovers,
   scopesOverlap,
   sha256File,
   validateMakeSource,
@@ -190,34 +191,74 @@ function fixture(recordCount = 70) {
     { workItemId: 'work-1', issueId: records[0].id, verdict: 'proposed', reasonCode: 'eligible-proposal' },
   ];
   const proposals = {
+    generatedFrom: ['03-showmetheparts-evidence.json'],
+    guardrail: 'Catalog fitment only.',
     count: 1,
     workItemDispositionCount: 2,
     workItemDispositions,
-    proposals: [{ ...proposal, parts: proposal.parts.map((part) => ({ ...part, buyLinks: [] })) }],
+    proposals: [{
+      ...JSON.parse(JSON.stringify(proposal)),
+      parts: proposal.parts.map((part) => ({ ...JSON.parse(JSON.stringify(part)), buyLinks: [] })),
+    }],
   };
-  const links = { count: 1, proposals: [proposal] };
+  const links = {
+    generatedFrom: '04-part-proposals.json',
+    guardrail: proposals.guardrail,
+    count: 1,
+    workItemDispositionCount: 2,
+    workItemDispositions: JSON.parse(JSON.stringify(workItemDispositions)),
+    proposals: [proposal],
+    linkGuardrail: 'Exact product pages only.',
+    linkEvidence: proposal.parts.map((part, partIndex) => ({
+      proposalId: proposal.proposalId,
+      issueId: proposal.id,
+      partIndex,
+      input: {
+        partNumber: part.aftermarketXref[0],
+        supplier: part.supplier,
+        component: part.component,
+        make: proposal.articleScope.make,
+        model: proposal.articleScope.model,
+        year: part.fitment.years[0],
+        engine: part.fitment.engines?.[0],
+      },
+      result: part.buyLinks.length ? 'exact-product-link' : 'no-exact-product-link',
+      links: part.buyLinks,
+    })),
+  };
   const review = {
     schemaVersion: 2,
     artifactKind: 'known-issue-part-independent-review',
     snapshotHash: source.snapshotHash,
+    make: 'Acura',
+    proposalCount: 1,
+    partRowCount: 3,
     reviewedArtifacts: [
       '01-disposition-ledger.json', '02-fitment-worklist.json', '03-showmetheparts-evidence.json',
       '04-part-proposals.json', '05-direct-link-evidence.json',
     ],
     decisions: [
-      { proposalId: 'work-1', issueId: records[0].id, partIndex: 0, partNumber: 'ABC-123', decision: 'approve', reason: 'Approved exact primary.', reviewedSourceEvidence: { directLink: 'Exact ABC-123 product link.' } },
-      { proposalId: 'work-1', issueId: records[0].id, partIndex: 1, partNumber: 'ALT-456', decision: 'approve', reason: 'Approved alternate.', reviewedSourceEvidence: { directLink: 'Exact ALT-456 product link.' } },
-      { proposalId: 'work-1', issueId: records[0].id, partIndex: 2, partNumber: 'HOLD-1', decision: 'hold_no_exact_link', reason: 'No exact link.', reviewedSourceEvidence: { directLink: 'No exact link.' } },
+      { proposalId: 'work-1', issueId: records[0].id, partIndex: 0, partNumber: 'ABC-123', decision: 'approve', reason: 'Approved exact primary.', reviewedSourceEvidence: { howToFix: 'Replace it.', catalog: 'Catalog fitment.', directLink: 'Exact ABC-123 product link.' } },
+      { proposalId: 'work-1', issueId: records[0].id, partIndex: 1, partNumber: 'ALT-456', decision: 'approve', reason: 'Approved alternate.', reviewedSourceEvidence: { howToFix: 'Replace it.', catalog: 'Catalog fitment.', directLink: 'Exact ALT-456 product link.' } },
+      { proposalId: 'work-1', issueId: records[0].id, partIndex: 2, partNumber: 'HOLD-1', decision: 'hold_no_exact_link', reason: 'No exact link.', reviewedSourceEvidence: { howToFix: 'Replace it.', catalog: 'Catalog fitment.', directLink: 'No exact link.' } },
     ],
+    tally: {
+      approve: 2, block_wrong_role: 0, block_incomplete_scope: 0,
+      block_ambiguous: 0, hold_no_exact_link: 1, hold_needs_manual: 0,
+    },
     reconciliation: { complete: true, sourcePartRowCount: 3, reviewedPartRowCount: 3, missing: [], duplicates: [] },
     existingClaimWorkRowCount: 1,
+    uniqueExistingClaimCount: 1,
+    existingClaimTally: { preserve: 0, block: 1 },
     existingClaims: [{
       workItemId: 'existing-1', issueId: records[1].id, partNumber: 'OLD-1', engineWorkRow: '',
       verdict: 'block', reason: 'Existing claim needs explicit removal.',
+      reviewedSourceEvidence: { howToFix: 'Replace the part.', catalog: 'Scope mismatch.', directLink: 'Exact but unsafe.' },
     }],
   };
   const hold = {
     issueId: records[0].id,
+    source: 'dtcCodes',
     procedure: 'scan-codes',
     excerpt: '22',
     reasonCode: 'manufacturer-code-capability-unverified',
@@ -295,7 +336,7 @@ function fixture(recordCount = 70) {
       unresolvedToolHoldCount: 1,
       uncoveredDiagnosticInstructionCount: 0,
     },
-    acuraToolLinks: [],
+    makeToolLinks: [],
     reusableReviewedTools: [],
     holds: [hold],
   };
@@ -360,7 +401,7 @@ test('finalizer selects approved primary but keeps release blocked by unapplied 
   assert.equal(result.patch.releaseBlocked, true);
   assert.equal(result.patch.productionApplied, false);
   assert.equal(result.reconciliation.diagnosticReconciliation.scope.uncoveredDiagnosticInstructionCount, 0);
-  assert.equal(result.reconciliation.diagnosticReconciliation.hold.issueId, 'acura-01');
+  assert.equal(result.reconciliation.diagnosticReconciliation.holds[0].issueId, 'acura-01');
 
   const artifactSha256 = Object.fromEntries(
     [...PACKET_FILES, ...DIAGNOSTIC_ARTIFACT_FILES].map((file) => [file, 'b'.repeat(64)]),
@@ -432,6 +473,78 @@ test('every fitment work item must terminate in a proposal or an identity-bound 
   assert.throws(() => finalizePacket(inputs, inputs.options), /do not cover the fitment worklist/);
 });
 
+test('04 to 05 permits only exact link additions and their evidence', async (t) => {
+  const mutate = (change) => {
+    const inputs = fixture();
+    change(inputs);
+    assert.throws(() => finalizePacket(inputs, inputs.options), /04\/05 structural binding mismatch|link evidence/);
+  };
+  await t.test('component drift', () => mutate((inputs) => { inputs.links.proposals[0].parts[0].component = 'Wrong'; }));
+  await t.test('part-number drift', () => mutate((inputs) => { inputs.links.proposals[0].parts[0].aftermarketXref = ['WRONG']; }));
+  await t.test('role drift', () => mutate((inputs) => { inputs.links.proposals[0].parts[0].role = 'alternate'; }));
+  await t.test('fitment drift', () => mutate((inputs) => { inputs.links.proposals[0].parts[0].fitment.years = [2019]; }));
+  await t.test('scope drift', () => mutate((inputs) => { inputs.links.proposals[0].articleScope.model = 'Other'; }));
+  await t.test('part order drift', () => mutate((inputs) => { inputs.links.proposals[0].parts.reverse(); }));
+  await t.test('disposition drift', () => mutate((inputs) => { inputs.links.workItemDispositions[0].reasonCode = 'changed'; }));
+  await t.test('evidence identity drift', () => mutate((inputs) => { inputs.links.linkEvidence[0].issueId = 'wrong'; }));
+});
+
+test('06 review schema, decisions, evidence, and existing claims fail closed', async (t) => {
+  const rejects = (change, pattern) => {
+    const inputs = fixture();
+    change(inputs);
+    assert.throws(() => finalizePacket(inputs, inputs.options), pattern);
+  };
+  await t.test('make', () => rejects((i) => { i.review.make = 'Honda'; }, /schema\/make\/snapshot/));
+  await t.test('decision enum', () => rejects((i) => { i.review.decisions[0].decision = 'maybe'; }, /invalid independent-review decision/));
+  await t.test('decision reason', () => rejects((i) => { i.review.decisions[0].reason = ''; }, /review reason is required/));
+  await t.test('decision evidence', () => rejects((i) => { delete i.review.decisions[0].reviewedSourceEvidence.catalog; }, /catalog is required/));
+  await t.test('claim verdict', () => rejects((i) => { i.review.existingClaims[0].verdict = 'delete'; }, /identity mismatch/));
+  await t.test('claim reason', () => rejects((i) => { i.review.existingClaims[0].reason = ''; }, /review reason is required/));
+});
+
+test('diagnostic holds reconcile as an exact generic zero-or-many set', () => {
+  const inputs = fixture();
+  inputs.classification.rows[0].diagnosticDispositions = [];
+  inputs.classification.rows[0].dtcCodes = [];
+  inputs.classification.diagnosticSummary = {
+    issueWithDtcCount: 0, uniqueDtcCount: 0, instructionCount: 0, dtcDispositionCount: 0,
+    toolLinkedCount: 0, procedureNoToolCount: 0, unresolvedToolHoldCount: 0,
+  };
+  inputs.checkpoint.diagnosticSummary = { ...inputs.classification.diagnosticSummary };
+  Object.assign(inputs.diagnosticEvidence.scope, {
+    issuesWithDtcCodes: 0, uniqueDtcCount: 0, dtcDispositionCount: 0, unresolvedToolHoldCount: 0,
+  });
+  inputs.diagnosticEvidence.holds = [];
+  assert.equal(finalizePacket(inputs, inputs.options).reconciliation.diagnosticReconciliation.holds.length, 0);
+});
+
+test('reviewed runtime context requires exact nonempty scope and hash-verifiable provenance', () => {
+  const inputs = fixture();
+  const proposal = inputs.links.proposals[0];
+  proposal.articleScope = { make: 'Acura', model: 'Legend', trims: ['L', 'LS', 'GS'] };
+  const part = proposal.parts[0];
+  part.fitment = { years: [1990], engines: ['2.7L V6 C27A'] };
+  const resolver = ({ trim }) => (['L', 'LS'].includes(trim) ? ({
+    year: 1990, make: 'Acura', model: 'Legend', trim, engine: '2.7L V6 C27A',
+    engineProvenance: {
+      artifact: 'package.json', artifactSha256: sha256File(path.join(__dirname, '..', 'package.json')),
+      snapshotHash: inputs.source.snapshotHash,
+      ymmtArtifact: 'public/data/ymmt.json', ymmtArtifactSha256: sha256File(path.join(__dirname, '..', 'public/data/ymmt.json')),
+    },
+  }) : { year: 1990, make: 'Acura', model: 'Legend', trim, engine: null });
+  assert.equal(reviewedRuntimeContextCovers(inputs.source, proposal, part, resolver), true);
+  assert.equal(reviewedRuntimeContextCovers(inputs.source, { ...proposal, articleScope: { ...proposal.articleScope, trims: [] } }, part, resolver), false);
+  assert.equal(reviewedRuntimeContextCovers(inputs.source, proposal, part, ({ trim }) => ({ ...resolver({ trim }), engine: '3.0L V6' })), false);
+  assert.equal(reviewedRuntimeContextCovers(inputs.source, proposal, part, ({ trim }) => ({
+    ...resolver({ trim }), engineProvenance: { ...resolver({ trim }).engineProvenance, artifactSha256: '0'.repeat(64) },
+  })), false);
+  assert.equal(reviewedRuntimeContextCovers(inputs.source, proposal, part, ({ trim }) => (
+    trim === 'LS' ? { year: 1990, make: 'Acura', model: 'Legend', trim, engine: null } : resolver({ trim })
+  )), false);
+  assert.equal(reviewedRuntimeContextCovers(inputs.source, proposal, { ...part, fitment: { ...part.fitment, years: [1990, 1991] } }, resolver), false);
+});
+
 test('review decision identity is bound to proposal and work item', async (t) => {
   await t.test('issue mismatch', () => {
     const inputs = fixture();
@@ -441,6 +554,7 @@ test('review decision identity is bound to proposal and work item', async (t) =>
   await t.test('model mismatch', () => {
     const inputs = fixture();
     inputs.links.proposals[0].articleScope.model = 'Wrong Model';
+    for (const evidence of inputs.links.linkEvidence) evidence.input.model = 'Wrong Model';
     inputs.proposals.proposals[0].articleScope.model = 'Wrong Model';
     inputs.options.recomputedProposals.proposals[0].articleScope.model = 'Wrong Model';
     assert.throws(() => finalizePacket(inputs, inputs.options), /proposal\/work-item model mismatch/);
@@ -488,7 +602,7 @@ test('diagnostic mutations fail closed before COMPLETE can be generated', async 
   await t.test('missing explicit hold', () => {
     const inputs = fixture();
     inputs.diagnosticEvidence.holds = [];
-    assert.throws(() => finalizePacket(inputs, inputs.options), /exactly one explicit hold/);
+    assert.throws(() => finalizePacket(inputs, inputs.options), /unresolved-hold count mismatch/);
   });
   await t.test('mutated issue set', () => {
     const inputs = fixture();

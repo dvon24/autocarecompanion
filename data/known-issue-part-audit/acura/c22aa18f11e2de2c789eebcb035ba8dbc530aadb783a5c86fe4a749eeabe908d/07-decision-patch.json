@@ -10,21 +10,21 @@
   "releaseBlocked": true,
   "productionApplied": false,
   "diagnosticReconciliation": {
-    "status": "RECONCILED_WITH_EXPLICIT_HOLD",
+    "status": "RECONCILED",
     "artifactSha256": {
-      "classification-ledger.json": "ca073173e3213d4c52feff870b2ac7bdd220de28ed9118a7ea84e6b6d2532186",
-      "checkpoint.json": "8288439bd7b2e8deb90437bd630b9fab75d3189fee1a0f519b2c2ed9ba32ad83",
-      "diagnostic-tool-evidence.json": "3a299be1f526024e53496bc3f2c88bb4a3bae72f10e2028b6ff3a72f2fd5fab3"
+      "classification-ledger.json": "de7c7d2f37f20973c701281b912f21336f40bcb04b467806801d8d03691bca28",
+      "checkpoint.json": "04940c0b466e9d0ad83365f83d88a022cfd1cc24e61bfddaf2f81a1bc054f597",
+      "diagnostic-tool-evidence.json": "d72bdb6ed12be173be7196b95b9e53332868cbefa8a5a2637570d634101538fe"
     },
     "implementationSha256": {
       "src/lib/diagnostic-procedures.js": "3677b1aad234832d09822ff54a12e9fc3d2b9a455cbfe21667e8ccefe43531c0",
       "src/data/diagnostic-tools.ts": "1a4e2b44967f8aad3d9b874dad38f3a44f2e581319ff962b1afe80750d986973",
       "src/components/known-issues/IssueDiagnosticTools.tsx": "3fd6915035b0ff7aaa40473e2f020ec580d6ccd5dd4fe7a48f7c41cbd2142358",
-      "src/components/known-issues/KnownIssueCard.tsx": "7ded114928fa42f4862073aae237f83f3cc519433d2da99d54fae743eb1ff1e2",
+      "src/components/known-issues/KnownIssueCard.tsx": "1c823ec70caf654eaf9a6a577de74c4b5c69b9e64edfe57cca9c6678edd50c8f",
       "src/components/known-issues/CategorySection.tsx": "9b8850d4dee106327351597528e44a7bbde73adc689d1c0e75a22d9a042a48d1",
       "src/components/known-issues/ArticleIssuesList.tsx": "eb51760c9dcc1b6d6d84abdd193ee24b4f4dd0ec7d47c9afafd90dd2e186c4e5",
       "src/app/garage/[id]/maintenance/page.tsx": "f8ca4cc0eee666519cf9e38baf5b3249328d37b10e1443a4b105e91f3c159c5e",
-      "src/components/vehicle/VehicleDashboard.tsx": "d71887a7ff1d1db8fc5de055f7dae96d55e4c2575142a53d153f8c539c8d18a3"
+      "src/components/vehicle/VehicleDashboard.tsx": "67ea52fe54b0d6199bdbaf8e3419210d30c7cddb686a7b619b633161ca7249e3"
     },
     "scope": {
       "issueCount": 70,
@@ -37,17 +37,20 @@
       "unresolvedToolHoldCount": 1,
       "uncoveredDiagnosticInstructionCount": 0
     },
-    "hold": {
-      "issueId": "acura-integra-dc-vtec-oil-pressure-switch-code22",
-      "procedure": "scan-codes",
-      "excerpt": "22, P1259",
-      "reasonCode": "manufacturer-code-capability-unverified",
-      "toolId": null,
-      "productUrl": null
-    }
+    "holds": [
+      {
+        "issueId": "acura-integra-dc-vtec-oil-pressure-switch-code22",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "22, P1259",
+        "reasonCode": "manufacturer-code-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      }
+    ]
   },
   "commercePipelineImplementationSha256": {
-    "src/lib/prescription.ts": "546da31a175431976d2d3c65d113121d30c6a9726c0dba5966ae9eff07b2997c",
+    "src/lib/prescription.ts": "542bdc06554d6074f5d782a67637ddaa66ccc539024900e8780ef97e6e091748",
     "src/lib/known-issue-fitment-worklist.ts": "abbc3a64f285ea9f2aef5712a0c13b35acc56db5e2c6c1b7c018593cbc13c899",
     "src/data/component-catalog-map.ts": "5e6d51a3e228b392890a17e6142a498cfc542de1f2093c371bf5d1c715d4ea22",
     "scripts/build-fitment-worklist.ts": "5aa10edeb5e32f10d78754ead2f1146bccc0d96eaa1b0b86b1a7fd5eee991cbb",
@@ -62,8 +65,17 @@
     "src/lib/part-link-builder.ts": "2bd80c7784b0369623bf8102c034b55fe0c9e21e9c97149edd3760151f3cb655",
     "src/lib/ebay-part-link-resolver.ts": "d42b71c98936edcd82a54e264ca7ee97420f54f425b77c82fc37fdba6a49831e",
     "src/lib/ebay-resolver.ts": "7a9292bfe7fd059a6afc3d0781fff04eddb5e650c4c18f7bf0212dfb91bbf03c",
-    "src/lib/known-issue-part-fitment.ts": "972b3c41e4eb92b5bf71ff6588da264a8e794dee78038b70afd2421d363e2de8",
-    "src/lib/reviewed-vehicle-context.ts": "8bf379edb92bd798d1de12eae635eda27318479a64b3a5921e05048bf09265d0",
+    "src/lib/known-issue-part-fitment.ts": "b9ae909dda5fc7e238df59b14bf0460422246e055badf8ee4ebc4b4da7f3af81",
+    "src/lib/reviewed-vehicle-context.ts": "afdaca6f2ba04c69045bf3ee8f5de8c4999526d8cbf4d8f799f377281a912a1f",
+    "src/lib/known-issue-commerce.ts": "1e4e812ac2fe9f2c170e3e050786e62fe415ddc778ff31aadab8f9db5b03c1ef",
+    "src/components/known-issues/KnownIssueCard.tsx": "1c823ec70caf654eaf9a6a577de74c4b5c69b9e64edfe57cca9c6678edd50c8f",
+    "src/components/known-issues/CategorySection.tsx": "9b8850d4dee106327351597528e44a7bbde73adc689d1c0e75a22d9a042a48d1",
+    "src/components/known-issues/ArticleIssuesList.tsx": "eb51760c9dcc1b6d6d84abdd193ee24b4f4dd0ec7d47c9afafd90dd2e186c4e5",
+    "src/components/known-issues/KnownIssuesBriefing.tsx": "0127c5068feb43519852915fea96de872b09743e8de24378f43b701be0d258ec",
+    "src/components/vehicle/VehicleDashboard.tsx": "67ea52fe54b0d6199bdbaf8e3419210d30c7cddb686a7b619b633161ca7249e3",
+    "src/components/vehicle/VisionResultCard.tsx": "ddc556507814d37e803329bad010a6d7294ec7034767ac7df2e5b1780b3b574a",
+    "src/app/api/vision/route.ts": "6eaaad073fdba5a64b01bd2906200fe56978b5e1be94afbffc7ce102a6545b64",
+    "src/app/api/vision/identify/route.ts": "fb6fbadbcf1ea969780a4f7431d50695ac58d765385b63cfa55de5596af9ece7",
     "scripts/build-known-issue-deeplink-manifest.js": "29bc46c5cac0750dae2fd34bb58f47cf0be76b7971c36ab62ef55cb974450e72"
   },
   "decisions": [
@@ -294,21 +306,21 @@
     "releaseBlocked": true,
     "productionApplied": false,
     "diagnosticReconciliation": {
-      "status": "RECONCILED_WITH_EXPLICIT_HOLD",
+      "status": "RECONCILED",
       "artifactSha256": {
-        "classification-ledger.json": "ca073173e3213d4c52feff870b2ac7bdd220de28ed9118a7ea84e6b6d2532186",
-        "checkpoint.json": "8288439bd7b2e8deb90437bd630b9fab75d3189fee1a0f519b2c2ed9ba32ad83",
-        "diagnostic-tool-evidence.json": "3a299be1f526024e53496bc3f2c88bb4a3bae72f10e2028b6ff3a72f2fd5fab3"
+        "classification-ledger.json": "de7c7d2f37f20973c701281b912f21336f40bcb04b467806801d8d03691bca28",
+        "checkpoint.json": "04940c0b466e9d0ad83365f83d88a022cfd1cc24e61bfddaf2f81a1bc054f597",
+        "diagnostic-tool-evidence.json": "d72bdb6ed12be173be7196b95b9e53332868cbefa8a5a2637570d634101538fe"
       },
       "implementationSha256": {
         "src/lib/diagnostic-procedures.js": "3677b1aad234832d09822ff54a12e9fc3d2b9a455cbfe21667e8ccefe43531c0",
         "src/data/diagnostic-tools.ts": "1a4e2b44967f8aad3d9b874dad38f3a44f2e581319ff962b1afe80750d986973",
         "src/components/known-issues/IssueDiagnosticTools.tsx": "3fd6915035b0ff7aaa40473e2f020ec580d6ccd5dd4fe7a48f7c41cbd2142358",
-        "src/components/known-issues/KnownIssueCard.tsx": "7ded114928fa42f4862073aae237f83f3cc519433d2da99d54fae743eb1ff1e2",
+        "src/components/known-issues/KnownIssueCard.tsx": "1c823ec70caf654eaf9a6a577de74c4b5c69b9e64edfe57cca9c6678edd50c8f",
         "src/components/known-issues/CategorySection.tsx": "9b8850d4dee106327351597528e44a7bbde73adc689d1c0e75a22d9a042a48d1",
         "src/components/known-issues/ArticleIssuesList.tsx": "eb51760c9dcc1b6d6d84abdd193ee24b4f4dd0ec7d47c9afafd90dd2e186c4e5",
         "src/app/garage/[id]/maintenance/page.tsx": "f8ca4cc0eee666519cf9e38baf5b3249328d37b10e1443a4b105e91f3c159c5e",
-        "src/components/vehicle/VehicleDashboard.tsx": "d71887a7ff1d1db8fc5de055f7dae96d55e4c2575142a53d153f8c539c8d18a3"
+        "src/components/vehicle/VehicleDashboard.tsx": "67ea52fe54b0d6199bdbaf8e3419210d30c7cddb686a7b619b633161ca7249e3"
       },
       "scope": {
         "issueCount": 70,
@@ -321,17 +333,20 @@
         "unresolvedToolHoldCount": 1,
         "uncoveredDiagnosticInstructionCount": 0
       },
-      "hold": {
-        "issueId": "acura-integra-dc-vtec-oil-pressure-switch-code22",
-        "procedure": "scan-codes",
-        "excerpt": "22, P1259",
-        "reasonCode": "manufacturer-code-capability-unverified",
-        "toolId": null,
-        "productUrl": null
-      }
+      "holds": [
+        {
+          "issueId": "acura-integra-dc-vtec-oil-pressure-switch-code22",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "22, P1259",
+          "reasonCode": "manufacturer-code-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        }
+      ]
     },
     "commercePipelineImplementationSha256": {
-      "src/lib/prescription.ts": "546da31a175431976d2d3c65d113121d30c6a9726c0dba5966ae9eff07b2997c",
+      "src/lib/prescription.ts": "542bdc06554d6074f5d782a67637ddaa66ccc539024900e8780ef97e6e091748",
       "src/lib/known-issue-fitment-worklist.ts": "abbc3a64f285ea9f2aef5712a0c13b35acc56db5e2c6c1b7c018593cbc13c899",
       "src/data/component-catalog-map.ts": "5e6d51a3e228b392890a17e6142a498cfc542de1f2093c371bf5d1c715d4ea22",
       "scripts/build-fitment-worklist.ts": "5aa10edeb5e32f10d78754ead2f1146bccc0d96eaa1b0b86b1a7fd5eee991cbb",
@@ -346,8 +361,17 @@
       "src/lib/part-link-builder.ts": "2bd80c7784b0369623bf8102c034b55fe0c9e21e9c97149edd3760151f3cb655",
       "src/lib/ebay-part-link-resolver.ts": "d42b71c98936edcd82a54e264ca7ee97420f54f425b77c82fc37fdba6a49831e",
       "src/lib/ebay-resolver.ts": "7a9292bfe7fd059a6afc3d0781fff04eddb5e650c4c18f7bf0212dfb91bbf03c",
-      "src/lib/known-issue-part-fitment.ts": "972b3c41e4eb92b5bf71ff6588da264a8e794dee78038b70afd2421d363e2de8",
-      "src/lib/reviewed-vehicle-context.ts": "8bf379edb92bd798d1de12eae635eda27318479a64b3a5921e05048bf09265d0",
+      "src/lib/known-issue-part-fitment.ts": "b9ae909dda5fc7e238df59b14bf0460422246e055badf8ee4ebc4b4da7f3af81",
+      "src/lib/reviewed-vehicle-context.ts": "afdaca6f2ba04c69045bf3ee8f5de8c4999526d8cbf4d8f799f377281a912a1f",
+      "src/lib/known-issue-commerce.ts": "1e4e812ac2fe9f2c170e3e050786e62fe415ddc778ff31aadab8f9db5b03c1ef",
+      "src/components/known-issues/KnownIssueCard.tsx": "1c823ec70caf654eaf9a6a577de74c4b5c69b9e64edfe57cca9c6678edd50c8f",
+      "src/components/known-issues/CategorySection.tsx": "9b8850d4dee106327351597528e44a7bbde73adc689d1c0e75a22d9a042a48d1",
+      "src/components/known-issues/ArticleIssuesList.tsx": "eb51760c9dcc1b6d6d84abdd193ee24b4f4dd0ec7d47c9afafd90dd2e186c4e5",
+      "src/components/known-issues/KnownIssuesBriefing.tsx": "0127c5068feb43519852915fea96de872b09743e8de24378f43b701be0d258ec",
+      "src/components/vehicle/VehicleDashboard.tsx": "67ea52fe54b0d6199bdbaf8e3419210d30c7cddb686a7b619b633161ca7249e3",
+      "src/components/vehicle/VisionResultCard.tsx": "ddc556507814d37e803329bad010a6d7294ec7034767ac7df2e5b1780b3b574a",
+      "src/app/api/vision/route.ts": "6eaaad073fdba5a64b01bd2906200fe56978b5e1be94afbffc7ce102a6545b64",
+      "src/app/api/vision/identify/route.ts": "fb6fbadbcf1ea969780a4f7431d50695ac58d765385b63cfa55de5596af9ece7",
       "scripts/build-known-issue-deeplink-manifest.js": "29bc46c5cac0750dae2fd34bb58f47cf0be76b7971c36ab62ef55cb974450e72"
     },
     "counts": {
@@ -365,15 +389,15 @@
     },
     "inputSha256": {
       "00-make-source.json": "a1f69107cdad861b2324532e62926eaa533c26001d6c1c47e767ca76ff38a3f6",
-      "01-disposition-ledger.json": "91a453b0fd05c932d60bed6b9af8467ab0f21c3f89c35032a6d46542beb777af",
-      "02-fitment-worklist.json": "3372f0836242c09051684b0c4ba484f584078242af133d8951e4c1687d69f174",
-      "03-showmetheparts-evidence.json": "4efeb02a2c99231fd6fed3ccd6efb6c8f96952ac240709493ba231da612f7bac",
-      "04-part-proposals.json": "2a7cd8ca83c041682bd7f8f33ff203878931b55812b236eab7b3d4e7f9338beb",
-      "05-direct-link-evidence.json": "46824a05f2ecd4aceae05d07f7baa8a30257da24b66af07510c315ffd849fe45",
-      "06-independent-review.json": "317c3fbe09f3fa742ce0f0d26f04329aa19d756f1b5d639c59e2c6c4891a73ed",
-      "classification-ledger.json": "ca073173e3213d4c52feff870b2ac7bdd220de28ed9118a7ea84e6b6d2532186",
-      "checkpoint.json": "8288439bd7b2e8deb90437bd630b9fab75d3189fee1a0f519b2c2ed9ba32ad83",
-      "diagnostic-tool-evidence.json": "3a299be1f526024e53496bc3f2c88bb4a3bae72f10e2028b6ff3a72f2fd5fab3"
+      "01-disposition-ledger.json": "9ad495069594c4d6abe65e58f45127a133df20cc18d3e65b650577a0b22bd26e",
+      "02-fitment-worklist.json": "93f2d58952274b2e0623de6aaf5f998af492da42eaa0cb2e0ce9da605db16c27",
+      "03-showmetheparts-evidence.json": "5745a9134f37a26b798fef87330719d8cc436b61152174789ee94a9965973444",
+      "04-part-proposals.json": "803bd0818975fc92e5d02cd0642e7666ef7dc498f6e9fe06f5b136d17b77247b",
+      "05-direct-link-evidence.json": "a3ae842e2b1a1feaf7eec8c04c6c55865c4f30429a646b8ee66eb54d9d57927e",
+      "06-independent-review.json": "d040d504d23f7035c3700fb47acb27add5d2489e1d84a888574d857312c5e98a",
+      "classification-ledger.json": "de7c7d2f37f20973c701281b912f21336f40bcb04b467806801d8d03691bca28",
+      "checkpoint.json": "04940c0b466e9d0ad83365f83d88a022cfd1cc24e61bfddaf2f81a1bc054f597",
+      "diagnostic-tool-evidence.json": "d72bdb6ed12be173be7196b95b9e53332868cbefa8a5a2637570d634101538fe"
     },
     "reviewRows": [
       {
@@ -388,10 +412,10 @@
         "reason": "The article explicitly prescribes a complete distributor; the Cardone distributor is scoped only to the catalog-confirmed 1992-1993 1.7L variant and has an exact direct listing."
       },
       {
-        "proposalId": "acura-integra-da-ignitor-module-failure--prescription-0-0--1-7l-b17a1",
+        "proposalId": "acura-integra-da-ignitor-module-failure--prescription-1-0--1-7l-b17a1",
         "partIndex": 0,
         "issueId": "acura-integra-da-ignitor-module-failure",
-        "workItemId": "acura-integra-da-ignitor-module-failure--prescription-0-0--1-7l-b17a1",
+        "workItemId": "acura-integra-da-ignitor-module-failure--prescription-1-0--1-7l-b17a1",
         "model": "Integra",
         "partNumber": "31-17407",
         "verdict": "block_wrong_role",
@@ -983,12 +1007,12 @@
       },
       {
         "issueId": "acura-ilx-dct-shudder-2013",
-        "disposition": "service/tool/fluid",
+        "disposition": "diagnosis-dependent",
         "commerceAction": "no-fixparts-change"
       },
       {
         "issueId": "acura-ilx-infotainment-lag-2016",
-        "disposition": "service/tool/fluid",
+        "disposition": "diagnosis-dependent",
         "commerceAction": "no-fixparts-change"
       },
       {
@@ -1008,7 +1032,7 @@
       },
       {
         "issueId": "acura-integra-da-ignitor-module-failure",
-        "disposition": "buyable",
+        "disposition": "diagnosis-dependent",
         "commerceAction": "proposal-held"
       },
       {
@@ -1038,7 +1062,7 @@
       },
       {
         "issueId": "acura-integra-dc-automatic-transmission-shift-solenoid",
-        "disposition": "service/tool/fluid",
+        "disposition": "buyable",
         "commerceAction": "no-fixparts-change"
       },
       {
@@ -1088,7 +1112,7 @@
       },
       {
         "issueId": "acura-legend-fan-control-unit-cracked-solder-joints-cause-cooling-fan-c-c",
-        "disposition": "no-commerce",
+        "disposition": "buyable",
         "commerceAction": "no-fixparts-change"
       },
       {
@@ -1288,7 +1312,7 @@
       },
       {
         "issueId": "acura-tlx-9speed-shudder-2015",
-        "disposition": "service/tool/fluid",
+        "disposition": "diagnosis-dependent",
         "commerceAction": "no-fixparts-change"
       },
       {

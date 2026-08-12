@@ -13,7 +13,12 @@ import { ebayEnabled, resolveEbay } from '@/lib/ebay-resolver';
 import { buildUpgradeOptions } from '@/lib/aftermarket-tier';
 import { ebayAffiliate } from '@/lib/ebay-affiliate';
 import { getKnownIssueCommerce } from '@/lib/known-issue-commerce';
-import { partCanBeShownForVehicle } from '@/lib/known-issue-part-fitment';
+import {
+  resolvePartsForVehicle,
+  type FitmentVehicle,
+  type VehicleIdentity,
+} from '@/lib/known-issue-part-fitment';
+import { resolveReviewedVehicleContext } from '@/lib/reviewed-vehicle-context';
 import type { IdentifiedPart, PartCategory, IssuePart } from '@/types/vision';
 import Anthropic from '@anthropic-ai/sdk';
 import sharp from 'sharp';
@@ -80,6 +85,32 @@ interface VehicleCtx {
   model: string;
   trim?: string;
   engine?: string;
+  drivetrain?: string;
+  transmission?: string;
+}
+
+/**
+ * Give the vision surface the same fail-closed commerce resolution as every
+ * Known Issue renderer. In particular, variant links are selected before the
+ * second commerce gate and base links can never leak onto a scoped variant.
+ */
+type VisionKnownIssuePart = NonNullable<Parameters<typeof getKnownIssueCommerce>[0]['fixParts']>[number];
+
+function resolveKnownIssuePartsForVision(
+  rawParts: readonly VisionKnownIssuePart[],
+  vehicle: FitmentVehicle,
+  expectedIdentity: VehicleIdentity,
+): VisionKnownIssuePart[] {
+  const { fixParts: gatedParts } = getKnownIssueCommerce({
+    fixParts: [...rawParts],
+    communityRecommendations: [],
+  });
+  const resolved = resolvePartsForVehicle(gatedParts, vehicle, expectedIdentity);
+  const { fixParts } = getKnownIssueCommerce({
+    fixParts: resolved.parts,
+    communityRecommendations: [],
+  });
+  return fixParts;
 }
 
 // Runtime-validatable set of the PartCategory union from types/vision.ts.
@@ -154,8 +185,11 @@ export async function POST(request: NextRequest) {
           model: String(body.vehicle.model),
           trim: body.vehicle.trim ? String(body.vehicle.trim) : undefined,
           engine: body.vehicle.engine ? String(body.vehicle.engine) : undefined,
+          drivetrain: body.vehicle.drivetrain ? String(body.vehicle.drivetrain) : undefined,
+          transmission: body.vehicle.transmission ? String(body.vehicle.transmission) : undefined,
         }
       : null;
+  const fitmentVehicle = vehicle ? resolveReviewedVehicleContext(vehicle) : null;
 
   // ─── WHERE: let the live SAM endpoint tighten the region to the actual
   // object mask. When it does, we RE-CROP the full frame to that mask (via
@@ -201,7 +235,7 @@ export async function POST(request: NextRequest) {
             years: { has: vehicle.year },
             status: 'published',
           },
-          select: { id: true, title: true, fixParts: true },
+          select: { id: true, title: true, make: true, model: true, fixParts: true },
           // Load up to 50 (was 12): a tapped part tied to issue #13+ used to
           // silently never match — indistinguishable from "no issue exists".
           // id+title is a few tokens each (<1% of the image cost), so the cap
@@ -228,21 +262,13 @@ export async function POST(request: NextRequest) {
       // product URLs on a matching vendor, and empties links on recall-first
       // parts so we never sell a repair the owner is entitled to free.
       for (const it of issues) {
-        const { fixParts } = getKnownIssueCommerce({
-          fixParts: it.fixParts as Parameters<typeof getKnownIssueCommerce>[0]['fixParts'],
-          communityRecommendations: [],
-        });
-        // We know the exact vehicle here, so drop any part whose declared
-        // fitment excludes it. An issue's year span is wider than one part
-        // number's more often than not, and this is the surface where someone
-        // is standing at the car about to buy.
         fixPartsById.set(
           it.id,
-          fixParts.filter((p) => partCanBeShownForVehicle(p.fitment, {
-            year: vehicle.year,
-            trim: vehicle.trim ?? null,
-            engine: vehicle.engine ?? null,
-          })),
+          resolveKnownIssuePartsForVision(
+            Array.isArray(it.fixParts) ? it.fixParts as unknown as VisionKnownIssuePart[] : [],
+            fitmentVehicle!,
+            { make: it.make, model: it.model },
+          ),
         );
       }
 

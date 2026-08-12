@@ -544,7 +544,7 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
           <IssueDiagnosticTools
             solution={issue.solution}
             dtcCodes={issue.dtcCodes}
-            engines={fitmentVehicle.engine ? [fitmentVehicle.engine] : undefined}
+            engines={fitmentVehicle.engine ? [fitmentVehicle.engine] : issue.vehicleMatch.engines}
           />
 
           {/* Public commerce lives in this one canonical section. Search and
