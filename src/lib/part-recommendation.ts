@@ -29,6 +29,9 @@ export interface PartCandidate {
   partType?: string;
   brand?: string;
   engine?: string;
+  application?: string;
+  comment?: string;
+  location?: string;
 }
 
 export interface RankedPart extends PartCandidate {

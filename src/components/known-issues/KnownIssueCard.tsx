@@ -525,6 +525,11 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
 
           {/* Public commerce lives in this one canonical section. Search and
               category links have already been removed by getKnownIssueCommerce. */}
+          {fixParts.length === 0 && excludedPartCount > 0 && vehicleInfo && (
+            <div className="rounded-lg border border-[#D8D1C3] bg-[#F7F4EC] p-3 text-xs leading-relaxed text-[#64748B]">
+              {excludedPartCount === 1 ? '1 part option is' : `${excludedPartCount} part options are`} hidden until exact year, trim, and engine fitment can be confirmed.
+            </div>
+          )}
           {fixParts.length > 0 && (
             <div className="rounded-lg border border-[#D8D1C3] bg-[#EFEDE6] p-3">
               <h4 className="mb-1 flex items-center gap-2 text-sm font-semibold text-[#0B1220]">
@@ -537,7 +542,7 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
                 Only diagnosis- and fitment-reviewed repair parts are linked here.
                 {excludedPartCount > 0 && vehicleInfo && (
                   <span className="mt-1 block text-[#64748B]">
-                    {excludedPartCount === 1 ? '1 part is' : `${excludedPartCount} parts are`} hidden because fitment could not be confirmed for your {vehicleInfo.year} {vehicleInfo.model}.
+                    {excludedPartCount === 1 ? '1 part is' : `${excludedPartCount} parts are`} hidden until exact year, trim, and engine fitment can be confirmed.
                   </span>
                 )}
               </p>
@@ -644,7 +649,7 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
               </ul>
 
               {hasPartRecommendations && (
-                <p className="mt-2 text-[11px] font-medium text-[#475569]">Part links may earn au7o a commission. Confirm fitment by VIN before buying.</p>
+                <p className="mt-2 text-[11px] font-medium text-[#475569]">As an Amazon Associate, we earn from qualifying purchases; other part links may also earn au7o a commission. Confirm fitment by VIN before buying.</p>
               )}
             </div>
           )}

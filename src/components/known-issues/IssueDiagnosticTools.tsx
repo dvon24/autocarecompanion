@@ -54,6 +54,7 @@ export function IssueDiagnosticTools({ solution, dtcCodes }: IssueDiagnosticTool
   // the page happens to name a code. The two justify different claims.
   const matchedProcedure = procedures.some((procedure) => procedure !== 'scan-codes');
   const hasAffiliateLinks = tools.some((tool) => Boolean(tool.productUrl));
+  const hasScannerRecommendation = tools.some((tool) => tool.kind === 'scanner');
 
   return (
     <div className="rounded-lg border border-[#D8D1C3] bg-[#EFEDE6] p-3">
@@ -76,7 +77,7 @@ export function IssueDiagnosticTools({ solution, dtcCodes }: IssueDiagnosticTool
             cannot see.
           </span>
         )}
-        {families.length > 0 && (
+        {!hasUnknownCode && hasScannerRecommendation && families.length > 0 && (
           <span className="mt-1 block text-[#64748B]">
             The recommended scanner supports these code families; confirm your exact year, model and module coverage before buying.
           </span>
@@ -114,7 +115,7 @@ export function IssueDiagnosticTools({ solution, dtcCodes }: IssueDiagnosticTool
 
       {hasAffiliateLinks && (
         <p className="mt-2 text-[11px] font-medium text-[#64748B]">
-          Tool links may earn au7o a commission.
+          As an Amazon Associate, we earn from qualifying purchases. Prices are approximate and may vary.
         </p>
       )}
 

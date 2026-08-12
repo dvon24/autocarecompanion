@@ -99,14 +99,14 @@ function repairEvidence(solution: unknown): string {
       if (!primaryPartNumber || (alt && !alternatePartNumber)) {
         throw new Error(`proposal ${p.id} is missing schema-compatible aftermarketXref evidence`);
       }
-      const years = primary.fitment?.years?.length
-        ? formatYearRange(primary.fitment.years)
-        : '';
-      const engine = primary.fitment?.engines?.[0] || '';
+      const scope = (part: Part) => [
+        part.fitment?.years?.length ? formatYearRange(part.fitment.years) : '',
+        part.fitment?.engines?.length ? `engine: ${part.fitment.engines.join(', ')}` : '',
+        part.fitment?.catalogModels?.length ? `catalog: ${part.fitment.catalogModels.join(', ')}` : '',
+      ].filter(Boolean).join('; ') || 'unscoped';
       const evidence = [
-        years,
-        engine,
-        primary.fitment?.catalogModels?.length ? `catalog: ${primary.fitment.catalogModels.join(', ')}` : '',
+        `primary scope: ${scope(primary)}`,
+        ...(alt ? [`alternate scope: ${scope(alt)}`, `alternate component: ${alt.component}`] : []),
         `mapped from ${p.mappedFrom || 'unknown'}: ${p.partTypeMatch || 'missing'}`,
         `solution: ${repairEvidence(m?.solution)}`,
         p.partTypeRelaxedTo ? `relaxed: ${p.partTypeRelaxedTo}` : '',

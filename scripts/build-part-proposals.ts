@@ -25,10 +25,11 @@ import { recommendParts, type PartCandidate } from '../src/lib/part-recommendati
 import { formatYearRange } from '../src/lib/known-issue-part-fitment';
 import { fullyCoveredYears } from '../src/lib/part-proposal-coverage';
 import { candidateQualifiersAppearInArticle } from '../src/lib/part-type-evidence';
+import { assertFreshCatalogRestrictionFields, hasUnrepresentableCatalogScope } from '../src/lib/catalog-candidate-safety';
 
 config({ path: '.env.local' });
 
-type FitmentCandidate = PartCandidate & { catalogModel?: string };
+type FitmentCandidate = PartCandidate & { catalogModel?: string; location?: string };
 
 interface Verdict {
   id: string;
@@ -145,7 +146,10 @@ async function loadArticles() {
   pool.on('error', () => {});
   try {
     const { rows } = await pool.query('select id, title, solution from "KnownIssue" where id = any($1)', [[...ids]]);
-    for (const r of rows) ARTICLE.set(r.id, `${r.title} ${r.solution}`);
+    for (const r of rows) ARTICLE.set(
+      r.id,
+      `${r.title} ${r.solution}`,
+    );
   } catch (e) {
     console.warn('WARN could not load article text — qualifier check disabled:', (e as Error).message);
   }
@@ -172,10 +176,12 @@ for (const file of inputs) {
     const yearsByPart = new Map<string, Set<number>>();
     const modelsByPartYear = new Map<string, Map<number, Set<string>>>();
     const applicationsByPartYear = new Map<string, Map<number, Set<string>>>();
+    const restrictionsByPart = new Map<string, Array<{ application: string; comment: string; location: string }>>();
     const candidateByKey = new Map<string, FitmentCandidate>();
     for (const [year, list] of Object.entries(r.candidatesByYear || {})) {
       for (const entry of list as Array<FitmentCandidate | string>) {
         if (typeof entry === 'string') { structuredMissing++; continue; }
+        assertFreshCatalogRestrictionFields(entry, r.id);
         const key = `${entry.supplier}|${entry.partNumber}`.toLowerCase();
         if (!yearsByPart.has(key)) yearsByPart.set(key, new Set());
         yearsByPart.get(key)!.add(Number(year));
@@ -190,6 +196,12 @@ for (const file of inputs) {
           }
         }
         if (!candidateByKey.has(key)) candidateByKey.set(key, entry);
+        if (!restrictionsByPart.has(key)) restrictionsByPart.set(key, []);
+        const restriction = { application: entry.application || '', comment: entry.comment || '', location: entry.location || '' };
+        if (!restrictionsByPart.get(key)!.some((value) =>
+          value.application === restriction.application && value.comment === restriction.comment && value.location === restriction.location)) {
+          restrictionsByPart.get(key)!.push(restriction);
+        }
       }
     }
     if (candidateByKey.size === 0) { skipped['no-structured-candidates'] = (skipped['no-structured-candidates'] || 0) + 1; continue; }
@@ -229,6 +241,20 @@ for (const file of inputs) {
       continue;
     }
     for (const key of [...candidateByKey.keys()]) if (!relevant.some(([k]) => k === key)) candidateByKey.delete(key);
+    for (const key of [...candidateByKey.keys()]) {
+      const restrictions = restrictionsByPart.get(key) || [];
+      // Application/comment text can encode trim, VIN, drivetrain, package,
+      // dimensions, WITH/WITHOUT equipment and other catalog-only scope. Our
+      // public fitment contract cannot enforce arbitrary prose restrictions,
+      // so mentioning one in the article is not enough to make the part safe.
+      if (restrictions.some(hasUnrepresentableCatalogScope)) {
+        candidateByKey.delete(key);
+      }
+    }
+    if (candidateByKey.size === 0) {
+      skipped['unsupported-catalog-application-restriction'] = (skipped['unsupported-catalog-application-restriction'] || 0) + 1;
+      continue;
+    }
 
     // Generic model names can resolve to several catalog aliases and, unless
     // the article names an engine, several engine applications. A PN is usable

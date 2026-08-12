@@ -68,8 +68,8 @@ export const COMPONENT_CATALOG_MAP: ComponentMapping[] = [
   { pattern: /\bthermostat\b/i, productMatch: ['thermostat gasket housing', 'cooling system service'], partTypeMatch: 'thermostat' },
   { pattern: /\bradiator support\b|\bcore support\b/i, productMatch: 'body', partTypeMatch: 'radiator support', engineIndependent: true },
   { pattern: /\b(radiator fan|cooling fan)\b/i, productMatch: 'radiators coolers related components', partTypeMatch: 'fan', engineIndependent: true },
-  { pattern: /\bradiator\b/i, productMatch: 'radiators coolers related components', partTypeMatch: 'radiator' },
   { pattern: /\b(coolant hose|radiator hose|heater hose)\b/i, productMatch: 'hoses pipes', partTypeMatch: 'hose' },
+  { pattern: /\bradiator\b/i, productMatch: 'radiators coolers related components', partTypeMatch: 'radiator' },
   { pattern: /\bintercooler\b/i, productMatch: 'radiators coolers related components', partTypeMatch: 'intercooler' },
 
   // ── drive belt / timing ──
@@ -217,14 +217,16 @@ export const COMPONENT_CATALOG_MAP: ComponentMapping[] = [
  * Misdiagnosed as Rear Main Seal)" — and matching the disclaimed component
  * recommends the exact part the article exists to rule out.
  */
-const DISCLAIMED = /\b(?:misdiagnos\w*|mistaken|confused|not)\s+(?:as|for|with|a|an)?\s*$/i;
+const DISCLAIMED = /\b(?:misdiagnos\w*|mistaken|confused)\s+(?:as|for|with|a|an|the)?\s*$|\b(?:(?:is|was)n['’]?t|not)(?:\s+(?:caused\s+by|due\s+to|from))?\s+(?:a|an|the)?\s*(?:failed|faulty|bad)?\s*$/i;
+const DISCLAIMED_AFTER = /^\s*(?:(?:(?:is|was|has\s+been)\s+)?(?:ruled\s+out|not\s+(?:the\s+)?cause|not\s+at\s+fault)|(?:is|was)n['’]?t\s+(?:the\s+cause|at\s+fault))\b/i;
 
 function matchesOutsideDisclaimer(mapping: ComponentMapping, text: string): boolean {
   const m = mapping.pattern.exec(text);
   if (!m) return false;
   // Look at the ~30 characters immediately before the match.
   const before = text.slice(Math.max(0, m.index - 30), m.index);
-  return !DISCLAIMED.test(before);
+  const after = text.slice(m.index + m[0].length, m.index + m[0].length + 40);
+  return !DISCLAIMED.test(before) && !DISCLAIMED_AFTER.test(after);
 }
 
 /**

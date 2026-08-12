@@ -36,6 +36,7 @@ test('radiator support and cooling fan do not collapse into a radiator', () => {
   assert.equal(mapComponent('Radiator Support Rust')?.partTypeMatch, 'radiator support');
   assert.equal(mapComponent('Cooling Fan Failure')?.partTypeMatch, 'fan');
   assert.equal(mapComponent('Radiator Leak')?.partTypeMatch, 'radiator');
+  assert.equal(mapComponent('Radiator Hose Leak')?.partTypeMatch, 'hose');
 });
 
 test('a DPF article maps to the filter, not an exhaust temperature sensor', () => {
@@ -59,6 +60,28 @@ test('the more specific rule wins over the generic one', () => {
 test('a component the title says it is NOT does not get recommended', () => {
   const m = mapComponent('4.0L Oil Filter Adapter Housing O-Ring Leak (Frequently Misdiagnosed as Rear Main Seal)');
   assert.notEqual(m?.partTypeMatch, 'seal', 'must not propose the part the article rules out');
+});
+
+test('local negation cannot become a component recommendation', () => {
+  for (const title of [
+    'Coolant leak — not the water pump',
+    'Coolant leak is not the water pump',
+    'Coolant leak, not caused by the water pump',
+    'Coolant leak not due to the water pump',
+    'Coolant leak is not from the water pump',
+    'Coolant leak, not a failed water pump',
+    'Coolant leak — water pump ruled out',
+    'Coolant leak — water pump is not the cause',
+    'Coolant leak — water pump not at fault',
+    'Coolant leak — water pump was ruled out',
+    'Coolant leak — water pump was not the cause',
+    'Coolant leak — water pump has been ruled out',
+    "Coolant leak isn't the water pump",
+    "Coolant leak — water pump isn't the cause",
+    "Coolant leak — water pump wasn't at fault",
+  ]) {
+    assert.notEqual(mapComponent(title)?.partTypeMatch, 'water pump', title);
+  }
 });
 
 test('the leading clause wins over a parenthetical aside', () => {

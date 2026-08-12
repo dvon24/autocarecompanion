@@ -36,6 +36,19 @@ test('ignores a part the solution says NOT to replace', () => {
   assert.deepEqual(extractPrescribedParts('Test the circuit before replacing the ignition coil.'), []);
   assert.deepEqual(extractPrescribedParts('Clean the throttle body instead of replacing the throttle position sensor.'), []);
   assert.deepEqual(extractPrescribedParts('Do not replace the catalytic converter until the misfire is fixed.'), []);
+  assert.deepEqual(extractPrescribedParts('There is no reason to replace the water pump.'), []);
+  assert.deepEqual(extractPrescribedParts('Replacing the water pump is not recommended.'), []);
+  assert.deepEqual(extractPrescribedParts('Replacement of the water pump is not required.'), []);
+  assert.deepEqual(extractPrescribedParts('Installing the water pump is unnecessary.'), []);
+  assert.deepEqual(extractPrescribedParts('There is little benefit in replacing the water pump.'), []);
+  assert.deepEqual(extractPrescribedParts('There is no benefit in replacing the water pump.'), []);
+  assert.deepEqual(extractPrescribedParts('There is no need for replacement of the water pump.'), []);
+  assert.deepEqual(extractPrescribedParts('No replacement of the water pump is necessary.'), []);
+  assert.deepEqual(extractPrescribedParts('No replacement of the water pump is recommended.'), []);
+  assert.deepEqual(extractPrescribedParts('Replacing the water pump should be avoided.'), []);
+  assert.deepEqual(extractPrescribedParts('Replacement of the water pump is prohibited.'), []);
+  assert.deepEqual(extractPrescribedParts('Installing the water pump is inadvisable.'), []);
+  assert.deepEqual(extractPrescribedParts('Replacing the water pump is contraindicated.'), []);
 });
 
 test('a purely diagnostic solution prescribes nothing', () => {

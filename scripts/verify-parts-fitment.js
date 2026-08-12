@@ -387,6 +387,9 @@ async function fittingPartsForModel({ year, makeRow, modelRow, productMatch, eng
       partType: candidate.partType,
       brand: candidate.brand,
       engine: engine.data,
+      application: candidate.application,
+      comment: candidate.comment,
+      location: candidate.location,
     };
   });
   return { covered: true, reason: '', parts: out, rawCount, usedCategory, usedTier, resolvedEngines };
@@ -443,14 +446,7 @@ async function verifyEntry(entry, yearCap) {
     // is scoped to the part types it covers) and engine (the candidate set spans
     // every engine the model offered), and flattening to "Supplier PN" throws
     // both away.
-    candidatesByYear[year] = result.parts.map((p) => ({
-      supplier: p.supplier,
-      partNumber: p.partNumber,
-      partType: p.partType,
-      brand: p.brand,
-      engine: p.engine,
-      catalogModel: p.catalogModel,
-    }));
+    candidatesByYear[year] = result.parts.map(serializeCandidate);
     if (result.parts.some((p) => normalizePn(p.partNumber) === target)) fitmentYears.push(year);
   }
 
@@ -535,4 +531,18 @@ if (require.main === module) {
   main().catch((error) => { saveCache(); console.error('ERR', error.message); process.exitCode = 1; });
 }
 
-module.exports = { looserPartTypeTier, resolveModels, selectOrderedCategory };
+function serializeCandidate(p) {
+  return {
+    supplier: p.supplier,
+    partNumber: p.partNumber,
+    partType: p.partType,
+    brand: p.brand,
+    engine: p.engine,
+    catalogModel: p.catalogModel,
+    application: p.application,
+    comment: p.comment,
+    location: p.location,
+  };
+}
+
+module.exports = { looserPartTypeTier, resolveModels, selectOrderedCategory, serializeCandidate };

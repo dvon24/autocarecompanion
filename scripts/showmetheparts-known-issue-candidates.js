@@ -91,6 +91,7 @@ function candidateFromPart(part, context) {
     brand: part.brand || '',
     application: part.application || '',
     comment: part.comment || '',
+    location: part.location || '',
     quantityPerApplication: part.qty || '',
     aaiaBrandId: part.aaiabrandid || '',
     image: part.image || '',

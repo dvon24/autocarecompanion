@@ -40,7 +40,7 @@ export type CodeFamily = 'P' | 'B' | 'C' | 'U';
 export type Procedure =
   | 'scan-codes'
   | 'parasitic-draw'
-  | 'battery-load-test'
+  | 'battery-state-of-health'
   | 'smoke-test'
   | 'fuel-pressure'
   | 'compression-test'
@@ -78,10 +78,10 @@ export const diagnosticTools: DiagnosticTool[] = [
     kind: 'scanner',
     name: 'ANCEL AD310 Classic OBD-II Scanner',
     brand: 'ANCEL',
-    priceRange: '$10–$20',
-    priceAnchor: 15,
+    priceRange: '$20–$40',
+    priceAnchor: 30,
     description:
-      'A simple, affordable code reader for engine (P) codes. Reads and clears the check-engine light on any OBD-II vehicle (1996+). It does NOT read body, chassis or network codes.',
+      'A simple code reader for engine (P) codes on many compatible OBD-II vehicles. It does not support every vehicle or hybrid/EV application, and it does NOT read body, chassis or network codes; confirm exact-vehicle compatibility before buying.',
     features: [
       'Read & clear engine (P) codes',
       'View freeze frame data',
@@ -200,7 +200,7 @@ export const diagnosticTools: DiagnosticTool[] = [
       'Catches a failing battery a voltmeter calls good',
     ],
     codeFamilies: [],
-    procedures: ['battery-load-test'],
+    procedures: ['battery-state-of-health'],
     tier: 'budget',
     productUrl: 'https://www.amazon.com/ANCEL-BA101-Professional-Automotive-Motorcycle/dp/B01M0ARG3X?tag=au7o-20',
   },
@@ -236,7 +236,7 @@ export function codeFamilyOf(code: string): CodeFamily | null {
  */
 const PROCEDURE_PATTERNS: Array<[Procedure, RegExp]> = [
   ['parasitic-draw', /\b(?:perform|run|do|conduct) (?:an? )?parasitic (?:draw|drain)(?: test)?\b|\b(?:measure|test|check|diagnose) (?:for )?(?:the )?parasitic (?:draw|drain)\b|\bcurrent draw test\b|\blow-current (?:dc )?clamp meter\b/i],
-  ['battery-load-test', /\b(?:perform|run|do|conduct) (?:an? )?battery (?:state[- ]of[- ]health|load|capacity) test\b|\bload[- ]test(?:ing)? the battery\b/i],
+  ['battery-state-of-health', /\b(?:perform|run|do|conduct) (?:an? )?battery (?:state[- ]of[- ]health|conductance|cca|internal resistance) test\b|\btest (?:the )?battery (?:state[- ]of[- ]health|conductance|cca|internal resistance)\b/i],
   // Unsupported procedures intentionally have no matcher until a verified tool
   // exists. Recognizing them while rendering nothing creates false coverage.
   ['scan-codes', /\b(?:use|connect|diagnose with) (?:an? )?(?:scan tool|scanner)\b|\b(?:read|retrieve|scan for) (?:the )?(?:stored )?(?:fault )?codes\b/i],
@@ -245,7 +245,7 @@ const PROCEDURE_PATTERNS: Array<[Procedure, RegExp]> = [
 export function proceduresInSolution(solution: string): Procedure[] {
   const text = String(solution || '');
   const clauses = text.split(/(?<=[.;!?])\s+|\n+/).map((clause) => clause.trim()).filter(Boolean);
-  const excluded = /\b(?:do not|don'?t|never|not required|isn'?t required|no need)\b|\b(?:dealer|dealership|shop|technician|professional|specialist|service cent(?:er|re))\b/i;
+  const excluded = /\b(?:not|no|never|without|avoid|cannot|unnecessar\w*)\b|\b[a-z]+n['’]t\b|\b(?:dont|isnt|cant|mustnt|shouldnt|wouldnt|wont|neednt)\b|\b(?:dealer|dealership|shop|technician|mechanic|garage|professional|specialist|repair facility|service cent(?:er|re))\b/i;
   return PROCEDURE_PATTERNS
     .filter(([, re]) => clauses.some((clause) => re.test(clause) && !excluded.test(clause)))
     .map(([p]) => p);

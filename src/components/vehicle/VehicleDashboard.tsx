@@ -609,7 +609,7 @@ function IssueCardExpanded({ issue, vehicle, styled = true, onAskAI }: { issue: 
                   </li>
                 ))}
               </ul>
-              {hasKnownIssueCommerce(fixParts) && <p className="mt-2 text-[11px] font-medium text-[#475569]">Part links may earn au7o a commission. Confirm fitment by VIN.</p>}
+              {hasKnownIssueCommerce(fixParts) && <p className="mt-2 text-[11px] font-medium text-[#475569]">As an Amazon Associate, we earn from qualifying purchases; other part links may also earn au7o a commission. Confirm fitment by VIN.</p>}
             </div>
           )}
           {ownerGuidance.length > 0 && (

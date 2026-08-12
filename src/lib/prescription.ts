@@ -27,7 +27,8 @@ const PRESCRIBE = /\b(?:replace|replacing|replacement of|install|installing|swap
  * replacing". These appear constantly in diagnostic guidance and each one names
  * a part the article is steering you AWAY from.
  */
-const NEGATED_BEFORE = /\b(?:before|prior to|instead of|rather than|without|avoid|unnecessar\w*|don'?t|do not|never|no need to|not)\s+(?:\w+\s+){0,2}$/i;
+const NEGATED_BEFORE = /\b(?:before|prior to|instead of|rather than|without|avoid|unnecessar\w*|don'?t|do not|never|no need to|no need for|no reason to|no benefit in|little benefit in|not|no)\s+(?:\w+\s+){0,2}$/i;
+const NEGATED_AFTER = /\b(?:is|are|was|were|be|seems?|remains?)?\s*(?:not|never)\b|\b(?:unnecessar\w*|avoid\w*|prohibit\w*|inadvis\w*|contraindicat\w*|unwarrant\w*|not\s+(?:recommended|required|needed|advised|appropriate)|little\s+benefit)\b/i;
 
 /** Words that qualify a part without identifying it. */
 const NOISE = new Set([
@@ -90,6 +91,7 @@ export function extractPrescribedParts(solution: string): string[] {
     const after = text
       .slice(m.index + m[0].length, m.index + m[0].length + 90)
       .split(/[.;!?]/)[0]!;
+    if (NEGATED_AFTER.test(after)) continue;
     const phrase = cleanPhrase(after);
     if (!phrase) continue;
     // A single word is usually too vague ("replace it") — but not always: an

@@ -24,7 +24,7 @@
  * to buy it, or it returns nothing. Returning nothing is a correct outcome and
  * must stay cheap: a missing buy button costs a click, a wrong one costs trust.
  */
-import { isKnownIssueProductUrl, knownIssueAffiliateUrl } from '@/lib/known-issue-commerce';
+import { isKnownIssueProductUrl, knownIssueAffiliateUrl, vendorMatchesProductUrl } from '@/lib/known-issue-commerce';
 
 export interface LinkCandidate {
   vendor: string;
@@ -70,19 +70,8 @@ export function acceptCandidate(candidate: LinkCandidate): BuiltLink | null {
   // vendor is how "Buy at FCP Euro" ends up pointing somewhere else entirely,
   // and getKnownIssueCommerce drops it at render time anyway — better to never
   // store it.
-  let host: string;
-  try {
-    host = new URL(url).hostname.toLowerCase().replace(/^www\./, '');
-  } catch {
-    return null;
-  }
   const vendor = candidate.vendor.trim();
-  const vendorIdentity = vendor.toLowerCase().replace(/[^a-z0-9]/g, '');
-  const hostIdentity = host.replace(/[^a-z0-9]/g, '');
-  const marketplaceOk =
-    ((vendorIdentity === 'amazon' || vendorIdentity === 'amazoncom') && /amazon/.test(hostIdentity)) ||
-    ((vendorIdentity === 'ebay' || vendorIdentity === 'ebaycom') && /ebay/.test(hostIdentity));
-  if (!marketplaceOk && (vendorIdentity.length < 3 || !hostIdentity.includes(vendorIdentity))) return null;
+  if (!vendorMatchesProductUrl(vendor, url)) return null;
 
   return {
     vendor,

@@ -1,7 +1,18 @@
 /* eslint-disable @typescript-eslint/no-require-imports */
 const assert = require('node:assert/strict');
 const test = require('node:test');
-const { looserPartTypeTier, resolveModels, selectOrderedCategory } = require('./verify-parts-fitment');
+const { looserPartTypeTier, resolveModels, selectOrderedCategory, serializeCandidate } = require('./verify-parts-fitment');
+
+test('verifier output preserves every catalog restriction channel', () => {
+  const projected = serializeCandidate({
+    supplier: 'Example', partNumber: 'ABC123', partType: 'Disc Brake Caliper', brand: 'Example',
+    engine: '2.0L', catalogModel: 'Sonata', application: 'Hybrid SE/SEL',
+    comment: 'Without sport package', location: 'FRONT LEFT',
+  });
+  assert.equal(projected.application, 'Hybrid SE/SEL');
+  assert.equal(projected.comment, 'Without sport package');
+  assert.equal(projected.location, 'FRONT LEFT');
+});
 
 const models = (...names) => names.map((data, index) => ({ id: String(index + 1), data }));
 

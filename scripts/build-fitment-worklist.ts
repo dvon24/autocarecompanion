@@ -25,7 +25,6 @@ const outFile = outFlag > 0 ? process.argv[outFlag + 1] : `data/_${slug}-fitment
 // Same conservative prescribes-a-part test used by scripts/audit-deeplink-gap.js,
 // so the worklist and the gap number describe the same set of issues.
 const PART = /\b(pump|sensor|valve|module|switch|motor|actuator|solenoid|coil|belt|chain|tensioner|pulley|bearing|seal|gasket|hose|filter|thermostat|radiator|condenser|compressor|alternator|starter|battery|cable|harness|regulator|control arm|bushing|ball joint|tie rod|spring|strut|shock|mount|rotor|brake pad|caliper|cylinder|clutch|converter|manifold|injector|spark plug|housing|bracket|kit|latch|blower|core|tank|cap|pipe|shaft|differential|turbo|wastegate|intercooler|lifter|piston|oil pan)\b/i;
-const NEGATED = /\b(?:before|prior to|instead of|rather than|without|avoid|unnecessar\w*|not(?:\s+\w+){0,3}?)\s+(?:replac|install)/i;
 
 /**
  * The component noun a phrase is ABOUT. Deliberately the LAST part noun, so
@@ -42,13 +41,11 @@ function headNoun(text: string): string {
   const found = partNouns(text);
   return found.length ? found[found.length - 1]! : '';
 }
-const PRESCRIBES = /\b(replace|replacing|replacement|install|installing)\b/i;
 const DEALER = /\b(recall|campaign|reflash|re-?program|software update|warranty extension|free of charge|no charge|dealer will|service action)\b/i;
 
 function prescribesAFix(solution: string): boolean {
   const s = String(solution || '');
-  if (!PRESCRIBES.test(s) || !PART.test(s)) return false;
-  return s.split(/(?<=[.;])\s+/).some((x) => PRESCRIBES.test(x) && PART.test(x) && !NEGATED.test(x));
+  return PART.test(s) && extractPrescribedParts(s).length > 0;
 }
 
 (async () => {

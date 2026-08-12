@@ -4,7 +4,7 @@ import { externalHttpUrl, isPublicWebHostname } from './external-http-url';
 
 test('accepts absolute web citations', () => {
   assert.equal(externalHttpUrl('https://static.nhtsa.gov/example.pdf'), 'https://static.nhtsa.gov/example.pdf');
-  assert.equal(externalHttpUrl('http://example.com/source'), 'http://example.com/source');
+  assert.equal(externalHttpUrl('http://www.iana.org/help/example-domains'), 'http://www.iana.org/help/example-domains');
 });
 
 test('public-host validation handles trailing-dot and local suffix boundaries', () => {
@@ -13,6 +13,11 @@ test('public-host validation handles trailing-dot and local suffix boundaries', 
   assert.equal(isPublicWebHostname('router.lan..'), false);
   assert.equal(isPublicWebHostname('localhost..'), false);
   assert.equal(isPublicWebHostname('shop.home'), false);
+  assert.equal(isPublicWebHostname('localhost.localdomain'), false);
+  assert.equal(isPublicWebHostname('router.localdomain'), false);
+  assert.equal(isPublicWebHostname('router.home.arpa'), false);
+  assert.equal(isPublicWebHostname('store.example'), false);
+  assert.equal(isPublicWebHostname('example.com'), false);
 });
 
 test('rejects sentinel, relative and non-web citation targets', () => {

@@ -41,6 +41,18 @@ test('rejects a link whose vendor label does not match its destination', () => {
   assert.ok(acceptCandidate({ vendor: 'BMW Parts Deal', url: retailerUrl, via: 'test' }));
 });
 
+test('rejects marketplace and direct-retailer prefix lookalikes before storage', async () => {
+  const links = await buildPartLinks(
+    { partNumber: 'ABC-1234' },
+    [resolverReturning([
+      { vendor: 'Amazon', url: 'https://amazondeals.example/product/widget-12345' },
+      { vendor: 'BMW', url: 'https://notbmwparts.example/product/widget-12345' },
+      { vendor: 'BMW', url: 'https://bmw.evil.com/product/widget-12345' },
+    ])],
+  );
+  assert.deepEqual(links, []);
+});
+
 // The Ford audit found four live examples of exactly this.
 test('emits nothing for a recall-first part, however good the candidate', async () => {
   const links = await buildPartLinks(

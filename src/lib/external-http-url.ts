@@ -14,7 +14,9 @@ export function isPublicWebHostname(value: string): boolean {
     hostname.includes('.')
     && !hostname.includes(':')
     && !/^\d{1,3}(?:\.\d{1,3}){3}$/.test(hostname)
-    && !/\.(?:local|localhost|internal|lan|home)$/.test(hostname),
+    && !/\.(?:local|localhost|localdomain|internal|lan|home|test|invalid|example|onion)$/.test(hostname)
+    && !hostname.endsWith('.arpa')
+    && !/^(?:.+\.)?example\.(?:com|net|org)$/.test(hostname),
   );
 }
 

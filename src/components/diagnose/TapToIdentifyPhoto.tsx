@@ -25,12 +25,23 @@
  * photo flow on /diagnose and the hub.
  */
 
-import { useCallback, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import type { IdentifiedPart, IssuePart, VendorKey } from '@/types/vision';
 import { ebayAffiliate } from '@/lib/ebay-affiliate';
 import { trackVisionBuyClick } from '@/lib/analytics';
 
 interface SourcePoint { x: number; y: number }
+
+interface ContentGeometry {
+  rect: DOMRect;
+  scale: number;
+  offX: number;
+  offY: number;
+  cW: number;
+  cH: number;
+  natW: number;
+  natH: number;
+}
 
 export interface TapVehicle {
   year?: number | string;
@@ -117,6 +128,7 @@ export function TapToIdentifyPhoto({
   const [kit, setKit] = useState<KitPart[]>([]);
   const [kitOpen, setKitOpen] = useState(false);
   const [traceOpen, setTraceOpen] = useState(false);
+  const [renderGeom, setRenderGeom] = useState<ContentGeometry | null>(null);
   const tapId = useRef<number | null>(null); // active primary pointer id
   const autoRan = useRef(false);
 
@@ -129,7 +141,7 @@ export function TapToIdentifyPhoto({
   const removeFromKit = useCallback((key: string) => setKit((prev) => prev.filter((k) => k.key !== key)), []);
 
   // ── geometry: map a client point to the source image (object-fit:contain)
-  const contentGeom = useCallback(() => {
+  const contentGeom = useCallback((): ContentGeometry | null => {
     const img = imgRef.current;
     if (!img || !img.naturalWidth) return null;
     const rect = img.getBoundingClientRect();
@@ -147,6 +159,19 @@ export function TapToIdentifyPhoto({
       natH: img.naturalHeight,
     };
   }, []);
+
+  const refreshRenderGeom = useCallback(() => setRenderGeom(contentGeom()), [contentGeom]);
+  useEffect(() => {
+    const img = imgRef.current;
+    if (!img) return;
+    const observer = typeof ResizeObserver === 'undefined' ? null : new ResizeObserver(refreshRenderGeom);
+    observer?.observe(img);
+    window.addEventListener('resize', refreshRenderGeom);
+    return () => {
+      observer?.disconnect();
+      window.removeEventListener('resize', refreshRenderGeom);
+    };
+  }, [imageUrl, refreshRenderGeom]);
 
   // client (clientX/Y) → source-percent point, or null if on the letterbox
   const toSourcePct = useCallback((clientX: number, clientY: number) => {
@@ -274,11 +299,12 @@ export function TapToIdentifyPhoto({
 
   // when the image is ready, fire the pre-supplied point once (live viewfinder)
   const onImgLoad = useCallback(() => {
+    refreshRenderGeom();
     if (autoIdentifyPoint && !autoRan.current) {
       autoRan.current = true;
       identifyPoint(autoIdentifyPoint);
     }
-  }, [autoIdentifyPoint, identifyPoint]);
+  }, [autoIdentifyPoint, identifyPoint, refreshRenderGeom]);
 
   // ── tap handlers (tap-only). Ignore secondary touches so a pinch/zoom
   // never fires an identify.
@@ -299,22 +325,20 @@ export function TapToIdentifyPhoto({
   }, [toSourcePct, identifyPoint]);
 
   // ── overlay geometry helpers (source-percent → element px)
-  const overlayCenter = useCallback((box: BoxPct): { left: number; top: number } | null => {
-    const g = contentGeom();
+  const overlayCenter = (box: BoxPct): { left: number; top: number } | null => {
+    const g = renderGeom;
     if (!g) return null;
     return {
       left: g.offX + ((box.x + box.w / 2) / 100) * g.cW,
       top: g.offY + ((box.y + box.h / 2) / 100) * g.cH,
     };
-  }, [contentGeom]);
+  };
 
   // the rendered image content rectangle (for an SVG whose viewBox is 0..100
   // percent of the SOURCE image — SAM polygon points live in that space)
-  const contentRectStyle = useCallback((): React.CSSProperties | null => {
-    const g = contentGeom();
-    if (!g) return null;
-    return { position: 'absolute', left: g.offX, top: g.offY, width: g.cW, height: g.cH, pointerEvents: 'none', zIndex: 5 };
-  }, [contentGeom]);
+  const contentRectStyle: React.CSSProperties | null = renderGeom
+    ? { position: 'absolute', left: renderGeom.offX, top: renderGeom.offY, width: renderGeom.cW, height: renderGeom.cH, pointerEvents: 'none', zIndex: 5 }
+    : null;
 
   const cond = sel?.part?.condition || 'info';
   const accent = CONDITION_COLOR[cond];
@@ -412,6 +436,7 @@ export function TapToIdentifyPhoto({
         .t2i-kit-bar { display:flex; align-items:center; gap:12px; padding:12px 14px calc(12px + env(safe-area-inset-bottom)); background:var(--paper,#faf9f5); cursor:pointer; }
         .t2i-kit-icon { position:relative; width:38px; height:38px; border-radius:11px; background:#0B1220; color:#fff; display:grid; place-items:center; flex-shrink:0; font-size:17px; }
         .t2i-kit-badge { position:absolute; top:-6px; right:-6px; min-width:18px; height:18px; padding:0 4px; border-radius:9px; background:#38E1B0; color:#052E22; font-size:10.5px; font-weight:700; display:grid; place-items:center; }
+        .t2i-affiliate { padding:0 14px 8px; color:#64748B; font-size:9.5px; line-height:1.35; }
       `}</style>
 
       {embedded && onClose && (
@@ -435,8 +460,8 @@ export function TapToIdentifyPhoto({
         )}
 
         {/* SAM mask: spotlight dim + dashed contour — never a rectangle */}
-        {polyPath && contentRectStyle() && (
-          <svg style={contentRectStyle()!} viewBox="0 0 100 100" preserveAspectRatio="none">
+        {polyPath && contentRectStyle && (
+          <svg style={contentRectStyle} viewBox="0 0 100 100" preserveAspectRatio="none">
             <defs>
               <mask id="t2iSpot">
                 <rect x="0" y="0" width="100" height="100" fill="#fff" />
@@ -678,6 +703,7 @@ export function TapToIdentifyPhoto({
           </div>
           {kitTotal > 0 && <span style={{ fontFamily: "'SF Mono',Menlo,monospace", fontSize: 17, fontWeight: 700, color: '#0B1220' }}>${kitTotal}</span>}
         </div>
+        <div className="t2i-affiliate">As an Amazon Associate, we earn from qualifying purchases; other links may also earn au7o a commission.</div>
       </div>
     </div>
   );

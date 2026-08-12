@@ -2,12 +2,23 @@
 const assert = require('node:assert/strict');
 const test = require('node:test');
 const {
+  candidateFromPart,
   exactNamed,
   filterPartCandidates,
   findCandidates,
   matchesAllTokens,
   parseItems,
 } = require('./showmetheparts-known-issue-candidates');
+
+test('catalog projection preserves every restriction channel', () => {
+  const candidate = candidateFromPart({
+    supplier: 'Example', part_no: 'ABC123', part_type: 'Disc Brake Caliper',
+    application: 'Hybrid SE/SEL', comment: 'Without sport package', location: 'FRONT LEFT',
+  }, { year: 2024 });
+  assert.equal(candidate.application, 'Hybrid SE/SEL');
+  assert.equal(candidate.comment, 'Without sport package');
+  assert.equal(candidate.location, 'FRONT LEFT');
+});
 
 test('XML parsing preserves catalog IDs and decodes values', () => {
   const xml = '<root><model><id>0042</id><data>A6 &amp; Avant</data></model><model><id>0043</id><data>A6 QUATTRO</data></model></root>';
