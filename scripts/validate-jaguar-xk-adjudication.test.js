@@ -64,6 +64,7 @@ test('the two rewrites use exact NHTSA campaign URLs and remedies', () => {
   const headlamp = byId.get(IDS.headlamp).proposal;
   const accelerator = byId.get(IDS.acceleration).proposal;
   assert.equal(headlamp.citations[0].url, SOURCES.headlampCampaign);
+  assert.equal(headlamp.severity, byId.get(IDS.headlamp).before.severity);
   assert.match(headlamp.solution, /owner(?:'s)? manual addendum/i);
   assert.equal(accelerator.citations[0].url, SOURCES.accelerationCampaign);
   assert.match(accelerator.solution, /inspect.*pedal assembly.*replace/i);

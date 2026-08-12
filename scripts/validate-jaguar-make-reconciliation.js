@@ -47,11 +47,11 @@ function validateReconciliation(packet, snapshot) {
       if (!equal(row.before, before) || row.beforeSha256 !== hashValue(before)) errors.push(`${row.id}: frozen before drift`);
       if (row.proposalSha256 !== hashValue(row.proposal) || !equal(row.changedFields, diffFields(row.before, row.proposal))) errors.push(`${row.id}: proposal hash/change drift`);
       if (row.action !== 'rewrite_same_identity' && row.action !== 'keep_published_pending_source') errors.push(`${row.id}: prohibited action`);
-      for (const field of ['make', 'model', 'title', 'category', 'years', 'status', 'relatedIssueIds']) if (!equal(row.proposal[field], before[field])) errors.push(`${row.id}: immutable ${field} drift`);
+      for (const field of ['make', 'model', 'title', 'category', 'severity', 'years', 'trims', 'engines', 'status', 'relatedIssueIds']) if (!equal(row.proposal[field], before[field])) errors.push(`${row.id}: immutable ${field} drift`);
       if (row.proposal.status !== 'published' || /^Archived\s*-/i.test(row.proposal.title)) errors.push(`${row.id}: status drift`);
       if (row.action === 'keep_published_pending_source' && (!equal(row.proposal, before) || row.proposalSha256 !== row.beforeSha256 || row.changedFields.length !== 0)) errors.push(`${row.id}: changed hold`);
       if (row.action === 'rewrite_same_identity') {
-        if (!equal(row.proposal.trims, []) || !equal(row.proposal.engines, []) || !equal(row.proposal.dtcCodes, [])) errors.push(`${row.id}: rewrite applicability drift`);
+        if (!equal(row.proposal.trims, before.trims) || !equal(row.proposal.engines, before.engines) || !equal(row.proposal.dtcCodes, [])) errors.push(`${row.id}: rewrite applicability drift`);
         if (!equal(row.proposal.communityRecommendations, []) || !equal(row.proposal.fixParts, [])) errors.push(`${row.id}: rewrite commerce remains`);
         if (row.proposal.estimatedCostLow !== null || row.proposal.estimatedCostHigh !== null || row.proposal.typicalMileageLow !== null || row.proposal.typicalMileageHigh !== null) errors.push(`${row.id}: rewrite cost/mileage remains`);
       }

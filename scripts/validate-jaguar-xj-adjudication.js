@@ -26,7 +26,10 @@ function validatePacket(packet, snapshot, expectedSnapshotSha256 = normalizedFil
     if (row.action !== expectedAction || row.reason !== KEEP_REASONS[row.id]) errors.push(`${row.id}: decision mismatch`);
     if (!equal(row.before, before) || !equal(row.proposal, expectedProposal)) errors.push(`${row.id}: proposal drift`);
     if (row.beforeSha256 !== hashValue(before) || row.proposalSha256 !== hashValue(expectedProposal) || !equal(row.changedFields, FULL_RECORD_FIELDS.filter((field) => hashValue(before[field]) !== hashValue(expectedProposal[field])))) errors.push(`${row.id}: hash/change mismatch`);
-    if (row.proposal.make !== 'Jaguar' || row.proposal.model !== 'XJ' || row.proposal.title !== before.title || row.proposal.category !== before.category || !equal(row.proposal.years, before.years) || row.proposal.status !== 'published' || /^Archived\s*-/i.test(row.proposal.title)) errors.push(`${row.id}: identity/status drift`);
+    for (const field of ['make', 'model', 'title', 'category', 'severity', 'years', 'trims', 'engines', 'status', 'relatedIssueIds']) {
+      if (!equal(row.proposal[field], before[field])) errors.push(`${row.id}: immutable ${field} drift`);
+    }
+    if (row.proposal.make !== 'Jaguar' || row.proposal.model !== 'XJ' || row.proposal.status !== 'published' || /^Archived\s*-/i.test(row.proposal.title)) errors.push(`${row.id}: identity/status drift`);
     if (!equal(row.evidence, evidenceFor(row.id))) errors.push(`${row.id}: evidence drift`);
     for (const field of FULL_RECORD_FIELDS) if (!Object.prototype.hasOwnProperty.call(row.before, field) || !Object.prototype.hasOwnProperty.call(row.proposal, field)) errors.push(`${row.id}: missing ${field}`);
   }

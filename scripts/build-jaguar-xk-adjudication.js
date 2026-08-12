@@ -101,7 +101,7 @@ const REWRITE_CARDS = {
   [IDS.headlamp]: {
     description: 'NHTSA recall 03V509000 covers 1997-2003 Jaguar XK vehicles, including model year 2000. The headlamp adjustment mechanism could be operated without suitable instructions, which did not comply with FMVSS No. 108. Improper headlamp aim can reduce roadway illumination or create glare for other drivers.',
     solution: "Check the VIN and recall-completion record. Jaguar's recall remedy was to send owners an owner's manual addendum containing instructions for operating the headlamp adjustment mechanism. If the lamps appear improperly aimed, use Jaguar service information or a qualified repair facility; the campaign does not prescribe replacing a headlamp part.",
-    severity: 'moderate', confidence: 'high', symptoms: [],
+    severity: 'low', confidence: 'high', symptoms: [],
     affectedSystems: ['Headlamp adjustment mechanism', "Owner's manual headlamp-aiming instructions"], dtcCodes: [],
     citations: [{ type: 'recall', title: 'NHTSA Recall 03V509000 - Jaguar XK Headlamp Adjustment Instructions', url: SOURCES.headlampCampaign }],
     summary: 'Replaced unsupported part, cost and aiming-procedure claims with the exact owner-manual-addendum remedy and safety consequence in NHTSA recall 03V509000.',
@@ -169,7 +169,7 @@ function rewriteProposal(current, card) {
   return fullRecord({
     ...current, ...card,
     make: current.make, model: current.model, title: current.title, category: current.category,
-    years: current.years, relatedIssueIds: current.relatedIssueIds,
+    severity: current.severity, years: current.years, relatedIssueIds: current.relatedIssueIds,
     trims: [], engines: [], dtcCodes: [], estimatedCostLow: null, estimatedCostHigh: null,
     typicalMileageLow: null, typicalMileageHigh: null, communityRecommendations: [], fixParts: [],
     humanApproved: false, reportCount: 0, source: 'manual', status: 'published', lastReportedByOwners: '',

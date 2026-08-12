@@ -74,7 +74,6 @@ function throttleCorrection(before) {
   return {
     ...before,
     trims: [],
-    engines: [],
     description: 'This page previously presented one 2004-2009 electronic-throttle-body failure pattern as established fact. The audited official material does not verify that broad cause or model-year scope. It does show a direct safety conflict: NHTSA manufacturer-communication record 10017595 identifies Jaguar bulletin XJ303-10 for the 2004 XJ as “Electronic Throttle Body - Cleaning Prohibited.” Treat throttle symptoms as a reason for model-year-specific diagnosis, not proof that the throttle body needs cleaning or replacement.',
     solution: 'Do not follow this page’s former throttle-body cleaning procedure. For a 2004 XJ, Jaguar bulletin XJ303-10 explicitly prohibits electronic throttle-body cleaning. For any model year listed here, have a Jaguar-qualified technician read the stored faults and follow the VIN- and model-year-specific service information before servicing or replacing the assembly. Do not replace the throttle body solely from the symptoms formerly listed on this page.',
     severity: 'medium',

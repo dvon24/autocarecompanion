@@ -43,7 +43,7 @@ test('official source mismatches remain explicit and unsafe throttle advice is r
   assert.doesNotMatch(byId.get(IDS.throttle).proposal.solution, /clean with|approved cleaner|CRC/i);
   assert.deepEqual(byId.get(IDS.throttle).proposal.communityRecommendations, []);
   assert.deepEqual(byId.get(IDS.throttle).proposal.dtcCodes, []);
-  assert.deepEqual(byId.get(IDS.throttle).proposal.engines, []);
+  assert.deepEqual(byId.get(IDS.throttle).proposal.engines, byId.get(IDS.throttle).before.engines);
   assert.equal(byId.get(IDS.throttle).proposal.citations[0].url, SOURCES.communicationsDataset);
   assert.equal(byId.get(IDS.supercharger).evidence[0].url, SOURCES.supercharger);
   assert.equal(byId.get(IDS.throttle).evidence[0].url, SOURCES.communicationsDataset);
