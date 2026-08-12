@@ -2,20 +2,20 @@
   "schemaVersion": 2,
   "auditScope": "full-record",
   "snapshotKind": "known-issues-catalog-deeplinks",
-  "generatedAt": "2026-08-05T21:29:19.174Z",
+  "generatedAt": "2026-08-12T13:45:25.409Z",
   "source": "live published KnownIssue rows plus AffiliateClick aggregates",
   "inventory": {
     "publishedIssueCount": 173,
-    "commerceIssueCount": 0,
-    "claimCount": 0,
-    "fixPartClaimCount": 0,
+    "commerceIssueCount": 7,
+    "claimCount": 7,
+    "fixPartClaimCount": 7,
     "communityClaimCount": 0,
     "noLinkClaimCount": 0,
-    "linkCount": 0,
-    "validProductLinkCount": 0,
+    "linkCount": 8,
+    "validProductLinkCount": 8,
     "invalidOrSearchLinkCount": 0,
     "recallFirstClaimCount": 0,
-    "dtcLinkedCommerceIssueCount": 0,
+    "dtcLinkedCommerceIssueCount": 4,
     "clickedCommerceIssueCount": 0,
     "correctedIssueCount": 0,
     "totalRecordedClicks": 3,
@@ -1955,7 +1955,28 @@
         }
       ],
       "communityRecommendations": [],
-      "fixParts": [],
+      "fixParts": [
+        {
+          "note": "Moog Chassis K700902. Fitment confirmed against the ShowMeTheParts catalog for this vehicle's year and engine.",
+          "buyLinks": [
+            {
+              "url": "https://www.ebay.com/itm/178299247770?_skw=Moog+Chassis+K700902+Suspension+Stabilizer+Bar+Link&hash=item2983769c9a%3Ag%3AtKYAAeSwqMFqUIU6&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049",
+              "vendor": "eBay",
+              "linkType": "product",
+              "verified": true
+            }
+          ],
+          "variants": [],
+          "verified": true,
+          "component": "Suspension Stabilizer Bar Link",
+          "confidence": null,
+          "provenance": "ShowMeTheParts fitment lookup by year and engine; buy links verified to carry the part number on a matching brand",
+          "oemPartNumber": "",
+          "aftermarketXref": [
+            "K700902"
+          ]
+        }
+      ],
       "humanApproved": false,
       "reportCount": 510,
       "source": "ai-researched",
@@ -2012,7 +2033,7 @@
         "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
         "citationsHash": "6bac730be8797600a60f102808ed6afacab5a31828e11cc4d54f41a774b60d6a",
         "communityRecommendationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
-        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "fixPartsHash": "93d9109e0c36e70949d10049ddff6c4fbac6f9dca6b7aae459a5423cda1b0187",
         "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
         "reportCountHash": "5e5c743a015ff8d81e2374d5bca1bdf8ed87ce18484fce8cf4062183dde08493",
         "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
@@ -2022,9 +2043,32 @@
         "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
         "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
         "relatedIssueIdsHash": "f7d8af691c534198fe56f4e1ab13f3108d0013f9c2a92062db513b81c888daca",
-        "claimIds": []
+        "claimIds": [
+          "fixParts:0"
+        ]
       },
-      "claims": [],
+      "claims": [
+        {
+          "claimId": "fixParts:0",
+          "system": "fixParts",
+          "index": 0,
+          "component": "Suspension Stabilizer Bar Link",
+          "oemPartNumber": "",
+          "variants": [],
+          "recallFirst": false,
+          "links": [
+            {
+              "field": "buyLinks:0",
+              "vendor": "eBay",
+              "url": "https://www.ebay.com/itm/178299247770?_skw=Moog+Chassis+K700902+Suspension+Stabilizer+Bar+Link&hash=item2983769c9a%3Ag%3AtKYAAeSwqMFqUIU6&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049",
+              "linkType": "product",
+              "verified": true,
+              "error": null
+            }
+          ],
+          "clicks": 0
+        }
+      ],
       "clicks": 0,
       "priorityClicks": 0
     },
@@ -3808,7 +3852,34 @@
         }
       ],
       "communityRecommendations": [],
-      "fixParts": [],
+      "fixParts": [
+        {
+          "note": "Walker Products 235-1078. Fitment confirmed against the ShowMeTheParts catalog for this vehicle's year and engine.",
+          "buyLinks": [
+            {
+              "url": "https://www.ebay.com/itm/383326820944?_skw=Walker+Products+235-1078+Engine+Crankshaft+Position+Sensor&hash=item59400f1a50%3Ag%3AuecAAOSw4fZbVCuI&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049",
+              "vendor": "eBay",
+              "linkType": "product",
+              "verified": true
+            },
+            {
+              "url": "https://www.amazon.com/Walker-Products-235-1078-Crankshaft-Position/dp/B00T1BVAG2?tag=au7o-20",
+              "vendor": "Amazon",
+              "linkType": "product",
+              "verified": true
+            }
+          ],
+          "variants": [],
+          "verified": true,
+          "component": "Engine Crankshaft Position Sensor",
+          "confidence": null,
+          "provenance": "ShowMeTheParts fitment lookup by year and engine; buy links verified to carry the part number on a matching brand",
+          "oemPartNumber": "",
+          "aftermarketXref": [
+            "235-1078"
+          ]
+        }
+      ],
       "humanApproved": false,
       "reportCount": 540,
       "source": "ai-researched",
@@ -3859,7 +3930,7 @@
         "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
         "citationsHash": "2bd17197db5b424bb4356ea7e38defaca8ae0d3dc816a66e47a5657a92af46cb",
         "communityRecommendationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
-        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "fixPartsHash": "e9c932ec488af74b28acecec34a414fa62e1bd92df06b4dde9711e3d4f18ea40",
         "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
         "reportCountHash": "84f01dd97c687fb28a296bcc2ef1801446ea7405860595924eb2b5bb634718d1",
         "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
@@ -3869,9 +3940,40 @@
         "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
         "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
         "relatedIssueIdsHash": "1d07d44954b0814f112961158d77c171466afca069d1c54419499b7348aa68dd",
-        "claimIds": []
+        "claimIds": [
+          "fixParts:0"
+        ]
       },
-      "claims": [],
+      "claims": [
+        {
+          "claimId": "fixParts:0",
+          "system": "fixParts",
+          "index": 0,
+          "component": "Engine Crankshaft Position Sensor",
+          "oemPartNumber": "",
+          "variants": [],
+          "recallFirst": false,
+          "links": [
+            {
+              "field": "buyLinks:0",
+              "vendor": "eBay",
+              "url": "https://www.ebay.com/itm/383326820944?_skw=Walker+Products+235-1078+Engine+Crankshaft+Position+Sensor&hash=item59400f1a50%3Ag%3AuecAAOSw4fZbVCuI&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049",
+              "linkType": "product",
+              "verified": true,
+              "error": null
+            },
+            {
+              "field": "buyLinks:1",
+              "vendor": "Amazon",
+              "url": "https://www.amazon.com/Walker-Products-235-1078-Crankshaft-Position/dp/B00T1BVAG2?tag=au7o-20",
+              "linkType": "product",
+              "verified": true,
+              "error": null
+            }
+          ],
+          "clicks": 0
+        }
+      ],
       "clicks": 0,
       "priorityClicks": 0
     },
@@ -6981,7 +7083,28 @@
         }
       ],
       "communityRecommendations": [],
-      "fixParts": [],
+      "fixParts": [
+        {
+          "note": "Aisin THRGM-0002. Fitment confirmed against the ShowMeTheParts catalog for this vehicle's year and engine.",
+          "buyLinks": [
+            {
+              "url": "https://www.ebay.com/itm/287200558443?_skw=Aisin+THRGM-0002+Engine+Coolant+Thermostat&hash=item42de7cbd6b%3Ag%3AZkMAAOSwjFpoTUY3&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049",
+              "vendor": "eBay",
+              "linkType": "product",
+              "verified": true
+            }
+          ],
+          "variants": [],
+          "verified": true,
+          "component": "Engine Coolant Thermostat",
+          "confidence": null,
+          "provenance": "ShowMeTheParts fitment lookup by year and engine; buy links verified to carry the part number on a matching brand",
+          "oemPartNumber": "",
+          "aftermarketXref": [
+            "THRGM-0002"
+          ]
+        }
+      ],
       "humanApproved": true,
       "reportCount": 0,
       "source": "ai-researched",
@@ -7042,7 +7165,7 @@
         "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
         "citationsHash": "8b60ed63efd5f88cfffca3218da9c0a10aca1270e8af667c17241b9be3c4b7e1",
         "communityRecommendationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
-        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "fixPartsHash": "1df8f30af1d4ba867f3d6f2b53fad8e23d212f14cda03d96d4f28603d24eac71",
         "humanApprovedHash": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b",
         "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
         "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
@@ -7052,9 +7175,32 @@
         "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
         "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
         "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
-        "claimIds": []
+        "claimIds": [
+          "fixParts:0"
+        ]
       },
-      "claims": [],
+      "claims": [
+        {
+          "claimId": "fixParts:0",
+          "system": "fixParts",
+          "index": 0,
+          "component": "Engine Coolant Thermostat",
+          "oemPartNumber": "",
+          "variants": [],
+          "recallFirst": false,
+          "links": [
+            {
+              "field": "buyLinks:0",
+              "vendor": "eBay",
+              "url": "https://www.ebay.com/itm/287200558443?_skw=Aisin+THRGM-0002+Engine+Coolant+Thermostat&hash=item42de7cbd6b%3Ag%3AZkMAAOSwjFpoTUY3&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049",
+              "linkType": "product",
+              "verified": true,
+              "error": null
+            }
+          ],
+          "clicks": 0
+        }
+      ],
       "clicks": 0,
       "priorityClicks": 0
     },
@@ -10767,7 +10913,28 @@
         }
       ],
       "communityRecommendations": [],
-      "fixParts": [],
+      "fixParts": [
+        {
+          "note": "Denso 471-1021. Fitment confirmed against the ShowMeTheParts catalog for this vehicle's year and engine.",
+          "buyLinks": [
+            {
+              "url": "https://www.ebay.com/itm/318123524429?_skw=Denso+471-1021+A%2FC+Compressor&hash=item4a11a3c14d%3Ag%3ArXwAAeSwqNVqV0KD&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049",
+              "vendor": "eBay",
+              "linkType": "product",
+              "verified": true
+            }
+          ],
+          "variants": [],
+          "verified": true,
+          "component": "A/C Compressor",
+          "confidence": null,
+          "provenance": "ShowMeTheParts fitment lookup by year and engine; buy links verified to carry the part number on a matching brand",
+          "oemPartNumber": "",
+          "aftermarketXref": [
+            "471-1021"
+          ]
+        }
+      ],
       "humanApproved": false,
       "reportCount": 567,
       "source": "ai-researched",
@@ -10813,7 +10980,7 @@
         "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
         "citationsHash": "bcc55f368907f9c6b3b59e681429236047df75bc5e6bccd75093a239b1943270",
         "communityRecommendationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
-        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "fixPartsHash": "c70f4fec11eaa64dbe3a66ca3ecffbb077149579ab6097587623a2e398fc48e8",
         "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
         "reportCountHash": "97a6d21df7c51e8289ac1a8c026aaac143e15aa1957f54f42e30d8f8a85c3a55",
         "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
@@ -10823,9 +10990,32 @@
         "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
         "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
         "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
-        "claimIds": []
+        "claimIds": [
+          "fixParts:0"
+        ]
       },
-      "claims": [],
+      "claims": [
+        {
+          "claimId": "fixParts:0",
+          "system": "fixParts",
+          "index": 0,
+          "component": "A/C Compressor",
+          "oemPartNumber": "",
+          "variants": [],
+          "recallFirst": false,
+          "links": [
+            {
+              "field": "buyLinks:0",
+              "vendor": "eBay",
+              "url": "https://www.ebay.com/itm/318123524429?_skw=Denso+471-1021+A%2FC+Compressor&hash=item4a11a3c14d%3Ag%3ArXwAAeSwqNVqV0KD&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049",
+              "linkType": "product",
+              "verified": true,
+              "error": null
+            }
+          ],
+          "clicks": 0
+        }
+      ],
       "clicks": 0,
       "priorityClicks": 0
     },
@@ -15787,7 +15977,28 @@
         }
       ],
       "communityRecommendations": [],
-      "fixParts": [],
+      "fixParts": [
+        {
+          "note": "Aisin WPGM-700. Fitment confirmed against the ShowMeTheParts catalog for this vehicle's year and engine.",
+          "buyLinks": [
+            {
+              "url": "https://www.ebay.com/itm/166864993030?_skw=Aisin+WPGM-700+Engine+Water+Pump&hash=item26d9edbb06%3Ag%3AY-UAAOSwc7RnYjMH&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049",
+              "vendor": "eBay",
+              "linkType": "product",
+              "verified": true
+            }
+          ],
+          "variants": [],
+          "verified": true,
+          "component": "Engine Water Pump",
+          "confidence": null,
+          "provenance": "ShowMeTheParts fitment lookup by year and engine; buy links verified to carry the part number on a matching brand",
+          "oemPartNumber": "",
+          "aftermarketXref": [
+            "WPGM-700"
+          ]
+        }
+      ],
       "humanApproved": true,
       "reportCount": 0,
       "source": "ai-researched",
@@ -15842,7 +16053,7 @@
         "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
         "citationsHash": "714ec1fe1dcd9c709c1e60af63e8e6266c295d673ced10d2d338fc8acdbdf86a",
         "communityRecommendationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
-        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "fixPartsHash": "64d972ab0cafa8bb497ef518cc37493e03e387fcad82a2d2a745d96953d84f30",
         "humanApprovedHash": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b",
         "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
         "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
@@ -15852,9 +16063,32 @@
         "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
         "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
         "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
-        "claimIds": []
+        "claimIds": [
+          "fixParts:0"
+        ]
       },
-      "claims": [],
+      "claims": [
+        {
+          "claimId": "fixParts:0",
+          "system": "fixParts",
+          "index": 0,
+          "component": "Engine Water Pump",
+          "oemPartNumber": "",
+          "variants": [],
+          "recallFirst": false,
+          "links": [
+            {
+              "field": "buyLinks:0",
+              "vendor": "eBay",
+              "url": "https://www.ebay.com/itm/166864993030?_skw=Aisin+WPGM-700+Engine+Water+Pump&hash=item26d9edbb06%3Ag%3AY-UAAOSwc7RnYjMH&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049",
+              "linkType": "product",
+              "verified": true,
+              "error": null
+            }
+          ],
+          "clicks": 0
+        }
+      ],
       "clicks": 0,
       "priorityClicks": 0
     },
@@ -17660,7 +17894,28 @@
         }
       ],
       "communityRecommendations": [],
-      "fixParts": [],
+      "fixParts": [
+        {
+          "note": "Aisin WPGM-609V. Fitment confirmed against the ShowMeTheParts catalog for this vehicle's year and engine.",
+          "buyLinks": [
+            {
+              "url": "https://www.ebay.com/itm/327207587319?_skw=Aisin+WPGM-609V+Engine+Water+Pump&hash=item4c2f178df7%3Ag%3AfwcAAOSwtctoTVpd&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049",
+              "vendor": "eBay",
+              "linkType": "product",
+              "verified": true
+            }
+          ],
+          "variants": [],
+          "verified": true,
+          "component": "Engine Water Pump",
+          "confidence": null,
+          "provenance": "ShowMeTheParts fitment lookup by year and engine; buy links verified to carry the part number on a matching brand",
+          "oemPartNumber": "",
+          "aftermarketXref": [
+            "WPGM-609V"
+          ]
+        }
+      ],
       "humanApproved": true,
       "reportCount": 0,
       "source": "ai-researched",
@@ -17718,7 +17973,7 @@
         "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
         "citationsHash": "8035e12be2e103ceb4e7e791dea0fd0c8a6bb8883e86f184f5209de8dd5c0196",
         "communityRecommendationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
-        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "fixPartsHash": "01e27807ee3f48b0ed79b3a96c9d8e010024d2e6f818d7885977d078aaec6ee4",
         "humanApprovedHash": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b",
         "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
         "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
@@ -17728,9 +17983,32 @@
         "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
         "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
         "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
-        "claimIds": []
+        "claimIds": [
+          "fixParts:0"
+        ]
       },
-      "claims": [],
+      "claims": [
+        {
+          "claimId": "fixParts:0",
+          "system": "fixParts",
+          "index": 0,
+          "component": "Engine Water Pump",
+          "oemPartNumber": "",
+          "variants": [],
+          "recallFirst": false,
+          "links": [
+            {
+              "field": "buyLinks:0",
+              "vendor": "eBay",
+              "url": "https://www.ebay.com/itm/327207587319?_skw=Aisin+WPGM-609V+Engine+Water+Pump&hash=item4c2f178df7%3Ag%3AfwcAAOSwtctoTVpd&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049",
+              "linkType": "product",
+              "verified": true,
+              "error": null
+            }
+          ],
+          "clicks": 0
+        }
+      ],
       "clicks": 0,
       "priorityClicks": 0
     },
@@ -18275,7 +18553,28 @@
         }
       ],
       "communityRecommendations": [],
-      "fixParts": [],
+      "fixParts": [
+        {
+          "note": "MAHLE Clevite MS19936. Fitment confirmed against the ShowMeTheParts catalog for this vehicle's year and engine.",
+          "buyLinks": [
+            {
+              "url": "https://www.ebay.com/itm/327291605382?_skw=MAHLE+Clevite+MS19936+Exhaust+Manifold+Gasket+Set&hash=item4c34199186%3Ag%3AYO8AAeSwB-dqbxjv&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049",
+              "vendor": "eBay",
+              "linkType": "product",
+              "verified": true
+            }
+          ],
+          "variants": [],
+          "verified": true,
+          "component": "Exhaust Manifold Gasket Set",
+          "confidence": null,
+          "provenance": "ShowMeTheParts fitment lookup by year and engine; buy links verified to carry the part number on a matching brand",
+          "oemPartNumber": "",
+          "aftermarketXref": [
+            "MS19936"
+          ]
+        }
+      ],
       "humanApproved": false,
       "reportCount": 260,
       "source": "ai-researched",
@@ -18333,7 +18632,7 @@
         "typicalMileageHighHash": "c3c8204aec16162abf29b505bfdc8fe2b911b95b4a351da1664b0ac8a6771f6b",
         "citationsHash": "c600208825590e777cf77ffe8ee3a00f0f46539f0389b50247c0d9ce788f13bc",
         "communityRecommendationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
-        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "fixPartsHash": "587a8cad6e388cf5651f367ab714e3b27f1471f68d1673c71a9eee31d07982ca",
         "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
         "reportCountHash": "39bb88f40d3aa2b2fe9dea67be27c74765db0ebb3ff3cf8fb779af6319fa2045",
         "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
@@ -18343,9 +18642,32 @@
         "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
         "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
         "relatedIssueIdsHash": "0ae153330e32765473a0857b1aa42bc6d95bcb596fea9e8d45b12728db8227e4",
-        "claimIds": []
+        "claimIds": [
+          "fixParts:0"
+        ]
       },
-      "claims": [],
+      "claims": [
+        {
+          "claimId": "fixParts:0",
+          "system": "fixParts",
+          "index": 0,
+          "component": "Exhaust Manifold Gasket Set",
+          "oemPartNumber": "",
+          "variants": [],
+          "recallFirst": false,
+          "links": [
+            {
+              "field": "buyLinks:0",
+              "vendor": "eBay",
+              "url": "https://www.ebay.com/itm/327291605382?_skw=MAHLE+Clevite+MS19936+Exhaust+Manifold+Gasket+Set&hash=item4c34199186%3Ag%3AYO8AAeSwB-dqbxjv&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049",
+              "linkType": "product",
+              "verified": true,
+              "error": null
+            }
+          ],
+          "clicks": 0
+        }
+      ],
       "clicks": 0,
       "priorityClicks": 0
     },
@@ -20302,5 +20624,5 @@
       "priorityClicks": 0
     }
   ],
-  "snapshotHash": "0326d3c710f7a5d72e46721ad2ccd77a5a2879bf23e49e5a9142f9d2962173f9"
+  "snapshotHash": "f37680621f7a69f8998ee9e0f51171cd1187633a63830cf9f38f95ee806ebd86"
 }
