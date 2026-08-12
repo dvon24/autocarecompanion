@@ -6,13 +6,13 @@ const { FULL_RECORD_FIELDS, normalizedFileHash, stableValue } = require('./jagua
 function snapshotHashValue(value) { return crypto.createHash('sha256').update(JSON.stringify(value)).digest('hex'); }
 
 const SNAPSHOT = path.resolve(__dirname, '..', 'data', '_jaguar-deeplink-snapshot-2026-08-06.json');
-const EXPECTED_SHA256 = '60f1d4d001e3f56c9b9fc4c2429fe300f44ef3aaaeb7fda2e09a37b6e6c66800';
-const EXPECTED_SNAPSHOT_HASH = '016c6d9be5ca12dd4a514267ecfed59d36d825395d3e83ef56985dc87003bbfa';
+const EXPECTED_SHA256 = '4d918b0eb01d52012b12495f7133da32b7e89c244755f7f70c6ddb8d420af31d';
+const EXPECTED_SNAPSHOT_HASH = 'dfbfbefec28505ea04c9429335c3d89a456c764b73279f7a9afe1052eba167d2';
 const EXPECTED_MODELS = { 'E-PACE': 4, 'F-PACE': 6, 'F-TYPE': 4, 'I-PACE': 4, 'S-TYPE': 3, 'X-TYPE': 4, XE: 5, XF: 6, XJ: 5, XK: 22 };
 const EXPECTED_INVENTORY = {
   publishedIssueCount: 63, commerceIssueCount: 18, claimCount: 42, fixPartClaimCount: 36,
-  communityClaimCount: 6, noLinkClaimCount: 0, linkCount: 114, validProductLinkCount: 0,
-  invalidOrSearchLinkCount: 114, recallFirstClaimCount: 0, dtcLinkedCommerceIssueCount: 7,
+  communityClaimCount: 6, noLinkClaimCount: 7, linkCount: 35, validProductLinkCount: 0,
+  invalidOrSearchLinkCount: 35, recallFirstClaimCount: 0, dtcLinkedCommerceIssueCount: 7,
   clickedCommerceIssueCount: 0, correctedIssueCount: 0, totalRecordedClicks: 0,
   deepLinkedClicks: 0, nonProductClicks: 0,
 };
