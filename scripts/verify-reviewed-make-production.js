@@ -19,10 +19,20 @@ function expectedModelCounts(manifest) {
   for (const packet of manifest.packets || []) {
     const model = String(packet.model || '').trim();
     const total = packet.summary && packet.summary.total;
-    if (!model || !Number.isInteger(total) || total < 0) {
+    if (model && Number.isInteger(total) && total >= 0) {
+      counts.set(model, (counts.get(model) || 0) + total);
+      continue;
+    }
+    const byModel = packet.byModel;
+    if (!byModel || typeof byModel !== 'object') {
       throw new Error(`${manifest.batchId}: invalid packet inventory for ${model || '<missing model>'}`);
     }
-    counts.set(model, (counts.get(model) || 0) + total);
+    for (const [packetModel, inventory] of Object.entries(byModel)) {
+      if (!packetModel || !Number.isInteger(inventory?.total) || inventory.total < 0) {
+        throw new Error(`${manifest.batchId}: invalid make-wide packet inventory for ${packetModel || '<missing model>'}`);
+      }
+      counts.set(packetModel, (counts.get(packetModel) || 0) + inventory.total);
+    }
   }
   return counts;
 }

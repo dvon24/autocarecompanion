@@ -41,6 +41,28 @@ test('sums packet rows for each model', () => {
   assert.deepEqual(Object.fromEntries(counts), { Accent: 5, Tucson: 4 });
 });
 
+test('expands a make-wide packet byModel inventory', () => {
+  const counts = expectedModelCounts({
+    batchId: 'reviewed-gmc',
+    packets: [{
+      model: null,
+      summary: { total: 7 },
+      byModel: {
+        Canyon: { total: 3 },
+        Yukon: { total: 4 },
+      },
+    }],
+  });
+  assert.deepEqual(Object.fromEntries(counts), { Canyon: 3, Yukon: 4 });
+});
+
+test('rejects a make-wide packet without per-model inventory', () => {
+  assert.throws(
+    () => expectedModelCounts({ batchId: 'reviewed-gmc', packets: [{ model: null, summary: { total: 7 } }] }),
+    /invalid packet inventory/,
+  );
+});
+
 test('reports missing, extra, and reduced model inventories', () => {
   const expected = new Map([['Accent', 5], ['Tucson', 4]]);
   assert.deepEqual(compareModelCounts(expected, [

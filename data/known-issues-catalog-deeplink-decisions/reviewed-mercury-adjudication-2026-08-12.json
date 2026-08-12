@@ -1,0 +1,427 @@
+{
+  "schemaVersion": 2,
+  "auditScope": "full-record",
+  "manifestKind": "known-issues-catalog-deeplinks",
+  "batchId": "reviewed-mercury-adjudication-2026-08-12",
+  "generatedAt": "2026-08-12T14:27:09.017Z",
+  "sourceRef": "origin/codex/mercury-deeplink-audit",
+  "make": "Mercury",
+  "frozenMakeValues": [
+    "Mercury"
+  ],
+  "frozenMakeCounts": {
+    "Mercury": 14
+  },
+  "frozenCatalogStatus": {
+    "archived": 432,
+    "pending_review": 3,
+    "published": 7674
+  },
+  "approval": {
+    "reviewer": "Opus",
+    "owner": "Devon",
+    "reviewDate": "2026-08-12",
+    "contract": "same indexed identity, published status preserved, holds are no-ops, no retail commerce",
+    "excludedWriteIds": []
+  },
+  "packetCount": 2,
+  "packetRowCount": 14,
+  "writeRowCount": 3,
+  "heldRowCount": 11,
+  "packets": [
+    {
+      "file": "data/known-issue-mercury-cougar-adjudication-2026-08-09.json",
+      "sha256": "605effac42aeea3b70aceb904732033063b62e1e37b8954705a740c80989ec1d",
+      "model": "Cougar",
+      "byModel": null,
+      "frozenMakeValues": [
+        "Mercury"
+      ],
+      "summary": {
+        "retain_indexed_identity_and_accuracy_cleanup": 1,
+        "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy": 7,
+        "report_counts_preserved_zero": 8,
+        "total": 8
+      }
+    },
+    {
+      "file": "data/known-issue-mercury-sable-adjudication-2026-08-09.json",
+      "sha256": "58208311396a7528b5ad4a0ddab56ec151958eb03852ff94eb829be6374daf72",
+      "model": "Sable",
+      "byModel": null,
+      "frozenMakeValues": [
+        "Mercury"
+      ],
+      "summary": {
+        "retain_indexed_identity_and_accuracy_cleanup": 2,
+        "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy": 4,
+        "report_counts_preserved_zero": 6,
+        "total": 6
+      }
+    }
+  ],
+  "issues": [
+    {
+      "id": "mercury-cougar-cd4e-automatic-transmission-failure",
+      "disposition": "no-commerce",
+      "evidence": [
+        {
+          "kind": "primary-evidence",
+          "observation": "605229 and 6091763 identify no-forward engagement."
+        },
+        {
+          "kind": "primary-evidence",
+          "observation": "607645 identifies ring-gear side loading of the forward-clutch snap-ring retainer."
+        },
+        {
+          "kind": "primary-evidence",
+          "observation": "619324 and 630631 identify separate solenoid-code and post-sensor-service paths."
+        },
+        {
+          "kind": "evidence-limitation",
+          "observation": "No owner-frequency rate, repair price, universal mechanism or retail fitment is inferred."
+        },
+        {
+          "kind": "independent-review",
+          "verifiedOn": "2026-08-12",
+          "observation": "Opus independently reconciled the Mercury packet set; Devon authorized deployment after review. Source packet: data/known-issue-mercury-cougar-adjudication-2026-08-09.json."
+        }
+      ],
+      "before": {
+        "makeHash": "c76b6be0482cf810b295705d0e9e6779d7ab4c7c69c6401891c60268a9326d8c",
+        "modelHash": "e9b6be1c9a71fe8abbfa32e1e3e40efc1c33070492c1e77831210521219ec91e",
+        "yearsHash": "ddccd4755f86d3c6cc9cf59f4abe63d9f4347bd196bf9be029084e5c5a20c2a1",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "1448bb4900b24204debd4c2c59f29f3166afaff0a20827c1ab5ac82755c30065",
+        "titleHash": "1c9081947535f97d72887009ee01cac048737b4631d99e3cb4ac21ce8c0a01cf",
+        "descriptionHash": "92e6555afcb55c7ee83b7e962af569fd43d7a3e3ab7b8a2a88cb9d1ca664805f",
+        "solutionHash": "f45f9c31e1eaddd91c15efb422100929b4d2346f55f4cb25e8c0c831cdd2d04b",
+        "severityHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "30d73ed6a7d3f112fe3d2e1f8df4f59eb18f378db73eb39a61589880fa82bde2",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "2f8375d2a98f83f0aed5fb0d64b6e805901267915321ceb9d3a2063b60d05cbb",
+        "estimatedCostHighHash": "d54f809b260c113249010badffefde4bf0565be9603ad6de383864d8c83b1bcf",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "4ecdc74440ad1aa9a29814a10b0e1136a906c21a40bcf947f9779e01327cb5c7",
+        "communityRecommendationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "7b5f497703b255731b3a4caec5817d38ef2482c1ea2334e3abd08321dadf2ef0",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": []
+      },
+      "after": {
+        "make": "Mercury",
+        "model": "Cougar",
+        "years": [
+          1999,
+          2000,
+          2001,
+          2002
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "transmission",
+        "title": "CD4E Automatic Transmission Failure (8th Gen)",
+        "description": "NHTSA communications establish several distinct CD4E conditions on 1999-2002 Cougar vehicles: no-forward engagement in 605229 and 6091763, 1999 ring-gear side loading of the forward-clutch snap-ring retainer in 607645, intermittent loss of first and second gears with P0758 or P0740 in 619324, and harsh or delayed shifts after speed-sensor service in 630631. These records support the generic CD4E problem identity but not one universal valve-body or drum cause.",
+        "solution": "Preserve all transmission codes and freeze-frame data, identify which gears are lost, test line pressure and solenoid circuits, verify fluid level and condition, and inspect the transmission tag and prior repairs. Follow the symptom- and build-specific Ford procedure before choosing a sensor, solenoid, valve-body repair, hard parts or a remanufactured unit. Do not buy a transmission or rebuild kit from this page; the failed CD4E path must be established first.",
+        "severity": "high",
+        "confidence": "medium",
+        "symptoms": [
+          "no-forward or lost-gear condition identified",
+          "transmission codes and freeze-frame preserved",
+          "pressure, solenoid, sensor and hard-part paths separated"
+        ],
+        "affectedSystems": [
+          "CD4E transaxle",
+          "forward clutch and ring gear",
+          "shift and converter-clutch solenoids",
+          "speed sensors and hydraulic controls"
+        ],
+        "dtcCodes": [
+          "P0731",
+          "P0732",
+          "P0734",
+          "P0740",
+          "P0741",
+          "P0758"
+        ],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "title": "NHTSA Manufacturer Communications and Recall Datasets",
+            "type": "nhtsa",
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-09",
+        "contentUpdatedOn": "2026-08-09",
+        "contentUpdateSummary": "Retained the bulletin-backed CD4E identity while separating its distinct diagnostic and repair paths.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "mercury-sable-front-coil-spring-fracture-recall-04v332",
+      "disposition": "no-commerce",
+      "evidence": [
+        {
+          "kind": "primary-evidence",
+          "observation": "PE04-044 covers MY1999-2001 Taurus/Sable spring fractures and closes with recall 04V332."
+        },
+        {
+          "kind": "primary-evidence",
+          "observation": "More than 75% of reviewed reports alleged a broken spring damaged or punctured the adjacent tire."
+        },
+        {
+          "kind": "primary-evidence",
+          "observation": "The recall was geographically bounded; the separate extended warranty was ten years or 150,000 miles."
+        },
+        {
+          "kind": "evidence-limitation",
+          "observation": "No owner-frequency rate, repair price, universal mechanism or retail fitment is inferred."
+        },
+        {
+          "kind": "independent-review",
+          "verifiedOn": "2026-08-12",
+          "observation": "Opus independently reconciled the Mercury packet set; Devon authorized deployment after review. Source packet: data/known-issue-mercury-sable-adjudication-2026-08-09.json."
+        }
+      ],
+      "before": {
+        "makeHash": "c76b6be0482cf810b295705d0e9e6779d7ab4c7c69c6401891c60268a9326d8c",
+        "modelHash": "2631df1e1ca5bc56f7e3cc7b92213501651574c43663dbe0d73fb0f68be2a4f9",
+        "yearsHash": "799123581134440a28ba559790e20bdbd7e93808d2ff1902a7f8e29f82a07d44",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "5e320919e33a33f015ca217a116536130910f84898fbc70dfe28a3e787a73a5e",
+        "titleHash": "fef61451c716fb35a7c906ef9803dee52e7fa5a74b21bbc743c29ee82b9c4d53",
+        "descriptionHash": "0141b32a8d23ddc21822e8f1158fbadafc3bce62ebfbfd833e907d9048d49a52",
+        "solutionHash": "b1a01ba4f961510844a2b7a494e31d8aa7d2a9dae87cf7662b1546aff23ef354",
+        "severityHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "032d1b763564a22d0a46332f8939b0523ed9bd772446deea513e1350fcded7e5",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "estimatedCostHighHash": "ab9828ca390581b72629069049793ba3c99bb8e5e9e7b97a55c71957e04df9a3",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "fdce75002534cea415840cbf0619e0544c4a86b63b3f07b31bfd96325141be89",
+        "communityRecommendationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "483c9f23f17a5c68df231184ca3bdd507668914f5a31f0e9a00677d491cffc6c",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": []
+      },
+      "after": {
+        "make": "Mercury",
+        "model": "Sable",
+        "years": [
+          1999,
+          2000,
+          2001
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "suspension",
+        "title": "Front Coil Spring Fracture (Corrosion-Related) — Recall 04V332",
+        "description": "NHTSA investigation PE04-044 and recall 04V332000 establish corrosion-related front coil-spring fractures on certain 1999-2001 Taurus and Sable vehicles sold or registered in specified salt-belt jurisdictions. A fractured spring can damage or puncture the adjacent tire. The recall remedy installed spring shields; the separate extended spring warranty was limited to ten years or 150,000 miles and is no longer an open-ended current promise.",
+        "solution": "Check the VIN and recall-completion history with Ford or a dealer before paid repair. If the recall remains incomplete, arrange the specified dealer remedy; if a spring is already fractured or contacting the tire, stop driving and tow the vehicle for inspection of both front springs, shields, tires and related damage. Confirm current assistance and VIN-specific parts before any paid work. Do not buy a spring or shield from this page; recall status, damage and fitment control the remedy.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "VIN and 04V332 completion status checked",
+          "front springs, shields and adjacent tires inspected",
+          "fracture or tire contact treated as a stop-driving condition"
+        ],
+        "affectedSystems": [
+          "front coil springs",
+          "spring shields",
+          "adjacent front tires"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "title": "NHTSA PE04-044 Close Resume - Front Suspension Coil Spring Fracture",
+            "type": "nhtsa",
+            "url": "https://static.nhtsa.gov/odi/inv/2004/INCLA-PE04044-18742P.pdf",
+            "sha256": "781f05ea1d64adbd5180c5c02468a7389d8c97420e002c691a09211e39abc8f6",
+            "pageCount": 1,
+            "visuallyReviewedPages": [
+              1
+            ]
+          },
+          {
+            "title": "NHTSA Manufacturer Communications and Recall Datasets",
+            "type": "nhtsa",
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-09",
+        "contentUpdatedOn": "2026-08-09",
+        "contentUpdateSummary": "Retained the exact 04V332 spring-fracture identity while bounding geography, current remedy and tire-safety guidance.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "mercury-sable-stuck-throttle-unintended-acceleration-from-fractured-cruise",
+      "disposition": "no-commerce",
+      "evidence": [
+        {
+          "kind": "primary-evidence",
+          "observation": "PE12-033 identifies MY2000-2003 Taurus/Sable vehicles with Duratec engines."
+        },
+        {
+          "kind": "primary-evidence",
+          "observation": "13B04 was limited to certain 3.0L 4V Duratec vehicles built at Chicago."
+        },
+        {
+          "kind": "primary-evidence",
+          "observation": "Ford instructed inspection, cable replacement for missing tabs and reinforcement-clip installation."
+        },
+        {
+          "kind": "evidence-limitation",
+          "observation": "No owner-frequency rate, repair price, universal mechanism or retail fitment is inferred."
+        },
+        {
+          "kind": "independent-review",
+          "verifiedOn": "2026-08-12",
+          "observation": "Opus independently reconciled the Mercury packet set; Devon authorized deployment after review. Source packet: data/known-issue-mercury-sable-adjudication-2026-08-09.json."
+        }
+      ],
+      "before": {
+        "makeHash": "c76b6be0482cf810b295705d0e9e6779d7ab4c7c69c6401891c60268a9326d8c",
+        "modelHash": "2631df1e1ca5bc56f7e3cc7b92213501651574c43663dbe0d73fb0f68be2a4f9",
+        "yearsHash": "0ee391c68e04c944c25840e73c14adb01a71154ddc659a4f9770b9a25c2d6de6",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "c864f62f92859207770d11f0ffbbf2e0e44aad05259e8ed83391cbb3193803f9",
+        "titleHash": "e869a42259948f44eb42e36f3f07d3c38fc8110de093fd0b0316d327edb911f8",
+        "descriptionHash": "0172ecbf2d946f510fdbb23a30f8d3a95b2552e5a226057eda06c8fcf88aff76",
+        "solutionHash": "54bf560e17a3d13dfc532ebe5406c0ac2a601f92641d2f9a7c4af58193c4912e",
+        "severityHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "a1ea14d704f23f1792016d26e34df903f908c9dd433a4bf6cdd97e63a9e44e1b",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "estimatedCostHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "1a315932cdd5602ea49d418131c90f9f9b3705a8c86687c16842d0ba3a3ab44e",
+        "communityRecommendationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "483c9f23f17a5c68df231184ca3bdd507668914f5a31f0e9a00677d491cffc6c",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": []
+      },
+      "after": {
+        "make": "Mercury",
+        "model": "Sable",
+        "years": [
+          2000,
+          2001,
+          2002,
+          2003
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "fuel",
+        "title": "Stuck Throttle / Unintended Acceleration from Fractured Cruise Control Cable Collar",
+        "description": "NHTSA investigation PE12-033 and Ford Customer Satisfaction Program 13B04 establish speed-control-cable collar damage on certain 2000-2003 Taurus and Sable vehicles equipped with the 3.0L 4V Duratec engine and built at the Chicago assembly plant. Damage or partial disconnection during underhood maintenance can prevent full return to idle; this evidence does not apply to every engine or build in the frozen years.",
+        "solution": "If the throttle sticks, shift to neutral, apply steady firm braking, steer to a safe stop and switch the engine off only after control is secured. Check VIN, engine, plant and CSP 13B04 history, then inspect both collar retention tabs and cable ferrule. The program called for replacing a cable with a missing tab and installing a reinforcement clip. Do not buy a speed-control cable or clip from this page; affected-build status, current assistance and exact fitment must be confirmed first.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "stuck or high-idle event treated as an immediate safety condition",
+          "VIN, 3.0L 4V Duratec and Chicago-build applicability checked",
+          "collar tabs, ferrule position and prior 13B04 work inspected"
+        ],
+        "affectedSystems": [
+          "speed-control cable collar",
+          "cable ferrule and retention tabs",
+          "throttle return to idle"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "title": "NHTSA PE12-033 Close Resume - Speed Control Cable Damage",
+            "type": "nhtsa",
+            "url": "https://static.nhtsa.gov/odi/inv/2012/INCLA-PE12033-4697.PDF",
+            "sha256": "eaa207d5120bad786a5d1de910b15d1361695e3e3e12094b68560b89a12c432b",
+            "pageCount": 6,
+            "visuallyReviewedPages": [
+              1,
+              2,
+              6
+            ]
+          },
+          {
+            "title": "NHTSA Manufacturer Communications and Recall Datasets",
+            "type": "nhtsa",
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-09",
+        "contentUpdatedOn": "2026-08-09",
+        "contentUpdateSummary": "Retained the exact speed-control-cable identity while bounding engine, plant, VIN, safety response and repair fitment.",
+        "relatedIssueIds": []
+      }
+    }
+  ]
+}

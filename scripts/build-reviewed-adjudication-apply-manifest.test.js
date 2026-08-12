@@ -1,7 +1,9 @@
 /* eslint-disable @typescript-eslint/no-require-imports */
 const assert = require('node:assert/strict');
 const test = require('node:test');
-const { actionSets, buildReviewedAfterState } = require('./build-reviewed-adjudication-apply-manifest');
+const {
+  actionSets, buildReviewedAfterState, isPacketFilename, normalizedChangedFields, packetSummary, selectWrites,
+} = require('./build-reviewed-adjudication-apply-manifest');
 
 function fixture() {
   const current = {
@@ -118,4 +120,65 @@ test('classifies the exact SEAT retain and byte-identical hold actions', () => {
   ]);
   assert.deepEqual([...applyActions], ['retain_indexed_identity_and_accuracy_cleanup']);
   assert.ok(holdActions.has('hold_indexed_identity_byte_identical_pending_identity_policy'));
+});
+
+test('preserves live relatedIssueIds when a packet proposes relationship cleanup', () => {
+  const { row, current } = fixture();
+  current.relatedIssueIds = ['live-related-page'];
+  row.before.relatedIssueIds = ['live-related-page'];
+  row.proposal.relatedIssueIds = [];
+  row.changedFields.push('relatedIssueIds');
+  const after = buildReviewedAfterState(row, current);
+  assert.deepEqual(after.relatedIssueIds, ['live-related-page']);
+});
+
+test('normalizes reviewed citation aliases to production schema values', () => {
+  const { row, current } = fixture();
+  row.proposal.citations = [
+    { type: 'service-action', title: 'OEM action', url: 'https://example.com/action' },
+    { type: 'government', title: 'Government source', url: 'https://example.com/government' },
+  ];
+  row.changedFields = row.changedFields.filter((field) => field !== 'citations');
+  row.changedFields.push('citations');
+  const after = buildReviewedAfterState(row, current);
+  assert.deepEqual(after.citations.map((citation) => citation.type), ['manufacturer', 'nhtsa']);
+});
+
+test('accepts make-wide and per-model adjudication packet filenames', () => {
+  assert.equal(isPacketFilename('data/known-issue-gmc-adjudication-2026-08-05.json', 'gmc'), true);
+  assert.equal(isPacketFilename('data/known-issue-gmc-yukon-adjudication-2026-08-05.json', 'gmc'), true);
+  assert.equal(isPacketFilename('data/known-issue-gmc-proposals-2026-08-05.json', 'gmc'), false);
+  assert.equal(isPacketFilename('data/known-issue-chevrolet-adjudication-2026-08-05.json', 'gmc'), false);
+});
+
+test('derives a missing packet total from exact rows and rejects a contradictory total', () => {
+  assert.equal(packetSummary({ summary: { holdCount: 2 }, rows: [{ id: 'a' }, { id: 'b' }] }).total, 2);
+  assert.throws(
+    () => packetSummary({ summary: { total: 3 }, rows: [{ id: 'a' }, { id: 'b' }] }),
+    /summary total does not equal packet rows/,
+  );
+});
+
+test('excludes explicitly named apply candidates and rejects unknown exclusions', () => {
+  const rows = [
+    { id: 'safe', action: 'retain' },
+    { id: 'commerce-review-needed', action: 'retain' },
+    { id: 'hold', action: 'hold' },
+  ];
+  assert.deepEqual(
+    selectWrites(rows, new Set(['retain']), new Set(['commerce-review-needed'])).map((row) => row.id),
+    ['safe'],
+  );
+  assert.throws(
+    () => selectWrites(rows, new Set(['retain']), new Set(['hold'])),
+    /not apply candidates/,
+  );
+});
+
+test('derives omitted changedFields but rejects a contradictory declared list', () => {
+  const { row } = fixture();
+  delete row.changedFields;
+  assert.ok(normalizedChangedFields(row).includes('description'));
+  row.changedFields = ['solution'];
+  assert.throws(() => normalizedChangedFields(row), /changedFields mismatch/);
 });

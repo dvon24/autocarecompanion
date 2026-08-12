@@ -1,0 +1,189 @@
+{
+  "schemaVersion": 2,
+  "auditScope": "full-record",
+  "manifestKind": "known-issues-catalog-deeplinks",
+  "batchId": "reviewed-mg-adjudication-2026-08-12",
+  "generatedAt": "2026-08-12T14:27:12.433Z",
+  "sourceRef": "origin/codex/mg-deeplink-audit",
+  "make": "MG",
+  "frozenMakeValues": [
+    "MG"
+  ],
+  "frozenMakeCounts": {
+    "MG": 6
+  },
+  "frozenCatalogStatus": {
+    "archived": 432,
+    "pending_review": 3,
+    "published": 7674
+  },
+  "approval": {
+    "reviewer": "Opus",
+    "owner": "Devon",
+    "reviewDate": "2026-08-12",
+    "contract": "same indexed identity, published status preserved, holds are no-ops, no retail commerce",
+    "excludedWriteIds": []
+  },
+  "packetCount": 1,
+  "packetRowCount": 6,
+  "writeRowCount": 1,
+  "heldRowCount": 5,
+  "packets": [
+    {
+      "file": "data/known-issue-mg-mgb-adjudication-2026-08-09.json",
+      "sha256": "e24df105f4cb5b97d21f158633539d1a65902217891928dd4ad7f34e66aec671",
+      "model": "MGB",
+      "byModel": null,
+      "frozenMakeValues": [
+        "MG"
+      ],
+      "summary": {
+        "retain_indexed_identity_and_accuracy_cleanup": 1,
+        "hold_indexed_identity_and_accuracy_cleanup_pending_identity_policy": 5,
+        "report_counts_preserved_zero": 6,
+        "total": 6
+      }
+    }
+  ],
+  "issues": [
+    {
+      "id": "mg-mgb-worn-lever-arm-dampers-let-front-rear-float",
+      "disposition": "no-commerce",
+      "evidence": [
+        {
+          "kind": "primary-evidence",
+          "observation": "AKD 3259 page 247 identifies Armstrong double-acting front and rear dampers and the prescribed inspection."
+        },
+        {
+          "kind": "primary-evidence",
+          "observation": "Pages 247-248 specify bounce and bench resistance tests, topping-up and replacement only if fluid gives no improvement."
+        },
+        {
+          "kind": "primary-evidence",
+          "observation": "No failure frequency or owner count is inferred."
+        },
+        {
+          "kind": "evidence-limitation",
+          "observation": "No owner-frequency rate, repair price, universal mechanism or retail fitment is inferred."
+        },
+        {
+          "kind": "independent-review",
+          "verifiedOn": "2026-08-12",
+          "observation": "Opus independently reconciled the MG packet set; Devon authorized deployment after review. Source packet: data/known-issue-mg-mgb-adjudication-2026-08-09.json."
+        }
+      ],
+      "before": {
+        "makeHash": "1de6f2e7f5e86bb1b3add418b646b6377e12df4f64b3b9ca806b1b777d868aef",
+        "modelHash": "d34145d590ca3a684d9c9df9f9a1182d9f3fc362785cbe0e07ca7bc03ee4c7d8",
+        "yearsHash": "07722b10d764bcfc3511d838ef1309718fa8249aad3cb47fd2dc401129aec49b",
+        "trimsHash": "12aec7c18a96c21f3ccd68abf40a4c3267bc368ab9bd50389f9d9ca9ac46f2b5",
+        "enginesHash": "cc38bb4541d77cfd7d28d74f33a8758ff0c4b1c709ec713dac5330c553780ebb",
+        "categoryHash": "5e320919e33a33f015ca217a116536130910f84898fbc70dfe28a3e787a73a5e",
+        "titleHash": "4a532d0c55786f1992f1256c3671729c030077b9683dc6aced99a03294edca38",
+        "descriptionHash": "8645d15c4139c5281fb91fc034d1f290df11a519d3a687dcbeccaa2ae8b84ddb",
+        "solutionHash": "c5ca744790f7bca68fb86a2d99b8f673f4fda3b90d8710013392a3918bc6f838",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "c4eab79279e7dfba6606894762b7a680c12d8b89e1939ee60dae48b2fc1e8eb5",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "1e472b39b105d349bcd069c4a711b44a2fffb8e274714bb07ecfff69a9a7f67b",
+        "estimatedCostHighHash": "15197cf7214b58e67cae565e573ffd9aa44bcb81f8ee5d7185dfe8da0a16ef43",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "e7c67a898fa384afbd1e84733cb1a87731b4bc306b8bedeb3fb3d9652b809324",
+        "communityRecommendationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "b9771702812b97920649a98690d8f60cfcd9e5cded12bd9c4c737f648d8430f9",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": []
+      },
+      "after": {
+        "make": "MG",
+        "model": "MGB",
+        "years": [
+          1962,
+          1965,
+          1968,
+          1971,
+          1974,
+          1977,
+          1980
+        ],
+        "trims": [
+          "MGB Roadster",
+          "MGB GT"
+        ],
+        "engines": [
+          "1800 B-series I4"
+        ],
+        "category": "suspension",
+        "title": "Worn Lever-Arm Dampers Let the Front and Rear Float",
+        "description": "The Leyland AKD 3259 manual identifies Armstrong double-acting lever-arm dampers at the front and rear. It says erratic resistance or free body movement requires the damper to be removed, checked and topped up; if fluid does not restore resistance, the damper should be replaced. This supports the generic worn or ineffective lever-arm-damper identity but not a universal failure rate.",
+        "solution": "Inspect each damper for leakage and secure mountings, bounce each corner for uniform resistance, and check links, bushes, springs and tires before blaming the damper. If resistance is erratic or free, remove the unit upright, check fluid and work the arm through its stroke to expel air; replace the damper only if correct fluid does not restore moderate, even resistance. Do not buy a front or rear damper from this page; failed position, linkage condition and exact fitment must be confirmed first.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "corner-specific bounce and resistance compared",
+          "leakage, mounting, link and bush condition inspected",
+          "bench resistance rechecked after correct fluid and air purge"
+        ],
+        "affectedSystems": [
+          "front and rear lever-arm dampers",
+          "damper links and mountings",
+          "front coil and rear leaf spring control"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "title": "Leyland Cars MGB Workshop Manual - Publication AKD 3259, 14th Edition",
+            "type": "manufacturer",
+            "url": "https://www.canevet.org/IMG/pdf/mgb_workshop_manual_ocr_index.pdf",
+            "sha256": "b5cbb32f62fbc04ca022cc88982ef5bef2f80f66630ea63c3608bb80016adbf5",
+            "pageCount": 417,
+            "visuallyReviewedPages": [
+              1,
+              51,
+              58,
+              91,
+              130,
+              132,
+              247,
+              248,
+              269,
+              271,
+              380
+            ]
+          },
+          {
+            "title": "NHTSA Manufacturer Communications and Recall Datasets",
+            "type": "nhtsa",
+            "url": "https://www.nhtsa.gov/nhtsa-datasets-and-apis"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "ai-researched",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-09",
+        "contentUpdatedOn": "2026-08-09",
+        "contentUpdateSummary": "Retained the factory-supported ineffective lever-arm-damper identity with position-specific tests and no universal part.",
+        "relatedIssueIds": []
+      }
+    }
+  ]
+}

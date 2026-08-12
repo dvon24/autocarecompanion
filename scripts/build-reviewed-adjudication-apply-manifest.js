@@ -36,8 +36,16 @@ const PROJECT_ROOT = path.resolve(__dirname, '..');
 const FROZEN_FIELDS = new Set([
   'make', 'model', 'years', 'trims', 'engines', 'category', 'title', 'severity', 'status', 'relatedIssueIds',
 ]);
-const PRESERVED_LIVE_FIELDS = new Set(['fixParts']);
+const PRESERVED_LIVE_FIELDS = new Set(['fixParts', 'relatedIssueIds']);
+const IGNORED_PROPOSAL_FIELDS = new Set(['relatedIssueIds']);
 const DEFAULT_HOLD_ACTIONS = new Set(['keep_published_pending_source', 'hold', 'keep']);
+const CITATION_TYPE_ALIASES = new Map([
+  ['government', 'nhtsa'],
+  ['manufacturer-program', 'manufacturer'],
+  ['program', 'manufacturer'],
+  ['service-action', 'manufacturer'],
+  ['service-bulletin', 'tsb'],
+]);
 
 function actionSets(args) {
   const applyActions = new Set((argValue(args, '--apply-actions', false) || 'rewrite_same_identity').split(',').map((value) => value.trim()).filter(Boolean));
@@ -66,7 +74,8 @@ function stableValue(value) {
 }
 
 function stableHash(value) {
-  return crypto.createHash('sha256').update(JSON.stringify(stableValue(value))).digest('hex');
+  const encoded = JSON.stringify(stableValue(value));
+  return crypto.createHash('sha256').update(encoded === undefined ? 'undefined' : encoded).digest('hex');
 }
 
 function clone(value) {
@@ -93,12 +102,32 @@ function git(args) {
 
 function packetFiles(sourceRef, slug) {
   const changed = git(['diff', '--name-only', `origin/main...${sourceRef}`]).split(/\r?\n/).filter(Boolean);
-  const pattern = new RegExp(`^data/known-issue-${slug}-.+-adjudication-\\d{4}-\\d{2}-\\d{2}\\.json$`);
+  const pattern = new RegExp(`^data/known-issue-${slug}(?:-.+)?-adjudication-\\d{4}-\\d{2}-\\d{2}\\.json$`);
   return changed.filter((file) => pattern.test(file)).sort();
+}
+
+function selectWrites(rows, applyActions, excludedWriteIds = new Set()) {
+  const writeCandidates = rows.filter((row) => applyActions.has(row.action));
+  const candidateIds = new Set(writeCandidates.map((row) => row.id));
+  const unknownExclusions = [...excludedWriteIds].filter((id) => !candidateIds.has(id));
+  if (unknownExclusions.length) throw new Error(`excluded write IDs are not apply candidates: ${unknownExclusions.join(', ')}`);
+  return writeCandidates.filter((row) => !excludedWriteIds.has(row.id));
+}
+
+function isPacketFilename(file, slug) {
+  return new RegExp(`^data/known-issue-${slug}(?:-.+)?-adjudication-\\d{4}-\\d{2}-\\d{2}\\.json$`).test(file);
 }
 
 function readPacket(sourceRef, file) {
   return JSON.parse(git(['show', `${sourceRef}:${file}`]));
+}
+
+function packetSummary(packet, file = '<packet>') {
+  const packetRows = packet.rows || [];
+  if (Number.isInteger(packet.summary?.total) && packet.summary.total !== packetRows.length) {
+    throw new Error(`${file}: summary total does not equal packet rows`);
+  }
+  return { ...(packet.summary || {}), total: packetRows.length };
 }
 
 function normalizedFileHash(sourceRef, file) {
@@ -107,6 +136,12 @@ function normalizedFileHash(sourceRef, file) {
 
 function changedFields(before, after) {
   return FULL_RECORD_FIELDS.filter((field) => stableHash(before[field]) !== stableHash(after[field]));
+}
+
+function normalizedChangedFields(row) {
+  const actual = changedFields(row.before, row.proposal);
+  if (Array.isArray(row.changedFields)) assertEqual(`${row.id}: changedFields`, actual, row.changedFields);
+  return actual;
 }
 
 function assertEqual(label, actual, expected) {
@@ -120,7 +155,7 @@ function selectRowsSql() {
 function buildReviewedAfterState(row, current) {
   for (const field of FROZEN_FIELDS) {
     assertEqual(`${row.id}: live ${field}`, current[field], row.before[field]);
-    if (stableHash(row.proposal[field]) !== stableHash(row.before[field])) {
+    if (!IGNORED_PROPOSAL_FIELDS.has(field) && stableHash(row.proposal[field]) !== stableHash(row.before[field])) {
       throw new Error(`${row.id}: proposal changes ${field}`);
     }
   }
@@ -129,8 +164,9 @@ function buildReviewedAfterState(row, current) {
   const after = clone(current);
   for (const field of row.changedFields || []) {
     if (!FULL_RECORD_FIELDS.includes(field)) throw new Error(`${row.id}: unknown changed field ${field}`);
-    if (FROZEN_FIELDS.has(field)) throw new Error(`${row.id}: frozen field ${field} cannot be written`);
+    if (IGNORED_PROPOSAL_FIELDS.has(field)) continue;
     if (PRESERVED_LIVE_FIELDS.has(field)) throw new Error(`${row.id}: cannot change ${field}`);
+    if (FROZEN_FIELDS.has(field)) throw new Error(`${row.id}: frozen field ${field} cannot be written`);
     if (!Object.prototype.hasOwnProperty.call(row.proposal, field)) throw new Error(`${row.id}: proposal missing ${field}`);
     assertEqual(`${row.id}: live ${field}`, current[field], row.before[field]);
     after[field] = clone(row.proposal[field]);
@@ -138,9 +174,14 @@ function buildReviewedAfterState(row, current) {
   // Independent approval changes the proposal's audit flag only; content and
   // identity remain exactly the reviewed after-state.
   after.humanApproved = true;
+  after.citations = (after.citations || []).map((citation) => ({
+    ...citation,
+    type: CITATION_TYPE_ALIASES.get(citation.type) || citation.type,
+  }));
 
   for (const field of FROZEN_FIELDS) assertEqual(`${row.id}: after ${field}`, after[field], current[field]);
   assertEqual(`${row.id}: after fixParts`, after.fixParts, current.fixParts);
+  assertEqual(`${row.id}: after relatedIssueIds`, after.relatedIssueIds, current.relatedIssueIds);
   const currentCommerce = new Set(commerceUrls(current).map((entry) => stableHash(entry)));
   const introducedCommerce = commerceUrls(after).filter((entry) => !currentCommerce.has(stableHash(entry)));
   if (introducedCommerce.length) throw new Error(`${row.id}: reviewed adjudication introduces commerce`);
@@ -162,6 +203,8 @@ async function main() {
   const reviewNote = argValue(args, '--review-note', false)
     || `${reviewer} independently reconciled the ${make} packet set; Devon authorized deployment after review.`;
   const { applyActions, holdActions } = actionSets(args);
+  const excludedWriteIds = new Set((argValue(args, '--exclude-write-ids', false) || '')
+    .split(',').map((value) => value.trim()).filter(Boolean));
 
   git(['rev-parse', '--verify', sourceRef]);
   const files = packetFiles(sourceRef, slug);
@@ -175,28 +218,30 @@ async function main() {
     if (packet.status !== 'proposal-only' || packet.requiresIndependentApproval !== true || packet.make !== make) {
       throw new Error(`${file}: invalid proposal contract`);
     }
+    const packetRows = packet.rows || [];
+    const normalizedSummary = packetSummary(packet, file);
     packetProvenance.push({
       file,
       sha256: normalizedFileHash(sourceRef, file),
       model: packet.model,
+      byModel: packet.byModel || null,
       frozenMakeValues: packet.frozenMakeValues || [packet.make],
-      summary: packet.summary,
+      summary: normalizedSummary,
     });
-    for (const row of packet.rows || []) {
+    for (const row of packetRows) {
       if (seenIds.has(row.id)) throw new Error(`${row.id}: duplicate packet row`);
       seenIds.add(row.id);
       if (stableHash(row.before) !== row.beforeSha256) throw new Error(`${row.id}: beforeSha256 mismatch`);
       if (stableHash(row.proposal) !== row.proposalSha256) throw new Error(`${row.id}: proposalSha256 mismatch`);
-      const actualChanged = changedFields(row.before, row.proposal);
-      assertEqual(`${row.id}: changedFields`, actualChanged, row.changedFields || []);
+      const actualChanged = normalizedChangedFields(row);
       if (!applyActions.has(row.action) && !holdActions.has(row.action)) {
         throw new Error(`${row.id}: unclassified action ${row.action}`);
       }
-      rows.push({ ...row, packetFile: file });
+      rows.push({ ...row, changedFields: actualChanged, packetFile: file });
     }
   }
 
-  const writes = rows.filter((row) => applyActions.has(row.action));
+  const writes = selectWrites(rows, applyActions, excludedWriteIds);
   if (rows.length !== expectedTotal) throw new Error(`row count ${rows.length}; expected ${expectedTotal}`);
   if (writes.length !== expectedWrites) throw new Error(`write count ${writes.length}; expected ${expectedWrites}`);
   const frozenMakeCounts = {};
@@ -275,6 +320,7 @@ async function main() {
       owner: 'Devon',
       reviewDate,
       contract: 'same indexed identity, published status preserved, holds are no-ops, no retail commerce',
+      excludedWriteIds: [...excludedWriteIds].sort(),
     },
     packetCount: files.length,
     packetRowCount: rows.length,
@@ -306,4 +352,7 @@ if (require.main === module) {
   });
 }
 
-module.exports = { actionSets, buildReviewedAfterState, changedFields, stableHash };
+module.exports = {
+  CITATION_TYPE_ALIASES, actionSets, buildReviewedAfterState, changedFields, isPacketFilename, stableHash,
+  normalizedChangedFields, packetSummary, selectWrites,
+};

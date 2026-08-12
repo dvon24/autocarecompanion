@@ -1,0 +1,2154 @@
+{
+  "schemaVersion": 2,
+  "auditScope": "full-record",
+  "manifestKind": "known-issues-catalog-deeplinks",
+  "batchId": "reviewed-gmc-adjudication-2026-08-12",
+  "generatedAt": "2026-08-12T14:27:25.671Z",
+  "sourceRef": "origin/codex/gmc-deeplink-audit",
+  "make": "GMC",
+  "frozenMakeValues": [
+    "GMC"
+  ],
+  "frozenMakeCounts": {
+    "GMC": 173
+  },
+  "frozenCatalogStatus": {
+    "archived": 432,
+    "pending_review": 3,
+    "published": 7674
+  },
+  "approval": {
+    "reviewer": "Opus",
+    "owner": "Devon",
+    "reviewDate": "2026-08-12",
+    "contract": "same indexed identity, published status preserved, holds are no-ops, no retail commerce",
+    "excludedWriteIds": []
+  },
+  "packetCount": 1,
+  "packetRowCount": 173,
+  "writeRowCount": 21,
+  "heldRowCount": 152,
+  "packets": [
+    {
+      "file": "data/known-issue-gmc-adjudication-2026-08-05.json",
+      "sha256": "c2d36f3a48504cc9cc548ad69ad0380e59656ebc1f10a102ffa4b949c67d1283",
+      "byModel": {
+        "Acadia": {
+          "rewrite_then_publish": 9,
+          "keep_published_pending_source": 1,
+          "total": 10
+        },
+        "C/K 1500": {
+          "rewrite_then_publish": 0,
+          "keep_published_pending_source": 4,
+          "total": 4
+        },
+        "C/K 2500": {
+          "rewrite_then_publish": 0,
+          "keep_published_pending_source": 5,
+          "total": 5
+        },
+        "C/K 3500": {
+          "rewrite_then_publish": 0,
+          "keep_published_pending_source": 5,
+          "total": 5
+        },
+        "Canyon": {
+          "rewrite_then_publish": 4,
+          "keep_published_pending_source": 6,
+          "total": 10
+        },
+        "Envoy": {
+          "rewrite_then_publish": 0,
+          "keep_published_pending_source": 4,
+          "total": 4
+        },
+        "Hummer EV": {
+          "rewrite_then_publish": 2,
+          "keep_published_pending_source": 2,
+          "total": 4
+        },
+        "Hummer EV SUV": {
+          "rewrite_then_publish": 0,
+          "keep_published_pending_source": 4,
+          "total": 4
+        },
+        "Jimmy": {
+          "rewrite_then_publish": 0,
+          "keep_published_pending_source": 4,
+          "total": 4
+        },
+        "Safari": {
+          "rewrite_then_publish": 0,
+          "keep_published_pending_source": 4,
+          "total": 4
+        },
+        "Savana": {
+          "rewrite_then_publish": 0,
+          "keep_published_pending_source": 5,
+          "total": 5
+        },
+        "Sierra 1500": {
+          "rewrite_then_publish": 0,
+          "keep_published_pending_source": 26,
+          "total": 26
+        },
+        "Sierra 2500HD": {
+          "rewrite_then_publish": 0,
+          "keep_published_pending_source": 5,
+          "total": 5
+        },
+        "Sierra 3500HD": {
+          "rewrite_then_publish": 0,
+          "keep_published_pending_source": 24,
+          "total": 24
+        },
+        "Sonoma": {
+          "rewrite_then_publish": 0,
+          "keep_published_pending_source": 3,
+          "total": 3
+        },
+        "Suburban": {
+          "rewrite_then_publish": 0,
+          "keep_published_pending_source": 5,
+          "total": 5
+        },
+        "Terrain": {
+          "rewrite_then_publish": 1,
+          "keep_published_pending_source": 12,
+          "total": 13
+        },
+        "Yukon": {
+          "rewrite_then_publish": 3,
+          "keep_published_pending_source": 13,
+          "total": 16
+        },
+        "Yukon XL": {
+          "rewrite_then_publish": 2,
+          "keep_published_pending_source": 20,
+          "total": 22
+        }
+      },
+      "frozenMakeValues": [
+        "GMC"
+      ],
+      "summary": {
+        "rewrite_then_publish": 21,
+        "keep_published_pending_source": 152,
+        "total": 173
+      }
+    }
+  ],
+  "issues": [
+    {
+      "id": "gmc-acadia-fuel-pump-mixing-tube-burr-causing-engine-stall-low-fuel",
+      "disposition": "no-commerce",
+      "evidence": [
+        {
+          "kind": "independent-review",
+          "verifiedOn": "2026-08-12",
+          "observation": "Opus independently reconciled the GMC packet set; Devon authorized deployment after review. Source packet: data/known-issue-gmc-adjudication-2026-08-05.json."
+        }
+      ],
+      "before": {
+        "makeHash": "d35b02946654aa7ee24093c39191a73c7c5006a552e4a12c75019c49eaf14b60",
+        "modelHash": "0e164407719549bd28fc6a8cb496ce8b1d08f39b31e79dca14ccd33406e1b68e",
+        "yearsHash": "91a2461c25439830d94bf4b3d3a3b020343f75e74561a913b1f972b2ac42e943",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "c864f62f92859207770d11f0ffbbf2e0e44aad05259e8ed83391cbb3193803f9",
+        "titleHash": "1a6712ad694d4f2c25ee8e225daed847be70381738078f2c045af45f4eace9e5",
+        "descriptionHash": "f9bd5e71e0980e08fd1374e946606a76d3b91c5d12f1fda91d873c33735c1729",
+        "solutionHash": "5b4c3bcbb9b737963161a1594e8c0f62bfd7ab6f5e0339699387933f545768ab",
+        "severityHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "08dcef708e52cd501357dd623adb6f078345df64d088ef91e84a986248383ced",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "estimatedCostHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "a0bd02257ae784fb750b711d19ea3719475e60a89a07b4c4e33f0a400f6119e7",
+        "communityRecommendationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "ae3e737a0ff9992c7c18356aba2acc27d8e8fa44fd77c428be37600af1e40412",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": []
+      },
+      "after": {
+        "make": "GMC",
+        "model": "Acadia",
+        "years": [
+          2020
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "fuel",
+        "title": "Fuel Pump Mixing-Tube Burr Causing Engine Stall at Low Fuel (Recall 20V446 / GM N202314760)",
+        "description": "NHTSA campaign 20V639 covers certain 2020 GMC Acadia vehicles. A plastic burr left in the fuel pump jet nozzle can block the nozzle and reduce fuel delivery to the engine, which can cause an engine stall.",
+        "solution": "Check the VIN with GMC. Dealers replace the fuel-pump module free of charge under GM campaign N202314760.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Insufficient fuel supply",
+          "Possible engine stall"
+        ],
+        "affectedSystems": [
+          "fuel-pump module",
+          "fuel-pump jet nozzle"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "NHTSA Campaign 20V639 - Acadia Fuel Pump",
+            "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=20V639000"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-05",
+        "contentUpdatedOn": "2026-08-05",
+        "contentUpdateSummary": "Corrected the frozen card from airbag campaign 20V446 to the actual fuel-pump campaign 20V639 and removed secondary citations.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "gmc-acadia-incorrect-transmission-sun-gear-causing-driver-side-half-sha",
+      "disposition": "no-commerce",
+      "evidence": [
+        {
+          "kind": "independent-review",
+          "verifiedOn": "2026-08-12",
+          "observation": "Opus independently reconciled the GMC packet set; Devon authorized deployment after review. Source packet: data/known-issue-gmc-adjudication-2026-08-05.json."
+        }
+      ],
+      "before": {
+        "makeHash": "d35b02946654aa7ee24093c39191a73c7c5006a552e4a12c75019c49eaf14b60",
+        "modelHash": "0e164407719549bd28fc6a8cb496ce8b1d08f39b31e79dca14ccd33406e1b68e",
+        "yearsHash": "08a12468c78c86634ed12957477419c60b7c19ccc1741eeaf7b5815b6374c6d3",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "3b12d5574a84f04c6978e854a9cac57bf991ee23453471c357b5b903e12b2378",
+        "titleHash": "21fdc8ff994d4904459d459171c31d5fb63b4a992944ec50cb16d4f42a4d93b8",
+        "descriptionHash": "e1bd85f22a187dfe93755130624076f51de1003fde2b1b02d374f53343eb7a1c",
+        "solutionHash": "5aa4352ee49b958e647b55c4f65f076cbd58f5c760d5ba3ab2b9b7477dfb0d9e",
+        "severityHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "518e0ab9f682edb404e7d5ac22a808122658b1611d39f620dc3679d94f057252",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "estimatedCostHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "06a25a9ba024259e522bbebf8f0343a6b4a4f37c67cd37473c127b4e0a1b640d",
+        "communityRecommendationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "ae3e737a0ff9992c7c18356aba2acc27d8e8fa44fd77c428be37600af1e40412",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": []
+      },
+      "after": {
+        "make": "GMC",
+        "model": "Acadia",
+        "years": [
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "drivetrain",
+        "title": "Incorrect Transmission Sun Gear Causing Driver-Side Half-Shaft Disengagement / Rollaway (Recall N222389310)",
+        "description": "NHTSA campaign 23V172 covers certain 2023 GMC Acadia vehicles. An incorrect transmission sun gear can allow the driver-side half-shaft to disengage, causing a loss of drive power or a vehicle rollaway while in Park.",
+        "solution": "Check the VIN with GMC. Dealers replace the sun gears free of charge under GM campaign N222389310. Use the parking brake until the recall repair is completed.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Possible loss of drive power",
+          "Possible rollaway while in Park"
+        ],
+        "affectedSystems": [
+          "transmission sun gears",
+          "driver-side half-shaft",
+          "park holding function"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "NHTSA Campaign 23V172 - Acadia Transmission Sun Gear",
+            "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=23V172000"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-05",
+        "contentUpdatedOn": "2026-08-05",
+        "contentUpdateSummary": "Replaced secondary recall pages and fleet-size details with the exact NHTSA campaign, hazards and free remedy.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "gmc-acadia-infotainment-system-lockup-black-screen-random-reboots",
+      "disposition": "no-commerce",
+      "evidence": [
+        {
+          "kind": "independent-review",
+          "verifiedOn": "2026-08-12",
+          "observation": "Opus independently reconciled the GMC packet set; Devon authorized deployment after review. Source packet: data/known-issue-gmc-adjudication-2026-08-05.json."
+        }
+      ],
+      "before": {
+        "makeHash": "d35b02946654aa7ee24093c39191a73c7c5006a552e4a12c75019c49eaf14b60",
+        "modelHash": "0e164407719549bd28fc6a8cb496ce8b1d08f39b31e79dca14ccd33406e1b68e",
+        "yearsHash": "023bd03bf3cca147b323ecdb8a126bee9bb89fba831e14727db1e9dd59877102",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "477920ba85abe16e6b8c01e5637691d82cc78f5a9db884222f77d438c73ceb87",
+        "titleHash": "62ab987dbdca343a97ebf3cbd8d02286c2107cdd4be182ec3ff1a71d6a3923ee",
+        "descriptionHash": "3995610fde9d3b430f9261ad2b1e5eec0571202f402b08699c04298ff7a2bb40",
+        "solutionHash": "2fd257dc22a45e4645293c5e196c12a79f328eb337fee687570a873cb871a649",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "364bb7082249ee9fbc5247ee49735c4246f271b82c2745a35107ddda0d7cabcc",
+        "symptomsHash": "b0fdf9380a7fb600ed7a8d0d1f170e5968e5c294362bd8ea5b6a67d2306f207f",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "estimatedCostHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "24ed9a422226d93de3c80cbd07dbf38804f3a5fb2d046eb9a12f058165c0f735",
+        "communityRecommendationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "ae3e737a0ff9992c7c18356aba2acc27d8e8fa44fd77c428be37600af1e40412",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": []
+      },
+      "after": {
+        "make": "GMC",
+        "model": "Acadia",
+        "years": [
+          2017,
+          2018,
+          2019,
+          2020,
+          2021
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Infotainment System Lockup, Black Screen and Random Reboots (2nd-Gen IO/IOR Head Unit)",
+        "description": "GM bulletin 22-NA-033 covers 2019 GMC Acadia vehicles equipped with IOS, IOU or IOT radios that can reset or reboot and display the GMC splash animation. Bluetooth-call or touch-input symptoms can occur immediately before the reboot.",
+        "solution": "Have a GMC retailer confirm the radio software version. The bulletin directs a USB radio-software update to version V809 when the installed version is V808 or earlier.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Radio resets or reboots",
+          "GMC splash animation may appear"
+        ],
+        "affectedSystems": [
+          "radio",
+          "infotainment software and hardware"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://static.nhtsa.gov/odi/tsbs/2022/MC-10217855-0001.pdf",
+            "type": "tsb",
+            "title": "GM Bulletin 10217855 - Acadia Radio Resets or Reboots"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-05",
+        "contentUpdatedOn": "2026-08-05",
+        "contentUpdateSummary": "Narrowed the broad infotainment aggregation to the exact 2019 radio/RPO scope and V809 remedy in GM bulletin 22-NA-033.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "gmc-acadia-power-steering-failure-2007",
+      "disposition": "no-commerce",
+      "evidence": [
+        {
+          "kind": "independent-review",
+          "verifiedOn": "2026-08-12",
+          "observation": "Opus independently reconciled the GMC packet set; Devon authorized deployment after review. Source packet: data/known-issue-gmc-adjudication-2026-08-05.json."
+        }
+      ],
+      "before": {
+        "makeHash": "d35b02946654aa7ee24093c39191a73c7c5006a552e4a12c75019c49eaf14b60",
+        "modelHash": "0e164407719549bd28fc6a8cb496ce8b1d08f39b31e79dca14ccd33406e1b68e",
+        "yearsHash": "5608a07b46a75e1ce2e623c0e40643751583f7b892fec4795df3d8b018a883ea",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "588b0fb743bf8118cfc6d25df47da1d4e0db51544389ab4481663ffd0f84181b",
+        "categoryHash": "5e320919e33a33f015ca217a116536130910f84898fbc70dfe28a3e787a73a5e",
+        "titleHash": "0b212b48a7df7d8ff41b1a4195ea82119bea126f5e345fbf57b5ce7137960e4b",
+        "descriptionHash": "4bd74552801d37cb4288fb3515d9a94b60bfae4dd58c425bc7a2f55336cebd4d",
+        "solutionHash": "4ef557fdfb7277804e287bc9cbb38d529d5280fd76e05304fcfc46f76bfe4dba",
+        "severityHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "37e996614b0068ec6f0cf442dccf3d63719428d7325e100d5f1d2e328a1576e2",
+        "affectedSystemsHash": "8ee96e45b01b7eb9a93a272e50abc8919b20aaf29702674ff420d1f802a81454",
+        "dtcCodesHash": "77749fef0e394a11d887998a45bc1ae32fe3c167466523661f16864f7a807719",
+        "estimatedCostLowHash": "1a1cf797fabe7f95836fabeca626907c77b3e6c9aff7c2290b396a238c69362e",
+        "estimatedCostHighHash": "620e9c1f98e4730c1968dd7e14627cdff6689e377fa8ff7d5be4fd3540b57543",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "98bcf57b426d8389502c062603bf69f1b3970aa3c03766951fd1f94ef04d14d0",
+        "communityRecommendationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "edbad80a93adb5830afc3fccfe0e7c27a81359b59bb2a8c277f95d4adec7c389",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "00d5d65fdfd88358d3e81b2a24891ac0460227aa2c83054a09427a88c5332478",
+        "reviewedOnHash": "00d5d65fdfd88358d3e81b2a24891ac0460227aa2c83054a09427a88c5332478",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "a16ea5174e7f069fe4c17f8f4b3a43079e0faaa1ffa60d55fa39d406a8080320",
+        "claimIds": []
+      },
+      "after": {
+        "make": "GMC",
+        "model": "Acadia",
+        "years": [
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016
+        ],
+        "trims": [],
+        "engines": [
+          "3.6L V6 LLT",
+          "3.6L V6 LFX"
+        ],
+        "category": "suspension",
+        "title": "Electric Power Steering (EPAS) Failure and Loss of Assist",
+        "description": "GM special-coverage bulletin 10248773 covers specified 2007-2011 GMC Acadia vehicles with power-steering pump wear that can intermittently reduce hydraulic pressure and steering assist. Manual steering remains available but requires greater effort, especially at low speeds.",
+        "solution": "Have a GMC dealer check eligibility for the special coverage and diagnose the hydraulic steering system. The GM procedure flushes the system, replaces the power-steering pump and installs the updated steering-gear valve housing when required.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Intermittent reduced or lost steering assist",
+          "Increased steering effort at low speed"
+        ],
+        "affectedSystems": [
+          "hydraulic power-steering pump",
+          "steering-gear valve housing"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://static.nhtsa.gov/odi/tsbs/2014/MC-10248773-9999.pdf",
+            "type": "tsb",
+            "title": "GM Bulletin 10248773 - Acadia Loss of Steering Assist"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-05",
+        "contentUpdatedOn": "2026-08-05",
+        "contentUpdateSummary": "Corrected the system from electric to hydraulic steering, narrowed the years and replaced complaint and lawsuit claims with GM’s special coverage.",
+        "relatedIssueIds": [
+          "chevy-equinox-electric-power-steering-failure"
+        ]
+      }
+    },
+    {
+      "id": "gmc-acadia-shift-to-park-message-no-shutdown-door-lock-lockout-battery",
+      "disposition": "no-commerce",
+      "evidence": [
+        {
+          "kind": "independent-review",
+          "verifiedOn": "2026-08-12",
+          "observation": "Opus independently reconciled the GMC packet set; Devon authorized deployment after review. Source packet: data/known-issue-gmc-adjudication-2026-08-05.json."
+        }
+      ],
+      "before": {
+        "makeHash": "d35b02946654aa7ee24093c39191a73c7c5006a552e4a12c75019c49eaf14b60",
+        "modelHash": "0e164407719549bd28fc6a8cb496ce8b1d08f39b31e79dca14ccd33406e1b68e",
+        "yearsHash": "1191971b661b4d970fa8cd420def5cf31cd6fec402cc29b75559c05d8cdceba0",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "477920ba85abe16e6b8c01e5637691d82cc78f5a9db884222f77d438c73ceb87",
+        "titleHash": "c08947c4d653f04e796d0731e04df7794f47aaa1a566ae7d94afadb722cbadc7",
+        "descriptionHash": "03492128e9ec8031463aeaf287ff3b48ceb37004b3220039b385d4a2d5f962f6",
+        "solutionHash": "070136d83b93973e04282b936e8f00c0f10a1f3624d76d178167d5a2210671c5",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "179eed9a674ff5d5a92ef14badfba6b74dba7ad63903d7be6f9508d657ae6154",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "estimatedCostHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "8b5fb6f93127303d0d926d9e7a62fad1fbd5039c3d60981b3ad0296c810c39ab",
+        "communityRecommendationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "ae3e737a0ff9992c7c18356aba2acc27d8e8fa44fd77c428be37600af1e40412",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": []
+      },
+      "after": {
+        "make": "GMC",
+        "model": "Acadia",
+        "years": [
+          2017,
+          2018,
+          2019
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "\"Shift to Park\" Message With No-Shutdown / Door-Lock Lockout and Battery Drain",
+        "description": "GM bulletin 10251901 covers specified 2017-2019 GMC Acadia vehicles that can intermittently display a Shift-to-Park message even though the transmission selector is in Park.",
+        "solution": "Have a GMC retailer reproduce the message and check for DTC B000A. GM bulletin 19-NA-206 directs removal and reinstallation of the transmission control, installation of a shifter harness, and an inline harness jumper; it does not support the frozen door-lock and battery-drain claims.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Intermittent Shift-to-Park message while the selector is in Park"
+        ],
+        "affectedSystems": [
+          "transmission range confirmation",
+          "shift-control system"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://static.nhtsa.gov/odi/tsbs/2024/MC-10251901-0001.pdf",
+            "type": "tsb",
+            "title": "GM Bulletin 10251901 - Acadia Shift-to-Park Message"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-05",
+        "contentUpdatedOn": "2026-08-05",
+        "contentUpdateSummary": "Limited the card to the documented 2017-2019 intermittent Shift-to-Park condition, DTC and harness remedy.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "gmc-acadia-start-stop-transmission-accumulator-missing-bolts-fluid-leak",
+      "disposition": "no-commerce",
+      "evidence": [
+        {
+          "kind": "independent-review",
+          "verifiedOn": "2026-08-12",
+          "observation": "Opus independently reconciled the GMC packet set; Devon authorized deployment after review. Source packet: data/known-issue-gmc-adjudication-2026-08-05.json."
+        }
+      ],
+      "before": {
+        "makeHash": "d35b02946654aa7ee24093c39191a73c7c5006a552e4a12c75019c49eaf14b60",
+        "modelHash": "0e164407719549bd28fc6a8cb496ce8b1d08f39b31e79dca14ccd33406e1b68e",
+        "yearsHash": "c9b92b75f5c2a3e3f5a86a7fbede7eae57fa291c4f222f14e2e4e3a460a87a23",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "1448bb4900b24204debd4c2c59f29f3166afaff0a20827c1ab5ac82755c30065",
+        "titleHash": "57e69cc1b068894f506ef8e737f84abc8fa2dc58a1fa9f8d8be2cf8368cf0e7b",
+        "descriptionHash": "66b9f273a783255a1a6b99b9b446174b8650ae3b3070febb3fd2950d21d6053d",
+        "solutionHash": "9682f4645be3eeacf869ed10473a2206f2d7a060d0f51c21d4db4338e4d8cb94",
+        "severityHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "a0e1c43e94ab74ba000150755e7621eb244eb97fd0d08d7a78362287dabdfe31",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "estimatedCostHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "1c352ee0e93822c211c4139f2179ae7483982728149f3451d003bb819eb5f414",
+        "communityRecommendationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "ae3e737a0ff9992c7c18356aba2acc27d8e8fa44fd77c428be37600af1e40412",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": []
+      },
+      "after": {
+        "make": "GMC",
+        "model": "Acadia",
+        "years": [
+          2019,
+          2020
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "transmission",
+        "title": "Start/Stop Transmission Accumulator Missing Bolts - Fluid Leak, Loss of Propulsion and Fire Risk (Recall 20V668 / N202313440)",
+        "description": "NHTSA campaign 20V668 covers certain 2019-2020 GMC Acadia vehicles. The start/stop transmission-accumulator endcap may be missing bolts, which can cause an oil leak and loss of transmission function and may increase fire risk.",
+        "solution": "Check the VIN with GMC. Dealers inspect the start/stop transmission accumulator and replace it when bolts are missing free of charge under GM campaign N202313440.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Possible transmission-fluid leak",
+          "Possible loss of transmission function"
+        ],
+        "affectedSystems": [
+          "start/stop transmission accumulator",
+          "accumulator endcap bolts"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "NHTSA Campaign 20V668 - Acadia Transmission Accumulator",
+            "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=20V668000"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-05",
+        "contentUpdatedOn": "2026-08-05",
+        "contentUpdateSummary": "Replaced a recall attachment and aftermarket summary with the official NHTSA campaign and limited the remedy to the documented inspection criteria.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "gmc-acadia-surround-vision-rearview-camera-coaxial-cable-crimp-failure",
+      "disposition": "no-commerce",
+      "evidence": [
+        {
+          "kind": "independent-review",
+          "verifiedOn": "2026-08-12",
+          "observation": "Opus independently reconciled the GMC packet set; Devon authorized deployment after review. Source packet: data/known-issue-gmc-adjudication-2026-08-05.json."
+        }
+      ],
+      "before": {
+        "makeHash": "d35b02946654aa7ee24093c39191a73c7c5006a552e4a12c75019c49eaf14b60",
+        "modelHash": "0e164407719549bd28fc6a8cb496ce8b1d08f39b31e79dca14ccd33406e1b68e",
+        "yearsHash": "3921faba20498d780b9aeb47257e9106c703fa8871cacbddce1b00446d4df7f9",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "6ad35495f7e0102ccece4d8a88ed3c254b882110341f84dc2c9026be82600e3f",
+        "titleHash": "e899e8831c15a445a44f5d490e6605fa8f4b5261b51d85d2e1e4ebdf54e32bd2",
+        "descriptionHash": "13675440f2df17bc4b4333bd5f5767c46ae56dc6e5b07933cf55751f6d9674a6",
+        "solutionHash": "0bf36230c0a438558efcb9a35832bd77d8b434b2abdd76699472234ea54063d1",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "93770d0169edf52e48de5c29e14f04a75cf32b0631875d5bf40cbfb5fef9b575",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "estimatedCostHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "835d217ae56af2d6401c52176667b0352acfc87e637096872b7f7d9833fdfacb",
+        "communityRecommendationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "ae3e737a0ff9992c7c18356aba2acc27d8e8fa44fd77c428be37600af1e40412",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": []
+      },
+      "after": {
+        "make": "GMC",
+        "model": "Acadia",
+        "years": [
+          2020,
+          2021
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "safety",
+        "title": "Surround Vision Rearview Camera Coaxial Cable Crimp Failure - Black/Lost Backup Image (Recall 22V709 / N222378380)",
+        "description": "NHTSA campaign 22V709 covers certain 2020-2021 GMC Acadia vehicles with optional Surround Vision. Improperly crimped rearview-camera coaxial connectors can cause the camera image to fail or work intermittently.",
+        "solution": "Check the VIN and equipment with GMC. Dealers replace the rearview-camera coaxial cables free of charge under GM campaign N222378380.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Rearview-camera image may fail or become intermittent"
+        ],
+        "affectedSystems": [
+          "rearview camera",
+          "coaxial cable connectors"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "NHTSA Campaign 22V709 - Acadia Rearview Camera",
+            "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=22V709000"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-05",
+        "contentUpdatedOn": "2026-08-05",
+        "contentUpdateSummary": "Replaced two secondary news stories and outdated mailing language with the exact NHTSA scope and cable remedy.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "gmc-acadia-timing-chain-2007",
+      "disposition": "no-commerce",
+      "evidence": [
+        {
+          "kind": "independent-review",
+          "verifiedOn": "2026-08-12",
+          "observation": "Opus independently reconciled the GMC packet set; Devon authorized deployment after review. Source packet: data/known-issue-gmc-adjudication-2026-08-05.json."
+        }
+      ],
+      "before": {
+        "makeHash": "d35b02946654aa7ee24093c39191a73c7c5006a552e4a12c75019c49eaf14b60",
+        "modelHash": "0e164407719549bd28fc6a8cb496ce8b1d08f39b31e79dca14ccd33406e1b68e",
+        "yearsHash": "5608a07b46a75e1ce2e623c0e40643751583f7b892fec4795df3d8b018a883ea",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "588b0fb743bf8118cfc6d25df47da1d4e0db51544389ab4481663ffd0f84181b",
+        "categoryHash": "cb65ce632bdb52bd6c0969623dee610ae78b314e475e1d5b447bb05b7e364a6f",
+        "titleHash": "ebd6fd0f1aabf04578d327007b9dfca9528af9e70fbc095d2829062ed5b141d4",
+        "descriptionHash": "3e3c9b6fe2d0cd11f91e003ebcabdc30e614de8bc8c7d6eef3b8774d1ecd2308",
+        "solutionHash": "67951ddd43d9f6aad08282c79ff8ac8b16b24f136941ceb937323b135d3a8d7c",
+        "severityHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "c36e6083085bc2f10b877808b5d93d5591ccc8352638bcb796ceb6ba858eb682",
+        "affectedSystemsHash": "0af17dd9ba626975bd9fcc8c755e27104b0724fc2bb289867650866172846035",
+        "dtcCodesHash": "80f7a895eec1e2bb6789434b12b7846580bc9958df6ef14d60a3cf4f87c68f90",
+        "estimatedCostLowHash": "5a0b83e19c5750eed6d8d46cb858d15c956a657093c08afa53133c0fbe5f04fb",
+        "estimatedCostHighHash": "8f496feec94eb1cee03d96433db243cd1b637cd3624f4e7e0b5881fd2cd434e7",
+        "typicalMileageLowHash": "d55d01d0341ed0ba2cd99b322e8c5b609254f47d10c7cd12b99b4922effeba44",
+        "typicalMileageHighHash": "4f9f73b34c5b89879aad65a48025f3187dd9ce6dc3d4e88eecb2fc79227350f1",
+        "citationsHash": "cf90ac36b323e1d76b5e928db18bed599c439027e90213de39fc9b82c1aa8a30",
+        "communityRecommendationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "1c00e16c0db1f129d7b8b87fad27646fdfc393600d20182fa7eb94682601b913",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "00d5d65fdfd88358d3e81b2a24891ac0460227aa2c83054a09427a88c5332478",
+        "reviewedOnHash": "00d5d65fdfd88358d3e81b2a24891ac0460227aa2c83054a09427a88c5332478",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "1977c6dfd163dfef2c6e2c58caebbebc3c9e01dbcc9789d1f2c87da8c6e99097",
+        "claimIds": []
+      },
+      "after": {
+        "make": "GMC",
+        "model": "Acadia",
+        "years": [
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016
+        ],
+        "trims": [],
+        "engines": [
+          "3.6L V6 LLT",
+          "3.6L V6 LFX"
+        ],
+        "category": "engine",
+        "title": "3.6L V6 Timing Chain Stretch and Premature Failure",
+        "description": "GM bulletin 12-06-01-009D covers 2007-2012 GMC Acadia vehicles with 3.6L High Feature V6 engines (RPO LY7 or LLT) and timing-chain correlation DTCs P0008, P0009, P0016, P0017, P0018 or P0019.",
+        "solution": "Complete the GM diagnostic procedure before ordering parts. When a stretched timing chain is confirmed, use the applicable GM timing-chain kit. The bulletin says guides, sprockets, actuators and the crank gear should not be replaced automatically unless separately worn or diagnosed.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Check-engine light",
+          "Camshaft-to-crankshaft correlation DTC"
+        ],
+        "affectedSystems": [
+          "timing chains",
+          "camshaft and crankshaft timing"
+        ],
+        "dtcCodes": [
+          "P0008",
+          "P0009",
+          "P0016",
+          "P0017",
+          "P0018",
+          "P0019"
+        ],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://static.nhtsa.gov/odi/tsbs/2013/MC-10245795-9999.pdf",
+            "type": "tsb",
+            "title": "GM Bulletin 10245795 - High Feature V6 Timing-Chain Kits"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-05",
+        "contentUpdatedOn": "2026-08-05",
+        "contentUpdateSummary": "Preserved the same timing-chain identity while correcting the engine scope and removing the unsupported automatic guide replacement.",
+        "relatedIssueIds": [
+          "chevrolet-traverse-timing-chain-stretch-2009",
+          "cadillac-cts-timing-chain-2004",
+          "cadillac-xt5-timing-chain-2017",
+          "cadillac-ats-timing-chain-2013",
+          "cadillac-xt6-timing-chain-2020"
+        ]
+      }
+    },
+    {
+      "id": "gmc-acadia-water-pump-failure-2007",
+      "disposition": "no-commerce",
+      "evidence": [
+        {
+          "kind": "independent-review",
+          "verifiedOn": "2026-08-12",
+          "observation": "Opus independently reconciled the GMC packet set; Devon authorized deployment after review. Source packet: data/known-issue-gmc-adjudication-2026-08-05.json."
+        }
+      ],
+      "before": {
+        "makeHash": "d35b02946654aa7ee24093c39191a73c7c5006a552e4a12c75019c49eaf14b60",
+        "modelHash": "0e164407719549bd28fc6a8cb496ce8b1d08f39b31e79dca14ccd33406e1b68e",
+        "yearsHash": "29bdf62961a76e6cfa64f72bfbbb58c44e27c94e97151538cf48ef1b68737836",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "e3f66c7bc91fd5499ccc88f56bce66eb0abd16a93f5fb1f7d483297042b5bfc7",
+        "categoryHash": "cb65ce632bdb52bd6c0969623dee610ae78b314e475e1d5b447bb05b7e364a6f",
+        "titleHash": "051edc5ec808fdda221df01a9ec5a320bf6e86dba4ecae174f1ce49fed53086c",
+        "descriptionHash": "773a72d2156109dfb0b6ee018213b3d519219aa81c1db96e400e070b31bfac42",
+        "solutionHash": "ee84391647a9c44ab8a4108f8e10904f7c8ebf69f71fbb31d97aca3a673c3c77",
+        "severityHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "9d72a25d4cea7ab014c871ca6c356601c29c2ffb13c5b2521db10deb9dc55d40",
+        "affectedSystemsHash": "13829f467a12d5fed841aae1eb65a520544b88dfad64b87e38d03c9ee71f6b88",
+        "dtcCodesHash": "80f7a895eec1e2bb6789434b12b7846580bc9958df6ef14d60a3cf4f87c68f90",
+        "estimatedCostLowHash": "9f69998560dcfd8016442e0a32e959191df095817a164ce844c64ec5a8b0cc1b",
+        "estimatedCostHighHash": "8f496feec94eb1cee03d96433db243cd1b637cd3624f4e7e0b5881fd2cd434e7",
+        "typicalMileageLowHash": "47b25095a0fe135a688b20614771dbb445ad5e27e9cd4f2c2089c5af216e305b",
+        "typicalMileageHighHash": "f4dd96228b9a0d6e3b6bb54a223bc69c0ce550eb89d620d418ac87159946f72a",
+        "citationsHash": "98d21025ef75588fb103473eee5d0e3ef6e670c956a879f862f6599022572dd1",
+        "communityRecommendationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "0e78437805639c14d6413de94c031fd1babdb561b7728d31ae06bfc5ff1766d4",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "00d5d65fdfd88358d3e81b2a24891ac0460227aa2c83054a09427a88c5332478",
+        "reviewedOnHash": "00d5d65fdfd88358d3e81b2a24891ac0460227aa2c83054a09427a88c5332478",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "fe69d36f1026015046ce01b34ea8b71714dd1b8ef0cba5032c88622e57791f82",
+        "claimIds": []
+      },
+      "after": {
+        "make": "GMC",
+        "model": "Acadia",
+        "years": [
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [
+          "3.6L V6 LLT",
+          "3.6L V6 LFX",
+          "3.6L V6 LGX"
+        ],
+        "category": "engine",
+        "title": "3.6L V6 Internal Water Pump Failure and Coolant Leak",
+        "description": "GM customer-satisfaction bulletin 13079 covers certain 2009-2013 GMC Acadia vehicles with 3.6L High Feature V6 engines (RPO LY7 or LLT) that may experience leakage from the water-pump shaft seal, often after operation with low coolant.",
+        "solution": "Check the VIN and current eligibility with GMC. Bulletin 13079 directs dealers to verify and correct coolant level with the proper DEX-COOL mixture; it does not establish the frozen claim that the pump is internal or must be combined with timing-chain work.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Coolant leak from the water-pump shaft seal"
+        ],
+        "affectedSystems": [
+          "water-pump shaft seal",
+          "engine cooling system"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://static.nhtsa.gov/odi/tsbs/2013/MC-10246712-9999.pdf",
+            "type": "tsb",
+            "title": "GM Bulletin 10246712 - Acadia Water-Pump Shaft Seal"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-05",
+        "contentUpdatedOn": "2026-08-05",
+        "contentUpdateSummary": "Corrected the pump design, engine scope and remedy to the VIN-scoped GM coolant-level program.",
+        "relatedIssueIds": [
+          "chevy-colorado-water-pump-2015"
+        ]
+      }
+    },
+    {
+      "id": "gmc-canyon-2024-headlight-flicker-2023-2024-seat-belt-buckle-bolt-recal",
+      "disposition": "no-commerce",
+      "evidence": [
+        {
+          "kind": "independent-review",
+          "verifiedOn": "2026-08-12",
+          "observation": "Opus independently reconciled the GMC packet set; Devon authorized deployment after review. Source packet: data/known-issue-gmc-adjudication-2026-08-05.json."
+        }
+      ],
+      "before": {
+        "makeHash": "d35b02946654aa7ee24093c39191a73c7c5006a552e4a12c75019c49eaf14b60",
+        "modelHash": "87ade08d112e565b5022cc3dab740b5a005e6a156c14a0f6210d0a1449a2c1b5",
+        "yearsHash": "8396e5b53797e39c4be2a63d684c88930f6462aad46b1eb2e163aea02cc6265a",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "477920ba85abe16e6b8c01e5637691d82cc78f5a9db884222f77d438c73ceb87",
+        "titleHash": "b9e852a672e3f8dc57dde0b3ef424f8a473c502274337e9f6b0383f457eac3db",
+        "descriptionHash": "1249ec44f853efc648df73ad5c58f2b4704b4bb14d68cf22442ed141025f2e7d",
+        "solutionHash": "9214476b6c2efbd4e38a1dda7914f65737c9924317dba9d7f21479f6268a20a0",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "6976e6acd493b55657a798a58e08159b63494aeb9c6ccd22c9550293fc27d320",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "estimatedCostHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "4953855f514df8492b0dc86452cad470e2fa5e07ddb93a260194553c78f16784",
+        "communityRecommendationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "ae3e737a0ff9992c7c18356aba2acc27d8e8fa44fd77c428be37600af1e40412",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": []
+      },
+      "after": {
+        "make": "GMC",
+        "model": "Canyon",
+        "years": [
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "2024 Headlight Flicker (24V673) and 2023-2024 Seat Belt Buckle Bolt Recalls (2nd-Gen Canyon)",
+        "description": "NHTSA campaign 24V673 covers certain 2024 GMC Canyon vehicles. The headlights can flicker while driving or while parked, causing the trucks to fail federal lighting requirements.",
+        "solution": "Check the VIN with GMC. Dealers replace the affected headlight module free of charge under GM campaign N242468880.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Headlights may flicker while driving or parked"
+        ],
+        "affectedSystems": [
+          "headlight module",
+          "exterior lighting"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "NHTSA Campaign 24V673 - Canyon Headlights",
+            "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=24V673000"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-05",
+        "contentUpdatedOn": "2026-08-05",
+        "contentUpdateSummary": "Separated the frozen two-recall card and replaced secondary sources with the official NHTSA headlight campaign.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "gmc-canyon-driver-airbag-inflator-misalignment-sdm-reprogram",
+      "disposition": "no-commerce",
+      "evidence": [
+        {
+          "kind": "independent-review",
+          "verifiedOn": "2026-08-12",
+          "observation": "Opus independently reconciled the GMC packet set; Devon authorized deployment after review. Source packet: data/known-issue-gmc-adjudication-2026-08-05.json."
+        }
+      ],
+      "before": {
+        "makeHash": "d35b02946654aa7ee24093c39191a73c7c5006a552e4a12c75019c49eaf14b60",
+        "modelHash": "87ade08d112e565b5022cc3dab740b5a005e6a156c14a0f6210d0a1449a2c1b5",
+        "yearsHash": "5206b4814992da4c7a4f643fdf04124735accc989ec0047874eb80e8541766c9",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "6ad35495f7e0102ccece4d8a88ed3c254b882110341f84dc2c9026be82600e3f",
+        "titleHash": "f9d6bb233ffd582795c626a07bade7c3d518adf1a3ac16320d6bc666530c3ffe",
+        "descriptionHash": "ceb95cf3ec3dfcdf9f6c0cd79fad0cdf26f2f677c613ad5c1ac5d7b41a62f39e",
+        "solutionHash": "734f6cca85304c6cd68320a97156a59e399c0357c6f6e1eff0b1eeb237b6d0b8",
+        "severityHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "confidenceHash": "364bb7082249ee9fbc5247ee49735c4246f271b82c2745a35107ddda0d7cabcc",
+        "symptomsHash": "fc74aec02b154037003ff0a14a359e618105ee321da52d0d8f4daa83ce4ba2c8",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "estimatedCostHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "30c21ba0cda9c464cc8aa0b232f00abf442a7dc97921ae6bc1aa142bb83d5b12",
+        "communityRecommendationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "ae3e737a0ff9992c7c18356aba2acc27d8e8fa44fd77c428be37600af1e40412",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": []
+      },
+      "after": {
+        "make": "GMC",
+        "model": "Canyon",
+        "years": [
+          2015
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "safety",
+        "title": "Driver Airbag Inflator Misalignment / SDM Reprogram (Recall 14690)",
+        "description": "NHTSA campaign 15V157 covers certain 2015 GMC Canyon vehicles. The driver-airbag inflator may be misaligned to the module backplate and can separate during deployment.",
+        "solution": "Check the VIN with GMC. Dealers inspect the driver-airbag inflator alignment and replace the airbag as necessary free of charge under GM campaign 15037.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "No reliable warning before an affected airbag deploys"
+        ],
+        "affectedSystems": [
+          "driver frontal airbag",
+          "inflator and module backplate"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "NHTSA Campaign 15V157 - Canyon Driver Airbag",
+            "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=15V157000"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-05",
+        "contentUpdatedOn": "2026-08-05",
+        "contentUpdateSummary": "Corrected the frozen card’s remedy and GM campaign identity using the official NHTSA record.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "gmc-canyon-front-brake-caliper-brake-fluid-leak",
+      "disposition": "no-commerce",
+      "evidence": [
+        {
+          "kind": "independent-review",
+          "verifiedOn": "2026-08-12",
+          "observation": "Opus independently reconciled the GMC packet set; Devon authorized deployment after review. Source packet: data/known-issue-gmc-adjudication-2026-08-05.json."
+        }
+      ],
+      "before": {
+        "makeHash": "d35b02946654aa7ee24093c39191a73c7c5006a552e4a12c75019c49eaf14b60",
+        "modelHash": "87ade08d112e565b5022cc3dab740b5a005e6a156c14a0f6210d0a1449a2c1b5",
+        "yearsHash": "5206b4814992da4c7a4f643fdf04124735accc989ec0047874eb80e8541766c9",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "fcae623f085305db57d9e06647def7f7d27df9dca65d99f1348cd12bc5126108",
+        "titleHash": "a32768285cdaff052a7c548f554982833965644cb7c629d8c3a36b516ab2c4fe",
+        "descriptionHash": "eeaad2e2e2ed0f6dc1244317b4bb7aede0f00c3400350c095a74bd463aa54799",
+        "solutionHash": "d337e425f09dbc50bede55a2f5748ef380349c5b42439bcab622495aee0bef45",
+        "severityHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "1d20f3dc0e073d32e767c3a1348fa4c38bbfdf8a6cbc8ace4ad6b606acd765b7",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "estimatedCostHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "f8d966a2a6e3eb58c0589af04d0449ea86ad25312e92aecb16876dde7cdd59c0",
+        "communityRecommendationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "ae3e737a0ff9992c7c18356aba2acc27d8e8fa44fd77c428be37600af1e40412",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": []
+      },
+      "after": {
+        "make": "GMC",
+        "model": "Canyon",
+        "years": [
+          2015
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "brakes",
+        "title": "Front Brake Caliper Brake Fluid Leak (Recall 15V278000)",
+        "description": "NHTSA campaign 15V278 covers certain 2015 GMC Canyon trucks. Air pockets in the metal caliper body can allow the front brake calipers to leak fluid and reduce braking ability.",
+        "solution": "Check the VIN with GMC. Dealers inspect and replace the front brake calipers as necessary free of charge under GM campaign 14888.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Possible front brake-fluid leak",
+          "Reduced braking ability"
+        ],
+        "affectedSystems": [
+          "front brake calipers",
+          "hydraulic brake system"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "NHTSA Campaign 15V278 - Canyon Front Brake Calipers",
+            "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=15V278000"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-05",
+        "contentUpdatedOn": "2026-08-05",
+        "contentUpdateSummary": "Kept the verified brake-caliper recall while replacing secondary citations, production counts and outdated chronology with the official NHTSA record.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "gmc-canyon-power-steering-assist-loss-from-corroded-steering-gear-conne",
+      "disposition": "no-commerce",
+      "evidence": [
+        {
+          "kind": "independent-review",
+          "verifiedOn": "2026-08-12",
+          "observation": "Opus independently reconciled the GMC packet set; Devon authorized deployment after review. Source packet: data/known-issue-gmc-adjudication-2026-08-05.json."
+        }
+      ],
+      "before": {
+        "makeHash": "d35b02946654aa7ee24093c39191a73c7c5006a552e4a12c75019c49eaf14b60",
+        "modelHash": "87ade08d112e565b5022cc3dab740b5a005e6a156c14a0f6210d0a1449a2c1b5",
+        "yearsHash": "5206b4814992da4c7a4f643fdf04124735accc989ec0047874eb80e8541766c9",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "e7876e39c13c8f0c30712bdb3f9aab6a71868b7fa8272897cc215ea137d60bdf",
+        "titleHash": "8b8f80b4cdbcfd8851f8c74aabe6938debad2fd916a4d08d405c21452258e9ea",
+        "descriptionHash": "46e0dfbefa14664a6dcb92f9a99001958c4605e4445b7320b6af913e771f19df",
+        "solutionHash": "5d3b22d3927be203dd7cc4fbedd93dc873bb63d355c0b22e089f50ad475c5ebc",
+        "severityHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "224c362d081b23bbd53964ad0a6bf2e1a5b2e23e8583621f3d64b0c5682e67f0",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "estimatedCostHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "9ffd291dad45a82190c71e2a94f31565bf14f0442fcf2c2275c3a7149c377870",
+        "communityRecommendationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "ae3e737a0ff9992c7c18356aba2acc27d8e8fa44fd77c428be37600af1e40412",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": []
+      },
+      "after": {
+        "make": "GMC",
+        "model": "Canyon",
+        "years": [
+          2015
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "steering",
+        "title": "Power Steering Assist Loss from Corroded Steering Gear Connection (Recall 16V054)",
+        "description": "NHTSA campaign 21V213 covers certain 2015 GMC Canyon vehicles. A poor electrical connection within the steering-gear assembly can cause a loss of power-steering assist.",
+        "solution": "Check the VIN with GMC. Dealers replace the steering-gear torque-sensor cover assembly free of charge under GM campaign N202325410.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Power-steering assist may be lost",
+          "Steering effort may increase"
+        ],
+        "affectedSystems": [
+          "electric steering gear",
+          "torque-sensor cover assembly"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "NHTSA Campaign 21V213 - Canyon Power Steering",
+            "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=21V213000"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-05",
+        "contentUpdatedOn": "2026-08-05",
+        "contentUpdateSummary": "Updated the card from the earlier 16V054 campaign to the later NHTSA campaign 21V213 and removed secondary citations and unsupported connector details.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "gmc-hummer-ev-a-pillar-leak-2022",
+      "disposition": "no-commerce",
+      "evidence": [
+        {
+          "kind": "independent-review",
+          "verifiedOn": "2026-08-12",
+          "observation": "Opus independently reconciled the GMC packet set; Devon authorized deployment after review. Source packet: data/known-issue-gmc-adjudication-2026-08-05.json."
+        }
+      ],
+      "before": {
+        "makeHash": "d35b02946654aa7ee24093c39191a73c7c5006a552e4a12c75019c49eaf14b60",
+        "modelHash": "df944f6f6a8d7b89da9e1772bc768acefc1ef8d3deb4a5c2ec347712886b22e1",
+        "yearsHash": "74d282913e456c9022479ef0009fc987bafd768a38811f1e269dc648a06ac0fa",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "477920ba85abe16e6b8c01e5637691d82cc78f5a9db884222f77d438c73ceb87",
+        "titleHash": "507e46a95280508c9844098addd15290a9b18ecefc0a97b3308f297a046f9726",
+        "descriptionHash": "f7c8fda2a046e97a3a1f197917368bdf5e296d192550d0df68c42c585a2960f5",
+        "solutionHash": "2b0d1d42ebc268af32eb3f96ad7f54c4ac1d797f87a656332011aa939488e65b",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "7a69e1655cfab12c98cf2c78d7eba249b01fcafc6fac09cde80bd04b96a3f796",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "27badc983df1780b60c2b3fa9d3a19a00e46aac798451f0febdca52920faaddf",
+        "estimatedCostHighHash": "0604cd3138feed202ef293e062da2f4720f77a05d25ee036a7a01c9cfcdd1f0a",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "e56a39289efd3cab8950c00bebba63a764c22c1735303d7c07e0103e56e0fcb7",
+        "communityRecommendationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "108c995b953c8a35561103e2014cf828eb654a99e310f87fab94c2f4b7d2a04f",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "7cc2228c642214aee9e90d4237a61245d9f8018e4705c291f8130621b2995891",
+        "reviewedOnHash": "7cc2228c642214aee9e90d4237a61245d9f8018e4705c291f8130621b2995891",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": []
+      },
+      "after": {
+        "make": "GMC",
+        "model": "Hummer EV",
+        "years": [
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "A-Pillar Water Leak Disables Door Switches",
+        "description": "GM bulletin 10217073 covers specified 2022 GMC Hummer EV Pickups and directs technicians to inspect the X500 electrical connector for corrosion.",
+        "solution": "A GMC dealer inspects and repairs the X500 connector when corrosion is present and reseals the relevant body panels under the bulletin whether or not connector corrosion is found.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Door electrical functions may be affected when the X500 connector corrodes"
+        ],
+        "affectedSystems": [
+          "X500 electrical connector",
+          "body-panel sealing"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "url": "https://static.nhtsa.gov/odi/tsbs/2022/MC-10217073-0001.pdf",
+            "type": "tsb",
+            "title": "GM Bulletin 10217073 - Hummer EV X500 Connector Corrosion"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-05",
+        "contentUpdatedOn": "2026-08-05",
+        "contentUpdateSummary": "Narrowed the card to the 2022 GM connector-inspection and panel-reseal procedure and removed roof-panel, cost and dielectric-grease claims.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "gmc-hummer-ev-battery-seal-water-2022",
+      "disposition": "no-commerce",
+      "evidence": [
+        {
+          "kind": "independent-review",
+          "verifiedOn": "2026-08-12",
+          "observation": "Opus independently reconciled the GMC packet set; Devon authorized deployment after review. Source packet: data/known-issue-gmc-adjudication-2026-08-05.json."
+        }
+      ],
+      "before": {
+        "makeHash": "d35b02946654aa7ee24093c39191a73c7c5006a552e4a12c75019c49eaf14b60",
+        "modelHash": "df944f6f6a8d7b89da9e1772bc768acefc1ef8d3deb4a5c2ec347712886b22e1",
+        "yearsHash": "ed144a9355909ff3ce7b0d43ba642070e641a10ee72eebb28e286a273717f4d0",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "477920ba85abe16e6b8c01e5637691d82cc78f5a9db884222f77d438c73ceb87",
+        "titleHash": "57b8ddcdbf96809dde4e9ff8b01449b34d9afda40bbce8e33bbed08798de87ec",
+        "descriptionHash": "06da5fbe9b173abfc09145315f01a3e96599a222264ce6293e8e455eaae38661",
+        "solutionHash": "ae96c9fa8cbf3485ca9bb421a774c0a496d7c85394c6a45e2909f6f3867ba8fa",
+        "severityHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "c93942464d4662d8cef01e28491b3744250edf136e16656e14376df02d55b6f6",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "estimatedCostHighHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "8e824f176eeb1319bfa0a8ae8d41b0239801870295d726c16188c1d2e33f77f2",
+        "communityRecommendationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "811786ad1ae74adfdd20dd0372abaaebc6246e343aebd01da0bfc4c02bf0106c",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "7cc2228c642214aee9e90d4237a61245d9f8018e4705c291f8130621b2995891",
+        "reviewedOnHash": "7cc2228c642214aee9e90d4237a61245d9f8018e4705c291f8130621b2995891",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": []
+      },
+      "after": {
+        "make": "GMC",
+        "model": "Hummer EV",
+        "years": [
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "electrical",
+        "title": "Battery Pack Enclosure Water Ingress",
+        "description": "NHTSA campaign 22V771 covers certain 2022-2023 GMC Hummer EV Pickups. The high-voltage battery-pack enclosure may not be properly sealed, allowing water to enter the pack and increasing the risk of a loss of drive power or fire.",
+        "solution": "Check the VIN with GMC or the EV Concierge. Follow the current manufacturer campaign instructions; the public NHTSA record states that the final remedy is under development rather than promising a specific reseal procedure.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Possible battery-pack water intrusion",
+          "Possible loss of drive power"
+        ],
+        "affectedSystems": [
+          "high-voltage battery-pack enclosure",
+          "battery-pack sealing"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "NHTSA Campaign 22V771 - Hummer EV Battery Enclosure",
+            "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=22V771000"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-05",
+        "contentUpdatedOn": "2026-08-05",
+        "contentUpdateSummary": "Corrected the frozen card’s unsupported completed-remedy claim and removed secondary reporting, incident counts and deep-water driving advice.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "gmc-terrain-start-stop-transmission-accumulator-endcap-missing-bolts-flu",
+      "disposition": "no-commerce",
+      "evidence": [
+        {
+          "kind": "independent-review",
+          "verifiedOn": "2026-08-12",
+          "observation": "Opus independently reconciled the GMC packet set; Devon authorized deployment after review. Source packet: data/known-issue-gmc-adjudication-2026-08-05.json."
+        }
+      ],
+      "before": {
+        "makeHash": "d35b02946654aa7ee24093c39191a73c7c5006a552e4a12c75019c49eaf14b60",
+        "modelHash": "d457508edd5bb8cf4768700f3ca655903a70eae395b88ea217096caf2785c7ef",
+        "yearsHash": "93ec5024d8c6aeb6fb39747311467a4af2d9f1eba0620089f4bf6345f072b7a2",
+        "trimsHash": "5997025788f3e6e0809370f2db42614f81ffd0f8fa8bd616a0503949c85d6120",
+        "enginesHash": "621c2152b5a9a597b88d5d50c53293a4a0bed40ef5d83b79b3fc38aaaaba7858",
+        "categoryHash": "1448bb4900b24204debd4c2c59f29f3166afaff0a20827c1ab5ac82755c30065",
+        "titleHash": "4b4006fb1d00ca4c5780013d6fb690005a21b18b9b9699615a2c04d8ba136021",
+        "descriptionHash": "44ce7a58fd30675b862d3c80122d8fe2362dbe098d8e23d82018b360df7abc0d",
+        "solutionHash": "14aacac60ef852be80fac10ad629c230f7a10523a25642c0607b95ecc3488d50",
+        "severityHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "cbc0d108b55f68be6184a2e3ab1b4103f84c6ae24db2eb211854e22bc218a4c1",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "e26d8bda9b7a6e5d1c3bc4b2c9ffe4c6f43a78e934846ecb5749ae2045b238d5",
+        "estimatedCostLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "estimatedCostHighHash": "1a1cf797fabe7f95836fabeca626907c77b3e6c9aff7c2290b396a238c69362e",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "60ca327d2680c61578aefaa89b89b16d098f0ac4c14061aaf18a8493157b2896",
+        "communityRecommendationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "54367a4479b4fc3ef319fac2b9e62af69dd602addfed7c0e4d446662da98486f",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": []
+      },
+      "after": {
+        "make": "GMC",
+        "model": "Terrain",
+        "years": [
+          2018,
+          2019,
+          2020
+        ],
+        "trims": [
+          "SL",
+          "SLE",
+          "SLT",
+          "Denali"
+        ],
+        "engines": [
+          "1.5L Turbo I4 (LYX)",
+          "2.0L Turbo I4 (LTG)"
+        ],
+        "category": "transmission",
+        "title": "Start/Stop Transmission Accumulator Endcap Missing Bolts - Fluid Leak & Loss of Propulsion (Recall)",
+        "description": "NHTSA campaign 20V668 covers certain 2018-2020 GMC Terrain vehicles. Missing bolts on the transmission start/stop accumulator endcap can cause a transmission-fluid leak, loss of propulsion and possible fire.",
+        "solution": "Check the VIN with GMC or NHTSA. Dealers inspect the start/stop accumulator and replace it if any bolts are missing under GM recall N202313440.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Transmission-fluid leak",
+          "Possible loss of propulsion"
+        ],
+        "affectedSystems": [
+          "start/stop transmission accumulator",
+          "accumulator endcap bolts",
+          "transmission-fluid containment"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "NHTSA Campaign 20V668 - Start/Stop Accumulator Endcap Recall",
+            "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=20V668000"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-05",
+        "contentUpdatedOn": "2026-08-05",
+        "contentUpdateSummary": "Kept the recall subject but removed third-party citations and narrowed the card to the exact 2018-2020 campaign population and remedy.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "gmc-yukon-10l80-10-speed-transmission-harsh-shifting-shudder-rear-whee",
+      "disposition": "no-commerce",
+      "evidence": [
+        {
+          "kind": "independent-review",
+          "verifiedOn": "2026-08-12",
+          "observation": "Opus independently reconciled the GMC packet set; Devon authorized deployment after review. Source packet: data/known-issue-gmc-adjudication-2026-08-05.json."
+        }
+      ],
+      "before": {
+        "makeHash": "d35b02946654aa7ee24093c39191a73c7c5006a552e4a12c75019c49eaf14b60",
+        "modelHash": "c604b3c1c3a6d9c8985ec23d6dffb16005b2e1a2ce3cb58de723946c1af71f97",
+        "yearsHash": "68890f66b1b299b8edbbf63cafaaad67a571eb2dcba9eec65a137bb4c82bfe48",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "7a7b1d3ecba24b85840641dfc103c6199c366c49ffa3bf8e5083329c89b735a4",
+        "categoryHash": "1448bb4900b24204debd4c2c59f29f3166afaff0a20827c1ab5ac82755c30065",
+        "titleHash": "d6252e71c374cb69e16366bcda21ae27b9d368b05b8810249e335c0853d06580",
+        "descriptionHash": "9b6d9f813343571c7904c9764d6b6e3d7f73f1ebf94e4fa1a11300b6fdf048e8",
+        "solutionHash": "f99114f113f5e57247000caac6acf1e035286a17555bee75cc37861e5adc9f04",
+        "severityHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "083003819263f0d29f622c22585946b29205d948ee9f0a8a5a8c1aa2c5aef29a",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "42ea8729366d6e86cea439bb4d3a5340284caaab9f9c70e7702a7e450f9fa81c",
+        "estimatedCostLowHash": "284b7e6d788f363f910f7beb1910473e23ce9d6c871f1ce0f31f22a982d48ad4",
+        "estimatedCostHighHash": "b090147020e033534635010c4f7eb6fc270d44e5df67ea9e744a8087df9ca106",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "9f6ca8d9c1588308030a02446a405697ee8ed791e304a032788e8daf19a0562b",
+        "communityRecommendationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "3552915e1a8c1146f71bbc2a9600aa94ba93d70a3e00ae6096e39dc1574ccc37",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": []
+      },
+      "after": {
+        "make": "GMC",
+        "model": "Yukon",
+        "years": [
+          2021,
+          2022,
+          2023
+        ],
+        "trims": [],
+        "engines": [
+          "5.3L V8 (L84)",
+          "6.2L V8 (L87)",
+          "3.0L Duramax Diesel (LM2)"
+        ],
+        "category": "transmission",
+        "title": "10L80 10-Speed Transmission Harsh Shifting, Shudder and Rear-Wheel Lock-Up",
+        "description": "NHTSA campaign 24V797 covers certain 2021 diesel GMC Yukon vehicles. A transmission control valve can fail and cause the rear wheels to lock.",
+        "solution": "Check the VIN and engine with GMC or NHTSA. Dealers install new transmission-control-module software; GM provides special coverage for transmissions the software identifies as containing a defective valve.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Rear wheels may lock if the transmission control valve fails"
+        ],
+        "affectedSystems": [
+          "automatic transmission control valve",
+          "transmission control module",
+          "rear wheels"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "NHTSA Campaign 24V797 - Diesel Transmission Control-Valve Recall",
+            "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=24V797000"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-05",
+        "contentUpdatedOn": "2026-08-05",
+        "contentUpdateSummary": "Narrowed the broad harsh-shift and shudder aggregation to the exact diesel control-valve rear-wheel-lockup recall.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "gmc-yukon-6-2l-l87-v8-rod-bearing-failure-loss-propulsion",
+      "disposition": "no-commerce",
+      "evidence": [
+        {
+          "kind": "independent-review",
+          "verifiedOn": "2026-08-12",
+          "observation": "Opus independently reconciled the GMC packet set; Devon authorized deployment after review. Source packet: data/known-issue-gmc-adjudication-2026-08-05.json."
+        }
+      ],
+      "before": {
+        "makeHash": "d35b02946654aa7ee24093c39191a73c7c5006a552e4a12c75019c49eaf14b60",
+        "modelHash": "c604b3c1c3a6d9c8985ec23d6dffb16005b2e1a2ce3cb58de723946c1af71f97",
+        "yearsHash": "5855590e74f7e60c866bcdc3ebcdeac267964dd9c3645c6ec87ab788e6dc1a3f",
+        "trimsHash": "ba9c9a45d2802e943bf8b1661323152d0411cee393cef40c47990b16585ff24a",
+        "enginesHash": "0a6a18d6a0784ab347c887dccea574791b8c3119c3406e0b97829e84127ee64a",
+        "categoryHash": "cb65ce632bdb52bd6c0969623dee610ae78b314e475e1d5b447bb05b7e364a6f",
+        "titleHash": "8b8a22a16f5ec1960ee5370c7c50e9c78a5d3e4616fd582f12e91405359fa561",
+        "descriptionHash": "d6578a9115b7a2a88c9205a6c102e571c81e1f5a0bca7ec2ddfad28c78101d8c",
+        "solutionHash": "174bc58c3fc0a84b5c4635ecedb1065491aaa57cb2f5464442757ac09d8482c4",
+        "severityHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "c2433b6abe71a00b3b3130de56bccd4811b9b9f6cc097f050d8ce94ee4649ed9",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "8d284220975da66c6cba4a32aaedfa0b897187d86ed9f7a2419c9bd10a103505",
+        "estimatedCostHighHash": "d4c999ae43633bd2036188d2bca68e1be8202b2cc1f3a1c42a728eaff7d2483d",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "119d9ec415490b8abe4a12affa8ef70c6b8d3cabdc616a57242a1d5695a6c2ad",
+        "communityRecommendationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "3552915e1a8c1146f71bbc2a9600aa94ba93d70a3e00ae6096e39dc1574ccc37",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": []
+      },
+      "after": {
+        "make": "GMC",
+        "model": "Yukon",
+        "years": [
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "trims": [
+          "Denali",
+          "Denali Ultimate",
+          "AT4",
+          "SLT"
+        ],
+        "engines": [
+          "6.2L V8 (L87)"
+        ],
+        "category": "engine",
+        "title": "6.2L L87 V8 Rod Bearing Failure and Loss of Propulsion",
+        "description": "NHTSA campaign 25V274 covers certain 2021-2024 GMC Yukon vehicles with the 6.2L gasoline V8. Manufacturing defects in connecting-rod or crankshaft components can damage the engine and cause engine failure.",
+        "solution": "Check the VIN with GMC or NHTSA. Dealers inspect and repair or replace the engine as needed. Vehicles that pass receive the specified higher-viscosity oil, oil-fill cap, oil filter and owner-manual update.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Engine damage or failure may occur",
+          "Loss of propulsion can follow engine failure"
+        ],
+        "affectedSystems": [
+          "6.2L V8 engine",
+          "connecting rods",
+          "crankshaft"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "NHTSA Campaign 25V274 - 6.2L Connecting-Rod and Crankshaft Recall",
+            "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=25V274000"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-05",
+        "contentUpdatedOn": "2026-08-05",
+        "contentUpdateSummary": "Kept the recall-backed 6.2L engine subject while narrowing it to the exact connecting-rod/crankshaft manufacturing defect and campaign remedy.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "gmc-yukon-brake-vacuum-pump-failure-causing-hard-brake-pedal",
+      "disposition": "no-commerce",
+      "evidence": [
+        {
+          "kind": "independent-review",
+          "verifiedOn": "2026-08-12",
+          "observation": "Opus independently reconciled the GMC packet set; Devon authorized deployment after review. Source packet: data/known-issue-gmc-adjudication-2026-08-05.json."
+        }
+      ],
+      "before": {
+        "makeHash": "d35b02946654aa7ee24093c39191a73c7c5006a552e4a12c75019c49eaf14b60",
+        "modelHash": "c604b3c1c3a6d9c8985ec23d6dffb16005b2e1a2ce3cb58de723946c1af71f97",
+        "yearsHash": "e76da1b3aa885ad1046ef2ef6ce647a5855e753727a683223aad11265194876a",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "cc29b41c37dc7638484841639cd63b8947aa470273ac050b232ec7e7f5d6375c",
+        "categoryHash": "fcae623f085305db57d9e06647def7f7d27df9dca65d99f1348cd12bc5126108",
+        "titleHash": "932a556fa8fe6726c9a8c3910ffa7c2ee49b8cd516aefd7484cddca4b7a78abe",
+        "descriptionHash": "72e131a5fd8e2dd3b04e256768b489a472da317adfee34b6e49a4d55363fff1a",
+        "solutionHash": "1f213aec001c3ee595742324e88371ce34c7f1f0a5dfd1ac0b9e17f8c133aa6f",
+        "severityHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "0e4e716638db088ac0ead293f9627bf6ed67d5624f3080e00e2e48ad1c83c7bc",
+        "affectedSystemsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "estimatedCostHighHash": "284b7e6d788f363f910f7beb1910473e23ce9d6c871f1ce0f31f22a982d48ad4",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "citationsHash": "21a3bf363888d09a0f8ef4a3a7bcfe6c7314c32e2181875e4279a4ef72a09ab9",
+        "communityRecommendationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "3552915e1a8c1146f71bbc2a9600aa94ba93d70a3e00ae6096e39dc1574ccc37",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": []
+      },
+      "after": {
+        "make": "GMC",
+        "model": "Yukon",
+        "years": [
+          2015,
+          2016,
+          2017,
+          2018
+        ],
+        "trims": [],
+        "engines": [
+          "5.3L V8 (L83)",
+          "6.2L V8 (L86)"
+        ],
+        "category": "brakes",
+        "title": "Brake Vacuum Pump Failure Causing Hard Brake Pedal",
+        "description": "NHTSA campaign 19V645 covers certain 2015-2018 GMC Yukon vehicles. Vacuum-pump output can decrease over time, reducing brake assist, increasing pedal effort and extending stopping distance.",
+        "solution": "Check the VIN with GMC or NHTSA. Dealers reprogram the electronic brake-control module free of charge under GM recall N192268490.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "Harder brake pedal",
+          "Increased stopping distance as vacuum assist decreases"
+        ],
+        "affectedSystems": [
+          "vacuum pump",
+          "brake assist",
+          "electronic brake-control module"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "NHTSA Campaign 19V645 - Decreasing Vacuum Brake-Assist Recall",
+            "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=19V645000"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-05",
+        "contentUpdatedOn": "2026-08-05",
+        "contentUpdateSummary": "Kept the recall-backed braking subject while limiting it to the exact 2015-2018 vacuum-output condition and EBCM remedy.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "gmc-yukon-xl-takata-passenger-airbag-inflator-rupture-risk-recall-174-nhtsa-21v-050",
+      "disposition": "no-commerce",
+      "evidence": [
+        {
+          "kind": "independent-review",
+          "verifiedOn": "2026-08-12",
+          "observation": "Opus independently reconciled the GMC packet set; Devon authorized deployment after review. Source packet: data/known-issue-gmc-adjudication-2026-08-05.json."
+        }
+      ],
+      "before": {
+        "makeHash": "d35b02946654aa7ee24093c39191a73c7c5006a552e4a12c75019c49eaf14b60",
+        "modelHash": "46b8d012fac8fe56848767da61aa9843ff534a6ce81d63e1ad9e9421115ce823",
+        "yearsHash": "4f195dea6ae017b2938c603efaa00a85ca77024b796a7d2b12cb8cb9de3689aa",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "6ad35495f7e0102ccece4d8a88ed3c254b882110341f84dc2c9026be82600e3f",
+        "titleHash": "c080f3698dca782f33528ec3146e4c15c710338d1be50500c73de3ec7d376c89",
+        "descriptionHash": "c2af83cc28bb73692994c66b0184f5324766c30f646367bc6c3e7199cd2863bf",
+        "solutionHash": "eab5bc4eab739b027bf18918a9983919e591575886f8e48a68af9cdf3980759f",
+        "severityHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "confidenceHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "symptomsHash": "21c15ac778ca01d046252d0e026f5552efef8e9e47cea696d14ff7d06bcac69a",
+        "affectedSystemsHash": "076e45eec3037c6baf9d34445b5104bab0b09cd6dbb965d57b4ba9350fcda60d",
+        "dtcCodesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "estimatedCostLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "estimatedCostHighHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageLowHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "typicalMileageHighHash": "b552e632666bbf6125e3109e28a4fecc08340d017e44109dadbf497a280b8f82",
+        "citationsHash": "eb20f511e3a16e2f2e565e508ce1b0c16461f0897e71e45df4293d6dc830a4f9",
+        "communityRecommendationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "39fa9ec190eee7b6f4dff1100d6343e10918d044c75eac8f9e9a2596173f80c9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "ef2d34f68c9a8475ee1e991ccb2feabbc4fcb43a798009eecb8e6acfb4862835",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "claimIds": []
+      },
+      "after": {
+        "make": "GMC",
+        "model": "Yukon XL",
+        "years": [
+          2015,
+          2016,
+          2017
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "safety",
+        "title": "Takata Passenger Airbag Inflator Rupture Risk (Recall 174 / NHTSA 21V-050)",
+        "description": "NHTSA campaign 21V050 covers certain 2007-2011 GMC Yukon XL vehicles in specified U.S. states and territories. Long-term heat and humidity exposure can degrade the non-desiccated passenger frontal-airbag inflator propellant and cause the inflator to explode during deployment.",
+        "solution": "Check the VIN with GMC or NHTSA because geographic registration history determines coverage. Dealers replace the front passenger-airbag inflator with an alternate inflator free of charge.",
+        "severity": "high",
+        "confidence": "high",
+        "symptoms": [
+          "No warning symptom may occur before an inflator rupture during deployment"
+        ],
+        "affectedSystems": [
+          "front passenger-airbag inflator",
+          "airbag module"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "NHTSA Campaign 21V050 - Yukon XL Passenger-Airbag Inflator",
+            "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=21V050000"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-05",
+        "contentUpdatedOn": "2026-08-05",
+        "contentUpdateSummary": "Restored the exact campaign named by the original issue and rejected the unrelated seat-belt recall used by the earlier audit.",
+        "relatedIssueIds": []
+      }
+    },
+    {
+      "id": "gmc-yukonxl-fuel-pump-module-failure-2000",
+      "disposition": "no-commerce",
+      "evidence": [
+        {
+          "kind": "independent-review",
+          "verifiedOn": "2026-08-12",
+          "observation": "Opus independently reconciled the GMC packet set; Devon authorized deployment after review. Source packet: data/known-issue-gmc-adjudication-2026-08-05.json."
+        }
+      ],
+      "before": {
+        "makeHash": "d35b02946654aa7ee24093c39191a73c7c5006a552e4a12c75019c49eaf14b60",
+        "modelHash": "46b8d012fac8fe56848767da61aa9843ff534a6ce81d63e1ad9e9421115ce823",
+        "yearsHash": "e2a089c220bf013912d9a12ae6c7ed2219b76c6b0b6ffe4ccbd5eaca70e3696e",
+        "trimsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "enginesHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "categoryHash": "c864f62f92859207770d11f0ffbbf2e0e44aad05259e8ed83391cbb3193803f9",
+        "titleHash": "ff95c977e3d15bff428da75f725dc0981cda97a0aaab7d9065b8174c420515e1",
+        "descriptionHash": "83fdeda90960b95324f7bf624990804c7ceb7ebcba8ca6c0d55d228c4ee9f0cf",
+        "solutionHash": "d08f22aa55ce08402dc53f97ace15e78cc04b7a83223b3122d066d8a7cc349e6",
+        "severityHash": "60d4c90eee5e731df8d3ef2891de541d2e755ff8ee9db358e26bdec49f6e0db9",
+        "confidenceHash": "b57c4299afe3cda154124bdb96ceaf618a9d8d9cd8d2c8f6580ff26faa5fe5ca",
+        "symptomsHash": "9fead55a2e5ca642fe25dfcac930c90e6e41b2daf3be46163da28361ccd60c4a",
+        "affectedSystemsHash": "d761c6aba92985381f5823484027971eebf7c6e9c519bbbbac3fdcfebf3701a6",
+        "dtcCodesHash": "08224a1b235ff91ae013f8987c098c18a9cb169e8fbca4cf9a5409bf66c3a5b4",
+        "estimatedCostLowHash": "0604cd3138feed202ef293e062da2f4720f77a05d25ee036a7a01c9cfcdd1f0a",
+        "estimatedCostHighHash": "15197cf7214b58e67cae565e573ffd9aa44bcb81f8ee5d7185dfe8da0a16ef43",
+        "typicalMileageLowHash": "ac911e4a8f2b48c071ce0fbb434c039c48e60e8d96dff768f69daa740af0c3bb",
+        "typicalMileageHighHash": "b552e632666bbf6125e3109e28a4fecc08340d017e44109dadbf497a280b8f82",
+        "citationsHash": "e0564b7cdf4593ee0c93685357eab55565db39b0fccaa4199cfec1eedf64068e",
+        "communityRecommendationsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "fixPartsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "humanApprovedHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "reportCountHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "sourceHash": "c336399a09f5db01a3ae17185d98c5d8036baf600a8f2529c18f83da837dd528",
+        "statusHash": "dd2653c12a35c69d362d327a778f6e79f7e182293194fe0c3f4f68f6afdc8c1b",
+        "lastReportedByOwnersHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "reviewedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdatedOnHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "contentUpdateSummaryHash": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "relatedIssueIdsHash": "8cd19afa7209a253c491a7e0a708eea62d2097352911d76f691ffb77df7875b2",
+        "claimIds": []
+      },
+      "after": {
+        "make": "GMC",
+        "model": "Yukon XL",
+        "years": [
+          2000,
+          2001,
+          2002,
+          2003,
+          2004,
+          2005,
+          2006
+        ],
+        "trims": [],
+        "engines": [],
+        "category": "fuel",
+        "title": "Fuel Pump Module Failure Leading to No-Start or Intermittent Stalling",
+        "description": "NHTSA campaign 05V155 covers certain GMC Yukon XL vehicles. Fuel-pump wire connectors can overheat, blow the pump fuse, cause a stall or no-start, create inaccurate fuel readings and potentially allow fuel vapor or liquid to leak through a damaged connector.",
+        "solution": "Check the VIN with GMC or NHTSA. Dealers remove the tank and install the specified module-reservoir service kit.",
+        "severity": "medium",
+        "confidence": "high",
+        "symptoms": [
+          "Engine stall or no-start",
+          "Service-engine-soon lamp",
+          "Inaccurate fuel-level reading",
+          "Possible fuel vapor or liquid leak"
+        ],
+        "affectedSystems": [
+          "fuel-pump module",
+          "wire connectors",
+          "pass-through connector",
+          "fuel-level sender"
+        ],
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
+        "typicalMileageLow": null,
+        "typicalMileageHigh": null,
+        "citations": [
+          {
+            "type": "recall",
+            "title": "NHTSA Campaign 05V155 - Fuel-Pump Module Connector Recall",
+            "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=05V155000"
+          }
+        ],
+        "communityRecommendations": [],
+        "fixParts": [],
+        "humanApproved": true,
+        "reportCount": 0,
+        "source": "manual",
+        "status": "published",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-05",
+        "contentUpdatedOn": "2026-08-05",
+        "contentUpdateSummary": "Replaced the unsupported generic vehicle-page fuel-pump module failure aggregation with exact NHTSA campaign 05V155.",
+        "relatedIssueIds": [
+          "gmc-sierra1500-fuel-pump-module-failure-2000",
+          "chevy-cobalt-fuel-pump-failure-2005",
+          "chevy-silverado-fuel-pump-2019",
+          "chevrolet-express-fuel-pump",
+          "chevy-equinox-fuel-pump-stall"
+        ]
+      }
+    }
+  ]
+}
