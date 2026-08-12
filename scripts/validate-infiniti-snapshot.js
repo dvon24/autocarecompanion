@@ -18,8 +18,8 @@ const SNAPSHOT = path.resolve(
   'data',
   '_infiniti-deeplink-snapshot-2026-08-06.json',
 );
-const EXPECTED_SHA256 = 'd39bdd77a0557365946b551a26b951cb1a5ba81773b7b66497201347b5034f64';
-const EXPECTED_SNAPSHOT_HASH = '45dde736354a9dcd17a72399b0101f30373ca9c267e6cd49a2528a63a023eebd';
+const EXPECTED_SHA256 = '2cccbb24e00f973073e0495af9fd3de9467a9a053251d6727688c0883e3b5c34';
+const EXPECTED_SNAPSHOT_HASH = 'e68d0b0bd51eed7925dc50ebb3a96934cbf08f44e6e7a81f53fd5795a77b88c8';
 const EXPECTED_MODELS = {
   EX35: 1,
   FX35: 6,
@@ -41,18 +41,18 @@ const EXPECTED_MODELS = {
 };
 const EXPECTED_INVENTORY = {
   publishedIssueCount: 73,
-  commerceIssueCount: 47,
-  claimCount: 68,
-  fixPartClaimCount: 10,
-  communityClaimCount: 58,
-  noLinkClaimCount: 0,
-  linkCount: 88,
-  validProductLinkCount: 0,
-  invalidOrSearchLinkCount: 88,
+  commerceIssueCount: 40,
+  claimCount: 64,
+  fixPartClaimCount: 16,
+  communityClaimCount: 48,
+  noLinkClaimCount: 49,
+  linkCount: 15,
+  validProductLinkCount: 7,
+  invalidOrSearchLinkCount: 8,
   recallFirstClaimCount: 0,
-  dtcLinkedCommerceIssueCount: 18,
+  dtcLinkedCommerceIssueCount: 16,
   clickedCommerceIssueCount: 3,
-  correctedIssueCount: 0,
+  correctedIssueCount: 6,
   totalRecordedClicks: 3,
   deepLinkedClicks: 0,
   nonProductClicks: 3,

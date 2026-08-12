@@ -16,9 +16,9 @@
   ],
   "source": {
     "snapshotFile": "data/_infiniti-deeplink-snapshot-2026-08-06.json",
-    "snapshotSha256": "d39bdd77a0557365946b551a26b951cb1a5ba81773b7b66497201347b5034f64",
-    "snapshotGeneratedAt": "2026-08-06T23:15:05.490Z",
-    "snapshotHash": "45dde736354a9dcd17a72399b0101f30373ca9c267e6cd49a2528a63a023eebd",
+    "snapshotSha256": "2cccbb24e00f973073e0495af9fd3de9467a9a053251d6727688c0883e3b5c34",
+    "snapshotGeneratedAt": "2026-08-12T13:03:47.669Z",
+    "snapshotHash": "e68d0b0bd51eed7925dc50ebb3a96934cbf08f44e6e7a81f53fd5795a77b88c8",
     "m37RecordCount": 6
   },
   "observations": [
@@ -87,18 +87,7 @@
       "identityRule": "The indexed ID, title, make, model, years, category and publication state remain unchanged; only unsupported body, cost, commerce and citation claims are replaced.",
       "commerceDecision": "removed-unverified-commerce",
       "changedFields": [
-        "description",
-        "solution",
-        "symptoms",
-        "affectedSystems",
-        "estimatedCostLow",
-        "estimatedCostHigh",
-        "citations",
-        "communityRecommendations",
-        "source",
-        "reviewedOn",
-        "contentUpdatedOn",
-        "contentUpdateSummary"
+        "humanApproved"
       ],
       "evidence": [
         {
@@ -115,7 +104,7 @@
           "observation": "ITB00-024I applies to all Infiniti vehicles, defines brake judder and its symptoms, attributes it to rotor thickness variation/runout, and specifies on-car rotor machining or indexed replacement plus proper torque and burnishing."
         }
       ],
-      "beforeSha256": "989c86f00ef2842946c34d465480097897242abb4b91a1084ffccc5a16f63f3e",
+      "beforeSha256": "ea8ee44b46a63f5295d205aa0b78472b6e31a54738775cd5eab9d6f266484b55",
       "proposalSha256": "0aae8524f9ff386cda82477b40e577f499ba078cd083475262e07d676dbc3ba7",
       "before": {
         "make": "Infiniti",
@@ -129,66 +118,42 @@
         "engines": [],
         "category": "brakes",
         "title": "Brake Rotor Warping / Front Brake Vibration",
-        "description": "Owners commonly report front brake pulsation and steering wheel shake during moderate to hard braking, often attributed to rotor thickness variation or heat-related rotor distortion. The heavy curb weight of the M37 can accelerate front pad and rotor wear, especially with aggressive driving or low-quality replacement parts.",
-        "solution": "Diagnosis includes measuring rotor runout and thickness variation, checking pad deposits, and inspecting suspension bushings that can amplify vibration. Repair usually means replacing front rotors and pads together, cleaning hub mating surfaces, and torquing wheels correctly; quality parts and labor generally cost $350-$800 for the front axle.",
+        "description": "Infiniti service bulletin ITB00-024I applies to all Infiniti vehicles and defines brake judder as vibration felt through the vehicle, steering wheel or brake pedal while braking. The bulletin identifies rotor thickness variation and/or rotor runout as the cause; brake-pedal pulsation and, in severe cases, steering-wheel oscillation can result.",
+        "solution": "Verify the condition with the driver and a road test. Infiniti directs technicians to correct brake judder by machining the rotors with an approved on-car brake lathe. If a rotor is replaced, index it to the axle hub for minimum runout, tighten lug nuts evenly with a torque wrench, and burnish serviced brakes as specified in ITB00-024I.",
         "severity": "medium",
         "confidence": "high",
         "symptoms": [
-          "Steering wheel shakes while braking",
-          "Brake pedal pulsation",
-          "Reduced smoothness during highway stops",
-          "Premature front pad or rotor wear"
+          "Vehicle vibration while braking",
+          "Brake-pedal pulsation",
+          "Steering-wheel oscillation while braking"
         ],
         "affectedSystems": [
-          "Front brake rotors",
-          "Brake pads",
-          "Caliper hardware",
-          "Front suspension interface"
+          "Brake rotors",
+          "Brake pads and calipers",
+          "Wheel hubs and lug fasteners"
         ],
         "dtcCodes": [],
-        "estimatedCostLow": 350,
-        "estimatedCostHigh": 800,
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
         "typicalMileageLow": null,
         "typicalMileageHigh": null,
         "citations": [
           {
-            "url": "https://www.nhtsa.gov/vehicle/2011/INFINITI/M37",
-            "type": "nhtsa",
-            "title": "NHTSA complaints - brake vibration and rotor concerns on Infiniti M37"
+            "url": "https://static.nhtsa.gov/odi/tsbs/2021/MC-10195353-0001.pdf",
+            "type": "tsb",
+            "title": "Infiniti ITB00-024I - Brake Noise/Judder/Pedal Feel Diagnosis and Repair"
           }
         ],
-        "communityRecommendations": [
-          {
-            "type": "part",
-            "content": "Owners often recommend quality coated rotors and ceramic pads from established brands to reduce repeat pulsation and dust.",
-            "upvotes": 0,
-            "partName": "QuietCast Brake Rotor and Pad Set",
-            "partBrand": "Bosch",
-            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20M37%20Bosch%20QuietCast%20front%20brakes&tag=au7o-20"
-          },
-          {
-            "type": "tip",
-            "content": "Have the wheel hubs cleaned and wheel lug nuts torqued with a torque wrench; uneven torque can contribute to rotor runout.",
-            "upvotes": 0
-          },
-          {
-            "type": "part",
-            "content": "Some owners prefer premium aftermarket pads for lower dust and better heat handling than budget replacements.",
-            "upvotes": 0,
-            "partName": "Professional Ceramic Brake Pads",
-            "partBrand": "ACDelco",
-            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20M37%20ACDelco%20ceramic%20brake%20pads&tag=au7o-20"
-          }
-        ],
+        "communityRecommendations": [],
         "fixParts": [],
-        "humanApproved": false,
+        "humanApproved": true,
         "reportCount": 0,
-        "source": "ai-researched",
+        "source": "manual",
         "status": "published",
         "lastReportedByOwners": "",
-        "reviewedOn": "",
-        "contentUpdatedOn": "",
-        "contentUpdateSummary": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Kept the indexed brake-rotor-warping/front-vibration identity and 2011-2013 scope, replaced generic claims with Infiniti ITB00-024I, and removed unsupported frequency, cost, DTC and commerce claims.",
         "relatedIssueIds": [
           "infiniti-m35-brake-rotor-warping-and-front-brake-vibration",
           "infiniti-fx50-brake-rotor-warping-brake-judder"
@@ -269,8 +234,8 @@
           ]
         }
       ],
-      "beforeSha256": "37e33f2b51abdd49d9b02195284c669f3c25bade24553c3098425b1ddb0195c6",
-      "proposalSha256": "37e33f2b51abdd49d9b02195284c669f3c25bade24553c3098425b1ddb0195c6",
+      "beforeSha256": "945c15fe13323ea3c77a78aa08887591fca65c2b3b8b5ccf366f68571bca753a",
+      "proposalSha256": "945c15fe13323ea3c77a78aa08887591fca65c2b3b8b5ccf366f68571bca753a",
       "before": {
         "make": "Infiniti",
         "model": "M37",
@@ -322,8 +287,7 @@
             "content": "Denso sensors are commonly recommended because owners report better reliability than unknown budget brands for engine position sensors.",
             "upvotes": 0,
             "partName": "Camshaft / Crankshaft Position Sensor",
-            "partBrand": "Denso",
-            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20M37%20Denso%20camshaft%20position%20sensor&tag=au7o-20"
+            "partBrand": "Denso"
           },
           {
             "type": "tip",
@@ -336,7 +300,28 @@
             "upvotes": 0
           }
         ],
-        "fixParts": [],
+        "fixParts": [
+          {
+            "note": "Walker Products 235-1386. Fitment confirmed against the ShowMeTheParts catalog for this vehicle's year and engine.",
+            "buyLinks": [
+              {
+                "url": "https://www.ebay.com/itm/257658125903?_skw=Walker+Products+235-1386+Engine+Crankshaft+Position+Sensor&hash=item3bfd9efe4f%3Ai%3A257658125903&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049",
+                "vendor": "eBay",
+                "linkType": "product",
+                "verified": true
+              }
+            ],
+            "variants": [],
+            "verified": true,
+            "component": "Engine Crankshaft Position Sensor",
+            "confidence": null,
+            "provenance": "ShowMeTheParts fitment lookup by year and engine; buy links verified to carry the part number on a matching brand",
+            "oemPartNumber": "",
+            "aftermarketXref": [
+              "235-1386"
+            ]
+          }
+        ],
         "humanApproved": false,
         "reportCount": 0,
         "source": "ai-researched",
@@ -404,8 +389,7 @@
             "content": "Denso sensors are commonly recommended because owners report better reliability than unknown budget brands for engine position sensors.",
             "upvotes": 0,
             "partName": "Camshaft / Crankshaft Position Sensor",
-            "partBrand": "Denso",
-            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20M37%20Denso%20camshaft%20position%20sensor&tag=au7o-20"
+            "partBrand": "Denso"
           },
           {
             "type": "tip",
@@ -418,7 +402,28 @@
             "upvotes": 0
           }
         ],
-        "fixParts": [],
+        "fixParts": [
+          {
+            "note": "Walker Products 235-1386. Fitment confirmed against the ShowMeTheParts catalog for this vehicle's year and engine.",
+            "buyLinks": [
+              {
+                "url": "https://www.ebay.com/itm/257658125903?_skw=Walker+Products+235-1386+Engine+Crankshaft+Position+Sensor&hash=item3bfd9efe4f%3Ai%3A257658125903&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049",
+                "vendor": "eBay",
+                "linkType": "product",
+                "verified": true
+              }
+            ],
+            "variants": [],
+            "verified": true,
+            "component": "Engine Crankshaft Position Sensor",
+            "confidence": null,
+            "provenance": "ShowMeTheParts fitment lookup by year and engine; buy links verified to carry the part number on a matching brand",
+            "oemPartNumber": "",
+            "aftermarketXref": [
+              "235-1386"
+            ]
+          }
+        ],
         "humanApproved": false,
         "reportCount": 0,
         "source": "ai-researched",
@@ -457,8 +462,8 @@
           ]
         }
       ],
-      "beforeSha256": "1d8cc4fe0bb08d7b0860762f36000490dda3c608f2c752c6d4bb6136d62951b6",
-      "proposalSha256": "1d8cc4fe0bb08d7b0860762f36000490dda3c608f2c752c6d4bb6136d62951b6",
+      "beforeSha256": "aca98069d8c323139cfd429991f4cc41476d4427b01a6a162650915407cd532d",
+      "proposalSha256": "aca98069d8c323139cfd429991f4cc41476d4427b01a6a162650915407cd532d",
       "before": {
         "make": "Infiniti",
         "model": "M37",
@@ -504,8 +509,7 @@
             "content": "Denso HVAC components are often recommended by owners seeking OE-like fit and quieter blower operation.",
             "upvotes": 0,
             "partName": "Blower Motor",
-            "partBrand": "Denso",
-            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20M37%20Denso%20blower%20motor&tag=au7o-20"
+            "partBrand": "Denso"
           },
           {
             "type": "tip",
@@ -517,8 +521,7 @@
             "content": "Owners also recommend quality cabin filters to maintain airflow and reduce blower strain.",
             "upvotes": 0,
             "partName": "Cabin Air Filter",
-            "partBrand": "Wix",
-            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20M37%20Wix%20cabin%20air%20filter&tag=au7o-20"
+            "partBrand": "Wix"
           }
         ],
         "fixParts": [],
@@ -577,8 +580,7 @@
             "content": "Denso HVAC components are often recommended by owners seeking OE-like fit and quieter blower operation.",
             "upvotes": 0,
             "partName": "Blower Motor",
-            "partBrand": "Denso",
-            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20M37%20Denso%20blower%20motor&tag=au7o-20"
+            "partBrand": "Denso"
           },
           {
             "type": "tip",
@@ -590,8 +592,7 @@
             "content": "Owners also recommend quality cabin filters to maintain airflow and reduce blower strain.",
             "upvotes": 0,
             "partName": "Cabin Air Filter",
-            "partBrand": "Wix",
-            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20M37%20Wix%20cabin%20air%20filter&tag=au7o-20"
+            "partBrand": "Wix"
           }
         ],
         "fixParts": [],
@@ -627,8 +628,8 @@
           ]
         }
       ],
-      "beforeSha256": "434012902464bc3e38f74feb703362861b9751a3464edc223d86b2ea408d2ba6",
-      "proposalSha256": "434012902464bc3e38f74feb703362861b9751a3464edc223d86b2ea408d2ba6",
+      "beforeSha256": "c2cddfa18831beb93bc3cbed55d29934443b2947096812e18ed932b7cd410b7b",
+      "proposalSha256": "c2cddfa18831beb93bc3cbed55d29934443b2947096812e18ed932b7cd410b7b",
       "before": {
         "make": "Infiniti",
         "model": "M37",
@@ -677,8 +678,7 @@
             "content": "Moog suspension components are commonly recommended by owners looking for a durable aftermarket option for links and some arm assemblies.",
             "upvotes": 0,
             "partName": "Sway Bar Link / Control Arm Components",
-            "partBrand": "Moog",
-            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20M37%20Moog%20suspension%20parts&tag=au7o-20"
+            "partBrand": "Moog"
           },
           {
             "type": "tip",
@@ -753,8 +753,7 @@
             "content": "Moog suspension components are commonly recommended by owners looking for a durable aftermarket option for links and some arm assemblies.",
             "upvotes": 0,
             "partName": "Sway Bar Link / Control Arm Components",
-            "partBrand": "Moog",
-            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20M37%20Moog%20suspension%20parts&tag=au7o-20"
+            "partBrand": "Moog"
           },
           {
             "type": "tip",
@@ -803,8 +802,8 @@
           ]
         }
       ],
-      "beforeSha256": "81a35589e7a373b2dfa4a55eb57bd2dd0a86dad9a86b1c19d6611a82ebf12fa6",
-      "proposalSha256": "81a35589e7a373b2dfa4a55eb57bd2dd0a86dad9a86b1c19d6611a82ebf12fa6",
+      "beforeSha256": "90b1053363833d496f047a3d503794d36bc487a82942c759094b11cf924d51d9",
+      "proposalSha256": "90b1053363833d496f047a3d503794d36bc487a82942c759094b11cf924d51d9",
       "before": {
         "make": "Infiniti",
         "model": "M37",
@@ -855,8 +854,7 @@
             "content": "Owners often recommend using an OEM steering lock assembly or dealer-sourced replacement because used modules and low-cost electronics can create programming and reliability problems.",
             "upvotes": 0,
             "partName": "Battery Terminal / Electrical Repair Components",
-            "partBrand": "Dorman",
-            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20M37%20Dorman%20electrical%20repair%20parts&tag=au7o-20"
+            "partBrand": "Dorman"
           },
           {
             "type": "tip",
@@ -928,8 +926,7 @@
             "content": "Owners often recommend using an OEM steering lock assembly or dealer-sourced replacement because used modules and low-cost electronics can create programming and reliability problems.",
             "upvotes": 0,
             "partName": "Battery Terminal / Electrical Repair Components",
-            "partBrand": "Dorman",
-            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20M37%20Dorman%20electrical%20repair%20parts&tag=au7o-20"
+            "partBrand": "Dorman"
           },
           {
             "type": "tip",
@@ -973,8 +970,8 @@
           ]
         }
       ],
-      "beforeSha256": "abfb641f645eb5fea8c04bb7b07207fea936bcee30bb3ab1691e393d6750dc64",
-      "proposalSha256": "abfb641f645eb5fea8c04bb7b07207fea936bcee30bb3ab1691e393d6750dc64",
+      "beforeSha256": "7305eb7d8ab1197886f6176d6d98cd1e34b0bc88ae68399502b5c7c0700fa920",
+      "proposalSha256": "7305eb7d8ab1197886f6176d6d98cd1e34b0bc88ae68399502b5c7c0700fa920",
       "before": {
         "make": "Infiniti",
         "model": "M37",
@@ -1027,8 +1024,7 @@
             "content": "Owners commonly use replacement drain hose, connectors, and weatherproof electrical repair supplies when correcting leak-related wiring damage.",
             "upvotes": 0,
             "partName": "Electrical Connector / Repair Kit",
-            "partBrand": "Dorman",
-            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20M37%20Dorman%20electrical%20connector%20repair&tag=au7o-20"
+            "partBrand": "Dorman"
           },
           {
             "type": "tip",
@@ -1103,8 +1099,7 @@
             "content": "Owners commonly use replacement drain hose, connectors, and weatherproof electrical repair supplies when correcting leak-related wiring damage.",
             "upvotes": 0,
             "partName": "Electrical Connector / Repair Kit",
-            "partBrand": "Dorman",
-            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20M37%20Dorman%20electrical%20connector%20repair&tag=au7o-20"
+            "partBrand": "Dorman"
           },
           {
             "type": "tip",

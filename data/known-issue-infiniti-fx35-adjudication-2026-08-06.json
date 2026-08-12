@@ -16,9 +16,9 @@
   ],
   "source": {
     "snapshotFile": "data/_infiniti-deeplink-snapshot-2026-08-06.json",
-    "snapshotSha256": "d39bdd77a0557365946b551a26b951cb1a5ba81773b7b66497201347b5034f64",
-    "snapshotGeneratedAt": "2026-08-06T23:15:05.490Z",
-    "snapshotHash": "45dde736354a9dcd17a72399b0101f30373ca9c267e6cd49a2528a63a023eebd",
+    "snapshotSha256": "2cccbb24e00f973073e0495af9fd3de9467a9a053251d6727688c0883e3b5c34",
+    "snapshotGeneratedAt": "2026-08-12T13:03:47.669Z",
+    "snapshotHash": "e68d0b0bd51eed7925dc50ebb3a96934cbf08f44e6e7a81f53fd5795a77b88c8",
     "fx35RecordCount": 6
   },
   "observations": [
@@ -87,18 +87,7 @@
       "identityRule": "The indexed title, make, model, years, category and publication state remain unchanged; only unsupported body, cost, commerce and citation claims are replaced.",
       "commerceDecision": "removed-unverified-search-links",
       "changedFields": [
-        "description",
-        "solution",
-        "symptoms",
-        "affectedSystems",
-        "estimatedCostLow",
-        "estimatedCostHigh",
-        "citations",
-        "communityRecommendations",
-        "source",
-        "reviewedOn",
-        "contentUpdatedOn",
-        "contentUpdateSummary"
+        "humanApproved"
       ],
       "evidence": [
         {
@@ -115,7 +104,7 @@
           "observation": "ITB00-024I applies to all Infiniti vehicles, defines brake judder and its symptoms, attributes it to rotor thickness variation/runout, and specifies on-car rotor machining or indexed replacement plus proper torque and burnishing."
         }
       ],
-      "beforeSha256": "ee73e27a506682b6888afcd9af8baa36d7f847faacf3ea543b46040fe153b388",
+      "beforeSha256": "95961c18520a4f75ae7ee79075faa7bef8ba794b1b05ed3415f76c93af96ca67",
       "proposalSha256": "fb956a1566169eec4b10c4e3e581b8c4fdde76f93dbaf040544af661ed1e1f62",
       "before": {
         "make": "Infiniti",
@@ -136,65 +125,42 @@
         "engines": [],
         "category": "brakes",
         "title": "Brake Rotor Warping / Front Brake Vibration",
-        "description": "Many FX35 owners report steering wheel shake or pedal pulsation during braking, usually traced to front rotor thickness variation and heat-related brake judder. The heavy curb weight and sporty driving style of the FX35 can accelerate front rotor wear, especially with lower-quality replacement pads and rotors.",
-        "solution": "Diagnosis includes measuring rotor runout and thickness variation, checking caliper slide movement, and inspecting pad deposits. Repair generally involves replacing front rotors and pads together, cleaning and lubricating slide pins, and torquing wheels properly to prevent repeat distortion. Typical cost is about $250-$700 depending on parts quality and whether calipers or hoses also need service.",
+        "description": "Infiniti service bulletin ITB00-024I applies to all Infiniti vehicles and defines brake judder as vibration felt through the vehicle, steering wheel or brake pedal while braking. The bulletin identifies rotor thickness variation and/or rotor runout as the cause; brake-pedal pulsation and, in severe cases, steering-wheel oscillation can result.",
+        "solution": "Verify the condition with the driver and a road test. Infiniti directs technicians to correct brake judder by machining the rotors with an approved on-car brake lathe. If a rotor is replaced, index it to the axle hub for minimum runout, tighten lug nuts evenly with a torque wrench, and burnish serviced brakes as specified in ITB00-024I.",
         "severity": "medium",
         "confidence": "high",
         "symptoms": [
-          "Steering wheel shakes when braking",
-          "Brake pedal pulsation",
-          "Front-end vibration at highway speeds during braking",
-          "Reduced braking smoothness"
+          "Vehicle vibration while braking",
+          "Brake-pedal pulsation",
+          "Steering-wheel oscillation while braking"
         ],
         "affectedSystems": [
-          "front brakes",
-          "rotors",
-          "calipers"
+          "Brake rotors",
+          "Brake pads and calipers",
+          "Wheel hubs and lug fasteners"
         ],
         "dtcCodes": [],
-        "estimatedCostLow": 250,
-        "estimatedCostHigh": 700,
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
         "typicalMileageLow": null,
         "typicalMileageHigh": null,
         "citations": [
           {
-            "url": "https://www.nhtsa.gov/vehicle/2006/INFINITI/FX35/SUV/AWD",
-            "type": "nhtsa",
-            "title": "NHTSA complaints citing brake vibration and rotor issues on Infiniti FX35"
+            "url": "https://static.nhtsa.gov/odi/tsbs/2021/MC-10195353-0001.pdf",
+            "type": "tsb",
+            "title": "Infiniti ITB00-024I - Brake Noise/Judder/Pedal Feel Diagnosis and Repair"
           }
         ],
-        "communityRecommendations": [
-          {
-            "type": "part",
-            "content": "Owners frequently recommend coated premium rotors for better corrosion resistance and more consistent braking feel.",
-            "upvotes": 0,
-            "partName": "QuietCast Brake Rotor",
-            "partBrand": "Bosch",
-            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20FX35%20Bosch%20QuietCast%20Brake%20Rotor&tag=au7o-20"
-          },
-          {
-            "type": "part",
-            "content": "Quality ceramic pads are commonly recommended to reduce dust and improve daily-driver smoothness.",
-            "upvotes": 0,
-            "partName": "Ceramic Brake Pads",
-            "partBrand": "Akebono",
-            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20FX35%20Akebono%20Ceramic%20Brake%20Pads&tag=au7o-20"
-          },
-          {
-            "type": "tip",
-            "content": "Torque lug nuts evenly with a torque wrench; uneven wheel torque is a common contributor to repeat brake pulsation complaints.",
-            "upvotes": 0
-          }
-        ],
+        "communityRecommendations": [],
         "fixParts": [],
-        "humanApproved": false,
+        "humanApproved": true,
         "reportCount": 0,
-        "source": "ai-researched",
+        "source": "manual",
         "status": "published",
         "lastReportedByOwners": "",
-        "reviewedOn": "",
-        "contentUpdatedOn": "",
-        "contentUpdateSummary": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Kept the indexed brake-judder identity and 2003-2012 scope, replaced the complaint-page and prevalence narrative with Infiniti ITB00-024I, and removed unsupported FX35-specific frequency, heat, driving-style, cost and commerce claims.",
         "relatedIssueIds": [
           "infiniti-fx50-brake-rotor-warping-brake-judder",
           "infiniti-m35-brake-rotor-warping-and-front-brake-vibration",
@@ -291,8 +257,8 @@
           ]
         }
       ],
-      "beforeSha256": "6d3e1c3afe5a95b2a4fb819cde049d6d9ea309a592104537484001dfb3eb3611",
-      "proposalSha256": "6d3e1c3afe5a95b2a4fb819cde049d6d9ea309a592104537484001dfb3eb3611",
+      "beforeSha256": "b2d21dd987f2d835869ed037ea7de6ec116b0745474715d92eaa103ce57f715d",
+      "proposalSha256": "b2d21dd987f2d835869ed037ea7de6ec116b0745474715d92eaa103ce57f715d",
       "before": {
         "make": "Infiniti",
         "model": "FX35",
@@ -351,8 +317,7 @@
             "content": "Owners strongly prefer OE supplier sensors because many aftermarket no-name sensors trigger repeat codes or intermittent no-starts.",
             "upvotes": 0,
             "partName": "Camshaft Position Sensor",
-            "partBrand": "Denso",
-            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20FX35%20Denso%20Camshaft%20Position%20Sensor&tag=au7o-20"
+            "partBrand": "Denso"
           },
           {
             "type": "tip",
@@ -364,11 +329,31 @@
             "content": "For crank sensor replacement, owners often choose a known OE-quality brand to avoid false RPM signal dropouts.",
             "upvotes": 0,
             "partName": "Crankshaft Position Sensor",
-            "partBrand": "Hitachi",
-            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20FX35%20Hitachi%20Crankshaft%20Position%20Sensor&tag=au7o-20"
+            "partBrand": "Hitachi"
           }
         ],
-        "fixParts": [],
+        "fixParts": [
+          {
+            "note": "Walker Products 235-1150. Fitment confirmed against the ShowMeTheParts catalog for this vehicle's year and engine.",
+            "buyLinks": [
+              {
+                "url": "https://www.ebay.com/itm/286737392841?_skw=Walker+Products+235-1150+Engine+Camshaft+Position+Sensor&hash=item42c2e164c9%3Ag%3Apn0AAeSwb5xoiSkj&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049",
+                "vendor": "eBay",
+                "linkType": "product",
+                "verified": true
+              }
+            ],
+            "variants": [],
+            "verified": true,
+            "component": "Engine Camshaft Position Sensor",
+            "confidence": null,
+            "provenance": "ShowMeTheParts fitment lookup by year and engine; buy links verified to carry the part number on a matching brand",
+            "oemPartNumber": "",
+            "aftermarketXref": [
+              "235-1150"
+            ]
+          }
+        ],
         "humanApproved": false,
         "reportCount": 0,
         "source": "ai-researched",
@@ -443,8 +428,7 @@
             "content": "Owners strongly prefer OE supplier sensors because many aftermarket no-name sensors trigger repeat codes or intermittent no-starts.",
             "upvotes": 0,
             "partName": "Camshaft Position Sensor",
-            "partBrand": "Denso",
-            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20FX35%20Denso%20Camshaft%20Position%20Sensor&tag=au7o-20"
+            "partBrand": "Denso"
           },
           {
             "type": "tip",
@@ -456,11 +440,31 @@
             "content": "For crank sensor replacement, owners often choose a known OE-quality brand to avoid false RPM signal dropouts.",
             "upvotes": 0,
             "partName": "Crankshaft Position Sensor",
-            "partBrand": "Hitachi",
-            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20FX35%20Hitachi%20Crankshaft%20Position%20Sensor&tag=au7o-20"
+            "partBrand": "Hitachi"
           }
         ],
-        "fixParts": [],
+        "fixParts": [
+          {
+            "note": "Walker Products 235-1150. Fitment confirmed against the ShowMeTheParts catalog for this vehicle's year and engine.",
+            "buyLinks": [
+              {
+                "url": "https://www.ebay.com/itm/286737392841?_skw=Walker+Products+235-1150+Engine+Camshaft+Position+Sensor&hash=item42c2e164c9%3Ag%3Apn0AAeSwb5xoiSkj&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049",
+                "vendor": "eBay",
+                "linkType": "product",
+                "verified": true
+              }
+            ],
+            "variants": [],
+            "verified": true,
+            "component": "Engine Camshaft Position Sensor",
+            "confidence": null,
+            "provenance": "ShowMeTheParts fitment lookup by year and engine; buy links verified to carry the part number on a matching brand",
+            "oemPartNumber": "",
+            "aftermarketXref": [
+              "235-1150"
+            ]
+          }
+        ],
         "humanApproved": false,
         "reportCount": 0,
         "source": "ai-researched",
@@ -506,8 +510,8 @@
           ]
         }
       ],
-      "beforeSha256": "43f52ed490243e0e715352fdf56911d1785bf787e2f9bfba307dc4dcff0b344d",
-      "proposalSha256": "43f52ed490243e0e715352fdf56911d1785bf787e2f9bfba307dc4dcff0b344d",
+      "beforeSha256": "726f047994cca50da9de95bb9981b26db7bd2e934c8f33c9726fcde81efab3df",
+      "proposalSha256": "726f047994cca50da9de95bb9981b26db7bd2e934c8f33c9726fcde81efab3df",
       "before": {
         "make": "Infiniti",
         "model": "FX35",
@@ -561,8 +565,7 @@
             "content": "Owners often use complete arm assemblies to save labor and restore ride quality instead of pressing in bushings only.",
             "upvotes": 0,
             "partName": "Front Lower Control Arm",
-            "partBrand": "Moog",
-            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20FX35%20Moog%20Front%20Lower%20Control%20Arm&tag=au7o-20"
+            "partBrand": "Moog"
           },
           {
             "type": "tip",
@@ -574,8 +577,7 @@
             "content": "Sway bar links are a common companion repair when chasing front-end clunks.",
             "upvotes": 0,
             "partName": "Sway Bar End Link",
-            "partBrand": "Moog",
-            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20FX35%20Moog%20Sway%20Bar%20End%20Link&tag=au7o-20"
+            "partBrand": "Moog"
           }
         ],
         "fixParts": [],
@@ -645,8 +647,7 @@
             "content": "Owners often use complete arm assemblies to save labor and restore ride quality instead of pressing in bushings only.",
             "upvotes": 0,
             "partName": "Front Lower Control Arm",
-            "partBrand": "Moog",
-            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20FX35%20Moog%20Front%20Lower%20Control%20Arm&tag=au7o-20"
+            "partBrand": "Moog"
           },
           {
             "type": "tip",
@@ -658,8 +659,7 @@
             "content": "Sway bar links are a common companion repair when chasing front-end clunks.",
             "upvotes": 0,
             "partName": "Sway Bar End Link",
-            "partBrand": "Moog",
-            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20FX35%20Moog%20Sway%20Bar%20End%20Link&tag=au7o-20"
+            "partBrand": "Moog"
           }
         ],
         "fixParts": [],
@@ -705,8 +705,8 @@
           ]
         }
       ],
-      "beforeSha256": "77a00e728b9703d167f6b978c96a57b4266bd220b400237bb3b8add5d8dab00a",
-      "proposalSha256": "77a00e728b9703d167f6b978c96a57b4266bd220b400237bb3b8add5d8dab00a",
+      "beforeSha256": "a7fe2dac6e1aae1ad0ed905b8a915fa46ef08ab2eea921f67080956dbd268732",
+      "proposalSha256": "a7fe2dac6e1aae1ad0ed905b8a915fa46ef08ab2eea921f67080956dbd268732",
       "before": {
         "make": "Infiniti",
         "model": "FX35",
@@ -764,8 +764,7 @@
             "content": "Owners usually recommend OE-quality fuel level components because cheap modules can cause continued gauge inaccuracies.",
             "upvotes": 0,
             "partName": "Fuel Pump Module Assembly",
-            "partBrand": "Denso",
-            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20FX35%20Denso%20Fuel%20Pump%20Module%20Assembly&tag=au7o-20"
+            "partBrand": "Denso"
           },
           {
             "type": "tip",
@@ -848,8 +847,7 @@
             "content": "Owners usually recommend OE-quality fuel level components because cheap modules can cause continued gauge inaccuracies.",
             "upvotes": 0,
             "partName": "Fuel Pump Module Assembly",
-            "partBrand": "Denso",
-            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20FX35%20Denso%20Fuel%20Pump%20Module%20Assembly&tag=au7o-20"
+            "partBrand": "Denso"
           },
           {
             "type": "tip",
@@ -904,8 +902,8 @@
           ]
         }
       ],
-      "beforeSha256": "0bffa5172cfff4858e0960b31e70b95d2c40faae3ac3d02bf9fd1a1fa28472aa",
-      "proposalSha256": "0bffa5172cfff4858e0960b31e70b95d2c40faae3ac3d02bf9fd1a1fa28472aa",
+      "beforeSha256": "3da1b6066a7d0abca4c256c77a059635e7c4ea9a490903c661a05a56754cf6d5",
+      "proposalSha256": "3da1b6066a7d0abca4c256c77a059635e7c4ea9a490903c661a05a56754cf6d5",
       "before": {
         "make": "Infiniti",
         "model": "FX35",
@@ -960,8 +958,7 @@
             "content": "Owners often recommend a quality replacement radiator instead of the cheapest unit because fitment and cooler reliability matter here.",
             "upvotes": 0,
             "partName": "Radiator",
-            "partBrand": "Denso",
-            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20FX35%20Denso%20Radiator&tag=au7o-20"
+            "partBrand": "Denso"
           },
           {
             "type": "tip",
@@ -969,7 +966,28 @@
             "upvotes": 0
           }
         ],
-        "fixParts": [],
+        "fixParts": [
+          {
+            "note": "Denso 221-3422. Fitment confirmed against the ShowMeTheParts catalog for this vehicle's year and engine.",
+            "buyLinks": [
+              {
+                "url": "https://www.ebay.com/itm/317884556502?_skw=Denso+221-3422+Radiator&hash=item4a036564d6%3Ag%3ALHQAAeSwvdxqV1D2&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049",
+                "vendor": "eBay",
+                "linkType": "product",
+                "verified": true
+              }
+            ],
+            "variants": [],
+            "verified": true,
+            "component": "Radiator",
+            "confidence": null,
+            "provenance": "ShowMeTheParts fitment lookup by year and engine; buy links verified to carry the part number on a matching brand",
+            "oemPartNumber": "",
+            "aftermarketXref": [
+              "221-3422"
+            ]
+          }
+        ],
         "humanApproved": false,
         "reportCount": 0,
         "source": "ai-researched",
@@ -1037,8 +1055,7 @@
             "content": "Owners often recommend a quality replacement radiator instead of the cheapest unit because fitment and cooler reliability matter here.",
             "upvotes": 0,
             "partName": "Radiator",
-            "partBrand": "Denso",
-            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20FX35%20Denso%20Radiator&tag=au7o-20"
+            "partBrand": "Denso"
           },
           {
             "type": "tip",
@@ -1046,7 +1063,28 @@
             "upvotes": 0
           }
         ],
-        "fixParts": [],
+        "fixParts": [
+          {
+            "note": "Denso 221-3422. Fitment confirmed against the ShowMeTheParts catalog for this vehicle's year and engine.",
+            "buyLinks": [
+              {
+                "url": "https://www.ebay.com/itm/317884556502?_skw=Denso+221-3422+Radiator&hash=item4a036564d6%3Ag%3ALHQAAeSwvdxqV1D2&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049",
+                "vendor": "eBay",
+                "linkType": "product",
+                "verified": true
+              }
+            ],
+            "variants": [],
+            "verified": true,
+            "component": "Radiator",
+            "confidence": null,
+            "provenance": "ShowMeTheParts fitment lookup by year and engine; buy links verified to carry the part number on a matching brand",
+            "oemPartNumber": "",
+            "aftermarketXref": [
+              "221-3422"
+            ]
+          }
+        ],
         "humanApproved": false,
         "reportCount": 0,
         "source": "ai-researched",
@@ -1089,8 +1127,8 @@
           ]
         }
       ],
-      "beforeSha256": "28fdb3bc082f3388216ceb2655a8daeb7a93fa8b8f794c751ee45180c0d89430",
-      "proposalSha256": "28fdb3bc082f3388216ceb2655a8daeb7a93fa8b8f794c751ee45180c0d89430",
+      "beforeSha256": "28fdd16e2dd0953b431e0c18b77a36793e2c2ec5d8b2c092dce45f6fe10f8e61",
+      "proposalSha256": "28fdd16e2dd0953b431e0c18b77a36793e2c2ec5d8b2c092dce45f6fe10f8e61",
       "before": {
         "make": "Infiniti",
         "model": "FX35",
@@ -1137,8 +1175,7 @@
             "content": "Owners generally recommend using OEM-style timing components because cheap kits have mixed durability on the VQ35DE.",
             "upvotes": 0,
             "partName": "Timing Chain Kit",
-            "partBrand": "Cloyes",
-            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20FX35%20Cloyes%20Timing%20Chain%20Kit&tag=au7o-20"
+            "partBrand": "Cloyes"
           },
           {
             "type": "tip",
@@ -1207,8 +1244,7 @@
             "content": "Owners generally recommend using OEM-style timing components because cheap kits have mixed durability on the VQ35DE.",
             "upvotes": 0,
             "partName": "Timing Chain Kit",
-            "partBrand": "Cloyes",
-            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20FX35%20Cloyes%20Timing%20Chain%20Kit&tag=au7o-20"
+            "partBrand": "Cloyes"
           },
           {
             "type": "tip",

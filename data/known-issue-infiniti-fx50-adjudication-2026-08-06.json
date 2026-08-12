@@ -16,9 +16,9 @@
   ],
   "source": {
     "snapshotFile": "data/_infiniti-deeplink-snapshot-2026-08-06.json",
-    "snapshotSha256": "d39bdd77a0557365946b551a26b951cb1a5ba81773b7b66497201347b5034f64",
-    "snapshotGeneratedAt": "2026-08-06T23:15:05.490Z",
-    "snapshotHash": "45dde736354a9dcd17a72399b0101f30373ca9c267e6cd49a2528a63a023eebd",
+    "snapshotSha256": "2cccbb24e00f973073e0495af9fd3de9467a9a053251d6727688c0883e3b5c34",
+    "snapshotGeneratedAt": "2026-08-12T13:03:47.669Z",
+    "snapshotHash": "e68d0b0bd51eed7925dc50ebb3a96934cbf08f44e6e7a81f53fd5795a77b88c8",
     "fx50RecordCount": 6
   },
   "observations": [
@@ -82,18 +82,7 @@
       "identityRule": "The indexed title, make, model, years, category and publication state remain unchanged; only unsupported body, cost, commerce and citation claims are replaced.",
       "commerceDecision": "removed-unverified-search-links",
       "changedFields": [
-        "description",
-        "solution",
-        "symptoms",
-        "affectedSystems",
-        "estimatedCostLow",
-        "estimatedCostHigh",
-        "citations",
-        "communityRecommendations",
-        "source",
-        "reviewedOn",
-        "contentUpdatedOn",
-        "contentUpdateSummary"
+        "humanApproved"
       ],
       "evidence": [
         {
@@ -110,7 +99,7 @@
           "observation": "ITB00-024I applies to all Infiniti vehicles, defines brake judder and its symptoms, attributes it to rotor thickness variation/runout, and specifies on-car rotor machining or indexed replacement plus proper torque and burnishing."
         }
       ],
-      "beforeSha256": "bd6526fbaf16bf8c802ccf37e36cfd2f8094f00793e65b48a68002990d6188fb",
+      "beforeSha256": "1a7287501a5e3258cdf0ce7bf8a966941a8cb6fee67d608e1f74d76f0db4c0df",
       "proposalSha256": "20ea3ffd4fe2ba102b61174487f3669e9523da95fbf37c66abb1d268634634db",
       "before": {
         "make": "Infiniti",
@@ -126,64 +115,42 @@
         "engines": [],
         "category": "brakes",
         "title": "Brake Rotor Warping / Brake Judder",
-        "description": "Many owners report brake pulsation and steering wheel shake during moderate to hard braking, often attributed to rotor thickness variation or heat-related rotor distortion. The heavy FX50 and aggressive driving style can accelerate wear of front rotors and pads, especially with lower-quality replacement parts.",
-        "solution": "Diagnosis includes measuring rotor runout and thickness variation, inspecting pad deposits, and checking caliper slide operation. Repair generally means replacing front rotors and pads together, servicing caliper hardware, and flushing brake fluid if overdue; expect about $350-$900 depending on parts quality and whether rear brakes are also serviced.",
+        "description": "Infiniti service bulletin ITB00-024I applies to all Infiniti vehicles and defines brake judder as vibration felt through the vehicle, steering wheel or brake pedal while braking. The bulletin identifies rotor thickness variation and/or rotor runout as the cause; brake-pedal pulsation and, in severe cases, steering-wheel oscillation can result.",
+        "solution": "Verify the condition with the driver and a road test. Infiniti directs technicians to correct brake judder by machining the rotors with an approved on-car brake lathe. If a rotor is replaced, index it to the axle hub for minimum runout, tighten lug nuts evenly with a torque wrench, and burnish serviced brakes as specified in ITB00-024I.",
         "severity": "medium",
         "confidence": "high",
         "symptoms": [
-          "Steering wheel shakes while braking",
-          "Brake pedal pulsation",
-          "Reduced braking smoothness at highway speeds",
-          "Squeal or grinding from worn pads",
-          "Vibration during downhill braking"
+          "Vehicle vibration while braking",
+          "Brake-pedal pulsation",
+          "Steering-wheel oscillation while braking"
         ],
         "affectedSystems": [
-          "front brake rotors",
-          "brake pads",
-          "calipers",
-          "hydraulic brake system"
+          "Brake rotors",
+          "Brake pads and calipers",
+          "Wheel hubs and lug fasteners"
         ],
         "dtcCodes": [],
-        "estimatedCostLow": 350,
-        "estimatedCostHigh": 900,
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
         "typicalMileageLow": null,
         "typicalMileageHigh": null,
         "citations": [
           {
-            "url": "https://www.infinitiscene.com/",
-            "type": "forum",
-            "title": "Infiniti FX forum reports of brake judder and rotor replacement"
+            "url": "https://static.nhtsa.gov/odi/tsbs/2021/MC-10195353-0001.pdf",
+            "type": "tsb",
+            "title": "Infiniti ITB00-024I - Brake Noise/Judder/Pedal Feel Diagnosis and Repair"
           }
         ],
-        "communityRecommendations": [
-          {
-            "type": "part",
-            "content": "Owners commonly recommend premium coated rotors and matched ceramic pads to reduce repeat pulsation and dust.",
-            "upvotes": 0,
-            "partName": "QuietCast Brake Rotor and Pad Set",
-            "partBrand": "Bosch",
-            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20FX50%20Bosch%20QuietCast%20brake%20rotor%20pad&tag=au7o-20"
-          },
-          {
-            "type": "tip",
-            "content": "Torque lug nuts evenly with a torque wrench; uneven wheel torque can contribute to rotor runout complaints.",
-            "upvotes": 0
-          },
-          {
-            "type": "tip",
-            "content": "Bed in new pads and rotors properly to avoid uneven pad transfer that feels like warped rotors.",
-            "upvotes": 0
-          }
-        ],
+        "communityRecommendations": [],
         "fixParts": [],
-        "humanApproved": false,
+        "humanApproved": true,
         "reportCount": 0,
-        "source": "ai-researched",
+        "source": "manual",
         "status": "published",
         "lastReportedByOwners": "",
-        "reviewedOn": "",
-        "contentUpdatedOn": "",
-        "contentUpdateSummary": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Kept the indexed brake-warping/judder identity and 2009-2013 scope, replaced the forum-homepage and FX50 prevalence narrative with Infiniti ITB00-024I, and removed unsupported model-specific frequency, heat, driving-style, cost and commerce claims.",
         "relatedIssueIds": [
           "infiniti-fx35-brake-rotor-warping-front-brake-vibration",
           "infiniti-m37-brake-rotor-warping-front-brake-vibration"
@@ -268,8 +235,8 @@
           ]
         }
       ],
-      "beforeSha256": "daf3c8d4248628e3a3af5c4cad1c34a42f229ae174c683b9b27d7504edee178e",
-      "proposalSha256": "daf3c8d4248628e3a3af5c4cad1c34a42f229ae174c683b9b27d7504edee178e",
+      "beforeSha256": "cda9b00e964ef0ee5af12c60ef52eeadf0919d9e7ca7ca966c0d290d7ce2c0ab",
+      "proposalSha256": "cda9b00e964ef0ee5af12c60ef52eeadf0919d9e7ca7ca966c0d290d7ce2c0ab",
       "before": {
         "make": "Infiniti",
         "model": "FX50",
@@ -318,8 +285,7 @@
             "content": "Owners often start with a quality replacement gas cap because it is inexpensive and commonly resolves small-leak EVAP codes.",
             "upvotes": 0,
             "partName": "Fuel Cap",
-            "partBrand": "Gates",
-            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20FX50%20Gates%20fuel%20cap&tag=au7o-20"
+            "partBrand": "Gates"
           },
           {
             "type": "tip",
@@ -393,8 +359,7 @@
             "content": "Owners often start with a quality replacement gas cap because it is inexpensive and commonly resolves small-leak EVAP codes.",
             "upvotes": 0,
             "partName": "Fuel Cap",
-            "partBrand": "Gates",
-            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20FX50%20Gates%20fuel%20cap&tag=au7o-20"
+            "partBrand": "Gates"
           },
           {
             "type": "tip",
@@ -444,8 +409,8 @@
           ]
         }
       ],
-      "beforeSha256": "6936f2c8ba6e5d75097edf246d2f9a90300e7e6bde1f5475bf7fa6e73a7158c3",
-      "proposalSha256": "6936f2c8ba6e5d75097edf246d2f9a90300e7e6bde1f5475bf7fa6e73a7158c3",
+      "beforeSha256": "01c85bc6adb8c48e3830f7c78211796a3ac5c145727dfe385c9727f23457496b",
+      "proposalSha256": "01c85bc6adb8c48e3830f7c78211796a3ac5c145727dfe385c9727f23457496b",
       "before": {
         "make": "Infiniti",
         "model": "FX50",
@@ -489,8 +454,7 @@
             "content": "Owners often choose complete aftermarket control arm assemblies to avoid pressing bushings and to restore alignment stability.",
             "upvotes": 0,
             "partName": "Control Arm Assembly",
-            "partBrand": "Moog",
-            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20FX50%20Moog%20control%20arm%20assembly&tag=au7o-20"
+            "partBrand": "Moog"
           },
           {
             "type": "tip",
@@ -560,8 +524,7 @@
             "content": "Owners often choose complete aftermarket control arm assemblies to avoid pressing bushings and to restore alignment stability.",
             "upvotes": 0,
             "partName": "Control Arm Assembly",
-            "partBrand": "Moog",
-            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20FX50%20Moog%20control%20arm%20assembly&tag=au7o-20"
+            "partBrand": "Moog"
           },
           {
             "type": "tip",
@@ -612,8 +575,8 @@
           ]
         }
       ],
-      "beforeSha256": "9250d8d6197d76bfc8062f3ca48b9b4b4468cf2acbd04d155b24cb3e80695e7f",
-      "proposalSha256": "9250d8d6197d76bfc8062f3ca48b9b4b4468cf2acbd04d155b24cb3e80695e7f",
+      "beforeSha256": "7e0c2b07ffab06e3d72ae1fdcd575fe0d008dc96b521b5c741cff6137c5b6292",
+      "proposalSha256": "7e0c2b07ffab06e3d72ae1fdcd575fe0d008dc96b521b5c741cff6137c5b6292",
       "before": {
         "make": "Infiniti",
         "model": "FX50",
@@ -662,8 +625,7 @@
             "content": "Owners often prefer OEM-supplier cooling components for reliability, especially on the V8 where overheating can become expensive quickly.",
             "upvotes": 0,
             "partName": "Radiator",
-            "partBrand": "Denso",
-            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20FX50%20Denso%20radiator&tag=au7o-20"
+            "partBrand": "Denso"
           },
           {
             "type": "tip",
@@ -737,8 +699,7 @@
             "content": "Owners often prefer OEM-supplier cooling components for reliability, especially on the V8 where overheating can become expensive quickly.",
             "upvotes": 0,
             "partName": "Radiator",
-            "partBrand": "Denso",
-            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20FX50%20Denso%20radiator&tag=au7o-20"
+            "partBrand": "Denso"
           },
           {
             "type": "tip",
@@ -788,8 +749,8 @@
           ]
         }
       ],
-      "beforeSha256": "90a9a1bbcb6f403b2cb05646bf5d3183182132c63ab80b51e19657aab6ca0b07",
-      "proposalSha256": "90a9a1bbcb6f403b2cb05646bf5d3183182132c63ab80b51e19657aab6ca0b07",
+      "beforeSha256": "d87ed10677ceee9b20cff75161cc286deeb86ff19b7ec737e646de473b1301a4",
+      "proposalSha256": "d87ed10677ceee9b20cff75161cc286deeb86ff19b7ec737e646de473b1301a4",
       "before": {
         "make": "Infiniti",
         "model": "FX50",
@@ -838,8 +799,7 @@
             "content": "Owners often recommend replacing the vehicle battery first if voltage is marginal, because low voltage can aggravate Intelligent Key and steering lock faults.",
             "upvotes": 0,
             "partName": "AGM Battery",
-            "partBrand": "Bosch",
-            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20FX50%20Bosch%20AGM%20battery&tag=au7o-20"
+            "partBrand": "Bosch"
           },
           {
             "type": "tip",
@@ -909,8 +869,7 @@
             "content": "Owners often recommend replacing the vehicle battery first if voltage is marginal, because low voltage can aggravate Intelligent Key and steering lock faults.",
             "upvotes": 0,
             "partName": "AGM Battery",
-            "partBrand": "Bosch",
-            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20FX50%20Bosch%20AGM%20battery&tag=au7o-20"
+            "partBrand": "Bosch"
           },
           {
             "type": "tip",
@@ -956,8 +915,8 @@
           ]
         }
       ],
-      "beforeSha256": "5bb97d825cf40c391e3406460e9eb27f2b2128032ed887b120831ac482055d87",
-      "proposalSha256": "5bb97d825cf40c391e3406460e9eb27f2b2128032ed887b120831ac482055d87",
+      "beforeSha256": "0369fc065f7ecf15cf3b86ac64678e01223e77a997da2923a3022ac8f51ec600",
+      "proposalSha256": "0369fc065f7ecf15cf3b86ac64678e01223e77a997da2923a3022ac8f51ec600",
       "before": {
         "make": "Infiniti",
         "model": "FX50",
@@ -1012,8 +971,7 @@
             "content": "For water-damaged cabin filtration and odor issues after a leak, owners commonly replace the cabin air filter once the drains are repaired.",
             "upvotes": 0,
             "partName": "Cabin Air Filter",
-            "partBrand": "Wix",
-            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20FX50%20Wix%20cabin%20air%20filter&tag=au7o-20"
+            "partBrand": "Wix"
           },
           {
             "type": "tip",
@@ -1090,8 +1048,7 @@
             "content": "For water-damaged cabin filtration and odor issues after a leak, owners commonly replace the cabin air filter once the drains are repaired.",
             "upvotes": 0,
             "partName": "Cabin Air Filter",
-            "partBrand": "Wix",
-            "affiliateUrl": "https://www.amazon.com/s?k=Infiniti%20FX50%20Wix%20cabin%20air%20filter&tag=au7o-20"
+            "partBrand": "Wix"
           },
           {
             "type": "tip",
