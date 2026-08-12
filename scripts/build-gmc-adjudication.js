@@ -265,8 +265,12 @@ function proposedRewrite(current, legacy) {
     ...card,
     make: current.make,
     model: current.model,
-    trims: safeApplicabilityValues(card.trims),
-    engines: safeApplicabilityValues(card.engines),
+    years: [...current.years],
+    trims: safeApplicabilityValues(current.trims),
+    engines: safeApplicabilityValues(current.engines),
+    category: current.category,
+    title: current.title,
+    severity: current.severity,
     citations: (card.citations || []).map((citation) => exactCitation(current.id, citation)),
     communityRecommendations: [],
     fixParts: [],
@@ -282,7 +286,7 @@ function proposedRewrite(current, legacy) {
     reviewedOn: '2026-08-05',
     contentUpdatedOn: '2026-08-05',
     contentUpdateSummary: card.summary || 'Narrowed the card to the cited same-identity GMC/NHTSA condition.',
-    relatedIssueIds: [],
+    relatedIssueIds: [...current.relatedIssueIds],
   };
   return fullRecord(proposal);
 }

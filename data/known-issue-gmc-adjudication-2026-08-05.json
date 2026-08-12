@@ -129,7 +129,7 @@
       "identityRule": "The rewrite retains the original component/symptom identity and narrows it to an exact campaign or bulletin.",
       "commerceDecision": "no-commerce",
       "beforeSha256": "83abf63e7dc1ed3b5c7f8af8c5f605bce0a069ae538960ce451d602cc8a77760",
-      "proposalSha256": "c2d51de3d1d2009b252d95b178ca497cda0812ad8ad49eab776ab1df1e4970b4",
+      "proposalSha256": "f70c036250127cbdfbfb30ea22cf7323d2974d77c184ee280633ade1139bf956",
       "before": {
         "make": "GMC",
         "model": "Acadia",
@@ -184,7 +184,7 @@
         "trims": [],
         "engines": [],
         "category": "fuel",
-        "title": "Fuel-Pump Jet-Nozzle Blockage Recall",
+        "title": "Fuel Pump Mixing-Tube Burr Causing Engine Stall at Low Fuel (Recall 20V446 / GM N202314760)",
         "description": "NHTSA campaign 20V639 covers certain 2020 GMC Acadia vehicles. A plastic burr left in the fuel pump jet nozzle can block the nozzle and reduce fuel delivery to the engine, which can cause an engine stall.",
         "solution": "Check the VIN with GMC. Dealers replace the fuel-pump module free of charge under GM campaign N202314760.",
         "severity": "high",
@@ -230,7 +230,7 @@
       "identityRule": "The rewrite retains the original component/symptom identity and narrows it to an exact campaign or bulletin.",
       "commerceDecision": "no-commerce",
       "beforeSha256": "7bb2e005f814d40d682880a187694797a80913c6f9cb46fbe57ebd3ed841f6d3",
-      "proposalSha256": "0a994da72607df66e1ea540ea18e9b7ce926a1039d510a23b299413a3aa5002b",
+      "proposalSha256": "8546aedec25fd485dc56673a6f2e8ef4152f5c6818e76606294e3c4e6024fd35",
       "before": {
         "make": "GMC",
         "model": "Acadia",
@@ -284,8 +284,8 @@
         ],
         "trims": [],
         "engines": [],
-        "category": "transmission",
-        "title": "Incorrect Transmission Sun-Gear Recall",
+        "category": "drivetrain",
+        "title": "Incorrect Transmission Sun Gear Causing Driver-Side Half-Shaft Disengagement / Rollaway (Recall N222389310)",
         "description": "NHTSA campaign 23V172 covers certain 2023 GMC Acadia vehicles. An incorrect transmission sun gear can allow the driver-side half-shaft to disengage, causing a loss of drive power or a vehicle rollaway while in Park.",
         "solution": "Check the VIN with GMC. Dealers replace the sun gears free of charge under GM campaign N222389310. Use the parking brake until the recall repair is completed.",
         "severity": "high",
@@ -332,7 +332,7 @@
       "identityRule": "The rewrite retains the original component/symptom identity and narrows it to an exact campaign or bulletin.",
       "commerceDecision": "no-commerce",
       "beforeSha256": "6ef219c2e81cee0db598bdc404c5a1398866f7c93c03c433405677c4f948ebf1",
-      "proposalSha256": "86718e172ea543874a37f5e37913495d31c0e9bddf929800e813a8e6586381cc",
+      "proposalSha256": "427b40d839039936a3afd81f085c8a2b166c2c985c1bbf67a7ac33bae399eac4",
       "before": {
         "make": "GMC",
         "model": "Acadia",
@@ -387,12 +387,16 @@
         "make": "GMC",
         "model": "Acadia",
         "years": [
-          2019
+          2017,
+          2018,
+          2019,
+          2020,
+          2021
         ],
         "trims": [],
         "engines": [],
         "category": "electrical",
-        "title": "Radio Reset or Reboot Service Bulletin",
+        "title": "Infotainment System Lockup, Black Screen and Random Reboots (2nd-Gen IO/IOR Head Unit)",
         "description": "GM bulletin 22-NA-033 covers 2019 GMC Acadia vehicles equipped with IOS, IOU or IOT radios that can reset or reboot and display the GMC splash animation. Bluetooth-call or touch-input symptoms can occur immediately before the reboot.",
         "solution": "Have a GMC retailer confirm the radio software version. The bulletin directs a USB radio-software update to version V809 when the installed version is V808 or earlier.",
         "severity": "medium",
@@ -438,7 +442,7 @@
       "identityRule": "The rewrite retains the original component/symptom identity and narrows it to an exact campaign or bulletin.",
       "commerceDecision": "no-commerce",
       "beforeSha256": "d50e2d7d864cedddc3d5a28c99df6325292ab486ab6331c5821146d89727846a",
-      "proposalSha256": "a94d83eceaefb6d072e98a9e31f92fceab8ab43529cce4b0e407e4bf74639454",
+      "proposalSha256": "9a53c95c1554c748150f3b683f7c71cd05c43fa36497bfc3774d726b7d9c41b5",
       "before": {
         "make": "GMC",
         "model": "Acadia",
@@ -514,12 +518,20 @@
           2008,
           2009,
           2010,
-          2011
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016
         ],
         "trims": [],
-        "engines": [],
-        "category": "steering",
-        "title": "Hydraulic Power-Steering Pump Wear Special Coverage",
+        "engines": [
+          "3.6L V6 LLT",
+          "3.6L V6 LFX"
+        ],
+        "category": "suspension",
+        "title": "Electric Power Steering (EPAS) Failure and Loss of Assist",
         "description": "GM special-coverage bulletin 10248773 covers specified 2007-2011 GMC Acadia vehicles with power-steering pump wear that can intermittently reduce hydraulic pressure and steering assist. Manual steering remains available but requires greater effort, especially at low speeds.",
         "solution": "Have a GMC dealer check eligibility for the special coverage and diagnose the hydraulic steering system. The GM procedure flushes the system, replaces the power-steering pump and installs the updated steering-gear valve housing when required.",
         "severity": "high",
@@ -554,7 +566,9 @@
         "reviewedOn": "2026-08-05",
         "contentUpdatedOn": "2026-08-05",
         "contentUpdateSummary": "Corrected the system from electric to hydraulic steering, narrowed the years and replaced complaint and lawsuit claims with GM’s special coverage.",
-        "relatedIssueIds": []
+        "relatedIssueIds": [
+          "chevy-equinox-electric-power-steering-failure"
+        ]
       }
     },
     {
@@ -565,7 +579,7 @@
       "identityRule": "The rewrite retains the original component/symptom identity and narrows it to an exact campaign or bulletin.",
       "commerceDecision": "no-commerce",
       "beforeSha256": "58a35a0c5b25e0ad80ebf8352016d5b1d1021d27296e98cca0c0a5db48076be7",
-      "proposalSha256": "7626ac0f01de54db7dc253e02666f345ba6f525a25714380a2e0ac9ffd003738",
+      "proposalSha256": "2612c23669db89fb867ed374c64b72c35b774b294508f8305a6b3258c49777e3",
       "before": {
         "make": "GMC",
         "model": "Acadia",
@@ -624,8 +638,8 @@
         ],
         "trims": [],
         "engines": [],
-        "category": "transmission",
-        "title": "Intermittent Shift-to-Park Message While in Park",
+        "category": "electrical",
+        "title": "\"Shift to Park\" Message With No-Shutdown / Door-Lock Lockout and Battery Drain",
         "description": "GM bulletin 10251901 covers specified 2017-2019 GMC Acadia vehicles that can intermittently display a Shift-to-Park message even though the transmission selector is in Park.",
         "solution": "Have a GMC retailer reproduce the message and check for DTC B000A. GM bulletin 19-NA-206 directs removal and reinstallation of the transmission control, installation of a shifter harness, and an inline harness jumper; it does not support the frozen door-lock and battery-drain claims.",
         "severity": "medium",
@@ -670,7 +684,7 @@
       "identityRule": "The rewrite retains the original component/symptom identity and narrows it to an exact campaign or bulletin.",
       "commerceDecision": "no-commerce",
       "beforeSha256": "4c9c0288aaf8b061c1418ddd17bb198ce51932b46306ca2ded5d934d8de0ddd6",
-      "proposalSha256": "2ce2277c319a876ce78b7dc71abce71b8bdd7e39d38d759ab1f6372067ad0aae",
+      "proposalSha256": "6019f2cfe0346a68746c880f54beaa5a4d26a942dc8fc349f308b5128762cfdb",
       "before": {
         "make": "GMC",
         "model": "Acadia",
@@ -727,7 +741,7 @@
         "trims": [],
         "engines": [],
         "category": "transmission",
-        "title": "Start/Stop Transmission Accumulator Recall",
+        "title": "Start/Stop Transmission Accumulator Missing Bolts - Fluid Leak, Loss of Propulsion and Fire Risk (Recall 20V668 / N202313440)",
         "description": "NHTSA campaign 20V668 covers certain 2019-2020 GMC Acadia vehicles. The start/stop transmission-accumulator endcap may be missing bolts, which can cause an oil leak and loss of transmission function and may increase fire risk.",
         "solution": "Check the VIN with GMC. Dealers inspect the start/stop transmission accumulator and replace it when bolts are missing free of charge under GM campaign N202313440.",
         "severity": "high",
@@ -773,7 +787,7 @@
       "identityRule": "The rewrite retains the original component/symptom identity and narrows it to an exact campaign or bulletin.",
       "commerceDecision": "no-commerce",
       "beforeSha256": "c7be569d925489eb8bc0c3e73761406439f47795d0c0f185c3cb76d2d1e63ebd",
-      "proposalSha256": "2877e08a23bb0979ab7080f6b21f587bf4ef959d72eb81f33ba4b8f24f300f75",
+      "proposalSha256": "3906be15674555a35c4a2d406e1d3ff30d304633c4b66ed61a4eb2c6f80f824d",
       "before": {
         "make": "GMC",
         "model": "Acadia",
@@ -830,10 +844,10 @@
         "trims": [],
         "engines": [],
         "category": "safety",
-        "title": "Surround-View Rear-Camera Cable Recall",
+        "title": "Surround Vision Rearview Camera Coaxial Cable Crimp Failure - Black/Lost Backup Image (Recall 22V709 / N222378380)",
         "description": "NHTSA campaign 22V709 covers certain 2020-2021 GMC Acadia vehicles with optional Surround Vision. Improperly crimped rearview-camera coaxial connectors can cause the camera image to fail or work intermittently.",
         "solution": "Check the VIN and equipment with GMC. Dealers replace the rearview-camera coaxial cables free of charge under GM campaign N222378380.",
-        "severity": "high",
+        "severity": "medium",
         "confidence": "high",
         "symptoms": [
           "Rearview-camera image may fail or become intermittent"
@@ -875,7 +889,7 @@
       "identityRule": "The rewrite retains the original component/symptom identity and narrows it to an exact campaign or bulletin.",
       "commerceDecision": "no-commerce",
       "beforeSha256": "19b41529db803ea0364fa2056b1aca030f8a73b2a8c873a7bceea59d0e0b0172",
-      "proposalSha256": "bf34c8ee22e3996415f67eb13127abf5b2447676f611bb08b543c4298926d654",
+      "proposalSha256": "563b86114742b404b905b0a6311654ec9a5f2d1b8869497b832fd466261f5f53",
       "before": {
         "make": "GMC",
         "model": "Acadia",
@@ -959,17 +973,22 @@
           2009,
           2010,
           2011,
-          2012
+          2012,
+          2013,
+          2014,
+          2015,
+          2016
         ],
         "trims": [],
         "engines": [
-          "3.6L High Feature V6 (RPO LY7 or LLT)"
+          "3.6L V6 LLT",
+          "3.6L V6 LFX"
         ],
         "category": "engine",
-        "title": "High-Feature V6 Timing-Chain Correlation DTC Bulletin",
+        "title": "3.6L V6 Timing Chain Stretch and Premature Failure",
         "description": "GM bulletin 12-06-01-009D covers 2007-2012 GMC Acadia vehicles with 3.6L High Feature V6 engines (RPO LY7 or LLT) and timing-chain correlation DTCs P0008, P0009, P0016, P0017, P0018 or P0019.",
         "solution": "Complete the GM diagnostic procedure before ordering parts. When a stretched timing chain is confirmed, use the applicable GM timing-chain kit. The bulletin says guides, sprockets, actuators and the crank gear should not be replaced automatically unless separately worn or diagnosed.",
-        "severity": "medium",
+        "severity": "high",
         "confidence": "high",
         "symptoms": [
           "Check-engine light",
@@ -1008,7 +1027,13 @@
         "reviewedOn": "2026-08-05",
         "contentUpdatedOn": "2026-08-05",
         "contentUpdateSummary": "Preserved the same timing-chain identity while correcting the engine scope and removing the unsupported automatic guide replacement.",
-        "relatedIssueIds": []
+        "relatedIssueIds": [
+          "chevrolet-traverse-timing-chain-stretch-2009",
+          "cadillac-cts-timing-chain-2004",
+          "cadillac-xt5-timing-chain-2017",
+          "cadillac-ats-timing-chain-2013",
+          "cadillac-xt6-timing-chain-2020"
+        ]
       }
     },
     {
@@ -1173,7 +1198,7 @@
       "identityRule": "The rewrite retains the original component/symptom identity and narrows it to an exact campaign or bulletin.",
       "commerceDecision": "no-commerce",
       "beforeSha256": "2042f0f034e4cb8cb198adb76b9cfcbcfc40aac416f132ed3b475488e49e1b19",
-      "proposalSha256": "a1e5be0513deed50972b53b4fc49fb0ac2f49b308d2b363ae80fe31b67a6d8fb",
+      "proposalSha256": "b706ec09b9b557e644a20ce50689fde76dff48a5af8b5ee5ca20184979a41bd5",
       "before": {
         "make": "GMC",
         "model": "Acadia",
@@ -1256,21 +1281,35 @@
         "make": "GMC",
         "model": "Acadia",
         "years": [
+          2007,
+          2008,
           2009,
           2010,
           2011,
           2012,
-          2013
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
         ],
         "trims": [],
         "engines": [
-          "3.6L High Feature V6 (RPO LY7 or LLT)"
+          "3.6L V6 LLT",
+          "3.6L V6 LFX",
+          "3.6L V6 LGX"
         ],
-        "category": "cooling",
-        "title": "Water-Pump Shaft-Seal Leak Special Coverage",
+        "category": "engine",
+        "title": "3.6L V6 Internal Water Pump Failure and Coolant Leak",
         "description": "GM customer-satisfaction bulletin 13079 covers certain 2009-2013 GMC Acadia vehicles with 3.6L High Feature V6 engines (RPO LY7 or LLT) that may experience leakage from the water-pump shaft seal, often after operation with low coolant.",
         "solution": "Check the VIN and current eligibility with GMC. Bulletin 13079 directs dealers to verify and correct coolant level with the proper DEX-COOL mixture; it does not establish the frozen claim that the pump is internal or must be combined with timing-chain work.",
-        "severity": "medium",
+        "severity": "high",
         "confidence": "high",
         "symptoms": [
           "Coolant leak from the water-pump shaft seal"
@@ -1301,7 +1340,9 @@
         "reviewedOn": "2026-08-05",
         "contentUpdatedOn": "2026-08-05",
         "contentUpdateSummary": "Corrected the pump design, engine scope and remedy to the VIN-scoped GM coolant-level program.",
-        "relatedIssueIds": []
+        "relatedIssueIds": [
+          "chevy-colorado-water-pump-2015"
+        ]
       }
     },
     {
@@ -1312,7 +1353,7 @@
       "identityRule": "The rewrite retains the original component/symptom identity and narrows it to an exact campaign or bulletin.",
       "commerceDecision": "no-commerce",
       "beforeSha256": "602101a82e2d41b347f09d5fe6d1ecf40c6af5748a44b8d4f817c6229852f1ec",
-      "proposalSha256": "7f05f194c0c7b229675a93ffc7130b0d7a91c096c37efcf75be6137dd54391a9",
+      "proposalSha256": "b874d3f8bd344dc6586e2b9fd2c79dc921f112b1fa8cfa45bfce6cf8bf91783d",
       "before": {
         "make": "GMC",
         "model": "Canyon",
@@ -1362,15 +1403,16 @@
         "make": "GMC",
         "model": "Canyon",
         "years": [
+          2023,
           2024
         ],
         "trims": [],
         "engines": [],
         "category": "electrical",
-        "title": "Headlight Flicker Recall",
+        "title": "2024 Headlight Flicker (24V673) and 2023-2024 Seat Belt Buckle Bolt Recalls (2nd-Gen Canyon)",
         "description": "NHTSA campaign 24V673 covers certain 2024 GMC Canyon vehicles. The headlights can flicker while driving or while parked, causing the trucks to fail federal lighting requirements.",
         "solution": "Check the VIN with GMC. Dealers replace the affected headlight module free of charge under GM campaign N242468880.",
-        "severity": "high",
+        "severity": "medium",
         "confidence": "high",
         "symptoms": [
           "Headlights may flicker while driving or parked"
@@ -1838,7 +1880,7 @@
       "identityRule": "The rewrite retains the original component/symptom identity and narrows it to an exact campaign or bulletin.",
       "commerceDecision": "no-commerce",
       "beforeSha256": "6593f4b42bdf0502b0fa9cf5afeaea523b2166c3eff411c6408438fa07be957b",
-      "proposalSha256": "81c2183cd916aa2483da0c043b43537b16a58fa237ebfe0075ad9527e46f3e35",
+      "proposalSha256": "93329c43144301c8b028e11f2fca8c58bacdf43b36f7667ca266c00ffce2489d",
       "before": {
         "make": "GMC",
         "model": "Canyon",
@@ -1892,7 +1934,7 @@
         "trims": [],
         "engines": [],
         "category": "safety",
-        "title": "Driver Airbag Inflator Alignment Recall",
+        "title": "Driver Airbag Inflator Misalignment / SDM Reprogram (Recall 14690)",
         "description": "NHTSA campaign 15V157 covers certain 2015 GMC Canyon vehicles. The driver-airbag inflator may be misaligned to the module backplate and can separate during deployment.",
         "solution": "Check the VIN with GMC. Dealers inspect the driver-airbag inflator alignment and replace the airbag as necessary free of charge under GM campaign 15037.",
         "severity": "high",
@@ -2101,7 +2143,7 @@
       "identityRule": "The rewrite retains the original component/symptom identity and narrows it to an exact campaign or bulletin.",
       "commerceDecision": "no-commerce",
       "beforeSha256": "93144421b2708d19124c996141af0aef5d7895e484adc0fd43e65a3a9ea09382",
-      "proposalSha256": "59bcd754a7b1e3adf34ab1363abe51179d2955db6b01e3b7ec0d3787f1e355b8",
+      "proposalSha256": "c69bae8709fba57d24f172b935c138a070819dd907d1de4fea742b401b370d6a",
       "before": {
         "make": "GMC",
         "model": "Canyon",
@@ -2156,7 +2198,7 @@
         "trims": [],
         "engines": [],
         "category": "brakes",
-        "title": "Front Brake-Caliper Fluid-Leak Recall",
+        "title": "Front Brake Caliper Brake Fluid Leak (Recall 15V278000)",
         "description": "NHTSA campaign 15V278 covers certain 2015 GMC Canyon trucks. Air pockets in the metal caliper body can allow the front brake calipers to leak fluid and reduce braking ability.",
         "solution": "Check the VIN with GMC. Dealers inspect and replace the front brake calipers as necessary free of charge under GM campaign 14888.",
         "severity": "high",
@@ -2464,7 +2506,7 @@
       "identityRule": "The rewrite retains the original component/symptom identity and narrows it to an exact campaign or bulletin.",
       "commerceDecision": "no-commerce",
       "beforeSha256": "74c7d0472f23a8262affedb5723edc54c7a9bb4e419c59e23f548b34251d2780",
-      "proposalSha256": "a43bf9cc450b666717f4c964fa67ed6e79748ce9c1eed0a91d3b3806cb0739ca",
+      "proposalSha256": "aacb4c7660ccffa0a3f1b127e337ef7d83e7e8c8925eabf5735847d77af2f279",
       "before": {
         "make": "GMC",
         "model": "Canyon",
@@ -2519,7 +2561,7 @@
         "trims": [],
         "engines": [],
         "category": "steering",
-        "title": "Power-Steering Assist Loss Recall",
+        "title": "Power Steering Assist Loss from Corroded Steering Gear Connection (Recall 16V054)",
         "description": "NHTSA campaign 21V213 covers certain 2015 GMC Canyon vehicles. A poor electrical connection within the steering-gear assembly can cause a loss of power-steering assist.",
         "solution": "Check the VIN with GMC. Dealers replace the steering-gear torque-sensor cover assembly free of charge under GM campaign N202325410.",
         "severity": "high",
@@ -4815,7 +4857,7 @@
       "identityRule": "The rewrite retains the original component/symptom identity and narrows it to an exact campaign or bulletin.",
       "commerceDecision": "no-commerce",
       "beforeSha256": "2f7ea9bf4aa7fa34c3bf10d25d46d32badeb41f5eb34019615007c52e70ee3f9",
-      "proposalSha256": "f27d6143c720b36fa04c42fe544090a9747d86fd2b0d3aa9248a7c1f7f859a8d",
+      "proposalSha256": "5996301793079e219194d1fc6eb4cc01c7f04da5c664d407c4f545e3c6f9f77b",
       "before": {
         "make": "GMC",
         "model": "Hummer EV",
@@ -4868,12 +4910,14 @@
         "make": "GMC",
         "model": "Hummer EV",
         "years": [
-          2022
+          2022,
+          2023,
+          2024
         ],
         "trims": [],
         "engines": [],
         "category": "electrical",
-        "title": "X500 Connector Corrosion and Body-Panel Sealing Bulletin",
+        "title": "A-Pillar Water Leak Disables Door Switches",
         "description": "GM bulletin 10217073 covers specified 2022 GMC Hummer EV Pickups and directs technicians to inspect the X500 electrical connector for corrosion.",
         "solution": "A GMC dealer inspects and repairs the X500 connector when corrosion is present and reseals the relevant body panels under the bulletin whether or not connector corrosion is found.",
         "severity": "medium",
@@ -4918,7 +4962,7 @@
       "identityRule": "The rewrite retains the original component/symptom identity and narrows it to an exact campaign or bulletin.",
       "commerceDecision": "no-commerce",
       "beforeSha256": "06f5d4d80d8c43864b6e67227f322bbb8a0df47b34545e629892d0c0e1546192",
-      "proposalSha256": "dc4a8c90e0373570cdb3f65b90374fbfe1cd357b39268bee571bd46a77de0c1f",
+      "proposalSha256": "c67c2f72516649c6bf846245b551a7f8be3aa66ba55a0c545efd1c12e2347c63",
       "before": {
         "make": "GMC",
         "model": "Hummer EV",
@@ -4976,7 +5020,7 @@
         "trims": [],
         "engines": [],
         "category": "electrical",
-        "title": "High-Voltage Battery Enclosure Water-Ingress Recall",
+        "title": "Battery Pack Enclosure Water Ingress",
         "description": "NHTSA campaign 22V771 covers certain 2022-2023 GMC Hummer EV Pickups. The high-voltage battery-pack enclosure may not be properly sealed, allowing water to enter the pack and increasing the risk of a loss of drive power or fire.",
         "solution": "Check the VIN with GMC or the EV Concierge. Follow the current manufacturer campaign instructions; the public NHTSA record states that the final remedy is under development rather than promising a specific reseal procedure.",
         "severity": "high",
@@ -17542,7 +17586,7 @@
       "identityRule": "The rewrite retains the original component/symptom identity and narrows it to an exact campaign or bulletin.",
       "commerceDecision": "no-commerce",
       "beforeSha256": "3b9923230963f7ee4c893527cc37703d8a1f040c468cf256383e921031152f8a",
-      "proposalSha256": "007dc79b8eb55b724028cc515ee666c24c2e2fd41241711af745b5af4bf7d77c",
+      "proposalSha256": "9b06e00d8f390db4e477bc2dcf395c0bdec9594e07b20c348e6868d6f029c5c9",
       "before": {
         "make": "GMC",
         "model": "Terrain",
@@ -17610,10 +17654,18 @@
           2019,
           2020
         ],
-        "trims": [],
-        "engines": [],
-        "category": "drivetrain",
-        "title": "Start/Stop Accumulator Endcap Recall",
+        "trims": [
+          "SL",
+          "SLE",
+          "SLT",
+          "Denali"
+        ],
+        "engines": [
+          "1.5L Turbo I4 (LYX)",
+          "2.0L Turbo I4 (LTG)"
+        ],
+        "category": "transmission",
+        "title": "Start/Stop Transmission Accumulator Endcap Missing Bolts - Fluid Leak & Loss of Propulsion (Recall)",
         "description": "NHTSA campaign 20V668 covers certain 2018-2020 GMC Terrain vehicles. Missing bolts on the transmission start/stop accumulator endcap can cause a transmission-fluid leak, loss of propulsion and possible fire.",
         "solution": "Check the VIN with GMC or NHTSA. Dealers inspect the start/stop accumulator and replace it if any bolts are missing under GM recall N202313440.",
         "severity": "high",
@@ -18088,7 +18140,7 @@
       "identityRule": "The rewrite retains the original component/symptom identity and narrows it to an exact campaign or bulletin.",
       "commerceDecision": "no-commerce",
       "beforeSha256": "4f975423d5b0d7b2c19751c72218fde747b064896a4e9c46f4dda19d04881755",
-      "proposalSha256": "cd13f821bbb71a40370ed1a7e07de7c522d178f82840e418bc0d6d8f4b3e4cb8",
+      "proposalSha256": "de3afdb31a112037573893d0a72f0a3d64a96b16e9f07d882fa421fc0b2e8585",
       "before": {
         "make": "GMC",
         "model": "Yukon",
@@ -18149,14 +18201,18 @@
         "make": "GMC",
         "model": "Yukon",
         "years": [
-          2021
+          2021,
+          2022,
+          2023
         ],
         "trims": [],
         "engines": [
-          "Diesel engine"
+          "5.3L V8 (L84)",
+          "6.2L V8 (L87)",
+          "3.0L Duramax Diesel (LM2)"
         ],
-        "category": "drivetrain",
-        "title": "Diesel Transmission Control-Valve Rear-Wheel Lockup Recall",
+        "category": "transmission",
+        "title": "10L80 10-Speed Transmission Harsh Shifting, Shudder and Rear-Wheel Lock-Up",
         "description": "NHTSA campaign 24V797 covers certain 2021 diesel GMC Yukon vehicles. A transmission control valve can fail and cause the rear wheels to lock.",
         "solution": "Check the VIN and engine with GMC or NHTSA. Dealers install new transmission-control-module software; GM provides special coverage for transmissions the software identifies as containing a defective valve.",
         "severity": "high",
@@ -18328,7 +18384,7 @@
       "identityRule": "The rewrite retains the original component/symptom identity and narrows it to an exact campaign or bulletin.",
       "commerceDecision": "no-commerce",
       "beforeSha256": "a0f627a28a1fa04480b27c54d2ee29f0390cfdb69278f83e31cd03b481679d1f",
-      "proposalSha256": "d3dc6a9f97d119928911440d377d2cba8fd263adb4da5ecf67cf98c19007d4d4",
+      "proposalSha256": "b553a18cc40ea611b01bbec4a5c8516b446c70f2d15be3fd6d9eee983efa679d",
       "before": {
         "make": "GMC",
         "model": "Yukon",
@@ -18394,12 +18450,17 @@
           2023,
           2024
         ],
-        "trims": [],
+        "trims": [
+          "Denali",
+          "Denali Ultimate",
+          "AT4",
+          "SLT"
+        ],
         "engines": [
-          "6.2L V8 gasoline engine"
+          "6.2L V8 (L87)"
         ],
         "category": "engine",
-        "title": "6.2L Connecting-Rod and Crankshaft Recall",
+        "title": "6.2L L87 V8 Rod Bearing Failure and Loss of Propulsion",
         "description": "NHTSA campaign 25V274 covers certain 2021-2024 GMC Yukon vehicles with the 6.2L gasoline V8. Manufacturing defects in connecting-rod or crankshaft components can damage the engine and cause engine failure.",
         "solution": "Check the VIN with GMC or NHTSA. Dealers inspect and repair or replace the engine as needed. Vehicles that pass receive the specified higher-viscosity oil, oil-fill cap, oil filter and owner-manual update.",
         "severity": "high",
@@ -19044,7 +19105,7 @@
       "identityRule": "The rewrite retains the original component/symptom identity and narrows it to an exact campaign or bulletin.",
       "commerceDecision": "no-commerce",
       "beforeSha256": "10d969429a345b0ec327740ec1a95587527fd5ab29ff8a4dda3120d9ceeab896",
-      "proposalSha256": "7c94a88ff7b0e49cce8136e329609d003d79a69e151e37efdef30e7a0d942389",
+      "proposalSha256": "ddedd720bb0c12e129109532a5ff69bf26d1e855c315a90d6ec6cfcda62e4e58",
       "before": {
         "make": "GMC",
         "model": "Yukon",
@@ -19107,9 +19168,12 @@
           2018
         ],
         "trims": [],
-        "engines": [],
+        "engines": [
+          "5.3L V8 (L83)",
+          "6.2L V8 (L86)"
+        ],
         "category": "brakes",
-        "title": "Decreasing Vacuum Brake-Assist Recall",
+        "title": "Brake Vacuum Pump Failure Causing Hard Brake Pedal",
         "description": "NHTSA campaign 19V645 covers certain 2015-2018 GMC Yukon vehicles. Vacuum-pump output can decrease over time, reducing brake assist, increasing pedal effort and extending stopping distance.",
         "solution": "Check the VIN with GMC or NHTSA. Dealers reprogram the electronic brake-control module free of charge under GM recall N192268490.",
         "severity": "high",
@@ -21874,7 +21938,7 @@
       "identityRule": "The rewrite retains the original component/symptom identity and narrows it to an exact campaign or bulletin.",
       "commerceDecision": "no-commerce",
       "beforeSha256": "ee7a515a1022d450fa47ee65daf24d8c5386a834e04b71ce676ad6c760de6c02",
-      "proposalSha256": "8ff33841c88c1d18d62e93a5889a5bdbf6508e5d074459250969b9b0db8bd9a5",
+      "proposalSha256": "b5463af9834cb7728bc3275e663bfdaa90b6584aee8b2caa975b6e272fe5cc7d",
       "before": {
         "make": "GMC",
         "model": "Yukon XL",
@@ -21928,19 +21992,17 @@
         "make": "GMC",
         "model": "Yukon XL",
         "years": [
-          2007,
-          2008,
-          2009,
-          2010,
-          2011
+          2015,
+          2016,
+          2017
         ],
         "trims": [],
         "engines": [],
         "category": "safety",
-        "title": "Takata Passenger-Airbag Inflator Rupture Recall",
+        "title": "Takata Passenger Airbag Inflator Rupture Risk (Recall 174 / NHTSA 21V-050)",
         "description": "NHTSA campaign 21V050 covers certain 2007-2011 GMC Yukon XL vehicles in specified U.S. states and territories. Long-term heat and humidity exposure can degrade the non-desiccated passenger frontal-airbag inflator propellant and cause the inflator to explode during deployment.",
         "solution": "Check the VIN with GMC or NHTSA because geographic registration history determines coverage. Dealers replace the front passenger-airbag inflator with an alternate inflator free of charge.",
-        "severity": "critical",
+        "severity": "high",
         "confidence": "high",
         "symptoms": [
           "No warning symptom may occur before an inflator rupture during deployment"
@@ -22568,7 +22630,7 @@
       "identityRule": "The rewrite retains the original component/symptom identity and narrows it to an exact campaign or bulletin.",
       "commerceDecision": "no-commerce",
       "beforeSha256": "e789f9e264155d43df72642813f273ea58a90db7b13d35cd189c08da0db3756e",
-      "proposalSha256": "b2ead5d7f3de962f410d5b548fa258e8e05b52c53f6f4b39ff42ec5e7fecb14a",
+      "proposalSha256": "82529def64b7ccd0ff01a99e997a0a21ff4f8feb20ddd973c22d444f47f6e868",
       "before": {
         "make": "GMC",
         "model": "Yukon XL",
@@ -22642,15 +22704,20 @@
         "model": "Yukon XL",
         "years": [
           2000,
-          2001
+          2001,
+          2002,
+          2003,
+          2004,
+          2005,
+          2006
         ],
         "trims": [],
         "engines": [],
         "category": "fuel",
-        "title": "Fuel-Pump Module Connector Recall",
+        "title": "Fuel Pump Module Failure Leading to No-Start or Intermittent Stalling",
         "description": "NHTSA campaign 05V155 covers certain GMC Yukon XL vehicles. Fuel-pump wire connectors can overheat, blow the pump fuse, cause a stall or no-start, create inaccurate fuel readings and potentially allow fuel vapor or liquid to leak through a damaged connector.",
         "solution": "Check the VIN with GMC or NHTSA. Dealers remove the tank and install the specified module-reservoir service kit.",
-        "severity": "high",
+        "severity": "medium",
         "confidence": "high",
         "symptoms": [
           "Engine stall or no-start",
@@ -22686,7 +22753,13 @@
         "reviewedOn": "2026-08-05",
         "contentUpdatedOn": "2026-08-05",
         "contentUpdateSummary": "Replaced the unsupported generic vehicle-page fuel-pump module failure aggregation with exact NHTSA campaign 05V155.",
-        "relatedIssueIds": []
+        "relatedIssueIds": [
+          "gmc-sierra1500-fuel-pump-module-failure-2000",
+          "chevy-cobalt-fuel-pump-failure-2005",
+          "chevy-silverado-fuel-pump-2019",
+          "chevrolet-express-fuel-pump",
+          "chevy-equinox-fuel-pump-stall"
+        ]
       }
     },
     {

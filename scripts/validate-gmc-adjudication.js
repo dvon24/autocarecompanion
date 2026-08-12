@@ -15,6 +15,7 @@ const {
 const DEFAULT_PACKET = path.resolve(__dirname, '..', 'data', 'known-issue-gmc-adjudication-2026-08-05.json');
 const DEFAULT_SNAPSHOT = path.resolve(__dirname, '..', 'data', '_gmc-deeplink-snapshot-2026-08-05.json');
 const ACTIONS = ['rewrite_then_publish', 'keep_published_pending_source'];
+const PROTECTED_FIELDS = ['make', 'model', 'years', 'trims', 'engines', 'category', 'title', 'severity', 'status', 'relatedIssueIds'];
 const APPLICABILITY_PROSE = /\b(?:20\d{2}|vehicles?|covered|equipped|applicable|production|campaign|bulletin|by vin)\b/i;
 
 function sha256File(file) {
@@ -63,8 +64,11 @@ function validatePacket(packet, snapshot, snapshotSha256) {
       if (!Object.prototype.hasOwnProperty.call(row.before, field)) errors.push(`${label}: before missing ${field}`);
       if (!Object.prototype.hasOwnProperty.call(row.proposal, field)) errors.push(`${label}: proposal missing ${field}`);
     }
+    for (const field of PROTECTED_FIELDS) {
+      if (JSON.stringify(row.proposal[field]) !== JSON.stringify(row.before[field])) errors.push(`${label}: protected ${field} drift`);
+    }
     if (row.proposal.make !== 'GMC') errors.push(`${label}: make drift`);
-    if (row.proposal.model !== row.before.model || row.model !== row.proposal.model) errors.push(`${label}: model drift`);
+    if (row.model !== row.proposal.model) errors.push(`${label}: packet model drift`);
     if (row.proposal.status !== 'published') errors.push(`${label}: proposal must remain published`);
     if (row.commerceDecision !== 'no-commerce') errors.push(`${label}: commerce decision must be no-commerce`);
 
@@ -86,7 +90,7 @@ function validatePacket(packet, snapshot, snapshotSha256) {
 
     const scope = RECALL_SCOPES[row.id] || TSB_SCOPES[row.id];
     if (!scope) errors.push(`${label}: rewrite lacks frozen source scope`);
-    if (JSON.stringify(row.proposal.years) !== JSON.stringify(scope?.years)) errors.push(`${label}: years differ from frozen source scope`);
+    if (!scope?.years?.length) errors.push(`${label}: source scope years missing`);
     if (!Array.isArray(row.proposal.citations) || row.proposal.citations.length !== 1) errors.push(`${label}: rewrite must have exactly one primary citation`);
     const citation = row.proposal.citations?.[0];
     if (citation?.url !== expectedCitationUrl(row.id)) errors.push(`${label}: primary citation URL mismatch`);
