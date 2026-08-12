@@ -7,13 +7,14 @@ const {
   ARCHIVE_REASONS,
   DUPLICATES,
   FULL_RECORD_FIELDS,
+  PROTECTED_FIELDS,
   REWRITE_IDS,
   hashValue,
 } = require('./build-genesis-adjudication');
 
 const DEFAULT_PACKET = path.resolve(__dirname, '..', 'data', 'known-issue-genesis-adjudication-2026-08-05.json');
 const DEFAULT_SNAPSHOT = path.resolve(__dirname, '..', 'data', '_genesis-deeplink-snapshot-2026-08-05.json');
-const ACTIONS = ['rewrite_then_publish', 'archive_as_duplicate', 'archive_unsupported'];
+const ACTIONS = ['hold_indexed_identity_byte_identical'];
 const APPLICABILITY_PROSE = /\b(?:20\d{2}|vehicle|covered|equipped|applicable|production|campaign|bulletin|vin)\b/i;
 
 function sha256File(file) {
@@ -21,9 +22,9 @@ function sha256File(file) {
 }
 
 function expectedAction(id) {
-  if (REWRITE_IDS.has(id)) return 'rewrite_then_publish';
-  if (DUPLICATES.has(id)) return 'archive_as_duplicate';
-  if (ARCHIVE_REASONS[id]) return 'archive_unsupported';
+  if (REWRITE_IDS.has(id) || DUPLICATES.has(id) || ARCHIVE_REASONS[id]) {
+    return 'hold_indexed_identity_byte_identical';
+  }
   return null;
 }
 
@@ -56,45 +57,15 @@ function validatePacket(packet, snapshot, snapshotSha256) {
       if (!Object.prototype.hasOwnProperty.call(row.before, field)) errors.push(`${label}: before missing ${field}`);
       if (!Object.prototype.hasOwnProperty.call(row.proposal, field)) errors.push(`${label}: proposal missing ${field}`);
     }
-    if (row.before.make !== 'Genesis' || row.proposal.make !== 'Genesis') errors.push(`${label}: make drift`);
-    if (row.before.model !== row.proposal.model || row.model !== row.proposal.model) errors.push(`${label}: model drift`);
-    if (row.proposal.humanApproved !== false) errors.push(`${label}: proposal must remain unapproved`);
-    if (row.proposal.reportCount !== 0) errors.push(`${label}: reportCount must stay zero`);
-    if (row.proposal.source !== 'manual') errors.push(`${label}: proposal source must be manual`);
-    if (row.proposal.estimatedCostLow !== null || row.proposal.estimatedCostHigh !== null) errors.push(`${label}: cost claims must be null`);
-    if (row.proposal.typicalMileageLow !== null || row.proposal.typicalMileageHigh !== null) errors.push(`${label}: mileage claims must be null`);
-    if (!Array.isArray(row.proposal.fixParts) || row.proposal.fixParts.length) errors.push(`${label}: fixParts must be empty`);
-    if (!Array.isArray(row.proposal.communityRecommendations) || row.proposal.communityRecommendations.length) errors.push(`${label}: communityRecommendations must be empty`);
-    if (/^Archived\s*-/i.test(row.proposal.title || '')) errors.push(`${label}: archive prefix leaked into title`);
-    for (const trim of row.proposal.trims || []) {
-      if (APPLICABILITY_PROSE.test(trim)) errors.push(`${label}: applicability prose in trims: ${trim}`);
+    if (hashValue(row.proposal) !== hashValue(row.before)) errors.push(`${label}: held proposal changed the frozen row`);
+    if (row.proposal.status !== 'published') errors.push(`${label}: held row must remain published`);
+    if (!['rewrite_then_publish', 'archive_as_duplicate', 'archive_unsupported'].includes(row.reviewedAction)) {
+      errors.push(`${label}: reviewed action missing`);
     }
-
-    if (row.action === 'rewrite_then_publish') {
-      if (row.proposal.status !== 'published') errors.push(`${label}: rewrite must propose published`);
-      if (!Array.isArray(row.proposal.years) || !row.proposal.years.length) errors.push(`${label}: rewrite years missing`);
-      if (!Array.isArray(row.proposal.citations) || !row.proposal.citations.length) errors.push(`${label}: rewrite citations missing`);
-      for (const citation of row.proposal.citations || []) {
-        let parsed;
-        try { parsed = new URL(citation.url); } catch { errors.push(`${label}: invalid citation ${citation.url}`); continue; }
-        if (parsed.protocol !== 'https:') errors.push(`${label}: citation is not HTTPS`);
-        if (parsed.hostname !== 'static.nhtsa.gov') errors.push(`${label}: citation is not a direct NHTSA document: ${citation.url}`);
-        if (/api\.nhtsa\.gov|nhtsa-datasets-and-apis/i.test(citation.url)) errors.push(`${label}: generic/API citation remains`);
-        const campaign = `${citation.title}`.match(/\b(\d{2}V\d{3})\b/i)?.[1];
-        if (campaign && !citation.url.toUpperCase().includes(campaign.toUpperCase())) {
-          errors.push(`${label}: campaign ${campaign} does not match citation URL`);
-        }
-      }
-    } else {
-      if (row.proposal.status !== 'archived') errors.push(`${label}: archive action must propose archived`);
-      if (row.proposal.title !== row.before.title) errors.push(`${label}: archive changed title identity`);
-      if ((row.proposal.citations || []).length) errors.push(`${label}: unsupported archive retained citations`);
-      if (row.action === 'archive_as_duplicate') {
-        if (row.canonicalId !== DUPLICATES.get(row.id)) errors.push(`${label}: canonicalId mismatch`);
-        const canonical = packet.rows.find((candidate) => candidate.id === row.canonicalId);
-        if (!canonical || canonical.action !== 'rewrite_then_publish') errors.push(`${label}: canonical proposal missing`);
-        if (!row.proposal.relatedIssueIds.includes(row.canonicalId)) errors.push(`${label}: canonical relatedIssueId missing`);
-      }
+    if (!Array.isArray(row.protectedDrift) || !row.protectedDrift.length) {
+      errors.push(`${label}: held reviewed proposal must identify protected drift`);
+    } else if (row.protectedDrift.some((field) => !PROTECTED_FIELDS.includes(field))) {
+      errors.push(`${label}: protected drift ledger contains an unknown field`);
     }
   }
 

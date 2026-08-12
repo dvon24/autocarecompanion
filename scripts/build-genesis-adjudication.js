@@ -17,6 +17,11 @@ const FULL_RECORD_FIELDS = [
   'lastReportedByOwners', 'reviewedOn', 'contentUpdatedOn', 'contentUpdateSummary', 'relatedIssueIds',
 ];
 
+const PROTECTED_FIELDS = [
+  'make', 'model', 'years', 'trims', 'engines', 'category', 'title', 'severity', 'status',
+  'relatedIssueIds',
+];
+
 const REWRITE_IDS = new Set([
   'genesis-g70-abs-module-electrical-short-causing-engine-bay-fire-risk',
   'genesis-g70-headlight-condensation-moisture-causing-lighting-failure',
@@ -319,16 +324,26 @@ function main() {
       proposal = proposedArchived(current, action, reason, null);
     }
     const before = fullRecord(current);
+    const reviewedAction = action;
+    const reviewedProposal = proposal;
+    const protectedDrift = PROTECTED_FIELDS.filter(
+      (field) => hashValue(before[field]) !== hashValue(reviewedProposal[field]),
+    );
+    action = 'hold_indexed_identity_byte_identical';
+    proposal = before;
     return {
       id: current.id,
       model: current.model,
       action,
+      reviewedAction,
       reason,
       canonicalId,
-      identityRule: action === 'rewrite_then_publish'
-        ? 'The proposed title remains within the original component/symptom identity; no unrelated campaign is substituted.'
-        : 'The original title is preserved while the unsupported row is removed from publication; no unrelated campaign is substituted.',
-      commerceDecision: 'no-commerce',
+      protectedDrift,
+      reviewedProposalSha256: hashValue(reviewedProposal),
+      identityRule: reviewedAction === 'rewrite_then_publish'
+        ? 'The evidence-backed correction changes protected indexed identity or scope, so the live row remains byte-identical pending an approved redirect or identity policy.'
+        : 'The reviewed archive would remove an indexed page, so the live row remains byte-identical pending an approved redirect or retirement policy.',
+      commerceDecision: 'preserve-frozen-record',
       beforeSha256: hashValue(before),
       proposalSha256: hashValue(proposal),
       before,
@@ -336,7 +351,7 @@ function main() {
     };
   });
 
-  const actions = ['rewrite_then_publish', 'archive_as_duplicate', 'archive_unsupported'];
+  const actions = ['hold_indexed_identity_byte_identical'];
   const summary = Object.fromEntries(actions.map((action) => [action, rows.filter((row) => row.action === action).length]));
   summary.total = rows.length;
   const byModel = {};
@@ -354,9 +369,9 @@ function main() {
     make: 'Genesis',
     safetyContract: [
       'No production database write, cache purge, deployment, or public-page change is authorized by this packet.',
-      'Every published proposal keeps the original issue identity and uses a direct Genesis/NHTSA primary document.',
+      'All 63 published rows remain byte-identical; this packet authorizes zero catalog writes.',
       'An unrelated official campaign may never replace the issue named by an existing ID.',
-      'All proposals remain no-commerce until exact repair role and fitment can be independently verified.',
+      'No indexed page may be archived without a separately approved redirect or retirement policy.',
       'Trim values may contain trim names only, never applicability prose.',
     ],
     source: {
@@ -382,6 +397,7 @@ module.exports = {
   DUPLICATES,
   FULL_RECORD_FIELDS,
   REWRITE_IDS,
+  PROTECTED_FIELDS,
   fullRecord,
   hashValue,
   safeTrims,
