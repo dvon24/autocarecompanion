@@ -16,9 +16,9 @@
   ],
   "source": {
     "snapshotFile": "data/_hyundai-deeplink-snapshot-2026-08-06.json",
-    "snapshotSha256": "f3e74267205477804060c49c988221cdc4dfcfc4586df369601c8c64736cce60",
-    "snapshotGeneratedAt": "2026-08-06T02:37:36.989Z",
-    "snapshotHash": "444457abb31ca6a5ead423878b37ca790d44a87c74ffa43259362cb4218ba632",
+    "snapshotSha256": "32e15c7ea3495a55c2a1f9b3e0313501d2a2c2f1025a0ee14fea7cf327ba0082",
+    "snapshotGeneratedAt": "2026-08-12T13:03:45.743Z",
+    "snapshotHash": "ba9d3aba10f2d28896a8cabe76b1cddf8fdc4a80aa0e8a4bf97c0e7e1b50636f",
     "i20RecordCount": 5
   },
   "observations": [
@@ -758,18 +758,7 @@
       "identityRule": "The same indexed 51DT07 i20 fuel-pump identity stays on the existing ID, title and category; only facts from exact official sources remain.",
       "commerceDecision": "no-commerce",
       "changedFields": [
-        "description",
-        "solution",
-        "symptoms",
-        "affectedSystems",
-        "estimatedCostLow",
-        "estimatedCostHigh",
-        "citations",
-        "humanApproved",
-        "source",
-        "reviewedOn",
-        "contentUpdatedOn",
-        "contentUpdateSummary"
+        "humanApproved"
       ],
       "evidence": [
         {
@@ -791,7 +780,7 @@
           "observation": "Traficom Finland - Hyundai i20 / i20 N Fuel Pump Recall 51DT07 supports the proposed defect, scope or remedy."
         }
       ],
-      "beforeSha256": "a78e0ecbf1180fb3c2bd393f474b29d1594fc85be3d39cfa69c95863f5483b96",
+      "beforeSha256": "755199a6d97d077d80ebf8531674ad6b8afc3bc342736793fb1e7247b5709488",
       "proposalSha256": "3d19ab13a1c9b77a847e7b835c26312aa667e63cfe9e8574c05c8219c16265a0",
       "before": {
         "make": "Hyundai",
@@ -805,65 +794,51 @@
         "engines": [],
         "category": "fuel",
         "title": "Fuel Pump Impeller Failure — Engine Stall Recall (51DT07, RAPEX Alert 40/2025)",
-        "description": "Hyundai recalled 181,726 i20, i20 N and Bayon vehicles built between 1 April 2021 and early January 2023 (recall code 51DT07, EU Safety Gate/RAPEX alert 40/2025) because the fuel pump impeller can swell at high operating temperatures and from fuel exposure. The swollen impeller contacts the pump housing, causing reduced fuel delivery, sudden loss of engine power, stalling, or a no-start. An unexpected stall in traffic increases the risk of a collision, which is why the campaign was issued as a safety recall across Europe.",
-        "solution": "The fuel pump is replaced free of charge under Hyundai recall campaign 51DT07. Owners of 2021-2023 i20/i20 N/Bayon vehicles should check their VIN with a Hyundai dealer or the national recall register and have the work done promptly.",
+        "description": "EU Safety Gate alert SR/03401/25 covers Hyundai i20, i20 N and Bayon vehicles under campaign 51DT07. The alert says the fuel-pump impeller can swell from fuel exposure and high operating temperatures until it contacts the pump housing. Fuel delivery can then fall, causing loss of engine power or the vehicle to stop and increasing injury risk.",
+        "solution": "Ask an authorized Hyundai dealer to check the VIN for campaign 51DT07. Hyundai's Slovenia recall notice says the free remedy replaces the fuel pump and tube assembly. It lists regular i20 and Bayon production from April 1, 2021 through December 3, 2022, and i20 N production from June 1, 2021 through January 4, 2023.",
         "severity": "high",
         "confidence": "high",
         "symptoms": [
-          "Sudden loss of engine power while driving",
-          "Engine stalling without warning",
-          "Engine cranks but will not start",
-          "Hesitation or sputtering under acceleration",
-          "Check engine light with low fuel pressure faults"
+          "Loss of engine power",
+          "Vehicle may stop because fuel-pump performance is reduced"
         ],
-        "affectedSystems": [],
+        "affectedSystems": [
+          "Fuel pump",
+          "Fuel-pump impeller",
+          "Fuel-pump tube assembly"
+        ],
         "dtcCodes": [],
-        "estimatedCostLow": 0,
-        "estimatedCostHigh": 0,
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
         "typicalMileageLow": null,
         "typicalMileageHigh": null,
         "citations": [
           {
-            "url": "https://car-recalls.eu/recall/hyundai-i20-2021-2022-fuel-pump/",
+            "url": "https://ec.europa.eu/safety-gate-alerts/screen/webReport/alertDetail/10096118",
             "type": "recall",
-            "title": "Recall: Hyundai i20 (2021-2022) fuel pump impeller — code 51DT07, alert 40/2025"
+            "title": "EU Safety Gate Alert SR/03401/25 - Hyundai i20, i20 N and Bayon Fuel Pump"
           },
           {
-            "url": "https://car-recalls.eu/hyundai-recalls-180000-cars-faulty-fuel-pump-40-25/",
-            "type": "article",
-            "title": "Hyundai recalls over 180,000 cars due to faulty fuel pump (week 40/25)"
-          },
-          {
-            "url": "https://car-recalls.eu/recall/hyundai-bayon-2021-2022-fuel-pump/",
+            "url": "https://www.hyundai.si/lastnistvo/vpoklic-vozila/servisni-vpoklic-vozil-hyundai-ioniq-i20-bayon",
             "type": "recall",
-            "title": "Recall: Hyundai Bayon (2021-2022) fuel pump — same 51DT07 campaign"
+            "title": "Hyundai Slovenia - Service Recall 51DT07 for i20, Bayon and i20 N"
           },
           {
-            "url": "https://n-cars.net/forums/threads/recall-for-fuel-pump-replacement.14091/",
-            "type": "forum",
-            "title": "N-cars.net: Recall for fuel pump replacement (i20 N owners, AU/UK)"
-          },
-          {
-            "url": "https://n-cars.net/forums/threads/u-k-recall-on-i20n-for-fuel-pump-replacement.14470/",
-            "type": "forum",
-            "title": "N-cars.net: U.K. recall on i20N for fuel pump replacement"
-          },
-          {
-            "url": "https://www.hyundai-forums.com/threads/fuel-pump-recall-i20-n-line.725606/",
-            "type": "forum",
-            "title": "Hyundai Forums: Fuel Pump recall i20 N Line"
+            "url": "https://takaisinkutsut.traficom.fi/recall/17844",
+            "type": "recall",
+            "title": "Traficom Finland - Hyundai i20 / i20 N Fuel Pump Recall 51DT07"
           }
         ],
         "communityRecommendations": [],
         "fixParts": [],
         "humanApproved": true,
         "reportCount": 0,
-        "source": "ai-researched",
+        "source": "manual",
         "status": "published",
         "lastReportedByOwners": "",
-        "reviewedOn": "2026-06-12",
-        "contentUpdatedOn": "",
-        "contentUpdateSummary": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Kept the same indexed 51DT07 fuel-pump-impeller identity and 2021-2023 span, replaced aggregator/forum links with exact EU, Hyundai and Finnish-regulator deep links, distinguished regular-i20 and i20-N production windows, and removed the unsupported worldwide count, no-start, hesitation, warning-light, DTC and cost claims.",
         "relatedIssueIds": []
       },
       "proposal": {

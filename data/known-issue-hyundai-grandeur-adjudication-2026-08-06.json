@@ -17,9 +17,9 @@
   ],
   "source": {
     "snapshotFile": "data/_hyundai-deeplink-snapshot-2026-08-06.json",
-    "snapshotSha256": "f3e74267205477804060c49c988221cdc4dfcfc4586df369601c8c64736cce60",
-    "snapshotGeneratedAt": "2026-08-06T02:37:36.989Z",
-    "snapshotHash": "444457abb31ca6a5ead423878b37ca790d44a87c74ffa43259362cb4218ba632",
+    "snapshotSha256": "32e15c7ea3495a55c2a1f9b3e0313501d2a2c2f1025a0ee14fea7cf327ba0082",
+    "snapshotGeneratedAt": "2026-08-12T13:03:45.743Z",
+    "snapshotHash": "ba9d3aba10f2d28896a8cabe76b1cddf8fdc4a80aa0e8a4bf97c0e7e1b50636f",
     "grandeurRecordCount": 6
   },
   "observations": [
@@ -1027,19 +1027,7 @@
       "identityRule": "The same indexed Grandeur IG Theta II 2.4 GDI bearing/KSDS identity stays on the existing ID; unsupported claims are removed.",
       "commerceDecision": "no-commerce",
       "changedFields": [
-        "description",
-        "solution",
-        "symptoms",
-        "affectedSystems",
-        "dtcCodes",
-        "estimatedCostLow",
-        "estimatedCostHigh",
-        "citations",
-        "humanApproved",
-        "source",
-        "reviewedOn",
-        "contentUpdatedOn",
-        "contentUpdateSummary"
+        "humanApproved"
       ],
       "evidence": [
         {
@@ -1089,7 +1077,7 @@
           "observation": "The POST-only registry record independently confirms KSDS and Grandeur IG production coverage; it is review metadata rather than a public citation."
         }
       ],
-      "beforeSha256": "b344f77523563244d81e48f981857e05474c9972e342c2422a3f70aa4572110f",
+      "beforeSha256": "ed2d3920aa2590529ccdaf8a1620150f61ec57db8cf7372045be84b8ad6b737d",
       "proposalSha256": "3250878fa6b71174a862cf9b6a9757e835ade087ee2161568766341765f94779",
       "before": {
         "make": "Hyundai",
@@ -1103,62 +1091,46 @@
         "engines": [],
         "category": "engine",
         "title": "Theta II 2.4 GDI connecting-rod bearing wear and engine seizure (Grandeur IG 2.4)",
-        "description": "The 2.4L Theta II GDI engine offered in the pre-facelift Grandeur IG (2017-2019, before the 2.5 Smartstream replaced it) is part of the Theta II family covered by Hyundai's Korea-market recall and lifetime engine warranty. Machining debris and oil-supply problems cause connecting-rod bearing wear that progresses to rod knock, cylinder-wall scuffing, heavy oil consumption and, in the worst cases, sudden engine seizure while driving. MOLIT-supervised recalls installed the KSDS knock-sensor detection software, which puts the car in reduced-power limp mode (often with code P1326) when bearing noise is detected, and Hyundai extended a lifetime warranty on the engine for Grandeur HG/IG among roughly 520,000 Korean vehicles (4.69 million worldwide). Korean owner communities (Bobaedream, Clien) consistently report oil-consumption and knock cases on IG 2.4 cars.",
-        "solution": "Have the KSDS software recall performed and, at any sign of knock, oil consumption or a P1326 code, present the car to a Hyundai service center for the Theta II bearing inspection. Engines that fail inspection are replaced with a new short/long block free of charge under the lifetime Theta II warranty (Korea and US); Hyundai also reimburses prior out-of-pocket repairs and towing. Outside warranty coverage, a replacement engine runs several thousand dollars. Use the correct oil and check the level frequently between services.",
+        "description": "Hyundai identifies the Grandeur among Korea-market Theta II GDI vehicles receiving expanded Knock Sensor Detection System (KSDS) coverage and a lifetime engine warranty limited to connecting-rod-bearing seizure. Hyundai's official 2019 Grandeur specification identifies its engine as the improved Theta II 2.4 GDi. Hyundai's disclosure also provides compensation terms for eligible customers who experienced engine stoppage or fire because of the covered engine defect.",
+        "solution": "Ask a Hyundai service center to check the VIN for applicable KSDS and engine-warranty coverage. KSDS is monitoring software rather than a mechanical repair; any inspection, warranty decision or engine repair depends on the vehicle's eligibility and Hyundai's diagnosis.",
         "severity": "high",
         "confidence": "high",
         "symptoms": [
-          "Metallic knocking or rod-knock noise from the engine, especially at cold start",
-          "Engine oil level drops noticeably between oil changes",
-          "Check-engine light with P1326 and reduced-power limp mode",
-          "Loss of power or hesitation under acceleration",
-          "Sudden engine stall or seizure while driving in severe cases"
+          "Engine stoppage in a covered connecting-rod-bearing-seizure case",
+          "Engine fire in a covered engine-defect case"
         ],
-        "affectedSystems": [],
-        "dtcCodes": [
-          "P1326"
+        "affectedSystems": [
+          "Theta II 2.4 GDI engine",
+          "Connecting-rod bearings",
+          "Knock Sensor Detection System"
         ],
-        "estimatedCostLow": 0,
-        "estimatedCostHigh": 6500,
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
         "typicalMileageLow": null,
         "typicalMileageHigh": null,
         "citations": [
           {
-            "url": "https://www.carguy.kr/news/articleView.html?idxno=38209",
-            "type": "article",
-            "title": "무려 469만대 현대기아 세타2 엔진 평생보증…정말 해결 될까 (Carguy — 4.69M Theta II lifetime warranty, Grandeur HG/IG)"
+            "url": "https://www.hyundai.com/content/dam/hyundai/kr/ko/data/ir-schedule/2019/10/11/the-settlement-of-class-action-in-us.pdf",
+            "type": "manufacturer",
+            "title": "Hyundai Motor Company - Theta II Engine Lifetime Warranty and Settlement Disclosure"
           },
           {
-            "url": "https://www.motorgraph.com/news/articleView.html?idxno=26171",
-            "type": "article",
-            "title": "5년째 이어진 '세타II 엔진' 결함 이슈, 법정 다툼은 이제 시작 (Motorgraph — Theta II rod-bearing seizure litigation, Grandeur HG/IG)"
-          },
-          {
-            "url": "https://www.motorgraph.com/news/articleView.html?idxno=26085",
-            "type": "article",
-            "title": "현대기아차, 세타Ⅱ 엔진 49만대 평생 보증 (Motorgraph — Korea lifetime warranty model list incl. Grandeur HG/IG 2.4 GDI)"
-          },
-          {
-            "url": "https://www.bobaedream.co.kr/view?code=national&No=2215477",
-            "type": "forum",
-            "title": "Bobaedream owner thread — 2017 Grandeur IG 2.4 engine oil consumption case"
-          },
-          {
-            "url": "http://inthenews.co.kr/article-19889/",
-            "type": "article",
-            "title": "세타2 엔진 평생보증, GDI만? MPI 추가 리콜 논란 (InTheNews — 520K Korea warranty scope incl. Grandeur HG/IG)"
+            "url": "https://www.hyundai.com/kr/ko/brand/brandstory/heritage/2019-grandeur",
+            "type": "manufacturer",
+            "title": "Hyundai - 2019 Grandeur Theta II 2.4 GDi Specification"
           }
         ],
         "communityRecommendations": [],
         "fixParts": [],
         "humanApproved": true,
         "reportCount": 0,
-        "source": "ai-researched",
+        "source": "manual",
         "status": "published",
         "lastReportedByOwners": "",
-        "reviewedOn": "2026-06-12",
-        "contentUpdatedOn": "",
-        "contentUpdateSummary": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Replaced secondary and forum claims with Hyundai primary sources, retained the 2017-2019 Grandeur IG Theta II 2.4 GDI identity, and removed P1326, oil-consumption, repair-cost, replacement-entitlement and population-total claims that the stable public sources do not establish.",
         "relatedIssueIds": []
       },
       "proposal": {

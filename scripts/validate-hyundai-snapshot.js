@@ -5,8 +5,8 @@ const { FULL_RECORD_FIELDS, normalizedFileHash, stableValue } = require('./hyund
 const { hashValue: snapshotHashValue } = require('./apply-known-issue-catalog-deeplinks');
 
 const SNAPSHOT = path.resolve(__dirname, '..', 'data', '_hyundai-deeplink-snapshot-2026-08-06.json');
-const EXPECTED_SHA256 = 'f3e74267205477804060c49c988221cdc4dfcfc4586df369601c8c64736cce60';
-const EXPECTED_SNAPSHOT_HASH = '444457abb31ca6a5ead423878b37ca790d44a87c74ffa43259362cb4218ba632';
+const EXPECTED_SHA256 = '32e15c7ea3495a55c2a1f9b3e0313501d2a2c2f1025a0ee14fea7cf327ba0082';
+const EXPECTED_SNAPSHOT_HASH = 'ba9d3aba10f2d28896a8cabe76b1cddf8fdc4a80aa0e8a4bf97c0e7e1b50636f';
 const EXPECTED_MODELS = {
   Accent: 7, Azera: 5, Casper: 6, Creta: 6, Elantra: 29, Entourage: 4, Equus: 4, Excel: 4,
   Genesis: 4, 'Genesis Coupe': 4, Grandeur: 6, HB20: 6, i20: 5, Ioniq: 4, 'Ioniq 5': 14,
@@ -15,10 +15,10 @@ const EXPECTED_MODELS = {
   Veracruz: 5, XG350: 4,
 };
 const EXPECTED_INVENTORY = {
-  publishedIssueCount: 242, commerceIssueCount: 130, claimCount: 252, fixPartClaimCount: 0,
-  communityClaimCount: 252, noLinkClaimCount: 0, linkCount: 252, validProductLinkCount: 0,
-  invalidOrSearchLinkCount: 252, recallFirstClaimCount: 0, dtcLinkedCommerceIssueCount: 49,
-  clickedCommerceIssueCount: 6, correctedIssueCount: 0, totalRecordedClicks: 6,
+  publishedIssueCount: 242, commerceIssueCount: 119, claimCount: 240, fixPartClaimCount: 12,
+  communityClaimCount: 228, noLinkClaimCount: 228, linkCount: 14, validProductLinkCount: 14,
+  invalidOrSearchLinkCount: 0, recallFirstClaimCount: 0, dtcLinkedCommerceIssueCount: 44,
+  clickedCommerceIssueCount: 5, correctedIssueCount: 55, totalRecordedClicks: 6,
   deepLinkedClicks: 0, nonProductClicks: 6,
 };
 

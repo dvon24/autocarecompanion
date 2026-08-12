@@ -16,9 +16,9 @@
   ],
   "source": {
     "snapshotFile": "data/_hyundai-deeplink-snapshot-2026-08-06.json",
-    "snapshotSha256": "f3e74267205477804060c49c988221cdc4dfcfc4586df369601c8c64736cce60",
-    "snapshotGeneratedAt": "2026-08-06T02:37:36.989Z",
-    "snapshotHash": "444457abb31ca6a5ead423878b37ca790d44a87c74ffa43259362cb4218ba632",
+    "snapshotSha256": "32e15c7ea3495a55c2a1f9b3e0313501d2a2c2f1025a0ee14fea7cf327ba0082",
+    "snapshotGeneratedAt": "2026-08-12T13:03:45.743Z",
+    "snapshotHash": "ba9d3aba10f2d28896a8cabe76b1cddf8fdc4a80aa0e8a4bf97c0e7e1b50636f",
     "konaRecordCount": 13
   },
   "observations": [
@@ -227,16 +227,7 @@
       "identityRule": "The same indexed component, failure mechanism and outcome stay on the existing ID, title and category; only facts from the exact official record remain.",
       "commerceDecision": "no-commerce",
       "changedFields": [
-        "description",
-        "solution",
-        "symptoms",
-        "affectedSystems",
-        "citations",
-        "humanApproved",
-        "source",
-        "reviewedOn",
-        "contentUpdatedOn",
-        "contentUpdateSummary"
+        "humanApproved"
       ],
       "evidence": [
         {
@@ -246,7 +237,7 @@
           "observation": "NHTSA Part 573 Report 23V-901 - 2024 Kona 12-Volt Positive Wiring supports the proposed identity, scope and remedy."
         }
       ],
-      "beforeSha256": "55aac2d3e3530e7940cb3751caf0c7271ba13d925fe6ddaa1bdb4e34e243455e",
+      "beforeSha256": "09eed087eab02e48aae2b7f9a2ea09a8b56fcbe501f725f6ea5ef855b8d2bb24",
       "proposalSha256": "46be3fa10f4a4d69449eb913873ea4e0b231e15488b36e088e350aa7e0635d22",
       "before": {
         "make": "Hyundai",
@@ -258,17 +249,19 @@
         "engines": [],
         "category": "electrical",
         "title": "12V Battery Cable Chafing Against ECM Bracket Short Circuit and Fire (2024 Kona, Recall 23V901)",
-        "description": "On certain 2024 Konas with the 1.6L turbo engine, the 12-volt positive battery cable can chafe against the engine/electronic control module bracket. During a crash the abraded cable may short circuit, which can cause an engine-compartment fire. The defect was discovered after an IIHS frontal-overlap crash test produced a fire on a 2024 Kona 1.6T.",
-        "solution": "NHTSA Recall 23V901000 (Hyundai Recall 252). Dealers install protective sheathing/conduit over the affected wiring, free of charge. Owners of 2024 Konas should check their VIN against the recall and schedule the free remedy.",
+        "description": "NHTSA recall 23V-901 covers 10,984 model-year 2024 Kona vehicles equipped with 1.6T-GDI engines. During a frontal crash, the engine control module bracket can contact and damage the 12-volt positive battery wiring, causing an electrical short. A short can increase the risk of a post-crash engine-compartment fire.",
+        "solution": "Check the VIN for NHTSA recall 23V-901 (Hyundai 252). Hyundai dealers install protective sheathing over the 12-volt positive and alternator wiring connected to the engine-compartment junction block, free of charge.",
         "severity": "high",
         "confidence": "high",
         "symptoms": [
-          "Chafed or damaged 12V positive battery cable",
-          "Risk of electrical short during a crash",
-          "Engine-compartment fire after a collision",
-          "Burning smell or electrical fault (in severe cases)"
+          "Smoke from the engine compartment after a crash",
+          "Burning or melting odor"
         ],
-        "affectedSystems": [],
+        "affectedSystems": [
+          "12-volt positive battery wiring",
+          "Alternator wiring",
+          "Engine control module bracket"
+        ],
         "dtcCodes": [],
         "estimatedCostLow": null,
         "estimatedCostHigh": null,
@@ -276,31 +269,21 @@
         "typicalMileageHigh": null,
         "citations": [
           {
-            "url": "https://auto-recalls.justia.com/hyundai/kona/2024/23v901000",
-            "type": "recall",
-            "title": "NHTSA Recall 23V901000 - 2024 Hyundai Kona 12V Battery Cables"
-          },
-          {
             "url": "https://static.nhtsa.gov/odi/rcl/2023/RCLRPT-23V901-8581.PDF",
-            "type": "nhtsa",
-            "title": "NHTSA Part 573 Safety Recall Report 23V-901"
-          },
-          {
-            "url": "https://www.autoevolution.com/news/your-2024-hyundai-kona-may-catch-fire-south-korean-automaker-recalls-10984-vehicles-226891.html",
-            "type": "article",
-            "title": "Your 2024 Hyundai Kona May Catch Fire - autoevolution"
+            "type": "recall",
+            "title": "NHTSA Part 573 Report 23V-901 - 2024 Kona 12-Volt Positive Wiring"
           }
         ],
         "communityRecommendations": [],
         "fixParts": [],
         "humanApproved": true,
         "reportCount": 0,
-        "source": "ai-researched",
+        "source": "manual",
         "status": "published",
         "lastReportedByOwners": "",
-        "reviewedOn": "2026-06-17",
-        "contentUpdatedOn": "",
-        "contentUpdateSummary": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Kept the indexed 12-volt-cable/ECM-bracket/fire identity, replaced secondary citations with the exact Part 573 report, and limited the defect to the documented frontal-crash condition and remedy.",
         "relatedIssueIds": []
       },
       "proposal": {
@@ -359,17 +342,7 @@
       "identityRule": "The same indexed component, failure mechanism and outcome stay on the existing ID, title and category; only facts from the exact official record remain.",
       "commerceDecision": "no-commerce",
       "changedFields": [
-        "description",
-        "solution",
-        "symptoms",
-        "affectedSystems",
-        "dtcCodes",
-        "citations",
-        "humanApproved",
-        "source",
-        "reviewedOn",
-        "contentUpdatedOn",
-        "contentUpdateSummary"
+        "humanApproved"
       ],
       "evidence": [
         {
@@ -379,7 +352,7 @@
           "observation": "NHTSA Part 573 Report 21V-301 - Kona 2.0L Nu MPI Piston Oil Rings supports the proposed identity, scope and remedy."
         }
       ],
-      "beforeSha256": "fb4c2474f7acac5d33624d6627d14f40d8ccc96a291d15cb6c388121679e9a7c",
+      "beforeSha256": "6e2f2265a0c89c2319f0cb8b71073d21ed70ea895c039082e837a01a641ceaaa",
       "proposalSha256": "002a033ac9fcceb4dde3c66ef0b674402770e530f19096a5408070744e62f869",
       "before": {
         "make": "Hyundai",
@@ -393,52 +366,44 @@
         "engines": [],
         "category": "engine",
         "title": "2.0L Nu MPI Piston Ring Defect Causing Knocking and Engine Seizure (Recall 21V301)",
-        "description": "On 2019-2021 Konas with the 2.0L Nu MPI engine, piston oil rings that were not consistently heat-treated can scuff the cylinder bores. This causes rising oil consumption, a progressively louder engine knock, and ultimately engine seizure or stall; a seized engine can throw a connecting rod and leak oil onto hot exhaust components, creating a fire risk.",
-        "solution": "NHTSA Recall 21V301 (Hyundai Recall 203). Dealers inspect and replace the engine free of charge if damage is found, and install Piston Ring Noise Sensing System (PNSS) software that monitors engine vibration to detect abnormal conditions. Owners with knocking, excessive oil use, or stalling should have the engine inspected.",
+        "description": "NHTSA recall 21V-301 covers 95,223 model-year 2019-2021 Kona vehicles equipped with 2.0-liter Nu MPI engines. Inconsistent nitride heat treatment can make a piston oil ring excessively hard, allowing its outer edge to chip and scuff the cylinder bore. Resulting oil consumption and engine damage can cause knocking, reduced power or hesitation, warning lights and, with continued operation, a seized connecting-rod bearing, engine stall or an oil-fed fire.",
+        "solution": "Check the VIN for NHTSA recall 21V-301 (Hyundai 203). Hyundai dealers inspect the engine for cylinder-bore and piston-skirt damage, replace the engine if qualifying damage is found, and install enhanced Piston Noise Sensing System software, free of charge.",
         "severity": "high",
         "confidence": "high",
         "symptoms": [
-          "Engine knocking or ticking noise",
-          "Excessive oil consumption / low oil between changes",
-          "Engine stalling or loss of power",
-          "Illuminated check engine / oil pressure light",
-          "Engine seizure or no-start"
+          "Abnormal engine knocking noise",
+          "Reduced motive power or hesitation",
+          "Check Engine warning lamp",
+          "Engine oil-pressure warning lamp",
+          "Burning smell, oil leakage or smoke"
         ],
-        "affectedSystems": [],
-        "dtcCodes": [
-          "P1326"
+        "affectedSystems": [
+          "2.0-liter Nu MPI engine",
+          "Piston oil rings",
+          "Cylinder bores"
         ],
+        "dtcCodes": [],
         "estimatedCostLow": null,
         "estimatedCostHigh": null,
         "typicalMileageLow": null,
         "typicalMileageHigh": null,
         "citations": [
           {
-            "url": "https://auto-recalls.justia.com/hyundai/kona/2021/21v301000",
+            "url": "https://static.nhtsa.gov/odi/rcl/2021/RCLRPT-21V301-4965.PDF",
             "type": "recall",
-            "title": "NHTSA Recall 21V301000 - 2021 Hyundai Kona Engine (piston ring)"
-          },
-          {
-            "url": "https://repairpal.com/recall/21V301000",
-            "type": "recall",
-            "title": "Hyundai Recall: Engine Stalls Due To Piston Ring Failure (21V301000)"
-          },
-          {
-            "url": "https://www.consumerreports.org/cars/car-recalls-defects/hyundai-elantra-kona-veloster-recalled-due-to-engine-problems-a1121205321/",
-            "type": "article",
-            "title": "Hyundai Elantra, Kona, and Veloster Recalled Due to Engine Problems - Consumer Reports"
+            "title": "NHTSA Part 573 Report 21V-301 - Kona 2.0L Nu MPI Piston Oil Rings"
           }
         ],
         "communityRecommendations": [],
         "fixParts": [],
         "humanApproved": true,
         "reportCount": 0,
-        "source": "ai-researched",
+        "source": "manual",
         "status": "published",
         "lastReportedByOwners": "",
-        "reviewedOn": "2026-06-17",
-        "contentUpdatedOn": "",
-        "contentUpdateSummary": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Kept the indexed piston-ring/knock/seizure identity, retained the exact 2019-2021 Kona 2.0L scope, replaced secondary sources with the Part 573 report, and removed the unsupported P1326 and generic no-start claims.",
         "relatedIssueIds": []
       },
       "proposal": {
@@ -503,8 +468,8 @@
       "commerceDecision": "unchanged-pending-audit",
       "changedFields": [],
       "evidence": [],
-      "beforeSha256": "86519ad223c2ce2bc85f0c534314b20b8e2bf057f3b965798d3b9d38a49ef160",
-      "proposalSha256": "86519ad223c2ce2bc85f0c534314b20b8e2bf057f3b965798d3b9d38a49ef160",
+      "beforeSha256": "e6d053f8f5678691671d9cf63cca24f67567b72aa56ade7d0526d0340f0c0e7f",
+      "proposalSha256": "e6d053f8f5678691671d9cf63cca24f67567b72aa56ade7d0526d0340f0c0e7f",
       "before": {
         "make": "Hyundai",
         "model": "Kona",
@@ -561,15 +526,13 @@
             "type": "part",
             "content": "TYC blower motor — direct replacement for HVAC fan",
             "partName": "Blower Motor",
-            "partBrand": "TYC",
-            "affiliateUrl": "https://www.amazon.com/s?k=TYC%20blower%20motor&tag=au7o-20"
+            "partBrand": "TYC"
           },
           {
             "type": "part",
             "content": "Wix cabin air filter — filters dust, pollen, and odors",
             "partName": "Cabin Air Filter",
-            "partBrand": "Wix",
-            "affiliateUrl": "https://www.amazon.com/s?k=Wix%20cabin%20air%20filter&tag=au7o-20"
+            "partBrand": "Wix"
           }
         ],
         "fixParts": [],
@@ -642,15 +605,13 @@
             "type": "part",
             "content": "TYC blower motor — direct replacement for HVAC fan",
             "partName": "Blower Motor",
-            "partBrand": "TYC",
-            "affiliateUrl": "https://www.amazon.com/s?k=TYC%20blower%20motor&tag=au7o-20"
+            "partBrand": "TYC"
           },
           {
             "type": "part",
             "content": "Wix cabin air filter — filters dust, pollen, and odors",
             "partName": "Cabin Air Filter",
-            "partBrand": "Wix",
-            "affiliateUrl": "https://www.amazon.com/s?k=Wix%20cabin%20air%20filter&tag=au7o-20"
+            "partBrand": "Wix"
           }
         ],
         "fixParts": [],
@@ -677,8 +638,8 @@
       "commerceDecision": "unchanged-pending-audit",
       "changedFields": [],
       "evidence": [],
-      "beforeSha256": "c68486d3ed183e0488d743c8b2c02f2a4adc014064686aceef051d707b402628",
-      "proposalSha256": "c68486d3ed183e0488d743c8b2c02f2a4adc014064686aceef051d707b402628",
+      "beforeSha256": "c45fc689994eb21ba63166f3ddc51bfc4b3d24af46fffe5d3e5fdfdbcca43b43",
+      "proposalSha256": "c45fc689994eb21ba63166f3ddc51bfc4b3d24af46fffe5d3e5fdfdbcca43b43",
       "before": {
         "make": "Hyundai",
         "model": "Kona",
@@ -740,8 +701,7 @@
             "content": "Use only Hyundai SP-CVT1 fluid - generic CVT fluid will damage the IVT chain",
             "upvotes": 0,
             "partName": "SP-CVT1 Transmission Fluid",
-            "partBrand": "Hyundai",
-            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20SP-CVT1%20Transmission%20Fluid&tag=au7o-20"
+            "partBrand": "Hyundai"
           },
           {
             "type": "tip",
@@ -825,8 +785,7 @@
             "content": "Use only Hyundai SP-CVT1 fluid - generic CVT fluid will damage the IVT chain",
             "upvotes": 0,
             "partName": "SP-CVT1 Transmission Fluid",
-            "partBrand": "Hyundai",
-            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20SP-CVT1%20Transmission%20Fluid&tag=au7o-20"
+            "partBrand": "Hyundai"
           },
           {
             "type": "tip",
@@ -859,8 +818,8 @@
       "commerceDecision": "unchanged-pending-audit",
       "changedFields": [],
       "evidence": [],
-      "beforeSha256": "e8620b38c514c795388a03639b73ede59cb01e1873aacd9189fc1466c74c90f8",
-      "proposalSha256": "e8620b38c514c795388a03639b73ede59cb01e1873aacd9189fc1466c74c90f8",
+      "beforeSha256": "28f5ba6c56bf2eba3c39bbdee73b47798c9d0b99cac0c5b798703dea8d806a59",
+      "proposalSha256": "28f5ba6c56bf2eba3c39bbdee73b47798c9d0b99cac0c5b798703dea8d806a59",
       "before": {
         "make": "Hyundai",
         "model": "Kona",
@@ -934,15 +893,13 @@
             "type": "part",
             "content": "Transmission flush kit for complete fluid exchange to address shudder",
             "partName": "Transmission Flush Kit",
-            "partBrand": "Liqui Moly",
-            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20Kona%20transmission%20flush%20kit&tag=au7o-20"
+            "partBrand": "Liqui Moly"
           },
           {
             "type": "part",
             "content": "Full synthetic ATF designed to reduce shudder in automatic transmissions",
             "partName": "MaxLife ATF Full Synthetic",
-            "partBrand": "Valvoline",
-            "affiliateUrl": "https://www.amazon.com/s?k=Valvoline%20MaxLife%20ATF%20full%20synthetic%20transmission%20fluid&tag=au7o-20"
+            "partBrand": "Valvoline"
           }
         ],
         "fixParts": [],
@@ -1035,15 +992,13 @@
             "type": "part",
             "content": "Transmission flush kit for complete fluid exchange to address shudder",
             "partName": "Transmission Flush Kit",
-            "partBrand": "Liqui Moly",
-            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20Kona%20transmission%20flush%20kit&tag=au7o-20"
+            "partBrand": "Liqui Moly"
           },
           {
             "type": "part",
             "content": "Full synthetic ATF designed to reduce shudder in automatic transmissions",
             "partName": "MaxLife ATF Full Synthetic",
-            "partBrand": "Valvoline",
-            "affiliateUrl": "https://www.amazon.com/s?k=Valvoline%20MaxLife%20ATF%20full%20synthetic%20transmission%20fluid&tag=au7o-20"
+            "partBrand": "Valvoline"
           }
         ],
         "fixParts": [],
@@ -1072,23 +1027,7 @@
       "identityRule": "The same indexed component, failure mechanism and outcome stay on the existing ID, title and category; only facts from the exact official record remain.",
       "commerceDecision": "no-commerce",
       "changedFields": [
-        "years",
-        "engines",
-        "description",
-        "solution",
-        "symptoms",
-        "affectedSystems",
-        "estimatedCostLow",
-        "estimatedCostHigh",
-        "citations",
-        "communityRecommendations",
-        "humanApproved",
-        "reportCount",
-        "source",
-        "lastReportedByOwners",
-        "reviewedOn",
-        "contentUpdatedOn",
-        "contentUpdateSummary"
+        "humanApproved"
       ],
       "evidence": [
         {
@@ -1098,109 +1037,54 @@
           "observation": "NHTSA Part 573 Report 21V-127 - Kona Electric Battery Cell Short Circuit supports the proposed identity, scope and remedy."
         }
       ],
-      "beforeSha256": "968a26f84db72cddb483a17b71ec0276f39165c4edfc864e23a7140b979b7da2",
+      "beforeSha256": "59f2877e73f56fa3f2ba6f1a4a5f1af7ef53d155bc3de6ffd0f5d436456030d3",
       "proposalSha256": "553b7c0f8c1f617667eebfc8a5fa7faafabeacfd1d1ae88b1e9417c90941602b",
       "before": {
         "make": "Hyundai",
         "model": "Kona",
         "years": [
           2019,
-          2020,
-          2021,
-          2022
+          2020
         ],
         "trims": [],
-        "engines": [
-          "Electric"
-        ],
+        "engines": [],
         "category": "electrical",
         "title": "High-Voltage Battery Fire Risk (Kona Electric)",
-        "description": "Kona Electric models from 2019-2022 were subject to a major recall (21V-193) for fire risk in the high-voltage battery pack. Defective cells from LG Energy Solution can short-circuit internally, leading to thermal runaway and fire, even while parked. Hyundai recalled approximately 82,000 vehicles globally for battery replacement.",
-        "solution": "Check VIN for recall status immediately. Hyundai will replace the entire battery pack free of charge under the recall. Until the battery is replaced, limit charging to 90% SOC and avoid parking in enclosed garages. The battery replacement takes 4-8 hours at the dealer. New battery pack comes with an updated BMS.",
+        "description": "NHTSA recall 21V-127 covers 4,694 model-year 2019-2020 Kona Electric vehicles that did not receive a battery replacement under Hyundai recall 196. A folded anode tab in an LG Energy Solutions battery cell can allow lithium plating to contact the cathode, causing an internal electrical short. The short can increase fire risk while the vehicle is parked, charging or being driven.",
+        "solution": "Check the VIN for NHTSA recall 21V-127 (Hyundai 200). Hyundai dealers replace the Battery System Assembly free of charge. The recall also specified an interim state-of-charge reduction; affected owners should follow Hyundai's current VIN-specific instructions and avoid indoor parking if they cannot complete the interim step before dealer service.",
         "severity": "high",
         "confidence": "high",
         "symptoms": [
-          "Battery management system warning light",
-          "Reduced range suddenly",
-          "Burning smell while charging",
-          "Vehicle will not charge past certain percentage",
-          "Check EV system warning"
+          "Smoke",
+          "Burning or melting odor",
+          "Malfunction Indicator Lamp or battery light"
         ],
         "affectedSystems": [
-          "Battery",
-          "Electrical"
+          "High-voltage Battery System Assembly",
+          "Lithium-ion battery cells"
         ],
         "dtcCodes": [],
-        "estimatedCostLow": 0,
-        "estimatedCostHigh": 0,
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
         "typicalMileageLow": null,
         "typicalMileageHigh": null,
         "citations": [
           {
-            "url": "https://www.nhtsa.gov/recalls",
+            "url": "https://static.nhtsa.gov/odi/rcl/2021/RCLRPT-21V127-1095.PDF",
             "type": "recall",
-            "title": "NHTSA Recall 21V-193 - Kona EV Battery Fire Risk"
-          },
-          {
-            "url": "https://insideevs.com",
-            "type": "forum",
-            "title": "InsideEVs - Hyundai Kona EV Battery Recall Updates"
+            "title": "NHTSA Part 573 Report 21V-127 - Kona Electric Battery Cell Short Circuit"
           }
         ],
-        "communityRecommendations": [
-          {
-            "type": "warning",
-            "content": "Do not park in enclosed garage until recall is completed. Multiple fires have occurred while vehicles were parked and not charging",
-            "upvotes": 0
-          },
-          {
-            "type": "tip",
-            "content": "Set charge limit to 80-90% and avoid fast charging until recall battery is installed - this reduces thermal stress on affected cells",
-            "upvotes": 0
-          },
-          {
-            "type": "tip",
-            "content": "Call Hyundai at 855-371-9460 to schedule battery replacement and request a loaner vehicle",
-            "upvotes": 0
-          },
-          {
-            "type": "part",
-            "content": "High-performance AGM battery with excellent cold cranking amps and deep cycle capability",
-            "partName": "RedTop AGM Battery",
-            "partBrand": "Optima",
-            "affiliateUrl": "https://www.amazon.com/s?k=Optima%20RedTop%20AGM%20Battery%20Hyundai%20Kona&tag=au7o-20"
-          },
-          {
-            "type": "part",
-            "content": "OEM-quality replacement battery with reliable performance",
-            "partName": "Professional AGM Battery",
-            "partBrand": "ACDelco",
-            "affiliateUrl": "https://www.amazon.com/s?k=ACDelco%20Professional%20AGM%20Battery%20Hyundai%20Kona&tag=au7o-20"
-          },
-          {
-            "type": "part",
-            "content": "Automatic battery maintainer to prevent parasitic drain issues during storage",
-            "partName": "Junior 12V Battery Charger Maintainer",
-            "partBrand": "Battery Tender",
-            "affiliateUrl": "https://www.amazon.com/s?k=Battery%20Tender%20Junior%2012V%20Battery%20Charger%20Maintainer%20Hyundai%20Kona&tag=au7o-20"
-          },
-          {
-            "type": "part",
-            "content": "Level 2 portable EV charger for reliable home or on-the-go charging",
-            "partName": "Portable Level 2 EV Charger",
-            "partBrand": "Lectron",
-            "affiliateUrl": "https://www.amazon.com/s?k=Lectron%20Portable%20Level%202%20EV%20Charger%20Hyundai%20Kona&tag=au7o-20"
-          }
-        ],
+        "communityRecommendations": [],
         "fixParts": [],
         "humanApproved": true,
-        "reportCount": 1500,
-        "source": "ai-researched",
+        "reportCount": 0,
+        "source": "manual",
         "status": "published",
-        "lastReportedByOwners": "2024-09-30",
-        "reviewedOn": "2026-02-23",
-        "contentUpdatedOn": "",
-        "contentUpdateSummary": "",
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Kept the indexed high-voltage-battery/fire identity, corrected the unrelated 21V-193 campaign to 21V-127, narrowed scope to the documented 2019-2020 U.S. population, and removed unsupported global-count, repair-time and charging claims.",
         "relatedIssueIds": []
       },
       "proposal": {
@@ -1260,16 +1144,7 @@
       "identityRule": "The same indexed component, failure mechanism and outcome stay on the existing ID, title and category; only facts from the exact official record remain.",
       "commerceDecision": "no-commerce",
       "changedFields": [
-        "description",
-        "solution",
-        "symptoms",
-        "affectedSystems",
-        "citations",
-        "humanApproved",
-        "source",
-        "reviewedOn",
-        "contentUpdatedOn",
-        "contentUpdateSummary"
+        "humanApproved"
       ],
       "evidence": [
         {
@@ -1279,7 +1154,7 @@
           "observation": "NHTSA Part 573 Report 22V-941 - Kona EV EPCU Coolant Leak supports the proposed identity, scope and remedy."
         }
       ],
-      "beforeSha256": "f57f1a85900e2246a41cc04598520412c205f3245648dd7d63859b5d4b344d3d",
+      "beforeSha256": "b1bbb0c25f779523556474464d45d602921ee8718855bb9107a83f8f79d8ba2b",
       "proposalSha256": "3baadf776a5bdfca75dd62fc7d9217853100f85e51443b3041a27fc3c603d01c",
       "before": {
         "make": "Hyundai",
@@ -1291,17 +1166,20 @@
         "engines": [],
         "category": "electrical",
         "title": "EPCU Coolant Leak Causing Loss of Drive Power (Kona Electric, Recall 22V941)",
-        "description": "On 2021 Kona Electric units, the Electric Power Control Unit (EPCU) was inadequately sealed at the DC-DC converter housing due to insufficient steam cleaning during production. Coolant can leak internally onto the EPCU circuit board and short it, causing a sudden loss of drive power that could strand the driver or cause a crash.",
-        "solution": "NHTSA Recall 22V941 (Hyundai Recall 239). Dealers inspect the EPCU and replace it as necessary, free of charge, regardless of warranty status. Owners experiencing power-loss warnings or reduced drive power should have the EPCU inspected under the recall.",
+        "description": "NHTSA recall 22V-941 covers 853 model-year 2021 Kona EV vehicles. Insufficient sealing of the Electric Power Control Unit (EPCU) DC-DC converter housing can allow an internal coolant leak and contaminate the EPCU main controller. The contamination can trigger limited-mobility fail-safe mode or, in limited instances, cause sudden loss of motive power or a vehicle stall.",
+        "solution": "Check the VIN for NHTSA recall 22V-941 (Hyundai 239). Hyundai dealers inspect the EPCU and replace it if necessary, free of charge.",
         "severity": "high",
         "confidence": "high",
         "symptoms": [
-          "Sudden loss of drive power / vehicle limp mode",
-          "'Check electric vehicle system' warning",
-          "Reduced power or vehicle won't move",
-          "Coolant loss without external leak"
+          "Malfunction Indicator Lamp illumination",
+          "Check Electric Vehicle System warning message",
+          "Limited-mobility fail-safe mode",
+          "Sudden loss of motive power or vehicle stall"
         ],
-        "affectedSystems": [],
+        "affectedSystems": [
+          "Electric Power Control Unit",
+          "EPCU DC-DC converter housing"
+        ],
         "dtcCodes": [],
         "estimatedCostLow": null,
         "estimatedCostHigh": null,
@@ -1309,31 +1187,21 @@
         "typicalMileageHigh": null,
         "citations": [
           {
-            "url": "https://repairpal.com/recall/22V941000",
+            "url": "https://static.nhtsa.gov/odi/rcl/2022/RCLRPT-22V941-1708.PDF",
             "type": "recall",
-            "title": "Hyundai Recall: EPCU Leaks Coolant Internally Causing Short Circuit (22V941000)"
-          },
-          {
-            "url": "https://static.nhtsa.gov/odi/rcl/2022/RCRIT-22V941-3474.pdf",
-            "type": "nhtsa",
-            "title": "NHTSA Recall 22V941 - Electric Power Control Unit (EPCU) Leak Inspection"
-          },
-          {
-            "url": "https://www.carscoops.com/2022/12/hyundai-recalls-kona-evs-over-electric-coolant-leak-that-could-leave-drivers-stranded/",
-            "type": "article",
-            "title": "Coolant Leak Could Leave Hyundai Kona EV Drivers Stranded - Carscoops"
+            "title": "NHTSA Part 573 Report 22V-941 - Kona EV EPCU Coolant Leak"
           }
         ],
         "communityRecommendations": [],
         "fixParts": [],
         "humanApproved": true,
         "reportCount": 0,
-        "source": "ai-researched",
+        "source": "manual",
         "status": "published",
         "lastReportedByOwners": "",
-        "reviewedOn": "2026-06-17",
-        "contentUpdatedOn": "",
-        "contentUpdateSummary": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Kept the indexed EPCU/coolant-leak/loss-of-power identity, replaced secondary sources with the exact Part 573 report, and retained only the documented population, warnings and dealer remedy.",
         "relatedIssueIds": []
       },
       "proposal": {
@@ -1522,8 +1390,8 @@
       "commerceDecision": "unchanged-pending-audit",
       "changedFields": [],
       "evidence": [],
-      "beforeSha256": "d01fe1d4ccc9bde1f3e3d35d37c62e4f50ea44dd28dbc5e41ee9577896609d80",
-      "proposalSha256": "d01fe1d4ccc9bde1f3e3d35d37c62e4f50ea44dd28dbc5e41ee9577896609d80",
+      "beforeSha256": "e21e0eb2c6ccd3f9e9e5e2873130c9718d06a3491fc1645b5b654a07c68283e5",
+      "proposalSha256": "e21e0eb2c6ccd3f9e9e5e2873130c9718d06a3491fc1645b5b654a07c68283e5",
       "before": {
         "make": "Hyundai",
         "model": "Kona",
@@ -1579,15 +1447,13 @@
             "type": "part",
             "content": "High-quality synthetic oil helps reduce consumption and protect worn engines",
             "partName": "Extended Performance Full Synthetic Motor Oil",
-            "partBrand": "Mobil 1",
-            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20Kona%20Mobil%201%20Extended%20Performance%20Full%20Synthetic%20Motor%20Oil&tag=au7o-20"
+            "partBrand": "Mobil 1"
           },
           {
             "type": "part",
             "content": "Premium oil filter ensures proper filtration with high-mileage engines",
             "partName": "Oil Filter",
-            "partBrand": "Wix",
-            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20Kona%20Wix%20Oil%20Filter&tag=au7o-20"
+            "partBrand": "Wix"
           }
         ],
         "fixParts": [],
@@ -1659,15 +1525,13 @@
             "type": "part",
             "content": "High-quality synthetic oil helps reduce consumption and protect worn engines",
             "partName": "Extended Performance Full Synthetic Motor Oil",
-            "partBrand": "Mobil 1",
-            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20Kona%20Mobil%201%20Extended%20Performance%20Full%20Synthetic%20Motor%20Oil&tag=au7o-20"
+            "partBrand": "Mobil 1"
           },
           {
             "type": "part",
             "content": "Premium oil filter ensures proper filtration with high-mileage engines",
             "partName": "Oil Filter",
-            "partBrand": "Wix",
-            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20Kona%20Wix%20Oil%20Filter&tag=au7o-20"
+            "partBrand": "Wix"
           }
         ],
         "fixParts": [],
@@ -1694,8 +1558,8 @@
       "commerceDecision": "unchanged-pending-audit",
       "changedFields": [],
       "evidence": [],
-      "beforeSha256": "848a456da0ec18d887cc2908b5546a34669e837617b357c998dbae5fe7bc5425",
-      "proposalSha256": "848a456da0ec18d887cc2908b5546a34669e837617b357c998dbae5fe7bc5425",
+      "beforeSha256": "733c184dc372354d5b4f63b247590c6af2cf32d8a562ef5c9b38668123c932ee",
+      "proposalSha256": "733c184dc372354d5b4f63b247590c6af2cf32d8a562ef5c9b38668123c932ee",
       "before": {
         "make": "Hyundai",
         "model": "Kona",
@@ -1754,15 +1618,13 @@
             "type": "part",
             "content": "Dupli-Color touch-up paint kit for scratch and chip repair",
             "partName": "Touch-Up Paint Kit",
-            "partBrand": "Dupli-Color",
-            "affiliateUrl": "https://www.amazon.com/s?k=Dupli-Color%20touch%20up%20paint%20kit&tag=au7o-20"
+            "partBrand": "Dupli-Color"
           },
           {
             "type": "part",
             "content": "Dupli-Color clear coat finish for paint protection",
             "partName": "Clear Coat Spray",
-            "partBrand": "Dupli-Color",
-            "affiliateUrl": "https://www.amazon.com/s?k=Dupli-Color%20clear%20coat%20spray&tag=au7o-20"
+            "partBrand": "Dupli-Color"
           }
         ],
         "fixParts": [],
@@ -1834,15 +1696,13 @@
             "type": "part",
             "content": "Dupli-Color touch-up paint kit for scratch and chip repair",
             "partName": "Touch-Up Paint Kit",
-            "partBrand": "Dupli-Color",
-            "affiliateUrl": "https://www.amazon.com/s?k=Dupli-Color%20touch%20up%20paint%20kit&tag=au7o-20"
+            "partBrand": "Dupli-Color"
           },
           {
             "type": "part",
             "content": "Dupli-Color clear coat finish for paint protection",
             "partName": "Clear Coat Spray",
-            "partBrand": "Dupli-Color",
-            "affiliateUrl": "https://www.amazon.com/s?k=Dupli-Color%20clear%20coat%20spray&tag=au7o-20"
+            "partBrand": "Dupli-Color"
           }
         ],
         "fixParts": [],
@@ -1866,8 +1726,8 @@
       "commerceDecision": "unchanged-pending-audit",
       "changedFields": [],
       "evidence": [],
-      "beforeSha256": "ec9ec7ef88fdba6e765007b7b2039945a3ee7f7ed5b3f44fca3b03ab7528b7b6",
-      "proposalSha256": "ec9ec7ef88fdba6e765007b7b2039945a3ee7f7ed5b3f44fca3b03ab7528b7b6",
+      "beforeSha256": "ef5fbbd4718559e9a2de49cbaaf47e4818164e7fb04f9c07c7164e042aa7be84",
+      "proposalSha256": "ef5fbbd4718559e9a2de49cbaaf47e4818164e7fb04f9c07c7164e042aa7be84",
       "before": {
         "make": "Hyundai",
         "model": "Kona",
@@ -1930,15 +1790,13 @@
             "type": "part",
             "content": "Trim removal tool set for body panel work without damage",
             "partName": "Trim Removal Tool Set",
-            "partBrand": "MICTUNING",
-            "affiliateUrl": "https://www.amazon.com/s?k=trim%20removal%20tool%20set%20automotive&tag=au7o-20"
+            "partBrand": "MICTUNING"
           },
           {
             "type": "part",
             "content": "Bondo body filler for dent and panel repair",
             "partName": "Body Filler Kit",
-            "partBrand": "Bondo",
-            "affiliateUrl": "https://www.amazon.com/s?k=Bondo%20body%20filler%20kit&tag=au7o-20"
+            "partBrand": "Bondo"
           }
         ],
         "fixParts": [],
@@ -2016,15 +1874,13 @@
             "type": "part",
             "content": "Trim removal tool set for body panel work without damage",
             "partName": "Trim Removal Tool Set",
-            "partBrand": "MICTUNING",
-            "affiliateUrl": "https://www.amazon.com/s?k=trim%20removal%20tool%20set%20automotive&tag=au7o-20"
+            "partBrand": "MICTUNING"
           },
           {
             "type": "part",
             "content": "Bondo body filler for dent and panel repair",
             "partName": "Body Filler Kit",
-            "partBrand": "Bondo",
-            "affiliateUrl": "https://www.amazon.com/s?k=Bondo%20body%20filler%20kit&tag=au7o-20"
+            "partBrand": "Bondo"
           }
         ],
         "fixParts": [],

@@ -16,9 +16,9 @@
   ],
   "source": {
     "snapshotFile": "data/_hyundai-deeplink-snapshot-2026-08-06.json",
-    "snapshotSha256": "f3e74267205477804060c49c988221cdc4dfcfc4586df369601c8c64736cce60",
-    "snapshotGeneratedAt": "2026-08-06T02:37:36.989Z",
-    "snapshotHash": "444457abb31ca6a5ead423878b37ca790d44a87c74ffa43259362cb4218ba632",
+    "snapshotSha256": "32e15c7ea3495a55c2a1f9b3e0313501d2a2c2f1025a0ee14fea7cf327ba0082",
+    "snapshotGeneratedAt": "2026-08-12T13:03:45.743Z",
+    "snapshotHash": "ba9d3aba10f2d28896a8cabe76b1cddf8fdc4a80aa0e8a4bf97c0e7e1b50636f",
     "ioniq5RecordCount": 14
   },
   "observations": [
@@ -90,8 +90,8 @@
       "commerceDecision": "unchanged-pending-audit",
       "changedFields": [],
       "evidence": [],
-      "beforeSha256": "711609e04bdd6ce0796ee3369df9aec226320d85b6878338f1f561bb32578be7",
-      "proposalSha256": "711609e04bdd6ce0796ee3369df9aec226320d85b6878338f1f561bb32578be7",
+      "beforeSha256": "4f7888018772a164f9f53ea76346f7b63f577ff806005838b926280b280efd6a",
+      "proposalSha256": "4f7888018772a164f9f53ea76346f7b63f577ff806005838b926280b280efd6a",
       "before": {
         "make": "Hyundai",
         "model": "Ioniq 5",
@@ -148,8 +148,7 @@
             "type": "part",
             "content": "BlueDriver OBD-II scanner — reads ABS, SRS, and engine codes",
             "partName": "Bluetooth OBD-II Scanner",
-            "partBrand": "BlueDriver",
-            "affiliateUrl": "https://www.amazon.com/s?k=BlueDriver%20OBD2%20scanner&tag=au7o-20"
+            "partBrand": "BlueDriver"
           }
         ],
         "fixParts": [],
@@ -219,8 +218,7 @@
             "type": "part",
             "content": "BlueDriver OBD-II scanner — reads ABS, SRS, and engine codes",
             "partName": "Bluetooth OBD-II Scanner",
-            "partBrand": "BlueDriver",
-            "affiliateUrl": "https://www.amazon.com/s?k=BlueDriver%20OBD2%20scanner&tag=au7o-20"
+            "partBrand": "BlueDriver"
           }
         ],
         "fixParts": [],
@@ -382,16 +380,7 @@
       "identityRule": "The same indexed component and failure mode stay on the existing ID, title and category; only facts from exact official sources remain.",
       "commerceDecision": "no-commerce",
       "changedFields": [
-        "description",
-        "solution",
-        "symptoms",
-        "affectedSystems",
-        "citations",
-        "humanApproved",
-        "source",
-        "reviewedOn",
-        "contentUpdatedOn",
-        "contentUpdateSummary"
+        "humanApproved"
       ],
       "evidence": [
         {
@@ -407,7 +396,7 @@
           "observation": "NHTSA Part 573 Report 26V-314 - Ioniq 5 Rear Suspension Fasteners supports the proposed identity, scope or remedy."
         }
       ],
-      "beforeSha256": "be2f13ec1b7d91b438f8e0412bdbfe6696ae00d508d2fd9a3f5e1e04596e24b7",
+      "beforeSha256": "7af2b5571fd662cd0af562b194e40e2792c36fd1a0c09de805b3c7421787fdae",
       "proposalSha256": "09ad55d7164cb468a8f8cf7a214a6c85c1984601b9a0b8dd5de665d6f972beea",
       "before": {
         "make": "Hyundai",
@@ -419,17 +408,17 @@
         "engines": [],
         "category": "suspension",
         "title": "Loose Rear Suspension Fasteners (Rear Toe/Camber Bolts Can Detach)",
-        "description": "Rear suspension fasteners, including the rear toe and camber adjustment bolts, were assembled with insufficient torque on certain units built at Hyundai Metaplant America (Savannah, GA), traced to a system error during the factory alignment stage. The bolts can loosen over time, producing noise or vibration, and if left unaddressed may detach, reducing vehicle stability and control. An initial 8-vehicle 2025 recall was followed by a broader Ioniq 5/Ioniq 9 recall for units built Dec 2024-Jul 2025.",
-        "solution": "Covered by NHTSA recall: dealers inspect and replace the affected rear suspension bolts, perform a rear alignment, and replace any tires showing abnormal wear from the condition, free of charge.",
+        "description": "Two separate U.S. recalls cover loose rear suspension fasteners on certain 2025 Ioniq 5 vehicles. Recall 25V-605 covers eight vehicles whose rear toe and camber adjustment bolts may have been installed with insufficient torque because of an alignment-stage system error. Recall 26V-314 covers 138 Ioniq 5 vehicles whose specified rear suspension fasteners may have been under-torqued during supplier assembly. The fasteners can loosen, cause rear noise or vibration and potentially detach, reducing vehicle stability or control.",
+        "solution": "Check the VIN for both NHTSA recalls 25V-605 (Hyundai 284) and 26V-314 (Hyundai 303). For 25V-605, dealers replace the rear toe and camber bolts and nuts, perform a wheel alignment and replace tires if necessary. For 26V-314, dealers inspect the rear suspension fasteners, replace loose nuts or bolts and perform a rear alignment if necessary. Both remedies are free.",
         "severity": "high",
         "confidence": "high",
         "symptoms": [
-          "Noise or vibration from the rear of the vehicle",
-          "Abnormal/uneven rear tire wear",
-          "Vague rear-end handling or reduced stability at speed",
-          "Visibly loose or backing-out rear suspension bolts"
+          "Rattling or vibration from the rear suspension"
         ],
-        "affectedSystems": [],
+        "affectedSystems": [
+          "Rear suspension fasteners",
+          "Rear toe and camber adjustment bolts"
+        ],
         "dtcCodes": [],
         "estimatedCostLow": null,
         "estimatedCostHigh": null,
@@ -437,26 +426,26 @@
         "typicalMileageHigh": null,
         "citations": [
           {
-            "url": "https://www.autoevolution.com/news/hyundai-recalls-certain-ioniq-5-and-ioniq-9-evs-for-loose-suspension-fasteners-270589.html",
+            "url": "https://static.nhtsa.gov/odi/rcl/2025/RCLRPT-25V605-2818.pdf",
             "type": "recall",
-            "title": "Hyundai Recalls Certain Ioniq 5 and Ioniq 9 EVs for Loose Suspension Fasteners"
+            "title": "NHTSA Part 573 Report 25V-605 - Ioniq 5 Rear Toe and Camber Bolts"
           },
           {
-            "url": "https://www.autoblog.com/news/small-recall-serious-issue-hyundai-flags-2025-ioniq-5-bolt-defect",
+            "url": "https://static.nhtsa.gov/odi/rcl/2026/RCLRPT-26V314-6650.pdf",
             "type": "recall",
-            "title": "2025 Hyundai Ioniq 5 recall affects just eight vehicles (rear toe/camber bolt defect)"
+            "title": "NHTSA Part 573 Report 26V-314 - Ioniq 5 Rear Suspension Fasteners"
           }
         ],
         "communityRecommendations": [],
         "fixParts": [],
         "humanApproved": true,
         "reportCount": 0,
-        "source": "ai-researched",
+        "source": "manual",
         "status": "published",
         "lastReportedByOwners": "",
-        "reviewedOn": "2026-06-16",
-        "contentUpdatedOn": "",
-        "contentUpdateSummary": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Kept the indexed loose-rear-fastener identity, replaced news citations with the two exact NHTSA recall reports, separated their populations, causes and remedies, and removed unsupported handling, tire-wear and visual-inspection symptoms.",
         "relatedIssueIds": []
       },
       "proposal": {
@@ -519,8 +508,8 @@
       "commerceDecision": "unchanged-pending-audit",
       "changedFields": [],
       "evidence": [],
-      "beforeSha256": "abc23f48138f724a497f2e0f4db5d57350e4a2d6f31c52540f2e7c92bfa4699c",
-      "proposalSha256": "abc23f48138f724a497f2e0f4db5d57350e4a2d6f31c52540f2e7c92bfa4699c",
+      "beforeSha256": "51eba8eccab04e235f9f4c95ef41bd096ee709ecd5b14f44879a643a1c9141ca",
+      "proposalSha256": "51eba8eccab04e235f9f4c95ef41bd096ee709ecd5b14f44879a643a1c9141ca",
       "before": {
         "make": "Hyundai",
         "model": "Ioniq 5",
@@ -572,15 +561,13 @@
             "type": "part",
             "content": "Mobil 1 75W-90 synthetic gear oil for differential and transfer case",
             "partName": "Synthetic Gear Oil 75W-90",
-            "partBrand": "Mobil 1",
-            "affiliateUrl": "https://www.amazon.com/s?k=Mobil%201%2075W-90%20synthetic%20gear%20oil&tag=au7o-20"
+            "partBrand": "Mobil 1"
           },
           {
             "type": "part",
             "content": "Fel-Pro gasket kit for drivetrain service",
             "partName": "Gasket Kit",
-            "partBrand": "Fel-Pro",
-            "affiliateUrl": "https://www.amazon.com/s?k=Fel-Pro%20drivetrain%20gasket%20kit&tag=au7o-20"
+            "partBrand": "Fel-Pro"
           }
         ],
         "fixParts": [],
@@ -649,15 +636,13 @@
             "type": "part",
             "content": "Mobil 1 75W-90 synthetic gear oil for differential and transfer case",
             "partName": "Synthetic Gear Oil 75W-90",
-            "partBrand": "Mobil 1",
-            "affiliateUrl": "https://www.amazon.com/s?k=Mobil%201%2075W-90%20synthetic%20gear%20oil&tag=au7o-20"
+            "partBrand": "Mobil 1"
           },
           {
             "type": "part",
             "content": "Fel-Pro gasket kit for drivetrain service",
             "partName": "Gasket Kit",
-            "partBrand": "Fel-Pro",
-            "affiliateUrl": "https://www.amazon.com/s?k=Fel-Pro%20drivetrain%20gasket%20kit&tag=au7o-20"
+            "partBrand": "Fel-Pro"
           }
         ],
         "fixParts": [],
@@ -684,16 +669,7 @@
       "identityRule": "The same indexed component and failure mode stay on the existing ID, title and category; only facts from exact official sources remain.",
       "commerceDecision": "no-commerce",
       "changedFields": [
-        "description",
-        "solution",
-        "symptoms",
-        "affectedSystems",
-        "citations",
-        "humanApproved",
-        "source",
-        "reviewedOn",
-        "contentUpdatedOn",
-        "contentUpdateSummary"
+        "humanApproved"
       ],
       "evidence": [
         {
@@ -703,7 +679,7 @@
           "observation": "NHTSA Part 573 Report 22V-324 - Ioniq 5 Parking-Pawl Rollaway supports the proposed identity, scope or remedy."
         }
       ],
-      "beforeSha256": "666108685b160cb87ecb9061a694fefcdaac3617a5b9572cec3bfa94a14d250a",
+      "beforeSha256": "d19e2b297c1d0bddcf519747026d65a86ce3dedfa717b344f8a96217ea10fe27",
       "proposalSha256": "3fbec4848468e7eda00c52c7d306cbcf6121477b4b6bc691afb8185c093b5127",
       "before": {
         "make": "Hyundai",
@@ -715,16 +691,17 @@
         "engines": [],
         "category": "drivetrain",
         "title": "Parking Pawl Disengagement / Vehicle Rollaway (Shifter Control Unit Software)",
-        "description": "With the vehicle off and in Park, a voltage fluctuation can corrupt the command signal from the Shifter Control Unit (SCU) to the parking-pawl actuator, momentarily disengaging the parking pawl and allowing the car to roll away. NHTSA recall 22V-324 covers 10,729 model-year 2022 Ioniq 5 units (plus the related Kia EV6, ~20K total); four rollaway incidents without injury were reported in South Korea, with none confirmed in the U.S.",
-        "solution": "Covered by NHTSA recall 22V-324: dealers update the Shifter Control Unit software so it cannot let the parking pawl leave Park inadvertently while the vehicle is off, free of charge. Owners are advised to set the Electronic Parking Brake when parking until the remedy is performed.",
+        "description": "NHTSA recall 22V-324 covers certain 2022 Ioniq 5 vehicles. A voltage fluctuation while the vehicle is off and in Park can affect the command signal from the Shifter Control Unit to the electronic parking-pawl actuator. The parking pawl can momentarily disengage, allowing the vehicle to roll away and increasing crash or injury risk.",
+        "solution": "Check the VIN for NHTSA recall 22V-324 (Hyundai 228). Hyundai dealers update the Shifter Control Unit software free of charge so the parking pawl cannot inadvertently move out of Park while the vehicle is off. Hyundai advised affected owners to use the Electronic Parking Brake when parking until the remedy is completed.",
         "severity": "high",
         "confidence": "high",
         "symptoms": [
-          "Vehicle rolls away after being shifted to Park on an incline",
-          "Parking pawl momentarily disengages with vehicle off",
-          "Car not held by transmission Park without parking brake set"
+          "Vehicle may roll away after being placed in Park with the vehicle off"
         ],
-        "affectedSystems": [],
+        "affectedSystems": [
+          "Shifter Control Unit",
+          "Electronic parking-pawl actuator"
+        ],
         "dtcCodes": [],
         "estimatedCostLow": null,
         "estimatedCostHigh": null,
@@ -733,25 +710,20 @@
         "citations": [
           {
             "url": "https://static.nhtsa.gov/odi/rcl/2022/RCLRPT-22V324-8424.PDF",
-            "type": "nhtsa",
-            "title": "NHTSA Part 573 Safety Recall Report 22V-324 (Rollaway)"
-          },
-          {
-            "url": "https://repairpal.com/recall/22V324000",
             "type": "recall",
-            "title": "Hyundai Ioniq Recall 22V324000: Parking Mechanism Risk of Rollaway"
+            "title": "NHTSA Part 573 Report 22V-324 - Ioniq 5 Parking-Pawl Rollaway"
           }
         ],
         "communityRecommendations": [],
         "fixParts": [],
         "humanApproved": true,
         "reportCount": 0,
-        "source": "ai-researched",
+        "source": "manual",
         "status": "published",
         "lastReportedByOwners": "",
-        "reviewedOn": "2026-06-16",
-        "contentUpdatedOn": "",
-        "contentUpdateSummary": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Kept the indexed parking-pawl/rollaway identity, replaced secondary material with the exact Part 573 report, and retained only the documented voltage-fluctuation mechanism, 2022 scope, EPB advisory and free SCU-software remedy.",
         "relatedIssueIds": []
       },
       "proposal": {
@@ -808,17 +780,7 @@
       "identityRule": "The same indexed component and failure mode stay on the existing ID, title and category; only facts from exact official sources remain.",
       "commerceDecision": "no-commerce",
       "changedFields": [
-        "years",
-        "description",
-        "solution",
-        "symptoms",
-        "affectedSystems",
-        "citations",
-        "humanApproved",
-        "source",
-        "reviewedOn",
-        "contentUpdatedOn",
-        "contentUpdateSummary"
+        "humanApproved"
       ],
       "evidence": [
         {
@@ -828,12 +790,13 @@
           "observation": "Hyundai TSB 24-BD-012H - Tailgate Rattle and Friction Noise Rework supports the proposed identity, scope or remedy."
         }
       ],
-      "beforeSha256": "cc4c243d4b9adef409b65a791e0a8afc67ef84779c8032c7d122fd72467cc921",
+      "beforeSha256": "aec326f562cdd588e6bdd7b2d1668547725aaedb39812f99e5c6ee56c0318a5e",
       "proposalSha256": "e3bc7af033f7e82aa7813d0edb9c6e65364366f65e2ab35fdb87a74b50279dee",
       "before": {
         "make": "Hyundai",
         "model": "Ioniq 5",
         "years": [
+          2022,
           2023,
           2024,
           2025
@@ -842,16 +805,18 @@
         "engines": [],
         "category": "body",
         "title": "Rear Tailgate Rattle and Friction Noise While Driving",
-        "description": "Many owners report a persistent rattle and friction noise from the rear tailgate/hatch while driving, often worse in cold weather, caused by excessive gap and movement between the tailgate and the body. Hyundai addressed it with Technical Service Bulletin 24-BD-012H (supersedes 23-BD-006H-1), which adjusts the tailgate-to-body gap and updates the bumper stops.",
-        "solution": "Per TSB 24-BD-012H, dealers adjust the tailgate-to-body gap and install updated side-edge tailgate bumpers to eliminate the noise. Because results vary, some owners add velcro/loop material to the body-side bumper stops or tape to the latch strike as a supplemental fix.",
+        "description": "Hyundai TSB 24-BD-012H says certain 2022-2025 Ioniq 5 vehicles produced from October 4, 2021 through May 10, 2024 may exhibit rattle and friction noises from the tailgate while driving. The bulletin addresses the gap between the tailgate and vehicle body.",
+        "solution": "Ask an Ioniq-certified Hyundai dealer to follow TSB 24-BD-012H. The procedure installs the specified guide-bumper kit and washers, then adjusts the tailgate striker and overslam bumpers as needed so the tailgate-to-body gap no longer produces the noise.",
         "severity": "low",
         "confidence": "high",
         "symptoms": [
-          "Rattle or knocking from the rear hatch over bumps and rough roads",
-          "Friction/creaking noise from the tailgate, worse in cold weather",
-          "Noise temporarily reduced by pressing on or adjusting the hatch"
+          "Rattle from the tailgate while driving",
+          "Friction noise from the tailgate while driving"
         ],
-        "affectedSystems": [],
+        "affectedSystems": [
+          "Tailgate guide bumpers",
+          "Tailgate striker and overslam bumpers"
+        ],
         "dtcCodes": [],
         "estimatedCostLow": null,
         "estimatedCostHigh": null,
@@ -859,26 +824,21 @@
         "typicalMileageHigh": null,
         "citations": [
           {
-            "url": "https://static.nhtsa.gov/odi/tsbs/2024/MC-11011839-0001.pdf",
+            "url": "https://static.nhtsa.gov/odi/tsbs/2024/MC-11008918-0001.pdf",
             "type": "tsb",
-            "title": "Hyundai TSB: Tailgate Rattle & Friction Noise Rework (24-BD-012H)"
-          },
-          {
-            "url": "https://www.ioniqforum.com/threads/one-shot-fix-for-ioniq-5-rear-rattle-its-the-hatch.50913/",
-            "type": "forum",
-            "title": "Hyundai IONIQ Forum: One shot fix for Ioniq 5 rear rattle (It's the HATCH!)"
+            "title": "Hyundai TSB 24-BD-012H - Tailgate Rattle and Friction Noise Rework"
           }
         ],
         "communityRecommendations": [],
         "fixParts": [],
         "humanApproved": true,
         "reportCount": 0,
-        "source": "ai-researched",
+        "source": "manual",
         "status": "published",
         "lastReportedByOwners": "",
-        "reviewedOn": "2026-06-16",
-        "contentUpdatedOn": "",
-        "contentUpdateSummary": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Kept the indexed tailgate-rattle identity, replaced the forum with the exact Hyundai TSB, expanded the model-year array to the bulletin's 2022-2025 scope, and removed unsupported cold-weather and owner-applied tape/Velcro claims.",
         "relatedIssueIds": []
       },
       "proposal": {
@@ -939,16 +899,7 @@
       "identityRule": "The same indexed component and failure mode stay on the existing ID, title and category; only facts from exact official sources remain.",
       "commerceDecision": "no-commerce",
       "changedFields": [
-        "description",
-        "solution",
-        "symptoms",
-        "affectedSystems",
-        "citations",
-        "humanApproved",
-        "source",
-        "reviewedOn",
-        "contentUpdatedOn",
-        "contentUpdateSummary"
+        "humanApproved"
       ],
       "evidence": [
         {
@@ -958,7 +909,7 @@
           "observation": "NHTSA Recall Acknowledgment 25V-235 - Ioniq 5 N Braking and N e-Shift Software supports the proposed identity, scope or remedy."
         }
       ],
-      "beforeSha256": "16f8593317d00f11db3b009f88e7b79fbc272c0bdf570bc6a21b3d2e27dccc66",
+      "beforeSha256": "991c735ba138e86ce61278281d77ca9600f100adbf19dd11c8c1c26fe4b3b31c",
       "proposalSha256": "426680543f0d8558b4d944324a2c93881040525e3885f44d328c89b996740130",
       "before": {
         "make": "Hyundai",
@@ -970,16 +921,18 @@
         "engines": [],
         "category": "brakes",
         "title": "Reduced Braking Performance with Left-Foot Braking / N e-Shift (Ioniq 5 N)",
-        "description": "On the 2025 Ioniq 5 N equipped with the Left-Foot Braking (LFB) feature, faulty Integrated Electronic Brake (IEB) and Vehicle Control Unit (VCU) software logic can miscalculate estimated vehicle speed on acceleration input and trigger ABS depressurization, reducing braking performance and lengthening stopping distance. NHTSA recall 25V-065 covers roughly 1,500 units and was superseded by 25V-235 with an expanded remedy.",
-        "solution": "Covered by NHTSA recall 25V-065 (superseded by 25V-235): dealers, or an over-the-air update under the expanded campaign, install revised IEB and VCU software, free of charge. Until repaired, owners are advised not to use the Left-Foot Braking feature.",
+        "description": "NHTSA recall 25V-235 covers certain 2025 Ioniq 5 N vehicles equipped with Left-Foot Braking and N e-Shift. Integrated Electronic Brake and Vehicle Control Unit software may reduce braking performance when Left-Foot Braking is activated. Separately, the vehicle may continue to accelerate momentarily after the accelerator pedal is released while N e-Shift is engaged. Either condition increases crash risk.",
+        "solution": "Check the VIN for NHTSA recall 25V-235 (Hyundai 277), which replaces recall 25V-065. Owners are advised not to use Left-Foot Braking or N e-Shift until the remedy is completed. Hyundai updates the IEB and VCU software over the air or at a dealer free of charge; vehicles repaired under 25V-065 still need the replacement remedy.",
         "severity": "high",
         "confidence": "high",
         "symptoms": [
-          "Reduced braking / longer stopping distance when using Left-Foot Braking",
-          "ABS warning or unexpected ABS depressurization during braking",
-          "Brake pedal feel changes when LFB or N e-shift is engaged"
+          "Reduced braking performance when Left-Foot Braking is activated",
+          "Momentary continued acceleration after accelerator-pedal release with N e-Shift engaged"
         ],
-        "affectedSystems": [],
+        "affectedSystems": [
+          "Integrated Electronic Brake software",
+          "Vehicle Control Unit software"
+        ],
         "dtcCodes": [],
         "estimatedCostLow": null,
         "estimatedCostHigh": null,
@@ -987,26 +940,21 @@
         "typicalMileageHigh": null,
         "citations": [
           {
-            "url": "https://auto-recalls.justia.com/hyundai/ioniq-5/2025/25v065000",
+            "url": "https://static.nhtsa.gov/odi/rcl/2025/RCAK-25V235-5140.pdf",
             "type": "recall",
-            "title": "Hyundai Ioniq 5 2025 Recall 25V065: Service Brakes, Electric Control Module Software"
-          },
-          {
-            "url": "https://thebrakereport.com/hyundai-ioniq-5-n-recall-due-to-software-related-braking-issue/",
-            "type": "article",
-            "title": "Hyundai IONIQ 5 N Recall Due to Software-Related Braking Issue"
+            "title": "NHTSA Recall Acknowledgment 25V-235 - Ioniq 5 N Braking and N e-Shift Software"
           }
         ],
         "communityRecommendations": [],
         "fixParts": [],
         "humanApproved": true,
         "reportCount": 0,
-        "source": "ai-researched",
+        "source": "manual",
         "status": "published",
         "lastReportedByOwners": "",
-        "reviewedOn": "2026-06-16",
-        "contentUpdatedOn": "",
-        "contentUpdateSummary": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Kept the indexed Ioniq 5 N LFB/N e-Shift identity, replaced secondary citations with the exact replacement recall, separated the braking and continued-acceleration conditions, and removed unsupported ABS-warning, pedal-feel and speed-calculation claims.",
         "relatedIssueIds": []
       },
       "proposal": {
@@ -1065,8 +1013,8 @@
       "commerceDecision": "unchanged-pending-audit",
       "changedFields": [],
       "evidence": [],
-      "beforeSha256": "84b5d329c4b0d73eddee7a4ce4b2f3fca18fb11342d56a17bcd79d89fa74dc21",
-      "proposalSha256": "84b5d329c4b0d73eddee7a4ce4b2f3fca18fb11342d56a17bcd79d89fa74dc21",
+      "beforeSha256": "4614ca789abffcc74db1fa27247a55a04b4321ed14aa06e049692362bfc7160c",
+      "proposalSha256": "4614ca789abffcc74db1fa27247a55a04b4321ed14aa06e049692362bfc7160c",
       "before": {
         "make": "Hyundai",
         "model": "Ioniq 5",
@@ -1118,15 +1066,13 @@
             "type": "part",
             "content": "POR-15 rust preventive coating stops rust permanently",
             "partName": "Rust Preventive Coating",
-            "partBrand": "POR-15",
-            "affiliateUrl": "https://www.amazon.com/s?k=POR-15%20rust%20preventive%20coating&tag=au7o-20"
+            "partBrand": "POR-15"
           },
           {
             "type": "part",
             "content": "Rust-Oleum rust converter spray for treating corroded panels",
             "partName": "Rust Converter Spray",
-            "partBrand": "Rust-Oleum",
-            "affiliateUrl": "https://www.amazon.com/s?k=Rust-Oleum%20rust%20converter%20spray&tag=au7o-20"
+            "partBrand": "Rust-Oleum"
           }
         ],
         "fixParts": [],
@@ -1194,15 +1140,13 @@
             "type": "part",
             "content": "POR-15 rust preventive coating stops rust permanently",
             "partName": "Rust Preventive Coating",
-            "partBrand": "POR-15",
-            "affiliateUrl": "https://www.amazon.com/s?k=POR-15%20rust%20preventive%20coating&tag=au7o-20"
+            "partBrand": "POR-15"
           },
           {
             "type": "part",
             "content": "Rust-Oleum rust converter spray for treating corroded panels",
             "partName": "Rust Converter Spray",
-            "partBrand": "Rust-Oleum",
-            "affiliateUrl": "https://www.amazon.com/s?k=Rust-Oleum%20rust%20converter%20spray&tag=au7o-20"
+            "partBrand": "Rust-Oleum"
           }
         ],
         "fixParts": [],
@@ -1347,8 +1291,8 @@
       "commerceDecision": "unchanged-pending-audit",
       "changedFields": [],
       "evidence": [],
-      "beforeSha256": "af1d9d4319db3365a206d6bf3972b60a1424d2f5e01174a34346105cc1e5dcc0",
-      "proposalSha256": "af1d9d4319db3365a206d6bf3972b60a1424d2f5e01174a34346105cc1e5dcc0",
+      "beforeSha256": "e279c1e9554818ada81c3a6a635acff9aba302e264dae0fec657e87af49fb3b5",
+      "proposalSha256": "e279c1e9554818ada81c3a6a635acff9aba302e264dae0fec657e87af49fb3b5",
       "before": {
         "make": "Hyundai",
         "model": "Ioniq 5",
@@ -1395,8 +1339,7 @@
             "content": "Optima YellowTop Group 47 AGM battery is more resistant to deep discharge cycles than the OEM battery",
             "upvotes": 0,
             "partName": "YellowTop AGM Group 47",
-            "partBrand": "Optima",
-            "affiliateUrl": "https://www.amazon.com/s?k=Optima%20YellowTop%20AGM%20Group%2047&tag=au7o-20"
+            "partBrand": "Optima"
           },
           {
             "type": "tip",
@@ -1469,8 +1412,7 @@
             "content": "Optima YellowTop Group 47 AGM battery is more resistant to deep discharge cycles than the OEM battery",
             "upvotes": 0,
             "partName": "YellowTop AGM Group 47",
-            "partBrand": "Optima",
-            "affiliateUrl": "https://www.amazon.com/s?k=Optima%20YellowTop%20AGM%20Group%2047&tag=au7o-20"
+            "partBrand": "Optima"
           },
           {
             "type": "tip",
@@ -1507,8 +1449,8 @@
       "commerceDecision": "unchanged-pending-audit",
       "changedFields": [],
       "evidence": [],
-      "beforeSha256": "22f529e5bf73c6fed9fe96c8f81e91f20c4727151332df51d660dc9c447d1e35",
-      "proposalSha256": "22f529e5bf73c6fed9fe96c8f81e91f20c4727151332df51d660dc9c447d1e35",
+      "beforeSha256": "538316816414e0e27154110c54d1a52e01149d8ecd1cb67635cb0587b467b82e",
+      "proposalSha256": "538316816414e0e27154110c54d1a52e01149d8ecd1cb67635cb0587b467b82e",
       "before": {
         "make": "Hyundai",
         "model": "Ioniq 5",
@@ -1553,8 +1495,7 @@
             "content": "3M Silicone Spray Lubricant on the charge port door seal prevents freezing in winter",
             "upvotes": 0,
             "partName": "Silicone Spray Lubricant",
-            "partBrand": "3M",
-            "affiliateUrl": "https://www.amazon.com/s?k=3M%20Silicone%20Spray%20Lubricant&tag=au7o-20"
+            "partBrand": "3M"
           },
           {
             "type": "tip",
@@ -1619,8 +1560,7 @@
             "content": "3M Silicone Spray Lubricant on the charge port door seal prevents freezing in winter",
             "upvotes": 0,
             "partName": "Silicone Spray Lubricant",
-            "partBrand": "3M",
-            "affiliateUrl": "https://www.amazon.com/s?k=3M%20Silicone%20Spray%20Lubricant&tag=au7o-20"
+            "partBrand": "3M"
           },
           {
             "type": "tip",
@@ -1651,8 +1591,8 @@
       "commerceDecision": "unchanged-pending-audit",
       "changedFields": [],
       "evidence": [],
-      "beforeSha256": "6f673283e8267c65cc90cfd2289a1fc2b210660c3bfb33df21af5d972298abfa",
-      "proposalSha256": "6f673283e8267c65cc90cfd2289a1fc2b210660c3bfb33df21af5d972298abfa",
+      "beforeSha256": "ee4f428f054b6807a5bcfbcee8e7e161e827a330e700ccb0a58f448f5201fe5e",
+      "proposalSha256": "ee4f428f054b6807a5bcfbcee8e7e161e827a330e700ccb0a58f448f5201fe5e",
       "before": {
         "make": "Hyundai",
         "model": "Ioniq 5",
@@ -1707,15 +1647,13 @@
             "type": "part",
             "content": "Prestone coolant flush kit for complete cooling system service",
             "partName": "Coolant Flush Kit",
-            "partBrand": "Prestone",
-            "affiliateUrl": "https://www.amazon.com/s?k=Prestone%20coolant%20flush%20kit&tag=au7o-20"
+            "partBrand": "Prestone"
           },
           {
             "type": "part",
             "content": "Stant thermostat — preventive replacement during coolant service",
             "partName": "Thermostat",
-            "partBrand": "Stant",
-            "affiliateUrl": "https://www.amazon.com/s?k=Stant%20thermostat&tag=au7o-20"
+            "partBrand": "Stant"
           }
         ],
         "fixParts": [],
@@ -1783,15 +1721,13 @@
             "type": "part",
             "content": "Prestone coolant flush kit for complete cooling system service",
             "partName": "Coolant Flush Kit",
-            "partBrand": "Prestone",
-            "affiliateUrl": "https://www.amazon.com/s?k=Prestone%20coolant%20flush%20kit&tag=au7o-20"
+            "partBrand": "Prestone"
           },
           {
             "type": "part",
             "content": "Stant thermostat — preventive replacement during coolant service",
             "partName": "Thermostat",
-            "partBrand": "Stant",
-            "affiliateUrl": "https://www.amazon.com/s?k=Stant%20thermostat&tag=au7o-20"
+            "partBrand": "Stant"
           }
         ],
         "fixParts": [],
@@ -1815,8 +1751,8 @@
       "commerceDecision": "unchanged-pending-audit",
       "changedFields": [],
       "evidence": [],
-      "beforeSha256": "9c463354de3ac3d71623cc82bc3c0e334c637e94b08569c243ec19f42e9c8d6a",
-      "proposalSha256": "9c463354de3ac3d71623cc82bc3c0e334c637e94b08569c243ec19f42e9c8d6a",
+      "beforeSha256": "6eefb4106b3863b53a91c00813d33a6fec44cfd1437437b14c4fdde837eb4564",
+      "proposalSha256": "6eefb4106b3863b53a91c00813d33a6fec44cfd1437437b14c4fdde837eb4564",
       "before": {
         "make": "Hyundai",
         "model": "Ioniq 5",
@@ -1877,8 +1813,7 @@
             "type": "part",
             "content": "Professional OBD-II diagnostic scanner for reading infotainment and body module codes",
             "partName": "Bluetooth Pro OBD2 Scan Tool",
-            "partBrand": "BlueDriver",
-            "affiliateUrl": "https://www.amazon.com/s?k=BlueDriver%20Bluetooth%20Pro%20OBD2%20Scan%20Tool%20Hyundai%20Ioniq%205&tag=au7o-20"
+            "partBrand": "BlueDriver"
           }
         ],
         "fixParts": [],
@@ -1956,8 +1891,7 @@
             "type": "part",
             "content": "Professional OBD-II diagnostic scanner for reading infotainment and body module codes",
             "partName": "Bluetooth Pro OBD2 Scan Tool",
-            "partBrand": "BlueDriver",
-            "affiliateUrl": "https://www.amazon.com/s?k=BlueDriver%20Bluetooth%20Pro%20OBD2%20Scan%20Tool%20Hyundai%20Ioniq%205&tag=au7o-20"
+            "partBrand": "BlueDriver"
           }
         ],
         "fixParts": [],
@@ -1985,8 +1919,8 @@
       "commerceDecision": "unchanged-pending-audit",
       "changedFields": [],
       "evidence": [],
-      "beforeSha256": "67d6e101a728b5fc41e9f059a6c02a38722d7b1e01f5a5fa7d026c880d90c1fc",
-      "proposalSha256": "67d6e101a728b5fc41e9f059a6c02a38722d7b1e01f5a5fa7d026c880d90c1fc",
+      "beforeSha256": "105b843742bb96759e8a3b7a2b8b6e9363c2b915e1e3bcc9f2eb7e368ae26222",
+      "proposalSha256": "105b843742bb96759e8a3b7a2b8b6e9363c2b915e1e3bcc9f2eb7e368ae26222",
       "before": {
         "make": "Hyundai",
         "model": "Ioniq 5",
@@ -2032,8 +1966,7 @@
             "content": "OEM strut mount bearing 54612-GI000 is inexpensive and resolves most clunking",
             "upvotes": 0,
             "partBrand": "Hyundai OEM",
-            "partNumber": "54612-GI000",
-            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20OEM%2054612-GI000&tag=au7o-20"
+            "partNumber": "54612-GI000"
           },
           {
             "type": "tip",
@@ -2100,8 +2033,7 @@
             "content": "OEM strut mount bearing 54612-GI000 is inexpensive and resolves most clunking",
             "upvotes": 0,
             "partBrand": "Hyundai OEM",
-            "partNumber": "54612-GI000",
-            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20OEM%2054612-GI000&tag=au7o-20"
+            "partNumber": "54612-GI000"
           },
           {
             "type": "tip",

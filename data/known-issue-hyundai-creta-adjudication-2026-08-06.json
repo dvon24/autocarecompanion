@@ -16,9 +16,9 @@
   ],
   "source": {
     "snapshotFile": "data/_hyundai-deeplink-snapshot-2026-08-06.json",
-    "snapshotSha256": "f3e74267205477804060c49c988221cdc4dfcfc4586df369601c8c64736cce60",
-    "snapshotGeneratedAt": "2026-08-06T02:37:36.989Z",
-    "snapshotHash": "444457abb31ca6a5ead423878b37ca790d44a87c74ffa43259362cb4218ba632",
+    "snapshotSha256": "32e15c7ea3495a55c2a1f9b3e0313501d2a2c2f1025a0ee14fea7cf327ba0082",
+    "snapshotGeneratedAt": "2026-08-12T13:03:45.743Z",
+    "snapshotHash": "ba9d3aba10f2d28896a8cabe76b1cddf8fdc4a80aa0e8a4bf97c0e7e1b50636f",
     "cretaRecordCount": 6
   },
   "observations": [
@@ -229,18 +229,7 @@
       "identityRule": "The existing indexed issue stays on the same ID; only the official same-identity scope, mechanism, consequence and campaign guidance replace unsupported claims.",
       "commerceDecision": "no-commerce",
       "changedFields": [
-        "description",
-        "solution",
-        "symptoms",
-        "affectedSystems",
-        "estimatedCostLow",
-        "estimatedCostHigh",
-        "citations",
-        "humanApproved",
-        "source",
-        "reviewedOn",
-        "contentUpdatedOn",
-        "contentUpdateSummary"
+        "humanApproved"
       ],
       "evidence": [
         {
@@ -250,7 +239,7 @@
           "observation": "Hyundai Motor Brasil - Creta Brake-Booster Recall Notice supports the proposed same-identity scope or owner lookup path."
         }
       ],
-      "beforeSha256": "e56e3ccecd50012b1ebd00d31b020d78df22fb16d06872cb115d528587171cde",
+      "beforeSha256": "5ebd2bd8f0c52f2d1d4ed4cedb1e9fa8b9a5c9490397838cc55e6ea94756230f",
       "proposalSha256": "df68ac089105ce4b72e013a0fd44ea439e1a97ca97a656008951e03504bc22f0",
       "before": {
         "make": "Hyundai",
@@ -263,49 +252,41 @@
         "engines": [],
         "category": "brakes",
         "title": "Brake Booster Diaphragm Defect — Official Brazil Recall (Hard Pedal, Longer Stopping Distance)",
-        "description": "Hyundai do Brasil recalled Creta 1.0 turbo automatic units (model years 2024-2025, manufactured March 12 to July 16, 2024) for a defect in the brake booster (servofreio): displacement of the internal diaphragm reduces vacuum in the brake-assist system. This makes the brake pedal harden, increasing the force needed to brake and lengthening braking time and distance — a direct crash risk. The campaign began September 3, 2024 with free brake booster replacement at Hyundai dealerships.",
-        "solution": "Check the chassis/VIN against Hyundai Brazil's recall list (or call 0800-770-3355) and have the brake booster replaced free of charge at a Hyundai dealership; the service takes about two hours.",
+        "description": "Hyundai Motor Brasil recalled Creta 1.0 AT Turbo vehicles from model years 2024/2024 and 2024/2025 that were manufactured from March 12 through July 16, 2024. The brake-booster diaphragm can shift, reducing vacuum in the brake-assist system. The brake pedal can become harder to press, requiring more driver effort and increasing braking time and distance.",
+        "solution": "Check the chassis range in Hyundai Motor Brasil's recall notice. If the brake pedal becomes hard, Hyundai advises stopping use of the vehicle and contacting an HMB dealer immediately. Dealers replace the brake booster free of charge; the notice estimates about two hours for the service.",
         "severity": "high",
         "confidence": "high",
         "symptoms": [
-          "Brake pedal feels unusually hard / heavy",
-          "More pedal force needed to slow the car",
-          "Longer stopping distances",
-          "Reduced vacuum assist noticeable on repeated braking"
+          "Brake pedal becomes harder to press",
+          "More driver force is required to brake",
+          "Braking time and distance can increase"
         ],
-        "affectedSystems": [],
+        "affectedSystems": [
+          "Brake booster",
+          "Brake-assist vacuum system"
+        ],
         "dtcCodes": [],
-        "estimatedCostLow": 0,
-        "estimatedCostHigh": 0,
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
         "typicalMileageLow": null,
         "typicalMileageHigh": null,
         "citations": [
           {
             "url": "https://hyundai.com.br/content/dam/hmb/servicos/recall/pdf/DPDC-DOC4-Aviso%20de%20Risco.pdf",
             "type": "recall",
-            "title": "Comunicado de Recall — Hyundai Motor Brasil: Creta 1.0 AT Turbo 2024/2025 servofreio (official recall notice PDF)"
-          },
-          {
-            "url": "https://mundodoautomovelparapcd.com.br/hyundai-convoca-recall-do-creta-por-falha-nos-freios-veja-chassis-envolvidos/",
-            "type": "article",
-            "title": "Hyundai convoca recall do Creta por falha nos freios; veja chassis envolvidos — Mundo do Automóvel para PCD"
-          },
-          {
-            "url": "https://dana.com.br/canaldana/2024/09/13/hyundai-convoca-recall-do-creta-por-falha-que-pode-ser-fatal-veja-o-motivo/",
-            "type": "article",
-            "title": "Hyundai convoca recall do Creta por falha que pode ser fatal — Canal Dana"
+            "title": "Hyundai Motor Brasil - Creta Brake-Booster Recall Notice"
           }
         ],
         "communityRecommendations": [],
         "fixParts": [],
         "humanApproved": true,
         "reportCount": 0,
-        "source": "ai-researched",
+        "source": "manual",
         "status": "published",
         "lastReportedByOwners": "",
-        "reviewedOn": "2026-06-12",
-        "contentUpdatedOn": "",
-        "contentUpdateSummary": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Narrowed the existing Brazil brake-booster page to Hyundai Motor Brasil's exact model-year, production-period, diaphragm/vacuum mechanism, braking consequence and free booster-replacement remedy.",
         "relatedIssueIds": []
       },
       "proposal": {

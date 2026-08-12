@@ -16,9 +16,9 @@
   ],
   "source": {
     "snapshotFile": "data/_hyundai-deeplink-snapshot-2026-08-06.json",
-    "snapshotSha256": "f3e74267205477804060c49c988221cdc4dfcfc4586df369601c8c64736cce60",
-    "snapshotGeneratedAt": "2026-08-06T02:37:36.989Z",
-    "snapshotHash": "444457abb31ca6a5ead423878b37ca790d44a87c74ffa43259362cb4218ba632",
+    "snapshotSha256": "32e15c7ea3495a55c2a1f9b3e0313501d2a2c2f1025a0ee14fea7cf327ba0082",
+    "snapshotGeneratedAt": "2026-08-12T13:03:45.743Z",
+    "snapshotHash": "ba9d3aba10f2d28896a8cabe76b1cddf8fdc4a80aa0e8a4bf97c0e7e1b50636f",
     "accentRecordCount": 7
   },
   "observations": [
@@ -72,21 +72,7 @@
       "identityRule": "The indexed issue identity stays on the same ID; only exact NHTSA scope, mechanism, symptoms and remedy replace unsupported claims.",
       "commerceDecision": "no-commerce",
       "changedFields": [
-        "trims",
-        "engines",
-        "description",
-        "solution",
-        "symptoms",
-        "affectedSystems",
-        "dtcCodes",
-        "estimatedCostLow",
-        "estimatedCostHigh",
-        "citations",
-        "humanApproved",
-        "source",
-        "reviewedOn",
-        "contentUpdatedOn",
-        "contentUpdateSummary"
+        "humanApproved"
       ],
       "evidence": [
         {
@@ -102,7 +88,7 @@
           "observation": "Hyundai Part 573 Report 23V651 - ABS Module Internal Leak supports the proposed same-identity scope, consequence and remedy."
         }
       ],
-      "beforeSha256": "91e6ed32254cf0be42e5b3613a5a0fa21cc50b751f914e748f62bfaeec992765",
+      "beforeSha256": "8c898cd3eb74b5e54a1d6bf474a9ee550a1e8772f6990ac106a97489b230a0c7",
       "proposalSha256": "f5ac9f484aa0047a18a49c06827c41b099cdfca927ac6afd641cdf98b1361b7a",
       "before": {
         "make": "Hyundai",
@@ -113,63 +99,49 @@
           2014,
           2015
         ],
-        "trims": [
-          "GLS",
-          "GS",
-          "SE",
-          "Sport"
-        ],
-        "engines": [
-          "1.6L Gamma GDI I4 (G4FD)"
-        ],
+        "trims": [],
+        "engines": [],
         "category": "brakes",
         "title": "ABS/HECU Brake-Fluid Leak Causing Engine-Compartment Fire (Recall 23V-651 / Campaign 251)",
-        "description": "O-ring material inside the ABS Hydraulic Electronic Control Unit (HECU) can degrade and allow brake fluid to leak internally, causing an electrical short and overcurrent that can ignite an engine-compartment fire while parked or driving, even with the ignition off. NHTSA recall 23V-651000 covers 240,589 model-year 2012-2015 Accents (part of the larger ~1.6M-vehicle Hyundai action). Warning signs include smoke/burning odor from the engine bay and MIL/ABS light illumination.",
-        "solution": "Under recall, the dealer replaces the ABS multi-relay fuse (lower-amp fuse) free of charge regardless of warranty status as the remedy; a leaking HECU is replaced if found. Owners are advised to park outdoors and away from structures until the repair is completed.",
+        "description": "NHTSA recall 23V651 covers certain 2012-2015 Hyundai Accent vehicles. The anti-lock brake system module can leak brake fluid internally and cause an electrical short, which can start an engine-compartment fire while the vehicle is parked or being driven.",
+        "solution": "Check the VIN for recall 23V651. Until the recall repair is complete, Hyundai advises owners to park outside and away from structures. Dealers replace the ABS fuse free of charge.",
         "severity": "high",
         "confidence": "high",
         "symptoms": [
-          "Burning/electrical smell from engine bay",
-          "Smoke from under the hood while parked",
-          "ABS or brake warning light",
-          "Fire in engine compartment"
+          "Open recall 23V651 for the VIN",
+          "Potential smoke or fire from the engine compartment while parked or driving"
         ],
-        "affectedSystems": [],
-        "dtcCodes": [
-          "C1200",
-          "C1604"
+        "affectedSystems": [
+          "Anti-lock brake system module",
+          "ABS electrical fuse"
         ],
-        "estimatedCostLow": 0,
-        "estimatedCostHigh": 0,
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
         "typicalMileageLow": null,
         "typicalMileageHigh": null,
         "citations": [
           {
+            "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=23V651000",
+            "type": "recall",
+            "title": "NHTSA Campaign 23V651 - 2012-2015 Accent ABS Module Fire Risk"
+          },
+          {
             "url": "https://static.nhtsa.gov/odi/rcl/2023/RCLRPT-23V651-6950.PDF",
             "type": "recall",
-            "title": "NHTSA Part 573 Safety Recall Report 23V-651"
-          },
-          {
-            "url": "https://www.nhtsa.gov/press-releases/consumer-alert-kia-and-hyundai-park-outside",
-            "type": "recall",
-            "title": "NHTSA Consumer Alert: Kia and Hyundai Park Outside"
-          },
-          {
-            "url": "https://hyundai.oemdtc.com/951/recall-251-abs-unit-may-cause-engine-compartment-fire-2010-2015-hyundai",
-            "type": "recall",
-            "title": "Recall 251: ABS Unit May Cause Engine Compartment Fire (Hyundai)"
+            "title": "Hyundai Part 573 Report 23V651 - ABS Module Internal Leak"
           }
         ],
         "communityRecommendations": [],
         "fixParts": [],
         "humanApproved": true,
         "reportCount": 0,
-        "source": "ai-researched",
+        "source": "manual",
         "status": "published",
         "lastReportedByOwners": "",
-        "reviewedOn": "2026-07-08",
-        "contentUpdatedOn": "",
-        "contentUpdateSummary": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Replaced secondary sources and unsupported O-ring, warning-light, population and HECU-replacement details with recall 23V651's exact 2012-2015 Accent scope, internal-leak fire risk, park-outside instruction and ABS-fuse remedy.",
         "relatedIssueIds": []
       },
       "proposal": {
@@ -236,8 +208,8 @@
       "commerceDecision": "unchanged-pending-audit",
       "changedFields": [],
       "evidence": [],
-      "beforeSha256": "a969615c1484c03274011de022384b0588231d087776efcb79c0ecf4888f258c",
-      "proposalSha256": "a969615c1484c03274011de022384b0588231d087776efcb79c0ecf4888f258c",
+      "beforeSha256": "add57c63da04449cb934c6eac6e01b65d4c6a9d53c0fa853c2523b3cfaa455f5",
+      "proposalSha256": "add57c63da04449cb934c6eac6e01b65d4c6a9d53c0fa853c2523b3cfaa455f5",
       "before": {
         "make": "Hyundai",
         "model": "Accent",
@@ -289,8 +261,7 @@
             "content": "Denso aftermarket A/C compressor is reliable and half the cost of OEM",
             "upvotes": 0,
             "partName": "A/C Compressor",
-            "partBrand": "Denso",
-            "affiliateUrl": "https://www.amazon.com/s?k=Denso%20A%2FC%20Compressor&tag=au7o-20"
+            "partBrand": "Denso"
           },
           {
             "type": "tip",
@@ -360,8 +331,7 @@
             "content": "Denso aftermarket A/C compressor is reliable and half the cost of OEM",
             "upvotes": 0,
             "partName": "A/C Compressor",
-            "partBrand": "Denso",
-            "affiliateUrl": "https://www.amazon.com/s?k=Denso%20A%2FC%20Compressor&tag=au7o-20"
+            "partBrand": "Denso"
           },
           {
             "type": "tip",
@@ -389,21 +359,7 @@
       "identityRule": "The indexed issue identity stays on the same ID; only exact NHTSA scope, mechanism, symptoms and remedy replace unsupported claims.",
       "commerceDecision": "no-commerce",
       "changedFields": [
-        "trims",
-        "engines",
-        "description",
-        "solution",
-        "severity",
-        "symptoms",
-        "affectedSystems",
-        "estimatedCostLow",
-        "estimatedCostHigh",
-        "citations",
-        "humanApproved",
-        "source",
-        "reviewedOn",
-        "contentUpdatedOn",
-        "contentUpdateSummary"
+        "humanApproved"
       ],
       "evidence": [
         {
@@ -425,7 +381,7 @@
           "observation": "NHTSA Campaign 15V566 - 2009-2011 Accent Brake-Light Switch supports the proposed same-identity scope, consequence and remedy."
         }
       ],
-      "beforeSha256": "c6cd2d6285e0d861819881602a0dd360b67fe76f23b8fdf25e24e4ed907aea26",
+      "beforeSha256": "96025ebe5b2f4e90060dca9749cb7ff55bab1ed0f12f3c117254816c98c2804b",
       "proposalSha256": "2566e439df0d73e4da9cf8197db99b8c407fd5c6f1e1566423bb45dd8ac2f9b8",
       "before": {
         "make": "Hyundai",
@@ -438,61 +394,58 @@
           2010,
           2011
         ],
-        "trims": [
-          "GL",
-          "GLS",
-          "GS",
-          "SE"
-        ],
-        "engines": [
-          "1.6L Alpha II I4",
-          "1.6L Gamma I4"
-        ],
+        "trims": [],
+        "engines": [],
         "category": "electrical",
         "title": "Brake Light / Stop Lamp Switch Failure",
-        "description": "The stop lamp (brake light) switch contacts degrade and fail, so the brake lights may not illuminate when the pedal is pressed. Because the switch also signals other systems, failure can prevent cruise control from disengaging, keep the shift interlock from releasing the shifter out of Park, and illuminate the ESC indicator. Multiple recalls covered MC-platform 2006-2011 Accents (NHTSA 09V-122, 13V-113, 15V-566).",
-        "solution": "Replace the stop lamp switch on the brake pedal bracket. Covered free under recall for included VINs; out-of-warranty the part is inexpensive and the job is quick.",
-        "severity": "medium",
+        "description": "Three overlapping NHTSA campaigns cover Accent stop-lamp switch failures: 09V122 covers certain 2006-2007 vehicles, 13V113 covers certain 2006-2009 vehicles, and 15V566 covers certain 2009-2011 vehicles. A malfunctioning switch can prevent the brake lights from illuminating, prevent cruise control from disengaging when the brake is pressed, interfere with the brake-transmission shift interlock, or illuminate the ESC malfunction indicator.",
+        "solution": "Have a Hyundai dealer check the VIN for all three campaigns and verify completion. Each campaign directs dealers to replace the affected stop-lamp or brake-light switch free of charge.",
+        "severity": "high",
         "confidence": "high",
         "symptoms": [
-          "Brake lights do not turn on",
-          "Cannot shift out of Park",
-          "Cruise control will not engage or disengage",
-          "Intermittent ESC/ABS warning"
+          "Brake lights may not illuminate when the brake pedal is pressed",
+          "Cruise control may not disengage when the brake pedal is pressed",
+          "Shifter may not move out of Park",
+          "ESC malfunction indicator may illuminate"
         ],
-        "affectedSystems": [],
+        "affectedSystems": [
+          "Stop-lamp switch",
+          "Brake lights",
+          "Cruise control disengagement",
+          "Brake-transmission shift interlock"
+        ],
         "dtcCodes": [],
-        "estimatedCostLow": 0,
-        "estimatedCostHigh": 120,
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
         "typicalMileageLow": null,
         "typicalMileageHigh": null,
         "citations": [
           {
-            "url": "https://repairpal.com/recall/15V566000",
+            "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=09V122000",
             "type": "recall",
-            "title": "Hyundai Accent Recall 15V566000 - Brake Light Switch Failure"
+            "title": "NHTSA Campaign 09V122 - 2006-2007 Accent Stop-Lamp Switch"
           },
           {
-            "url": "https://repairpal.com/recall/09V122000",
+            "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=13V113000",
             "type": "recall",
-            "title": "Hyundai Recall 09V122000 - Brake Light Switch May Fail"
+            "title": "NHTSA Campaign 13V113 - 2006-2009 Accent Stop-Lamp Switch"
           },
           {
-            "url": "https://static.nhtsa.gov/odi/rcl/2015/RCLRPT-15V566-6510.PDF",
+            "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=15V566000",
             "type": "recall",
-            "title": "NHTSA Part 573 Safety Recall Report 15V-566 (stop lamp switch)"
+            "title": "NHTSA Campaign 15V566 - 2009-2011 Accent Brake-Light Switch"
           }
         ],
         "communityRecommendations": [],
         "fixParts": [],
         "humanApproved": true,
         "reportCount": 0,
-        "source": "ai-researched",
+        "source": "manual",
         "status": "published",
         "lastReportedByOwners": "",
-        "reviewedOn": "2026-07-08",
-        "contentUpdatedOn": "",
-        "contentUpdateSummary": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Preserved the indexed stop-lamp-switch identity while replacing secondary recall pages with exact NHTSA campaigns and their overlapping 2006-2011 Accent scopes, effects and free switch-replacement remedies.",
         "relatedIssueIds": []
       },
       "proposal": {
@@ -570,8 +523,8 @@
       "commerceDecision": "unchanged-pending-audit",
       "changedFields": [],
       "evidence": [],
-      "beforeSha256": "c44e6f3c4245e035733bfa983413a863218c996e9f9d3078f071da12d03d1799",
-      "proposalSha256": "c44e6f3c4245e035733bfa983413a863218c996e9f9d3078f071da12d03d1799",
+      "beforeSha256": "161a60e8e9130a7b5dee72d09e74a9c30a33f28ed290236db9a3c701200e8b29",
+      "proposalSha256": "161a60e8e9130a7b5dee72d09e74a9c30a33f28ed290236db9a3c701200e8b29",
       "before": {
         "make": "Hyundai",
         "model": "Accent",
@@ -637,8 +590,7 @@
             "content": "Hyundai OEM sensor 39180-2B000 is only $35-45 and lasts much longer than aftermarket options",
             "upvotes": 0,
             "partBrand": "Hyundai OEM",
-            "partNumber": "39180-2B000",
-            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20OEM%2039180-2B000&tag=au7o-20"
+            "partNumber": "39180-2B000"
           },
           {
             "type": "tip",
@@ -646,7 +598,34 @@
             "upvotes": 0
           }
         ],
-        "fixParts": [],
+        "fixParts": [
+          {
+            "note": "Walker Products 235-1456. Fitment confirmed against the ShowMeTheParts catalog for this vehicle's year and engine.",
+            "buyLinks": [
+              {
+                "url": "https://www.ebay.com/itm/277243903900?_skw=Walker+Products+235-1456+Engine+Crankshaft+Position+Sensor&hash=item408d063f9c%3Ag%3ANggAAeSwdy5oYvEC&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049",
+                "vendor": "eBay",
+                "linkType": "product",
+                "verified": true
+              },
+              {
+                "url": "https://www.amazon.com/Walker-Products-235-1456-engineered-components/dp/B079YJZKWW?tag=au7o-20",
+                "vendor": "Amazon",
+                "linkType": "product",
+                "verified": true
+              }
+            ],
+            "variants": [],
+            "verified": true,
+            "component": "Engine Crankshaft Position Sensor",
+            "confidence": null,
+            "provenance": "ShowMeTheParts fitment lookup by year and engine; buy links verified to carry the part number on a matching brand",
+            "oemPartNumber": "",
+            "aftermarketXref": [
+              "235-1456"
+            ]
+          }
+        ],
         "humanApproved": true,
         "reportCount": 520,
         "source": "ai-researched",
@@ -724,8 +703,7 @@
             "content": "Hyundai OEM sensor 39180-2B000 is only $35-45 and lasts much longer than aftermarket options",
             "upvotes": 0,
             "partBrand": "Hyundai OEM",
-            "partNumber": "39180-2B000",
-            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20OEM%2039180-2B000&tag=au7o-20"
+            "partNumber": "39180-2B000"
           },
           {
             "type": "tip",
@@ -733,7 +711,34 @@
             "upvotes": 0
           }
         ],
-        "fixParts": [],
+        "fixParts": [
+          {
+            "note": "Walker Products 235-1456. Fitment confirmed against the ShowMeTheParts catalog for this vehicle's year and engine.",
+            "buyLinks": [
+              {
+                "url": "https://www.ebay.com/itm/277243903900?_skw=Walker+Products+235-1456+Engine+Crankshaft+Position+Sensor&hash=item408d063f9c%3Ag%3ANggAAeSwdy5oYvEC&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049",
+                "vendor": "eBay",
+                "linkType": "product",
+                "verified": true
+              },
+              {
+                "url": "https://www.amazon.com/Walker-Products-235-1456-engineered-components/dp/B079YJZKWW?tag=au7o-20",
+                "vendor": "Amazon",
+                "linkType": "product",
+                "verified": true
+              }
+            ],
+            "variants": [],
+            "verified": true,
+            "component": "Engine Crankshaft Position Sensor",
+            "confidence": null,
+            "provenance": "ShowMeTheParts fitment lookup by year and engine; buy links verified to carry the part number on a matching brand",
+            "oemPartNumber": "",
+            "aftermarketXref": [
+              "235-1456"
+            ]
+          }
+        ],
         "humanApproved": true,
         "reportCount": 520,
         "source": "ai-researched",
@@ -756,8 +761,8 @@
       "commerceDecision": "unchanged-pending-audit",
       "changedFields": [],
       "evidence": [],
-      "beforeSha256": "454b44fed32cd08fb7b074b56b019ae888100cc62448cb859f4bc7fc3d6a22e9",
-      "proposalSha256": "454b44fed32cd08fb7b074b56b019ae888100cc62448cb859f4bc7fc3d6a22e9",
+      "beforeSha256": "1943b4ba4c70b1be0415f790c0cb65285fb9107a4fa68e77122c7735d8493a47",
+      "proposalSha256": "1943b4ba4c70b1be0415f790c0cb65285fb9107a4fa68e77122c7735d8493a47",
       "before": {
         "make": "Hyundai",
         "model": "Accent",
@@ -817,8 +822,7 @@
             "content": "Hyundai SP-CVT1 fluid is critical - do not use generic CVT fluid",
             "upvotes": 0,
             "partName": "SP-CVT1 Fluid",
-            "partBrand": "Hyundai",
-            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20SP-CVT1%20Fluid&tag=au7o-20"
+            "partBrand": "Hyundai"
           },
           {
             "type": "tip",
@@ -904,8 +908,7 @@
             "content": "Hyundai SP-CVT1 fluid is critical - do not use generic CVT fluid",
             "upvotes": 0,
             "partName": "SP-CVT1 Fluid",
-            "partBrand": "Hyundai",
-            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20SP-CVT1%20Fluid&tag=au7o-20"
+            "partBrand": "Hyundai"
           },
           {
             "type": "tip",
@@ -942,8 +945,8 @@
       "commerceDecision": "unchanged-pending-audit",
       "changedFields": [],
       "evidence": [],
-      "beforeSha256": "11da6ffc1266163cfbb696cffea679ac9f41f213a617a393f575c40c56defb3e",
-      "proposalSha256": "11da6ffc1266163cfbb696cffea679ac9f41f213a617a393f575c40c56defb3e",
+      "beforeSha256": "573404dcf7bc99e1e39b882aadba05fe863c508299aa3a04dd1ad9e047a71912",
+      "proposalSha256": "573404dcf7bc99e1e39b882aadba05fe863c508299aa3a04dd1ad9e047a71912",
       "before": {
         "make": "Hyundai",
         "model": "Accent",
@@ -997,8 +1000,7 @@
             "content": "Moog rear torsion beam bushings are a quality upgrade over OEM rubber",
             "upvotes": 0,
             "partName": "Rear Axle Beam Bushing",
-            "partBrand": "Moog",
-            "affiliateUrl": "https://www.amazon.com/s?k=Moog%20Rear%20Axle%20Beam%20Bushing&tag=au7o-20"
+            "partBrand": "Moog"
           },
           {
             "type": "tip",
@@ -1072,8 +1074,7 @@
             "content": "Moog rear torsion beam bushings are a quality upgrade over OEM rubber",
             "upvotes": 0,
             "partName": "Rear Axle Beam Bushing",
-            "partBrand": "Moog",
-            "affiliateUrl": "https://www.amazon.com/s?k=Moog%20Rear%20Axle%20Beam%20Bushing&tag=au7o-20"
+            "partBrand": "Moog"
           },
           {
             "type": "tip",
@@ -1103,21 +1104,7 @@
       "identityRule": "The indexed issue identity stays on the same ID; only exact NHTSA scope, mechanism, symptoms and remedy replace unsupported claims.",
       "commerceDecision": "no-commerce",
       "changedFields": [
-        "years",
-        "trims",
-        "engines",
-        "description",
-        "solution",
-        "symptoms",
-        "affectedSystems",
-        "estimatedCostLow",
-        "estimatedCostHigh",
-        "citations",
-        "humanApproved",
-        "source",
-        "reviewedOn",
-        "contentUpdatedOn",
-        "contentUpdateSummary"
+        "humanApproved"
       ],
       "evidence": [
         {
@@ -1133,70 +1120,60 @@
           "observation": "Hyundai Part 573 Report 22V354 - Pretensioner Population and Remedy supports the proposed same-identity scope, consequence and remedy."
         }
       ],
-      "beforeSha256": "835e4542349e5a4820de59226a9bb634d4fe2f86d297d5d86b39b8b0e9ff895a",
+      "beforeSha256": "bf19efb58ec52d049174eee197a3cf69833ad3dfde5ed3c24aed9df6a9be2c3e",
       "proposalSha256": "97df5c51da207f4968614e7888f0ca65495c4dcd1437b307d4235513b7f822ba",
       "before": {
         "make": "Hyundai",
         "model": "Accent",
         "years": [
-          2019,
           2020,
           2021,
           2022
         ],
-        "trims": [
-          "SE",
-          "SEL",
-          "Limited"
-        ],
-        "engines": [
-          "1.6L Gamma GDI I4 (G4FD)",
-          "1.6L Smartstream MPI I4"
-        ],
+        "trims": [],
+        "engines": [],
         "category": "safety",
         "title": "Seat-Belt Pretensioner May Explode and Send Shrapnel (Recall 229 / NHTSA 22V-354)",
-        "description": "The front seat-belt pretensioner micro gas generator can rupture abnormally when it deploys in a crash, projecting metal fragments into the cabin and risking occupant injury (three injuries reported). Hyundai traced it to microfractures in the delivery pipe. NHTSA campaign 22V-354 (Hyundai recall 229) recalled about 239,000 vehicles, including 2019-2022 Accents (this recall expanded/replaced earlier campaigns 21V-796, 22V-069, 22V-123, 22V-218).",
-        "solution": "Under recall, dealers secure the pretensioner's micro gas generator with a protective cap (or replace the pretensioner as needed), free of charge. Owner notification letters were mailed August 2022.",
+        "description": "NHTSA recall 22V354 covers certain 2020-2022 Hyundai Accent vehicles. In a crash, a front driver-side or passenger-side seat-belt pretensioner can explode when it deploys, projecting metal fragments into the passenger compartment and risking occupant injury.",
+        "solution": "Have a Hyundai dealer check the VIN for recall 22V354, campaign 229, including vehicles repaired under the earlier superseded campaigns. Dealers secure the affected seat-belt pretensioners with a protective cap free of charge.",
         "severity": "high",
         "confidence": "high",
         "symptoms": [
-          "No warning until deployment",
-          "Metal fragments/shrapnel ejected during crash pretensioner firing",
-          "Airbag/seat-belt warning light (rare)"
+          "Open recall 22V354 for the VIN",
+          "No advance warning required before abnormal pretensioner deployment",
+          "Potential metal fragments during a crash deployment"
         ],
-        "affectedSystems": [],
+        "affectedSystems": [
+          "Front driver-side seat-belt pretensioner",
+          "Front passenger-side seat-belt pretensioner"
+        ],
         "dtcCodes": [],
-        "estimatedCostLow": 0,
-        "estimatedCostHigh": 0,
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
         "typicalMileageLow": null,
         "typicalMileageHigh": null,
         "citations": [
           {
-            "url": "https://hyundai.oemdtc.com/687/recall-229-seat-belt-pretensioners-may-explode-2019-2022-hyundai-accent-2021-2023-elantra-2021-2022-elantra-hev/",
+            "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=22V354000",
             "type": "recall",
-            "title": "Recall 229 - Seat Belt Pretensioners May Explode (2019-2022 Accent)"
+            "title": "NHTSA Campaign 22V354 - 2020-2022 Accent Seat-Belt Pretensioners"
           },
           {
-            "url": "https://www.npr.org/2022/05/24/1101002493/hyundai-recall-accent-elantra-exploding-seat-belt-pretensioners",
-            "type": "article",
-            "title": "Hyundai recalling 239,000 vehicles over exploding seat belt pretensioners - NPR"
-          },
-          {
-            "url": "https://www.consumerreports.org/cars/car-recalls-defects/hyundai-accent-elantra-recalled-seat-belt-pretensioner-issue-a6739563089/",
-            "type": "article",
-            "title": "Hyundai Accent and Elantra Recalled for Seat Belt Pretensioner Issue - Consumer Reports"
+            "url": "https://static.nhtsa.gov/odi/rcl/2022/RCLRPT-22V354-9759.PDF",
+            "type": "recall",
+            "title": "Hyundai Part 573 Report 22V354 - Pretensioner Population and Remedy"
           }
         ],
         "communityRecommendations": [],
         "fixParts": [],
         "humanApproved": true,
         "reportCount": 0,
-        "source": "ai-researched",
+        "source": "manual",
         "status": "published",
         "lastReportedByOwners": "",
-        "reviewedOn": "2026-07-08",
-        "contentUpdatedOn": "",
-        "contentUpdateSummary": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Replaced secondary sources with the 22V354 record, corrected the Accent scope from stale 2019-2022 wording to the documented 2020-2022 population, and retained only the documented abnormal-deployment risk and protective-cap remedy.",
         "relatedIssueIds": []
       },
       "proposal": {

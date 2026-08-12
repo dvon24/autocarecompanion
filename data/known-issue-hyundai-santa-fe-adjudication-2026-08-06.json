@@ -16,9 +16,9 @@
   ],
   "source": {
     "snapshotFile": "data/_hyundai-deeplink-snapshot-2026-08-06.json",
-    "snapshotSha256": "f3e74267205477804060c49c988221cdc4dfcfc4586df369601c8c64736cce60",
-    "snapshotGeneratedAt": "2026-08-06T02:37:36.989Z",
-    "snapshotHash": "444457abb31ca6a5ead423878b37ca790d44a87c74ffa43259362cb4218ba632",
+    "snapshotSha256": "32e15c7ea3495a55c2a1f9b3e0313501d2a2c2f1025a0ee14fea7cf327ba0082",
+    "snapshotGeneratedAt": "2026-08-12T13:03:45.743Z",
+    "snapshotHash": "ba9d3aba10f2d28896a8cabe76b1cddf8fdc4a80aa0e8a4bf97c0e7e1b50636f",
     "santaFeRecordCount": 14
   },
   "observations": [
@@ -226,20 +226,7 @@
       "identityRule": "The same indexed component and failure outcome stay on the existing ID, title and category; only facts within the exact official record remain.",
       "commerceDecision": "no-commerce",
       "changedFields": [
-        "years",
-        "engines",
-        "description",
-        "solution",
-        "symptoms",
-        "affectedSystems",
-        "estimatedCostLow",
-        "estimatedCostHigh",
-        "citations",
-        "humanApproved",
-        "source",
-        "reviewedOn",
-        "contentUpdatedOn",
-        "contentUpdateSummary"
+        "humanApproved"
       ],
       "evidence": [
         {
@@ -249,70 +236,55 @@
           "observation": "NHTSA Part 573 Report 22V-056 - Santa Fe ABS Module Electrical Short supports the proposed same-identity statements."
         }
       ],
-      "beforeSha256": "d2912ce73fd5fc7c3ed211ffe0ffaf6bddedaa631936b20530b73cea90c2990e",
+      "beforeSha256": "9ab99da6e58186c29d8cb7db27ae95e27bb94ed06fcbef613fc1ce7900852f83",
       "proposalSha256": "5a2a9424a3585dadde3cafd84986e478707bc0f2c90a5b37e3c0baba75a5a2ef",
       "before": {
         "make": "Hyundai",
         "model": "Santa Fe",
         "years": [
-          2013,
-          2014,
-          2015,
-          2016,
           2017,
           2018
         ],
         "trims": [],
-        "engines": [
-          "2.0L Theta II GDI Turbo (G4KH)",
-          "2.4L Theta II GDI (G4KJ)"
-        ],
+        "engines": [],
         "category": "brakes",
         "title": "ABS/HECU Module Electrical Short Causing Engine Compartment Fire",
-        "description": "Brake fluid can leak internally into the ABS/HECU (Hydraulic Electronic Control Unit) module and cause an electrical short on the circuit board. Because the module is constantly powered, the short can ignite an engine-compartment fire even while the vehicle is parked and turned off. Hyundai and NHTSA explicitly advise affected owners to park outside and away from structures until repaired. The Santa Fe Sport was recalled multiple times for this defect (including roughly 44,000 MY2018 units), part of a broader Hyundai/Kia fire-risk pattern.",
-        "solution": "Check the VIN against the ABS-related fire recalls (e.g., NHTSA 22V-056 / Hyundai Recall 218 and the related ABS multi-fuse campaigns). The free remedy is installation of a revised ABS multi-fuse, and where applicable inspection/replacement of the ABS module. Until the recall is performed, park outdoors away from buildings. If you smell burning or see smoke from under the hood, stop and shut off the vehicle immediately.",
+        "description": "NHTSA recall 22V-056 (Hyundai recall 218) covers certain model-year 2017-2018 Santa Fe Sport and Santa Fe vehicles not equipped with Smart Cruise Control. The ABS module can malfunction internally and cause an electrical short over time. Significant overcurrent can increase the risk of an engine-compartment fire while the vehicle is parked or being driven. Hyundai stated that it was still investigating the root cause in the Part 573 filing.",
+        "solution": "Check the VIN for NHTSA recall 22V-056 and park the vehicle outside and away from structures until the remedy is complete. Hyundai dealers replace the ABS multi-fuse with a revised, lower-amperage fuse to limit module operating current, free of charge.",
         "severity": "high",
         "confidence": "high",
         "symptoms": [
-          "Burning smell or smoke from the engine bay",
-          "ABS or brake warning light",
-          "Fire while parked and off",
-          "Blown ABS-related fuse",
-          "Melted wiring near the ABS module"
+          "Smoke from the engine compartment",
+          "Burning or melting odor",
+          "Malfunction Indicator Lamp illumination",
+          "ABS warning-light illumination"
         ],
-        "affectedSystems": [],
+        "affectedSystems": [
+          "Anti-lock Brake System module",
+          "ABS multi-fuse"
+        ],
         "dtcCodes": [],
-        "estimatedCostLow": 0,
-        "estimatedCostHigh": 0,
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
         "typicalMileageLow": null,
         "typicalMileageHigh": null,
         "citations": [
           {
-            "url": "https://static.nhtsa.gov/odi/rcl/2022/RCMN-22V056-3218.pdf",
+            "url": "https://static.nhtsa.gov/odi/rcl/2022/RCLRPT-22V056-1184.PDF",
             "type": "recall",
-            "title": "NHTSA Recall 22V-056 — ABS Module Multi-Fuse Installation (Dealer Best Practice)"
-          },
-          {
-            "url": "https://www.consumerreports.org/cars/car-recalls-defects/hyundai-santa-fe-sport-recalled-for-fire-risk-again-a5300962943/",
-            "type": "article",
-            "title": "Hyundai Santa Fe Sport Recalled for Fire Risk, Again — Consumer Reports"
-          },
-          {
-            "url": "https://www.nbcnews.com/business/autos/hyundai-santa-fe-recall-fire-risk-anti-lock-braking-system-rcna55117",
-            "type": "nhtsa",
-            "title": "Hyundai Santa Fe ABS fire-risk recall — NBC News"
+            "title": "NHTSA Part 573 Report 22V-056 - Santa Fe ABS Module Electrical Short"
           }
         ],
         "communityRecommendations": [],
         "fixParts": [],
         "humanApproved": true,
         "reportCount": 0,
-        "source": "ai-researched",
+        "source": "manual",
         "status": "published",
         "lastReportedByOwners": "",
-        "reviewedOn": "2026-06-19",
-        "contentUpdatedOn": "",
-        "contentUpdateSummary": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Kept the indexed ABS/HECU electrical-short/fire identity, narrowed the scope to the exact 2017-2018 populations in 22V-056, and removed the unsupported brake-fluid-leak cause.",
         "relatedIssueIds": []
       },
       "proposal": {
@@ -514,8 +486,8 @@
       "commerceDecision": "unchanged-pending-audit",
       "changedFields": [],
       "evidence": [],
-      "beforeSha256": "595b856f8de5345cfb97169c918f4cb316aa0af94330213af56551134790e2d0",
-      "proposalSha256": "595b856f8de5345cfb97169c918f4cb316aa0af94330213af56551134790e2d0",
+      "beforeSha256": "3e3d2bfc4e1043efb8be10cd2c7412ef0633cfd52ca22d93fe102b364044bbbc",
+      "proposalSha256": "3e3d2bfc4e1043efb8be10cd2c7412ef0633cfd52ca22d93fe102b364044bbbc",
       "before": {
         "make": "Hyundai",
         "model": "Santa Fe",
@@ -581,15 +553,13 @@
             "type": "part",
             "content": "VVT solenoid restores proper variable valve timing operation",
             "partName": "Variable Valve Timing Solenoid",
-            "partBrand": "Dorman",
-            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20Santa%20Fe%20Dorman%20Variable%20Valve%20Timing%20Solenoid&tag=au7o-20"
+            "partBrand": "Dorman"
           },
           {
             "type": "part",
             "content": "Fresh oil is critical for VVT system performance",
             "partName": "Full Synthetic Motor Oil",
-            "partBrand": "Mobil 1",
-            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20Santa%20Fe%20Mobil%201%20Full%20Synthetic%20Motor%20Oil&tag=au7o-20"
+            "partBrand": "Mobil 1"
           }
         ],
         "fixParts": [],
@@ -670,15 +640,13 @@
             "type": "part",
             "content": "VVT solenoid restores proper variable valve timing operation",
             "partName": "Variable Valve Timing Solenoid",
-            "partBrand": "Dorman",
-            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20Santa%20Fe%20Dorman%20Variable%20Valve%20Timing%20Solenoid&tag=au7o-20"
+            "partBrand": "Dorman"
           },
           {
             "type": "part",
             "content": "Fresh oil is critical for VVT system performance",
             "partName": "Full Synthetic Motor Oil",
-            "partBrand": "Mobil 1",
-            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20Santa%20Fe%20Mobil%201%20Full%20Synthetic%20Motor%20Oil&tag=au7o-20"
+            "partBrand": "Mobil 1"
           }
         ],
         "fixParts": [],
@@ -846,8 +814,8 @@
       "commerceDecision": "unchanged-pending-audit",
       "changedFields": [],
       "evidence": [],
-      "beforeSha256": "39c04a177f192d63a2a25053858f75be713fb8aa2444e0473fee99ff1e000d85",
-      "proposalSha256": "39c04a177f192d63a2a25053858f75be713fb8aa2444e0473fee99ff1e000d85",
+      "beforeSha256": "71d1b2318e63e1df55625ee41023bf8dc509f4cd674c1c1c5ca77f2c4d01c59d",
+      "proposalSha256": "71d1b2318e63e1df55625ee41023bf8dc509f4cd674c1c1c5ca77f2c4d01c59d",
       "before": {
         "make": "Hyundai",
         "model": "Santa Fe",
@@ -902,15 +870,13 @@
             "type": "part",
             "content": "Complete strut and shock absorber set for full suspension refresh",
             "partName": "Excel-G Strut/Shock Set",
-            "partBrand": "KYB",
-            "affiliateUrl": "https://www.amazon.com/s?k=KYB%20Excel-G%20struts%20shocks%20Hyundai%20Santa%20Fe&tag=au7o-20"
+            "partBrand": "KYB"
           },
           {
             "type": "part",
             "content": "Four-wheel alignment kit with cam bolts for proper tire wear correction",
             "partName": "Alignment Cam Bolt Kit",
-            "partBrand": "Moog",
-            "affiliateUrl": "https://www.amazon.com/s?k=Moog%20alignment%20cam%20bolt%20kit%20Hyundai%20Santa%20Fe&tag=au7o-20"
+            "partBrand": "Moog"
           }
         ],
         "fixParts": [],
@@ -978,15 +944,13 @@
             "type": "part",
             "content": "Complete strut and shock absorber set for full suspension refresh",
             "partName": "Excel-G Strut/Shock Set",
-            "partBrand": "KYB",
-            "affiliateUrl": "https://www.amazon.com/s?k=KYB%20Excel-G%20struts%20shocks%20Hyundai%20Santa%20Fe&tag=au7o-20"
+            "partBrand": "KYB"
           },
           {
             "type": "part",
             "content": "Four-wheel alignment kit with cam bolts for proper tire wear correction",
             "partName": "Alignment Cam Bolt Kit",
-            "partBrand": "Moog",
-            "affiliateUrl": "https://www.amazon.com/s?k=Moog%20alignment%20cam%20bolt%20kit%20Hyundai%20Santa%20Fe&tag=au7o-20"
+            "partBrand": "Moog"
           }
         ],
         "fixParts": [],
@@ -1010,8 +974,8 @@
       "commerceDecision": "unchanged-pending-audit",
       "changedFields": [],
       "evidence": [],
-      "beforeSha256": "1645ac95921d2b65597cd66e619943562704947dd75775a4aa9595bed3d4ca0c",
-      "proposalSha256": "1645ac95921d2b65597cd66e619943562704947dd75775a4aa9595bed3d4ca0c",
+      "beforeSha256": "7d787c401ee451d5dbd15130ec98bce2570f2fd7af31c6f35d7552af173a24d3",
+      "proposalSha256": "7d787c401ee451d5dbd15130ec98bce2570f2fd7af31c6f35d7552af173a24d3",
       "before": {
         "make": "Hyundai",
         "model": "Santa Fe",
@@ -1072,15 +1036,13 @@
             "type": "part",
             "content": "Trim removal tool set for body panel work without damage",
             "partName": "Trim Removal Tool Set",
-            "partBrand": "MICTUNING",
-            "affiliateUrl": "https://www.amazon.com/s?k=trim%20removal%20tool%20set%20automotive&tag=au7o-20"
+            "partBrand": "MICTUNING"
           },
           {
             "type": "part",
             "content": "Bondo body filler for dent and panel repair",
             "partName": "Body Filler Kit",
-            "partBrand": "Bondo",
-            "affiliateUrl": "https://www.amazon.com/s?k=Bondo%20body%20filler%20kit&tag=au7o-20"
+            "partBrand": "Bondo"
           }
         ],
         "fixParts": [],
@@ -1154,15 +1116,13 @@
             "type": "part",
             "content": "Trim removal tool set for body panel work without damage",
             "partName": "Trim Removal Tool Set",
-            "partBrand": "MICTUNING",
-            "affiliateUrl": "https://www.amazon.com/s?k=trim%20removal%20tool%20set%20automotive&tag=au7o-20"
+            "partBrand": "MICTUNING"
           },
           {
             "type": "part",
             "content": "Bondo body filler for dent and panel repair",
             "partName": "Body Filler Kit",
-            "partBrand": "Bondo",
-            "affiliateUrl": "https://www.amazon.com/s?k=Bondo%20body%20filler%20kit&tag=au7o-20"
+            "partBrand": "Bondo"
           }
         ],
         "fixParts": [],
@@ -1185,21 +1145,7 @@
       "identityRule": "The same indexed component and failure outcome stay on the existing ID, title and category; only facts within the exact official record remain.",
       "commerceDecision": "no-commerce",
       "changedFields": [
-        "years",
-        "engines",
-        "description",
-        "solution",
-        "symptoms",
-        "affectedSystems",
-        "dtcCodes",
-        "estimatedCostLow",
-        "estimatedCostHigh",
-        "citations",
-        "humanApproved",
-        "source",
-        "reviewedOn",
-        "contentUpdatedOn",
-        "contentUpdateSummary"
+        "humanApproved"
       ],
       "evidence": [
         {
@@ -1209,73 +1155,57 @@
           "observation": "NHTSA Part 573 Report 17V-226 - Santa Fe Sport Theta II GDI Bearings supports the proposed same-identity statements."
         }
       ],
-      "beforeSha256": "3444f5314cfe2a4428088c16f21de1ab15eb9d2459a0e5b85b88ed679eafc8c1",
+      "beforeSha256": "fa69058670e56e1d5470ff3a55827f0809bd5cffe91f6e99a2a5463eb9686ddf",
       "proposalSha256": "8c5af9457b0ea8accd74a9054f15c2f1ea4da8853b64370263c9225266108c50",
       "before": {
         "make": "Hyundai",
         "model": "Santa Fe",
         "years": [
           2013,
-          2014,
-          2015,
-          2016,
-          2017,
-          2018,
-          2019
+          2014
         ],
         "trims": [],
-        "engines": [
-          "2.0L Theta II GDI Turbo (G4KH)",
-          "2.4L Theta II GDI (G4KJ)"
-        ],
+        "engines": [],
         "category": "engine",
         "title": "Theta II GDI Connecting Rod Bearing Failure and Engine Seizure",
-        "description": "Manufacturing debris left in the crankshaft oil passages, combined with marginal oil supply to the connecting rod bearings, causes premature rod bearing wear on the Theta II 2.0T and 2.4L GDI engines shared with the Sonata/Optima. As the bearings wear, owners hear a metallic knocking/ticking that grows louder under load, often followed by sudden loss of power, stalling, and complete engine seizure; in some cases an underhood fire follows the seizure. The defect drove the Hyundai/Kia Theta II recalls, the Knock Sensor Detection System (KSDS) software campaign, and a ~$1.3B class-action settlement plus a $210M NHTSA civil penalty.",
-        "solution": "Have the dealer check the VIN against the KSDS/engine recall campaigns (recall 20V-746 / KSDS software). KSDS flashes a check-engine light with DTC P1326 when it detects abnormal bearing vibration, triggering reduced-power limp mode. Eligible vehicles get a free engine inspection and, if rod-bearing damage is confirmed, a free short-block or long-block replacement under the extended 15-year/150,000-mile rod-bearing warranty. Out of warranty, a full engine replacement runs roughly $4,500-$7,500. Keep up oil changes and watch for knock/oil-consumption as early warnings.",
+        "description": "NHTSA recall 17V-226 (Hyundai recall 162) covers certain model-year 2013-2014 Santa Fe Sport vehicles equipped with 2.0-liter or 2.4-liter gasoline-direct-injection engines. Residual debris from factory machining can restrict oil flow to the main bearings and cause premature bearing wear. A worn connecting-rod bearing can produce cyclic engine knock or illuminate the oil-pressure lamp; if the bearing fails, the vehicle can lose motive power while moving.",
+        "solution": "Check the VIN for NHTSA recall 17V-226. Hyundai dealers inspect the engine and replace the engine sub-assembly, also described as the short block, if necessary.",
         "severity": "high",
         "confidence": "high",
         "symptoms": [
-          "Metallic knocking or ticking that increases with RPM/load",
-          "Check engine light with reduced-power limp mode",
-          "Sudden stalling or loss of power while driving",
-          "Excessive oil consumption between changes",
-          "Complete engine seizure / no-start"
+          "Cyclic knocking noise from the engine",
+          "Reduced power or hesitation",
+          "Check Engine warning-light illumination",
+          "Engine oil-pressure warning-light illumination",
+          "Engine stall or loss of motive power"
         ],
-        "affectedSystems": [],
-        "dtcCodes": [
-          "P1326"
+        "affectedSystems": [
+          "Theta II GDI engine",
+          "Main bearings",
+          "Connecting-rod bearings"
         ],
-        "estimatedCostLow": 0,
-        "estimatedCostHigh": 7500,
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
         "typicalMileageLow": null,
         "typicalMileageHigh": null,
         "citations": [
           {
-            "url": "https://static.nhtsa.gov/odi/rcl/2020/RCLRPT-20V746-3838.PDF",
-            "type": "nhtsa",
-            "title": "NHTSA Part 573 Safety Recall Report 20V-746 (KSDS / engine inspection-replacement)"
-          },
-          {
-            "url": "https://safetyresearch.net/hyundai-kias-billion-dollar-engine-problem-that-broke-the-nhtsa-civil-penalty-barrier/",
-            "type": "article",
-            "title": "Hyundai-Kia's Billion Dollar Engine Problem that Broke the NHTSA Civil Penalty Barrier"
-          },
-          {
-            "url": "https://www.santafeforums.com/threads/2017-santa-fe-engine-failure.17662/",
-            "type": "forum",
-            "title": "2017 Santa Fe Engine Failure thread"
+            "url": "https://static.nhtsa.gov/odi/rcl/2017/RCLRPT-17V226-6577.PDF",
+            "type": "recall",
+            "title": "NHTSA Part 573 Report 17V-226 - Santa Fe Sport Theta II GDI Bearings"
           }
         ],
         "communityRecommendations": [],
         "fixParts": [],
         "humanApproved": true,
         "reportCount": 0,
-        "source": "ai-researched",
+        "source": "manual",
         "status": "published",
         "lastReportedByOwners": "",
-        "reviewedOn": "2026-06-19",
-        "contentUpdatedOn": "",
-        "contentUpdateSummary": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Kept the indexed Theta II GDI connecting-rod-bearing/failure identity, replaced the unrelated 20V-746 citation with exact recall 17V-226, and narrowed the scope to 2013-2014 Santa Fe Sport vehicles.",
         "relatedIssueIds": []
       },
       "proposal": {
@@ -1338,23 +1268,7 @@
       "identityRule": "The same indexed component and failure outcome stay on the existing ID, title and category; only facts within the exact official record remain.",
       "commerceDecision": "no-commerce",
       "changedFields": [
-        "years",
-        "engines",
-        "description",
-        "solution",
-        "confidence",
-        "symptoms",
-        "affectedSystems",
-        "dtcCodes",
-        "estimatedCostLow",
-        "estimatedCostHigh",
-        "citations",
-        "communityRecommendations",
-        "source",
-        "reviewedOn",
-        "contentUpdatedOn",
-        "contentUpdateSummary",
-        "relatedIssueIds"
+        "humanApproved"
       ],
       "evidence": [
         {
@@ -1364,92 +1278,57 @@
           "observation": "NHTSA Part 573 Report 20V-746 - 2012 Santa Fe Theta II MPI Engine supports the proposed same-identity statements."
         }
       ],
-      "beforeSha256": "4bc953586421bde72d922558f0f6cd68e3f1718848d6a3a10a13d5b1e50ecd2c",
+      "beforeSha256": "444444a39a5249d7adf013e80792174053435b15254beb9347c8ffe87e460ce0",
       "proposalSha256": "a44af342fcf8113477017ebfb0af41d8ef5f0d62c9e35f242c8e575ca8e30beb",
       "before": {
         "make": "Hyundai",
         "model": "Santa Fe",
         "years": [
-          2010,
-          2011,
-          2012,
-          2013,
-          2014,
-          2015,
-          2016,
-          2017,
-          2018,
-          2019
+          2012
         ],
         "trims": [],
-        "engines": [
-          "2.0T",
-          "2.4L"
-        ],
+        "engines": [],
         "category": "engine",
         "title": "Theta II Engine Seizure / Recall",
-        "description": "The 2.0T and 2.4L Theta II engines in the Santa Fe are subject to a massive recall for connecting rod bearing failure and engine seizure. Manufacturing debris left in the engine during production restricts oil flow to the bearings, causing them to wear and fail. This can result in sudden engine seizure while driving — a serious safety issue. Hyundai has recalled millions of vehicles and extended warranties, but some owners report difficulty getting repairs authorized.",
-        "solution": "Check your VIN on the NHTSA recall website and Hyundai's recall page immediately. Hyundai provides free engine replacement for affected VINs. Install the Hyundai knock sensor detection system (KSDS) software update which will monitor for bearing knock and reduce engine power if detected, potentially preventing catastrophic failure. Monitor oil level closely between changes and use 0W-20 full synthetic oil.",
+        "description": "NHTSA recall 20V-746 (Hyundai recall 198) covers certain model-year 2012 Santa Fe vehicles equipped with the 2.4-liter Theta II MPI engine. Conditions in the engine can cause premature connecting-rod-bearing wear. Continued operation with a worn bearing can damage the engine and eventually stall the vehicle; in limited cases, a damaged connecting rod can puncture the engine block, release oil onto hot components and increase fire risk.",
+        "solution": "Check the VIN for NHTSA recall 20V-746. Hyundai dealers inspect the engine for bearing damage, replace the engine if damage is found, and install an enhanced engine-control-software update containing the Knock Sensor Detection System, free of charge.",
         "severity": "high",
-        "confidence": "medium",
+        "confidence": "high",
         "symptoms": [
-          "Engine knocking or ticking noise",
-          "Sudden loss of power",
-          "Check engine light",
-          "Oil pressure warning light",
-          "Engine stalling or seizure while driving"
+          "Abnormal knocking noise from the engine",
+          "Reduced motive power or hesitation",
+          "Check Engine warning-light illumination",
+          "Engine oil-pressure warning-light illumination",
+          "Burning smell, visible oil leak or smoke",
+          "Engine stall"
         ],
         "affectedSystems": [
-          "Engine",
-          "Connecting rod bearings",
-          "Lubrication system"
+          "2.4-liter Theta II MPI engine",
+          "Connecting-rod bearings"
         ],
-        "dtcCodes": [
-          "P1326",
-          "P0014",
-          "P0300"
-        ],
-        "estimatedCostLow": 0,
-        "estimatedCostHigh": 6000,
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
         "typicalMileageLow": null,
         "typicalMileageHigh": null,
         "citations": [
           {
-            "url": "https://www.reddit.com/r/MechanicAdvice/comments/9b3x0h/hyundai_theta_ii_engine_seizure_issues/",
-            "type": "forum",
-            "title": "Reddit r/MechanicAdvice Thread Discussing Hyundai Theta II Engine Seizure Issues"
-          },
-          {
-            "url": "https://www.youtube.com/watch?v=Q8N2vYx3a7g",
-            "type": "video",
-            "title": "EricTheCarGuy - Hyundai Theta II Engine Seizure Diagnosis and Repair"
+            "url": "https://static.nhtsa.gov/odi/rcl/2020/RCLRPT-20V746-3838.PDF",
+            "type": "recall",
+            "title": "NHTSA Part 573 Report 20V-746 - 2012 Santa Fe Theta II MPI Engine"
           }
         ],
-        "communityRecommendations": [
-          {
-            "type": "part",
-            "content": "Replacement knock sensor eliminates false detonation readings",
-            "partName": "Knock Sensor",
-            "partBrand": "Bosch",
-            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20Santa%20Fe%20Bosch%20Knock%20Sensor&tag=au7o-20"
-          }
-        ],
+        "communityRecommendations": [],
         "fixParts": [],
-        "humanApproved": false,
+        "humanApproved": true,
         "reportCount": 0,
-        "source": "ai-researched",
+        "source": "manual",
         "status": "published",
         "lastReportedByOwners": "",
-        "reviewedOn": "",
-        "contentUpdatedOn": "",
-        "contentUpdateSummary": "",
-        "relatedIssueIds": [
-          "hyundai-tucson-theta2-engine-seizure",
-          "hyundai-theta2-engine",
-          "hyundai-sonata-engine-bearing-2011",
-          "kia-optima-theta-ii-engine-failure",
-          "kia-sorento-theta-ii-engine-seizure"
-        ]
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Kept the indexed Theta II engine-failure/recall identity, replaced unsupported secondary citations with exact recall 20V-746, and limited the row to its 2012 Santa Fe 2.4-liter MPI population.",
+        "relatedIssueIds": []
       },
       "proposal": {
         "make": "Hyundai",
@@ -1510,19 +1389,7 @@
       "identityRule": "The same indexed component and failure outcome stay on the existing ID, title and category; only facts within the exact official record remain.",
       "commerceDecision": "no-commerce",
       "changedFields": [
-        "engines",
-        "description",
-        "solution",
-        "symptoms",
-        "affectedSystems",
-        "estimatedCostLow",
-        "estimatedCostHigh",
-        "citations",
-        "humanApproved",
-        "source",
-        "reviewedOn",
-        "contentUpdatedOn",
-        "contentUpdateSummary"
+        "humanApproved"
       ],
       "evidence": [
         {
@@ -1532,7 +1399,7 @@
           "observation": "NHTSA Part 573 Report 23V-181 - Santa Fe Tow-Hitch Harness supports the proposed same-identity statements."
         }
       ],
-      "beforeSha256": "55ff6f4fd91d4eeeb346490d300845586fd23a72c20815ad3d2b1e80433e9487",
+      "beforeSha256": "b8c78f64eb37bc7a9f2096145d8d68aa5cfadaa5362093d742eb780e25e81370",
       "proposalSha256": "6fc5c0c7575989ee76868050d8f5c22a7c7e36184fefc875a97f25c9f760a568",
       "before": {
         "make": "Hyundai",
@@ -1545,58 +1412,43 @@
           2023
         ],
         "trims": [],
-        "engines": [
-          "2.4L GDI (G4KJ)",
-          "2.0L Theta II GDI Turbo (G4KH)",
-          "2.5L Smartstream GDI Turbo (G4KR)",
-          "1.6L Smartstream Turbo Hybrid (G4FT)"
-        ],
+        "engines": [],
         "category": "electrical",
         "title": "Tow Hitch Harness Water Intrusion Causing Electrical Short and Fire",
-        "description": "On Santa Fe models equipped with a factory or dealer-accessory tow hitch wiring harness, water can accumulate on the harness module's printed circuit board (PCB) and cause an electrical short. Because the harness is constantly powered, the short can start a fire even when the vehicle is parked and switched off. This is NHTSA recall 23V-181, which (with related expansions) covered well over half a million Hyundai vehicles including the Santa Fe, Santa Fe HEV, and Santa Fe PHEV.",
-        "solution": "Check the VIN against NHTSA campaign 23V181000 (Hyundai Recall 244). Dealers install a revised fuse and, as needed, a wire-extension kit to eliminate the constant-power short path, free of charge. Until repaired, park the vehicle outside and away from structures. Owners who do not tow can also have the harness removed.",
+        "description": "NHTSA recall 23V-181 (Hyundai recall 244) covers model-year 2019-2023 Santa Fe vehicles that may have a Hyundai accessory tow-hitch harness, including listed hybrid and plug-in-hybrid populations. The tow-hitch-harness module circuit board can be susceptible to water entering through the 4-pin tow-hitch harness connector. An electrical short can cause a trailer-harness-module fire while driving or while parked with the ignition off.",
+        "solution": "Check the VIN for NHTSA recall 23V-181 and park the vehicle outside and away from structures until the remedy is complete. Hyundai dealers verify whether the accessory tow hitch is installed and fit a 15-ampere fuse and new wire-extension kit as necessary, free of charge. The filing also describes fuse removal as interim protection until the final remedy is completed.",
         "severity": "high",
         "confidence": "high",
         "symptoms": [
-          "Burning smell or smoke near the rear/underbody",
-          "Fire while parked and off",
-          "Blown tow-harness fuse",
-          "Trailer lighting / hitch electrical malfunction",
-          "Corrosion or water in the hitch harness connector"
+          "No advance warning identified in the Part 573 report"
         ],
-        "affectedSystems": [],
+        "affectedSystems": [
+          "Accessory tow-hitch harness",
+          "Tow-hitch harness module",
+          "4-pin harness connector"
+        ],
         "dtcCodes": [],
-        "estimatedCostLow": 0,
-        "estimatedCostHigh": 0,
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
         "typicalMileageLow": null,
         "typicalMileageHigh": null,
         "citations": [
           {
-            "url": "https://auto-recalls.justia.com/hyundai/santa-fe/2020/23v181000/",
+            "url": "https://static.nhtsa.gov/odi/rcl/2023/RCLRPT-23V181-1849.PDF",
             "type": "recall",
-            "title": "NHTSA Campaign 23V181000 — Hyundai Santa Fe Trailer Hitch Harness Fire Risk"
-          },
-          {
-            "url": "https://www.motor1.com/news/658815/hyundai-expands-tow-hitch-harness-fire-recall/",
-            "type": "article",
-            "title": "Hyundai Expands Tow Hitch Harness Fire Recall To Over 850k Vehicles — Motor1"
-          },
-          {
-            "url": "https://www.santacruzforums.com/threads/recall-23v-181-tow-hitch-harness-fire-while-parked-or-driving.11327/",
-            "type": "forum",
-            "title": "Recall 23V-181: Tow Hitch Harness Fire While Parked or Driving — Owner forum"
+            "title": "NHTSA Part 573 Report 23V-181 - Santa Fe Tow-Hitch Harness"
           }
         ],
         "communityRecommendations": [],
         "fixParts": [],
         "humanApproved": true,
         "reportCount": 0,
-        "source": "ai-researched",
+        "source": "manual",
         "status": "published",
         "lastReportedByOwners": "",
-        "reviewedOn": "2026-06-19",
-        "contentUpdatedOn": "",
-        "contentUpdateSummary": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Kept the indexed tow-hitch-harness/water-ingress/fire identity, replaced secondary citations with exact recall 23V-181, and retained only its documented accessory scope, no-warning condition and remedy sequence.",
         "relatedIssueIds": []
       },
       "proposal": {
@@ -1659,8 +1511,8 @@
       "commerceDecision": "unchanged-pending-audit",
       "changedFields": [],
       "evidence": [],
-      "beforeSha256": "2dafaeae453d38326ef55e3d5ebda536e172aec10281de0e9f508f63f6554036",
-      "proposalSha256": "2dafaeae453d38326ef55e3d5ebda536e172aec10281de0e9f508f63f6554036",
+      "beforeSha256": "ab8b4443bd29cadeb55edb6faa63e07e4c1736e10b2b155d8da7c4ed882d2b2b",
+      "proposalSha256": "ab8b4443bd29cadeb55edb6faa63e07e4c1736e10b2b155d8da7c4ed882d2b2b",
       "before": {
         "make": "Hyundai",
         "model": "Santa Fe",
@@ -1720,8 +1572,7 @@
             "content": "Denso remanufactured alternator is a reliable and cheaper alternative to OEM",
             "upvotes": 0,
             "partName": "Remanufactured Alternator",
-            "partBrand": "Denso",
-            "affiliateUrl": "https://www.amazon.com/s?k=Denso%20Remanufactured%20Alternator&tag=au7o-20"
+            "partBrand": "Denso"
           },
           {
             "type": "tip",
@@ -1729,7 +1580,28 @@
             "upvotes": 0
           }
         ],
-        "fixParts": [],
+        "fixParts": [
+          {
+            "note": "Denso 210-5000. Fitment confirmed against the ShowMeTheParts catalog for this vehicle's year and engine.",
+            "buyLinks": [
+              {
+                "url": "https://www.amazon.com/dp/B01MZ1TS1U?tag=au7o-20",
+                "vendor": "Amazon",
+                "linkType": "product",
+                "verified": true
+              }
+            ],
+            "variants": [],
+            "verified": true,
+            "component": "Alternator",
+            "confidence": null,
+            "provenance": "ShowMeTheParts fitment lookup by year and engine; buy links verified to carry the part number on a matching brand",
+            "oemPartNumber": "",
+            "aftermarketXref": [
+              "210-5000"
+            ]
+          }
+        ],
         "humanApproved": true,
         "reportCount": 550,
         "source": "ai-researched",
@@ -1799,8 +1671,7 @@
             "content": "Denso remanufactured alternator is a reliable and cheaper alternative to OEM",
             "upvotes": 0,
             "partName": "Remanufactured Alternator",
-            "partBrand": "Denso",
-            "affiliateUrl": "https://www.amazon.com/s?k=Denso%20Remanufactured%20Alternator&tag=au7o-20"
+            "partBrand": "Denso"
           },
           {
             "type": "tip",
@@ -1808,7 +1679,28 @@
             "upvotes": 0
           }
         ],
-        "fixParts": [],
+        "fixParts": [
+          {
+            "note": "Denso 210-5000. Fitment confirmed against the ShowMeTheParts catalog for this vehicle's year and engine.",
+            "buyLinks": [
+              {
+                "url": "https://www.amazon.com/dp/B01MZ1TS1U?tag=au7o-20",
+                "vendor": "Amazon",
+                "linkType": "product",
+                "verified": true
+              }
+            ],
+            "variants": [],
+            "verified": true,
+            "component": "Alternator",
+            "confidence": null,
+            "provenance": "ShowMeTheParts fitment lookup by year and engine; buy links verified to carry the part number on a matching brand",
+            "oemPartNumber": "",
+            "aftermarketXref": [
+              "210-5000"
+            ]
+          }
+        ],
         "humanApproved": true,
         "reportCount": 550,
         "source": "ai-researched",
@@ -1828,25 +1720,7 @@
       "identityRule": "The same indexed component and failure outcome stay on the existing ID, title and category; only facts within the exact official record remain.",
       "commerceDecision": "no-commerce",
       "changedFields": [
-        "trims",
-        "engines",
-        "description",
-        "solution",
-        "symptoms",
-        "affectedSystems",
-        "dtcCodes",
-        "estimatedCostLow",
-        "estimatedCostHigh",
-        "citations",
-        "communityRecommendations",
-        "humanApproved",
-        "reportCount",
-        "source",
-        "lastReportedByOwners",
-        "reviewedOn",
-        "contentUpdatedOn",
-        "contentUpdateSummary",
-        "relatedIssueIds"
+        "humanApproved"
       ],
       "evidence": [
         {
@@ -1856,7 +1730,7 @@
           "observation": "Hyundai TSB 23-EM-008H - Engine Oil Consumption Inspection and Repair Guidelines supports the proposed same-identity statements."
         }
       ],
-      "beforeSha256": "e1465d0d6b2ddcb1702f144b1e37df8d0291becbfc997eb1018aa879ace130a5",
+      "beforeSha256": "ded4950378333ea80d39bed1796a40d5a28b63544cfe612ca97d0982ea91bc05",
       "proposalSha256": "aa2589d6e93c215eb0e19fdee91e560d7b2ca72e800318190332cbc6bd9f20a3",
       "before": {
         "make": "Hyundai",
@@ -1870,86 +1744,45 @@
           2018,
           2019
         ],
-        "trims": [
-          "Base",
-          "GLS",
-          "LX",
-          "SE",
-          "Sport"
-        ],
-        "engines": [
-          "2.4L GDI"
-        ],
+        "trims": [],
+        "engines": [],
         "category": "engine",
         "title": "Excessive Oil Consumption - 2.4L GDI Engine",
-        "description": "The 2.4L GDI engine in Santa Fe models can consume excessive oil, sometimes 1 quart every 1,000-1,500 miles. This is related to carbon buildup on piston rings and intake valves inherent to GDI engines. Low oil can lead to engine damage if not monitored. Hyundai has an oil consumption test procedure for affected vehicles.",
-        "solution": "Request an oil consumption test at the dealer (they measure oil usage over 1,000 miles). If consumption exceeds 1 qt per 1,000 miles, Hyundai may replace piston rings or short block under warranty extension. Walnut blasting intake valves reduces carbon buildup. Use only 0W-20 full synthetic oil. Check oil level weekly.",
+        "description": "Hyundai TSB 23-EM-008H provides inspection and repair guidance for vehicles with engine-oil-consumption concerns. Its parts and labor tables include model-year 2013-2018 Santa Fe Sport and 2019-2020 Santa Fe vehicles with the 2.4-liter GDI engine. The bulletin notes that some oil consumption is normal and does not assign one universal cause; it directs technicians to resolve leaks, abnormal engine noise, relevant campaigns or diagnostic faults before measuring consumption.",
+        "solution": "Ask a Hyundai dealer to follow TSB 23-EM-008H and confirm warranty or goodwill eligibility. After preliminary checks, the procedure uses fresh oil, seals the drain plug and filter, and measures use over at least 1,000 miles. A result above 1,000 miles per quart passes; a result under 1,000 miles per quart proceeds to prior-approval review for combustion-chamber cleaning. Engine replacement is considered only after the cleaning and final retest remain outside specification and prior approval is obtained.",
         "severity": "medium",
         "confidence": "high",
         "symptoms": [
-          "Oil level drops significantly between changes",
-          "Blue smoke from exhaust on startup",
-          "Check engine light for misfire codes",
-          "Burning oil smell",
-          "Rough idle"
+          "Engine-oil level decreases between checks",
+          "Measured consumption under 1,000 miles per quart"
         ],
         "affectedSystems": [
-          "Engine"
+          "Engine lubrication system",
+          "Combustion chambers"
         ],
-        "dtcCodes": [
-          "P0171",
-          "P0174",
-          "P0300",
-          "P0301",
-          "P0302",
-          "P0303",
-          "P0304"
-        ],
-        "estimatedCostLow": 200,
-        "estimatedCostHigh": 4000,
+        "dtcCodes": [],
+        "estimatedCostLow": null,
+        "estimatedCostHigh": null,
         "typicalMileageLow": null,
         "typicalMileageHigh": null,
         "citations": [
           {
-            "url": "https://www.nhtsa.gov/vehicle/2015/HYUNDAI/SANTA%20FE",
-            "type": "nhtsa",
-            "title": "NHTSA Complaints - Santa Fe Oil Consumption"
-          },
-          {
-            "url": "https://www.hyundaiforums.com",
-            "type": "forum",
-            "title": "HyundaiForums.com - 2.4 GDI Oil Consumption Thread"
+            "url": "https://static.nhtsa.gov/odi/tsbs/2023/MC-10247597-0001.pdf",
+            "type": "tsb",
+            "title": "Hyundai TSB 23-EM-008H - Engine Oil Consumption Inspection and Repair Guidelines"
           }
         ],
-        "communityRecommendations": [
-          {
-            "type": "part",
-            "content": "CRC GDI IVD Intake Valve & Turbo Cleaner helps with carbon buildup without walnut blasting",
-            "upvotes": 0,
-            "partName": "GDI IVD Intake Valve Cleaner",
-            "partBrand": "CRC",
-            "partNumber": "05319",
-            "affiliateUrl": "https://www.amazon.com/s?k=CRC%2005319&tag=au7o-20"
-          },
-          {
-            "type": "tip",
-            "content": "Keep a quart of oil in the trunk and check level every 500 miles - catching low oil early prevents engine damage",
-            "upvotes": 0
-          }
-        ],
+        "communityRecommendations": [],
         "fixParts": [],
         "humanApproved": true,
-        "reportCount": 920,
-        "source": "ai-researched",
+        "reportCount": 0,
+        "source": "manual",
         "status": "published",
-        "lastReportedByOwners": "2025-01-08",
-        "reviewedOn": "2026-02-23",
-        "contentUpdatedOn": "",
-        "contentUpdateSummary": "",
-        "relatedIssueIds": [
-          "hyundai-tucson-oil-consumption-2011",
-          "hyundai-genesis-coupe-bk2-oil-consumption"
-        ]
+        "lastReportedByOwners": "",
+        "reviewedOn": "2026-08-06",
+        "contentUpdatedOn": "2026-08-06",
+        "contentUpdateSummary": "Kept the indexed 2.4-liter-GDI oil-consumption identity, replaced generic sources with Hyundai TSB 23-EM-008H, and removed invented DTCs, universal carbon-cause language, automatic replacement entitlement, costs and product advice.",
+        "relatedIssueIds": []
       },
       "proposal": {
         "make": "Hyundai",
@@ -2013,8 +1846,8 @@
       "commerceDecision": "unchanged-pending-audit",
       "changedFields": [],
       "evidence": [],
-      "beforeSha256": "092a62c8b0aa88f53514484a77fb05ab1ac9d1565f772d44c8c26cc5341d95b7",
-      "proposalSha256": "092a62c8b0aa88f53514484a77fb05ab1ac9d1565f772d44c8c26cc5341d95b7",
+      "beforeSha256": "8478e6749b88751fe429ed392f9310cf4522f3031fab89e09739f655bd73e748",
+      "proposalSha256": "8478e6749b88751fe429ed392f9310cf4522f3031fab89e09739f655bd73e748",
       "before": {
         "make": "Hyundai",
         "model": "Santa Fe",
@@ -2068,8 +1901,7 @@
             "content": "OEM intermediate shaft 56400-S1000 is the only permanent fix",
             "upvotes": 0,
             "partBrand": "Hyundai OEM",
-            "partNumber": "56400-S1000",
-            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20OEM%2056400-S1000&tag=au7o-20"
+            "partNumber": "56400-S1000"
           },
           {
             "type": "tip",
@@ -2144,8 +1976,7 @@
             "content": "OEM intermediate shaft 56400-S1000 is the only permanent fix",
             "upvotes": 0,
             "partBrand": "Hyundai OEM",
-            "partNumber": "56400-S1000",
-            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20OEM%2056400-S1000&tag=au7o-20"
+            "partNumber": "56400-S1000"
           },
           {
             "type": "tip",
@@ -2177,8 +2008,8 @@
       "commerceDecision": "unchanged-pending-audit",
       "changedFields": [],
       "evidence": [],
-      "beforeSha256": "b5f25acbff15474840fcac6a7b2d6292cff32a0fee7bdb8e58b29d0532e36a8f",
-      "proposalSha256": "b5f25acbff15474840fcac6a7b2d6292cff32a0fee7bdb8e58b29d0532e36a8f",
+      "beforeSha256": "7f7d6e1920d07a26d2e190394bd5621963d8e2d0764c4540ca0a6964166a3599",
+      "proposalSha256": "7f7d6e1920d07a26d2e190394bd5621963d8e2d0764c4540ca0a6964166a3599",
       "before": {
         "make": "Hyundai",
         "model": "Santa Fe",
@@ -2236,8 +2067,7 @@
             "content": "Hyundai OEM PTU seal 47313-3B600 - do not use aftermarket seals as they tend to leak again quickly",
             "upvotes": 0,
             "partBrand": "Hyundai OEM",
-            "partNumber": "47313-3B600",
-            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20OEM%2047313-3B600&tag=au7o-20"
+            "partNumber": "47313-3B600"
           },
           {
             "type": "tip",
@@ -2316,8 +2146,7 @@
             "content": "Hyundai OEM PTU seal 47313-3B600 - do not use aftermarket seals as they tend to leak again quickly",
             "upvotes": 0,
             "partBrand": "Hyundai OEM",
-            "partNumber": "47313-3B600",
-            "affiliateUrl": "https://www.amazon.com/s?k=Hyundai%20OEM%2047313-3B600&tag=au7o-20"
+            "partNumber": "47313-3B600"
           },
           {
             "type": "tip",
