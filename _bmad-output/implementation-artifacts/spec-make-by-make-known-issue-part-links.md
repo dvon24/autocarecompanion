@@ -4,7 +4,7 @@ type: 'feature'
 created: '2026-08-12'
 status: 'in-review'
 baseline_commit: '013e4ef338fc3d2c42b8cc39f5fde43d6203755e'
-review_loop_iteration: 3
+review_loop_iteration: 4
 context: []
 ---
 
@@ -58,6 +58,14 @@ context: []
 - [ ] Add keyed-merge manifest validation, independent-review evidence, dry-run/apply/post-verify gates, and live destination/UI checks.
 - [ ] Complete Acura, independently review it, and use the validated packet pattern for each subsequent make.
 
+### Review Findings
+
+- [x] [Review][Patch] Preserve the primary object and exact specifications in replacement prose (`replace X with Y`, decimal part specifications, schedules, and `fix is replacing`) [src/lib/prescription.ts:84]
+- [x] [Review][Patch] Extract every coordinated or conditional repair component, including O-rings, blower/resistor branches, racks, receiver/driers, clutch packs, rotors, shims, and shared-noun lists [src/lib/prescription.ts:135]
+- [x] [Review][Patch] Keep modal/passive replacements diagnosis-dependent and reject uppercase imperative negation [src/lib/prescription.ts:290]
+- [x] [Review][Patch] Do not let dealer/software language suppress separately prescribed conditional repair work items [src/lib/known-issue-fitment-worklist.ts:107]
+- [x] [Review][Patch] Close the completion implementation boundary over the contract, finalizer/applicator/later-make gate, YMMT evidence, URL/affiliate guards, and Vision vendor dependencies [scripts/known-issue-completion-contract.js:13]
+
 **Acceptance Criteria:**
 - Given a make snapshot, when reconciled, then every published issue and existing commerce claim has exactly one disposition and zero rows are missing, duplicated, or stale.
 - Given a multi-part solution, when processed, then every positively prescribed component is represented or explicitly held.
@@ -92,6 +100,13 @@ context: []
   unsafe existing claims and the unresolved Integra B17A1 selected-engine
   context keep the make release-blocked. Final artifacts are deterministic and
   retain zero production authority; no database write or deployment occurred.
+- 2026-08-13: The fourth review found semantic gaps hidden by the formerly
+  exact 203-row set and an incomplete implementation-hash boundary. Acura was
+  rebuilt to 229 terminal component/application rows; all 26 recovered rows
+  terminate conservatively without expanding the 34-proposal/54-candidate
+  commerce set. The completion contract now binds its release/apply/finalize
+  gates, exact YMMT evidence, and transitive URL/affiliate/vendor guards. The
+  same six release blockers remain and production authority remains false.
 
 ## Verification
 

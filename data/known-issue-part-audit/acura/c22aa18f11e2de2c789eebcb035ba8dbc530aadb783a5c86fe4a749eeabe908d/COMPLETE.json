@@ -14,16 +14,16 @@
   "manifestHash": "c4168ecf8c4c026ce3ceeb5535eef7a2539d94b712388dd1cb3e0f1fbc718fe3",
   "artifactSha256": {
     "00-make-source.json": "a1f69107cdad861b2324532e62926eaa533c26001d6c1c47e767ca76ff38a3f6",
-    "01-disposition-ledger.json": "f978add4ce1b6461ce66f60241e5213b749f4ad11ce0082261117377f278000a",
-    "02-fitment-worklist.json": "492a0b1d628b521806be17c1237534f95bafbf1d22eb62754a16982155e2281f",
-    "03-showmetheparts-evidence.json": "e7588b85874fd8d74f05468c0516c112daf5a09868e13f7c8dba108dec1c0c87",
-    "04-part-proposals.json": "e896e5b9674016bf6b90e1405bb9e7495e94bc4d11dfa2053337d9212ad30846",
-    "05-direct-link-evidence.json": "5bf7d06daa4ef921e04404ed6932ed4aa4b01f793eea84911f17c8d5fbaa9ce9",
-    "06-independent-review.json": "c41b34d83c7d790e5835111fa966af0c422e5b0754bb541e574e55ec631d8ffd",
-    "07-decision-patch.json": "dfd141b56db8b0bc5080f36d29d55202982d4ca3c574702317656326c493f5f4",
+    "01-disposition-ledger.json": "e28ba4605f15b7e846650bfa387b320ad950dc61f2a5654394da320e6fc9119e",
+    "02-fitment-worklist.json": "fd438ceb44f907827c9a58778afa728190948a110d659e735c8ad349d6b0e5c5",
+    "03-showmetheparts-evidence.json": "0ad8fdfb29d82db4afd51f50d4de540718e7b82983e93a341c9dc04c9bf54b71",
+    "04-part-proposals.json": "194336eb1a2df93cdac6e571758d19312f657a6dbd0bb043dcf893b0dc51ddca",
+    "05-direct-link-evidence.json": "915dc1abccafaaf3abf1d761244e4b11510caca614138f067d93e9680f506aeb",
+    "06-independent-review.json": "9130bc9612684255403d00bd25fb56e0b28755e9a55b57853f54021d648f25ac",
+    "07-decision-patch.json": "c0e5e4c1bed4d4c7b0f4686daefcaa6160cce046590e231636fb9766160d4468",
     "08-guarded-manifest.json": "c4168ecf8c4c026ce3ceeb5535eef7a2539d94b712388dd1cb3e0f1fbc718fe3",
-    "classification-ledger.json": "81c5b8e433b0dc795799b9dcc37c0c9efbc615362e7f64bf79ca3742761e7367",
-    "checkpoint.json": "979248493e4b2f7a7e01e9468f18d4c0110eba7b60ef96c95742c1f1c241701b",
+    "classification-ledger.json": "5d7a7b57d770d1a8e1ef29d727f24371053d839fc956187a6b4985621f106419",
+    "checkpoint.json": "1d6f3a866acd69da8dfdf374956f0dece6a13183d80683c7e184af0b932a1d36",
     "diagnostic-tool-evidence.json": "d72bdb6ed12be173be7196b95b9e53332868cbefa8a5a2637570d634101538fe"
   },
   "diagnosticImplementationSha256": {
@@ -37,8 +37,13 @@
     "src/components/vehicle/VehicleDashboard.tsx": "b5273f471e9d796e3622d4ea882605a23625b270a47937899e007a87d051339e"
   },
   "commercePipelineImplementationSha256": {
-    "src/lib/prescription.ts": "ff01df6279c3096711f33989dabfa3cc54f3ab29029e28b96e790e933145e22b",
-    "src/lib/known-issue-fitment-worklist.ts": "abbc3a64f285ea9f2aef5712a0c13b35acc56db5e2c6c1b7c018593cbc13c899",
+    "scripts/known-issue-completion-contract.js": "a9ffb86a2a7c71bc1b1a5b29da2db847314b7ab300e8bf1c9298b624c776b09a",
+    "scripts/finalize-known-issue-make-packet.js": "da45535ab3fdbfccf24fcf6b7f37311189b5f96772e9bb3124e98aa8e5671864",
+    "scripts/apply-known-issue-catalog-deeplinks.js": "33b0153059763604a0a1575ae1cfe71ee5db0e2b5d36720f3eedd87525093e6f",
+    "scripts/build-known-issue-part-audit-ledger.js": "e3915e9a24072549871f23d0d0a38f5330f00605cce8860078e04acd492379c0",
+    "public/data/ymmt.json": "a05b331834b6f4c71af58663a5a1f104e215bab2402c612026a1344386130139",
+    "src/lib/prescription.ts": "f4249edf197fe2e4cea23cf410ad6cd6fb98f2fe1cbf9544fb67fe0a5013f8a1",
+    "src/lib/known-issue-fitment-worklist.ts": "0d6f60691499d926d91e36f97e052d69541802e8a46c7d048789873c6202edfa",
     "src/data/component-catalog-map.ts": "5e6d51a3e228b392890a17e6142a498cfc542de1f2093c371bf5d1c715d4ea22",
     "scripts/build-fitment-worklist.ts": "5aa10edeb5e32f10d78754ead2f1146bccc0d96eaa1b0b86b1a7fd5eee991cbb",
     "scripts/showmetheparts-known-issue-candidates.js": "e4b092f1685e0a24da8749c4cabcab00d353705f104443a886efbbd4dfdcf12a",
@@ -53,8 +58,12 @@
     "src/lib/ebay-part-link-resolver.ts": "d42b71c98936edcd82a54e264ca7ee97420f54f425b77c82fc37fdba6a49831e",
     "src/lib/ebay-resolver.ts": "7a9292bfe7fd059a6afc3d0781fff04eddb5e650c4c18f7bf0212dfb91bbf03c",
     "src/lib/known-issue-part-fitment.ts": "b9ae909dda5fc7e238df59b14bf0460422246e055badf8ee4ebc4b4da7f3af81",
-    "src/lib/reviewed-vehicle-context.ts": "e62e591db74549ce8848c3859a19c07da9379ca07a968d9e741d3aba41e431d3",
+    "src/lib/reviewed-vehicle-context.ts": "e596a9460f905fd80388fee62812f8fb3c1e754aeaffbc1d2d9303ac2c35e38f",
     "src/lib/known-issue-commerce.ts": "1e4e812ac2fe9f2c170e3e050786e62fe415ddc778ff31aadab8f9db5b03c1ef",
+    "src/lib/external-http-url.ts": "45dd7c4d1eeba815ef549d733a41e8c0dfcea050b7391a21401b1a6a16551c92",
+    "src/lib/ebay-affiliate.ts": "339a4de57ccdd3ccd10f7d7a19a652f0ec09769215fa944c0e4d04e24ca25bad",
+    "src/lib/vendor-resolver.ts": "3c9b5424d05acf10ce3664cb8f96325b4031db1e4fa3386431406a7721366a0b",
+    "src/lib/vendor-link-validator.ts": "38d8aef7200e18f5b1fe70df526e8ba20a1937cd840f6706c7f401e8bc472b5b",
     "src/lib/vision-related-issue-parts.ts": "a26401513cf082e4128598284458069788e396ea2447cced1426c5de757bebf3",
     "src/lib/vision-vehicle-context.ts": "615666736be7f2265d173d120a904241fd72a968d5050097e66ccbf9aba6c66e",
     "src/components/known-issues/KnownIssueCard.tsx": "1c823ec70caf654eaf9a6a577de74c4b5c69b9e64edfe57cca9c6678edd50c8f",
@@ -93,5 +102,5 @@
   ],
   "productionApplied": false,
   "productionWriteAuthorized": false,
-  "completionHash": "eea15b6ce1b35053d86db4616f1aadfcc9c2b9a9090c3b7352368fac2b9ece0c"
+  "completionHash": "a8d54d1e2f198d81b14b587dd3b6529788ac4a277102d11a6fa8a7f860a5edc6"
 }

@@ -77,6 +77,7 @@ export interface IssueLedgerEntry {
 }
 
 const DEALER = /\b(recall|campaign|reflash|re-?program|software update|warranty extension|free of charge|no charge|dealer will|service action)\b/i;
+const DEALER_ONLY = /\b(recall|campaign|free of charge|no charge|dealer will|service action)\b/i;
 const SERVICE = /\b(flush|lubricat|clean|adjust|relearn|reset|bleed|fluid|oil|grease|sealant|adhesive|scan tool|diagnostic tool|special tool)\b/i;
 
 function list(value: string[] | string | undefined): string[] {
@@ -104,7 +105,7 @@ function normalizedPartNumbers(part: NonNullable<FrozenIssueRecord['fixParts']>[
 function classify(record: FrozenIssueRecord): { disposition: IssueDisposition; reason: string } {
   const prescriptions = extractPrescriptionComponents(record.solution);
   const existing = record.fixParts || [];
-  if (DEALER.test(record.solution) && !/aftermarket|purchase|order the part|buy/i.test(record.solution)) {
+  if (DEALER_ONLY.test(record.solution) && !/aftermarket|purchase|order the part|buy/i.test(record.solution)) {
     return { disposition: 'recall/dealer', reason: 'The prescribed remedy is dealer, campaign, recall, or software work.' };
   }
   if (prescriptions.some((item) => item.diagnosisDependent)) {
@@ -112,6 +113,9 @@ function classify(record: FrozenIssueRecord): { disposition: IssueDisposition; r
   }
   if (prescriptions.length || existing.length) {
     return { disposition: 'buyable', reason: 'The solution prescribes an owner-buyable component or existing commerce requires re-review.' };
+  }
+  if (DEALER.test(record.solution) && !/aftermarket|purchase|order the part|buy/i.test(record.solution)) {
+    return { disposition: 'recall/dealer', reason: 'The prescribed remedy is dealer, campaign, recall, or software work.' };
   }
   if (SERVICE.test(record.solution)) {
     return { disposition: 'service/tool/fluid', reason: 'The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.' };

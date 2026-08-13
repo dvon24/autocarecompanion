@@ -11,6 +11,11 @@ const DIAGNOSTIC_IMPLEMENTATION_FILES = Object.freeze([
 ]);
 
 const COMMERCE_PIPELINE_IMPLEMENTATION_FILES = Object.freeze([
+  'scripts/known-issue-completion-contract.js',
+  'scripts/finalize-known-issue-make-packet.js',
+  'scripts/apply-known-issue-catalog-deeplinks.js',
+  'scripts/build-known-issue-part-audit-ledger.js',
+  'public/data/ymmt.json',
   'src/lib/prescription.ts',
   'src/lib/known-issue-fitment-worklist.ts',
   'src/data/component-catalog-map.ts',
@@ -29,6 +34,10 @@ const COMMERCE_PIPELINE_IMPLEMENTATION_FILES = Object.freeze([
   'src/lib/known-issue-part-fitment.ts',
   'src/lib/reviewed-vehicle-context.ts',
   'src/lib/known-issue-commerce.ts',
+  'src/lib/external-http-url.ts',
+  'src/lib/ebay-affiliate.ts',
+  'src/lib/vendor-resolver.ts',
+  'src/lib/vendor-link-validator.ts',
   'src/lib/vision-related-issue-parts.ts',
   'src/lib/vision-vehicle-context.ts',
   'src/components/known-issues/KnownIssueCard.tsx',

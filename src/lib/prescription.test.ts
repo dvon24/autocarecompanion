@@ -136,7 +136,7 @@ test('extracts the omitted Acura imperative purchase and replace-with branches',
     extractPrescribedParts('Order eight of Honda part number 91608-SJ6-003 (the clear grommet/seal pieces) from a Honda dealer. Then replace the old foam strip with new urethane weatherstripping.'),
     ['clear grommet/seal pieces', 'urethane weatherstripping'],
   );
-  assert.deepEqual(extractPrescribedParts('Replace with OEM Honda bolts (M10x1.25).'), ['honda bolts m10x1']);
+  assert.deepEqual(extractPrescribedParts('Replace with OEM Honda bolts (M10x1.25).'), ['honda bolts m10x1.25']);
   assert.deepEqual(extractPrescribedParts('Or replace with OEM Omron unit ($50-100).'), ['omron unit']);
   assert.deepEqual(extractPrescribedParts('Always replace the axle nut and use a new transaxle retaining ring.'), ['axle nut', 'transaxle retaining ring']);
 });
@@ -188,8 +188,42 @@ test('covers next-make Alfa owner-buyable and noun-first replacement prose', () 
 
 test('holds a bare replacement pronoun when more than one antecedent is plausible', () => {
   assert.deepEqual(extractPrescribedParts('Inspect the blower motor and resistor. If corroded, replace them.'), []);
+  assert.deepEqual(
+    extractPrescribedParts('If the blower motor or resistor has already corroded, replace those at the same time.'),
+    ['blower motor', 'resistor'],
+  );
   assert.deepEqual(extractPrescribedParts('Inspect the pump and accumulator. Replace it.'), []);
   assert.deepEqual(extractPrescribedParts('Test the ignitor before replacing it. If no pulse: replace.'), ['ignitor']);
+});
+
+test('preserves Acura replacement objects, coordinated branches, and exact specifications', () => {
+  assert.deepEqual(
+    extractPrescribedParts('Replace the high-pressure hose with OEM Honda part and flush the system. Replace return hose too.'),
+    ['high-pressure hose', 'return hose'],
+  );
+  assert.deepEqual(extractPrescribedParts('Replace O-rings and the pump motor brushes if worn.'), ['o-rings', 'pump motor brushes']);
+  assert.deepEqual(extractPrescribedParts('The only fix is replacing the whole distributor assembly.'), ['distributor']);
+  assert.deepEqual(extractPrescribedParts('Replace the timing belt every 90,000 miles.'), ['timing belt']);
+  assert.deepEqual(extractPrescribedParts('Replace front, rear, and upper seals.'), ['front seals', 'rear seals', 'upper seals']);
+  assert.deepEqual(extractPrescribedParts('Replace or machine rotors if within spec.'), ['rotors']);
+  assert.deepEqual(extractPrescribedParts('Install a new receiver/drier to prevent moisture contamination.'), ['receiver/drier']);
+  assert.deepEqual(extractPrescribedParts('Apply anti-squeal shims if missing from the factory.'), ['anti-squeal shims']);
+  assert.deepEqual(extractPrescribedParts('If noise persists, rebuild the differential with new clutch packs.'), ['clutch packs']);
+});
+
+test('keeps modal and passive prescriptions conditional and rejects imperative negation', () => {
+  for (const source of [
+    'You may need to replace the water pump.',
+    'The sensor may need to be replaced.',
+    'Replacement of the water pump may be required.',
+  ]) {
+    const parts = extractPrescriptionComponents(source);
+    assert.equal(parts.length, 1, source);
+    assert.equal(parts[0]?.diagnosisDependent, true, source);
+  }
+  assert.deepEqual(extractPrescribedParts('The water pump is to be replaced.'), ['water pump']);
+  assert.deepEqual(extractPrescribedParts('Never Use an aftermarket sensor.'), []);
+  assert.deepEqual(extractPrescribedParts('DO NOT USE an aftermarket sensor.'), []);
 });
 
 test('does not turn fluids, workarounds, or explicit avoid-replacement prose into parts', () => {

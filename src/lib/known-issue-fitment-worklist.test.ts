@@ -67,3 +67,15 @@ test('recall/dealer prescriptions stay in the ledger and never enter commerce so
   assert.deepEqual(packet.ledger[0]!.workItemIds, []);
   assert.deepEqual(packet.entries, []);
 });
+
+test('software and warranty language cannot suppress a separate conditional replacement', () => {
+  const packet = buildFitmentPacket([{
+    ...base,
+    id: 'acura-software-then-part',
+    solution: 'Install the software update. If shudder persists, the torque converter must be replaced under the warranty extension.',
+    fixParts: [],
+  }], 'Acura');
+  assert.equal(packet.ledger[0]!.disposition, 'diagnosis-dependent');
+  assert.ok(packet.ledger[0]!.workItemIds.length > 0);
+  assert.deepEqual(new Set(packet.entries.map((entry) => entry.component)), new Set(['torque converter']));
+});

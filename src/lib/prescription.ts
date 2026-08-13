@@ -22,15 +22,16 @@
 const PRESCRIBE = /\b(?:replace|replacing|replacement of|install|installing|swap(?:\s+or\s+replace)?)\b/gi;
 
 /** Imperative purchase/install verbs that name a buyable repair item. */
-const BUY_COMMAND = /\b(?:add|order|source|use)\b/gi;
+const BUY_COMMAND = /\b(?:add|apply|order|source|use)\b/gi;
 
 /** Passive/modal forms used by repair prose where the part precedes the verb. */
 const MODAL_REQUIRES_REPLACEMENT = /\b(may|might|can|could)\s+require\s+((?:(?:the|a|an)\s+)?[a-z0-9][a-z0-9/-]*(?:\s+[a-z0-9][a-z0-9/-]*){0,5})\s+replacement\b/gi;
-const PART_BEFORE_REPLACEMENT = /\b(?:(?:needs?|requires?)\s+(?:hardware\s+)?replacement|(?:needs?|requires?)\s+to\s+be\s+replaced|(?:may|might|can|could|must|should|will)\s+(?:(?:need|require)s?\s+(?:hardware\s+)?replacement|be\s+replaced))\b/gi;
+const PART_BEFORE_REPLACEMENT = /\b(?:(?:may|might|can|could|must|should|will)\s+(?:(?:need|require)s?\s+(?:(?:hardware\s+)?replacement|to\s+be\s+replaced)|be\s+replaced)|(?:is|are|was|were)\s+to\s+be\s+replaced|(?:needs?|requires?)\s+(?:hardware\s+)?replacement|(?:needs?|requires?)\s+to\s+be\s+replaced)\b/gi;
 const MODAL_NEEDS_OBJECT = /\b(may|might|can|could|must|should|will)\s+(?:need|needs|require|requires)\s+([^.;!?\u2013\u2014]{1,180})/gi;
 const NOUN_FIRST_MODAL_REPLACEMENT = /\breplacement\b([^.!?]{0,140}?)\b(may|might|can|could|must|should|will)\s+be\s+(?:required|needed)\b/gi;
 const REPLACEMENT_LIST = /\breplacement\s*:\s*([^.!?]+)/gi;
 const FIX_IS_PART = /\b(?:the\s+)?(?:only\s+)?(?:durable\s+|proper\s+|permanent\s+)?fix\s+is\s+([^.;!?\u2013\u2014]+)/gi;
+const REBUILD_WITH_PARTS = /\b(?:rebuild|rebuilding)\b[^.;!?\u2013\u2014]{0,120}?\bwith\s+([^.;!?\u2013\u2014]+)/gi;
 
 /**
  * A clause is NOT a prescription when the verb is negated or conditional:
@@ -54,7 +55,7 @@ const NOISE = new Set([
   'affected', 'damaged', 'leaking', 'cracked', 'defective', 'original', 'oem', 'assembly',
   'genuine', 'updated', 'revised', 'improved', 'correct', 'proper', 'both', 'all', 'hardware',
   'any', 'each', 'one', 'two', 'four', 'six', 'eight',
-  'again', 'usually', 'typically', 'often', 'simply', 'just',
+  'again', 'usually', 'typically', 'often', 'simply', 'just', 'too',
 ]);
 
 /** Single words that name nothing buyable. Anything else standing alone — an
@@ -62,11 +63,11 @@ const NOISE = new Set([
 const VAGUE = new Set(['it', 'them', 'this', 'that', 'one', 'unit', 'part', 'component', 'item', 'piece']);
 
 /** Trailing words that start a new thought rather than continue the part name. */
-const STOP = /\b(?:with|without|using|per|as|if|when|where|after|before|then|to|for|on|in|at|from|of|under|because|since|which|that|they|is|are|run|diy|plus|along|by|during|while|into|through|around|about)\b/i;
+const STOP = /\b(?:with|without|using|per|as|if|when|where|after|before|then|to|for|on|in|at|from|of|under|because|since|which|that|they|is|are|may|might|can|could|must|should|will|run|diy|plus|along|by|during|while|into|through|around|about)\b/i;
 const NON_PART_ACTION = /^(?:replace|install|use|add|order|source|inspect|check|test|diagnos|clean|flush|bleed|verify|confirm|measure|machine|resurface|repair|service|reprogram|program|reset|tighten|remove)\b/i;
-const STANDALONE_PART = /^(?:pump|sensor|hub|mount|mounts|thermostat|radiator|condenser|compressor|alternator|starter|battery|belt|belts|tensioner|pulley|bearing|bearings|bushing|bushings|brush|brushes|bolt|bolts|clamp|clamps|tube|tubes|axle|axles|grommet|grommets|seal|seals|gasket|gaskets|hose|hoses|filter|valve|module|switch|motor|actuator|solenoid|ignitor|coil|rotor|pad|pads|caliper|cylinder|clutch|converter|manifold|injector|plug|plugs|housing|bracket|kit|latch|blower|core|tank|cap|pipe|shaft|differential|turbo|intercooler|lifter|piston|transmission|distributor|dashboard|interlock|idler|relay|relays|resistor|weatherstrip|weatherstripping|ring|rings)$/i;
+const STANDALONE_PART = /^(?:pump|sensor|hub|mount|mounts|thermostat|radiator|condenser|compressor|alternator|starter|battery|belt|belts|tensioner|pulley|bearing|bearings|bushing|bushings|brush|brushes|bolt|bolts|clamp|clamps|tube|tubes|axle|axles|grommet|grommets|seal|seals|gasket|gaskets|hose|hoses|filter|valve|module|switch|motor|actuator|solenoid|ignitor|coil|rotor|rotors|pad|pads|caliper|cylinder|clutch|converter|manifold|injector|plug|plugs|housing|bracket|kit|latch|blower|core|tank|cap|pipe|shaft|differential|turbo|intercooler|lifter|piston|transmission|distributor|dashboard|interlock|idler|relay|relays|resistor|weatherstrip|weatherstripping|ring|rings|o-ring|o-rings|rack|racks|drier|driers|dryer|dryers|case|cases|shim|shims)$/i;
 const SHARED_NOUN_QUALIFIER = /^(?:cam|crank|front|rear|upper|lower|left|right)$/i;
-const BUYABLE_NOUN_SOURCE = '(?:pump|sensor|hub|accumulator|thermostat|radiator|condenser|compressor|alternator|starter|battery|belt|tensioner|pulley|bearing|bushing|brush|bolt|clamp|tube|axle|grommet|seal|gasket|hose|filter|valve|body|module|switch|motor|actuator|solenoid|ignitor|coil|rotor|pad|caliper|cylinder|clutch|converter|manifold|injector|plug|housing|bracket|kit|latch|blower|core|tank|cap|pipe|shaft|differential|turbo|intercooler|lifter|piston|ring|transmission|distributor|dashboard|interlock|wire|synchronizer|o-ring|relay|resistor|weatherstrip|weatherstripping|strip|nut|mount|modulator|engine|head|screen|idler|unit)(?:s|es)?';
+const BUYABLE_NOUN_SOURCE = '(?:pump|sensor|hub|accumulator|thermostat|radiator|condenser|compressor|alternator|starter|battery|belt|tensioner|pulley|bearing|bushing|brush|bolt|clamp|tube|axle|grommet|seal|gasket|hose|filter|valve|body|module|switch|motor|actuator|solenoid|ignitor|coil|rotor|pad|caliper|cylinder|clutch|converter|manifold|injector|plug|housing|bracket|kit|latch|blower|core|tank|cap|pipe|shaft|differential|turbo|intercooler|lifter|piston|ring|transmission|distributor|dashboard|interlock|wire|synchronizer|o-ring|relay|resistor|weatherstrip|weatherstripping|strip|nut|mount|modulator|engine|head|screen|idler|unit|rack|drier|dryer|case|shim)(?:s|es)?';
 const BUYABLE_NOUN = new RegExp(`\\b${BUYABLE_NOUN_SOURCE}\\b`, 'i');
 const ANTECEDENT_PART = new RegExp(
   `\\b(?:the|a|an|this|that)\\s+((?:[a-z0-9][a-z0-9/-]*\\s+){0,5}?${BUYABLE_NOUN_SOURCE})\\b`,
@@ -83,11 +84,12 @@ export interface PrescribedRepairComponent {
 
 function cleanPhrase(raw: string): string {
   const words = raw
+    .replace(/\bevery\s+\d[\d,]*(?:\s*(?:miles?|mi|km|months?|years?|hours?))?[\s\S]*$/i, '')
     .toLowerCase()
     .replace(/^screwed\s+up\s+/, '')
     .replace(/\([^)]*\)/g, ' ')          // drop parentheticals
     .replace(/['’]s\b/g, '')             // driver's -> driver
-    .replace(/[^a-z0-9\s/-]/g, ' ')
+    .replace(/[^a-z0-9\s/.-]/g, ' ')
     .split(/\s+/)
     .filter(Boolean);
 
@@ -106,23 +108,41 @@ function cleanPhrase(raw: string): string {
 }
 
 function sentenceStart(text: string, index: number): number {
-  return Math.max(
-    text.lastIndexOf('.', index - 1),
-    text.lastIndexOf(';', index - 1),
-    text.lastIndexOf('!', index - 1),
-    text.lastIndexOf('?', index - 1),
-  ) + 1;
+  for (let cursor = index - 1; cursor >= 0; cursor -= 1) {
+    const character = text[cursor]!;
+    if (character === '.' && /\d/.test(text[cursor - 1] || '') && /\d/.test(text[cursor + 1] || '')) continue;
+    if (/[.;!?]/.test(character)) return cursor + 1;
+  }
+  return 0;
 }
 
 function sentenceEnd(text: string, index: number): number {
-  const boundary = text.slice(index).search(/[.!?]/);
-  return boundary < 0 ? text.length : index + boundary + 1;
+  const boundary = clauseBoundaryIndex(text, index, false);
+  return boundary < 0 ? text.length : boundary + 1;
+}
+
+function clauseBoundaryIndex(text: string, start: number, includeClauseSeparators = true): number {
+  for (let index = start; index < text.length; index += 1) {
+    const character = text[index]!;
+    if (character === '.' && /\d/.test(text[index - 1] || '') && /\d/.test(text[index + 1] || '')) continue;
+    if (/[!?]/.test(character) || character === '.'
+      || (includeClauseSeparators && /[;\u2013\u2014]/.test(character))) return index;
+  }
+  return -1;
+}
+
+function firstClause(text: string, maxLength = 300): string {
+  const boundary = clauseBoundaryIndex(text, 0);
+  return text.slice(0, boundary < 0 ? undefined : boundary).slice(0, maxLength);
 }
 
 function replacementCondition(text: string, index: number, after = ''): string | undefined {
   const beforeInSentence = text.slice(sentenceStart(text, index), index).trim();
   return beforeInSentence.match(/\b(?:if|when|once|only after|after)\b[\s\S]*$/i)?.[0]?.trim()
     || beforeInSentence.match(/\b(?:in\s+)?severe cases?\b[\s\S]*$/i)?.[0]?.trim()
+    || beforeInSentence.match(/^for\s+[^,]{1,100},?\s*$/i)?.[0]?.trim()
+    || beforeInSentence.match(/\b(?:may|might|can|could|must|should|will)(?:\s+need\s+to)?\s*$/i)?.[0]?.trim()
+    || after.match(/\b(?:may|might|can|could|must|should|will)\s+be\s+(?:required|needed)\b/i)?.[0]?.trim()
     || after.match(/\b(?:if|when|only if|only when)\b[\s\S]*$/i)?.[0]?.trim();
 }
 
@@ -133,11 +153,12 @@ function normalizedComponent(raw: string): string {
   const withoutArticle = raw.trim().replace(/^(?:the|a|an)\s+/i, '');
   const rawWithoutOem = withoutArticle.replace(/\bOEM\b/g, '').trim();
   const rawLooksLikeAcronym = /^[A-Z][A-Z0-9/-]{1,}$/.test(rawWithoutOem)
-    || /\b[A-Z][A-Z0-9/-]{1,}$/.test(rawWithoutOem)
+    || /\b(?:FPDM|TIPM|PCV|BCM|ECM|TCM|CCU|ABS|ALB)\b/.test(rawWithoutOem)
     || /\b[A-Z][A-Z0-9/-]{1,}\s+(?:module|relay|sensor|pump|valve|unit|motor|assembly)\b/.test(rawWithoutOem);
   if (/\b(?:ATF|PSF|coolant|fluid|oil|grease)\b/i.test(phrase)) return '';
   if (/^[a-z0-9-]+\s+unit$/i.test(phrase)
     && !/\b(?:control|head|screen|compressor|transfer|abs|alb|ccu|ecm|bcm|omron)\s+unit$/i.test(phrase)) return '';
+  if (/^(?:sos|egmcartech)\s+kit$/i.test(phrase)) return '';
   if (!BUYABLE_NOUN.test(phrase) && !rawLooksLikeAcronym) return '';
   if (!phrase.includes(' ') && !phrase.includes('/') && !STANDALONE_PART.test(phrase) && !rawLooksLikeAcronym) return '';
   return phrase;
@@ -147,20 +168,29 @@ function replacementObjects(raw: string): string[] {
   const withoutTail = raw
     .replace(/\b(?:as a set|as an assembly|as one job|together)\b.*$/i, '')
     .replace(/\s+replacement\b.*$/i, '')
+    .replace(/\(([^)]*\b[a-z]*\d+(?:x|\.)\d+[a-z0-9.-]*[^)]*)\)/gi, ' $1 ')
     .replace(/\([^)]*\)/g, ' ')
     .replace(/\bas\s+(?:a|an|the)?\s*(?:complete|full|new)?\s*/i, ' ');
-  const withParts = withoutTail.match(/^([\s\S]*?)\s+with\s+([\s\S]+)$/i);
-  const objectText = withParts && normalizedComponent(withParts[2] || '')
-    ? withParts[2]!
-    : withoutTail.replace(/^\s*with\s+/i, '');
+  const normalizedOperation = withoutTail.replace(/^\s*or\s+(?:machine|resurface)\s+/i, '');
+  const leadingWith = /^\s*with\s+/i.test(normalizedOperation);
+  const withParts = !leadingWith ? normalizedOperation.match(/^([\s\S]*?)\s+with\s+([\s\S]+)$/i) : null;
+  const rightObject = withParts ? normalizedComponent(withParts[2] || '') : '';
+  const rightIsGeneric = /^(?:\s*(?:a|an|the|new|reman(?:ufactured)?|oem|genuine)\s+)*(?:part|unit|assembly)\b/i
+    .test(withParts?.[2] || '');
+  const objectText = withParts
+    ? (rightObject && !rightIsGeneric ? withParts[2]! : withParts[1]!)
+    : normalizedOperation.replace(/^\s*with\s+/i, '');
   const objects = objectText.split(/\s*,\s*(?:and\s+)?|\s+(?:and|or)\s+|\s*\+\s*/i);
 
-  for (let index = 0; index + 1 < objects.length; index += 1) {
+  let sharedNoun: string | undefined;
+  for (let index = objects.length - 1; index >= 0; index -= 1) {
+    const noun = objects[index]!.trim().match(/\b(seals?|gaskets?|hoses?|belts?|pulleys?|bearings?|bushings?|tubes?)\b/i)?.[1];
+    if (noun) sharedNoun = noun;
     const qualifier = objects[index]!.trim().replace(/^(?:the|all|both)\s+/i, '');
-    const sharedNoun = objects[index + 1]!.trim().match(/\b(seals?|gaskets?|hoses?|belts?|pulleys?|bearings?|bushings?|tubes?)\b/i)?.[1];
     if (SHARED_NOUN_QUALIFIER.test(qualifier) && sharedNoun) objects[index] = `${qualifier} ${sharedNoun}`;
+    else if (!SHARED_NOUN_QUALIFIER.test(qualifier) && !noun) sharedNoun = undefined;
   }
-  return objects;
+  return objects.map((object) => object.replace(/^\s*(?:or\s+)?(?:machine|resurface)\s+/i, ''));
 }
 
 function precedingReplacementObject(text: string, index: number): string {
@@ -168,6 +198,8 @@ function precedingReplacementObject(text: string, index: number): string {
   const clause = prefix.split(/[,;:\u2013\u2014]/).at(-1)?.trim() || prefix.trim();
   return clause
     .replace(/^(?:and|or|then|some|the|a|an)\s+/i, '')
+    .replace(/^\(?\d+\)?\s+/, '')
+    .replace(/^(?:acura|honda)\s+dealer\s+/i, '')
     .replace(/\b(?:hardware\s+)?$/i, '')
     .trim();
 }
@@ -245,14 +277,24 @@ function coordinatedAntecedentIsAmbiguous(text: string, index: number): boolean 
   return Boolean(explicitList?.[1] && explicitList?.[2]);
 }
 
-function pluralReplacementAntecedent(text: string, index: number): ReplacementAntecedent | undefined {
+function pluralReplacementAntecedents(text: string, index: number): ReplacementAntecedent[] {
   const currentStart = sentenceStart(text, index);
   const previousStart = currentStart > 0 ? sentenceStart(text, currentStart - 1) : 0;
   const context = text.slice(previousStart, index);
+  const conditionalList = context.match(new RegExp(
+    `\\bif\\s+(?:the\\s+)?((?:[a-z0-9/-]+\\s+){0,4}?${BUYABLE_NOUN_SOURCE})\\s+(?:and|or)\\s+(?:the\\s+)?((?:[a-z0-9/-]+\\s+){0,4}?${BUYABLE_NOUN_SOURCE})\\s+(?:is|are|was|were|has|have|become)\\b`,
+    'i',
+  ));
+  if (conditionalList?.[1] && conditionalList[2]) {
+    return [conditionalList[1], conditionalList[2]]
+      .map((raw) => normalizedComponent(raw))
+      .filter(Boolean)
+      .map((component) => ({ component, evidenceStart: previousStart }));
+  }
   const conditionalPlural = context.match(new RegExp(`\\bif\\s+(?:the\\s+)?((?:[a-z0-9/-]+\\s+){0,4}?${BUYABLE_NOUN_SOURCE})\\s+(?:are|were|have|become)\\b`, 'i'));
-  if (!conditionalPlural?.[1]) return undefined;
+  if (!conditionalPlural?.[1]) return [];
   const component = normalizedComponent(conditionalPlural[1]);
-  return component ? { component, evidenceStart: previousStart } : undefined;
+  return component ? [{ component, evidenceStart: previousStart }] : [];
 }
 
 function uniqueAntecedentByHeadNoun(text: string, index: number, headNoun: string): ReplacementAntecedent | undefined {
@@ -296,7 +338,7 @@ export function extractPrescriptionComponents(solution: string): PrescribedRepai
     // Truncate at the sentence boundary FIRST. "Replace crankshaft position
     // sensor. Inspect the connector." otherwise yields "crankshaft position
     // sensor inspect", which queries nothing.
-    const after = text.slice(m.index + m[0].length).split(/[.;!?\u2013\u2014]/)[0]!.slice(0, 300);
+    const after = firstClause(text.slice(m.index + m[0].length));
     if (NEGATED_REPLACEMENT_PREDICATE.test(after.replace(/\([^)]*\)/g, ' '))) continue;
     const condition = replacementCondition(text, m.index, after);
     const objects = replacementObjects(after);
@@ -328,19 +370,19 @@ export function extractPrescriptionComponents(solution: string): PrescribedRepai
       const plural = /^(?:them|these|those)$/.test(anaphoricObject.match(ANAPHORIC_OBJECT)?.[1]?.toLowerCase() || '');
       const unit = /^(?:(?:the|this|that|a|an)\s+)?unit\b/i.test(anaphoricObject);
       const costObject = /\bcosts?\b/i.test(clauseBefore) ? normalizedComponent(objectBeforeCostReplace(text, m.index)) : '';
-      const antecedent = costObject
-        ? {
+      const antecedents = costObject
+        ? [{
           component: costObject,
           evidenceStart: sentenceStart(text, Math.max(0, sentenceStart(text, m.index) - 1)),
-        }
+        }]
         : plural
-          ? pluralReplacementAntecedent(text, m.index)
+          ? pluralReplacementAntecedents(text, m.index)
         : unit
-          ? uniqueAntecedentByHeadNoun(text, m.index, 'unit')
+          ? [uniqueAntecedentByHeadNoun(text, m.index, 'unit')].filter((item): item is ReplacementAntecedent => Boolean(item))
         : coordinatedAntecedentIsAmbiguous(text, m.index)
-          ? undefined
-          : uniqueReplacementAntecedent(text, m.index);
-      if (antecedent) {
+          ? []
+          : [uniqueReplacementAntecedent(text, m.index)].filter((item): item is ReplacementAntecedent => Boolean(item));
+      for (const antecedent of antecedents) {
         found.push({
           component: antecedent.component,
           evidence: text.slice(antecedent.evidenceStart, sentenceEnd(text, m.index)).trim(),
@@ -452,6 +494,23 @@ export function extractPrescriptionComponents(solution: string): PrescribedRepai
   FIX_IS_PART.lastIndex = 0;
   while ((m = FIX_IS_PART.exec(text))) {
     const condition = replacementCondition(text, m.index);
+    const fixObject = (m[1] || '').replace(/^\s*(?:replace|replacing|replacement of|install|installing)\s+/i, '');
+    for (const rawObject of replacementObjects(fixObject)) {
+      const component = normalizedComponent(rawObject);
+      if (!component) continue;
+      found.push({
+        component,
+        evidence: text.slice(sentenceStart(text, m.index), sentenceEnd(text, m.index)).trim(),
+        diagnosisDependent: Boolean(condition),
+        ...(condition ? { condition } : {}),
+        sourceIndex: m.index,
+      });
+    }
+  }
+
+  REBUILD_WITH_PARTS.lastIndex = 0;
+  while ((m = REBUILD_WITH_PARTS.exec(text))) {
+    const condition = replacementCondition(text, m.index);
     for (const rawObject of replacementObjects(m[1] || '')) {
       const component = normalizedComponent(rawObject);
       if (!component) continue;
@@ -468,7 +527,9 @@ export function extractPrescriptionComponents(solution: string): PrescribedRepai
   BUY_COMMAND.lastIndex = 0;
   while ((m = BUY_COMMAND.exec(text))) {
     if (!imperativeCommand(text, m.index, m[0])) continue;
-    const after = text.slice(m.index + m[0].length).split(/[.;!?\u2013\u2014]/)[0]!.slice(0, 300);
+    const sentenceBefore = text.slice(sentenceStart(text, m.index), m.index);
+    if (/\b(?:avoid|never|do not|don'?t|rather than|instead of)\b[\s\S]*$/i.test(sentenceBefore)) continue;
+    const after = firstClause(text.slice(m.index + m[0].length));
     if (NEGATED_REPLACEMENT_PREDICATE.test(after.replace(/\([^)]*\)/g, ' '))) continue;
     const partNumberObject = after.match(/\bpart\s+number\s+[A-Z0-9-]+\s*\(([^)]+)\)/i)?.[1];
     const condition = replacementCondition(text, m.index, after);
@@ -500,7 +561,13 @@ export function extractPrescriptionComponents(solution: string): PrescribedRepai
     };
     if (!unique.has(item.component)) unique.set(item.component, item);
   }
-  return [...unique.values()];
+  const results = [...unique.values()];
+  return results.filter((item) => !results.some((other) => (
+    other !== item
+    && other.evidence === item.evidence
+    && other.component.length > item.component.length
+    && other.component.endsWith(item.component)
+  )));
 }
 
 export function extractPrescribedParts(solution: string): string[] {
