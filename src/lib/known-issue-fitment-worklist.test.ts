@@ -78,4 +78,13 @@ test('software and warranty language cannot suppress a separate conditional repl
   assert.equal(packet.ledger[0]!.disposition, 'diagnosis-dependent');
   assert.ok(packet.ledger[0]!.workItemIds.length > 0);
   assert.deepEqual(new Set(packet.entries.map((entry) => entry.component)), new Set(['torque converter']));
+
+  const campaign = buildFitmentPacket([{
+    ...base,
+    id: 'acura-campaign-then-part',
+    solution: 'Under the service campaign, the dealer will install the software update. If shudder persists, replace the torque converter.',
+    fixParts: [],
+  }], 'Acura');
+  assert.equal(campaign.ledger[0]!.disposition, 'diagnosis-dependent');
+  assert.deepEqual(new Set(campaign.entries.map((entry) => entry.component)), new Set(['torque converter']));
 });

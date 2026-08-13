@@ -5,7 +5,7 @@
   "make": "Acura",
   "makeKey": "acura",
   "makeIndex": 0,
-  "totalMakes": 54,
+  "totalMakes": 1,
   "issueCount": 70,
   "classifications": [
     "buyable",
@@ -15,11 +15,11 @@
     "no-commerce"
   ],
   "counts": {
-    "buyable": 28,
-    "diagnosis-dependent": 23,
-    "recall/dealer": 4,
-    "service/tool/fluid": 8,
-    "no-commerce": 7
+    "buyable": 30,
+    "diagnosis-dependent": 26,
+    "recall/dealer": 2,
+    "service/tool/fluid": 6,
+    "no-commerce": 6
   },
   "diagnosticSummary": {
     "issueWithDtcCount": 16,
@@ -128,11 +128,15 @@
         }
       ],
       "existingCommerceClaimIds": [],
-      "disposition": "recall/dealer",
-      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
       "prescriptionCount": 1,
       "existingFixPartCount": 0,
-      "workItemIds": []
+      "workItemIds": [
+        "acura-cl-tl-1997-1999-ignition-switch-interlock-recall--prescription-0-0--2-2l-f22b1",
+        "acura-cl-tl-1997-1999-ignition-switch-interlock-recall--prescription-0-0--2-3l-f23a",
+        "acura-cl-tl-1997-1999-ignition-switch-interlock-recall--prescription-0-0--3-0l-v6-j30a"
+      ]
     },
     {
       "issueId": "acura-ilx-dct-shudder-2013",
@@ -555,11 +559,14 @@
       "dtcCodes": [],
       "diagnosticDispositions": [],
       "existingCommerceClaimIds": [],
-      "disposition": "service/tool/fluid",
-      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
-      "prescriptionCount": 0,
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 2,
       "existingFixPartCount": 0,
-      "workItemIds": []
+      "workItemIds": [
+        "acura-integra-da-rear-quarter-rocker-panel-rust--prescription-0-0--all-engines",
+        "acura-integra-da-rear-quarter-rocker-panel-rust--prescription-1-0--all-engines"
+      ]
     },
     {
       "issueId": "acura-integra-da-rear-wheel-bearing-hum",
@@ -582,10 +589,11 @@
       ],
       "disposition": "buyable",
       "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
-      "prescriptionCount": 1,
+      "prescriptionCount": 2,
       "existingFixPartCount": 0,
       "workItemIds": [
-        "acura-integra-da-rear-wheel-bearing-hum--prescription-0-0--all-engines"
+        "acura-integra-da-rear-wheel-bearing-hum--prescription-0-0--all-engines",
+        "acura-integra-da-rear-wheel-bearing-hum--prescription-1-0--all-engines"
       ]
     },
     {
@@ -1084,11 +1092,13 @@
       "existingCommerceClaimIds": [],
       "disposition": "buyable",
       "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
-      "prescriptionCount": 1,
+      "prescriptionCount": 2,
       "existingFixPartCount": 0,
       "workItemIds": [
         "acura-legend-c32a1-head-gasket-failure-rear-cylinders-due-to-open-deck-vi--prescription-0-0--c32a",
-        "acura-legend-c32a1-head-gasket-failure-rear-cylinders-due-to-open-deck-vi--prescription-0-0--c32a1"
+        "acura-legend-c32a1-head-gasket-failure-rear-cylinders-due-to-open-deck-vi--prescription-0-0--c32a1",
+        "acura-legend-c32a1-head-gasket-failure-rear-cylinders-due-to-open-deck-vi--prescription-1-0--c32a",
+        "acura-legend-c32a1-head-gasket-failure-rear-cylinders-due-to-open-deck-vi--prescription-1-0--c32a1"
       ]
     },
     {
@@ -1435,11 +1445,13 @@
       ],
       "disposition": "buyable",
       "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
-      "prescriptionCount": 1,
+      "prescriptionCount": 3,
       "existingFixPartCount": 1,
       "workItemIds": [
         "acura-mdx-vcm-related-oil-consumption-spark-plug-fouling-motor-mount-f--existing-fix-part-0-0--j37a1",
-        "acura-mdx-vcm-related-oil-consumption-spark-plug-fouling-motor-mount-f--prescription-0-0--j37a1"
+        "acura-mdx-vcm-related-oil-consumption-spark-plug-fouling-motor-mount-f--prescription-0-0--j37a1",
+        "acura-mdx-vcm-related-oil-consumption-spark-plug-fouling-motor-mount-f--prescription-1-0--j37a1",
+        "acura-mdx-vcm-related-oil-consumption-spark-plug-fouling-motor-mount-f--prescription-2-0--j37a1"
       ]
     },
     {
@@ -1553,11 +1565,13 @@
         }
       ],
       "existingCommerceClaimIds": [],
-      "disposition": "no-commerce",
-      "dispositionReason": "No positive owner-buyable repair prescription was found.",
-      "prescriptionCount": 0,
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
       "existingFixPartCount": 0,
-      "workItemIds": []
+      "workItemIds": [
+        "acura-mdx-auto-idle-stop-failure-to-restart--prescription-0-0--j35y5"
+      ]
     },
     {
       "issueId": "acura-mdx-torque-converter-shudder-2014",
@@ -1736,7 +1750,7 @@
       ],
       "disposition": "diagnosis-dependent",
       "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
-      "prescriptionCount": 4,
+      "prescriptionCount": 5,
       "existingFixPartCount": 0,
       "workItemIds": [
         "acura-nsx-abs-alb-modulator-failure-1991-1999--prescription-0-0--3-0l-v6-c30a",
@@ -1746,7 +1760,9 @@
         "acura-nsx-abs-alb-modulator-failure-1991-1999--prescription-2-0--3-0l-v6-c30a",
         "acura-nsx-abs-alb-modulator-failure-1991-1999--prescription-2-0--3-2l-v6-c32b",
         "acura-nsx-abs-alb-modulator-failure-1991-1999--prescription-3-0--3-0l-v6-c30a",
-        "acura-nsx-abs-alb-modulator-failure-1991-1999--prescription-3-0--3-2l-v6-c32b"
+        "acura-nsx-abs-alb-modulator-failure-1991-1999--prescription-3-0--3-2l-v6-c32b",
+        "acura-nsx-abs-alb-modulator-failure-1991-1999--prescription-4-0--3-0l-v6-c30a",
+        "acura-nsx-abs-alb-modulator-failure-1991-1999--prescription-4-0--3-2l-v6-c32b"
       ]
     },
     {
@@ -2188,11 +2204,13 @@
       "existingCommerceClaimIds": [],
       "disposition": "buyable",
       "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
-      "prescriptionCount": 1,
+      "prescriptionCount": 2,
       "existingFixPartCount": 0,
       "workItemIds": [
         "acura-rsx-3rd-gear-synchro-grind-2002--prescription-0-0--2-0l-k20a2-i4",
-        "acura-rsx-3rd-gear-synchro-grind-2002--prescription-0-0--2-0l-k20a3-i4"
+        "acura-rsx-3rd-gear-synchro-grind-2002--prescription-0-0--2-0l-k20a3-i4",
+        "acura-rsx-3rd-gear-synchro-grind-2002--prescription-1-0--2-0l-k20a2-i4",
+        "acura-rsx-3rd-gear-synchro-grind-2002--prescription-1-0--2-0l-k20a3-i4"
       ]
     },
     {
@@ -2605,11 +2623,13 @@
         }
       ],
       "existingCommerceClaimIds": [],
-      "disposition": "service/tool/fluid",
-      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
-      "prescriptionCount": 0,
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
       "existingFixPartCount": 0,
-      "workItemIds": []
+      "workItemIds": [
+        "acura-tl-oil-consumption-and-fouled-2009--prescription-0-0--3-7l-v6-j37"
+      ]
     },
     {
       "issueId": "acura-tl-sh-awd-rear-differential-whine-2009",
@@ -2686,11 +2706,13 @@
         }
       ],
       "existingCommerceClaimIds": [],
-      "disposition": "recall/dealer",
-      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
       "prescriptionCount": 1,
       "existingFixPartCount": 0,
-      "workItemIds": []
+      "workItemIds": [
+        "acura-tl-takata-front-airbag-inflator-2009--prescription-0-0--all-engines"
+      ]
     },
     {
       "issueId": "acura-tlx-9speed-shudder-2015",

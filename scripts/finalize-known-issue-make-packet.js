@@ -212,6 +212,16 @@ function observedEvidenceHasExactPartNumber(observedValue, expectedPartNumber) {
     .test(String(observedValue || ''));
 }
 
+function isEbayAffiliateProductUrl(value) {
+  const url = new URL(value);
+  if (!/(?:^|\.)ebay\./i.test(url.hostname)) return false;
+  return url.searchParams.get('mkevt') === '1'
+    && url.searchParams.get('mkcid') === '1'
+    && Boolean(url.searchParams.get('mkrid'))
+    && Boolean(url.searchParams.get('campid'))
+    && Boolean(url.searchParams.get('toolid'));
+}
+
 function partNumberFor(part) {
   return String(part.oemPartNumber || part.aftermarketXref?.[0] || '').trim();
 }
@@ -278,6 +288,38 @@ function validateProposalLinkBinding(proposals, links) {
       throw new Error(`${key}: link evidence result mismatch`);
     }
   }
+}
+
+function worklistEvidenceIdentity(row) {
+  return {
+    id: row.id,
+    workItemId: row.workItemId,
+    prescriptionKey: row.prescriptionKey || null,
+    component: row.component || row.partTypeMatch || '',
+    repairRoleEvidence: row.repairRoleEvidence || row.prescription || null,
+    articleScope: row.articleScope || null,
+    existingFixParts: Array.isArray(row.existingFixParts) ? row.existingFixParts : [],
+    quotedPartNumber: row.partNumber || '',
+    partTypeMatch: row.partTypeMatch || '',
+    mappedFrom: row.mappedFrom || row.source || 'prescription',
+    engineMatch: row.engineMatch || null,
+  };
+}
+
+function catalogEvidenceIdentity(row) {
+  return {
+    id: row.id,
+    workItemId: row.workItemId,
+    prescriptionKey: row.prescriptionKey || null,
+    component: row.component || '',
+    repairRoleEvidence: row.repairRoleEvidence || null,
+    articleScope: row.articleScope || null,
+    existingFixParts: Array.isArray(row.existingFixParts) ? row.existingFixParts : [],
+    quotedPartNumber: row.quotedPartNumber || '',
+    partTypeMatch: row.partTypeMatch || '',
+    mappedFrom: row.mappedFrom || 'prescription',
+    engineMatch: row.engineMatch || null,
+  };
 }
 
 function requireReviewEvidence(row, label) {
@@ -461,6 +503,9 @@ function validateExactProductLink(part, review) {
     }
     const url = new URL(link.url);
     if (/(?:^|\.)ebay\./i.test(url.hostname)) {
+      if (!isEbayAffiliateProductUrl(link.url)) {
+        throw new Error(`${reviewKey(review)}: eBay product URL is missing affiliate attribution`);
+      }
       const pathItemId = url.pathname.match(/\/itm\/(?:[^/]+\/)?([^/?#]+)/i)?.[1];
       if (pathItemId !== String(identity.productId)) {
         throw new Error(`${reviewKey(review)}: eBay URL item ID does not match resolver evidence`);
@@ -482,7 +527,7 @@ function finalPart(candidate) {
       url: link.url,
       linkType: 'product',
       verified: true,
-      affiliate: /(?:^|\.)ebay\./i.test(new URL(link.url).hostname),
+      affiliate: isEbayAffiliateProductUrl(link.url),
       productIdentity: clone(link.productIdentity),
     })),
     fitment: clone(part.fitment || {}),
@@ -575,6 +620,13 @@ function validatePacketSets(source, ledger, worklist, evidence, proposals, links
     throw new Error('Catalog evidence is incomplete');
   }
   assertSameSet(worklist.entries.map((row) => row.workItemId), evidence.results.map((row) => row.workItemId), 'worklist/evidence rows');
+  const evidenceByWorkItem = new Map(evidence.results.map((row) => [row.workItemId, row]));
+  for (const row of worklist.entries) {
+    const result = evidenceByWorkItem.get(row.workItemId);
+    if (!result || !sameJson(worklistEvidenceIdentity(row), catalogEvidenceIdentity(result))) {
+      throw new Error(`${row.workItemId}: worklist/catalog evidence identity mismatch`);
+    }
+  }
   assertSameSet(
     ledger.issues.flatMap((issue) => issue.workItemIds || []),
     worklist.entries.map((row) => row.workItemId),
@@ -833,8 +885,10 @@ function finalizePacket(inputs, options = {}) {
       throw new Error(`${reviewKey(decision)}: source/review part number mismatch`);
     }
     let reconciliationStatus = 'held';
-    if (decision.decision === 'approve' && part.role === 'primary') {
+    if (decision.decision === 'approve') {
       validateExactProductLink(part, decision);
+    }
+    if (decision.decision === 'approve' && part.role === 'primary') {
       approvedPrimary.push({ proposal, part, review: decision });
       reconciliationStatus = 'selected-primary';
     } else if (decision.decision === 'approve') {

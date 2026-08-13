@@ -113,7 +113,7 @@ function exactLink(partNumber, item = '123456789012') {
   const observedListingTitle = `${partNumber} exact product`;
   return {
     vendor: 'eBay',
-    url: `https://www.ebay.com/itm/${item}?_skw=${partNumber}`,
+    url: `https://www.ebay.com/itm/${item}?_skw=${partNumber}&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&toolid=10049`,
     linkType: 'product',
     verified: true,
     productIdentity: {
@@ -185,7 +185,14 @@ function fixture(recordCount = 70) {
       },
     ],
   };
-  const evidence = { complete: true, progress: '2/2', results: [{ workItemId: 'work-1' }, { workItemId: 'existing-1' }] };
+  const evidence = {
+    complete: true,
+    progress: '2/2',
+    results: [
+      { workItemId: 'work-1', mappedFrom: 'prescription' },
+      { workItemId: 'existing-1', mappedFrom: 'existing-fix-part', quotedPartNumber: 'OLD-1' },
+    ],
+  };
   const workItemDispositions = [
     { workItemId: 'existing-1', issueId: records[1].id, verdict: 'hold', reasonCode: 'fitment-confirmed' },
     { workItemId: 'work-1', issueId: records[0].id, verdict: 'proposed', reasonCode: 'eligible-proposal' },
@@ -487,6 +494,12 @@ test('every fitment work item must terminate in a proposal or an identity-bound 
   assert.throws(() => finalizePacket(inputs, inputs.options), /do not cover the fitment worklist/);
 });
 
+test('catalog evidence is structurally bound to the exact upstream work item', () => {
+  const inputs = fixture();
+  inputs.evidence.results[0].component = 'Brake Rotor';
+  assert.throws(() => finalizePacket(inputs, inputs.options), /worklist\/catalog evidence identity mismatch/);
+});
+
 test('04 to 05 permits only exact link additions and their evidence', async (t) => {
   const mutate = (change) => {
     const inputs = fixture();
@@ -642,8 +655,21 @@ test('review decision identity is bound to proposal and work item', async (t) =>
 test('arbitrary eBay item with a PN only in query text is rejected', () => {
   const inputs = fixture();
   const link = inputs.links.proposals[0].parts[0].buyLinks[0];
-  link.url = 'https://www.ebay.com/itm/999999999999?_skw=ABC-123';
+  link.url = 'https://www.ebay.com/itm/999999999999?_skw=ABC-123&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&toolid=10049';
   assert.throws(() => finalizePacket(inputs, inputs.options), /URL item ID does not match resolver evidence/);
+});
+
+test('every approved row requires an exact affiliate-attributed product link', () => {
+  const alternateSearch = fixture();
+  alternateSearch.review.decisions[1].decision = 'approve';
+  alternateSearch.links.proposals[0].parts[1].buyLinks[0].url = 'https://www.ebay.com/sch/i.html?_nkw=ALT-456';
+  alternateSearch.links.linkEvidence[1].links = alternateSearch.links.proposals[0].parts[1].buyLinks;
+  assert.throws(() => finalizePacket(alternateSearch, alternateSearch.options), /not a verified product URL/);
+
+  const strippedAffiliate = fixture();
+  strippedAffiliate.links.proposals[0].parts[0].buyLinks[0].url = 'https://www.ebay.com/itm/123456789012';
+  strippedAffiliate.links.linkEvidence[0].links = strippedAffiliate.links.proposals[0].parts[0].buyLinks;
+  assert.throws(() => finalizePacket(strippedAffiliate, strippedAffiliate.options), /missing affiliate attribution/);
 });
 
 test('fitment generator drift requires a rebuild before downstream review can finalize', () => {

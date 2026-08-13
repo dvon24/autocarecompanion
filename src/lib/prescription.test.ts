@@ -211,6 +211,45 @@ test('preserves Acura replacement objects, coordinated branches, and exact speci
   assert.deepEqual(extractPrescribedParts('If noise persists, rebuild the differential with new clutch packs.'), ['clutch packs']);
 });
 
+test('captures every Acura branch found by the fifth exact-commit review', () => {
+  assert.deepEqual(
+    extractPrescribedParts('Proper repair is to replace the complete rear quarter. Aftermarket wheel arch and quarter patch panels are available.'),
+    ['rear quarter', 'quarter patch panels'],
+  );
+  assert.deepEqual(
+    extractPrescribedParts('Some owners replace the rear as a complete pre-pressed hub assembly; others source just the bearing/race and press it.'),
+    ['rear pre-pressed hub', 'bearing/race'],
+  );
+  assert.deepEqual(extractPrescribedParts('To avoid recurrence, install an aftermarket auto-disable module.'), ['aftermarket auto-disable module']);
+  assert.deepEqual(
+    extractPrescribedParts('Replace failed hydraulic motor mounts (front + rear) and any oil-fouled plugs. Many owners install a VCM Tuner / S-VCM Controller.'),
+    ['hydraulic motor mounts', 'oil-fouled plugs', 'vcm tuner / s-vcm controller'],
+  );
+  assert.deepEqual(extractPrescribedParts('Repairs may involve updated pistons/rings under prior warranty programs.'), ['pistons/rings']);
+  assert.deepEqual(extractPrescribedParts('A long-term fix is swapping to a later C-series engine.'), ['later c-series engine']);
+  assert.deepEqual(
+    extractPrescribedParts('Most owners simply swap the full reman half-shaft for under $100/side.'),
+    ['reman half-shaft'],
+  );
+  assert.deepEqual(extractPrescribedParts('For track use, consider upgrading to carbon-lined synchros.'), ['carbon-lined synchros']);
+  assert.deepEqual(
+    extractPrescribedParts('DIY O-ring rebuild with the SOS or egmCarTech kit. There is an upgrade path to swap the 1991-1999 NA1 modulator for the 2000-2005 NA2 unit using the SOS conversion kit.'),
+    ['o-ring rebuild kit', '2000-2005 na2 unit', 'sos conversion kit'],
+  );
+  assert.deepEqual(extractPrescribedParts('Replace the complete OEM distributor assembly (avoid cheap aftermarket).'), ['distributor']);
+  assert.deepEqual(
+    extractPrescribedParts('Replace the complete OEM distributor assembly (avoid cheap aftermarket — many fail within months).'),
+    ['distributor'],
+  );
+  assert.deepEqual(extractPrescribedParts('Inspect and replace caliper bracket hardware if corroded.'), ['caliper bracket hardware']);
+});
+
+test('fix and rebuild helper paths bind negation to their own action', () => {
+  assert.deepEqual(extractPrescribedParts('The fix is not replacing the water pump.'), []);
+  assert.deepEqual(extractPrescribedParts('The only fix is not to replace the water pump.'), []);
+  assert.deepEqual(extractPrescribedParts('Do not rebuild the transmission with new clutch packs.'), []);
+});
+
 test('keeps modal and passive prescriptions conditional and rejects imperative negation', () => {
   for (const source of [
     'You may need to replace the water pump.',

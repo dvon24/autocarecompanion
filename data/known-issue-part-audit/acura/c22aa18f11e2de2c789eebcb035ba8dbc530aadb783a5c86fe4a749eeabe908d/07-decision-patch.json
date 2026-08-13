@@ -12,8 +12,8 @@
   "diagnosticReconciliation": {
     "status": "RECONCILED",
     "artifactSha256": {
-      "classification-ledger.json": "5d7a7b57d770d1a8e1ef29d727f24371053d839fc956187a6b4985621f106419",
-      "checkpoint.json": "1d6f3a866acd69da8dfdf374956f0dece6a13183d80683c7e184af0b932a1d36",
+      "classification-ledger.json": "dc7a118b569834a30a20d814c26293f6b6dc8fa943b940fb5169fc18d2efbefa",
+      "checkpoint.json": "cdc4cb6ff6647e28aabba0ce45f5dc50a220feb71c205e77a9b084d001daf5a9",
       "diagnostic-tool-evidence.json": "d72bdb6ed12be173be7196b95b9e53332868cbefa8a5a2637570d634101538fe"
     },
     "implementationSha256": {
@@ -50,28 +50,34 @@
     ]
   },
   "commercePipelineImplementationSha256": {
-    "scripts/known-issue-completion-contract.js": "a9ffb86a2a7c71bc1b1a5b29da2db847314b7ab300e8bf1c9298b624c776b09a",
-    "scripts/finalize-known-issue-make-packet.js": "da45535ab3fdbfccf24fcf6b7f37311189b5f96772e9bb3124e98aa8e5671864",
+    "scripts/known-issue-completion-contract.js": "8dd2a3e479ef5cfe5e91f5411b497fe9faaaa051b61c59af92d74b7446f45876",
+    "scripts/finalize-known-issue-make-packet.js": "c81287689ae350733a0134c68c00f12025b19c9018773c5948c97852fe0e6350",
     "scripts/apply-known-issue-catalog-deeplinks.js": "33b0153059763604a0a1575ae1cfe71ee5db0e2b5d36720f3eedd87525093e6f",
+    "scripts/audit-known-issue-catalog-deeplinks.js": "e7ef697aca184cc1515cf1fa217fa013da8646da6c27bd819021e78122fd41f8",
     "scripts/build-known-issue-part-audit-ledger.js": "e3915e9a24072549871f23d0d0a38f5330f00605cce8860078e04acd492379c0",
     "public/data/ymmt.json": "a05b331834b6f4c71af58663a5a1f104e215bab2402c612026a1344386130139",
-    "src/lib/prescription.ts": "f4249edf197fe2e4cea23cf410ad6cd6fb98f2fe1cbf9544fb67fe0a5013f8a1",
-    "src/lib/known-issue-fitment-worklist.ts": "0d6f60691499d926d91e36f97e052d69541802e8a46c7d048789873c6202edfa",
+    "src/lib/prescription.ts": "f2a9c6af2b01fbd88650434fc0f55d9d4bac2ac99d0560b31848372f42579f38",
+    "src/lib/known-issue-fitment-worklist.ts": "2f15b40c0be0dafbf3bdbdf7d39191dd2382056e9a5025adbffeb510144c19fe",
     "src/data/component-catalog-map.ts": "5e6d51a3e228b392890a17e6142a498cfc542de1f2093c371bf5d1c715d4ea22",
     "scripts/build-fitment-worklist.ts": "5aa10edeb5e32f10d78754ead2f1146bccc0d96eaa1b0b86b1a7fd5eee991cbb",
     "scripts/showmetheparts-known-issue-candidates.js": "e4b092f1685e0a24da8749c4cabcab00d353705f104443a886efbbd4dfdcf12a",
     "scripts/verify-parts-fitment.js": "7f2dd3731930ac097f6dc36de95a1ac5969368eba04047d34f1e7d628e6693ab",
     "scripts/build-part-proposals.ts": "bcb5647f2d5d2beee45703570dda18cddf4fa511262dd575b0f43f5b546a2c91",
     "src/lib/part-recommendation.ts": "040ee0b8dcc043443d7bd13c6752697b09979234fe19fa46c156652494721700",
+    "src/data/replacement-part-suppliers.ts": "9b7d5a8a720ec9211c028275e56791c369fbaea9ef7282b6ebb2476d0fd2a44a",
+    "src/lib/aftermarket-tier.ts": "f3482790db72e23e86306734dd3f6f6dff9417dde76f41a5a3e81808451753a1",
     "src/lib/part-proposal-coverage.ts": "92a550d974f97f900a29e13428045b622f56c88286a9d18909ee6f94ea43313c",
     "src/lib/part-type-evidence.ts": "045becd23e277f7f62032037125a2c764441ecd00952efa59d6a121c2029628a",
     "src/lib/catalog-candidate-safety.ts": "ab49ffc047c2ba4395275670ad0f9ff28ad4ef51bcd7532ba6d92505a17d59dd",
     "scripts/build-known-issue-part-links.ts": "817185ff433f61a8cfa19a179ddf0d38e91b92943a7b61fce92c904973f16881",
     "src/lib/part-link-builder.ts": "2bd80c7784b0369623bf8102c034b55fe0c9e21e9c97149edd3760151f3cb655",
+    "src/lib/resolve-part-link.ts": "6347247f284208aa9308ac049414e4f2059b7904c7905cc0b4727e8892acf84b",
+    "src/lib/verified-parts.ts": "97a4bf766a95a1e822644be6d61b058a536ecba13f794f33a61eee8281873229",
     "src/lib/ebay-part-link-resolver.ts": "d42b71c98936edcd82a54e264ca7ee97420f54f425b77c82fc37fdba6a49831e",
     "src/lib/ebay-resolver.ts": "7a9292bfe7fd059a6afc3d0781fff04eddb5e650c4c18f7bf0212dfb91bbf03c",
     "src/lib/known-issue-part-fitment.ts": "b9ae909dda5fc7e238df59b14bf0460422246e055badf8ee4ebc4b4da7f3af81",
-    "src/lib/reviewed-vehicle-context.ts": "e596a9460f905fd80388fee62812f8fb3c1e754aeaffbc1d2d9303ac2c35e38f",
+    "src/schemas/knownIssue.schema.ts": "59656aecdd79444049ffb7c263212ecb1bbb465847c81112e014d08ccff0bb94",
+    "src/lib/reviewed-vehicle-context.ts": "c5323e2fee3af556360dd009103e68c4edb12850ceaaafbc5212180be5d3b022",
     "src/lib/known-issue-commerce.ts": "1e4e812ac2fe9f2c170e3e050786e62fe415ddc778ff31aadab8f9db5b03c1ef",
     "src/lib/external-http-url.ts": "45dd7c4d1eeba815ef549d733a41e8c0dfcea050b7391a21401b1a6a16551c92",
     "src/lib/ebay-affiliate.ts": "339a4de57ccdd3ccd10f7d7a19a652f0ec09769215fa944c0e4d04e24ca25bad",
@@ -321,8 +327,8 @@
     "diagnosticReconciliation": {
       "status": "RECONCILED",
       "artifactSha256": {
-        "classification-ledger.json": "5d7a7b57d770d1a8e1ef29d727f24371053d839fc956187a6b4985621f106419",
-        "checkpoint.json": "1d6f3a866acd69da8dfdf374956f0dece6a13183d80683c7e184af0b932a1d36",
+        "classification-ledger.json": "dc7a118b569834a30a20d814c26293f6b6dc8fa943b940fb5169fc18d2efbefa",
+        "checkpoint.json": "cdc4cb6ff6647e28aabba0ce45f5dc50a220feb71c205e77a9b084d001daf5a9",
         "diagnostic-tool-evidence.json": "d72bdb6ed12be173be7196b95b9e53332868cbefa8a5a2637570d634101538fe"
       },
       "implementationSha256": {
@@ -359,28 +365,34 @@
       ]
     },
     "commercePipelineImplementationSha256": {
-      "scripts/known-issue-completion-contract.js": "a9ffb86a2a7c71bc1b1a5b29da2db847314b7ab300e8bf1c9298b624c776b09a",
-      "scripts/finalize-known-issue-make-packet.js": "da45535ab3fdbfccf24fcf6b7f37311189b5f96772e9bb3124e98aa8e5671864",
+      "scripts/known-issue-completion-contract.js": "8dd2a3e479ef5cfe5e91f5411b497fe9faaaa051b61c59af92d74b7446f45876",
+      "scripts/finalize-known-issue-make-packet.js": "c81287689ae350733a0134c68c00f12025b19c9018773c5948c97852fe0e6350",
       "scripts/apply-known-issue-catalog-deeplinks.js": "33b0153059763604a0a1575ae1cfe71ee5db0e2b5d36720f3eedd87525093e6f",
+      "scripts/audit-known-issue-catalog-deeplinks.js": "e7ef697aca184cc1515cf1fa217fa013da8646da6c27bd819021e78122fd41f8",
       "scripts/build-known-issue-part-audit-ledger.js": "e3915e9a24072549871f23d0d0a38f5330f00605cce8860078e04acd492379c0",
       "public/data/ymmt.json": "a05b331834b6f4c71af58663a5a1f104e215bab2402c612026a1344386130139",
-      "src/lib/prescription.ts": "f4249edf197fe2e4cea23cf410ad6cd6fb98f2fe1cbf9544fb67fe0a5013f8a1",
-      "src/lib/known-issue-fitment-worklist.ts": "0d6f60691499d926d91e36f97e052d69541802e8a46c7d048789873c6202edfa",
+      "src/lib/prescription.ts": "f2a9c6af2b01fbd88650434fc0f55d9d4bac2ac99d0560b31848372f42579f38",
+      "src/lib/known-issue-fitment-worklist.ts": "2f15b40c0be0dafbf3bdbdf7d39191dd2382056e9a5025adbffeb510144c19fe",
       "src/data/component-catalog-map.ts": "5e6d51a3e228b392890a17e6142a498cfc542de1f2093c371bf5d1c715d4ea22",
       "scripts/build-fitment-worklist.ts": "5aa10edeb5e32f10d78754ead2f1146bccc0d96eaa1b0b86b1a7fd5eee991cbb",
       "scripts/showmetheparts-known-issue-candidates.js": "e4b092f1685e0a24da8749c4cabcab00d353705f104443a886efbbd4dfdcf12a",
       "scripts/verify-parts-fitment.js": "7f2dd3731930ac097f6dc36de95a1ac5969368eba04047d34f1e7d628e6693ab",
       "scripts/build-part-proposals.ts": "bcb5647f2d5d2beee45703570dda18cddf4fa511262dd575b0f43f5b546a2c91",
       "src/lib/part-recommendation.ts": "040ee0b8dcc043443d7bd13c6752697b09979234fe19fa46c156652494721700",
+      "src/data/replacement-part-suppliers.ts": "9b7d5a8a720ec9211c028275e56791c369fbaea9ef7282b6ebb2476d0fd2a44a",
+      "src/lib/aftermarket-tier.ts": "f3482790db72e23e86306734dd3f6f6dff9417dde76f41a5a3e81808451753a1",
       "src/lib/part-proposal-coverage.ts": "92a550d974f97f900a29e13428045b622f56c88286a9d18909ee6f94ea43313c",
       "src/lib/part-type-evidence.ts": "045becd23e277f7f62032037125a2c764441ecd00952efa59d6a121c2029628a",
       "src/lib/catalog-candidate-safety.ts": "ab49ffc047c2ba4395275670ad0f9ff28ad4ef51bcd7532ba6d92505a17d59dd",
       "scripts/build-known-issue-part-links.ts": "817185ff433f61a8cfa19a179ddf0d38e91b92943a7b61fce92c904973f16881",
       "src/lib/part-link-builder.ts": "2bd80c7784b0369623bf8102c034b55fe0c9e21e9c97149edd3760151f3cb655",
+      "src/lib/resolve-part-link.ts": "6347247f284208aa9308ac049414e4f2059b7904c7905cc0b4727e8892acf84b",
+      "src/lib/verified-parts.ts": "97a4bf766a95a1e822644be6d61b058a536ecba13f794f33a61eee8281873229",
       "src/lib/ebay-part-link-resolver.ts": "d42b71c98936edcd82a54e264ca7ee97420f54f425b77c82fc37fdba6a49831e",
       "src/lib/ebay-resolver.ts": "7a9292bfe7fd059a6afc3d0781fff04eddb5e650c4c18f7bf0212dfb91bbf03c",
       "src/lib/known-issue-part-fitment.ts": "b9ae909dda5fc7e238df59b14bf0460422246e055badf8ee4ebc4b4da7f3af81",
-      "src/lib/reviewed-vehicle-context.ts": "e596a9460f905fd80388fee62812f8fb3c1e754aeaffbc1d2d9303ac2c35e38f",
+      "src/schemas/knownIssue.schema.ts": "59656aecdd79444049ffb7c263212ecb1bbb465847c81112e014d08ccff0bb94",
+      "src/lib/reviewed-vehicle-context.ts": "c5323e2fee3af556360dd009103e68c4edb12850ceaaafbc5212180be5d3b022",
       "src/lib/known-issue-commerce.ts": "1e4e812ac2fe9f2c170e3e050786e62fe415ddc778ff31aadab8f9db5b03c1ef",
       "src/lib/external-http-url.ts": "45dd7c4d1eeba815ef549d733a41e8c0dfcea050b7391a21401b1a6a16551c92",
       "src/lib/ebay-affiliate.ts": "339a4de57ccdd3ccd10f7d7a19a652f0ec09769215fa944c0e4d04e24ca25bad",
@@ -415,14 +427,14 @@
     },
     "inputSha256": {
       "00-make-source.json": "a1f69107cdad861b2324532e62926eaa533c26001d6c1c47e767ca76ff38a3f6",
-      "01-disposition-ledger.json": "e28ba4605f15b7e846650bfa387b320ad950dc61f2a5654394da320e6fc9119e",
-      "02-fitment-worklist.json": "fd438ceb44f907827c9a58778afa728190948a110d659e735c8ad349d6b0e5c5",
-      "03-showmetheparts-evidence.json": "0ad8fdfb29d82db4afd51f50d4de540718e7b82983e93a341c9dc04c9bf54b71",
-      "04-part-proposals.json": "194336eb1a2df93cdac6e571758d19312f657a6dbd0bb043dcf893b0dc51ddca",
-      "05-direct-link-evidence.json": "915dc1abccafaaf3abf1d761244e4b11510caca614138f067d93e9680f506aeb",
-      "06-independent-review.json": "9130bc9612684255403d00bd25fb56e0b28755e9a55b57853f54021d648f25ac",
-      "classification-ledger.json": "5d7a7b57d770d1a8e1ef29d727f24371053d839fc956187a6b4985621f106419",
-      "checkpoint.json": "1d6f3a866acd69da8dfdf374956f0dece6a13183d80683c7e184af0b932a1d36",
+      "01-disposition-ledger.json": "9c4ce63ab564ca80241e397dd2ba483e5798106000c6d80dd4516441ff77d975",
+      "02-fitment-worklist.json": "1dd5a142ccab2794bb4ce1902572e0005ba7f38348808efc8f669847fbc90be5",
+      "03-showmetheparts-evidence.json": "9ea152ce6e71e75185fd08dbb9cc89b85fc1516d35c819257d3f4d5bb68258a3",
+      "04-part-proposals.json": "34becb3237d12912d5b70f89071fc4856b4a0ed55992ef0e9e8d2042074971c9",
+      "05-direct-link-evidence.json": "f3ab45b67ce306eb005713020a0227c59139372cfcd3d27eacb6d50e27ef2d89",
+      "06-independent-review.json": "5d823ef382fbd4f8cd9b4c672fa3277ddcc93022146b606047bd224cdb7023ce",
+      "classification-ledger.json": "dc7a118b569834a30a20d814c26293f6b6dc8fa943b940fb5169fc18d2efbefa",
+      "checkpoint.json": "cdc4cb6ff6647e28aabba0ce45f5dc50a220feb71c205e77a9b084d001daf5a9",
       "diagnostic-tool-evidence.json": "d72bdb6ed12be173be7196b95b9e53332868cbefa8a5a2637570d634101538fe"
     },
     "reviewRows": [
@@ -1127,7 +1139,7 @@
       },
       {
         "issueId": "acura-cl-tl-1997-1999-ignition-switch-interlock-recall",
-        "disposition": "recall/dealer",
+        "disposition": "diagnosis-dependent",
         "commerceAction": "no-fixparts-change"
       },
       {
@@ -1177,7 +1189,7 @@
       },
       {
         "issueId": "acura-integra-da-rear-quarter-rocker-panel-rust",
-        "disposition": "service/tool/fluid",
+        "disposition": "buyable",
         "commerceAction": "no-fixparts-change"
       },
       {
@@ -1272,7 +1284,7 @@
       },
       {
         "issueId": "acura-mdx-auto-idle-stop-failure-to-restart",
-        "disposition": "no-commerce",
+        "disposition": "buyable",
         "commerceAction": "no-fixparts-change"
       },
       {
@@ -1417,7 +1429,7 @@
       },
       {
         "issueId": "acura-tl-oil-consumption-and-fouled-2009",
-        "disposition": "service/tool/fluid",
+        "disposition": "diagnosis-dependent",
         "commerceAction": "no-fixparts-change"
       },
       {
@@ -1432,7 +1444,7 @@
       },
       {
         "issueId": "acura-tl-takata-front-airbag-inflator-2009",
-        "disposition": "recall/dealer",
+        "disposition": "diagnosis-dependent",
         "commerceAction": "no-fixparts-change"
       },
       {

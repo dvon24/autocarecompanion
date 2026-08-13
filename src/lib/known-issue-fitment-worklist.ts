@@ -105,7 +105,11 @@ function normalizedPartNumbers(part: NonNullable<FrozenIssueRecord['fixParts']>[
 function classify(record: FrozenIssueRecord): { disposition: IssueDisposition; reason: string } {
   const prescriptions = extractPrescriptionComponents(record.solution);
   const existing = record.fixParts || [];
-  if (DEALER_ONLY.test(record.solution) && !/aftermarket|purchase|order the part|buy/i.test(record.solution)) {
+  const hasSeparateConditionalRepair = prescriptions.some((item) => item.diagnosisDependent
+    && /\b(?:if|when|once|only after|after|persists?|confirmed|severe)\b/i.test(`${item.condition || ''} ${item.evidence}`));
+  if (DEALER_ONLY.test(record.solution)
+    && !hasSeparateConditionalRepair
+    && !/aftermarket|purchase|order the part|buy/i.test(record.solution)) {
     return { disposition: 'recall/dealer', reason: 'The prescribed remedy is dealer, campaign, recall, or software work.' };
   }
   if (prescriptions.some((item) => item.diagnosisDependent)) {

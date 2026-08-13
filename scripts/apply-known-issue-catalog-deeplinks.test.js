@@ -40,12 +40,18 @@ test('completion contract binds every release, context, URL, affiliate, and vend
     'scripts/known-issue-completion-contract.js',
     'scripts/finalize-known-issue-make-packet.js',
     'scripts/apply-known-issue-catalog-deeplinks.js',
+    'scripts/audit-known-issue-catalog-deeplinks.js',
     'scripts/build-known-issue-part-audit-ledger.js',
     'public/data/ymmt.json',
     'src/lib/external-http-url.ts',
     'src/lib/ebay-affiliate.ts',
     'src/lib/vendor-resolver.ts',
     'src/lib/vendor-link-validator.ts',
+    'src/data/replacement-part-suppliers.ts',
+    'src/lib/resolve-part-link.ts',
+    'src/lib/verified-parts.ts',
+    'src/lib/aftermarket-tier.ts',
+    'src/schemas/knownIssue.schema.ts',
   ]) assert.ok(COMMERCE_PIPELINE_IMPLEMENTATION_FILES.includes(file), `unbound critical file ${file}`);
 });
 const {

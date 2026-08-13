@@ -4,7 +4,7 @@ type: 'feature'
 created: '2026-08-12'
 status: 'in-review'
 baseline_commit: '013e4ef338fc3d2c42b8cc39f5fde43d6203755e'
-review_loop_iteration: 4
+review_loop_iteration: 5
 context: []
 ---
 
@@ -65,6 +65,10 @@ context: []
 - [x] [Review][Patch] Keep modal/passive replacements diagnosis-dependent and reject uppercase imperative negation [src/lib/prescription.ts:290]
 - [x] [Review][Patch] Do not let dealer/software language suppress separately prescribed conditional repair work items [src/lib/known-issue-fitment-worklist.ts:107]
 - [x] [Review][Patch] Close the completion implementation boundary over the contract, finalizer/applicator/later-make gate, YMMT evidence, URL/affiliate guards, and Vision vendor dependencies [scripts/known-issue-completion-contract.js:13]
+- [x] [Review][Patch] Capture the remaining frozen Acura branches: rear quarter/patch panels, bearing/race, auto-disable module, oil-fouled plugs/VCM controller, piston-rings, C-series swap, carbon synchros, NSX O-ring/NA2 conversion, and caliper hardware [src/lib/prescription.ts:22]
+- [x] [Review][Patch] Bind negation to fix/rebuild actions and keep a dealer campaign from suppressing a separate conditional repair [src/lib/prescription.ts:42]
+- [x] [Review][Patch] Bind every 03 evidence row to the exact 02 component/role/scope row and validate every approved primary or alternate direct link [scripts/finalize-known-issue-make-packet.js:240]
+- [x] [Review][Patch] Require actual eBay affiliate parameters before persisting affiliate:true and bind every direct release dependency named by the spec [scripts/known-issue-completion-contract.js:13]
 
 **Acceptance Criteria:**
 - Given a make snapshot, when reconciled, then every published issue and existing commerce claim has exactly one disposition and zero rows are missing, duplicated, or stale.
@@ -107,6 +111,15 @@ context: []
   commerce set. The completion contract now binds its release/apply/finalize
   gates, exact YMMT evidence, and transitive URL/affiliate/vendor guards. The
   same six release blockers remain and production authority remains false.
+- 2026-08-13: The fifth exact-commit review found additional explicit Acura
+  repair branches outside the mechanically closed 229-row set, broad negation
+  and dealer suppression, approved-alternate/affiliate validation gaps, and
+  direct release dependencies outside the completion hash surface. Extraction
+  and worklist rules now cover every reported counterexample; 02/03 identity is
+  structurally bound; every approved link is exact and affiliate-attributed;
+  and the completion contract includes the audit/schema/supplier/resolver/tier
+  dependencies. Acura is being deterministically rebuilt from the same frozen
+  source with no production authority or deployment.
 
 ## Verification
 
